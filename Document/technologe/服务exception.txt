@@ -1,0 +1,4 @@
+1、WCF寄宿Windows问题：
+	（1）windows 添加wcf的引用
+	（2）创建主机对象，ServiceHost = new ServiceHost(typeof(wcfservice));
+	（3）wcfservice添加：[ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]

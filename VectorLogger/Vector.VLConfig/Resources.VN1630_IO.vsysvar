@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<systemvariables version="4">
+  <namespace name="" comment="">
+    <namespace name="IO" comment="">
+      <namespace name="VN1600_1" comment="">
+        <variable anlyzLocal="2" readOnly="true" valueSequence="false" unit="V" name="AIN" comment="" bitcount="64" isSigned="true" encoding="65001" type="float" startValue="0" minValue="0" maxValue="18" />
+        <variable anlyzLocal="2" readOnly="true" valueSequence="false" unit="" name="DIN1" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="1" maxValuePhys="1" />
+        <variable anlyzLocal="2" readOnly="true" valueSequence="false" unit="" name="DIN0" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="1" maxValuePhys="1" />
+        <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="DOUT" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="1" maxValuePhys="1" />
+      </namespace>
+    </namespace>
+  </namespace>
+</systemvariables>

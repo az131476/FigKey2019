@@ -1,0 +1,2 @@
+1、解决乱码问题
+git config --global core.quotepath false

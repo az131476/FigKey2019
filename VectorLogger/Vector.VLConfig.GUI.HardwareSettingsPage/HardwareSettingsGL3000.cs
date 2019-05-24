@@ -1,0 +1,576 @@
+using System;
+using System.ComponentModel;
+using System.Windows.Forms;
+using Vector.VLConfig.BusinessLogic.Configuration;
+using Vector.VLConfig.Data.ApplicationData;
+using Vector.VLConfig.Data.ConfigurationDataModel;
+using Vector.VLConfig.DBAccess;
+using Vector.VLConfig.ValidationFramework;
+
+namespace Vector.VLConfig.GUI.HardwareSettingsPage
+{
+	internal class HardwareSettingsGL3000 : UserControl
+	{
+		private GUIElementManager_Control guiElementManager;
+
+		private CustomErrorProvider customErrorProvider;
+
+		private PageValidator pageValidator;
+
+		private bool isInitControls;
+
+		private LogDataStorage logDataStorage;
+
+		private DisplayMode displayMode;
+
+		private IContainer components;
+
+		private GroupBox groupBoxTimeoutToSleep;
+
+		private GroupBox groupBoxDataStorage;
+
+		private TextBox textBoxTimeoutToSleep;
+
+		private ErrorProvider errorProviderFormat;
+
+		private ErrorProvider errorProviderLocalModel;
+
+		private ErrorProvider errorProviderGlobalModel;
+
+		private CheckBox checkBoxFastWakeUp;
+
+		private CheckBox checkBoxUseDataCompression;
+
+		private CheckBox checkBoxEnterSleepMode;
+
+		private Label labelSec;
+
+		private GroupBox groupBoxActivationDelay;
+
+		private Label labelActivationOnMsgTimeout;
+
+		private TextBox textBoxMsgTimeoutActivationDelay;
+
+		private Label labelMs;
+
+		private Label labelStopCyclicTimerEvents;
+
+		private TextBox textBoxEventType;
+
+		private Button buttonSelectEventType;
+
+		private TextBox textBoxCondition;
+
+		private Button buttonChangeCondition;
+
+		private ToolTip toolTip;
+
+		private Label labelInfoSuppressOnMsgTimeout;
+
+		private Label labelStopCyclicCommInfo;
+
+		public LogDataStorage LogDataStorage
+		{
+			get
+			{
+				return this.logDataStorage;
+			}
+			set
+			{
+				this.logDataStorage = value;
+				if (this.logDataStorage != null)
+				{
+					this.UpdateGUI();
+				}
+			}
+		}
+
+		public IApplicationDatabaseManager ApplicationDatabaseManager
+		{
+			get;
+			set;
+		}
+
+		public IModelValidator ModelValidator
+		{
+			get;
+			set;
+		}
+
+		public DisplayMode DisplayMode
+		{
+			get
+			{
+				return this.displayMode;
+			}
+			set
+			{
+				this.displayMode = value;
+				this.UpdateGUI();
+			}
+		}
+
+		private bool GUIIsEnterSleepModeEnabled
+		{
+			get
+			{
+				return this.checkBoxEnterSleepMode.Checked;
+			}
+			set
+			{
+				this.checkBoxEnterSleepMode.Checked = value;
+			}
+		}
+
+		private uint GUITimeoutToSleep
+		{
+			get
+			{
+				uint result;
+				if (uint.TryParse(this.textBoxTimeoutToSleep.Text, out result))
+				{
+					return result;
+				}
+				return 0u;
+			}
+			set
+			{
+				this.textBoxTimeoutToSleep.Text = value.ToString();
+			}
+		}
+
+		private bool GUIIsFastWakeUpEnabled
+		{
+			get
+			{
+				return this.checkBoxFastWakeUp.Checked;
+			}
+			set
+			{
+				this.checkBoxFastWakeUp.Checked = value;
+			}
+		}
+
+		private bool GUIUseDataCompression
+		{
+			get
+			{
+				return this.checkBoxUseDataCompression.Checked;
+			}
+			set
+			{
+				this.checkBoxUseDataCompression.Checked = value;
+			}
+		}
+
+		private uint GUIEventActivationDelayAfterStart
+		{
+			get
+			{
+				uint result;
+				if (uint.TryParse(this.textBoxMsgTimeoutActivationDelay.Text, out result))
+				{
+					return result;
+				}
+				return 0u;
+			}
+			set
+			{
+				this.textBoxMsgTimeoutActivationDelay.Text = value.ToString();
+			}
+		}
+
+		public HardwareSettingsGL3000()
+		{
+			this.InitializeComponent();
+			this.isInitControls = false;
+			this.guiElementManager = new GUIElementManager_Control();
+			this.customErrorProvider = new CustomErrorProvider(this.errorProviderFormat);
+			this.customErrorProvider.General.RegisterErrorProviderForErrorClass(ValidationErrorClass.LocalModelError, this.errorProviderLocalModel);
+			this.customErrorProvider.General.RegisterErrorProviderForErrorClass(ValidationErrorClass.GlobalModelError, this.errorProviderGlobalModel);
+			this.pageValidator = new PageValidator(this.customErrorProvider);
+		}
+
+		public void Init()
+		{
+		}
+
+		public void Reset()
+		{
+			this.ResetValidationFramework();
+		}
+
+		private void control_Validating(object sender, CancelEventArgs e)
+		{
+			this.ValidateInput(false);
+		}
+
+		private void checkBox_CheckedChanged(object sender, EventArgs e)
+		{
+			if (this.isInitControls)
+			{
+				return;
+			}
+			this.ValidateInput(false);
+		}
+
+		private void checkBoxEnterSleepMode_CheckedChanged(object sender, EventArgs e)
+		{
+			if (this.isInitControls)
+			{
+				return;
+			}
+			this.textBoxTimeoutToSleep.Enabled = this.checkBoxEnterSleepMode.Checked;
+			this.ValidateInput(false);
+		}
+
+		private void comboBox_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			if (this.isInitControls)
+			{
+				return;
+			}
+			this.ValidateInput(false);
+		}
+
+		private void buttonSelectEventType_Click(object sender, EventArgs e)
+		{
+			using (SelectEventType selectEventType = new SelectEventType(this.ModelValidator.LoggerSpecifics))
+			{
+				selectEventType.SelectedEventType = this.textBoxEventType.Text;
+				if (selectEventType.ShowDialog() == DialogResult.OK)
+				{
+					if (selectEventType.SelectedEventType != this.textBoxEventType.Text)
+					{
+						this.CreateNewConditionForEventType(selectEventType.SelectedEventType);
+					}
+					else if (this.logDataStorage.StopCyclicCommunicationEvent != null)
+					{
+						this.EditCurrentCondition();
+					}
+				}
+			}
+		}
+
+		private void buttonChangeCondition_Click(object sender, EventArgs e)
+		{
+			this.EditCurrentCondition();
+		}
+
+		private void textBoxCondition_MouseEnter(object sender, EventArgs e)
+		{
+			this.toolTip.SetToolTip(this.textBoxCondition, this.textBoxCondition.Text);
+		}
+
+		public bool ValidateInput(bool isDataChanged = false)
+		{
+			if (this.logDataStorage == null)
+			{
+				return false;
+			}
+			bool flag = true;
+			this.pageValidator.General.ResetAllErrorProviders();
+			this.pageValidator.General.ResetAllFormatErrors();
+			bool flag2;
+			flag &= this.pageValidator.Control.UpdateModel<bool>(this.checkBoxEnterSleepMode.Checked, this.logDataStorage.IsEnterSleepModeEnabled, this.guiElementManager.GetGUIElement(this.checkBoxEnterSleepMode), out flag2);
+			bool flag3 = isDataChanged | flag2;
+			if (this.checkBoxEnterSleepMode.Checked)
+			{
+				flag &= this.pageValidator.Control.ValidateFormatAndUpdateModel_UInt32(this.textBoxTimeoutToSleep.Text, this.logDataStorage.TimeoutToSleep, this.guiElementManager.GetGUIElement(this.textBoxTimeoutToSleep), out flag2);
+				flag3 |= flag2;
+			}
+			else
+			{
+				this.GUITimeoutToSleep = this.logDataStorage.TimeoutToSleep.Value;
+			}
+			flag &= this.pageValidator.Control.UpdateModel<bool>(this.checkBoxFastWakeUp.Checked, this.logDataStorage.IsFastWakeUpEnabled, this.guiElementManager.GetGUIElement(this.checkBoxFastWakeUp), out flag2);
+			flag3 |= flag2;
+			flag &= this.pageValidator.Control.UpdateModel<bool>(this.checkBoxUseDataCompression.Checked, this.logDataStorage.UseDataCompression, this.guiElementManager.GetGUIElement(this.checkBoxUseDataCompression), out flag2);
+			flag3 |= flag2;
+			flag &= this.pageValidator.Control.ValidateFormatAndUpdateModel_UInt32(this.textBoxMsgTimeoutActivationDelay.Text, this.logDataStorage.EventActivationDelayAfterStart, this.guiElementManager.GetGUIElement(this.textBoxMsgTimeoutActivationDelay), out flag2);
+			flag3 |= flag2;
+			if (this.logDataStorage.StopCyclicCommunicationEvent is SymbolicSignalEvent)
+			{
+				SymbolicSignalEvent symbolicSignalEvent = this.logDataStorage.StopCyclicCommunicationEvent as SymbolicSignalEvent;
+				flag &= this.pageValidator.Control.UpdateModel<uint>(symbolicSignalEvent.ChannelNumber.Value, symbolicSignalEvent.ChannelNumber, this.guiElementManager.GetGUIElement(this.textBoxCondition), out flag2);
+				flag3 |= flag2;
+				flag &= this.pageValidator.Control.UpdateModel<string>(symbolicSignalEvent.MessageName.Value, symbolicSignalEvent.MessageName, this.guiElementManager.GetGUIElement(this.textBoxCondition), out flag2);
+				flag3 |= flag2;
+			}
+			if (this.logDataStorage.StopCyclicCommunicationEvent is CcpXcpSignalEvent)
+			{
+				CcpXcpSignalEvent ccpXcpSignalEvent = this.logDataStorage.StopCyclicCommunicationEvent as CcpXcpSignalEvent;
+				flag &= this.pageValidator.Control.UpdateModel<string>(ccpXcpSignalEvent.SignalName.Value, ccpXcpSignalEvent.SignalName, this.guiElementManager.GetGUIElement(this.textBoxCondition), out flag2);
+				flag3 |= flag2;
+			}
+			else if (this.logDataStorage.StopCyclicCommunicationEvent is CANDataEvent)
+			{
+				CANDataEvent cANDataEvent = this.logDataStorage.StopCyclicCommunicationEvent as CANDataEvent;
+				flag &= this.pageValidator.Control.UpdateModel<uint>(cANDataEvent.ChannelNumber.Value, cANDataEvent.ChannelNumber, this.guiElementManager.GetGUIElement(this.textBoxCondition), out flag2);
+				flag3 |= flag2;
+			}
+			else if (this.logDataStorage.StopCyclicCommunicationEvent is LINDataEvent)
+			{
+				LINDataEvent lINDataEvent = this.logDataStorage.StopCyclicCommunicationEvent as LINDataEvent;
+				flag &= this.pageValidator.Control.UpdateModel<uint>(lINDataEvent.ChannelNumber.Value, lINDataEvent.ChannelNumber, this.guiElementManager.GetGUIElement(this.textBoxCondition), out flag2);
+				flag3 |= flag2;
+			}
+			else if (this.logDataStorage.StopCyclicCommunicationEvent is MsgTimeoutEvent)
+			{
+				MsgTimeoutEvent msgTimeoutEvent = this.logDataStorage.StopCyclicCommunicationEvent as MsgTimeoutEvent;
+				flag &= this.pageValidator.Control.UpdateModel<uint>(msgTimeoutEvent.ChannelNumber.Value, msgTimeoutEvent.ChannelNumber, this.guiElementManager.GetGUIElement(this.textBoxCondition), out flag2);
+				flag3 |= flag2;
+				flag &= this.pageValidator.Control.UpdateModel<string>(msgTimeoutEvent.MessageName.Value, msgTimeoutEvent.MessageName, this.guiElementManager.GetGUIElement(this.textBoxCondition), out flag2);
+				flag3 |= flag2;
+			}
+			else if (this.logDataStorage.StopCyclicCommunicationEvent is DigitalInputEvent)
+			{
+				DigitalInputEvent digitalInputEvent = this.logDataStorage.StopCyclicCommunicationEvent as DigitalInputEvent;
+				flag &= this.pageValidator.Control.UpdateModel<uint>(digitalInputEvent.DigitalInput.Value, digitalInputEvent.DigitalInput, this.guiElementManager.GetGUIElement(this.textBoxCondition), out flag2);
+				flag3 |= flag2;
+			}
+			flag &= this.ModelValidator.Validate(this.logDataStorage, flag3, this.pageValidator);
+			this.pageValidator.General.ActivateErrorProvidersForFormatAndModelErrors();
+			return flag;
+		}
+
+		public bool HasErrors()
+		{
+			return this.pageValidator.General.HasErrors(Enum.GetValues(typeof(ValidationErrorClass)) as ValidationErrorClass[]);
+		}
+
+		public bool HasGlobalErrors()
+		{
+			return this.pageValidator.General.HasErrors(new ValidationErrorClass[]
+			{
+				ValidationErrorClass.GlobalModelError
+			});
+		}
+
+		public bool HasLocalErrors()
+		{
+			return this.pageValidator.General.HasErrors(new ValidationErrorClass[]
+			{
+				ValidationErrorClass.FormatError,
+				ValidationErrorClass.LocalModelError
+			});
+		}
+
+		public bool HasFormatErrors()
+		{
+			IPageValidatorGeneral arg_13_0 = this.pageValidator.General;
+			ValidationErrorClass[] errorClasses = new ValidationErrorClass[1];
+			return arg_13_0.HasErrors(errorClasses);
+		}
+
+		private void ResetValidationFramework()
+		{
+			this.pageValidator.General.Reset();
+			this.guiElementManager.Reset();
+		}
+
+		private void UpdateGUI()
+		{
+			if (this.logDataStorage == null)
+			{
+				return;
+			}
+			this.isInitControls = true;
+			if (!this.pageValidator.General.HasFormatError(this.logDataStorage.IsEnterSleepModeEnabled))
+			{
+				this.GUIIsEnterSleepModeEnabled = this.logDataStorage.IsEnterSleepModeEnabled.Value;
+			}
+			this.textBoxTimeoutToSleep.Enabled = this.GUIIsEnterSleepModeEnabled;
+			if (!this.pageValidator.General.HasFormatError(this.logDataStorage.TimeoutToSleep))
+			{
+				this.GUITimeoutToSleep = this.logDataStorage.TimeoutToSleep.Value;
+			}
+			if (!this.pageValidator.General.HasFormatError(this.logDataStorage.IsFastWakeUpEnabled))
+			{
+				this.GUIIsFastWakeUpEnabled = this.LogDataStorage.IsFastWakeUpEnabled.Value;
+			}
+			if (!this.pageValidator.General.HasFormatError(this.logDataStorage.UseDataCompression))
+			{
+				this.GUIUseDataCompression = this.logDataStorage.UseDataCompression.Value;
+			}
+			if (!this.pageValidator.General.HasFormatError(this.logDataStorage.EventActivationDelayAfterStart))
+			{
+				this.GUIEventActivationDelayAfterStart = this.logDataStorage.EventActivationDelayAfterStart.Value;
+			}
+			HardwareSettingsCommon.DisplayStopCycDiagCommEventCondition(this.logDataStorage.StopCyclicCommunicationEvent, this.ModelValidator.DatabaseServices, this.ModelValidator.LoggerSpecifics, ref this.textBoxEventType, ref this.textBoxCondition, ref this.buttonChangeCondition);
+			this.isInitControls = false;
+			this.ValidateInput(false);
+		}
+
+		private void CreateNewConditionForEventType(string eventTypeName)
+		{
+			Event stopCyclicCommunicationEvent;
+			bool flag = HardwareSettingsCommon.CreateStopCycDiagCommEvent(eventTypeName, this.ModelValidator, this.ApplicationDatabaseManager, out stopCyclicCommunicationEvent);
+			if (flag)
+			{
+				this.logDataStorage.StopCyclicCommunicationEvent = stopCyclicCommunicationEvent;
+				HardwareSettingsCommon.DisplayStopCycDiagCommEventCondition(this.logDataStorage.StopCyclicCommunicationEvent, this.ModelValidator.DatabaseServices, this.ModelValidator.LoggerSpecifics, ref this.textBoxEventType, ref this.textBoxCondition, ref this.buttonChangeCondition);
+				this.ValidateInput(true);
+			}
+		}
+
+		private void EditCurrentCondition()
+		{
+			bool flag = HardwareSettingsCommon.EditStopCycDiagCommEvent(this.ModelValidator, this.ApplicationDatabaseManager, ref this.logDataStorage.StopCyclicCommunicationEvent);
+			if (flag)
+			{
+				HardwareSettingsCommon.DisplayStopCycDiagCommEventCondition(this.logDataStorage.StopCyclicCommunicationEvent, this.ModelValidator.DatabaseServices, this.ModelValidator.LoggerSpecifics, ref this.textBoxEventType, ref this.textBoxCondition, ref this.buttonChangeCondition);
+				this.ValidateInput(true);
+			}
+		}
+
+		protected override void Dispose(bool disposing)
+		{
+			if (disposing && this.components != null)
+			{
+				this.components.Dispose();
+			}
+			base.Dispose(disposing);
+		}
+
+		private void InitializeComponent()
+		{
+			this.components = new Container();
+			ComponentResourceManager componentResourceManager = new ComponentResourceManager(typeof(HardwareSettingsGL3000));
+			this.groupBoxTimeoutToSleep = new GroupBox();
+			this.labelSec = new Label();
+			this.checkBoxEnterSleepMode = new CheckBox();
+			this.checkBoxFastWakeUp = new CheckBox();
+			this.textBoxTimeoutToSleep = new TextBox();
+			this.groupBoxDataStorage = new GroupBox();
+			this.checkBoxUseDataCompression = new CheckBox();
+			this.errorProviderFormat = new ErrorProvider(this.components);
+			this.textBoxMsgTimeoutActivationDelay = new TextBox();
+			this.textBoxEventType = new TextBox();
+			this.textBoxCondition = new TextBox();
+			this.groupBoxActivationDelay = new GroupBox();
+			this.labelStopCyclicCommInfo = new Label();
+			this.buttonChangeCondition = new Button();
+			this.labelInfoSuppressOnMsgTimeout = new Label();
+			this.labelMs = new Label();
+			this.buttonSelectEventType = new Button();
+			this.labelActivationOnMsgTimeout = new Label();
+			this.labelStopCyclicTimerEvents = new Label();
+			this.errorProviderLocalModel = new ErrorProvider(this.components);
+			this.errorProviderGlobalModel = new ErrorProvider(this.components);
+			this.toolTip = new ToolTip(this.components);
+			this.groupBoxTimeoutToSleep.SuspendLayout();
+			this.groupBoxDataStorage.SuspendLayout();
+			((ISupportInitialize)this.errorProviderFormat).BeginInit();
+			this.groupBoxActivationDelay.SuspendLayout();
+			((ISupportInitialize)this.errorProviderLocalModel).BeginInit();
+			((ISupportInitialize)this.errorProviderGlobalModel).BeginInit();
+			base.SuspendLayout();
+			this.groupBoxTimeoutToSleep.Controls.Add(this.labelSec);
+			this.groupBoxTimeoutToSleep.Controls.Add(this.checkBoxEnterSleepMode);
+			this.groupBoxTimeoutToSleep.Controls.Add(this.checkBoxFastWakeUp);
+			this.groupBoxTimeoutToSleep.Controls.Add(this.textBoxTimeoutToSleep);
+			componentResourceManager.ApplyResources(this.groupBoxTimeoutToSleep, "groupBoxTimeoutToSleep");
+			this.groupBoxTimeoutToSleep.Name = "groupBoxTimeoutToSleep";
+			this.groupBoxTimeoutToSleep.TabStop = false;
+			componentResourceManager.ApplyResources(this.labelSec, "labelSec");
+			this.labelSec.Name = "labelSec";
+			componentResourceManager.ApplyResources(this.checkBoxEnterSleepMode, "checkBoxEnterSleepMode");
+			this.checkBoxEnterSleepMode.Name = "checkBoxEnterSleepMode";
+			this.checkBoxEnterSleepMode.UseVisualStyleBackColor = true;
+			this.checkBoxEnterSleepMode.CheckedChanged += new EventHandler(this.checkBoxEnterSleepMode_CheckedChanged);
+			componentResourceManager.ApplyResources(this.checkBoxFastWakeUp, "checkBoxFastWakeUp");
+			this.checkBoxFastWakeUp.Name = "checkBoxFastWakeUp";
+			this.checkBoxFastWakeUp.UseVisualStyleBackColor = true;
+			this.checkBoxFastWakeUp.CheckedChanged += new EventHandler(this.checkBox_CheckedChanged);
+			this.errorProviderGlobalModel.SetIconAlignment(this.textBoxTimeoutToSleep, (ErrorIconAlignment)componentResourceManager.GetObject("textBoxTimeoutToSleep.IconAlignment"));
+			this.errorProviderFormat.SetIconAlignment(this.textBoxTimeoutToSleep, (ErrorIconAlignment)componentResourceManager.GetObject("textBoxTimeoutToSleep.IconAlignment1"));
+			this.errorProviderLocalModel.SetIconAlignment(this.textBoxTimeoutToSleep, (ErrorIconAlignment)componentResourceManager.GetObject("textBoxTimeoutToSleep.IconAlignment2"));
+			componentResourceManager.ApplyResources(this.textBoxTimeoutToSleep, "textBoxTimeoutToSleep");
+			this.textBoxTimeoutToSleep.Name = "textBoxTimeoutToSleep";
+			this.textBoxTimeoutToSleep.Validating += new CancelEventHandler(this.control_Validating);
+			this.groupBoxDataStorage.Controls.Add(this.checkBoxUseDataCompression);
+			componentResourceManager.ApplyResources(this.groupBoxDataStorage, "groupBoxDataStorage");
+			this.groupBoxDataStorage.Name = "groupBoxDataStorage";
+			this.groupBoxDataStorage.TabStop = false;
+			componentResourceManager.ApplyResources(this.checkBoxUseDataCompression, "checkBoxUseDataCompression");
+			this.checkBoxUseDataCompression.Name = "checkBoxUseDataCompression";
+			this.checkBoxUseDataCompression.UseVisualStyleBackColor = true;
+			this.checkBoxUseDataCompression.CheckedChanged += new EventHandler(this.checkBox_CheckedChanged);
+			this.errorProviderFormat.BlinkStyle = ErrorBlinkStyle.NeverBlink;
+			this.errorProviderFormat.ContainerControl = this;
+			this.errorProviderGlobalModel.SetIconAlignment(this.textBoxMsgTimeoutActivationDelay, (ErrorIconAlignment)componentResourceManager.GetObject("textBoxMsgTimeoutActivationDelay.IconAlignment"));
+			this.errorProviderFormat.SetIconAlignment(this.textBoxMsgTimeoutActivationDelay, (ErrorIconAlignment)componentResourceManager.GetObject("textBoxMsgTimeoutActivationDelay.IconAlignment1"));
+			this.errorProviderLocalModel.SetIconAlignment(this.textBoxMsgTimeoutActivationDelay, (ErrorIconAlignment)componentResourceManager.GetObject("textBoxMsgTimeoutActivationDelay.IconAlignment2"));
+			componentResourceManager.ApplyResources(this.textBoxMsgTimeoutActivationDelay, "textBoxMsgTimeoutActivationDelay");
+			this.textBoxMsgTimeoutActivationDelay.Name = "textBoxMsgTimeoutActivationDelay";
+			this.textBoxMsgTimeoutActivationDelay.Validating += new CancelEventHandler(this.control_Validating);
+			this.errorProviderGlobalModel.SetIconAlignment(this.textBoxEventType, (ErrorIconAlignment)componentResourceManager.GetObject("textBoxEventType.IconAlignment"));
+			this.errorProviderFormat.SetIconAlignment(this.textBoxEventType, (ErrorIconAlignment)componentResourceManager.GetObject("textBoxEventType.IconAlignment1"));
+			this.errorProviderLocalModel.SetIconAlignment(this.textBoxEventType, (ErrorIconAlignment)componentResourceManager.GetObject("textBoxEventType.IconAlignment2"));
+			componentResourceManager.ApplyResources(this.textBoxEventType, "textBoxEventType");
+			this.textBoxEventType.Name = "textBoxEventType";
+			this.textBoxEventType.ReadOnly = true;
+			this.errorProviderGlobalModel.SetIconAlignment(this.textBoxCondition, (ErrorIconAlignment)componentResourceManager.GetObject("textBoxCondition.IconAlignment"));
+			this.errorProviderFormat.SetIconAlignment(this.textBoxCondition, (ErrorIconAlignment)componentResourceManager.GetObject("textBoxCondition.IconAlignment1"));
+			this.errorProviderLocalModel.SetIconAlignment(this.textBoxCondition, (ErrorIconAlignment)componentResourceManager.GetObject("textBoxCondition.IconAlignment2"));
+			componentResourceManager.ApplyResources(this.textBoxCondition, "textBoxCondition");
+			this.textBoxCondition.Name = "textBoxCondition";
+			this.textBoxCondition.ReadOnly = true;
+			this.textBoxCondition.MouseEnter += new EventHandler(this.textBoxCondition_MouseEnter);
+			this.groupBoxActivationDelay.Controls.Add(this.labelStopCyclicCommInfo);
+			this.groupBoxActivationDelay.Controls.Add(this.buttonChangeCondition);
+			this.groupBoxActivationDelay.Controls.Add(this.labelInfoSuppressOnMsgTimeout);
+			this.groupBoxActivationDelay.Controls.Add(this.textBoxCondition);
+			this.groupBoxActivationDelay.Controls.Add(this.labelMs);
+			this.groupBoxActivationDelay.Controls.Add(this.buttonSelectEventType);
+			this.groupBoxActivationDelay.Controls.Add(this.labelActivationOnMsgTimeout);
+			this.groupBoxActivationDelay.Controls.Add(this.textBoxEventType);
+			this.groupBoxActivationDelay.Controls.Add(this.textBoxMsgTimeoutActivationDelay);
+			this.groupBoxActivationDelay.Controls.Add(this.labelStopCyclicTimerEvents);
+			componentResourceManager.ApplyResources(this.groupBoxActivationDelay, "groupBoxActivationDelay");
+			this.groupBoxActivationDelay.Name = "groupBoxActivationDelay";
+			this.groupBoxActivationDelay.TabStop = false;
+			componentResourceManager.ApplyResources(this.labelStopCyclicCommInfo, "labelStopCyclicCommInfo");
+			this.labelStopCyclicCommInfo.Name = "labelStopCyclicCommInfo";
+			componentResourceManager.ApplyResources(this.buttonChangeCondition, "buttonChangeCondition");
+			this.buttonChangeCondition.Name = "buttonChangeCondition";
+			this.buttonChangeCondition.UseVisualStyleBackColor = true;
+			this.buttonChangeCondition.Click += new EventHandler(this.buttonChangeCondition_Click);
+			componentResourceManager.ApplyResources(this.labelInfoSuppressOnMsgTimeout, "labelInfoSuppressOnMsgTimeout");
+			this.labelInfoSuppressOnMsgTimeout.Name = "labelInfoSuppressOnMsgTimeout";
+			componentResourceManager.ApplyResources(this.labelMs, "labelMs");
+			this.labelMs.Name = "labelMs";
+			componentResourceManager.ApplyResources(this.buttonSelectEventType, "buttonSelectEventType");
+			this.buttonSelectEventType.Name = "buttonSelectEventType";
+			this.buttonSelectEventType.UseVisualStyleBackColor = true;
+			this.buttonSelectEventType.Click += new EventHandler(this.buttonSelectEventType_Click);
+			componentResourceManager.ApplyResources(this.labelActivationOnMsgTimeout, "labelActivationOnMsgTimeout");
+			this.labelActivationOnMsgTimeout.Name = "labelActivationOnMsgTimeout";
+			componentResourceManager.ApplyResources(this.labelStopCyclicTimerEvents, "labelStopCyclicTimerEvents");
+			this.labelStopCyclicTimerEvents.Name = "labelStopCyclicTimerEvents";
+			this.errorProviderLocalModel.BlinkStyle = ErrorBlinkStyle.NeverBlink;
+			this.errorProviderLocalModel.ContainerControl = this;
+			this.errorProviderGlobalModel.BlinkStyle = ErrorBlinkStyle.NeverBlink;
+			this.errorProviderGlobalModel.ContainerControl = this;
+			componentResourceManager.ApplyResources(this.errorProviderGlobalModel, "errorProviderGlobalModel");
+			base.AutoScaleMode = AutoScaleMode.Inherit;
+			this.AutoValidate = AutoValidate.EnableAllowFocusChange;
+			base.Controls.Add(this.groupBoxActivationDelay);
+			base.Controls.Add(this.groupBoxDataStorage);
+			base.Controls.Add(this.groupBoxTimeoutToSleep);
+			componentResourceManager.ApplyResources(this, "$this");
+			base.Name = "HardwareSettingsGL3000";
+			this.groupBoxTimeoutToSleep.ResumeLayout(false);
+			this.groupBoxTimeoutToSleep.PerformLayout();
+			this.groupBoxDataStorage.ResumeLayout(false);
+			this.groupBoxDataStorage.PerformLayout();
+			((ISupportInitialize)this.errorProviderFormat).EndInit();
+			this.groupBoxActivationDelay.ResumeLayout(false);
+			this.groupBoxActivationDelay.PerformLayout();
+			((ISupportInitialize)this.errorProviderLocalModel).EndInit();
+			((ISupportInitialize)this.errorProviderGlobalModel).EndInit();
+			base.ResumeLayout(false);
+		}
+	}
+}

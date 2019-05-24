@@ -1,0 +1,246 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E53141B4-83A2-40D8-B058-B014B5695CC8}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BXHSerialPort</RootNamespace>
+    <AssemblyName>BXHSerialPort</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\BXHSerialPort.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Office.Core">
+      <HintPath>C:\Users\tangxiaodong\Desktop\BXHSerialPort\BXHSerialPort\Lib\Microsoft.Office.Core.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="microsoft.office.interop.excel1">
+      <HintPath>C:\Users\tangxiaodong\Desktop\BXHSerialPort\BXHSerialPort\Lib\microsoft.office.interop.excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="OPCAutomation">
+      <HintPath>C:\Users\tangxiaodong\Desktop\BXHSerialPort\BXHSerialPort\Lib\OPCAutomation.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AverageXAverageY.cs" />
+    <Compile Include="CSVHelper.cs" />
+    <Compile Include="CurrRangeCtl.cs" />
+    <Compile Include="Delay.cs" />
+    <Compile Include="EXCELHelper.cs" />
+    <Compile Include="EXCELHelper2.cs" />
+    <Compile Include="Float2Bytes.cs" />
+    <Compile Include="FolderShare.cs" />
+    <Compile Include="Form2IpSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form2IpSetting.designer.cs">
+      <DependentUpon>Form2IpSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormCurrentRange.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCurrentRange.Designer.cs">
+      <DependentUpon>FormCurrentRange.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormCurve.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCurve.Designer.cs">
+      <DependentUpon>FormCurve.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormProductSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProductSetting.Designer.cs">
+      <DependentUpon>FormProductSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormReadSUBROM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormReadSUBROM.Designer.cs">
+      <DependentUpon>FormReadSUBROM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSerialPortHelper.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSerialPortHelper.Designer.cs">
+      <DependentUpon>FormSerialPortHelper.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSqlHelperTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSqlHelperTest.Designer.cs">
+      <DependentUpon>FormSqlHelperTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTest.Designer.cs">
+      <DependentUpon>FormTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormTestNew.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTestNew.Designer.cs">
+      <DependentUpon>FormTestNew.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSerialPort.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSerialPort.Designer.cs">
+      <DependentUpon>frmSerialPort.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GetProgramData.cs" />
+    <Compile Include="INIHelper.cs" />
+    <Compile Include="IPTxtFileRxWx.cs" />
+    <Compile Include="LinegetXgetY.cs" />
+    <Compile Include="Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MD5Helper.cs" />
+    <Compile Include="OPC_Client.cs" />
+    <Compile Include="ProcessInformation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProcessInformation.Designer.cs">
+      <DependentUpon>ProcessInformation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Protocol\ProtocolDefine.cs" />
+    <Compile Include="Protocol\ProtocolHelper.cs" />
+    <Compile Include="RFIDFunction.cs" />
+    <Compile Include="SqlHelper.cs" />
+    <Compile Include="StringHelper.cs" />
+    <Compile Include="TcpConnectionClient.cs" />
+    <Compile Include="Test1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Test1.Designer.cs">
+      <DependentUpon>Test1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Timeout.cs" />
+    <EmbeddedResource Include="Form2IpSetting.resx">
+      <DependentUpon>Form2IpSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCurrentRange.resx">
+      <DependentUpon>FormCurrentRange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCurve.resx">
+      <DependentUpon>FormCurve.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProductSetting.resx">
+      <DependentUpon>FormProductSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormReadSUBROM.resx">
+      <DependentUpon>FormReadSUBROM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSerialPortHelper.resx">
+      <DependentUpon>FormSerialPortHelper.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSqlHelperTest.resx">
+      <DependentUpon>FormSqlHelperTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTest.resx">
+      <DependentUpon>FormTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTestNew.resx">
+      <DependentUpon>FormTestNew.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSerialPort.resx">
+      <DependentUpon>frmSerialPort.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProcessInformation.resx">
+      <DependentUpon>ProcessInformation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Test1.resx">
+      <DependentUpon>Test1.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

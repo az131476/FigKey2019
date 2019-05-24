@@ -1,0 +1,72 @@
+VERSION ""
+
+
+NS_ : 
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_: C_K10_01 C_LAM_01
+
+
+BO_ 517 C_LMD: 4 Vector__XXX
+ SG_ C_ADC_IN : 23|16@0+ (1,0) [0|0] "DegreeC" Vector__XXX
+ SG_ C_ADC_OUT : 7|16@0+ (1,0) [0|0] "DegreeC" Vector__XXX
+
+BO_ 513 C_K10_01_MSG0: 8 C_K10_01
+ SG_ C_K10_01_CH01 : 7|16@0- (0.1,0) [0|0] "DegreeC" Vector__XXX
+ SG_ C_K10_01_CH02 : 23|16@0- (0.1,0) [0|0] "DegreeC" Vector__XXX
+ SG_ C_K10_01_CH03 : 39|16@0- (0.1,0) [0|0] "DegreeC" Vector__XXX
+ SG_ C_K10_01_CH04 : 55|16@0- (0.1,0) [0|0] "DegreeC" Vector__XXX
+
+BO_ 514 C_K10_01_MSG1: 8 C_K10_01
+ SG_ C_K10_01_CH05 : 7|16@0- (0.1,0) [0|0] "DegreeC" Vector__XXX
+ SG_ C_K10_01_CH06 : 23|16@0- (0.1,0) [0|0] "DegreeC" Vector__XXX
+ SG_ C_K10_01_CH07 : 39|16@0- (0.1,0) [0|0] "DegreeC" Vector__XXX
+ SG_ C_K10_01_CH08 : 55|16@0- (0.1,0) [0|0] "DegreeC" Vector__XXX
+
+BO_ 515 C_K10_01_MSG2: 4 C_K10_01
+ SG_ C_K10_01_CH09 : 7|16@0- (0.1,0) [0|0] "DegreeC" Vector__XXX
+ SG_ C_K10_01_CH10 : 23|16@0- (0.1,0) [0|0] "DegreeC" Vector__XXX
+
+BO_ 1760 C_LAM_01_MSG0: 8 C_LAM_01
+ SG_ C_LAM_01_AF : 48|16@1+ (0.01,0) [0|0] "" Vector__XXX
+ SG_ C_LAM_01_Lambda : 0|16@1+ (0.001,0) [0|0] "" Vector__XXX
+ SG_ C_LAM_01_O2 : 32|12@1+ (0.01,0) [0|0] "%" Vector__XXX
+ SG_ C_LAM_01_Ri : 16|16@1+ (0.1,0) [0|0] "Ohm" Vector__XXX
+ SG_ C_LAM_01_Sensor : 44|4@1+ (1,0) [0|0] "" Vector__XXX
+
+BO_ 1761 C_LAM_01_MSG1: 4 C_LAM_01
+ SG_ C_LAM_01_Ip_In : 16|16@1- (0.0001,0) [0|0] "mA" Vector__XXX
+ SG_ C_LAM_01_Ip : 0|16@1- (0.0001,0) [0|0] "mA" Vector__XXX
+
+
+
+

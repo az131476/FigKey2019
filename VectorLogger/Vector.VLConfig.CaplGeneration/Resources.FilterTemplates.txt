@@ -1,0 +1,54 @@
+template TVariables_Filters() := <<
+  int gPass = 0;
+>>
+
+template TEventHandler_PendingLogStart() := <<
+  if(gLogStartPending)
+    gLogStartPending = StartTrigger();
+
+>>
+
+template TEventHandler_DefaultFilter(defaultFilterValue) := <<
+  gPass = <#defaultFilterValue#>;
+>>
+
+template TEventHandler_Filter_Channel(filter) := <<
+  gPass = <#filter.Pass#>;
+>>
+
+template TEventHandler_Filter_MsgId(filter) := <<
+  if<#filter.MsgConditionString#>
+    gPass = <#filter.Pass#>;
+>>
+
+template TEventHandler_WriteToLog(forwardEventFunctionCall) := <<
+
+  if(gPass)
+    <#forwardEventFunctionCall#>;
+>>
+
+template TEventHandler_Filter_LinWakeupFrame(hardware) := <<
+
+on linWakeupFrame
+{
+<#if(hardware.IsPermanentLogging)#>
+  if(gLogStartPending)
+    gLogStartPending = StartTrigger();
+
+<#endif#>
+  logWriteEvent(this);
+}
+>>
+
+template TEventHandler_Filter_CanErrorFrame(hardware, channel) := <<
+
+on CAN<#channel.ChannelString#>.errorFrame
+{
+<#if(hardware.IsPermanentLogging)#>
+  if(gLogStartPending)
+    gLogStartPending = StartTrigger();
+
+<#endif#>
+  logWriteEvent(this);
+}
+>>

@@ -1,0 +1,5 @@
+1¡¢TCP
+
+2¡¢´®¿Ú
+
+3¡¢USB£ºLibUsbDotNet ºÍ CyUsb

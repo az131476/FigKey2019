@@ -1,0 +1,191 @@
+template TVariables_Trigger(trigger) := <<
+
+  int gProcessTrigger<#trigger.Ident#> = 0;
+>>
+
+template TVariables_Condition(cond) := <<
+  int gCond<#cond.Ident#> = 0;<#if(cond.IsSingleCondition)#>
+  int gCondPrev<#cond.Ident#> = 0;<#elseif(cond.IsCombinedConditionRoot)#>
+  int gCondPrev<#cond.Ident#> = 0;<#endif#>
+>>
+
+template TVariables_Condition_MsgTimeout(cond) := <<
+<#TVariables_Condition(cond)#>
+  mstimer gTimeout<#cond.Ident#>;
+>>
+
+template TVariables_Condition_DigitalInput(cond) := <<
+<#TVariables_Condition(cond)#>
+  int gCondStable<#cond.Ident#> = 1;
+  int gTimerActiveCondStable<#cond.Ident#> = 0;
+  msTimer gTimerCondStable<#cond.Ident#>;
+>>
+
+template TVariables_Condition_Data_OnChange(cond) := <<
+<#TVariables_Condition(cond)#>
+  int gIsFirst<#cond.Ident#> = 1;
+  qword gLastValue<#cond.Ident#>;
+>>
+
+template TVariables_Condition_SymbolicSignal_OnChange(cond) := <<
+<#TVariables_Condition(cond)#>
+  int gIsFirst<#cond.Ident#> = 1;
+  double gLastValue<#cond.Ident#>;
+>>
+
+template TEventHandler_Trigger(trigger) := <<
+  ProcessTrigger<#trigger.Ident#>();
+>>
+
+template TEventHandler_Trigger_ResetPointInTimeCondition(cond) := <<
+  gCond<#cond.Ident#> = 0; // reset point-in-time condition after ProcessTrigger()
+>>
+
+template TEventHandler_Condition_Msg(cond) := <<
+
+  if<#cond.MsgConditionString#>
+  {
+    gCond<#cond.Ident#> = 1; // message event is now available
+    gProcessTrigger<#cond.TriggerIdent#> = 1;
+  }
+>>
+
+template TEventHandler_Condition_Data(cond) := <<
+
+  if<#cond.MsgConditionString#>
+  {<#if(cond.IsSingleCondition)#>
+    gCondPrev<#cond.Ident#> = gCond<#cond.Ident#>;<#endif#>
+    gCond<#cond.Ident#> = <#cond.ValueConditionString#> ? 1 : 0;
+    gProcessTrigger<#cond.TriggerIdent#> = 1;
+  }
+>>
+
+template TEventHandler_Condition_Data_OnChange(cond) := <<
+
+  if<#cond.MsgConditionString#>
+  {
+    if<#cond.ValueConditionCheck#>
+    {<#if(cond.IsSingleCondition)#>
+      gCondPrev<#cond.Ident#> = 0;<#endif#>
+      gCond<#cond.Ident#> = (!gIsFirst<#cond.Ident#> && gLastValue<#cond.Ident#> != <#cond.ValueConditionString#>) ? 1 : 0;
+      gLastValue<#cond.Ident#> = <#cond.ValueConditionString#>;
+      gIsFirst<#cond.Ident#> = 0;
+      gProcessTrigger<#cond.TriggerIdent#> = 1;
+    }
+  }
+>>
+
+template TEventHandler_Condition_SymbolicSignal(cond) := <<
+
+  if<#cond.MsgConditionString#>
+  {<#if(cond.IsSingleCondition)#>
+    gCondPrev<#cond.Ident#> = gCond<#cond.Ident#>;<#endif#>
+    gCond<#cond.Ident#> = <#cond.ValueConditionString#> ? 1 : 0;
+    gProcessTrigger<#cond.TriggerIdent#> = 1;
+  }
+>>
+
+template TEventHandler_Condition_SymbolicSignal_OnChange(cond) := <<
+
+  if<#cond.MsgConditionString#>
+  {<#if(cond.IsSingleCondition)#>
+    gCondPrev<#cond.Ident#> = 0;<#endif#>
+    gCond<#cond.Ident#> = (!gIsFirst<#cond.Ident#> && gLastValue<#cond.Ident#> != <#cond.ValueConditionString#>) ? 1 : 0;
+    gLastValue<#cond.Ident#> = <#cond.ValueConditionString#>;
+    gIsFirst<#cond.Ident#> = 0;
+    gProcessTrigger<#cond.TriggerIdent#> = 1;
+  }
+>>
+
+template TEventHandler_Condition_MsgTimeout(cond) := <<
+
+  if<#cond.MsgConditionString#>
+  {
+    gCond<#cond.Ident#> = 0;
+    setTimer(gTimeout<#cond.Ident#>, <#cond.ResultingTimeout#>);
+  }
+>>
+
+template TEventHandler_Condition_AnalogInput(cond) := <<
+<#if(cond.IsSingleCondition)#>
+  gCondPrev<#cond.Ident#> = gCond<#cond.Ident#>;<#endif#>
+  gCond<#cond.Ident#> = <#cond.ValueConditionString#> ? 1 : 0;
+  gProcessTrigger<#cond.TriggerIdent#> = 1;
+>>
+
+template TEventHandler_Condition_DigitalInput(cond) := <<
+
+  gCond<#cond.Ident#> = <#cond.ValueConditionString#> ? 1 : 0;
+  if(!gCond<#cond.Ident#>)
+  {
+    gCondStable<#cond.Ident#> = 0;
+    if(gTimerActiveCondStable<#cond.Ident#>)
+    {
+      cancelTimer(gTimerCondStable<#cond.Ident#>);
+      gTimerActiveCondStable<#cond.Ident#> = 0;
+    }
+  }
+  else if(!gCondStable<#cond.Ident#>)
+  {
+    gCond<#cond.Ident#> = 0;
+    if(!gTimerActiveCondStable<#cond.Ident#>)
+    {
+      setTimer(gTimerCondStable<#cond.Ident#>, <#cond.DebounceTime#>);
+      gTimerActiveCondStable<#cond.Ident#> = 1;
+    }
+  }
+>>
+
+template TAdditional_Condition_MsgTimeout(cond) := <<
+
+on timer gTimeout<#cond.Ident#>
+{
+  gCond<#cond.Ident#> = 1;
+  gProcessTrigger<#cond.TriggerIdent#> = 1;
+  ProcessTrigger<#cond.TriggerIdent#>();
+}
+>>
+
+template TAdditional_Condition_MsgTimeout_Startup(cond) := <<
+  setTimer(gTimeout<#cond.Ident#>, <#cond.ResultingTimeout#>);
+>>
+
+template TAdditional_Condition_DigitalInput(cond) := <<
+
+on timer gTimerCondStable<#cond.Ident#>
+{
+  gTimerActiveCondStable<#cond.Ident#> = 0;
+  gCond<#cond.Ident#> = 1;
+  gCondStable<#cond.Ident#> = 1;
+  gProcessTrigger<#cond.TriggerIdent#> = 1;
+  ProcessTrigger<#cond.TriggerIdent#>();
+}
+>>
+
+template TProcess_Trigger(trigger, cond) := <<
+
+void ProcessTrigger<#trigger.Ident#>()
+{
+  long result;
+  result = 0;
+  if(!gProcessTrigger<#trigger.Ident#>)
+    return;
+  gProcessTrigger<#trigger.Ident#> = 0;<#if(cond.IsCombinedConditionRoot)#>
+  gCondPrev<#cond.Ident#> = gCond<#cond.Ident#>;
+  gCond<#cond.Ident#> = <#cond.CombinedCondition#> ? 1 : 0;<#if(cond.SimulateGlBehaviour)#>
+  if(gCond<#cond.Ident#> && <#cond.SimulateGlBehaviourCondition#>) // induce edge to simulate GL behaviour
+    gCondPrev<#cond.Ident#> = 0;<#endif#><#endif#>
+  if(gCondPrev<#cond.Ident#> || !gCond<#cond.Ident#>) // edge based triggering
+    return;<#if(cond.IsPointInTime)#><#if(cond.IsCombinedConditionRoot)#>
+  if(<#cond.ORCondOfPointInTimeConditions#>)
+  {
+    gCond<#cond.Ident#> = 0;
+  }<#else#>
+  gCond<#cond.Ident#> = 0;<#endif#><#endif#><#if(trigger.IsLoggingOffTrigger)#>
+  result = StopTrigger();<#else#>
+  result = StartTrigger();<#endif#><#if(trigger.TriggerActionBeep)#>
+  if(!result)
+    trigBuzzer(kBeepLong);<#endif#>
+}
+>>
+

@@ -1,0 +1,197 @@
+template TVariables_Configuration(hardware) := <<
+  const long kBusType_Can  = 1;
+  const long kBusType_Lin  = 5;
+  const long kBusType_Daio = 10;
+
+  const long xlBusType_Can  = 0x01;
+  const long xlBusType_Lin  = 0x02;
+  const long xlBusType_Daio = 0x40;
+
+  const long kBeepLong = 1;
+  const long kBeepTwoShort = 2;
+
+  const long ERR_SUCCESS                   = 0x00;
+  const long ERR_LOG_INITIALIZATION_FAILED = 0x1200;
+  const long ERR_LOG_PIGGY_MISMATCH        = 0x1201;
+  const long ERR_LOG_PROCESSING_FAILED     = 0x1202;
+  
+<#if(hardware.IsPermanentLogging)#>
+  long gLogStartPending = 0;
+<#endif#>
+  long gLastResult = 0;
+  long gTriggerRunning = 0;<#if(hardware.IsOnOffLogging)#>
+  mstimer gStartupTimer; // used for msg-timeout triggers<#elseif(hardware.IsTriggeredLogging)#>
+  mstimer gStartupTimer; // used for msg-timeout triggers
+  msTimer gPostTriggerTimer;<#endif#>
+>>
+
+template TFunctions_Configuration(hardware, linChannelList, canChannelList) := <<
+on start
+{
+  // check configuration
+<#foreach channel in linChannelList#>
+  {
+    ChannelConfig config;
+    if(CheckFail(getChannelConfig(kBusType_Lin, <#channel.ChannelString#>, config), ERR_LOG_INITIALIZATION_FAILED)) return;
+    if(CheckFail(config.configError, ERR_LOG_PIGGY_MISMATCH)) return;
+    if(CheckFail(config.trcvBusType, xlBusType_Lin, ERR_LOG_PIGGY_MISMATCH)) return;
+  }
+<#end#>
+<#foreach channel in canChannelList#>
+  {
+    ChannelConfig config;
+    if(CheckFail(getChannelConfig(kBusType_Can, <#channel.ChannelString#>, config), ERR_LOG_INITIALIZATION_FAILED)) return;
+    if(CheckFail(config.configError, ERR_LOG_PIGGY_MISMATCH)) return;
+    if(CheckFail(config.trcvBusType, xlBusType_Can, ERR_LOG_PIGGY_MISMATCH)) return;
+  }
+<#end#>
+<#if(hardware.HasDAIO)#>
+  {
+    ChannelConfig config;
+    if(CheckFail(getChannelConfig(kBusType_Daio, 5, config), ERR_LOG_INITIALIZATION_FAILED)) return;
+    if(CheckFail(config.configError, ERR_LOG_PIGGY_MISMATCH)) return;
+    if(CheckFail(config.trcvBusType, xlBusType_Daio, ERR_LOG_PIGGY_MISMATCH)) return;
+  }
+<#endif#>
+
+  // configure logging
+  if(CheckFail(logConfigure(<#hardware.PreTriggerTimeNs#>LL, <#hardware.OverflowRetireTimeNs#>LL, <#hardware.OverflowRepetitionTimeNs#>LL, <#hardware.MaxFileSizeMB#>), ERR_LOG_INITIALIZATION_FAILED)) return;
+<#if(hardware.HasDAIO)#>
+  if(CheckFail(ioSetTriggerCycleTime(<#hardware.IoCycleTimeUs#>), ERR_LOG_INITIALIZATION_FAILED)) return;
+<#endif#>
+
+  // configure channels
+<#foreach channel in linChannelList#>
+<#if(channel.UseManualConfigValues)#>
+  {
+    if(CheckFail(linSetChannelProtocol(<#channel.ChannelString#>, <#channel.ProtocolVerison#>), ERR_LOG_PIGGY_MISMATCH)) return;
+    if(CheckFail(linSetChannelBaudrate(<#channel.ChannelString#>, <#channel.Baudrate#>), ERR_LOG_PIGGY_MISMATCH)) return;
+  }
+<#endif#>
+<#end#>
+<#foreach channel in canChannelList#>
+  {
+<#if(channel.IsCanFD)#>
+    CANsettings abrSettings = {baudrate=<#channel.Baudrate#>, tseg1=<#channel.Tseg1#>, tseg2=<#channel.Tseg2#>, sjw=<#channel.Sjw#>, sam=<#channel.Sam#>, flags=<#channel.Flags#>};
+    CANsettings dbrSettings = {baudrate=<#channel.DataBaudrate#>, tseg1=<#channel.DataTseg1#>, tseg2=<#channel.DataTseg2#>, sjw=<#channel.DataSjw#>, sam=<#channel.DataSam#>, flags=<#channel.DataFlags#>};
+    if(CheckFail(canFdSetConfiguration(<#channel.ChannelString#>, abrSettings, dbrSettings), 1, ERR_LOG_PIGGY_MISMATCH)) return;
+<#else#>
+    CANsettings settings = {baudrate=<#channel.Baudrate#>, tseg1=<#channel.Tseg1#>, tseg2=<#channel.Tseg2#>, sjw=<#channel.Sjw#>, sam=<#channel.Sam#>, flags=<#channel.Flags#>};
+    if(CheckFail(canSetConfiguration(<#channel.ChannelString#>, settings), 1, ERR_LOG_PIGGY_MISMATCH)) return;
+<#endif#>
+  }
+<#end#>
+
+  // activate channels
+<#foreach channel in linChannelList#>
+  if(CheckFail(activateChannel(kBusType_Lin, <#channel.ChannelString#>), ERR_LOG_PIGGY_MISMATCH)) return;
+<#end#>
+<#foreach channel in canChannelList#>
+  if(CheckFail(activateChannel(kBusType_Can, <#channel.ChannelString#>), ERR_LOG_PIGGY_MISMATCH)) return;
+<#end#>
+<#if(hardware.HasDAIO)#>
+  if(CheckFail(activateChannel(kBusType_Daio, 5), ERR_LOG_PIGGY_MISMATCH)) return;
+<#endif#>
+
+<#if(hardware.IsPermanentLogging)#>
+  // activate logging for permanent logging mode
+  gLogStartPending = 1;
+<#elseif(hardware.IsOnOffLogging)#>
+  // startup time before MsgTimeout triggers are activated
+  setTimer(gStartupTimer, <#hardware.StartupTimeMs#>);
+<#elseif(hardware.IsTriggeredLogging)#>
+  // startup time before MsgTimeout triggers are activated
+  setTimer(gStartupTimer, <#hardware.StartupTimeMs#>);
+<#endif#>
+}
+
+on stopMeasurement
+{
+  logStopTrigger();
+<#foreach channel in linChannelList#>
+  deactivateChannel(kBusType_Lin, <#channel.ChannelString#>);
+<#end#>
+<#foreach channel in canChannelList#>
+  deactivateChannel(kBusType_Can, <#channel.ChannelString#>);
+<#end#>
+<#if(hardware.HasDAIO)#>
+  deactivateChannel(kBusType_Daio, 5);
+<#endif#>
+}
+
+void OnLoggerEvent(long event)
+{
+  switch(event)
+  {
+    case 1:<#if(hardware.BeepOnOverflow)#> trigBuzzer(kBeepTwoShort);<#endif#> break; // kOverflow
+    case 2:<#if(hardware.BeepOnOverflow)#> trigBuzzer(kBeepTwoShort);<#endif#> break; // kOverflowRetired
+    case 3: break; // kEject Eject button of SD card was pressed.
+  }
+}<#if(hardware.IsTriggeredLogging)#>
+
+on timer gPostTriggerTimer
+{
+  StopTrigger();
+}<#endif#>
+>>
+
+template THelpers_Configuration(hardware) := <<
+
+int CheckFail(long result)
+{
+  return CheckFail(result, ERR_SUCCESS, ERR_SUCCESS);
+}
+int CheckFail(long result, long initErrorCode)
+{
+  return CheckFail(result, ERR_SUCCESS, initErrorCode);
+}
+int CheckFail(long result, long passVal, long initErrorCode)
+{
+  if(result == passVal)
+  {
+    gLastResult = 0;
+    return 0;
+  }
+  else
+  {
+<#if(hardware.BeepOnError)#>
+    trigBuzzer(kBeepLong);
+<#endif#>
+    if(initErrorCode != ERR_SUCCESS) setLoggerInitStatus(initErrorCode);
+    gLastResult = 1;
+    return 1;
+  }
+}
+
+qword GetBits(qword messageData, int startPos, int length)
+{
+  int i;
+  qword mask;
+  mask = 1;
+  for(i=1; i<length; ++i) mask = (mask << 1) + 1;
+  return (messageData >> startPos) & mask;
+}
+
+long StartTrigger()
+{
+  if(!gTriggerRunning)
+  {
+    gTriggerRunning = logStartTrigger() ? 0 : 1;
+<#if(hardware.IsTriggeredLogging)#>
+    if(gTriggerRunning)
+      setTimer(gPostTriggerTimer, <#hardware.PostTriggerTimeMs#>); // logger is "blind" while trigger is running
+<#endif#>
+  }
+  return gTriggerRunning ? 0 : 1;
+}
+
+long StopTrigger()
+{
+  if(gTriggerRunning)
+  {
+    gTriggerRunning = logStopTrigger();
+  }
+  return gTriggerRunning;
+}
+>>
+

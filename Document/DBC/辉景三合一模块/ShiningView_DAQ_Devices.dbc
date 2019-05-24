@@ -1,0 +1,37 @@
+VERSION ""
+
+NS_ :
+
+BS_:
+
+BU_: C_K10_01 C_LAM_01 C_TURBO_01 
+
+BO_ 513 C_K10_01_MSG0: 8 C_K10_01
+ SG_ C_K10_01_CH01  : 7|16@0- (0.1,0) [0|0] "DegreeC" Vector__XXX
+ SG_ C_K10_01_CH02  : 23|16@0- (0.1,0) [0|0] "DegreeC" Vector__XXX
+ SG_ C_K10_01_CH03  : 39|16@0- (0.1,0) [0|0] "DegreeC" Vector__XXX
+ SG_ C_K10_01_CH04  : 55|16@0- (0.1,0) [0|0] "DegreeC" Vector__XXX
+
+BO_ 514 C_K10_01_MSG1: 8 C_K10_01
+ SG_ C_K10_01_CH05  : 7|16@0- (0.1,0) [0|0] "DegreeC" Vector__XXX
+ SG_ C_K10_01_CH06  : 23|16@0- (0.1,0) [0|0] "DegreeC" Vector__XXX
+ SG_ C_K10_01_CH07  : 39|16@0- (0.1,0) [0|0] "DegreeC" Vector__XXX
+ SG_ C_K10_01_CH08  : 55|16@0- (0.1,0) [0|0] "DegreeC" Vector__XXX
+
+BO_ 515 C_K10_01_MSG2: 4 C_K10_01
+ SG_ C_K10_01_CH09  : 7|16@0- (0.1,0) [0|0] "DegreeC" Vector__XXX
+ SG_ C_K10_01_CH10  : 23|16@0- (0.1,0) [0|0] "DegreeC" Vector__XXX
+
+BO_ 1760 C_LAM_01_MSG0: 8 C_LAM_01
+ SG_ C_LAM_01_AF  : 48|16@1+ (0.01,0) [0|0] "" Vector__XXX
+ SG_ C_LAM_01_Lambda  : 0|16@1+ (0.001,0) [0|0] "" Vector__XXX
+ SG_ C_LAM_01_O2  : 32|12@1+ (0.01,0) [0|0] "%" Vector__XXX
+ SG_ C_LAM_01_Ri  : 16|16@1+ (0.1,0) [0|0] "Ohm" Vector__XXX
+ SG_ C_LAM_01_Sensor  : 44|4@1+ (1,0) [0|0] "" Vector__XXX
+
+BO_ 1761 C_LAM_01_MSG1: 2 C_LAM_01
+ SG_ C_LAM_01_Ip  : 0|16@1- (0.0001,0) [0|0] "mA" Vector__XXX
+
+BO_ 516 C_TURBO_01_MSG: 4 C_TURBO_01
+ SG_ C_TURBO_01_VANE10_Speed  : 7|32@0+ (12,0) [0|0] "rpm" Vector__XXX
+

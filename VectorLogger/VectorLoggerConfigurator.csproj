@@ -1,0 +1,1610 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{B727C277-99E4-4195-83E3-330850D6D2DA}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <OutputType>WinExe</OutputType>
+    <AssemblyName>VectorLoggerConfigurator</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="Vector.UtilityFunctions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="Vector.ConfigurationDialog" />
+    <Reference Include="Vector.McModule" />
+    <Reference Include="Vector.McLoggerDatabaseGenerator" />
+    <Reference Include="Ionic.Zip" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Vector.VLConfig.BinlogConverter" />
+    <Reference Include="DevExpress.XtraEditors.v12.2" />
+    <Reference Include="DevExpress.Data.v12.2" />
+    <Reference Include="DevExpress.XtraBars.v12.2" />
+    <Reference Include="DevExpress.Utils.v12.2" />
+    <Reference Include="DevExpress.XtraGrid.v12.2" />
+    <Reference Include="Vector.DiagSymbols" />
+    <Reference Include="Vector.VLConfig.ChipCfgWrapper" />
+    <Reference Include="Nini" />
+    <Reference Include="System.Data" />
+    <Reference Include="DevExpress.XtraTreeList.v12.2" />
+    <Reference Include="Vector.McModule.Explorer" />
+    <Reference Include="DevComponents.DotNetBar2" />
+    <Reference Include="Vector.InfoWindow2.NET" />
+    <Reference Include="Vector.PopupList.Editors" />
+    <Reference Include="Vector.PopupList.Data" />
+    <Reference Include="Vector.XlApiNet" />
+    <Reference Include="CaplCompilerAccess" />
+    <Reference Include="Vector.VLConfig.VN16XXlogWrapper" />
+    <Reference Include="DisclaimNet" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data.SqlXml" />
+    <Reference Include="COMdbLib12" />
+    <Reference Include="Vector.SymbolSelection" />
+    <Reference Include="Vector.CANalyzer.BasicTypes" />
+    <Reference Include="VecConv" />
+    <Reference Include="Vector.DiagSymbols.ServiceParameterDialog" />
+    <Reference Include="Vector.TemplateBasedGenerator" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="$ArrayType$1191.cs" />
+    <Compile Include="$ArrayType$1201.cs" />
+    <Compile Include="$ArrayType$1271.cs" />
+    <Compile Include="$ArrayType$1880.cs" />
+    <Compile Include="$ArrayType$217.cs" />
+    <Compile Include="$ArrayType$248.cs" />
+    <Compile Include="$ArrayType$250.cs" />
+    <Compile Include="$ArrayType$2512.cs" />
+    <Compile Include="$ArrayType$255.cs" />
+    <Compile Include="$ArrayType$326.cs" />
+    <Compile Include="$ArrayType$338.cs" />
+    <Compile Include="$ArrayType$382.cs" />
+    <Compile Include="$ArrayType$390.cs" />
+    <Compile Include="$ArrayType$459.cs" />
+    <Compile Include="$ArrayType$470.cs" />
+    <Compile Include="$ArrayType$488.cs" />
+    <Compile Include="$ArrayType$724.cs" />
+    <Compile Include="$ArrayType$728.cs" />
+    <Compile Include="$ArrayType$807.cs" />
+    <Compile Include="$ArrayType$99.cs" />
+    <Compile Include="CANalyzer\IMeasurement.cs" />
+    <Compile Include="CANalyzer\IMeasurement2.cs" />
+    <Compile Include="CANalyzer\IMeasurement3.cs" />
+    <Compile Include="CANalyzer\IMeasurement4.cs" />
+    <Compile Include="CANalyzer\Measurement.cs" />
+    <Compile Include="CANalyzer\_IMeasurementEvents.cs" />
+    <Compile Include="CANalyzer\_IMeasurementEvents_Event.cs" />
+    <Compile Include="CANalyzer\_IMeasurementEvents_OnExitEventHandler.cs" />
+    <Compile Include="CANalyzer\_IMeasurementEvents_OnInitEventHandler.cs" />
+    <Compile Include="CANalyzer\_IMeasurementEvents_OnStartEventHandler.cs" />
+    <Compile Include="CANalyzer\_IMeasurementEvents_OnStopEventHandler.cs" />
+    <Compile Include="CANoe\IMeasurement.cs" />
+    <Compile Include="CANoe\IMeasurement2.cs" />
+    <Compile Include="CANoe\IMeasurement3.cs" />
+    <Compile Include="CANoe\IMeasurement4.cs" />
+    <Compile Include="CANoe\Measurement.cs" />
+    <Compile Include="CANoe\_IMeasurementEvents.cs" />
+    <Compile Include="CANoe\_IMeasurementEvents_Event.cs" />
+    <Compile Include="CANoe\_IMeasurementEvents_OnExitEventHandler.cs" />
+    <Compile Include="CANoe\_IMeasurementEvents_OnInitEventHandler.cs" />
+    <Compile Include="CANoe\_IMeasurementEvents_OnStartEventHandler.cs" />
+    <Compile Include="CANoe\_IMeasurementEvents_OnStopEventHandler.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Vector.VLConfig.BusinessLogic.Configuration.CcpXcp\A2LDatabase.cs" />
+    <Compile Include="Vector.VLConfig.BusinessLogic.Configuration.CcpXcp\CcpXcpManager.cs" />
+    <Compile Include="Vector.VLConfig.BusinessLogic.Configuration\AnalysisFileCollector.cs" />
+    <Compile Include="Vector.VLConfig.BusinessLogic.Configuration\CANChipConfigurationManager.cs" />
+    <Compile Include="Vector.VLConfig.BusinessLogic.Configuration\CANHardwareCallbackReceiver.cs" />
+    <Compile Include="Vector.VLConfig.BusinessLogic.Configuration\ConfigClipboardManager.cs" />
+    <Compile Include="Vector.VLConfig.BusinessLogic.Configuration\ConfigurationImporter.cs" />
+    <Compile Include="Vector.VLConfig.BusinessLogic.Configuration\ConfigurationManager.cs" />
+    <Compile Include="Vector.VLConfig.BusinessLogic.Configuration\DatabaseServices.cs" />
+    <Compile Include="Vector.VLConfig.BusinessLogic.Configuration\GenerationUtil.cs" />
+    <Compile Include="Vector.VLConfig.BusinessLogic.Configuration\GenerationUtilVN.cs" />
+    <Compile Include="Vector.VLConfig.BusinessLogic.Configuration\IConfigClipboardClient.cs" />
+    <Compile Include="Vector.VLConfig.BusinessLogic.Configuration\IConfigurationManagerService.cs" />
+    <Compile Include="Vector.VLConfig.BusinessLogic.Configuration\IDatabaseServices.cs" />
+    <Compile Include="Vector.VLConfig.BusinessLogic.Configuration\IModelEditor.cs" />
+    <Compile Include="Vector.VLConfig.BusinessLogic.Configuration\IModelValidator.cs" />
+    <Compile Include="Vector.VLConfig.BusinessLogic.Configuration\ISemanticChecker.cs" />
+    <Compile Include="Vector.VLConfig.BusinessLogic.Configuration\ModelEditor.cs" />
+    <Compile Include="Vector.VLConfig.BusinessLogic.Configuration\ModelValidator.cs" />
+    <Compile Include="Vector.VLConfig.BusinessLogic.Configuration\Result.cs" />
+    <Compile Include="Vector.VLConfig.BusinessLogic.Configuration\RingBufferMemoriesManager.cs" />
+    <Compile Include="Vector.VLConfig.BusinessLogic.Configuration\SemanticChecker.cs" />
+    <Compile Include="Vector.VLConfig.BusinessLogic.Configuration\UsedIdsManager.cs" />
+    <Compile Include="Vector.VLConfig.BusinessLogic.Configuration\UsedLimitFilterIdsCount.cs" />
+    <Compile Include="Vector.VLConfig.BusinessLogic.Conversion\AnalysisPackage.cs" />
+    <Compile Include="Vector.VLConfig.BusinessLogic.Conversion\BinlogConversion.cs" />
+    <Compile Include="Vector.VLConfig.BusinessLogic.Conversion\BinlogConversionJob.cs" />
+    <Compile Include="Vector.VLConfig.BusinessLogic.Conversion\BinlogConversionResult.cs" />
+    <Compile Include="Vector.VLConfig.BusinessLogic.Conversion\MDF4Finalizer.cs" />
+    <Compile Include="Vector.VLConfig.BusinessLogic.Conversion\MDF4FinalizerJob.cs" />
+    <Compile Include="Vector.VLConfig.BusinessLogic\EnumProfileError.cs" />
+    <Compile Include="Vector.VLConfig.BusinessLogic\FileConversionProfile.cs" />
+    <Compile Include="Vector.VLConfig.BusinessLogic\FileConversionProfileError.cs" />
+    <Compile Include="Vector.VLConfig.BusinessLogic\FileConversionProfileManager.cs" />
+    <Compile Include="Vector.VLConfig.BusinessLogic\FileSplitMerge.cs" />
+    <Compile Include="Vector.VLConfig.BusinessLogic\GlobalOptionsManager.cs" />
+    <Compile Include="Vector.VLConfig.BusinessLogic\GlobalRuntimeSettings.cs" />
+    <Compile Include="Vector.VLConfig.BusinessLogic\GUIUtil.cs" />
+    <Compile Include="Vector.VLConfig.BusinessLogic\IncludeFileManager.cs" />
+    <Compile Include="Vector.VLConfig.BusinessLogic\TempDirectoryManager.cs" />
+    <Compile Include="Vector.VLConfig.CANwinAccess.COM\CANalyzerApplication.cs" />
+    <Compile Include="Vector.VLConfig.CANwinAccess.COM\CANoeApplication.cs" />
+    <Compile Include="Vector.VLConfig.CANwinAccess.COM\CANwinApplication.cs" />
+    <Compile Include="Vector.VLConfig.CANwinAccess.COM\CANwinConfiguration.cs" />
+    <Compile Include="Vector.VLConfig.CANwinAccess.COM\CANwinGeneralSetup.cs" />
+    <Compile Include="Vector.VLConfig.CANwinAccess.COM\CANwinMeasurement.cs" />
+    <Compile Include="Vector.VLConfig.CANwinAccess.COM\CANwinMeasurementSetup.cs" />
+    <Compile Include="Vector.VLConfig.CANwinAccess.COM\CANwinOfflineSetup.cs" />
+    <Compile Include="Vector.VLConfig.CANwinAccess.COM\CANwinOnlineSetup.cs" />
+    <Compile Include="Vector.VLConfig.CANwinAccess.COM\CANwinSimulationSetup.cs" />
+    <Compile Include="Vector.VLConfig.CANwinAccess.COM\CANwinSystem.cs" />
+    <Compile Include="Vector.VLConfig.CANwinAccess.COM\CANwinTimeSectionType.cs" />
+    <Compile Include="Vector.VLConfig.CANwinAccess.COM\CANwinViewSynchronization.cs" />
+    <Compile Include="Vector.VLConfig.CANwinAccess.COM\ComBase.cs" />
+    <Compile Include="Vector.VLConfig.CANwinAccess.COM\ConfigurationMode.cs" />
+    <Compile Include="Vector.VLConfig.CANwinAccess.COM\VoidEventHandler.cs" />
+    <Compile Include="Vector.VLConfig.CANwinAccess.Data\CANwinBusItem.cs" />
+    <Compile Include="Vector.VLConfig.CANwinAccess.Data\CANwinQuickViewData.cs" />
+    <Compile Include="Vector.VLConfig.CANwinAccess\CANwinAutomation.cs" />
+    <Compile Include="Vector.VLConfig.CANwinAccess\CANwinBusType.cs" />
+    <Compile Include="Vector.VLConfig.CANwinAccess\CANwinServerType.cs" />
+    <Compile Include="Vector.VLConfig.CANwinAccess\Constants.cs" />
+    <Compile Include="Vector.VLConfig.CANwinAccess\CreateOfflineConfigJob.cs" />
+    <Compile Include="Vector.VLConfig.CANwinAccess\Resources.cs" />
+    <Compile Include="Vector.VLConfig.CANwinAccess\Vocabulary.cs" />
+    <Compile Include="Vector.VLConfig.CaplGeneration.DataPresenter\DpFilterCondition.cs" />
+    <Compile Include="Vector.VLConfig.CaplGeneration.DataPresenter\DpFilterConditionCanId.cs" />
+    <Compile Include="Vector.VLConfig.CaplGeneration.DataPresenter\DpFilterConditionChannel.cs" />
+    <Compile Include="Vector.VLConfig.CaplGeneration.DataPresenter\DpFilterConditionChannelCan.cs" />
+    <Compile Include="Vector.VLConfig.CaplGeneration.DataPresenter\DpFilterConditionChannelLin.cs" />
+    <Compile Include="Vector.VLConfig.CaplGeneration.DataPresenter\DpFilterConditionLinId.cs" />
+    <Compile Include="Vector.VLConfig.CaplGeneration.DataPresenter\DpFilterConditionSymbolicMessage.cs" />
+    <Compile Include="Vector.VLConfig.CaplGeneration.DataPresenter\DpFilterConditionSymbolicMessageCan.cs" />
+    <Compile Include="Vector.VLConfig.CaplGeneration.DataPresenter\DpFilterConditionSymbolicMessageLin.cs" />
+    <Compile Include="Vector.VLConfig.CaplGeneration.DataPresenter\DpHardware.cs" />
+    <Compile Include="Vector.VLConfig.CaplGeneration.DataPresenter\DpHardwareChannel.cs" />
+    <Compile Include="Vector.VLConfig.CaplGeneration.DataPresenter\DpHardwareChannelAnalogInput.cs" />
+    <Compile Include="Vector.VLConfig.CaplGeneration.DataPresenter\DpHardwareChannelCan.cs" />
+    <Compile Include="Vector.VLConfig.CaplGeneration.DataPresenter\DpHardwareChannelDigitalInput.cs" />
+    <Compile Include="Vector.VLConfig.CaplGeneration.DataPresenter\DpHardwareChannelLin.cs" />
+    <Compile Include="Vector.VLConfig.CaplGeneration.DataPresenter\DpTrigger.cs" />
+    <Compile Include="Vector.VLConfig.CaplGeneration.DataPresenter\DpTriggerCondition.cs" />
+    <Compile Include="Vector.VLConfig.CaplGeneration.DataPresenter\DpTriggerConditionAnalogInput.cs" />
+    <Compile Include="Vector.VLConfig.CaplGeneration.DataPresenter\DpTriggerConditionCanData.cs" />
+    <Compile Include="Vector.VLConfig.CaplGeneration.DataPresenter\DpTriggerConditionCanId.cs" />
+    <Compile Include="Vector.VLConfig.CaplGeneration.DataPresenter\DpTriggerConditionCombined.cs" />
+    <Compile Include="Vector.VLConfig.CaplGeneration.DataPresenter\DpTriggerConditionDigitalInput.cs" />
+    <Compile Include="Vector.VLConfig.CaplGeneration.DataPresenter\DpTriggerConditionLinData.cs" />
+    <Compile Include="Vector.VLConfig.CaplGeneration.DataPresenter\DpTriggerConditionLinId.cs" />
+    <Compile Include="Vector.VLConfig.CaplGeneration.DataPresenter\DpTriggerConditionMsgTimeout.cs" />
+    <Compile Include="Vector.VLConfig.CaplGeneration.DataPresenter\DpTriggerConditionMsgTimeoutCan.cs" />
+    <Compile Include="Vector.VLConfig.CaplGeneration.DataPresenter\DpTriggerConditionMsgTimeoutLin.cs" />
+    <Compile Include="Vector.VLConfig.CaplGeneration.DataPresenter\DpTriggerConditionSymbolicMessage.cs" />
+    <Compile Include="Vector.VLConfig.CaplGeneration.DataPresenter\DpTriggerConditionSymbolicMessageCan.cs" />
+    <Compile Include="Vector.VLConfig.CaplGeneration.DataPresenter\DpTriggerConditionSymbolicMessageLin.cs" />
+    <Compile Include="Vector.VLConfig.CaplGeneration.DataPresenter\DpTriggerConditionSymbolicSignal.cs" />
+    <Compile Include="Vector.VLConfig.CaplGeneration.DataPresenter\DpTriggerConditionSymbolicSignalCan.cs" />
+    <Compile Include="Vector.VLConfig.CaplGeneration.DataPresenter\DpTriggerConditionSymbolicSignalLin.cs" />
+    <Compile Include="Vector.VLConfig.CaplGeneration\CaplFunctions.cs" />
+    <Compile Include="Vector.VLConfig.CaplGeneration\CaplGenerator.cs" />
+    <Compile Include="Vector.VLConfig.CaplGeneration\CaplHelper.cs" />
+    <Compile Include="Vector.VLConfig.Data.ApplicationDataPersistency\AppDataReader.cs" />
+    <Compile Include="Vector.VLConfig.Data.ApplicationDataPersistency\AppDataWriter.cs" />
+    <Compile Include="Vector.VLConfig.Data.ApplicationData\AnalysisPackageParameters.cs" />
+    <Compile Include="Vector.VLConfig.Data.ApplicationData\AnalysisPackageSettings.cs" />
+    <Compile Include="Vector.VLConfig.Data.ApplicationData\AppDataRoot.cs" />
+    <Compile Include="Vector.VLConfig.Data.ApplicationData\AppDefaults.cs" />
+    <Compile Include="Vector.VLConfig.Data.ApplicationData\CANIdInterval.cs" />
+    <Compile Include="Vector.VLConfig.Data.ApplicationData\CardReaderNavigatorPage.cs" />
+    <Compile Include="Vector.VLConfig.Data.ApplicationData\CardReaderPage.cs" />
+    <Compile Include="Vector.VLConfig.Data.ApplicationData\CcpXcpDescriptionsPage.cs" />
+    <Compile Include="Vector.VLConfig.Data.ApplicationData\CcpXcpSignalRequestsPage.cs" />
+    <Compile Include="Vector.VLConfig.Data.ApplicationData\CLFExportPage.cs" />
+    <Compile Include="Vector.VLConfig.Data.ApplicationData\ConversionJob.cs" />
+    <Compile Include="Vector.VLConfig.Data.ApplicationData\ConversionJobType.cs" />
+    <Compile Include="Vector.VLConfig.Data.ApplicationData\DatabasesPage.cs" />
+    <Compile Include="Vector.VLConfig.Data.ApplicationData\DiagnosticActionsPage.cs" />
+    <Compile Include="Vector.VLConfig.Data.ApplicationData\DiagnosticsDatabasesPage.cs" />
+    <Compile Include="Vector.VLConfig.Data.ApplicationData\DigitalOutputsPage.cs" />
+    <Compile Include="Vector.VLConfig.Data.ApplicationData\DisplayMode.cs" />
+    <Compile Include="Vector.VLConfig.Data.ApplicationData\ExportDatabasesPage.cs" />
+    <Compile Include="Vector.VLConfig.Data.ApplicationData\FeatureFilterAffectedIds.cs" />
+    <Compile Include="Vector.VLConfig.Data.ApplicationData\FileConversionParameters.cs" />
+    <Compile Include="Vector.VLConfig.Data.ApplicationData\FileConversionProfileList.cs" />
+    <Compile Include="Vector.VLConfig.Data.ApplicationData\FileConversionTimeBase.cs" />
+    <Compile Include="Vector.VLConfig.Data.ApplicationData\FiltersPage.cs" />
+    <Compile Include="Vector.VLConfig.Data.ApplicationData\GlobalOptions.cs" />
+    <Compile Include="Vector.VLConfig.Data.ApplicationData\IApplicationDataSettings.cs" />
+    <Compile Include="Vector.VLConfig.Data.ApplicationData\IncludeFilesPage.cs" />
+    <Compile Include="Vector.VLConfig.Data.ApplicationData\LoggerDeviceNavigatorPage.cs" />
+    <Compile Include="Vector.VLConfig.Data.ApplicationData\LoggerDevicePage.cs" />
+    <Compile Include="Vector.VLConfig.Data.ApplicationData\MessageDefinition.cs" />
+    <Compile Include="Vector.VLConfig.Data.ApplicationData\PathConfiguration.cs" />
+    <Compile Include="Vector.VLConfig.Data.ApplicationData\ProjectExporterPage.cs" />
+    <Compile Include="Vector.VLConfig.Data.ApplicationData\ProjectExporterParameters.cs" />
+    <Compile Include="Vector.VLConfig.Data.ApplicationData\QuickViewTool.cs" />
+    <Compile Include="Vector.VLConfig.Data.ApplicationData\SendMessagePage.cs" />
+    <Compile Include="Vector.VLConfig.Data.ApplicationData\SignalDefinition.cs" />
+    <Compile Include="Vector.VLConfig.Data.ApplicationData\SignalExportListPage.cs" />
+    <Compile Include="Vector.VLConfig.Data.ApplicationData\TriggersPage.cs" />
+    <Compile Include="Vector.VLConfig.Data.ApplicationData\WLANSettingsGL2000Page.cs" />
+    <Compile Include="Vector.VLConfig.Data.ApplicationData\WLANSettingsGL3PlusPage.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\Action.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\ActionCcpXcp.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\ActionDigitalOutput.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\ActionSendMessage.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\AnalogInput.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\AnalogInputConfiguration.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\AnalogInputEvent.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\BufferSizeCalculatorChannelItem.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\BufferSizeCalculatorInformation.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\BusType.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\CANBusStatisticsEvent.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\CANChannel.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\CANChannelConfiguration.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\CANDataEvent.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\CANFDChipConfiguration.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\CANIdEvent.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\CANIdFilter.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\CANStdChipConfiguration.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\CcpXcpEcu.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\CcpXcpEcuTimestampCalculationMethod.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\CcpXcpEcuTimestampUnit.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\CcpXcpMeasurementMode.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\CcpXcpProtocol.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\CcpXcpSignal.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\CcpXcpSignalComparer.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\CcpXcpSignalConfiguration.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\CcpXcpSignalDummy.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\CcpXcpSignalEvent.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\ChannelFilter.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\ClockTimedEvent.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\CombinedEvent.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\CommentConfiguration.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\CondRelation.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\CPProtection.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\CPType.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\CyclicTimerEvent.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\Database.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\DatabaseConfiguration.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\DatabaseFileType.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\DataItem.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\DataTransferModeType.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\DataTransferTrigger.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\DataTransferTriggerConfiguration.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\DefaultFilter.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\DiagDbType.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\DiagnosticAction.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\DiagnosticActionsConfiguration.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\DiagnosticCommParamsECU.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\DiagnosticDummyAction.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\DiagnosticsAddressingMode.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\DiagnosticsDatabase.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\DiagnosticsDatabaseConfiguration.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\DiagnosticsECU.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\DiagnosticSignalEvent.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\DiagnosticSignalRequest.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\DiagnosticsProtocolType.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\DiagnosticsSessionSource.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\DiagSessionType.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\DigitalInput.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\DigitalInputConfiguration.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\DigitalInputEvent.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\DigitalOutputsConfiguration.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\DummyAction.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\DummyEvent.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\EthernetConfiguration.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\EthernetProtocol.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\Event.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\ExportDatabase.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\ExportDatabaseConfiguration.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\Feature.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\Filter.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\FilterActionType.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\FilterConfiguration.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\FlexrayChannel.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\FlexrayChannelConfiguration.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\FlexrayIdEvent.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\FlexrayIdFilter.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\GPSConfiguration.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\HardwareChannel.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\HardwareConfiguration.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\ICANChipConfiguration.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\ICcpXcpSignal.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\IdEvent.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\IDiagnosticsDatabaseConfiguration.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\IFeatureCcpXcpSignalDefinitions.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\IFeatureEvents.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\IFeatureReferencedFiles.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\IFeatureSymbolicDefinitions.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\IFeatureTransmitMessages.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\IFeatureVirtualLogMessages.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\IFile.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\IgnitionEvent.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\IncEvent.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\IncludeFile.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\IncludeFileConfiguration.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\InterfaceModeConfiguration.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\ISymbolicMessage.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\ISymbolicSignal.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\ISymbolicSignalEvent.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\ITransmitMessageChannel.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\IUpdateServiceForFeature.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\IValidatedProperty.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\IVirtualCANLogMessage.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\J1708Channel.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\KeyEvent.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\LEDConfigListItem.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\LEDConfiguration.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\LEDItemParameter.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\LINChannel.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\LINChannelConfiguration.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\LINDataEvent.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\LINIdEvent.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\LINIdFilter.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\LINprobeChannel.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\LogDataStorage.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\LoggingConfiguration.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\LtlSystemInformation.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\MemoryRingBuffer.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\MetaInformation.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\MOST150ChannelConfiguration.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\MsgTimeoutEvent.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\MultibusChannelConfiguration.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\NextLogSessionStartEvent.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\OnShutdownEvent.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\OnStartEvent.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\OutputConfiguration.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\PartialDownloadType.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\ProjectRoot.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\RawDataSignal.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\RawDataSignalByte.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\RawDataSignalStartbitLength.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\RecordTrigger.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\ReferencedRecordTriggerNameEvent.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\Ringbuffers.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\SendMessageConfiguration.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\SignalListFileFilter.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\SpecialFeaturesConfiguration.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\StopImmediate.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\StopOnEvent.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\StopOnStartEvent.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\StopOnTimer.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\StopType.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\SymbolicMessageEvent.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\SymbolicMessageFilter.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\SymbolicSignalEvent.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\TimeUnit.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\TriggerAction.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\TriggerConfiguration.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\TriggeredDiagnosticActionSequence.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\TriggerEffect.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\TriggerMode.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\ValidatedProperty.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\VirtualCANLogMessage.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\VoCanRecordingEvent.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\WebDisplayExportSignal.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\WebDisplayExportSignalType.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\WebDisplayFile.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationDataModel\WLANConfiguration.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationPersistency.ConfigurationReader.VersionConverter.XSLT\Convert_10_to_11.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationPersistency.ConfigurationReader.VersionConverter.XSLT\Convert_11_to_12.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationPersistency.ConfigurationReader.VersionConverter.XSLT\Convert_12_to_13.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationPersistency.ConfigurationReader.VersionConverter.XSLT\Convert_13_to_14.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationPersistency.ConfigurationReader.VersionConverter.XSLT\Convert_14_to_15.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationPersistency.ConfigurationReader.VersionConverter.XSLT\Convert_15_to_16.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationPersistency.ConfigurationReader.VersionConverter.XSLT\Convert_16_to_17.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationPersistency.ConfigurationReader.VersionConverter.XSLT\Convert_17_to_18.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationPersistency.ConfigurationReader.VersionConverter.XSLT\Convert_18_to_19.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationPersistency.ConfigurationReader.VersionConverter.XSLT\Convert_19_to_20.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationPersistency.ConfigurationReader.VersionConverter.XSLT\Convert_1_to_2.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationPersistency.ConfigurationReader.VersionConverter.XSLT\Convert_20_to_21.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationPersistency.ConfigurationReader.VersionConverter.XSLT\Convert_21_to_22.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationPersistency.ConfigurationReader.VersionConverter.XSLT\Convert_22_to_23.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationPersistency.ConfigurationReader.VersionConverter.XSLT\Convert_2_to_3.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationPersistency.ConfigurationReader.VersionConverter.XSLT\Convert_3_to_4.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationPersistency.ConfigurationReader.VersionConverter.XSLT\Convert_4_to_5.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationPersistency.ConfigurationReader.VersionConverter.XSLT\Convert_5_to_6.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationPersistency.ConfigurationReader.VersionConverter.XSLT\Convert_6_to_7.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationPersistency.ConfigurationReader.VersionConverter.XSLT\Convert_7_to_8.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationPersistency.ConfigurationReader.VersionConverter.XSLT\Convert_8_to_9.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationPersistency.ConfigurationReader.VersionConverter.XSLT\Convert_9_to_10.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationPersistency.ConfigurationReader.VersionConverter\ConvertVersion_10_to_11.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationPersistency.ConfigurationReader.VersionConverter\ConvertVersion_11_to_12.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationPersistency.ConfigurationReader.VersionConverter\ConvertVersion_12_to_13.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationPersistency.ConfigurationReader.VersionConverter\ConvertVersion_13_to_14.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationPersistency.ConfigurationReader.VersionConverter\ConvertVersion_14_to_15.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationPersistency.ConfigurationReader.VersionConverter\ConvertVersion_15_to_16.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationPersistency.ConfigurationReader.VersionConverter\ConvertVersion_16_to_17.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationPersistency.ConfigurationReader.VersionConverter\ConvertVersion_17_to_18.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationPersistency.ConfigurationReader.VersionConverter\ConvertVersion_18_to_19.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationPersistency.ConfigurationReader.VersionConverter\ConvertVersion_19_to_20.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationPersistency.ConfigurationReader.VersionConverter\ConvertVersion_1_to_2.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationPersistency.ConfigurationReader.VersionConverter\ConvertVersion_20_to_21.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationPersistency.ConfigurationReader.VersionConverter\ConvertVersion_21_to_22.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationPersistency.ConfigurationReader.VersionConverter\ConvertVersion_22_to_23.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationPersistency.ConfigurationReader.VersionConverter\ConvertVersion_2_to_3.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationPersistency.ConfigurationReader.VersionConverter\ConvertVersion_3_to_4.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationPersistency.ConfigurationReader.VersionConverter\ConvertVersion_4_to_5.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationPersistency.ConfigurationReader.VersionConverter\ConvertVersion_5_to_6.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationPersistency.ConfigurationReader.VersionConverter\ConvertVersion_6_to_7.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationPersistency.ConfigurationReader.VersionConverter\ConvertVersion_7_to_8.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationPersistency.ConfigurationReader.VersionConverter\ConvertVersion_8_to_9.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationPersistency.ConfigurationReader.VersionConverter\ConvertVersion_9_to_10.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationPersistency.ConfigurationReader.VersionConverter\ConvertVersion_NoChange.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationPersistency.ConfigurationReader.VersionConverter\ConvertVersion_XSLT.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationPersistency.ConfigurationReader.VersionConverter\IConvertVersion.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationPersistency.ConfigurationReader.VersionConverter\VersionConverter.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationPersistency\ErrorHandler.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationPersistency\ProjectExporter.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationPersistency\ProjectImporter.cs" />
+    <Compile Include="Vector.VLConfig.Data.ConfigurationPersistency\ProjectImportFileOverwriteHandler.cs" />
+    <Compile Include="Vector.VLConfig.Data.DataAccess\AppDataAccess.cs" />
+    <Compile Include="Vector.VLConfig.Data.DataAccess\IFeatureRegistration.cs" />
+    <Compile Include="Vector.VLConfig.Data.DataAccess\VLProject.cs" />
+    <Compile Include="Vector.VLConfig.Data.Persistency\ConfigurationReader.cs" />
+    <Compile Include="Vector.VLConfig.Data.Persistency\ConfigurationWriter.cs" />
+    <Compile Include="Vector.VLConfig.Data.Properties\Settings.cs" />
+    <Compile Include="Vector.VLConfig.DBAccess\ApplicationDatabaseManager.cs" />
+    <Compile Include="Vector.VLConfig.DBAccess\DatabaseOpenStatus.cs" />
+    <Compile Include="Vector.VLConfig.DBAccess\IApplicationDatabaseManager.cs" />
+    <Compile Include="Vector.VLConfig.DBAccess\IDatabaseAccessObserver.cs" />
+    <Compile Include="Vector.VLConfig.DiagSymbolsAccess.Properties\Resources.cs" />
+    <Compile Include="Vector.VLConfig.DiagSymbolsAccess.Properties\Settings.cs" />
+    <Compile Include="Vector.VLConfig.DiagSymbolsAccess\DiagSymbolsManager.cs" />
+    <Compile Include="Vector.VLConfig.DiagSymbolsAccess\DSMResult.cs" />
+    <Compile Include="Vector.VLConfig.DiagSymbolsAccess\IDiagSymbolsManager.cs" />
+    <Compile Include="Vector.VLConfig.GeneralUtil.FileSystem\DirectoryInfoProxy.cs" />
+    <Compile Include="Vector.VLConfig.GeneralUtil.FileSystem\DirectoryProxy.cs" />
+    <Compile Include="Vector.VLConfig.GeneralUtil.FileSystem\FileInfoProxy.cs" />
+    <Compile Include="Vector.VLConfig.GeneralUtil.FileSystem\FileProxy.cs" />
+    <Compile Include="Vector.VLConfig.GeneralUtil.FileSystem\FileSystemHelpers.cs" />
+    <Compile Include="Vector.VLConfig.GeneralUtil.FileSystem\IDirectory.cs" />
+    <Compile Include="Vector.VLConfig.GeneralUtil.FileSystem\IDirectoryInfo.cs" />
+    <Compile Include="Vector.VLConfig.GeneralUtil.FileSystem\IFile.cs" />
+    <Compile Include="Vector.VLConfig.GeneralUtil.FileSystem\IFileInfo.cs" />
+    <Compile Include="Vector.VLConfig.GeneralUtil.FileSystem\WinFSDirectory.cs" />
+    <Compile Include="Vector.VLConfig.GeneralUtil.FileSystem\WinFSDirectoryInfo.cs" />
+    <Compile Include="Vector.VLConfig.GeneralUtil.FileSystem\WinFSFile.cs" />
+    <Compile Include="Vector.VLConfig.GeneralUtil.FileSystem\WinFSFileInfo.cs" />
+    <Compile Include="Vector.VLConfig.GeneralUtil.FileSystem\ZipArchiveDirectory.cs" />
+    <Compile Include="Vector.VLConfig.GeneralUtil.FileSystem\ZipArchiveDirectoryInfo.cs" />
+    <Compile Include="Vector.VLConfig.GeneralUtil.FileSystem\ZipArchiveFile.cs" />
+    <Compile Include="Vector.VLConfig.GeneralUtil.FileSystem\ZipArchiveFileInfo.cs" />
+    <Compile Include="Vector.VLConfig.GeneralUtil.GUI\EnumCopyFilesResult.cs" />
+    <Compile Include="Vector.VLConfig.GeneralUtil.GUI\EnumInfoType.cs" />
+    <Compile Include="Vector.VLConfig.GeneralUtil.GUI\EnumQuestionType.cs" />
+    <Compile Include="Vector.VLConfig.GeneralUtil.GUI\GenericBackgroundWorker.cs" />
+    <Compile Include="Vector.VLConfig.GeneralUtil.GUI\GenericBackgroundWorkerJob.cs" />
+    <Compile Include="Vector.VLConfig.GeneralUtil.GUI\GenericBackgroundWorkerProgressIndicatorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GeneralUtil.GUI\GenericBackgroundWorkerResult.cs" />
+    <Compile Include="Vector.VLConfig.GeneralUtil.GUI\GenericCopyFilesWithProgressIndicator.cs" />
+    <Compile Include="Vector.VLConfig.GeneralUtil.GUI\GenericCopyFilesWithProgressIndicatorJob.cs" />
+    <Compile Include="Vector.VLConfig.GeneralUtil.GUI\GenericCopyFilesWithProgressIndicatorResult.cs" />
+    <Compile Include="Vector.VLConfig.GeneralUtil.GUI\InformMessageBox.cs" />
+    <Compile Include="Vector.VLConfig.GeneralUtil.GUI\TaskbarProgress.cs" />
+    <Compile Include="Vector.VLConfig.GeneralUtil.QuickView\OfflineSourceConfig.cs" />
+    <Compile Include="Vector.VLConfig.GeneralUtil.QuickView\SelectionType.cs" />
+    <Compile Include="Vector.VLConfig.GeneralUtil.QuickView\TimeSectionType.cs" />
+    <Compile Include="Vector.VLConfig.GeneralUtil\AutomationMode.cs" />
+    <Compile Include="Vector.VLConfig.GeneralUtil\ChannelNumber.cs" />
+    <Compile Include="Vector.VLConfig.GeneralUtil\FileSystemServices.cs" />
+    <Compile Include="Vector.VLConfig.GeneralUtil\ProcessUtils.cs" />
+    <Compile Include="Vector.VLConfig.GeneralUtil\RegistryServices.cs" />
+    <Compile Include="Vector.VLConfig.GeneralUtil\RemovableDrive.cs" />
+    <Compile Include="Vector.VLConfig.GeneralUtil\Resources_General.cs" />
+    <Compile Include="Vector.VLConfig.GeneralUtil\SerialPortServices.cs" />
+    <Compile Include="Vector.VLConfig.GeneralUtil\Vocabulary.cs" />
+    <Compile Include="Vector.VLConfig.GeneralUtil\WindowUtils.cs" />
+    <Compile Include="Vector.VLConfig.GUI.AnalogInputsPage\AnalogInputs.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.AnalogInputsPage\AnalogInputsGL1000.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.AnalogInputsPage\AnalogInputsGL2000.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.AnalogInputsPage\AnalogInputsGL3Plus.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.CANChannelsPage\CANChannels.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.CANChannelsPage\CANChannelsGL1000.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.CANChannelsPage\CANChannelsGL1020FTE.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.CANChannelsPage\CANChannelsGL2000.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.CANChannelsPage\CANChannelsGL3000.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.CANChannelsPage\CANChannelsGL4000.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.CardReaderNavigatorPage\CardReaderNavigator.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.CardReaderPage\CardReader.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.CardReaderPage\CardReaderDeviceInformation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.CardReaderPage\CardReaderGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.CcpXcpDescriptionsPage\CcpXcpDescriptions.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.CcpXcpDescriptionsPage\CcpXcpDescriptionsGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.CcpXcpDescriptionsPage\DeviceInfoItem.cs" />
+    <Compile Include="Vector.VLConfig.GUI.CcpXcpDescriptionsPage\ProtocolSelectionDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.CcpXcpDescriptionsPage\ProtocolSettingsDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.CcpXcpSignalRequestsPage\CcpXcpSignalImportAssistent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.CcpXcpSignalRequestsPage\CcpXcpSignalListSelection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.CcpXcpSignalRequestsPage\CcpXcpSignalRequests.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.CcpXcpSignalRequestsPage\CcpXcpSignalRequestsGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.CcpXcpSignalRequestsPage\CcpXcpSymbolSelection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.CcpXcpSignalRequestsPage\SplitButtonClientContainer.cs" />
+    <Compile Include="Vector.VLConfig.GUI.CLFExportPage\CLFExport.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.CLFExportPage\CLFExportGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.CLFExportPage\DisplayedFileItem.cs" />
+    <Compile Include="Vector.VLConfig.GUI.CLFExportPage\DisplayedFolderFileList.cs" />
+    <Compile Include="Vector.VLConfig.GUI.CLFExportPage\MetaInfoDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.CombinedAnalogDigitalInputsPage\CombinedAnalogDigitalInputs.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.CombinedAnalogDigitalInputsPage\CombinedAnalogDigitalInputsVN16XXlog.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.CommentPage\Comment.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.Common.DeviceInteraction\CardReaderDriveSelection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.Common.DeviceInteraction\FirmwareDownloadDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.Common.DeviceInteraction\LoggerTypeSelection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.Common.DeviceInteraction\SerialCommandProgress.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.Common.DeviceInteraction\SetEthernetAddress.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.Common.DeviceInteraction\SetRealtimeClock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.Common.DeviceInteraction\SetVehicleName.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.Common.DeviceInteraction\WrittenToDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.Common.EventConditions\AnalogInputCondition.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.Common.EventConditions\CANBusStatisticsCondition.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.Common.EventConditions\CANDataCondition.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.Common.EventConditions\CANIdCondition.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.Common.EventConditions\ClockTimedCondition.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.Common.EventConditions\CyclicTimerCondition.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.Common.EventConditions\DigitalInputCondition.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.Common.EventConditions\FlexrayIdCondition.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.Common.EventConditions\IgnitionCondition.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.Common.EventConditions\IncludeParameterCondition.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.Common.EventConditions\KeyCondition.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.Common.EventConditions\LINDataCondition.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.Common.EventConditions\LINIdCondition.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.Common.EventConditions\MsgTimeoutCondition.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.Common.EventConditions\OnStartCondition.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.Common.EventConditions\SignalValueInputMode.cs" />
+    <Compile Include="Vector.VLConfig.GUI.Common.EventConditions\SymbolicMessageCondition.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.Common.EventConditions\SymbolicSignalCondition.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.Common.EventConditions\VoCanRecordingCondition.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.Common.FileManager\ActivityIndicatorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.Common.FileManager\ChannelMapping.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.Common.FileManager\ConversionJobProcessor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.Common.FileManager\CopyFilesWithProgressIndicator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.Common.FileManager\CopyFilesWithProgressIndicatorFromZip.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.Common.FileManager\DecompressFilesWithProgressIndicator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.Common.FileManager\DeleteFilesWithProgressIndicator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.Common.FileManager\DeleteFoldersWithProgressIndicator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.Common.FileManager\DeviceListPopupMenuController.cs" />
+    <Compile Include="Vector.VLConfig.GUI.Common.FileManager\DoubleProgressIndicatorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.Common.FileManager\EnumFileConversionParameter.cs" />
+    <Compile Include="Vector.VLConfig.GUI.Common.FileManager\ExecuteBatchFile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.Common.FileManager\FileConversion.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.Common.FileManager\FileConversionDestFormatComboboxItem.cs" />
+    <Compile Include="Vector.VLConfig.GUI.Common.FileManager\FileConversionHelper.cs" />
+    <Compile Include="Vector.VLConfig.GUI.Common.FileManager\FileConversionParametersChangedEventArgs.cs" />
+    <Compile Include="Vector.VLConfig.GUI.Common.FileManager\FileConversionSettings.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.Common.FileManager\LogFileInfo.cs" />
+    <Compile Include="Vector.VLConfig.GUI.Common.FileManager\NavigatorHelper.cs" />
+    <Compile Include="Vector.VLConfig.GUI.Common.FileManager\ProgressIndicatorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.Common.FileManager\RawFileNameComparer.cs" />
+    <Compile Include="Vector.VLConfig.GUI.Common.FileManager\SingleProgressBarIndicator.cs" />
+    <Compile Include="Vector.VLConfig.GUI.Common.FileManager\ZipFilesWithProgressIndicator.cs" />
+    <Compile Include="Vector.VLConfig.GUI.Common.QuickView\IQuickViewClient.cs" />
+    <Compile Include="Vector.VLConfig.GUI.Common.QuickView\QuickView.cs" />
+    <Compile Include="Vector.VLConfig.GUI.Common.QuickView\ToolInfo.cs" />
+    <Compile Include="Vector.VLConfig.GUI.Common.QuickView\ToolInfoCANalyzer.cs" />
+    <Compile Include="Vector.VLConfig.GUI.Common.QuickView\ToolInfoCANape.cs" />
+    <Compile Include="Vector.VLConfig.GUI.Common.QuickView\ToolInfoCANoe.cs" />
+    <Compile Include="Vector.VLConfig.GUI.Common.QuickView\ToolInfovSignalyzer.cs" />
+    <Compile Include="Vector.VLConfig.GUI.Common\DisplayReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.Common\DisplayReportWithQuestion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.Common\FileChooserDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.Common\FileType.cs" />
+    <Compile Include="Vector.VLConfig.GUI.Common\FolderBrowserDialogEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.Common\GenerateDBCfromARXML.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.Common\GenericOpenFileDialog.cs" />
+    <Compile Include="Vector.VLConfig.GUI.Common\GenericSaveFileDialog.cs" />
+    <Compile Include="Vector.VLConfig.GUI.Common\InputSplitSize.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.Common\LoadingDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.Common\LRUFileHandler.cs" />
+    <Compile Include="Vector.VLConfig.GUI.Common\OverwriteFilesConfirmation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.Common\OverwriteFilesResult.cs" />
+    <Compile Include="Vector.VLConfig.GUI.Common\PasswordDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.Common\PInvoke.cs" />
+    <Compile Include="Vector.VLConfig.GUI.Common\SaveFileConversionProfileDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.Common\StorageCapacityBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.DatabasesPage\DatabaseGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.DatabasesPage\Databases.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.DatabasesPage\ExportDatabaseGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.DatabasesPage\ExportDatabases.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.DatabasesPage\NetworkSelection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.DeviceInformationPage\DeviceInformation.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.DeviceInformationPage\DeviceInformationGL1000.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.DeviceInformationPage\DeviceInformationGL1020FTE.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.DeviceInformationPage\DeviceInformationGL2000.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.DeviceInformationPage\DeviceInformationGL3000.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.DeviceInformationPage\DeviceInformationGL4000.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.DeviceInformationPage\DeviceInformationVN16XXlog.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.DiagnosticActionsPage\DiagnosticActions.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.DiagnosticActionsPage\DiagnosticActionsGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.DiagnosticActionsPage\DiagnosticSignalSelection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.DiagnosticActionsPage\GeneralSettingsGL1000.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.DiagnosticActionsPage\GeneralSettingsGL3Plus.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.DiagnosticsDatabasesPage\CommParameters.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.DiagnosticsDatabasesPage\DiagnosticsDatabaseConfigurationInternal.cs" />
+    <Compile Include="Vector.VLConfig.GUI.DiagnosticsDatabasesPage\DiagnosticsDatabases.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.DiagnosticsDatabasesPage\DiagnosticsDatabasesGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.DiagnosticsDatabasesPage\EcuParameters.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.DiagnosticsDatabasesPage\EcuTreeControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.DiagnosticsDatabasesPage\SelectECUs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.DigitalInputsPage\DigitalInputs.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.DigitalInputsPage\DigitalInputsGL1000.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.DigitalInputsPage\DigitalInputsGL2000.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.DigitalInputsPage\DigitalInputsGL3Plus.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.DigitalOutputsPage\DigitalOutputs.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.DigitalOutputsPage\DigitalOutputsGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.FiltersPage\CANIdCondition.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.FiltersPage\FilterGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.FiltersPage\Filters.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.FiltersPage\FlexrayIdCondition.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.FiltersPage\LINIdCondition.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.FiltersPage\SelectColumnInCSVFile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.FiltersPage\SetLimitRate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.FiltersPage\SymbolicFlexrayCondition.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.FlexrayChannelsPage\FlexrayChannels.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.FlexrayChannelsPage\FlexrayChannelsGL1000.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.FlexrayChannelsPage\FlexrayChannelsGL3000.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.FlexrayChannelsPage\FlexrayChannelsGL4000.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.GPSPage\GPS.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.GPSPage\GPSGL2000.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.GPSPage\GPSGL3Plus.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.HardwareSettingsPage\HardwareSettings.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.HardwareSettingsPage\HardwareSettingsCommon.cs" />
+    <Compile Include="Vector.VLConfig.GUI.HardwareSettingsPage\HardwareSettingsGL1000.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.HardwareSettingsPage\HardwareSettingsGL1020FTE.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.HardwareSettingsPage\HardwareSettingsGL2000.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.HardwareSettingsPage\HardwareSettingsGL3000.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.HardwareSettingsPage\HardwareSettingsGL4000.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.HardwareSettingsPage\SelectEventType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.Helpers\GlobalLock.cs" />
+    <Compile Include="Vector.VLConfig.GUI.Helpers\ISplitButtonExClient.cs" />
+    <Compile Include="Vector.VLConfig.GUI.Helpers\Lock.cs" />
+    <Compile Include="Vector.VLConfig.GUI.Helpers\NumericUpDownEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.Helpers\RtfText.cs" />
+    <Compile Include="Vector.VLConfig.GUI.Helpers\SplitButtonEx.cs" />
+    <Compile Include="Vector.VLConfig.GUI.Helpers\TaggedItem.cs" />
+    <Compile Include="Vector.VLConfig.GUI.Helpers\WaitCursor.cs" />
+    <Compile Include="Vector.VLConfig.GUI.ImportSolver\ImportSolver.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.IncludeFilesPage\IncludeFileGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.IncludeFilesPage\IncludeFileParameter.cs" />
+    <Compile Include="Vector.VLConfig.GUI.IncludeFilesPage\IncludeFileParameterPresenter.cs" />
+    <Compile Include="Vector.VLConfig.GUI.IncludeFilesPage\IncludeFileParser.cs" />
+    <Compile Include="Vector.VLConfig.GUI.IncludeFilesPage\IncludeFilePresenter.cs" />
+    <Compile Include="Vector.VLConfig.GUI.IncludeFilesPage\IncludeFiles.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.InterfaceModePage\InterfaceMode.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.InterfaceModePage\InterfaceModeGL3X00.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.InterfaceModePage\SignalExportList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.LEDsPage\LEDRow.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.LEDsPage\LEDs.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.LEDsPage\LEDsGL1000.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.LEDsPage\LEDsGL2000.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.LEDsPage\LEDsGLXX00.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.LINChannelsPage\LINChannels.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.LINChannelsPage\LINChannelsGL1000.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.LINChannelsPage\LINChannelsGL2000.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.LINChannelsPage\LINChannelsGL3000.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.LINChannelsPage\LINChannelsGL4000.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.LINChannelsPage\LINprobeChannelRow.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.LoggerDeviceNavigatorPage\LoggerDeviceNavigator.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.LoggerDevicePage\LoggerDevice.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.LoggerDevicePage\LoggerDeviceGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.MOST150ChannelsPage\MOST150Channels.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.MOST150ChannelsPage\MOST150ChannelsGL3Plus.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.MultibusChannelsPage\BaudrateComboboxItem.cs" />
+    <Compile Include="Vector.VLConfig.GUI.MultibusChannelsPage\MultibusCANChannel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.MultibusChannelsPage\MultibusChannel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.MultibusChannelsPage\MultibusChannels.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.MultibusChannelsPage\MultibusChannelsVN16XXlog.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.MultibusChannelsPage\MultibusJ1708Channel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.MultibusChannelsPage\MultibusLINChannel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.Options\AdditionalDrives.cs" />
+    <Compile Include="Vector.VLConfig.GUI.Options\AnalysisPackage.cs" />
+    <Compile Include="Vector.VLConfig.GUI.Options\Conversion.cs" />
+    <Compile Include="Vector.VLConfig.GUI.Options\ConversionProfiles.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.Options\General.cs" />
+    <Compile Include="Vector.VLConfig.GUI.Options\GeneratedFiles.cs" />
+    <Compile Include="Vector.VLConfig.GUI.Options\OptionsDialog.cs" />
+    <Compile Include="Vector.VLConfig.GUI.Options\ProjectExport.cs" />
+    <Compile Include="Vector.VLConfig.GUI.Options\QuickViewOptions.cs" />
+    <Compile Include="Vector.VLConfig.GUI.SendMessagePage\ConfigureSendMessage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.SendMessagePage\SendMessage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.SendMessagePage\SendMessageGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.SpecialFeaturesPage\SpecialFeatures.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.SpecialFeaturesPage\SpecialFeaturesGL1000.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.SpecialFeaturesPage\SpecialFeaturesGL1020FTE.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.SpecialFeaturesPage\SpecialFeaturesGL2000.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.SpecialFeaturesPage\SpecialFeaturesGL3Plus.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.SpecialFeaturesPage\SpecialFeaturesVN1630log.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.TriggersPage\BufferSizeCalculator.cs" />
+    <Compile Include="Vector.VLConfig.GUI.TriggersPage\BufferSizeCalculatorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.TriggersPage\BufferSizeCalculatorSettings.cs" />
+    <Compile Include="Vector.VLConfig.GUI.TriggersPage\CardSizeNumOfFilesCalculator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.TriggersPage\ChannelItem.cs" />
+    <Compile Include="Vector.VLConfig.GUI.TriggersPage\EventPresenter.cs" />
+    <Compile Include="Vector.VLConfig.GUI.TriggersPage\RecordTriggerPresenter.cs" />
+    <Compile Include="Vector.VLConfig.GUI.TriggersPage\Triggers.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.TriggersPage\TriggerTree.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.WLANSettingsPage\DataSelection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.WLANSettingsPage\DataTransferTriggerGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.WLANSettingsPage\WLANSettings.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.WLANSettingsPage\WLANSettingsGL2000.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.WLANSettingsPage\WLANSettingsGL3Plus.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI.XtraGridUtils\GridBatchUpdate.cs" />
+    <Compile Include="Vector.VLConfig.GUI.XtraTreeListUtils\EnumCheckStateMode.cs" />
+    <Compile Include="Vector.VLConfig.GUI.XtraTreeListUtils\ICheckStateDataRecord.cs" />
+    <Compile Include="Vector.VLConfig.GUI.XtraTreeListUtils\TreeListBatchUpdate.cs" />
+    <Compile Include="Vector.VLConfig.GUI.XtraTreeListUtils\TreeListGeneralServiceEx.cs" />
+    <Compile Include="Vector.VLConfig.GUI.XtraTreeListUtils\TreeListStateEntry.cs" />
+    <Compile Include="Vector.VLConfig.GUI.XtraTreeListUtils\TreeListStateService.cs" />
+    <Compile Include="Vector.VLConfig.GUI.XtraTreeListUtils\TreeNodeCheckStateService.cs" />
+    <Compile Include="Vector.VLConfig.GUI\EnumViewType.cs" />
+    <Compile Include="Vector.VLConfig.GUI\GridUtil.cs" />
+    <Compile Include="Vector.VLConfig.GUI\IFileConversionParametersClient.cs" />
+    <Compile Include="Vector.VLConfig.GUI\IFileConversionParametersExClient.cs" />
+    <Compile Include="Vector.VLConfig.GUI\IPropertyWindow.cs" />
+    <Compile Include="Vector.VLConfig.GUI\IUpdateObserver.cs" />
+    <Compile Include="Vector.VLConfig.GUI\IUpdateService.cs" />
+    <Compile Include="Vector.VLConfig.GUI\MainWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI\PageType.cs" />
+    <Compile Include="Vector.VLConfig.GUI\PageTypeHelper.cs" />
+    <Compile Include="Vector.VLConfig.GUI\TreeControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.GUI\UpdateContext.cs" />
+    <Compile Include="Vector.VLConfig.GUI\UpdateContextHelper.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.HardwareAbstraction.VN16XXlog\Vn1630LogFwImageInfoTrailer.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.HardwareAbstraction.VN16XXlog\VN16XXlogDevice.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.HardwareAbstraction.VN16XXlog\VN16XXlogHardwareInfo.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.HardwareAbstraction.VN16XXlog\VN16XXlogScanner.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.HardwareAbstraction.VN16XXlog\VN16XXlogUtils.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.HardwareAbstraction\GL1000Device.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.HardwareAbstraction\GL1000Scanner.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.HardwareAbstraction\GL1020FTEDevice.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.HardwareAbstraction\GL1020FTEScanner.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.HardwareAbstraction\GL2000Device.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.HardwareAbstraction\GL2000Scanner.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.HardwareAbstraction\GL3000Device.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.HardwareAbstraction\GL3000Scanner.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.HardwareAbstraction\GL4000Device.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.HardwareAbstraction\GL4000Scanner.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.HardwareAbstraction\HardwareFrontend.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.HardwareAbstraction\ICaplCompilerClient.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.HardwareAbstraction\IGL1000Device.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.HardwareAbstraction\IGL1020FTEDevice.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.HardwareAbstraction\IGL2000Device.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.HardwareAbstraction\IGL3000Device.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.HardwareAbstraction\IGL4000Device.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.HardwareAbstraction\IHardwareFrontend.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.HardwareAbstraction\IHardwareFrontendClient.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.HardwareAbstraction\ILogFile.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.HardwareAbstraction\ILogFileStorage.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.HardwareAbstraction\ILoggerDevice.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.HardwareAbstraction\ILoggerDeviceScanner.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.HardwareAbstraction\IMultibusChannelDevice.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.HardwareAbstraction\LogFile.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.HardwareAbstraction\LoggerDeviceCommon.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.HardwareAbstraction\LoggerDeviceGL1XXX.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.HardwareAbstraction\LoggerDeviceWindowsFileSystem.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.HardwareAbstraction\LoggerDeviceWindowsFileSystemZip.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.HardwareAbstraction\LTLCompiler.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.HardwareAbstraction\MlRtIniFile.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.ToolInterfaces\CaplCompiler.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.ToolInterfaces\CLexport.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.ToolInterfaces\CLexportValueParser.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.ToolInterfaces\CLFText.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.ToolInterfaces\Dbc2Inc.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.ToolInterfaces\DummyProgressIndicator.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.ToolInterfaces\FormatMemoryCard.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.ToolInterfaces\GenericConfTool.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.ToolInterfaces\GenericToolInterface.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.ToolInterfaces\GiNToolErrorCode.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.ToolInterfaces\GL1000conf.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.ToolInterfaces\GL1000ctrl.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.ToolInterfaces\GL1000DownloadProgressValueParser.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.ToolInterfaces\GL1000Infos.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.ToolInterfaces\GL2000conf.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.ToolInterfaces\GL2000ctrl.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.ToolInterfaces\GL2000Infos.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.ToolInterfaces\GL3000conf.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.ToolInterfaces\GL3000ctrl.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.ToolInterfaces\GL4000conf.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.ToolInterfaces\GL4000ctrl.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.ToolInterfaces\GZip.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.ToolInterfaces\IDoubleProgressIndicator.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.ToolInterfaces\IProgressIndicator.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.ToolInterfaces\IProgressIndicatorValueParser.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.ToolInterfaces\IToolOutputParser.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.ToolInterfaces\Lrf_dec.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.ToolInterfaces\Lrf_decValueParser.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.ToolInterfaces\MDF4FinalizerTool.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.ToolInterfaces\ProcessCopyFiles.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.ToolInterfaces\ProcessExitedDelegate.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.ToolInterfaces\SecWrite.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess.ToolInterfaces\WarningParser.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess\CANTransceiver.cs" />
+    <Compile Include="Vector.VLConfig.HardwareAccess\CANTransceiverType.cs" />
+    <Compile Include="Vector.VLConfig.LoggerSpecifics\AnalogInputsCANMappingMode.cs" />
+    <Compile Include="Vector.VLConfig.LoggerSpecifics\Constants.cs" />
+    <Compile Include="Vector.VLConfig.LoggerSpecifics\DigitalInputsMappingMode.cs" />
+    <Compile Include="Vector.VLConfig.LoggerSpecifics\EnumCodeLanguage.cs" />
+    <Compile Include="Vector.VLConfig.LoggerSpecifics\EnumCompilerType.cs" />
+    <Compile Include="Vector.VLConfig.LoggerSpecifics\FileConversionDestFormat.cs" />
+    <Compile Include="Vector.VLConfig.LoggerSpecifics\FileConversionFilenameFormat.cs" />
+    <Compile Include="Vector.VLConfig.LoggerSpecifics\FileConversionMDF3SignalFormat.cs" />
+    <Compile Include="Vector.VLConfig.LoggerSpecifics\GL1000.cs" />
+    <Compile Include="Vector.VLConfig.LoggerSpecifics\GL1020FTE.cs" />
+    <Compile Include="Vector.VLConfig.LoggerSpecifics\GL2000.cs" />
+    <Compile Include="Vector.VLConfig.LoggerSpecifics\GL3000.cs" />
+    <Compile Include="Vector.VLConfig.LoggerSpecifics\GL4000.cs" />
+    <Compile Include="Vector.VLConfig.LoggerSpecifics\ICANSpecifics.cs" />
+    <Compile Include="Vector.VLConfig.LoggerSpecifics\IConfigurationSpecifics.cs" />
+    <Compile Include="Vector.VLConfig.LoggerSpecifics\IDataStorageSpecifics.cs" />
+    <Compile Include="Vector.VLConfig.LoggerSpecifics\IDataTransferSpecifics.cs" />
+    <Compile Include="Vector.VLConfig.LoggerSpecifics\IDeviceAccessSpecifics.cs" />
+    <Compile Include="Vector.VLConfig.LoggerSpecifics\IFileConversionSpecifics.cs" />
+    <Compile Include="Vector.VLConfig.LoggerSpecifics\IFlexraySpecifics.cs" />
+    <Compile Include="Vector.VLConfig.LoggerSpecifics\IGPSSpecifics.cs" />
+    <Compile Include="Vector.VLConfig.LoggerSpecifics\IIOSpecifics.cs" />
+    <Compile Include="Vector.VLConfig.LoggerSpecifics\ILINSpecifics.cs" />
+    <Compile Include="Vector.VLConfig.LoggerSpecifics\ILoggerSpecifics.cs" />
+    <Compile Include="Vector.VLConfig.LoggerSpecifics\IMultibusSpecifics.cs" />
+    <Compile Include="Vector.VLConfig.LoggerSpecifics\IRecordingSpecifics.cs" />
+    <Compile Include="Vector.VLConfig.LoggerSpecifics\LEDState.cs" />
+    <Compile Include="Vector.VLConfig.LoggerSpecifics\LogDataMemoryType.cs" />
+    <Compile Include="Vector.VLConfig.LoggerSpecifics\LoggerSpecificsFactory.cs" />
+    <Compile Include="Vector.VLConfig.LoggerSpecifics\LoggerType.cs" />
+    <Compile Include="Vector.VLConfig.LoggerSpecifics\RingBufferOperatingMode.cs" />
+    <Compile Include="Vector.VLConfig.LoggerSpecifics\VN16XXlog.cs" />
+    <Compile Include="Vector.VLConfig.LoggingNavigator.Data\CustomIndexFileNameComparer.cs" />
+    <Compile Include="Vector.VLConfig.LoggingNavigator.Data\Entry.cs" />
+    <Compile Include="Vector.VLConfig.LoggingNavigator.Data\FileAccessManager.cs" />
+    <Compile Include="Vector.VLConfig.LoggingNavigator.Data\FileSystemFileAccessManager.cs" />
+    <Compile Include="Vector.VLConfig.LoggingNavigator.Data\IdManager.cs" />
+    <Compile Include="Vector.VLConfig.LoggingNavigator.Data\IndexFileCollection.cs" />
+    <Compile Include="Vector.VLConfig.LoggingNavigator.Data\IndexManager.cs" />
+    <Compile Include="Vector.VLConfig.LoggingNavigator.Data\LogFile.cs" />
+    <Compile Include="Vector.VLConfig.LoggingNavigator.Data\LoggerType.cs" />
+    <Compile Include="Vector.VLConfig.LoggingNavigator.Data\Marker.cs" />
+    <Compile Include="Vector.VLConfig.LoggingNavigator.Data\Measurement.cs" />
+    <Compile Include="Vector.VLConfig.LoggingNavigator.Data\PermanentTrigger.cs" />
+    <Compile Include="Vector.VLConfig.LoggingNavigator.Data\TimeSpec.cs" />
+    <Compile Include="Vector.VLConfig.LoggingNavigator.Data\Trigger.cs" />
+    <Compile Include="Vector.VLConfig.LoggingNavigator.Data\VoiceRecord.cs" />
+    <Compile Include="Vector.VLConfig.LoggingNavigator.Data\ZipFileAccessManager.cs" />
+    <Compile Include="Vector.VLConfig.LoggingNavigator.Export\ExportJob.cs" />
+    <Compile Include="Vector.VLConfig.LoggingNavigator.Export\ExportManager.cs" />
+    <Compile Include="Vector.VLConfig.LoggingNavigator.Export\ExportType.cs" />
+    <Compile Include="Vector.VLConfig.LoggingNavigator.Export\FileCopyDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.LoggingNavigator.GUI\LayoutSerializationContainer.cs" />
+    <Compile Include="Vector.VLConfig.LoggingNavigator.GUI\LogTable.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.LoggingNavigator.GUI\MarkerSelectionTable.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.LoggingNavigator.GUI\TriggerSelectionTable.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.LoggingNavigator.Properties\Resources.cs" />
+    <Compile Include="Vector.VLConfig.LoggingNavigator.Properties\Settings.cs" />
+    <Compile Include="Vector.VLConfig.LoggingNavigator\FilemanagerGui.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.LoggingNavigator\INavigation.cs" />
+    <Compile Include="Vector.VLConfig.LoggingNavigator\INavigationGUI.cs" />
+    <Compile Include="Vector.VLConfig.LoggingNavigator\MeasurementEvent.cs" />
+    <Compile Include="Vector.VLConfig.LoggingNavigator\MeasurementType.cs" />
+    <Compile Include="Vector.VLConfig.LoggingNavigator\SpecialEvent.cs" />
+    <Compile Include="Vector.VLConfig.LoggingNavigator\TimeLineControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.LoggingNavigator\Utils.cs" />
+    <Compile Include="Vector.VLConfig.LoggingNavigator\VoiceRecordBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Vector.VLConfig.LTLGenerationCS.LTLEvents\LTLAnalogInputEventCode.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS.LTLEvents\LTLCANBusStatisticsEventCode.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS.LTLEvents\LTLCcpXcpSignalEventCode.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS.LTLEvents\LTLClockTimedEventCode.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS.LTLEvents\LTLCombinedEventCode.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS.LTLEvents\LTLCyclicEventCode.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS.LTLEvents\LTLDataEventCode.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS.LTLEvents\LTLDiagnosticSignalEventCode.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS.LTLEvents\LTLDigitalInputEventCode.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS.LTLEvents\LTLEventFactory.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS.LTLEvents\LTLGenericEventCode.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS.LTLEvents\LTLIDEventCode.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS.LTLEvents\LTLIgnitionEventCode.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS.LTLEvents\LTLIncSignalEventCode.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS.LTLEvents\LTLKeyEventCode.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS.LTLEvents\LTLMessageTimeoutEventCode.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS.LTLEvents\LTLNextLoggerStartEventCode.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS.LTLEvents\LTLOnStartEventCode.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS.LTLEvents\LTLReferencedTriggerNameEventCode.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS.LTLEvents\LTLShutdownEventCode.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS.LTLEvents\LTLSignalEventCode.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS.LTLEvents\LTLSymbolicMessageEventCode.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS.LTLEvents\LTLSymbolicSignalEventCode.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS.LTLEvents\LTLVoCANEventCode.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS.Properties\Resources.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS.Trigger\LTLTriggerConditioned.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS.Trigger\LTLTriggerPermanent.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS.Trigger\LTLTriggerTriggered.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS.Utility\AndList.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS.Utility\ILogicalListElement.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS.Utility\LogicalCondition.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS.Utility\LogicalList.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS.Utility\LogicalListElementCondition.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS.Utility\LogicalListElementString.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS.Utility\OrList.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS.Utility\Variable.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS\CcpXcpDatabaseInfo.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS\CcpXcpEcuInfo.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS\CcpXcpGenerationInfo.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS\CcpXcpIncludeFileInfo.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS\CcpXcpSignalListInfo.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS\GlobalSettings.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS\LTLActionsCcpXcp.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS\LTLActionTrigger.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS\LTLActionWLAN3G.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS\LTLAnalogInputs.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS\LTLCcpXcp.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS\LTLCommon.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS\LTLDiagnostics.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS\LTLDigitalInputs.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS\LTLDigitalOutputs.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS\LTLFilter.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS\LTLGenerationException.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS\LTLGenerator.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS\LTLGenericAction.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS\LTLGenericCodePart.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS\LTLGPS.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS\LtlIncludeFiles.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS\LTLInterfaceMode.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS\LtlLeds.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS\LTLMarker.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS\LTLSendMessage.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS\LTLSpecialFeatures.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS\LTLSystemSettings.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS\LTLTrigger.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS\LTLTriggerModeGeneral.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS\LTLUtil.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS\LTLWLANSettings.cs" />
+    <Compile Include="Vector.VLConfig.LTLGenerationCS\PseudoActionTrigger.cs" />
+    <Compile Include="Vector.VLConfig.Properties\Resources.cs" />
+    <Compile Include="Vector.VLConfig.Properties\Resources_CcpXcp.cs" />
+    <Compile Include="Vector.VLConfig.Properties\Resources_Files.cs" />
+    <Compile Include="Vector.VLConfig.Properties\Resources_IncFiles.cs" />
+    <Compile Include="Vector.VLConfig.Properties\Resources_Trigger.cs" />
+    <Compile Include="Vector.VLConfig.Properties\Settings.cs" />
+    <Compile Include="Vector.VLConfig.ValidationFramework\CustomErrorProvider.cs" />
+    <Compile Include="Vector.VLConfig.ValidationFramework\ErrorString2ErrorClass.cs" />
+    <Compile Include="Vector.VLConfig.ValidationFramework\GUIElementManager_Control.cs" />
+    <Compile Include="Vector.VLConfig.ValidationFramework\GUIElementManager_ControlGridTree.cs" />
+    <Compile Include="Vector.VLConfig.ValidationFramework\GUIElementManager_Internal_Control.cs" />
+    <Compile Include="Vector.VLConfig.ValidationFramework\GUIElementManager_Internal_GridCell.cs" />
+    <Compile Include="Vector.VLConfig.ValidationFramework\GUIElementManager_Internal_TreeCell.cs" />
+    <Compile Include="Vector.VLConfig.ValidationFramework\GUIElement_Control.cs" />
+    <Compile Include="Vector.VLConfig.ValidationFramework\GUIElement_GridCell.cs" />
+    <Compile Include="Vector.VLConfig.ValidationFramework\GUIElement_TreeCell.cs" />
+    <Compile Include="Vector.VLConfig.ValidationFramework\ICustomErrorProviderControl.cs" />
+    <Compile Include="Vector.VLConfig.ValidationFramework\ICustomErrorProviderGeneral.cs" />
+    <Compile Include="Vector.VLConfig.ValidationFramework\ICustomErrorProviderGrid.cs" />
+    <Compile Include="Vector.VLConfig.ValidationFramework\ICustomErrorProviderTree.cs" />
+    <Compile Include="Vector.VLConfig.ValidationFramework\IModelValidationResultCollector.cs" />
+    <Compile Include="Vector.VLConfig.ValidationFramework\IPageValidatorControl.cs" />
+    <Compile Include="Vector.VLConfig.ValidationFramework\IPageValidatorGeneral.cs" />
+    <Compile Include="Vector.VLConfig.ValidationFramework\IPageValidatorGrid.cs" />
+    <Compile Include="Vector.VLConfig.ValidationFramework\IPageValidatorTree.cs" />
+    <Compile Include="Vector.VLConfig.ValidationFramework\IValidatable.cs" />
+    <Compile Include="Vector.VLConfig.ValidationFramework\IValidatedGUIElement.cs" />
+    <Compile Include="Vector.VLConfig.ValidationFramework\IValidationHost.cs" />
+    <Compile Include="Vector.VLConfig.ValidationFramework\PageValidator.cs" />
+    <Compile Include="Vector.VLConfig.ValidationFramework\PageValidatorGridUtil.cs" />
+    <Compile Include="Vector.VLConfig.ValidationFramework\PageValidatorTreeUtil.cs" />
+    <Compile Include="Vector.VLConfig.ValidationFramework\ValidationErrorClass.cs" />
+    <Compile Include="Vector.VLConfig\AssemblyAttributeBetaVersion.cs" />
+    <Compile Include="Vector.VLConfig\AssemblyAttributeServicePack.cs" />
+    <Compile Include="Vector.VLConfig\ImageUtils.cs" />
+    <Compile Include="Vector.VLConfig\MainImageList.cs" />
+    <Compile Include="Vector.VLConfig\Program.cs" />
+    <Compile Include="Vector.VLConfig\ProgramUtils.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Vector.VLConfig.CANwinAccess\Resources.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.CaplGeneration\Resources.ConfigurationTemplates.txt" />
+    <EmbeddedResource Include="Vector.VLConfig.CaplGeneration\Resources.FilterTemplates.txt" />
+    <EmbeddedResource Include="Vector.VLConfig.CaplGeneration\Resources.TriggerTemplates.txt" />
+    <EmbeddedResource Include="Vector.VLConfig.DiagSymbolsAccess.Properties\Resources.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GeneralUtil.GUI\GenericBackgroundWorkerProgressIndicatorForm.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GeneralUtil\Resources_General.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.AnalogInputsPage\AnalogInputs.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.AnalogInputsPage\AnalogInputsGL1000.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.AnalogInputsPage\AnalogInputsGL2000.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.AnalogInputsPage\AnalogInputsGL3Plus.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.CANChannelsPage\CANChannels.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.CANChannelsPage\CANChannelsGL1000.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.CANChannelsPage\CANChannelsGL1020FTE.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.CANChannelsPage\CANChannelsGL2000.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.CANChannelsPage\CANChannelsGL3000.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.CANChannelsPage\CANChannelsGL4000.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.CardReaderNavigatorPage\CardReaderNavigator.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.CardReaderPage\CardReader.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.CardReaderPage\CardReaderDeviceInformation.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.CardReaderPage\CardReaderGrid.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.CcpXcpDescriptionsPage\CcpXcpDescriptions.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.CcpXcpDescriptionsPage\CcpXcpDescriptionsGrid.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.CcpXcpDescriptionsPage\ProtocolSelectionDialog.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.CcpXcpDescriptionsPage\ProtocolSettingsDialog.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.CcpXcpSignalRequestsPage\CcpXcpSignalImportAssistent.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.CcpXcpSignalRequestsPage\CcpXcpSignalListSelection.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.CcpXcpSignalRequestsPage\CcpXcpSignalRequests.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.CcpXcpSignalRequestsPage\CcpXcpSignalRequestsGrid.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.CcpXcpSignalRequestsPage\CcpXcpSymbolSelection.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.CLFExportPage\CLFExport.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.CLFExportPage\CLFExportGrid.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.CLFExportPage\MetaInfoDialog.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.CombinedAnalogDigitalInputsPage\CombinedAnalogDigitalInputs.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.CombinedAnalogDigitalInputsPage\CombinedAnalogDigitalInputsVN16XXlog.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.CommentPage\Comment.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.Common.DeviceInteraction\CardReaderDriveSelection.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.Common.DeviceInteraction\FirmwareDownloadDialog.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.Common.DeviceInteraction\LoggerTypeSelection.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.Common.DeviceInteraction\SerialCommandProgress.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.Common.DeviceInteraction\SetEthernetAddress.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.Common.DeviceInteraction\SetRealtimeClock.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.Common.DeviceInteraction\SetVehicleName.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.Common.DeviceInteraction\WrittenToDialog.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.Common.EventConditions\AnalogInputCondition.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.Common.EventConditions\CANBusStatisticsCondition.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.Common.EventConditions\CANDataCondition.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.Common.EventConditions\CANIdCondition.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.Common.EventConditions\ClockTimedCondition.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.Common.EventConditions\CyclicTimerCondition.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.Common.EventConditions\DigitalInputCondition.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.Common.EventConditions\FlexrayIdCondition.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.Common.EventConditions\IgnitionCondition.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.Common.EventConditions\IncludeParameterCondition.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.Common.EventConditions\KeyCondition.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.Common.EventConditions\LINDataCondition.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.Common.EventConditions\LINIdCondition.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.Common.EventConditions\MsgTimeoutCondition.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.Common.EventConditions\OnStartCondition.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.Common.EventConditions\SymbolicMessageCondition.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.Common.EventConditions\SymbolicSignalCondition.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.Common.EventConditions\VoCanRecordingCondition.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.Common.FileManager\ActivityIndicatorForm.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.Common.FileManager\ChannelMapping.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.Common.FileManager\ConversionJobProcessor.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.Common.FileManager\CopyFilesWithProgressIndicator.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.Common.FileManager\CopyFilesWithProgressIndicatorFromZip.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.Common.FileManager\DecompressFilesWithProgressIndicator.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.Common.FileManager\DeleteFilesWithProgressIndicator.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.Common.FileManager\DeleteFoldersWithProgressIndicator.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.Common.FileManager\DoubleProgressIndicatorForm.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.Common.FileManager\ExecuteBatchFile.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.Common.FileManager\FileConversion.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.Common.FileManager\FileConversionSettings.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.Common.FileManager\ProgressIndicatorForm.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.Common\DisplayReport.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.Common\DisplayReportWithQuestion.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.Common\FileChooserDialog.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.Common\GenerateDBCfromARXML.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.Common\InputSplitSize.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.Common\LoadingDialog.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.Common\OverwriteFilesConfirmation.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.Common\PasswordDialog.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.Common\SaveFileConversionProfileDialog.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.DatabasesPage\DatabaseGrid.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.DatabasesPage\Databases.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.DatabasesPage\ExportDatabaseGrid.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.DatabasesPage\ExportDatabases.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.DatabasesPage\NetworkSelection.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.DeviceInformationPage\DeviceInformation.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.DeviceInformationPage\DeviceInformationGL1000.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.DeviceInformationPage\DeviceInformationGL1020FTE.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.DeviceInformationPage\DeviceInformationGL2000.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.DeviceInformationPage\DeviceInformationGL3000.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.DeviceInformationPage\DeviceInformationGL4000.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.DeviceInformationPage\DeviceInformationVN16XXlog.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.DiagnosticActionsPage\DiagnosticActions.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.DiagnosticActionsPage\DiagnosticActionsGrid.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.DiagnosticActionsPage\DiagnosticSignalSelection.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.DiagnosticActionsPage\GeneralSettingsGL1000.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.DiagnosticActionsPage\GeneralSettingsGL3Plus.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.DiagnosticsDatabasesPage\CommParameters.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.DiagnosticsDatabasesPage\DiagnosticsDatabases.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.DiagnosticsDatabasesPage\DiagnosticsDatabasesGrid.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.DiagnosticsDatabasesPage\EcuParameters.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.DiagnosticsDatabasesPage\EcuTreeControl.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.DiagnosticsDatabasesPage\SelectECUs.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.DigitalInputsPage\DigitalInputs.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.DigitalInputsPage\DigitalInputsGL1000.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.DigitalInputsPage\DigitalInputsGL2000.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.DigitalInputsPage\DigitalInputsGL3Plus.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.DigitalOutputsPage\DigitalOutputs.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.DigitalOutputsPage\DigitalOutputsGrid.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.FiltersPage\CANIdCondition.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.FiltersPage\FilterGrid.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.FiltersPage\Filters.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.FiltersPage\FlexrayIdCondition.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.FiltersPage\LINIdCondition.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.FiltersPage\SelectColumnInCSVFile.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.FiltersPage\SetLimitRate.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.FiltersPage\SymbolicFlexrayCondition.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.FlexrayChannelsPage\FlexrayChannels.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.FlexrayChannelsPage\FlexrayChannelsGL1000.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.FlexrayChannelsPage\FlexrayChannelsGL3000.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.FlexrayChannelsPage\FlexrayChannelsGL4000.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.GPSPage\GPS.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.GPSPage\GPSGL2000.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.GPSPage\GPSGL3Plus.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.HardwareSettingsPage\HardwareSettings.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.HardwareSettingsPage\HardwareSettingsGL1000.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.HardwareSettingsPage\HardwareSettingsGL1020FTE.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.HardwareSettingsPage\HardwareSettingsGL2000.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.HardwareSettingsPage\HardwareSettingsGL3000.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.HardwareSettingsPage\HardwareSettingsGL4000.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.HardwareSettingsPage\SelectEventType.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.ImportSolver\ImportSolver.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.IncludeFilesPage\IncludeFileGrid.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.IncludeFilesPage\IncludeFiles.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.InterfaceModePage\InterfaceMode.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.InterfaceModePage\InterfaceModeGL3X00.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.InterfaceModePage\SignalExportList.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.LEDsPage\LEDRow.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.LEDsPage\LEDs.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.LEDsPage\LEDsGL1000.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.LEDsPage\LEDsGL2000.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.LEDsPage\LEDsGLXX00.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.LINChannelsPage\LINChannels.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.LINChannelsPage\LINChannelsGL1000.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.LINChannelsPage\LINChannelsGL2000.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.LINChannelsPage\LINChannelsGL3000.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.LINChannelsPage\LINChannelsGL4000.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.LINChannelsPage\LINprobeChannelRow.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.LoggerDeviceNavigatorPage\LoggerDeviceNavigator.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.LoggerDevicePage\LoggerDevice.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.LoggerDevicePage\LoggerDeviceGrid.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.MOST150ChannelsPage\MOST150Channels.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.MOST150ChannelsPage\MOST150ChannelsGL3Plus.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.MultibusChannelsPage\MultibusCANChannel.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.MultibusChannelsPage\MultibusChannel.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.MultibusChannelsPage\MultibusChannels.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.MultibusChannelsPage\MultibusChannelsVN16XXlog.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.MultibusChannelsPage\MultibusJ1708Channel.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.MultibusChannelsPage\MultibusLINChannel.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.Options\AdditionalDrives.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.Options\AnalysisPackage.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.Options\Conversion.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.Options\ConversionProfiles.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.Options\General.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.Options\GeneratedFiles.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.Options\OptionsDialog.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.Options\ProjectExport.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.Options\QuickViewOptions.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.SendMessagePage\ConfigureSendMessage.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.SendMessagePage\SendMessage.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.SendMessagePage\SendMessageGrid.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.SpecialFeaturesPage\SpecialFeatures.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.SpecialFeaturesPage\SpecialFeaturesGL1000.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.SpecialFeaturesPage\SpecialFeaturesGL1020FTE.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.SpecialFeaturesPage\SpecialFeaturesGL2000.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.SpecialFeaturesPage\SpecialFeaturesGL3Plus.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.SpecialFeaturesPage\SpecialFeaturesVN1630log.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.TriggersPage\BufferSizeCalculatorForm.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.TriggersPage\CardSizeNumOfFilesCalculator.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.TriggersPage\Triggers.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.TriggersPage\TriggerTree.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.WLANSettingsPage\DataSelection.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.WLANSettingsPage\DataTransferTriggerGrid.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.WLANSettingsPage\WLANSettings.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.WLANSettingsPage\WLANSettingsGL2000.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI.WLANSettingsPage\WLANSettingsGL3Plus.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI\MainWindow.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.GUI\TreeControl.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.LoggingNavigator.Export\FileCopyDialog.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.LoggingNavigator.GUI\LogTable.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.LoggingNavigator.GUI\MarkerSelectionTable.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.LoggingNavigator.GUI\TriggerSelectionTable.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.LoggingNavigator.Properties\Resources.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.LoggingNavigator\dll.licenses" />
+    <EmbeddedResource Include="Vector.VLConfig.LoggingNavigator\FilemanagerGui.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.LoggingNavigator\TimeLineControl.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.LTLGenerationCS.Properties\Resources.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.Properties\Resources.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.Properties\Resources_CcpXcp.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.Properties\Resources_Files.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.Properties\Resources_IncFiles.resources" />
+    <EmbeddedResource Include="Vector.VLConfig.Properties\Resources_Trigger.resources" />
+    <EmbeddedResource Include="Vector.VLConfig\Resources.VN1630_IO.vsysvar" />
+    <EmbeddedResource Include="VectorLoggerConfigurator.exe.licenses" />
+    <EmbeddedResource Include="VectorLoggerConfiguratorCore.dll.licenses" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

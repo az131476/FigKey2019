@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<iasettings>
+  <projectproperties>
+    <manufacturer>tangxiaodong</manufacturer>
+    <productname>FigKeySerialPort</productname>
+    <productversion>1.0.0.0</productversion>
+    <productcode>{3adcb42d-5b7e-441f-beec-6225d50fd365}</productcode>
+    <upgradecode>{a138a673-e6d8-462a-b90b-1740944fd843}</upgradecode>
+    <language>0</language>
+    <languagename>English</languagename>
+  </projectproperties>
+  <summary>
+    <title>FigKeySerialPort</title>
+    <subject>FigKeySerialPort</subject>
+    <author>tangxiaodong</author>
+    <summarycomments>FigKeySerialPort</summarycomments>
+    <revisioncode>{fa6d6862-e317-4511-b763-1d233ae2300b}</revisioncode>
+    <uacelevation>highestAvailable</uacelevation>
+  </summary>
+  <addremove>
+    <publishername>tangxiaodong</publishername>
+    <contactname>tangxiaodong</contactname>
+    <helplink>http://www.mywebsite.com</helplink>
+    <productupdatelink>http://www.mywebsite.com</productupdatelink>
+    <addremovecomments>All Rights Reserved</addremovecomments>
+    <iconfile />
+  </addremove>
+  <codegen>
+    <generateincludefiles>0</generateincludefiles>
+    <generatefeatures>1</generatefeatures>
+    <refreshscript>0</refreshscript>
+  </codegen>
+  <compilervariables>
+    <variables />
+  </compilervariables>
+  <build>
+    <buildtype>0</buildtype>
+    <buildasmsi>False</buildasmsi>
+    <cachesources>1</cachesources>
+  </build>
+  <targetfolders />
+  <files>
+    <filedetails filename="D:\work\project\FigKeyLogger\FigKeySerialPort\FigKeySerialPort\bin\Debug\FigKeySerialPort.exe" targetlocation="$TARGETDIR$" type="1" generatenativeimage="0" registerassembly="0" runinstallerclass="0" createshortcut="1" runprogram="0" installfilecommand="0" />
+    <filedetails filename="D:\work\project\ComLibrary\ComLibrary\CommonUtils\CommonUtils\bin\Debug\net4.6.1\CommonUtils.dll" targetlocation="$TARGETDIR$" type="3" generatenativeimage="0" registerassembly="0" runinstallerclass="0" createshortcut="0" runprogram="0" installfilecommand="0" />
+  </files>
+  <dependencies />
+  <registry />
+  <dialogtheme>
+    <themename>Official</themename>
+  </dialogtheme>
+  <authenticode>
+    <sign>0</sign>
+    <mode>0</mode>
+    <certificatefile />
+    <keyfile />
+    <pfxfile />
+    <productinfourl />
+    <authpassword />
+    <timestampurl />
+    <signall>0</signall>
+  </authenticode>
+  <compression>
+    <compressiontype>8</compressiontype>
+    <encrypt>0</encrypt>
+    <compressionpassword />
+  </compression>
+  <output>
+    <outputtype>0</outputtype>
+    <location />
+    <filename />
+    <calculatefilehash>0</calculatefilehash>
+    <refreshrevisioncode>1</refreshrevisioncode>
+  </output>
+</iasettings>

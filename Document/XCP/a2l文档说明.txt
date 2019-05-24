@@ -1,0 +1,37 @@
+/begin measurement : 起始位
+content:
+
+index=0,	abak:名称
+index=1,	"":描述或说明
+index=2,	ubyte/sbyte: 数据类型
+index=3,	表达式
+index=4,
+index=5,
+index=6,
+index=7,
+index=8
+index=9
+
+
+/end measurement:结束位
+
+
+/begin COMPU_METHOD
+
+COEFFS(a,b,c,d,e,f),value: 0 1 -1 0 0 1 
+
+coeffs 输出：
+
+	1、rat_func函数时,输出：v1=b/f，v2=c/f
+	2、其他函数时，输出：1,0
+
+
+
+
+
+
+
+
+
+
+

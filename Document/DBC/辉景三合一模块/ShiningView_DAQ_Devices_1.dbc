@@ -1,0 +1,16 @@
+VERSION ""
+
+NS_ :
+
+BS_:
+
+BU_: C_AD4_01 
+
+BO_ 256 C_AD4_01_MSG0: 8 C_AD4_01
+ SG_ C_AD4_01_CH_03  : 39|32@0- (0.001,0) [0|0] "mV" Vector__XXX
+ SG_ C_AD4_01_CH_04  : 7|32@0- (0.001,0) [0|0] "mV" Vector__XXX
+
+BO_ 257 C_AD4_01_MSG1: 8 C_AD4_01
+ SG_ C_AD4_01_CH_02  : 7|32@0- (0.001,0) [0|0] "mV" Vector__XXX
+ SG_ C_AD4_01_CH_01  : 39|32@0- (0.001,0) [0|0] "mV" Vector__XXX
+

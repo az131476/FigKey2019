@@ -1,0 +1,899 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ConfigurationDataModel xmlns:i="http://www.w3.org/2001/XMLSchema-instance" z:Id="1" xmlns:z="http://schemas.microsoft.com/2003/10/Serialization/" xmlns="http://schemas.datacontract.org/2004/07/Vector.VLConfig.Data.ConfigurationDataModel">
+  <ApplicationVersion z:Id="2">2.6.63.0</ApplicationVersion>
+  <ConfigurationDataModelHardwareConfiguration z:Id="3">
+    <HardwareConfigurationAnalogInputConfiguration z:Id="4">
+      <AnalogInputsConfigurationAveraging z:Id="5">
+        <Value>true</Value>
+      </AnalogInputsConfigurationAveraging>
+      <AnalogInputsConfigurationCANMappingMode z:Id="6">
+        <Value>SameFixedIDs</Value>
+      </AnalogInputsConfigurationCANMappingMode>
+      <AnalogInputsConfigurationCanChannel z:Id="7">
+        <Value>3</Value>
+      </AnalogInputsConfigurationCanChannel>
+      <AnalogInputsConfigurationInputsList z:Id="8" z:Size="4">
+        <AnalogInput z:Id="9">
+          <AnalogInputIsActive z:Id="10">
+            <Value>false</Value>
+          </AnalogInputIsActive>
+          <Frequency z:Id="11">
+            <Value>1</Value>
+          </Frequency>
+          <IsMappedCANIdExtended z:Id="12">
+            <Value>true</Value>
+          </IsMappedCANIdExtended>
+          <MappedCANId z:Id="13">
+            <Value>536870897</Value>
+          </MappedCANId>
+        </AnalogInput>
+        <AnalogInput z:Id="14">
+          <AnalogInputIsActive z:Id="15">
+            <Value>false</Value>
+          </AnalogInputIsActive>
+          <Frequency z:Id="16">
+            <Value>1</Value>
+          </Frequency>
+          <IsMappedCANIdExtended z:Id="17">
+            <Value>true</Value>
+          </IsMappedCANIdExtended>
+          <MappedCANId z:Id="18">
+            <Value>536870897</Value>
+          </MappedCANId>
+        </AnalogInput>
+        <AnalogInput z:Id="19">
+          <AnalogInputIsActive z:Id="20">
+            <Value>false</Value>
+          </AnalogInputIsActive>
+          <Frequency z:Id="21">
+            <Value>1</Value>
+          </Frequency>
+          <IsMappedCANIdExtended z:Id="22">
+            <Value>true</Value>
+          </IsMappedCANIdExtended>
+          <MappedCANId z:Id="23">
+            <Value>536870897</Value>
+          </MappedCANId>
+        </AnalogInput>
+        <AnalogInput z:Id="24">
+          <AnalogInputIsActive z:Id="25">
+            <Value>false</Value>
+          </AnalogInputIsActive>
+          <Frequency z:Id="26">
+            <Value>1</Value>
+          </Frequency>
+          <IsMappedCANIdExtended z:Id="27">
+            <Value>true</Value>
+          </IsMappedCANIdExtended>
+          <MappedCANId z:Id="28">
+            <Value>536870897</Value>
+          </MappedCANId>
+        </AnalogInput>
+      </AnalogInputsConfigurationInputsList>
+      <AnalogInputsConfigurationMapToCANMessage z:Id="29">
+        <Value>true</Value>
+      </AnalogInputsConfigurationMapToCANMessage>
+      <AnalogInputsConfigurationMapToSystemChanel z:Id="30">
+        <Value>false</Value>
+      </AnalogInputsConfigurationMapToSystemChanel>
+    </HardwareConfigurationAnalogInputConfiguration>
+    <HardwareConfigurationCANChannelConfiguration z:Id="31">
+      <CANChannelConfigurationCANChannelList z:Id="32" z:Size="2">
+        <CANChannel z:Id="33">
+          <ChannelIsActive z:Id="34">
+            <Value>true</Value>
+          </ChannelIsActive>
+          <CANChannelChipConfiguration z:Id="35" i:type="CANStdChipConfiguration">
+            <CANStdChipConfigurationBTR0 z:Id="36">
+              <Value>65</Value>
+            </CANStdChipConfigurationBTR0>
+            <CANStdChipConfigurationBTR1 z:Id="37">
+              <Value>20</Value>
+            </CANStdChipConfigurationBTR1>
+            <CANStdChipConfigurationQuartzFreq z:Id="38">
+              <Value>16000</Value>
+            </CANStdChipConfigurationQuartzFreq>
+          </CANChannelChipConfiguration>
+          <CANChannelIsKeepAwakeActive z:Id="39">
+            <Value>true</Value>
+          </CANChannelIsKeepAwakeActive>
+          <CANChannelIsOutputActive z:Id="40">
+            <Value>true</Value>
+          </CANChannelIsOutputActive>
+          <CANChannelIsWakeUpEnabled z:Id="41">
+            <Value>false</Value>
+          </CANChannelIsWakeUpEnabled>
+          <CANChannelLogErrorFrames z:Id="42">
+            <Value>false</Value>
+          </CANChannelLogErrorFrames>
+        </CANChannel>
+        <CANChannel z:Id="43">
+          <ChannelIsActive z:Id="44">
+            <Value>true</Value>
+          </ChannelIsActive>
+          <CANChannelChipConfiguration z:Id="45" i:type="CANStdChipConfiguration">
+            <CANStdChipConfigurationBTR0 z:Id="46">
+              <Value>65</Value>
+            </CANStdChipConfigurationBTR0>
+            <CANStdChipConfigurationBTR1 z:Id="47">
+              <Value>20</Value>
+            </CANStdChipConfigurationBTR1>
+            <CANStdChipConfigurationQuartzFreq z:Id="48">
+              <Value>16000</Value>
+            </CANStdChipConfigurationQuartzFreq>
+          </CANChannelChipConfiguration>
+          <CANChannelIsKeepAwakeActive z:Id="49">
+            <Value>true</Value>
+          </CANChannelIsKeepAwakeActive>
+          <CANChannelIsOutputActive z:Id="50">
+            <Value>true</Value>
+          </CANChannelIsOutputActive>
+          <CANChannelIsWakeUpEnabled z:Id="51">
+            <Value>false</Value>
+          </CANChannelIsWakeUpEnabled>
+          <CANChannelLogErrorFrames z:Id="52">
+            <Value>false</Value>
+          </CANChannelLogErrorFrames>
+        </CANChannel>
+      </CANChannelConfigurationCANChannelList>
+      <CANChannelConfigurationLogErrorFramesOnMemories z:Id="53" z:Size="1">
+        <ValidatedProperty z:Id="54">
+          <Value>true</Value>
+        </ValidatedProperty>
+      </CANChannelConfigurationLogErrorFramesOnMemories>
+    </HardwareConfigurationCANChannelConfiguration>
+    <HardwareConfigurationDigitalInputConfiguration z:Id="55">
+      <DigitalInputsConfigurationCanChannel z:Id="56">
+        <Value>3</Value>
+      </DigitalInputsConfigurationCanChannel>
+      <DigitalInputsConfigurationInputsList z:Id="57" z:Size="2">
+        <DigitalInput z:Id="58">
+          <DigitalInputIsActiveFrequency z:Id="59">
+            <Value>false</Value>
+          </DigitalInputIsActiveFrequency>
+          <DigitalInputIsActiveOnChange z:Id="60">
+            <Value>false</Value>
+          </DigitalInputIsActiveOnChange>
+          <Frequency z:Id="61">
+            <Value>1</Value>
+          </Frequency>
+          <IsMappedCANIdExtended z:Id="62">
+            <Value>true</Value>
+          </IsMappedCANIdExtended>
+          <MappedCANId z:Id="63">
+            <Value>536870881</Value>
+          </MappedCANId>
+        </DigitalInput>
+        <DigitalInput z:Id="64">
+          <DigitalInputIsActiveFrequency z:Id="65">
+            <Value>false</Value>
+          </DigitalInputIsActiveFrequency>
+          <DigitalInputIsActiveOnChange z:Id="66">
+            <Value>false</Value>
+          </DigitalInputIsActiveOnChange>
+          <Frequency z:Id="67">
+            <Value>1</Value>
+          </Frequency>
+          <IsMappedCANIdExtended z:Id="68">
+            <Value>true</Value>
+          </IsMappedCANIdExtended>
+          <MappedCANId z:Id="69">
+            <Value>536870881</Value>
+          </MappedCANId>
+        </DigitalInput>
+      </DigitalInputsConfigurationInputsList>
+      <DigitalInputsConfigurationMappingMode z:Id="70">
+        <Value>GroupedCombinedIDs</Value>
+      </DigitalInputsConfigurationMappingMode>
+    </HardwareConfigurationDigitalInputConfiguration>
+    <HardwareConfigurationEthernetConfiguration z:Id="71">
+      <EthernetConfigurationEth1Ip z:Id="72">
+        <Value z:Id="73">192.168.165.10</Value>
+      </EthernetConfigurationEth1Ip>
+      <EthernetConfigurationEth1KeepAwake z:Id="74">
+        <Value>false</Value>
+      </EthernetConfigurationEth1KeepAwake>
+    </HardwareConfigurationEthernetConfiguration>
+    <HardwareConfigurationFlexrayChannelConfiguration z:Id="75">
+      <FlexrayChannelConfigurationChannelList z:Id="76" z:Size="0" />
+    </HardwareConfigurationFlexrayChannelConfiguration>
+    <HardwareConfigurationGPSConfiguration z:Id="77">
+      <GPSConfigurationCANChannel z:Id="78">
+        <Value>3</Value>
+      </GPSConfigurationCANChannel>
+      <GPSConfigurationDatabase z:Id="79">
+        <Value z:Id="80"></Value>
+      </GPSConfigurationDatabase>
+      <GPSConfigurationIsExtendedStartCANId z:Id="81">
+        <Value>true</Value>
+      </GPSConfigurationIsExtendedStartCANId>
+      <GPSConfigurationMapToCANMessage z:Id="82">
+        <Value>false</Value>
+      </GPSConfigurationMapToCANMessage>
+      <GPSConfigurationMapToSystemChannel z:Id="83">
+        <Value>false</Value>
+      </GPSConfigurationMapToSystemChannel>
+      <GPSConfigurationStartCANId z:Id="84">
+        <Value>536870864</Value>
+      </GPSConfigurationStartCANId>
+    </HardwareConfigurationGPSConfiguration>
+    <HardwareConfigurationInterfaceModeConfiguration z:Id="85">
+      <InterfaceModeConfigurationCustomWebDisplay z:Id="86">
+        <WebDisplayFilePath z:Id="87">
+          <Value z:Ref="80" i:nil="true" />
+        </WebDisplayFilePath>
+      </InterfaceModeConfigurationCustomWebDisplay>
+      <InterfaceModeConfigurationEnableAlwaysOnline z:Id="88">
+        <Value>false</Value>
+      </InterfaceModeConfigurationEnableAlwaysOnline>
+      <InterfaceModeConfigurationExportCycle z:Id="89">
+        <Value>200</Value>
+      </InterfaceModeConfigurationExportCycle>
+      <InterfaceModeConfigurationIpAddress z:Id="90">
+        <Value z:Id="91">127.0.0.1</Value>
+      </InterfaceModeConfigurationIpAddress>
+      <InterfaceModeConfigurationIsMarkerCANIdExtended z:Id="92">
+        <Value>true</Value>
+      </InterfaceModeConfigurationIsMarkerCANIdExtended>
+      <InterfaceModeConfigurationIsSendErrorFramesActive z:Id="93">
+        <Value>true</Value>
+      </InterfaceModeConfigurationIsSendErrorFramesActive>
+      <InterfaceModeConfigurationIsSendLoggedTxActive z:Id="94">
+        <Value>false</Value>
+      </InterfaceModeConfigurationIsSendLoggedTxActive>
+      <InterfaceModeConfigurationIsSendPhysTxActive z:Id="95">
+        <Value>true</Value>
+      </InterfaceModeConfigurationIsSendPhysTxActive>
+      <InterfaceModeConfigurationMarkerCANId z:Id="96">
+        <Value>536870895</Value>
+      </InterfaceModeConfigurationMarkerCANId>
+      <InterfaceModeConfigurationMarkerChannel z:Id="97">
+        <Value>3</Value>
+      </InterfaceModeConfigurationMarkerChannel>
+      <InterfaceModeConfigurationPort z:Id="98">
+        <Value>2900</Value>
+      </InterfaceModeConfigurationPort>
+      <InterfaceModeConfigurationSignalExportList z:Id="99" z:Size="0" />
+      <InterfaceModeConfigurationSubnetMask z:Id="100">
+        <Value z:Id="101">255.255.255.0</Value>
+      </InterfaceModeConfigurationSubnetMask>
+      <InterfaceModeConfigurationUseCustomWebDisplay z:Id="102">
+        <Value>false</Value>
+      </InterfaceModeConfigurationUseCustomWebDisplay>
+      <InterfaceModeConfigurationUseInterfaceMode z:Id="103">
+        <Value>false</Value>
+      </InterfaceModeConfigurationUseInterfaceMode>
+      <InterfaceModeConfigurationUseSignalExport z:Id="104">
+        <Value>false</Value>
+      </InterfaceModeConfigurationUseSignalExport>
+    </HardwareConfigurationInterfaceModeConfiguration>
+    <HardwareConfigurationLINChannelConfiguration z:Id="105">
+      <LINChannelConfigurationCANChannelNrUsedForLINProbe z:Id="106">
+        <Value>2</Value>
+      </LINChannelConfigurationCANChannelNrUsedForLINProbe>
+      <LINChannelConfigurationIsUsingLINProbe z:Id="107">
+        <Value>false</Value>
+      </LINChannelConfigurationIsUsingLINProbe>
+      <LINChannelConfigurationLINChannelList z:Id="108" z:Size="2">
+        <LINChannel z:Id="109">
+          <ChannelIsActive z:Id="110">
+            <Value>false</Value>
+          </ChannelIsActive>
+          <LINChannelBaudrate z:Id="111">
+            <Value>19200</Value>
+          </LINChannelBaudrate>
+          <LINChannelIsKeepAwakeActive z:Id="112">
+            <Value>true</Value>
+          </LINChannelIsKeepAwakeActive>
+          <LINChannelIsWakeUpEnabled z:Id="113">
+            <Value>true</Value>
+          </LINChannelIsWakeUpEnabled>
+          <LINChannelProtocolVersion z:Id="114">
+            <Value>6</Value>
+          </LINChannelProtocolVersion>
+          <LINChannelUseDbConfigValues z:Id="115">
+            <Value>false</Value>
+          </LINChannelUseDbConfigValues>
+        </LINChannel>
+        <LINChannel z:Id="116">
+          <ChannelIsActive z:Id="117">
+            <Value>false</Value>
+          </ChannelIsActive>
+          <LINChannelBaudrate z:Id="118">
+            <Value>19200</Value>
+          </LINChannelBaudrate>
+          <LINChannelIsKeepAwakeActive z:Id="119">
+            <Value>true</Value>
+          </LINChannelIsKeepAwakeActive>
+          <LINChannelIsWakeUpEnabled z:Id="120">
+            <Value>true</Value>
+          </LINChannelIsWakeUpEnabled>
+          <LINChannelProtocolVersion z:Id="121">
+            <Value>6</Value>
+          </LINChannelProtocolVersion>
+          <LINChannelUseDbConfigValues z:Id="122">
+            <Value>false</Value>
+          </LINChannelUseDbConfigValues>
+        </LINChannel>
+      </LINChannelConfigurationLINChannelList>
+      <LINChannelConfigurationLINprobeChannelList z:Id="123" z:Size="10">
+        <LINprobeChannel z:Id="124">
+          <ChannelIsActive z:Id="125">
+            <Value>false</Value>
+          </ChannelIsActive>
+          <LINChannelBaudrate z:Id="126">
+            <Value>19200</Value>
+          </LINChannelBaudrate>
+          <LINChannelIsKeepAwakeActive z:Id="127">
+            <Value>false</Value>
+          </LINChannelIsKeepAwakeActive>
+          <LINChannelIsWakeUpEnabled z:Id="128">
+            <Value>true</Value>
+          </LINChannelIsWakeUpEnabled>
+          <LINChannelProtocolVersion z:Id="129">
+            <Value>0</Value>
+          </LINChannelProtocolVersion>
+          <LINChannelUseDbConfigValues z:Id="130">
+            <Value>false</Value>
+          </LINChannelUseDbConfigValues>
+          <LINprobeChannelUseFixLINprobeBaudrate z:Id="131">
+            <Value>true</Value>
+          </LINprobeChannelUseFixLINprobeBaudrate>
+        </LINprobeChannel>
+        <LINprobeChannel z:Id="132">
+          <ChannelIsActive z:Id="133">
+            <Value>false</Value>
+          </ChannelIsActive>
+          <LINChannelBaudrate z:Id="134">
+            <Value>19200</Value>
+          </LINChannelBaudrate>
+          <LINChannelIsKeepAwakeActive z:Id="135">
+            <Value>false</Value>
+          </LINChannelIsKeepAwakeActive>
+          <LINChannelIsWakeUpEnabled z:Id="136">
+            <Value>true</Value>
+          </LINChannelIsWakeUpEnabled>
+          <LINChannelProtocolVersion z:Id="137">
+            <Value>0</Value>
+          </LINChannelProtocolVersion>
+          <LINChannelUseDbConfigValues z:Id="138">
+            <Value>false</Value>
+          </LINChannelUseDbConfigValues>
+          <LINprobeChannelUseFixLINprobeBaudrate z:Id="139">
+            <Value>true</Value>
+          </LINprobeChannelUseFixLINprobeBaudrate>
+        </LINprobeChannel>
+        <LINprobeChannel z:Id="140">
+          <ChannelIsActive z:Id="141">
+            <Value>false</Value>
+          </ChannelIsActive>
+          <LINChannelBaudrate z:Id="142">
+            <Value>19200</Value>
+          </LINChannelBaudrate>
+          <LINChannelIsKeepAwakeActive z:Id="143">
+            <Value>false</Value>
+          </LINChannelIsKeepAwakeActive>
+          <LINChannelIsWakeUpEnabled z:Id="144">
+            <Value>true</Value>
+          </LINChannelIsWakeUpEnabled>
+          <LINChannelProtocolVersion z:Id="145">
+            <Value>0</Value>
+          </LINChannelProtocolVersion>
+          <LINChannelUseDbConfigValues z:Id="146">
+            <Value>false</Value>
+          </LINChannelUseDbConfigValues>
+          <LINprobeChannelUseFixLINprobeBaudrate z:Id="147">
+            <Value>true</Value>
+          </LINprobeChannelUseFixLINprobeBaudrate>
+        </LINprobeChannel>
+        <LINprobeChannel z:Id="148">
+          <ChannelIsActive z:Id="149">
+            <Value>false</Value>
+          </ChannelIsActive>
+          <LINChannelBaudrate z:Id="150">
+            <Value>19200</Value>
+          </LINChannelBaudrate>
+          <LINChannelIsKeepAwakeActive z:Id="151">
+            <Value>false</Value>
+          </LINChannelIsKeepAwakeActive>
+          <LINChannelIsWakeUpEnabled z:Id="152">
+            <Value>true</Value>
+          </LINChannelIsWakeUpEnabled>
+          <LINChannelProtocolVersion z:Id="153">
+            <Value>0</Value>
+          </LINChannelProtocolVersion>
+          <LINChannelUseDbConfigValues z:Id="154">
+            <Value>false</Value>
+          </LINChannelUseDbConfigValues>
+          <LINprobeChannelUseFixLINprobeBaudrate z:Id="155">
+            <Value>true</Value>
+          </LINprobeChannelUseFixLINprobeBaudrate>
+        </LINprobeChannel>
+        <LINprobeChannel z:Id="156">
+          <ChannelIsActive z:Id="157">
+            <Value>false</Value>
+          </ChannelIsActive>
+          <LINChannelBaudrate z:Id="158">
+            <Value>19200</Value>
+          </LINChannelBaudrate>
+          <LINChannelIsKeepAwakeActive z:Id="159">
+            <Value>false</Value>
+          </LINChannelIsKeepAwakeActive>
+          <LINChannelIsWakeUpEnabled z:Id="160">
+            <Value>true</Value>
+          </LINChannelIsWakeUpEnabled>
+          <LINChannelProtocolVersion z:Id="161">
+            <Value>0</Value>
+          </LINChannelProtocolVersion>
+          <LINChannelUseDbConfigValues z:Id="162">
+            <Value>false</Value>
+          </LINChannelUseDbConfigValues>
+          <LINprobeChannelUseFixLINprobeBaudrate z:Id="163">
+            <Value>true</Value>
+          </LINprobeChannelUseFixLINprobeBaudrate>
+        </LINprobeChannel>
+        <LINprobeChannel z:Id="164">
+          <ChannelIsActive z:Id="165">
+            <Value>false</Value>
+          </ChannelIsActive>
+          <LINChannelBaudrate z:Id="166">
+            <Value>19200</Value>
+          </LINChannelBaudrate>
+          <LINChannelIsKeepAwakeActive z:Id="167">
+            <Value>false</Value>
+          </LINChannelIsKeepAwakeActive>
+          <LINChannelIsWakeUpEnabled z:Id="168">
+            <Value>true</Value>
+          </LINChannelIsWakeUpEnabled>
+          <LINChannelProtocolVersion z:Id="169">
+            <Value>0</Value>
+          </LINChannelProtocolVersion>
+          <LINChannelUseDbConfigValues z:Id="170">
+            <Value>false</Value>
+          </LINChannelUseDbConfigValues>
+          <LINprobeChannelUseFixLINprobeBaudrate z:Id="171">
+            <Value>true</Value>
+          </LINprobeChannelUseFixLINprobeBaudrate>
+        </LINprobeChannel>
+        <LINprobeChannel z:Id="172">
+          <ChannelIsActive z:Id="173">
+            <Value>false</Value>
+          </ChannelIsActive>
+          <LINChannelBaudrate z:Id="174">
+            <Value>19200</Value>
+          </LINChannelBaudrate>
+          <LINChannelIsKeepAwakeActive z:Id="175">
+            <Value>false</Value>
+          </LINChannelIsKeepAwakeActive>
+          <LINChannelIsWakeUpEnabled z:Id="176">
+            <Value>true</Value>
+          </LINChannelIsWakeUpEnabled>
+          <LINChannelProtocolVersion z:Id="177">
+            <Value>0</Value>
+          </LINChannelProtocolVersion>
+          <LINChannelUseDbConfigValues z:Id="178">
+            <Value>false</Value>
+          </LINChannelUseDbConfigValues>
+          <LINprobeChannelUseFixLINprobeBaudrate z:Id="179">
+            <Value>true</Value>
+          </LINprobeChannelUseFixLINprobeBaudrate>
+        </LINprobeChannel>
+        <LINprobeChannel z:Id="180">
+          <ChannelIsActive z:Id="181">
+            <Value>false</Value>
+          </ChannelIsActive>
+          <LINChannelBaudrate z:Id="182">
+            <Value>19200</Value>
+          </LINChannelBaudrate>
+          <LINChannelIsKeepAwakeActive z:Id="183">
+            <Value>false</Value>
+          </LINChannelIsKeepAwakeActive>
+          <LINChannelIsWakeUpEnabled z:Id="184">
+            <Value>true</Value>
+          </LINChannelIsWakeUpEnabled>
+          <LINChannelProtocolVersion z:Id="185">
+            <Value>0</Value>
+          </LINChannelProtocolVersion>
+          <LINChannelUseDbConfigValues z:Id="186">
+            <Value>false</Value>
+          </LINChannelUseDbConfigValues>
+          <LINprobeChannelUseFixLINprobeBaudrate z:Id="187">
+            <Value>true</Value>
+          </LINprobeChannelUseFixLINprobeBaudrate>
+        </LINprobeChannel>
+        <LINprobeChannel z:Id="188">
+          <ChannelIsActive z:Id="189">
+            <Value>false</Value>
+          </ChannelIsActive>
+          <LINChannelBaudrate z:Id="190">
+            <Value>19200</Value>
+          </LINChannelBaudrate>
+          <LINChannelIsKeepAwakeActive z:Id="191">
+            <Value>false</Value>
+          </LINChannelIsKeepAwakeActive>
+          <LINChannelIsWakeUpEnabled z:Id="192">
+            <Value>true</Value>
+          </LINChannelIsWakeUpEnabled>
+          <LINChannelProtocolVersion z:Id="193">
+            <Value>0</Value>
+          </LINChannelProtocolVersion>
+          <LINChannelUseDbConfigValues z:Id="194">
+            <Value>false</Value>
+          </LINChannelUseDbConfigValues>
+          <LINprobeChannelUseFixLINprobeBaudrate z:Id="195">
+            <Value>true</Value>
+          </LINprobeChannelUseFixLINprobeBaudrate>
+        </LINprobeChannel>
+        <LINprobeChannel z:Id="196">
+          <ChannelIsActive z:Id="197">
+            <Value>false</Value>
+          </ChannelIsActive>
+          <LINChannelBaudrate z:Id="198">
+            <Value>19200</Value>
+          </LINChannelBaudrate>
+          <LINChannelIsKeepAwakeActive z:Id="199">
+            <Value>false</Value>
+          </LINChannelIsKeepAwakeActive>
+          <LINChannelIsWakeUpEnabled z:Id="200">
+            <Value>true</Value>
+          </LINChannelIsWakeUpEnabled>
+          <LINChannelProtocolVersion z:Id="201">
+            <Value>0</Value>
+          </LINChannelProtocolVersion>
+          <LINChannelUseDbConfigValues z:Id="202">
+            <Value>false</Value>
+          </LINChannelUseDbConfigValues>
+          <LINprobeChannelUseFixLINprobeBaudrate z:Id="203">
+            <Value>true</Value>
+          </LINprobeChannelUseFixLINprobeBaudrate>
+        </LINprobeChannel>
+      </LINChannelConfigurationLINprobeChannelList>
+    </HardwareConfigurationLINChannelConfiguration>
+    <HardwareConfigurationLogDataStorage z:Id="204">
+      <LogDataStorageEventActivationDelayAfterStart z:Id="205">
+        <Value>2000</Value>
+      </LogDataStorageEventActivationDelayAfterStart>
+      <LogDataStorageIsEnterSleepModeEnabled z:Id="206">
+        <Value>true</Value>
+      </LogDataStorageIsEnterSleepModeEnabled>
+      <LogDataStorageIsFastWakeUpEnabled z:Id="207">
+        <Value>false</Value>
+      </LogDataStorageIsFastWakeUpEnabled>
+      <LogDataStorageStopCyclicCommunicationEvent i:nil="true" />
+      <LogDataStorageTimeoutToSleep z:Id="208">
+        <Value>60</Value>
+      </LogDataStorageTimeoutToSleep>
+      <LogDataStorageUseDataCompression z:Id="209">
+        <Value>false</Value>
+      </LogDataStorageUseDataCompression>
+    </HardwareConfigurationLogDataStorage>
+    <HardwareConfigurationMOST150ChannelConfiguration z:Id="210">
+      <MOST150ChannelConfigIsAutoStatusEventRepEnabled z:Id="211">
+        <Value>false</Value>
+      </MOST150ChannelConfigIsAutoStatusEventRepEnabled>
+      <MOST150ChannelConfigIsChannelEnabled z:Id="212">
+        <Value>false</Value>
+      </MOST150ChannelConfigIsChannelEnabled>
+      <MOST150ChannelConfigIsKeepAwakeEnabled z:Id="213">
+        <Value>true</Value>
+      </MOST150ChannelConfigIsKeepAwakeEnabled>
+      <MOST150ChannelConfigIsLogAsyncMDPEnabled z:Id="214">
+        <Value>true</Value>
+      </MOST150ChannelConfigIsLogAsyncMDPEnabled>
+      <MOST150ChannelConfigIsLogAsyncMEPEnabled z:Id="215">
+        <Value>false</Value>
+      </MOST150ChannelConfigIsLogAsyncMEPEnabled>
+      <MOST150ChannelConfigIsLogControlMsgsEnabled z:Id="216">
+        <Value>true</Value>
+      </MOST150ChannelConfigIsLogControlMsgsEnabled>
+      <MOST150ChannelConfigIsLogStatusEventsEnabled z:Id="217">
+        <Value>true</Value>
+      </MOST150ChannelConfigIsLogStatusEventsEnabled>
+    </HardwareConfigurationMOST150ChannelConfiguration>
+    <HardwareConfigurationMultibusChannelConfiguration z:Id="218">
+      <MultibusChannelConfigurationChannelList z:Id="219" z:Size="0" />
+    </HardwareConfigurationMultibusChannelConfiguration>
+  </ConfigurationDataModelHardwareConfiguration>
+  <ConfigurationDataModelLoggerType>GL1000</ConfigurationDataModelLoggerType>
+  <ConfigurationDataModelLoggingConfiguration z:Id="220">
+    <LoggingConfigurationCcpXcpSignalConfiguration z:Id="221">
+      <CcpXcpActionList z:Id="222" z:Size="0" />
+      <CcpXcpSignalConfigurationCycleTimeForNonCyclicDaqEvents z:Id="223">
+        <Value>10000</Value>
+      </CcpXcpSignalConfigurationCycleTimeForNonCyclicDaqEvents>
+    </LoggingConfigurationCcpXcpSignalConfiguration>
+    <LoggingConfigurationCommentConfiguration z:Id="224">
+      <CommentConfigurationComment z:Id="225">
+        <Value z:Ref="80" i:nil="true" />
+      </CommentConfigurationComment>
+      <CommentConfigurationCopyToLTL z:Id="226">
+        <Value>true</Value>
+      </CommentConfigurationCopyToLTL>
+      <CommentConfigurationName z:Id="227">
+        <Value z:Ref="80" i:nil="true" />
+      </CommentConfigurationName>
+      <CommentConfigurationVersion z:Id="228">
+        <Value z:Ref="80" i:nil="true" />
+      </CommentConfigurationVersion>
+    </LoggingConfigurationCommentConfiguration>
+    <LoggingConfigurationDatabaseConfiguration z:Id="229">
+      <DatabaseConfigurationDatabaseList z:Id="230" z:Size="1">
+        <Database z:Id="231">
+          <DatabaseBusType z:Id="232">
+            <Value>Bt_CAN</Value>
+          </DatabaseBusType>
+          <DatabaseCPType z:Id="233">
+            <Value>None</Value>
+          </DatabaseCPType>
+          <DatabaseCcpXcpEcuList z:Id="234" z:Size="0" />
+          <DatabaseChannelNumber z:Id="235">
+            <Value>1</Value>
+          </DatabaseChannelNumber>
+          <DatabaseCpProtectionList z:Id="236" z:Size="0" />
+          <DatabaseFilePath z:Id="237">
+            <Value z:Id="238">\ShiningView_DAQ_Devices.dbc</Value>
+          </DatabaseFilePath>
+          <DatabaseIsCPActive z:Id="239">
+            <Value>false</Value>
+          </DatabaseIsCPActive>
+          <DatabaseNetworkName z:Id="240">
+            <Value z:Ref="80" i:nil="true" />
+          </DatabaseNetworkName>
+        </Database>
+      </DatabaseConfigurationDatabaseList>
+      <DatabaseConfigurationEnableExchangeIdHandling z:Id="241">
+        <Value>true</Value>
+      </DatabaseConfigurationEnableExchangeIdHandling>
+    </LoggingConfigurationDatabaseConfiguration>
+    <LoggingConfigurationDiagnosticActionsConfiguration z:Id="242">
+      <DiagnosticActionsConfigurationDiagCommRestartTime z:Id="243">
+        <Value>1</Value>
+      </DiagnosticActionsConfigurationDiagCommRestartTime>
+      <DiagnosticActionsConfigurationIsDiagCommRestartEnabled z:Id="244">
+        <Value>true</Value>
+      </DiagnosticActionsConfigurationIsDiagCommRestartEnabled>
+      <DiagnosticActionsConfigurationRecordDiagCommMemories z:Id="245" z:Size="2">
+        <ValidatedProperty z:Id="246">
+          <Value>true</Value>
+        </ValidatedProperty>
+        <ValidatedProperty z:Id="247">
+          <Value>true</Value>
+        </ValidatedProperty>
+      </DiagnosticActionsConfigurationRecordDiagCommMemories>
+      <DiagnosticActionsConfigurationTriggeredSequences z:Id="248" z:Size="0" />
+    </LoggingConfigurationDiagnosticActionsConfiguration>
+    <LoggingConfigurationDiagnosticsDatabaseConfiguration z:Id="249">
+      <DiagnosticsDatabaseConfigurationDatabaseList z:Id="250" z:Size="0" />
+    </LoggingConfigurationDiagnosticsDatabaseConfiguration>
+    <LoggingConfigurationFilterConfigList z:Id="251" z:Size="1">
+      <FilterConfiguration z:Id="252">
+        <FilterConfigurationFilterList z:Id="253" z:Size="1">
+          <Filter z:Id="254" i:type="DefaultFilter">
+            <FilterAction z:Id="255">
+              <Value>Pass</Value>
+            </FilterAction>
+            <FilterIsActive z:Id="256">
+              <Value>true</Value>
+            </FilterIsActive>
+            <FilterLimitIntervalPerFrame z:Id="257">
+              <Value>1</Value>
+            </FilterLimitIntervalPerFrame>
+          </Filter>
+        </FilterConfigurationFilterList>
+      </FilterConfiguration>
+    </LoggingConfigurationFilterConfigList>
+    <LoggingConfigurationIncludeFileConfiguration z:Id="258">
+      <IncludeFileConfigurationFileList z:Id="259" z:Size="0" />
+    </LoggingConfigurationIncludeFileConfiguration>
+    <LoggingConfigurationSpecialFeaturesConfiguration z:Id="260">
+      <SpecialFeaturesIsIgnitionKeepsLoggerAwakeEnabled z:Id="261">
+        <Value>false</Value>
+      </SpecialFeaturesIsIgnitionKeepsLoggerAwakeEnabled>
+      <SpecialFeaturesIsIncludeLTLCodeEnabled z:Id="262">
+        <Value>true</Value>
+      </SpecialFeaturesIsIncludeLTLCodeEnabled>
+      <SpecialFeaturesIsLogDateTimeEnabled z:Id="263">
+        <Value>false</Value>
+      </SpecialFeaturesIsLogDateTimeEnabled>
+      <SpecialFeaturesIsOverloadBuzzerActive z:Id="264">
+        <Value>true</Value>
+      </SpecialFeaturesIsOverloadBuzzerActive>
+      <SpecialFeaturesLogDateTimeCANId z:Id="265">
+        <Value>536870896</Value>
+      </SpecialFeaturesLogDateTimeCANId>
+      <SpecialFeaturesLogDateTimeChannel z:Id="266">
+        <Value>3</Value>
+      </SpecialFeaturesLogDateTimeChannel>
+      <SpecialFeaturesLogDateTimeIsExtendedId z:Id="267">
+        <Value>true</Value>
+      </SpecialFeaturesLogDateTimeIsExtendedId>
+      <SpecialFeaturesMaxLogFileSize z:Id="268">
+        <Value>100</Value>
+      </SpecialFeaturesMaxLogFileSize>
+    </LoggingConfigurationSpecialFeaturesConfiguration>
+    <LoggingConfigurationTriggerConfigList z:Id="269" z:Size="1">
+      <TriggerConfiguration z:Id="270">
+        <TriggerConfigurationMemoryRingBuffer z:Id="271">
+          <MemoryRingBufferIsActive z:Id="272">
+            <Value>true</Value>
+          </MemoryRingBufferIsActive>
+          <MemoryRingBufferMaxNumOfFiles z:Id="273">
+            <Value>30000</Value>
+          </MemoryRingBufferMaxNumOfFiles>
+          <MemoryRingBufferOperatingMode z:Id="274">
+            <Value>overwriteOldest</Value>
+          </MemoryRingBufferOperatingMode>
+          <MemoryRingBufferSize z:Id="275">
+            <Value>5120</Value>
+          </MemoryRingBufferSize>
+          <MemoryRingBufferStoreRAM z:Id="276">
+            <Value>false</Value>
+          </MemoryRingBufferStoreRAM>
+        </TriggerConfigurationMemoryRingBuffer>
+        <TriggerConfigurationPostTriggerTime z:Id="277">
+          <Value>0</Value>
+        </TriggerConfigurationPostTriggerTime>
+        <TriggerConfigurationTriggerList z:Id="278" z:Size="0" />
+        <TriggerConfigurationTriggerListOnOff z:Id="279" z:Size="0" />
+        <TriggerConfigurationTriggerListPermanent z:Id="280" z:Size="0" />
+        <TriggerConfigurationTriggerMode z:Id="281">
+          <Value>Permanent</Value>
+        </TriggerConfigurationTriggerMode>
+      </TriggerConfiguration>
+    </LoggingConfigurationTriggerConfigList>
+    <LoggingConfigurationWLANConfiguration z:Id="282">
+      <WLANConfigurationAnalogInputNumber z:Id="283">
+        <Value>6</Value>
+      </WLANConfigurationAnalogInputNumber>
+      <WLANConfigurationGatewayIp z:Id="284">
+        <Value z:Id="285">192.168.13.31</Value>
+      </WLANConfigurationGatewayIp>
+      <WLANConfigurationIsStartThreeGOnEventEnabled z:Id="286">
+        <Value>false</Value>
+      </WLANConfigurationIsStartThreeGOnEventEnabled>
+      <WLANConfigurationIsStartWLANOnEventEnabled z:Id="287">
+        <Value>false</Value>
+      </WLANConfigurationIsStartWLANOnEventEnabled>
+      <WLANConfigurationIsStartWLANor3GOnShutdownEnabled z:Id="288">
+        <Value>false</Value>
+      </WLANConfigurationIsStartWLANor3GOnShutdownEnabled>
+      <WLANConfigurationIsWLANDownloadClassificationEnabled z:Id="289">
+        <Value>true</Value>
+      </WLANConfigurationIsWLANDownloadClassificationEnabled>
+      <WLANConfigurationIsWLANDownloadDriveRecorderEnabled z:Id="290">
+        <Value>true</Value>
+      </WLANConfigurationIsWLANDownloadDriveRecorderEnabled>
+      <WLANConfigurationIsWLANDownloadRingbufferEnabled z:Id="291">
+        <Value>true</Value>
+      </WLANConfigurationIsWLANDownloadRingbufferEnabled>
+      <WLANConfigurationIsWLANFallbackTo3GEnabled z:Id="292">
+        <Value>true</Value>
+      </WLANConfigurationIsWLANFallbackTo3GEnabled>
+      <WLANConfigurationIsWLANor3GDownloadClassificationEnabled z:Id="293">
+        <Value>true</Value>
+      </WLANConfigurationIsWLANor3GDownloadClassificationEnabled>
+      <WLANConfigurationIsWLANor3GDownloadDriveRecorderEnabled z:Id="294">
+        <Value>true</Value>
+      </WLANConfigurationIsWLANor3GDownloadDriveRecorderEnabled>
+      <WLANConfigurationIsWLANor3GDownloadRingbufferEnabled z:Id="295">
+        <Value>true</Value>
+      </WLANConfigurationIsWLANor3GDownloadRingbufferEnabled>
+      <WLANConfigurationLoggerIp z:Id="296">
+        <Value z:Id="297">192.168.13.30</Value>
+      </WLANConfigurationLoggerIp>
+      <WLANConfigurationMLserverIp z:Id="298">
+        <Value z:Ref="91" i:nil="true" />
+      </WLANConfigurationMLserverIp>
+      <WLANConfigurationPartialDownload z:Id="299">
+        <Value>PartialDownloadOn</Value>
+      </WLANConfigurationPartialDownload>
+      <WLANConfigurationStartWLANEvent i:nil="true" />
+      <WLANConfigurationSubnetMask z:Id="300">
+        <Value z:Ref="101" i:nil="true" />
+      </WLANConfigurationSubnetMask>
+      <WLANConfigurationThreeGDataTransferTriggerConfiguration z:Id="301">
+        <WLANConfigurationDataTranferTriggerList z:Id="302" z:Size="0" />
+      </WLANConfigurationThreeGDataTransferTriggerConfiguration>
+      <WLANConfigurationWLANRingbuffersToDownload z:Id="303">
+        <Value>2147483647</Value>
+      </WLANConfigurationWLANRingbuffersToDownload>
+      <WLANConfigurationWLANor3GRingbuffersToDownload z:Id="304">
+        <Value>2147483647</Value>
+      </WLANConfigurationWLANor3GRingbuffersToDownload>
+    </LoggingConfigurationWLANConfiguration>
+  </ConfigurationDataModelLoggingConfiguration>
+  <ConfigurationDataModelOutputConfiguration z:Id="305">
+    <OutputConfigurationDigitalOutputsConfiguration z:Id="306">
+      <DigitalOutputsConfigurationActionList z:Id="307" z:Size="2">
+        <ActionDigitalOutput z:Id="308">
+          <ActionComment z:Id="309">
+            <Value z:Ref="80" i:nil="true" />
+          </ActionComment>
+          <ActionEvent z:Id="310" i:type="OnStartEvent">
+            <OnStartEventDelay z:Id="311">
+              <Value>0</Value>
+            </OnStartEventDelay>
+          </ActionEvent>
+          <ActionIsActive z:Id="312">
+            <Value>false</Value>
+          </ActionIsActive>
+          <ActionStopType i:nil="true" />
+        </ActionDigitalOutput>
+        <ActionDigitalOutput z:Id="313">
+          <ActionComment z:Id="314">
+            <Value z:Ref="80" i:nil="true" />
+          </ActionComment>
+          <ActionEvent z:Id="315" i:type="OnStartEvent">
+            <OnStartEventDelay z:Id="316">
+              <Value>0</Value>
+            </OnStartEventDelay>
+          </ActionEvent>
+          <ActionIsActive z:Id="317">
+            <Value>false</Value>
+          </ActionIsActive>
+          <ActionStopType i:nil="true" />
+        </ActionDigitalOutput>
+      </DigitalOutputsConfigurationActionList>
+    </OutputConfigurationDigitalOutputsConfiguration>
+    <OutputConfigurationLEDConfiguration z:Id="318">
+      <LEDConfigurationItemList z:Id="319" z:Size="4">
+        <LEDConfigListItem z:Id="320">
+          <LEDConfigListItemLEDState z:Id="321">
+            <Value>AlwaysBlinking</Value>
+          </LEDConfigListItemLEDState>
+          <LEDConfigListItemParameterChannelNumber z:Id="322">
+            <Value>0</Value>
+          </LEDConfigListItemParameterChannelNumber>
+          <LEDConfigListItemParameterMemory z:Id="323">
+            <Value>0</Value>
+          </LEDConfigListItemParameterMemory>
+        </LEDConfigListItem>
+        <LEDConfigListItem z:Id="324">
+          <LEDConfigListItemLEDState z:Id="325">
+            <Value>Disabled</Value>
+          </LEDConfigListItemLEDState>
+          <LEDConfigListItemParameterChannelNumber z:Id="326">
+            <Value>0</Value>
+          </LEDConfigListItemParameterChannelNumber>
+          <LEDConfigListItemParameterMemory z:Id="327">
+            <Value>0</Value>
+          </LEDConfigListItemParameterMemory>
+        </LEDConfigListItem>
+        <LEDConfigListItem z:Id="328">
+          <LEDConfigListItemLEDState z:Id="329">
+            <Value>Disabled</Value>
+          </LEDConfigListItemLEDState>
+          <LEDConfigListItemParameterChannelNumber z:Id="330">
+            <Value>0</Value>
+          </LEDConfigListItemParameterChannelNumber>
+          <LEDConfigListItemParameterMemory z:Id="331">
+            <Value>0</Value>
+          </LEDConfigListItemParameterMemory>
+        </LEDConfigListItem>
+        <LEDConfigListItem z:Id="332">
+          <LEDConfigListItemLEDState z:Id="333">
+            <Value>Disabled</Value>
+          </LEDConfigListItemLEDState>
+          <LEDConfigListItemParameterChannelNumber z:Id="334">
+            <Value>0</Value>
+          </LEDConfigListItemParameterChannelNumber>
+          <LEDConfigListItemParameterMemory z:Id="335">
+            <Value>0</Value>
+          </LEDConfigListItemParameterMemory>
+        </LEDConfigListItem>
+      </LEDConfigurationItemList>
+    </OutputConfigurationLEDConfiguration>
+    <OutputConfigurationSendMessageConfiguration z:Id="336">
+      <SendMessageConfigurationActionList z:Id="337" z:Size="0" />
+    </OutputConfigurationSendMessageConfiguration>
+  </ConfigurationDataModelOutputConfiguration>
+  <FileFormatVersion>23</FileFormatVersion>
+  <MetaInformation z:Id="338">
+    <MetaInformationBufferSizeCalculatorInformation z:Id="339">
+      <BufferSizeCalculatorInformationChannelItems i:nil="true" />
+      <BufferSizeCalculatorInformationPreTriggerTimeSeconds z:Id="340">
+        <Value>0</Value>
+      </BufferSizeCalculatorInformationPreTriggerTimeSeconds>
+    </MetaInformationBufferSizeCalculatorInformation>
+  </MetaInformation>
+</ConfigurationDataModel>

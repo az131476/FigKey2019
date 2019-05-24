@@ -1,0 +1,8 @@
+解析文件步骤：
+
+1、添加a2l文件
+2、选择ECU协议
+	XCP on CAN -Vehicle CAN(APPL)
+	XCP on CAN -Vehicle CAN(APPL) (ED-RAM)
+	XCP on CAN -CalibrationCAN(LE)
+	XCP on CAN - CalibrationCAN(LE)(ED-RAM)
