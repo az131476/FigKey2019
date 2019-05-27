@@ -93,12 +93,6 @@
   <ItemGroup>
     <Folder Include="Molde\" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\ComLibrary\ComLibrary\CommonUtils\CommonUtils\CommonUtils.csproj">
-      <Project>{ebfca1b5-23f1-4f94-928a-db1a7b98eed6}</Project>
-      <Name>CommonUtils</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <VSToolsPath Condition="'$(VSToolsPath)' == '' and '$(VisualStudioVersion)' != '' and '$(VisualStudioVersion)' != '11.0'">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

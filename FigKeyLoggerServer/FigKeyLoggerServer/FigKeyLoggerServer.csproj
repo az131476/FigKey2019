@@ -119,7 +119,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\ComLibrary\ComLibrary\CommonUtils\CommonUtils\CommonUtils.csproj">
+    <ProjectReference Include="..\..\..\CommonLibrary2019\CommonUtils\CommonUtils\CommonUtils.csproj">
       <Project>{ebfca1b5-23f1-4f94-928a-db1a7b98eed6}</Project>
       <Name>CommonUtils</Name>
     </ProjectReference>

@@ -58,7 +58,7 @@ namespace FigKeyLoggerServer
             host.Faulted += Host_Faulted;
 
             host.Open(TimeSpan.FromSeconds(25));
-            socketServer.startSocketListen();
+            //socketServer.startSocketListen();
         }
 
         protected override void OnStop()
@@ -66,8 +66,9 @@ namespace FigKeyLoggerServer
             try
             {
                 host.Close(TimeSpan.FromSeconds(25));
+                if(socketServer)
                 //socketServer.appServer.Stop();
-                socketServer.TxServerStop();
+                //socketServer.TxServerStop();
                 LogHelper.log.Info("Windows Communication Foundtion Is Stop " + host.State);
             }
             finally

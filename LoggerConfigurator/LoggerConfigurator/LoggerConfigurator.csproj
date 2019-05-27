@@ -1,0 +1,327 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C5E1A633-AE1E-44B5-9380-F4302986654A}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>LoggerConfigurator</RootNamespace>
+    <AssemblyName>LoggerConfigurator</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.3.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\packages\BouncyCastle.1.8.3.1\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Protobuf, Version=3.6.1.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Protobuf.3.6.1\lib\net45\Google.Protobuf.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=8.0.16.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.8.0.16\lib\net452\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="SuperSocket.Common, Version=1.6.6.1, Culture=neutral, PublicKeyToken=6c80000676988ebb, processorArchitecture=MSIL">
+      <HintPath>..\packages\SuperSocket.1.6.6.1\lib\net45\SuperSocket.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="SuperSocket.Facility, Version=1.6.6.1, Culture=neutral, PublicKeyToken=6c80000676988ebb, processorArchitecture=MSIL">
+      <HintPath>..\packages\SuperSocket.1.6.6.1\lib\net45\SuperSocket.Facility.dll</HintPath>
+    </Reference>
+    <Reference Include="SuperSocket.SocketBase, Version=1.6.6.1, Culture=neutral, PublicKeyToken=6c80000676988ebb, processorArchitecture=MSIL">
+      <HintPath>..\packages\SuperSocket.1.6.6.1\lib\net45\SuperSocket.SocketBase.dll</HintPath>
+    </Reference>
+    <Reference Include="SuperSocket.SocketEngine, Version=1.6.6.1, Culture=neutral, PublicKeyToken=6c80000676988ebb, processorArchitecture=MSIL">
+      <HintPath>..\packages\SuperSocket.Engine.1.6.6.1\lib\net45\SuperSocket.SocketEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="SuperSocket.SocketService, Version=1.6.6.1, Culture=neutral, PublicKeyToken=6c80000676988ebb, processorArchitecture=MSIL">
+      <HintPath>..\packages\SuperSocket.Engine.1.6.6.1\lib\net45\SuperSocket.SocketService.exe</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Telerik.WinControls, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\CommonLibrary2019\CommonUtils\CommonUtils\Lib\telerik\Telerik.WinControls.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.ChartView, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\CommonLibrary2019\CommonUtils\CommonUtils\Lib\telerik\Telerik.WinControls.ChartView.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.GridView, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\CommonLibrary2019\CommonUtils\CommonUtils\Lib\telerik\Telerik.WinControls.GridView.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.RadChart, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\CommonLibrary2019\CommonUtils\CommonUtils\Lib\telerik\Telerik.WinControls.RadChart.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.UI, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\CommonLibrary2019\CommonUtils\CommonUtils\Lib\telerik\Telerik.WinControls.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.UI.Design, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\CommonLibrary2019\CommonUtils\CommonUtils\Lib\telerik\Telerik.WinControls.UI.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Zip, Version=2019.1.215.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\CommonLibrary2019\CommonUtils\CommonUtils\Lib\telerik\Telerik.Windows.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="TelerikCommon, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\CommonLibrary2019\CommonUtils\CommonUtils\Lib\telerik\TelerikCommon.dll</HintPath>
+    </Reference>
+    <Reference Include="TelerikData, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\CommonLibrary2019\CommonUtils\CommonUtils\Lib\telerik\TelerikData.dll</HintPath>
+    </Reference>
+    <Reference Include="TelerikExport, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\CommonLibrary2019\CommonUtils\CommonUtils\Lib\telerik\TelerikExport.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ClientSocket\SocketClient.cs" />
+    <Compile Include="Control\ExportFile.cs" />
+    <Compile Include="Control\GridViewControl.cs" />
+    <Compile Include="Control\TreeViewControl.cs" />
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\GridViewData.cs" />
+    <Compile Include="Model\TreeViewData.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Test.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Test.designer.cs">
+      <DependentUpon>Test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TestServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TestServer.designer.cs">
+      <DependentUpon>TestServer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\AboutBox1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\AboutBox1.Designer.cs">
+      <DependentUpon>AboutBox1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\RadAboutBox1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\RadAboutBox1.Designer.cs">
+      <DependentUpon>RadAboutBox1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\RadForm1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\RadForm1.Designer.cs">
+      <DependentUpon>RadForm1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\RadRibbonForm1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\RadRibbonForm1.Designer.cs">
+      <DependentUpon>RadRibbonForm1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\RadTabbedForm1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\RadTabbedForm1.Designer.cs">
+      <DependentUpon>RadTabbedForm1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\XcpFileSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\XcpFileSettings.Designer.cs">
+      <DependentUpon>XcpFileSettings.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Test.resx">
+      <DependentUpon>Test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TestServer.resx">
+      <DependentUpon>TestServer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\AboutBox1.resx">
+      <DependentUpon>AboutBox1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\RadAboutBox1.resx">
+      <DependentUpon>RadAboutBox1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\RadForm1.resx">
+      <DependentUpon>RadForm1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\RadRibbonForm1.resx">
+      <DependentUpon>RadRibbonForm1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\RadTabbedForm1.resx">
+      <DependentUpon>RadTabbedForm1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\XcpFileSettings.resx">
+      <DependentUpon>XcpFileSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Config\log4net.config" />
+    <None Include="Config\log4net.unix.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="supersocket.cmd" />
+    <None Include="supersocket.sh" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%2807,38%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cog_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_export.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\figkey.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\figkeyLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_vertical_open.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\go_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%2802,31%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%2801,29%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\newspaper.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%2801,34%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%2809,02%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%2808,41%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Reading_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%2800,34%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%2801,00%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%2800,05%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%2800,12%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SendDefault.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\server_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\stop_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="需求.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\CommonLibrary2019\CommonUtils\CommonUtils\CommonUtils.csproj">
+      <Project>{ebfca1b5-23f1-4f94-928a-db1a7b98eed6}</Project>
+      <Name>CommonUtils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\AnalysisAgreeMent\AnalysisAgreeMent\AnalysisAgreeMent.csproj">
+      <Project>{be87a25a-1fb2-47f3-99c9-30a04e1e8366}</Project>
+      <Name>AnalysisAgreeMent</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

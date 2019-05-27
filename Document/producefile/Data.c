@@ -13,7 +13,7 @@ static   XCPDataRecordType DataPart[]=
 	"Name06","Describle2","unit2",V_UINT,2,0,0,0,0xD0001D3a ,0,0.2,
 	"Name07","Describle3","unit3",V_INT, 2,0,0,0,0xD0001D3c ,0,0.3,
 	"Name08","Describle4","unit4",V_UINT,1,0,0,0,0xD0001D3e ,0,0.4,
-};//名称+描述+单位+符号类型+数值（位数）+ECU地址+
+};
 
 static   XCPDataRecordType DBCTab[] ={
 	"Name01","Describle1","unit1",V_INT, 4,0,0,8,0x123 ,0,0.1,     

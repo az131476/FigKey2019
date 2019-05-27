@@ -201,12 +201,6 @@
     <None Include="Resources\folder_vertical_open.png" />
     <Content Include="ReadMe.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\ComLibrary\ComLibrary\CommonUtils\CommonUtils\CommonUtils.csproj">
-      <Project>{ebfca1b5-23f1-4f94-928a-db1a7b98eed6}</Project>
-      <Name>CommonUtils</Name>
-    </ProjectReference>
-  </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
