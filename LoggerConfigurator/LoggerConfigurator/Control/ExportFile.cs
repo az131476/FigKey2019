@@ -39,9 +39,13 @@ namespace FigKeyLoggerConfigurator.Control
         private static string _len100msHeaderName;
         #region DBC
         private static List<int> frameIdList;//用于存储DBC明细时的分组ID
-        private const string DBC_HEAD_BEFORE = "static XCPDataRecordType ";
-        private const string DBC_METHOLD_NAME = "DBCTab";
+        private const string DBC_DETAIL_HEAD = "static XCPDataRecordType ";
+        private const string DBC_DEATIL_METHOLD_NAME = "DBCTab";
+
+        private const string DBC_EXINFO_TYPE_HEAD = "static   ExInfoType ";
+        private const string DBC_EXINFO_TYPE_METHOLD_NAME = "ExInfo[] = \r\n{";
         private static List<StringBuilder> allDbcGroupData;
+        private static List<AnalysisSignal> acturalDBCList;
         #endregion
         #endregion
 
@@ -58,6 +62,7 @@ namespace FigKeyLoggerConfigurator.Control
             else if (fileType == FileType.DBC)
             {
                 DbcDetailData(targetPath,gridView, analysisData);
+                AddDBCDetailGroup(targetPath);
             }
         }
 
@@ -119,7 +124,7 @@ namespace FigKeyLoggerConfigurator.Control
             try
             {
                 //遍历行数据
-                List<AnalysisSignal> acturalDBCList = new List<AnalysisSignal>();
+                acturalDBCList = new List<AnalysisSignal>();
                 frameIdList = new List<int>();
                 allDbcGroupData = new List<StringBuilder>();
                 //遍历选择行数据
@@ -135,8 +140,9 @@ namespace FigKeyLoggerConfigurator.Control
                 {
                     var resdbcList = acturalDBCList.FindAll(dbc => dbc.DataAddress == frameIdList[i]);
                     StringBuilder dbcGroupData = new StringBuilder();
-                    dbcGroupData.Append(DBC_HEAD_BEFORE);
-                    dbcGroupData.AppendLine(DBC_METHOLD_NAME +(resdbcList.Count-1)+"[] = { ");
+                    dbcGroupData.Append(DBC_DETAIL_HEAD);
+                    string metholdName = DBC_DEATIL_METHOLD_NAME + "_" + frameIdList[i];
+                    dbcGroupData.AppendLine(metholdName+"[] = \r\n{ ");
                     //保存格式内容：名称+描述+单位+数据类型+数据长度+字节顺序+截取开始地址(dbc有用)+截取长度+数据地址(a2l-ecu地址，monitor-canid)+系数+偏移量
                     for (int j = 0; j < resdbcList.Count; j++)
                     {
@@ -167,6 +173,23 @@ namespace FigKeyLoggerConfigurator.Control
             {
                 LogHelper.Log.Info(ex.Message+ex.StackTrace);
             }
+        }
+
+        private static void AddDBCDetailGroup(string targPath)
+        {
+            StringBuilder sbExInfo = new StringBuilder();
+            sbExInfo.Append(DBC_EXINFO_TYPE_HEAD);
+            sbExInfo.AppendLine(DBC_EXINFO_TYPE_METHOLD_NAME);
+            sbExInfo.AppendLine("\t\t0" + "," + "0" + "," + "0" + ",");
+            sbExInfo.AppendLine("\t\t1" + "," + "0" + "," + "0" + ",");
+            for (int i = 0; i < frameIdList.Count; i++)
+            {
+                var resdbcList = acturalDBCList.FindAll(dbc => dbc.DataAddress == frameIdList[i]);
+                string metholdName = DBC_DEATIL_METHOLD_NAME + "_" + frameIdList[i];
+                sbExInfo.AppendLine("\t\t2"+","+metholdName+","+resdbcList.Count+",");
+            }
+            sbExInfo.AppendLine("};");
+            WriteData.WriteString(sbExInfo, targPath);
         }
 
         private static void AddFrameGroupID(AnalysisSignal dbcSignal)

@@ -591,7 +591,7 @@ namespace AnalysisAgreeMent
                             string[] res = readLineResult.Replace(A2lContent.BegincompuMedthod.COEFFS, "").Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
                             double v1 = double.Parse(res[1]) / double.Parse(res[5]);
                             double v2 = double.Parse(res[2]) / double.Parse(res[5]);
-                            compuMethod.Factor = v1;
+                            compuMethod.Factor = v1;//v1.ToString("f5");
                             compuMethod.OffSet = v2;
                         }
                         else

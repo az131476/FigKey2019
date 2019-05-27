@@ -24,6 +24,7 @@ using AnalysisAgreeMent.Model.XCP;
 using AnalysisAgreeMent.Model.DBC;
 using AnalysisAgreeMent.Model;
 using AnalysisAgreeMent.Analysis;
+using System.IO;
 
 namespace LoggerConfigurator
 {
@@ -191,6 +192,7 @@ namespace LoggerConfigurator
                 return;
             }
             string path = FileSelect.SaveAs("(*.c)|*.c");
+
             if (analysisFileType == FileType.A2L)
             {
                 ExportFile.ExportFileToLocal(path, radGridView1, gridViewData,analysisData,analysisFileType);
