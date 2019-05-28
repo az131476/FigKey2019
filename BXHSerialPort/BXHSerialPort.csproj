@@ -34,7 +34,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Office.Core">
-      <HintPath>C:\Users\tangxiaodong\Desktop\BXHSerialPort\BXHSerialPort\Lib\Microsoft.Office.Core.dll</HintPath>
+      <HintPath>Lib\Microsoft.Office.Core.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="microsoft.office.interop.excel">
+      <HintPath>Lib\microsoft.office.interop.excel.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="microsoft.office.interop.excel1">
@@ -42,7 +46,7 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="OPCAutomation">
-      <HintPath>C:\Users\tangxiaodong\Desktop\BXHSerialPort\BXHSerialPort\Lib\OPCAutomation.dll</HintPath>
+      <HintPath>Lib\OPCAutomation.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="System" />

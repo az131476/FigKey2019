@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition4 = new Telerik.WinControls.UI.TableViewDefinition();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -37,7 +37,7 @@
             this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
             this.rtreeViewList = new Telerik.WinControls.UI.RadTreeView();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage_gridview = new System.Windows.Forms.TabPage();
             this.radPanel5 = new Telerik.WinControls.UI.RadPanel();
             this.radPanel6 = new Telerik.WinControls.UI.RadPanel();
             this.radGridView1 = new Telerik.WinControls.UI.RadGridView();
@@ -47,7 +47,6 @@
             this.rbtn_search = new Telerik.WinControls.UI.RadButton();
             this.radBtnExport = new Telerik.WinControls.UI.RadButton();
             this.openXcp = new Telerik.WinControls.UI.RadButton();
-            this.xcpFilePathCur = new Telerik.WinControls.UI.RadTextBox();
             this.radPanel2 = new Telerik.WinControls.UI.RadPanel();
             this.radThemeManager1 = new Telerik.WinControls.RadThemeManager();
             this.文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -61,6 +60,10 @@
             this.帮助ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.radSplitContainer2 = new Telerik.WinControls.UI.RadSplitContainer();
+            this.splitPanel3 = new Telerik.WinControls.UI.SplitPanel();
+            this.splitPanel4 = new Telerik.WinControls.UI.SplitPanel();
+            this.tabPage_hardware = new System.Windows.Forms.TabPage();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
@@ -70,13 +73,17 @@
             this.tool_exportfile = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton8 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton9 = new System.Windows.Forms.ToolStripButton();
-            this.radSplitContainer2 = new Telerik.WinControls.UI.RadSplitContainer();
-            this.splitPanel3 = new Telerik.WinControls.UI.SplitPanel();
-            this.splitPanel4 = new Telerik.WinControls.UI.SplitPanel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rtreeViewList)).BeginInit();
             this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
+            this.tabPage_gridview.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel5)).BeginInit();
             this.radPanel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel6)).BeginInit();
@@ -90,7 +97,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.rbtn_search)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radBtnExport)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.openXcp)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xcpFilePathCur)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel2)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -100,6 +106,9 @@
             this.splitPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel4)).BeginInit();
             this.splitPanel4.SuspendLayout();
+            this.tabPage_hardware.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -154,31 +163,32 @@
             this.rtreeViewList.ItemHeight = 23;
             this.rtreeViewList.Location = new System.Drawing.Point(0, 0);
             this.rtreeViewList.Name = "rtreeViewList";
-            this.rtreeViewList.Size = new System.Drawing.Size(192, 761);
+            this.rtreeViewList.Size = new System.Drawing.Size(226, 761);
             this.rtreeViewList.SpacingBetweenNodes = -1;
             this.rtreeViewList.TabIndex = 0;
             this.rtreeViewList.TreeIndent = 22;
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage_gridview);
+            this.tabControl1.Controls.Add(this.tabPage_hardware);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1028, 761);
+            this.tabControl1.Size = new System.Drawing.Size(994, 761);
             this.tabControl1.TabIndex = 0;
             // 
-            // tabPage1
+            // tabPage_gridview
             // 
-            this.tabPage1.Controls.Add(this.radPanel5);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1020, 735);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "数据显示";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.tabPage_gridview.Controls.Add(this.radPanel5);
+            this.tabPage_gridview.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_gridview.Name = "tabPage_gridview";
+            this.tabPage_gridview.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_gridview.Size = new System.Drawing.Size(986, 735);
+            this.tabPage_gridview.TabIndex = 0;
+            this.tabPage_gridview.Text = "数据显示";
+            this.tabPage_gridview.UseVisualStyleBackColor = true;
             // 
             // radPanel5
             // 
@@ -188,7 +198,7 @@
             this.radPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radPanel5.Location = new System.Drawing.Point(3, 3);
             this.radPanel5.Name = "radPanel5";
-            this.radPanel5.Size = new System.Drawing.Size(1014, 729);
+            this.radPanel5.Size = new System.Drawing.Size(980, 729);
             this.radPanel5.TabIndex = 3;
             // 
             // radPanel6
@@ -197,7 +207,7 @@
             this.radPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radPanel6.Location = new System.Drawing.Point(0, 36);
             this.radPanel6.Name = "radPanel6";
-            this.radPanel6.Size = new System.Drawing.Size(1014, 659);
+            this.radPanel6.Size = new System.Drawing.Size(980, 659);
             this.radPanel6.TabIndex = 6;
             // 
             // radGridView1
@@ -208,9 +218,9 @@
             // 
             // 
             // 
-            this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition4;
             this.radGridView1.Name = "radGridView1";
-            this.radGridView1.Size = new System.Drawing.Size(1014, 659);
+            this.radGridView1.Size = new System.Drawing.Size(980, 659);
             this.radGridView1.TabIndex = 0;
             // 
             // radPanel1
@@ -218,11 +228,10 @@
             this.radPanel1.Controls.Add(this.tableLayoutPanel1);
             this.radPanel1.Controls.Add(this.radBtnExport);
             this.radPanel1.Controls.Add(this.openXcp);
-            this.radPanel1.Controls.Add(this.xcpFilePathCur);
             this.radPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.radPanel1.Location = new System.Drawing.Point(0, 0);
             this.radPanel1.Name = "radPanel1";
-            this.radPanel1.Size = new System.Drawing.Size(1014, 36);
+            this.radPanel1.Size = new System.Drawing.Size(980, 36);
             this.radPanel1.TabIndex = 0;
             // 
             // tableLayoutPanel1
@@ -233,7 +242,7 @@
             this.tableLayoutPanel1.Controls.Add(this.xcpFilterCondition, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.rbtn_search, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(747, 0);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(713, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -251,7 +260,7 @@
             // 
             this.rbtn_search.Location = new System.Drawing.Point(194, 3);
             this.rbtn_search.Name = "rbtn_search";
-            this.rbtn_search.Size = new System.Drawing.Size(48, 21);
+            this.rbtn_search.Size = new System.Drawing.Size(48, 27);
             this.rbtn_search.TabIndex = 1;
             this.rbtn_search.Text = "搜索";
             // 
@@ -259,7 +268,7 @@
             // 
             this.radBtnExport.Location = new System.Drawing.Point(528, 3);
             this.radBtnExport.Name = "radBtnExport";
-            this.radBtnExport.Size = new System.Drawing.Size(54, 18);
+            this.radBtnExport.Size = new System.Drawing.Size(54, 27);
             this.radBtnExport.TabIndex = 5;
             this.radBtnExport.Text = "导出";
             this.radBtnExport.ThemeName = "ControlDefault";
@@ -268,23 +277,16 @@
             // 
             this.openXcp.Location = new System.Drawing.Point(4, 4);
             this.openXcp.Name = "openXcp";
-            this.openXcp.Size = new System.Drawing.Size(54, 18);
+            this.openXcp.Size = new System.Drawing.Size(54, 26);
             this.openXcp.TabIndex = 2;
             this.openXcp.Text = "打开";
-            // 
-            // xcpFilePathCur
-            // 
-            this.xcpFilePathCur.Location = new System.Drawing.Point(64, 3);
-            this.xcpFilePathCur.Name = "xcpFilePathCur";
-            this.xcpFilePathCur.Size = new System.Drawing.Size(383, 20);
-            this.xcpFilePathCur.TabIndex = 3;
             // 
             // radPanel2
             // 
             this.radPanel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.radPanel2.Location = new System.Drawing.Point(0, 695);
             this.radPanel2.Name = "radPanel2";
-            this.radPanel2.Size = new System.Drawing.Size(1014, 34);
+            this.radPanel2.Size = new System.Drawing.Size(980, 34);
             this.radPanel2.TabIndex = 1;
             // 
             // 文件ToolStripMenuItem
@@ -347,6 +349,7 @@
             // 
             // menuStrip1
             // 
+            this.menuStrip1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.文件ToolStripMenuItem,
@@ -379,6 +382,64 @@
             this.toolStrip1.Size = new System.Drawing.Size(1224, 25);
             this.toolStrip1.TabIndex = 6;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // radSplitContainer2
+            // 
+            this.radSplitContainer2.Controls.Add(this.splitPanel3);
+            this.radSplitContainer2.Controls.Add(this.splitPanel4);
+            this.radSplitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radSplitContainer2.Location = new System.Drawing.Point(0, 50);
+            this.radSplitContainer2.Name = "radSplitContainer2";
+            // 
+            // 
+            // 
+            this.radSplitContainer2.RootElement.MinSize = new System.Drawing.Size(25, 25);
+            this.radSplitContainer2.Size = new System.Drawing.Size(1224, 761);
+            this.radSplitContainer2.TabIndex = 7;
+            this.radSplitContainer2.TabStop = false;
+            // 
+            // splitPanel3
+            // 
+            this.splitPanel3.Controls.Add(this.rtreeViewList);
+            this.splitPanel3.Location = new System.Drawing.Point(0, 0);
+            this.splitPanel3.Name = "splitPanel3";
+            // 
+            // 
+            // 
+            this.splitPanel3.RootElement.MinSize = new System.Drawing.Size(25, 25);
+            this.splitPanel3.Size = new System.Drawing.Size(226, 761);
+            this.splitPanel3.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(-0.3147541F, 0F);
+            this.splitPanel3.SizeInfo.SplitterCorrection = new System.Drawing.Size(-384, 0);
+            this.splitPanel3.TabIndex = 0;
+            this.splitPanel3.TabStop = false;
+            this.splitPanel3.Text = "splitPanel3";
+            // 
+            // splitPanel4
+            // 
+            this.splitPanel4.Controls.Add(this.tabControl1);
+            this.splitPanel4.Location = new System.Drawing.Point(230, 0);
+            this.splitPanel4.Name = "splitPanel4";
+            // 
+            // 
+            // 
+            this.splitPanel4.RootElement.MinSize = new System.Drawing.Size(25, 25);
+            this.splitPanel4.Size = new System.Drawing.Size(994, 761);
+            this.splitPanel4.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0.3147541F, 0F);
+            this.splitPanel4.SizeInfo.SplitterCorrection = new System.Drawing.Size(384, 0);
+            this.splitPanel4.TabIndex = 1;
+            this.splitPanel4.TabStop = false;
+            this.splitPanel4.Text = "splitPanel4";
+            // 
+            // tabPage_hardware
+            // 
+            this.tabPage_hardware.Controls.Add(this.panel1);
+            this.tabPage_hardware.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_hardware.Name = "tabPage_hardware";
+            this.tabPage_hardware.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_hardware.Size = new System.Drawing.Size(986, 735);
+            this.tabPage_hardware.TabIndex = 1;
+            this.tabPage_hardware.Text = "硬件配置";
+            this.tabPage_hardware.UseVisualStyleBackColor = true;
             // 
             // toolStripButton1
             // 
@@ -461,52 +522,71 @@
             this.toolStripButton9.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton9.Text = "toolStripButton9";
             // 
-            // radSplitContainer2
+            // panel1
             // 
-            this.radSplitContainer2.Controls.Add(this.splitPanel3);
-            this.radSplitContainer2.Controls.Add(this.splitPanel4);
-            this.radSplitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radSplitContainer2.Location = new System.Drawing.Point(0, 50);
-            this.radSplitContainer2.Name = "radSplitContainer2";
+            this.panel1.Controls.Add(this.groupBox2);
+            this.panel1.Controls.Add(this.groupBox1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(3, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(980, 729);
+            this.panel1.TabIndex = 0;
             // 
+            // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.comboBox2);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.comboBox1);
+            this.groupBox1.Location = new System.Drawing.Point(3, 19);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(385, 176);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "通道配置";
             // 
-            this.radSplitContainer2.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.radSplitContainer2.Size = new System.Drawing.Size(1224, 761);
-            this.radSplitContainer2.TabIndex = 7;
-            this.radSplitContainer2.TabStop = false;
+            // comboBox1
             // 
-            // splitPanel3
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(71, 43);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(135, 21);
+            this.comboBox1.TabIndex = 0;
             // 
-            this.splitPanel3.Controls.Add(this.rtreeViewList);
-            this.splitPanel3.Location = new System.Drawing.Point(0, 0);
-            this.splitPanel3.Name = "splitPanel3";
+            // label1
             // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(19, 46);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(46, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "波特率";
             // 
+            // label2
             // 
-            this.splitPanel3.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel3.Size = new System.Drawing.Size(192, 761);
-            this.splitPanel3.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(-0.3426229F, 0F);
-            this.splitPanel3.SizeInfo.SplitterCorrection = new System.Drawing.Size(-418, 0);
-            this.splitPanel3.TabIndex = 0;
-            this.splitPanel3.TabStop = false;
-            this.splitPanel3.Text = "splitPanel3";
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(19, 91);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(33, 13);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "协议";
             // 
-            // splitPanel4
+            // comboBox2
             // 
-            this.splitPanel4.Controls.Add(this.tabControl1);
-            this.splitPanel4.Location = new System.Drawing.Point(196, 0);
-            this.splitPanel4.Name = "splitPanel4";
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(71, 83);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(135, 21);
+            this.comboBox2.TabIndex = 3;
             // 
+            // groupBox2
             // 
-            // 
-            this.splitPanel4.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel4.Size = new System.Drawing.Size(1028, 761);
-            this.splitPanel4.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0.3426229F, 0F);
-            this.splitPanel4.SizeInfo.SplitterCorrection = new System.Drawing.Size(418, 0);
-            this.splitPanel4.TabIndex = 1;
-            this.splitPanel4.TabStop = false;
-            this.splitPanel4.Text = "splitPanel4";
+            this.groupBox2.Location = new System.Drawing.Point(3, 253);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(397, 180);
+            this.groupBox2.TabIndex = 1;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "说明";
             // 
             // MainForm
             // 
@@ -526,7 +606,7 @@
             this.statusStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rtreeViewList)).EndInit();
             this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
+            this.tabPage_gridview.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radPanel5)).EndInit();
             this.radPanel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radPanel6)).EndInit();
@@ -535,14 +615,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
             this.radPanel1.ResumeLayout(false);
-            this.radPanel1.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xcpFilterCondition)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rbtn_search)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radBtnExport)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.openXcp)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xcpFilePathCur)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel2)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -554,6 +632,10 @@
             this.splitPanel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel4)).EndInit();
             this.splitPanel4.ResumeLayout(false);
+            this.tabPage_hardware.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -563,10 +645,9 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private Telerik.WinControls.UI.RadTreeView rtreeViewList;
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage_gridview;
         private Telerik.WinControls.UI.RadPanel radPanel1;
         private Telerik.WinControls.UI.RadTextBox xcpFilterCondition;
-        private Telerik.WinControls.UI.RadTextBox xcpFilePathCur;
         private Telerik.WinControls.UI.RadButton openXcp;
         private Telerik.WinControls.UI.RadButton rbtn_search;
         private Telerik.WinControls.UI.RadGridView radGridView1;
@@ -604,6 +685,14 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel4;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel5;
+        private System.Windows.Forms.TabPage tabPage_hardware;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Label label2;
     }
 }
 

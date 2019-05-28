@@ -26,6 +26,9 @@ namespace FigKeyLoggerConfigurator.Model
             public const string CAN_GPS = "CANgps";
             public const string MONITORING = "Monitoring";
             public const string WLAN_3G = "WLAN/3G";
+
+            public const string CAN_CHILD = "CAN ";
+
         }
         #endregion
 

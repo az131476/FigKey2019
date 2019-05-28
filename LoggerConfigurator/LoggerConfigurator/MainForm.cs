@@ -42,6 +42,7 @@ namespace LoggerConfigurator
         private LimitTimeCfg limitCfg;
         private AnalysisData analysisData;
         private FileType analysisFileType;
+        private DataTable dataSource;
         #endregion
         public MainForm()
         {
@@ -260,7 +261,7 @@ namespace LoggerConfigurator
                 return;
             if (string.IsNullOrEmpty(openFileContent.FileName))
                 return;
-            xcpFilePathCur.Text = openFileContent.FileName;
+            //xcpFilePathCur.Text = openFileContent.FileName;
             if (!string.IsNullOrEmpty(openFileContent.FileName))
             {
                 ///解析文件
@@ -318,9 +319,11 @@ namespace LoggerConfigurator
                                 {
                                     LogHelper.Log.Info("a2l合并数据失败!");
                                 }
-                                gridViewControl.BindRadGridView(analysisData.AnalysisiXcpDataList);
+                                dataSource = gridViewControl.BindRadGridView(analysisData.AnalysisiXcpDataList);
+                                GridViewLoadDataSource();
                                 //gridViewControl.BindRadGridView(xcpdata);
                                 LogHelper.Log.Info("a2l加载完成！");
+                                //MockIntegerDataSource
                             }
                             else
                             {
@@ -337,6 +340,17 @@ namespace LoggerConfigurator
                     LogHelper.Log.Error(ex.Message+"\r\n"+ex.StackTrace);
                 }
             }
+        }
+        private void GridViewLoadDataSource()
+        {
+            //设置虚模式
+            //radGridView1.VirtualMode = true;
+            //radGridView1.ColumnCount = dataSource.Columns.Count;
+            //radGridView1.RowCount = dataSource.Rows.Count;
+            radGridView1.BeginEdit();
+            radGridView1.DataSource = dataSource;
+            gridViewControl.RefreshRadViewColumn();
+            radGridView1.EndUpdate();
         }
         #endregion
 
@@ -360,6 +374,23 @@ namespace LoggerConfigurator
         {
             gridViewControl = new GridViewControl(radGridView1);
             gridViewControl.InitGridView();
+            radGridView1.CellValueNeeded += RadGridView1_CellValueNeeded;
+            radGridView1.CellValuePushed += RadGridView1_CellValuePushed;
+        }
+
+        private void RadGridView1_CellValuePushed(object sender, GridViewCellValueEventArgs e)
+        {
+            //编辑数据
+        }
+
+        private void RadGridView1_CellValueNeeded(object sender, GridViewCellValueEventArgs e)
+        {
+            if (e.RowIndex == radGridView1.RowCount)
+            {
+                return;
+            }
+            /// 从记录集中读取数据
+            e.Value = dataSource.Rows[e.RowIndex][e.ColumnIndex].ToString();
         }
         #endregion
 
@@ -372,10 +403,21 @@ namespace LoggerConfigurator
         private void RtreeViewList_NodeMouseClick(object sender, RadTreeViewEventArgs e)
         {
             RadTreeNode treeNode = e.Node;
-            if (treeNode.Text.Equals(TreeViewData.CcpOrXcp.DESCRIPTIONS))
+            switch (treeNode.Text)
             {
-                
-                
+                case TreeViewData.HardWare.CAN_CHILD + "1":
+                    //tabControl1.SelectedIndex = 1;
+                    tabPage_gridview.Parent = null;
+                    tabPage_hardware.Parent = tabControl1;
+                    break;
+                case TreeViewData.HardWare.CAN_CHILD + "2":
+                    tabPage_gridview.Parent = tabControl1;
+                    tabPage_hardware.Parent = null;
+                    break;
+
+                case TreeViewData.CcpOrXcp.DESCRIPTIONS:
+
+                    break;
             }
         }
         #endregion

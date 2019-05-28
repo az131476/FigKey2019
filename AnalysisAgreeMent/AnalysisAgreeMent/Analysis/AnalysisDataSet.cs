@@ -75,7 +75,7 @@ namespace AnalysisAgreeMent.Analysis
                             analysisSignal.Factor = mdList.Factor;
                             analysisSignal.OffSet = mdList.OffSet;
                             analysisData.AnalysisiXcpDataList.Add(analysisSignal);
-                            if (i == 999)
+                            if (i == 2000)
                                 break;
                         }
                         break;

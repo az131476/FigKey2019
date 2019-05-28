@@ -409,7 +409,7 @@
             this.layeredLabelTime.AutoSize = true;
             this.layeredLabelTime.Font = new System.Drawing.Font("华文琥珀", 21.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.layeredLabelTime.ForeColor = System.Drawing.Color.Gold;
-            this.layeredLabelTime.Location = new System.Drawing.Point(514, 17);
+            this.layeredLabelTime.Location = new System.Drawing.Point(533, 17);
             this.layeredLabelTime.Name = "layeredLabelTime";
             this.layeredLabelTime.Size = new System.Drawing.Size(93, 30);
             this.layeredLabelTime.TabIndex = 1;

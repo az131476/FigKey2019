@@ -48,8 +48,9 @@ namespace FigKeyLoggerConfigurator.Control
             gridView.AutoSizeRows = true;
             gridView.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
             gridView.AllowAutoSizeColumns = true;
-            gridView.AutoScrollMinSize = new System.Drawing.Size(8,20);
-            gridView.ReadOnly = false;
+            
+            //gridView.AutoScrollMinSize = new System.Drawing.Size(8,20);
+            gridView.ReadOnly = true;
             //gridView.ColumnChooserSortOrder = RadSortOrder.Ascending;
         }
         #endregion
@@ -78,10 +79,10 @@ namespace FigKeyLoggerConfigurator.Control
         #endregion
 
         #region 设置列
-        private void RefreshRadViewColumn()
+        public void RefreshRadViewColumn()
         {
             AddCheckBox();
-            SetColumnsPeoperties();
+            //SetColumnsPeoperties();
             SetCheckValue();
         }
         /// <summary>
@@ -151,11 +152,8 @@ namespace FigKeyLoggerConfigurator.Control
         /// 绑定数据
         /// </summary>
         /// <param name="data">数据源</param>
-        public void BindRadGridView(List<AnalysisSignal> dataList)
+        public DataTable BindRadGridView(List<AnalysisSignal> dataList)
         {
-            gridView.BeginUpdate();
-            gridView.DataSource = null;
-
             for (int i = 0; i < dataList.Count; i++)
             {
                 DataRow dr = dataSource.NewRow();
@@ -175,9 +173,7 @@ namespace FigKeyLoggerConfigurator.Control
 
                 dataSource.Rows.Add(dr);
             }
-            gridView.DataSource = dataSource;
-            RefreshRadViewColumn();
-            gridView.EndUpdate();
+            return dataSource;
         }
         #endregion
 

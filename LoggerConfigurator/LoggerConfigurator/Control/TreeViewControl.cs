@@ -23,16 +23,21 @@ namespace FigKeyLoggerConfigurator.Control
         {
             #region hardWard tree
             RadTreeNode hardWardRoot = radTreeView.AddNodeByPath(TreeViewData.HardWare.ROOT);
-            hardWardRoot.Nodes.Add(TreeViewData.HardWare.COMMENT);
-            hardWardRoot.Nodes.Add(TreeViewData.HardWare.CAN_CHANNELS);
+            //hardWardRoot.Nodes.Add(TreeViewData.HardWare.COMMENT);
+            RadTreeNode radTreeNode = hardWardRoot.Nodes.Add(TreeViewData.HardWare.CAN_CHANNELS);
             hardWardRoot.Nodes.Add(TreeViewData.HardWare.LIN_CHANNELS);
-            hardWardRoot.Nodes.Add(TreeViewData.HardWare.FLEXRAY_CHANNELS);
-            hardWardRoot.Nodes.Add(TreeViewData.HardWare.MOST150_CHANNELS);
-            hardWardRoot.Nodes.Add(TreeViewData.HardWare.ANALOG_INPUTS);
-            hardWardRoot.Nodes.Add(TreeViewData.HardWare.DIGITAL_INPUTS);
-            hardWardRoot.Nodes.Add(TreeViewData.HardWare.CAN_GPS);
-            hardWardRoot.Nodes.Add(TreeViewData.HardWare.MONITORING);
-            hardWardRoot.Nodes.Add(TreeViewData.HardWare.WLAN_3G);
+            //hardWardRoot.Nodes.Add(TreeViewData.HardWare.FLEXRAY_CHANNELS);
+            //hardWardRoot.Nodes.Add(TreeViewData.HardWare.MOST150_CHANNELS);
+            //hardWardRoot.Nodes.Add(TreeViewData.HardWare.ANALOG_INPUTS);
+            //hardWardRoot.Nodes.Add(TreeViewData.HardWare.DIGITAL_INPUTS);
+            //hardWardRoot.Nodes.Add(TreeViewData.HardWare.CAN_GPS);
+            //hardWardRoot.Nodes.Add(TreeViewData.HardWare.MONITORING);
+            //hardWardRoot.Nodes.Add(TreeViewData.HardWare.WLAN_3G);
+
+            for (int i = 1; i < 10; i++)
+            {
+                radTreeNode.Nodes.Add(TreeViewData.HardWare.CAN_CHILD+i);
+            }
             #endregion
 
             #region hardWard tree
@@ -73,7 +78,7 @@ namespace FigKeyLoggerConfigurator.Control
             output.Nodes.Add(TreeViewData.Output.SET_IGITAL_OUTPUT);
             #endregion
 
-            #region output
+            #region filemanager
             RadTreeNode fileManager = radTreeView.AddNodeByPath(TreeViewData.FileManager1.ROOT);
             RadTreeNode loggerDevice = fileManager.Nodes.Add(TreeViewData.FileManager1.LOGGER_DEVICE);
             RadTreeNode cardReader = fileManager.Nodes.Add(TreeViewData.FileManager1.CARD_READER);

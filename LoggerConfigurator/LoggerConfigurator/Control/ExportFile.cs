@@ -23,9 +23,10 @@ namespace FigKeyLoggerConfigurator.Control
         private static object objAppend = new object();
         private const string HEADER_NAME = "static ";
         private const string FUN_TYPE = "XCPDataRecordType ";
-        private const string SEGMENT_NAME = "xcpSegMent[] = ";
-        private const string _10MS_NAME = "xcp10ms[] = ";
-        private const string _100MS_NAME = "xcp100ms[] = ";
+        private const string SEGMENT_NAME = "xcpSegMent";
+        private const string _10MS_NAME = "xcp10ms";
+        private const string _100MS_NAME = "xcp100ms";
+        private const string _A2L_ARRAY_CHAR = "[] = ";
         private const string _SPLIT_CHAR = "\r\n{\r\n";
         private const string CONTENT_LEN = "static ExInfoType ";
         private const string LEN_SEG_NAME = "xcpSegLen = ";
@@ -42,8 +43,9 @@ namespace FigKeyLoggerConfigurator.Control
         private const string DBC_DETAIL_HEAD = "static XCPDataRecordType ";
         private const string DBC_DEATIL_METHOLD_NAME = "DBCTab";
 
-        private const string DBC_EXINFO_TYPE_HEAD = "static   ExInfoType ";
-        private const string DBC_EXINFO_TYPE_METHOLD_NAME = "ExInfo[] = \r\n{";
+        private const string EXINFO_TYPE_HEAD = "static ExInfoType ";
+        private const string EXINFO_TYPE_METHOLD_NAME = "ExInfo[] = \r\n{";
+
         private static List<StringBuilder> allDbcGroupData;
         private static List<AnalysisSignal> acturalDBCList;
         #endregion
@@ -53,15 +55,15 @@ namespace FigKeyLoggerConfigurator.Control
         /// <summary>
         /// 导出文件到本地
         /// </summary>
-        public static void ExportFileToLocal(string targetPath,RadGridView gridView,GridViewData gridData,AnalysisData analysisData,FileType fileType)
+        public static void ExportFileToLocal(string targetPath, RadGridView gridView, GridViewData gridData, AnalysisData analysisData, FileType fileType)
         {
             if (fileType == FileType.A2L)
             {
-                A2lDetailData(targetPath,gridView, gridData);
+                A2lDetailData(targetPath, gridView, gridData);
             }
             else if (fileType == FileType.DBC)
             {
-                DbcDetailData(targetPath,gridView, analysisData);
+                DbcDetailData(targetPath, gridView, analysisData);
                 AddDBCDetailGroup(targetPath);
             }
         }
@@ -77,9 +79,9 @@ namespace FigKeyLoggerConfigurator.Control
                     StringBuilder _100msStr = new StringBuilder();
 
                     //定义XCP时间分类限制数组名
-                    _segmentHeadName = HEADER_NAME + FUN_TYPE + SEGMENT_NAME + _SPLIT_CHAR;
-                    _10msHeadName = HEADER_NAME + FUN_TYPE + _10MS_NAME + _SPLIT_CHAR;
-                    _100msHeadName = HEADER_NAME + FUN_TYPE + _100MS_NAME + _SPLIT_CHAR;
+                    _segmentHeadName = HEADER_NAME + FUN_TYPE + SEGMENT_NAME + _A2L_ARRAY_CHAR + _SPLIT_CHAR;
+                    _10msHeadName = HEADER_NAME + FUN_TYPE + _10MS_NAME + _A2L_ARRAY_CHAR+ _SPLIT_CHAR;
+                    _100msHeadName = HEADER_NAME + FUN_TYPE + _100MS_NAME + _A2L_ARRAY_CHAR+ _SPLIT_CHAR;
 
                     if (listData.LimitTimeListSegMent.Count > 0)
                     {
@@ -119,6 +121,16 @@ namespace FigKeyLoggerConfigurator.Control
             }
         }
 
+        private static void AddA2lDetailGroup()
+        {
+            StringBuilder sbExInfo = new StringBuilder();
+            sbExInfo.Append(EXINFO_TYPE_HEAD);
+            sbExInfo.AppendLine(EXINFO_TYPE_METHOLD_NAME);
+            sbExInfo.AppendLine("\t\t" + "0" + "," + "0x7f1" + "," + "0");
+            sbExInfo.AppendLine("\t\t" + "1" + "," + "0x7f2" + "," + "0");
+
+        }
+
         private static void DbcDetailData(string targetPath, RadGridView gridView,AnalysisData dbcData)
         {
             try
@@ -146,10 +158,10 @@ namespace FigKeyLoggerConfigurator.Control
                     //保存格式内容：名称+描述+单位+数据类型+数据长度+字节顺序+截取开始地址(dbc有用)+截取长度+数据地址(a2l-ecu地址，monitor-canid)+系数+偏移量
                     for (int j = 0; j < resdbcList.Count; j++)
                     {
-                        dbcGroupData.Append("\t\t"+resdbcList[j].Name+",");
+                        dbcGroupData.Append("\t\t"+'"'+resdbcList[j].Name+'"'+",");
                         var dbcMsg = dbcData.AnalysisDbcDataList.Find(dbc => dbc.DataAddress == resdbcList[j].DataAddress);
-                        dbcGroupData.Append(dbcMsg.Describle+",");
-                        dbcGroupData.Append(resdbcList[j].Unit+",");
+                        dbcGroupData.Append('"'+dbcMsg.Describle+'"'+",");
+                        dbcGroupData.Append('"'+resdbcList[j].Unit+'"'+",");
                         dbcGroupData.Append(resdbcList[j].SaveDataType+",");
                         dbcGroupData.Append(resdbcList[j].SaveDataLen+",");
                         dbcGroupData.Append(resdbcList[j].IsMotorola+",");
@@ -178,8 +190,8 @@ namespace FigKeyLoggerConfigurator.Control
         private static void AddDBCDetailGroup(string targPath)
         {
             StringBuilder sbExInfo = new StringBuilder();
-            sbExInfo.Append(DBC_EXINFO_TYPE_HEAD);
-            sbExInfo.AppendLine(DBC_EXINFO_TYPE_METHOLD_NAME);
+            sbExInfo.Append(EXINFO_TYPE_HEAD);
+            sbExInfo.AppendLine(EXINFO_TYPE_METHOLD_NAME);
             sbExInfo.AppendLine("\t\t0" + "," + "0" + "," + "0" + ",");
             sbExInfo.AppendLine("\t\t1" + "," + "0" + "," + "0" + ",");
             for (int i = 0; i < frameIdList.Count; i++)
@@ -234,7 +246,7 @@ namespace FigKeyLoggerConfigurator.Control
                     //数据格式：
                     //名称+描述+单位+数据类型+数据长度+字节顺序+截取开始地址(dbc有用)+
                     //截取长度+数据地址(a2l-ecu地址，monitor-canid)+系数+偏移量
-                    builder.Append("\t" + gridView.Rows[list[i].RowIndex].Cells[1].Value.ToString() + "," +
+                    builder.Append("\t" + '"'+gridView.Rows[list[i].RowIndex].Cells[1].Value.ToString() +'"'+ "," +
                                    gridView.Rows[list[i].RowIndex].Cells[2].Value.ToString() + "," +
                                    gridView.Rows[list[i].RowIndex].Cells[3].Value.ToString() + "," +
                                    gridView.Rows[list[i].RowIndex].Cells[4].Value.ToString() + "," +

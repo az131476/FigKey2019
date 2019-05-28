@@ -18,7 +18,7 @@ namespace BXHSerialPort
             Application.Run(new FormTestNew());
             //Application.Run(new FormCurve());
             //Application.Run(new FormProductSetting());
-            //Application.Run(new Test1());
+            //pplication.Run(new Test1());
         }
     }
 }
