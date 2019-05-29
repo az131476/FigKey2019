@@ -37,25 +37,32 @@ namespace FigKeyLoggerConfigurator.ClientSocket
         {
             while (true)
             {
-                //获取发送过来的消息
-                byte[] buffer = new byte[50];
+                int bufferSize = socketClient.ReceiveBufferSize;
+                byte[] buffer = new byte[bufferSize];
                 var effective = socketClient.Receive(buffer);
                 if (effective == 0)
                 {
                     break;
                 }
-                var str = Encoding.ASCII.GetString(buffer, 0, effective);
-                LogHelper.Log.Info("收到服务消息：" + str);
+                ProcessMsg(buffer);
             }
         }
 
-        public void Send()
+        private void ProcessMsg(byte[] revMsg)
         {
-            string clientID = "2019sfjkadlk1234 ";
-            clientID += "this is client request!";
+            //从服务获取所有设备信息
 
-            var buffter = Encoding.ASCII.GetBytes(clientID);
+        }
+
+        public void SendAsciiMsg(string msg)
+        {
+            var buffter = Encoding.ASCII.GetBytes(msg);
             socketClient.Send(buffter);
+        }
+
+        public void SendByteMsg(byte[] msg)
+        {
+            socketClient.Send(msg);
         }
     }
    
