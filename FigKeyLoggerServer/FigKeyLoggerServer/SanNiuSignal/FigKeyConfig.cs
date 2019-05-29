@@ -26,7 +26,7 @@ namespace FigKeyLoggerServer.SanNiuSignal
             }
             catch (Exception ex)
             {
-                LogHelper.log.Error(ex.Message + " " + Diagnostis.GetLineNum());
+                LogHelper.Log.Error(ex.Message + " " + Diagnostis.GetLineNum());
             }
         }
 

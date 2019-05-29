@@ -100,6 +100,7 @@
     <Compile Include="SuperSocketServer\ProcessBinaryMassage.cs" />
     <Compile Include="SuperSocketServer\ProcessBinaryMessage\ClientProcess.cs" />
     <Compile Include="SuperSocketServer\ProcessBinaryMessage\DeviceProcess.cs" />
+    <Compile Include="SuperSocketServer\ProcessBinaryMessage\ProcesMsg.cs" />
     <Compile Include="SuperSocketServer\ProcessStringMassage.cs" />
     <Compile Include="SuperSocketServer\SocketServerBinary.cs" />
     <Compile Include="SuperSocketServer\SocketServerString.cs" />

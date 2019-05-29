@@ -28,7 +28,7 @@ namespace FigKeyLoggerServer.SanNiuSignal
         private List<DeviceTcpState> tcpStateList;
         private int TcpBufferSize = 65536;//缓冲区大小
 
-        public FigKeySocketServer(FigKeyConfig config,List<Device> devList,List<Client> clnList)
+        private FigKeySocketServer(FigKeyConfig config,List<Device> devList,List<Client> clnList)
         {
             this.fkconfig = config;
             this.devList = devList;
@@ -58,14 +58,14 @@ namespace FigKeyLoggerServer.SanNiuSignal
                 txServer.EngineLost += TxServer_EngineLost;
                 txServer.BufferSize = 100000;
                 txServer.StartEngine();
-                LogHelper.log.Info("socket server start...");
+                LogHelper.Log.Info("socket server start...");
 
                 devSocketServer.Listen(200);
                 devSocketServer.BeginAccept(new AsyncCallback(acceptCallback), devicePort);
             }
             catch (Exception Ex)
             {
-                LogHelper.log.Error("[ERROR] start socket server error ", Ex);
+                LogHelper.Log.Error("[ERROR] start socket server error ", Ex);
             }
         }
 
@@ -83,19 +83,19 @@ namespace FigKeyLoggerServer.SanNiuSignal
             {
                 if (ipEndPoint == null)
                 {
-                    LogHelper.log.Info("客户端"+ipEndPoint+"不存在,发送消息失败");
+                    LogHelper.Log.Info("客户端"+ipEndPoint+"不存在,发送消息失败");
                     return;
                 }
                 if (!this.txServer.clientCheck(ipEndPoint))
                 {
-                    LogHelper.log.Info("目标客户端不在线！" + ipEndPoint);
+                    LogHelper.Log.Info("目标客户端不在线！" + ipEndPoint);
                     return;
                 }
                 txServer.sendMessage(ipEndPoint, msg);
             }
             catch (Exception Ex)
             {
-                LogHelper.log.Info("发送消息失败:" + Ex.Message);
+                LogHelper.Log.Info("发送消息失败:" + Ex.Message);
             }
         }
 
@@ -105,19 +105,19 @@ namespace FigKeyLoggerServer.SanNiuSignal
             {
                 if (ipEndPoint == null)
                 {
-                    LogHelper.log.Info("客户端" + ipEndPoint + "不存在,发送消息失败");
+                    LogHelper.Log.Info("客户端" + ipEndPoint + "不存在,发送消息失败");
                     return;
                 }
                 if (!this.txServer.clientCheck(ipEndPoint))
                 {
-                    LogHelper.log.Info("目标客户端不在线！" + ipEndPoint);
+                    LogHelper.Log.Info("目标客户端不在线！" + ipEndPoint);
                     return;
                 }
                 txServer.sendMessage(ipEndPoint, msgByte);
             }
             catch (Exception Ex)
             {
-                LogHelper.log.Info("发送消息失败:" + Ex.Message);
+                LogHelper.Log.Info("发送消息失败:" + Ex.Message);
             }
         }
 
@@ -127,7 +127,7 @@ namespace FigKeyLoggerServer.SanNiuSignal
         /// <param name="str"></param>
         private void TxServer_EngineLost(string str)
         {
-            LogHelper.log.Info("socket server 非正常断开..."+str);
+            LogHelper.Log.Info("socket server 非正常断开..."+str);
         }
 
         /// <summary>
@@ -135,13 +135,13 @@ namespace FigKeyLoggerServer.SanNiuSignal
         /// </summary>
         private void TxServer_EngineClose()
         {
-            LogHelper.log.Info("socket server closed...");
+            LogHelper.Log.Info("socket server closed...");
         }
 
         private void TxServer_Disconnection(IPEndPoint ipEndPoint, string str)
         {
             ///停止所有与客户端数据的发送
-            LogHelper.log.Info(ipEndPoint + " 断开连接：" + str);
+            LogHelper.Log.Info(ipEndPoint + " 断开连接：" + str);
             if (null != clnHandler.getClientByIP(ipEndPoint))
             {
                 for (int i = 0; i < clnList.Count; i++)
@@ -164,12 +164,12 @@ namespace FigKeyLoggerServer.SanNiuSignal
         private void TxServer_dateSuccess(IPEndPoint ipEndPoint)
         {
             string sendMsgStatus = "已向" + ipEndPoint.ToString() + "发送成功" + "\r\n";
-            LogHelper.log.Info(sendMsgStatus);
+            LogHelper.Log.Info(sendMsgStatus);
         }
 
         private void TxServer_Connect(IPEndPoint ipEndPoint)
         {
-            LogHelper.log.Info("客户端连接进入:"+ipEndPoint);
+            LogHelper.Log.Info("客户端连接进入:"+ipEndPoint);
         }
 
         private void TxServer_AcceptByte(IPEndPoint ipEndPoint, byte[] bytes)
@@ -182,7 +182,7 @@ namespace FigKeyLoggerServer.SanNiuSignal
 
         private void TxServer_AcceptString(IPEndPoint ipEndPoint, string revStr)
         {
-            LogHelper.log.Info("收到客户端消息：" + revStr);
+            LogHelper.Log.Info("收到客户端消息：" + revStr);
 
             //clntHandler.parseString(ipEndPoint, revStr);
             return;
@@ -201,7 +201,7 @@ namespace FigKeyLoggerServer.SanNiuSignal
             {
                 //OnEngineLost(Ex.Message);//当服务器突然断开触发此事件
                 //CloseEngine();
-                LogHelper.log.Error(Ex.Message+Ex.StackTrace);
+                LogHelper.Log.Error(Ex.Message+Ex.StackTrace);
             }
             try
             {
@@ -210,11 +210,11 @@ namespace FigKeyLoggerServer.SanNiuSignal
                 tcpStateList.Add(stateOne);
 
                 stateOne.WorkSocket.BeginReceive(stateOne.Buffer, 0, stateOne.Buffer.Length, 0, new AsyncCallback(receiveCallback), stateOne);
-                LogHelper.log.Info("设备连接地址 " + stateOne.ipEndPoint);
+                LogHelper.Log.Info("设备连接地址 " + stateOne.ipEndPoint);
             }
             catch (Exception Ex)
             {
-                LogHelper.log.Info(Ex.Message + Ex.StackTrace);
+                LogHelper.Log.Info(Ex.Message + Ex.StackTrace);
             }
         }
 
@@ -244,7 +244,7 @@ namespace FigKeyLoggerServer.SanNiuSignal
                 if (stateOne != null && i != -1)
                 {
                     tcpStateList.Remove(stateOne);
-                    LogHelper.log.Info(" remove stateOne.... " + Ex.Message + Ex.StackTrace);
+                    LogHelper.Log.Info(" remove stateOne.... " + Ex.Message + Ex.StackTrace);
                 }
             }
         }
@@ -338,7 +338,7 @@ namespace FigKeyLoggerServer.SanNiuSignal
             catch (Exception Ex)
             {
                 stateOne.clearBuffer();
-                LogHelper.log.Info("[ERROR] " + Ex.Message + Ex.StackTrace);
+                LogHelper.Log.Info("[ERROR] " + Ex.Message + Ex.StackTrace);
             }
         }
 

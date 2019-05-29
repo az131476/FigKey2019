@@ -30,17 +30,17 @@ namespace FigKeyLoggerServer.SocketServerFig
             //Setup the appServer
             if (!appServer.Setup(port)) //Setup with listening port
             {
-                LogHelper.log.Error("Failed to setup!");
+                LogHelper.Log.Error("Failed to setup!");
                 return;
             }
-            LogHelper.log.Info("[[socket server port setup successfull]] ,this is port:"+port);
+            LogHelper.Log.Info("[[socket server port setup successfull]] ,this is port:"+port);
             //Try to start the appServer
             if (!appServer.Start())
             {
-                LogHelper.log.Error("Failed to start!");
+                LogHelper.Log.Error("Failed to start!");
                 return;
             }
-            LogHelper.log.Info("[[The socket server started successfully]]");
+            LogHelper.Log.Info("[[The socket server started successfully]]");
 
             //1.监听客户端连接
             appServer.NewSessionConnected += new SessionHandler<AppSession>(appServer_NewSessionConnected);
@@ -57,7 +57,7 @@ namespace FigKeyLoggerServer.SocketServerFig
         //1.
         private void appServer_NewSessionConnected(AppSession session)
         {
-            LogHelper.log.Info($"服务端得到来自客户端的连接成功");
+            LogHelper.Log.Info($"服务端得到来自客户端的连接成功");
             Device device = new Device();
             device.DeviceId = session.SessionID;
             device.DeviceEndPoint = session.RemoteEndPoint;
@@ -65,21 +65,21 @@ namespace FigKeyLoggerServer.SocketServerFig
 
             var count = appServer.GetAllSessions().Count();
             string sessionId = session.SessionID;
-            LogHelper.log.Info("连接数量 " + count);
+            LogHelper.Log.Info("连接数量 " + count);
             session.Send("Welcome to SuperSocket Telnet Server");
         }
 
         private void appServer_NewSessionClosed(AppSession session, CloseReason aaa)
         {
-            LogHelper.log.Info($"服务端 失去 来自客户端的连接" + session.SessionID + aaa.ToString());
+            LogHelper.Log.Info($"服务端 失去 来自客户端的连接" + session.SessionID + aaa.ToString());
             var count = appServer.GetAllSessions().Count();
-            LogHelper.log.Info("连接数量 " + count);
+            LogHelper.Log.Info("连接数量 " + count);
         }
         private void appServer_NewRequestReceived(AppSession session, StringRequestInfo requestInfo)
         {
-            LogHelper.log.Info(" 接收到客户端消息内容S："+requestInfo.Key);
+            LogHelper.Log.Info(" 接收到客户端消息内容S："+requestInfo.Key);
             session.Send(requestInfo.Body);
-            LogHelper.log.Info(" 发送给客户端的消息："+requestInfo.Body);
+            LogHelper.Log.Info(" 发送给客户端的消息："+requestInfo.Body);
 
             switch (requestInfo.Key.ToUpper())
             {

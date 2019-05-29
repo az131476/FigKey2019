@@ -28,10 +28,10 @@ namespace LoggerConfigurator
 
         private void TestServer_Disposed(object sender, EventArgs e)
         {
-            //server.Close();
+            server.Close();
         }
 
-        //ServiceReference1.FigKeyLoggerServiceClient server;
+        ServiceReference1.FigKeyLoggerServiceClient server;
 
         private void Button1_Click(object sender, EventArgs e)
         {

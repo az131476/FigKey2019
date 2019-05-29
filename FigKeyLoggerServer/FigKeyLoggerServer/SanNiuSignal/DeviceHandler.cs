@@ -31,7 +31,7 @@ namespace FigKeyLoggerServer.SanNiuSignal
         {
             int i = 0;
             string strRes = "";
-            LogHelper.log.Info("收到设备数据----------");
+            LogHelper.Log.Info("收到设备数据----------");
             //string ipAdr = ipEndPoint.Address.ToString();
 
             //if(null == ES_GetDevbyIP(ipEndPoint))
@@ -46,7 +46,7 @@ namespace FigKeyLoggerServer.SanNiuSignal
             {
                 if (DEVICE_MSG_TYPE.INST_MSG_TYPE_HEARTBEAT != eType)
                 {
-                    LogHelper.log.Info("没有匹配的设备----------" + ipEndPoint);
+                    LogHelper.Log.Info("没有匹配的设备----------" + ipEndPoint);
                     return;
                 }
             }
@@ -62,7 +62,7 @@ namespace FigKeyLoggerServer.SanNiuSignal
 
             //INST_MSG_TYPE_ENUM eType = (INST_MSG_TYPE_ENUM)ES_DevSignal.GetType(bytes);
             int iLength = DeviceSignal.GetLength(bytes);
-            LogHelper.log.Info("type " + (int)eType);
+            LogHelper.Log.Info("type " + (int)eType);
             //if (INST_MSG_TYPE_ENUM.INST_MSG_TYPE_DATA != eType)                 
             //{
             //    strRes = ES_DevSignal.parseSignal(bytes);
@@ -100,7 +100,7 @@ namespace FigKeyLoggerServer.SanNiuSignal
                     break;
                 case DEVICE_MSG_TYPE.INST_MSG_TYPE_DATA:
 
-                    LogHelper.log.Info((int)DEVICE_MSG_TYPE.INST_MSG_TYPE_DATA+"下载文件---------------start");
+                    LogHelper.Log.Info((int)DEVICE_MSG_TYPE.INST_MSG_TYPE_DATA+"下载文件---------------start");
                     long lTimeStramp = 0;
                     if (bytes.Length >= iSigDataOffset)
                     {
@@ -193,7 +193,7 @@ namespace FigKeyLoggerServer.SanNiuSignal
                         //device.SigQ.Enqueue(EndSig);
                     }
 
-                    LogHelper.log.Info("load enqueue over----------------");
+                    LogHelper.Log.Info("load enqueue over----------------");
                     break;
                 default:
                     break;

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="32b09e18-0a38-4e26-85f6-abc73f6a4a2a" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8735/Design_Time_Addresses/FigKeyLoggerWcf.FigKeyLoggerService/" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="FigKeyLoggerService.wsdl" MetadataType="Wsdl" ID="b60a4445-e7ee-433a-a070-1efc7a575540" SourceId="1" SourceUrl="http://localhost:8735/Design_Time_Addresses/FigKeyLoggerWcf.FigKeyLoggerService/?wsdl" />
+    <MetadataFile FileName="item5.xsd" MetadataType="Schema" ID="52fa0676-f3fe-45e7-9eaf-ae9fae907592" SourceId="1" SourceUrl="http://localhost:8735/Design_Time_Addresses/FigKeyLoggerWcf.FigKeyLoggerService/?xsd=xsd5" />
+    <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="a5d20284-d7e3-4fd5-b3a5-b16c8ff974ae" SourceId="1" SourceUrl="http://localhost:8735/Design_Time_Addresses/FigKeyLoggerWcf.FigKeyLoggerService/?xsd=xsd2" />
+    <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="dffd28fd-63be-4ec5-b788-037d4ecfed52" SourceId="1" SourceUrl="http://localhost:8735/Design_Time_Addresses/FigKeyLoggerWcf.FigKeyLoggerService/?xsd=xsd3" />
+    <MetadataFile FileName="item2.xsd" MetadataType="Schema" ID="b997ce71-7ff5-4607-a8cd-fc5a1a9f1946" SourceId="1" SourceUrl="http://localhost:8735/Design_Time_Addresses/FigKeyLoggerWcf.FigKeyLoggerService/?xsd=xsd0" />
+    <MetadataFile FileName="item3.xsd" MetadataType="Schema" ID="e1869479-0edf-45dc-a3f7-a3759b8e77c6" SourceId="1" SourceUrl="http://localhost:8735/Design_Time_Addresses/FigKeyLoggerWcf.FigKeyLoggerService/?xsd=xsd1" />
+    <MetadataFile FileName="item4.xsd" MetadataType="Schema" ID="d856818e-4554-4545-9f74-4941b3997180" SourceId="1" SourceUrl="http://localhost:8735/Design_Time_Addresses/FigKeyLoggerWcf.FigKeyLoggerService/?xsd=xsd4" />
+    <MetadataFile FileName="item.disco" MetadataType="Disco" ID="44401673-8ca0-407b-beb9-06ce33d5ab3f" SourceId="1" SourceUrl="http://localhost:8735/Design_Time_Addresses/FigKeyLoggerWcf.FigKeyLoggerService/?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

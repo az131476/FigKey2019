@@ -6,6 +6,7 @@ using System.ServiceModel;
 using System.Text;
 using CommonUtils.Logger;
 using FigKeyLoggerWcf.DB;
+using FigKeyLoggerWcf.Molde;
 
 namespace FigKeyLoggerWcf
 {
@@ -50,7 +51,7 @@ namespace FigKeyLoggerWcf
         /// <param name="username">用户名/手机号/邮箱</param>
         /// <param name="password">密码</param>
         /// <returns></returns>
-        public bool Login(string username, string password)
+        public LoginResult Login(string username, string password, LoginUser loginUser)
         {
             try
             {
@@ -59,21 +60,21 @@ namespace FigKeyLoggerWcf
                     var entity = (from x in db.f_user
                                   where (x.username == username || x.phone == username || x.email == username) && x.password == password
                                   select x).SingleOrDefault() ?? null;
+                    db.SubmitChanges();
                     if (null == entity)
                     {
-                        LogHelper.log.Info("用户名或密码错误");
-                        return false;
+                        LogHelper.Log.Info("用户名或密码错误");
+                        return LoginResult.USER_NAME_PWD_ERR;
                     }
                     //entity.LastLoginTime = DateTime.Now;
-                    db.SubmitChanges();
-                    LogHelper.log.Info(entity.user_id+" "+entity.username+" 登录进入 "+DateTime.Now);
-                    return true;
+                    LogHelper.Log.Info(entity.user_id+" "+entity.username+" 登录进入 "+DateTime.Now);
+                    return LoginResult.SUCCESS;
                 }
             }
             catch (Exception ex)
             {
-                LogHelper.log.Error("用户登录异常..."+ex.Message);
-                return false;
+                LogHelper.Log.Error("用户登录异常..."+ex.Message);
+                return LoginResult.FAIL_EXCEP;
             }
         }
 
@@ -96,7 +97,7 @@ namespace FigKeyLoggerWcf
             }
             catch
             {
-                LogHelper.log.Error("获取用户信息异常...");
+                LogHelper.Log.Error("获取用户信息异常...");
                 return null;
             }
         }
@@ -150,7 +151,7 @@ namespace FigKeyLoggerWcf
             }
             catch (Exception ex)
             {
-                LogHelper.log.Error("注册失败..."+ex.Message);
+                LogHelper.Log.Error("注册失败..."+ex.Message);
                 return false;
             }
         }
@@ -185,7 +186,7 @@ namespace FigKeyLoggerWcf
             }
             catch (Exception ex)
             {
-                LogHelper.log.Error("用户不存在 "+ex.Message);
+                LogHelper.Log.Error("用户不存在 "+ex.Message);
                 return false;
             }
         }
@@ -202,12 +203,12 @@ namespace FigKeyLoggerWcf
             try
             {
                 db.Connection.Open();
-                LogHelper.log.Info("SQLServer connection successful!");
+                LogHelper.Log.Info("SQLServer connection successful!");
                 return true;
             }
             catch (Exception ex)
             {
-                LogHelper.log.Error("无法连接SQL Server数据库\r" + ex.Message);
+                LogHelper.Log.Error("无法连接SQL Server数据库\r" + ex.Message);
                 return false;
             }
             finally

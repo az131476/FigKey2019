@@ -159,7 +159,7 @@ namespace FigKeyLoggerServer.SanNiuSignal
                 result += BitConverter.ToSingle(buffer, 44) + "|";
                 result += BitConverter.ToSingle(buffer, 48) + "|";
             }
-            LogHelper.log.Info(result);
+            LogHelper.Log.Info(result);
             return result.Trim();
         }
     }

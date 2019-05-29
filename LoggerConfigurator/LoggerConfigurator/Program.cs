@@ -16,7 +16,12 @@ namespace LoggerConfigurator
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Login());
+            Login login = new Login();
+            login.ShowDialog();
+            if (login.DialogResult == DialogResult.OK)
+            {
+                Application.Run(new MainForm());
+            }
         }
     }
 }

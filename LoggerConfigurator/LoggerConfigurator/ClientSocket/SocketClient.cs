@@ -10,7 +10,7 @@ using CommonUtils.Logger;
 
 namespace FigKeyLoggerConfigurator.ClientSocket
 {
-    class SocketClient
+    public class SocketClient
     {
         public Socket socketClient { get; set; }
 
@@ -19,7 +19,7 @@ namespace FigKeyLoggerConfigurator.ClientSocket
             //创建实例
             socketClient = new Socket(SocketType.Stream, ProtocolType.Tcp);
             IPAddress ip = IPAddress.Parse("127.0.0.1");
-            IPEndPoint point = new IPEndPoint(ip, 10020);
+            IPEndPoint point = new IPEndPoint(ip, 10050);
             //进行连接
             socketClient.Connect(point);
 
@@ -38,30 +38,24 @@ namespace FigKeyLoggerConfigurator.ClientSocket
             while (true)
             {
                 //获取发送过来的消息
-                byte[] buffer = new byte[1024 * 1024 * 2];
+                byte[] buffer = new byte[50];
                 var effective = socketClient.Receive(buffer);
                 if (effective == 0)
                 {
                     break;
                 }
-                var str = Encoding.UTF8.GetString(buffer, 0, effective);
+                var str = Encoding.ASCII.GetString(buffer, 0, effective);
                 LogHelper.Log.Info("收到服务消息：" + str);
             }
         }
 
-        private void Send()
+        public void Send()
         {
-            int i = 0;
-            int sum = 0;
-            while (true)
-            {
-                i++;
-                sum += i;
-                var buffter = Encoding.UTF8.GetBytes($"ADD {sum} {sum + 1}" + "\r\n");
-                var temp = socketClient.Send(buffter);
-                Console.WriteLine(i);
-                Thread.Sleep(1000);
-            }
+            string clientID = "2019sfjkadlk1234 ";
+            clientID += "this is client request!";
+
+            var buffter = Encoding.ASCII.GetBytes(clientID);
+            socketClient.Send(buffter);
         }
     }
    

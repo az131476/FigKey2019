@@ -15,7 +15,7 @@ using System.IO;
 using System.Configuration;
 using FigKeyLoggerServer.SocketServerFig;
 using FigKeyLoggerServer.Model;
-using FigKeyLoggerServer.SanNiuSignal;
+using FigKeyLoggerServer.SuperSocketServer;
 
 namespace FigKeyLoggerServer
 {
@@ -34,7 +34,7 @@ namespace FigKeyLoggerServer
         /// socket对象
         /// </summary>
         //public SocketHelper socketServer;
-        public FigKeySocketServer socketServer;
+        public SocketServerBinary socketServer;
         /// <summary>
         /// 服务端口
         /// </summary>
@@ -42,14 +42,15 @@ namespace FigKeyLoggerServer
 
         private List<Device> deviceList;
         private List<Client> clientList;
-        private FigKeyConfig figkeyConfig;
 
         protected override void OnStart(string[] args)
         {
             InitConfig();
-            host = new ServiceHost(typeof(FigKeyLoggerWcf.FigKeyLoggerService));
+            host = new ServiceHost(typeof(FigKeyLoggerService));
             //socketServer = new SocketHelper(port,deviceList,clientList);
-            socketServer = new FigKeySocketServer(figkeyConfig,deviceList,clientList);
+            //socketServer = new FigKeySocketServer(figkeyConfig,deviceList,clientList);
+            socketServer = new SocketServerBinary();
+
 
             host.Opening += Host_Opening;
             host.Opened += Host_Opened;
@@ -58,7 +59,7 @@ namespace FigKeyLoggerServer
             host.Faulted += Host_Faulted;
 
             host.Open(TimeSpan.FromSeconds(25));
-            //socketServer.startSocketListen();
+            socketServer.StartSocketListen();
         }
 
         protected override void OnStop()
@@ -66,10 +67,8 @@ namespace FigKeyLoggerServer
             try
             {
                 host.Close(TimeSpan.FromSeconds(25));
-                if(socketServer)
-                //socketServer.appServer.Stop();
-                //socketServer.TxServerStop();
-                LogHelper.log.Info("Windows Communication Foundtion Is Stop " + host.State);
+                socketServer.AppServerStop();
+                LogHelper.Log.Info("Windows Communication Foundtion Is Stop " + host.State);
             }
             finally
             {
@@ -80,28 +79,27 @@ namespace FigKeyLoggerServer
         #region host event
         private void Host_Faulted(object sender, EventArgs e)
         {
-            LogHelper.log.Info("Host is faulted");
+            LogHelper.Log.Info("Host is faulted");
         }
 
         private void Host_Closed(object sender, EventArgs e)
         {
-            LogHelper.log.Info("Host is closed");
+            LogHelper.Log.Info("Host is closed");
         }
 
         private void Host_Closing(object sender, EventArgs e)
         {
-            LogHelper.log.Info("Host is closing");
+            LogHelper.Log.Info("Host is closing");
         }
 
         private void Host_Opened(object sender, EventArgs e)
         {
-            LogHelper.log.Info("Host is opened");
-            LogHelper.log.Info("host is opened");
+            LogHelper.Log.Info("Host is opened");
         }
 
         private void Host_Opening(object sender, EventArgs e)
         {
-            LogHelper.log.Info("host is opening");
+            LogHelper.Log.Info("host is opening");
         }
         #endregion
 
@@ -109,7 +107,7 @@ namespace FigKeyLoggerServer
         {
             deviceList = new List<Device>();
             clientList = new List<Client>();
-            figkeyConfig = new FigKeyConfig();
+            //figkeyConfig = new FigKeyConfig();
         }
     }
 }

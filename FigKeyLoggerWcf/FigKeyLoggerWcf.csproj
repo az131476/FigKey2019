@@ -54,6 +54,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SQLServer.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Molde\LoginInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -90,8 +91,12 @@
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Molde\" />
+    <ProjectReference Include="..\..\CommonLibrary2019\CommonUtils\CommonUtils\CommonUtils.csproj">
+      <Project>{ebfca1b5-23f1-4f94-928a-db1a7b98eed6}</Project>
+      <Name>CommonUtils</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

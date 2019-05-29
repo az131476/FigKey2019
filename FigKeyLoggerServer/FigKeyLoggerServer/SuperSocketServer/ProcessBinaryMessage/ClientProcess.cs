@@ -11,19 +11,20 @@ using CommonUtils.Logger;
 
 namespace FigKeyLoggerServer.SuperSocketServer.ProcessBinaryMessage
 {
-    class ClientProcess:CommandBase<BinaryAppSession,BinaryRequestInfo>
+    public class ClientProcess : CommandBase<BinaryAppSession, BinaryRequestInfo>
     {
         public override void ExecuteCommand(BinaryAppSession session, BinaryRequestInfo requestInfo)
         {
-            LogHelper.log.Info(" 接收到客户端消息内容：" + requestInfo.Key + " len:" + requestInfo.Body);
+            //LogHelper.Log.Info(" 接收到客户端消息内容：" + requestInfo.Key + " len:" + requestInfo.Body);
             //session.Send(requestInfo.Body);
-            LogHelper.log.Info(" 发送给客户端的消息：" + requestInfo.Body);
+            //LogHelper.Log.Info(" 发送给客户端的消息：" + requestInfo.Body);
 
             StringBuilder sb = new StringBuilder();
             Array.ForEach(requestInfo.Body, b => sb.Append($"{b} "));
-            LogHelper.log.Info($"接收到客户端 {session.Config.Ip}:{session.Config.Port} 的数据：");
-            LogHelper.log.Info($"字节数组形式：{sb.ToString()}");
-            LogHelper.log.Info($" ASCII码转换：{Encoding.ASCII.GetString(requestInfo.Body)}");
+            LogHelper.Log.Info($"接收到客户端 {session.Config.Ip}:{session.Config.Port} 的数据：");
+            LogHelper.Log.Info($"字节数组形式：{sb.ToString()}");
+            LogHelper.Log.Info($" ASCII码转换：{Encoding.ASCII.GetString(requestInfo.Body)}");
         }
     }
+
 }

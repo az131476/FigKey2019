@@ -34,7 +34,7 @@ namespace FigKeyLoggerServer.SanNiuSignal
             }
             catch (Exception ex)
             {
-                LogHelper.log.Error("!!!!!!!!!构造TcpState失败：" + ex.Message + "-----------------------");
+                LogHelper.Log.Error("!!!!!!!!!构造TcpState失败：" + ex.Message + "-----------------------");
             }
         }
 

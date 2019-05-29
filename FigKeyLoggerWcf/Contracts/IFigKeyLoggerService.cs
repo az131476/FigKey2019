@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
 using FigKeyLoggerWcf.DB;
+using FigKeyLoggerWcf.Molde;
 
 namespace FigKeyLoggerWcf
 {
@@ -19,7 +20,7 @@ namespace FigKeyLoggerWcf
 
         // TODO: 在此添加您的服务操作
         [OperationContract]
-        bool Login(string username, string password);
+        LoginResult Login(string username, string password, LoginUser loginUser);
         [OperationContract]
         f_user GetUserInfo(string userName);
 
