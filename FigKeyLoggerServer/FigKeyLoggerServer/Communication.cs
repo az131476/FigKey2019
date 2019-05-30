@@ -13,9 +13,9 @@ using System.ServiceModel;
 using FigKeyLoggerWcf;
 using System.IO;
 using System.Configuration;
-using FigKeyLoggerServer.SocketServerFig;
 using FigKeyLoggerServer.Model;
 using FigKeyLoggerServer.SuperSocketServer;
+using SuperSocketServer.AppBase;
 
 namespace FigKeyLoggerServer
 {
@@ -33,8 +33,7 @@ namespace FigKeyLoggerServer
         /// <summary>
         /// socket对象
         /// </summary>
-        //public SocketHelper socketServer;
-        public SocketServerBinary socketServer;
+        //private SocketServerBinary socketServer;
         /// <summary>
         /// 服务端口
         /// </summary>
@@ -43,13 +42,15 @@ namespace FigKeyLoggerServer
         private List<Device> deviceList;
         private List<Client> clientList;
 
+
         protected override void OnStart(string[] args)
         {
             InitConfig();
+            LogHelper.Log.Info("on start...");
             host = new ServiceHost(typeof(FigKeyLoggerService));
-            //socketServer = new SocketHelper(port,deviceList,clientList);
-            //socketServer = new FigKeySocketServer(figkeyConfig,deviceList,clientList);
-            socketServer = new SocketServerBinary();
+            //socketServer = new SocketHelper(port, deviceList, clientList);
+            //socketServer = new FigKeySocketServer(figkeyConfig, deviceList, clientList);
+            SocketServerControl.StartServer();
 
 
             host.Opening += Host_Opening;
@@ -59,7 +60,6 @@ namespace FigKeyLoggerServer
             host.Faulted += Host_Faulted;
 
             host.Open(TimeSpan.FromSeconds(25));
-            socketServer.StartSocketListen();
         }
 
         protected override void OnStop()
@@ -67,8 +67,8 @@ namespace FigKeyLoggerServer
             try
             {
                 host.Close(TimeSpan.FromSeconds(25));
-                socketServer.AppServerStop();
-                LogHelper.Log.Info("Windows Communication Foundtion Is Stop " + host.State);
+                SocketServerControl.StopServer();
+                //LogHelper.Log.Info("Windows Communication Foundtion Is Stop " + host.State);
             }
             finally
             {

@@ -10,7 +10,7 @@ namespace FigKeyLoggerServer.Model
     public class Client
     {
 
-        public string DeviceId { get; set; }
+        public string SessionId { get; set; }
 
         /// <summary>
         /// 客户端地址

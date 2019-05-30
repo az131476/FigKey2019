@@ -70,6 +70,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SuperSocketServer\AppBase\MyReceiveFilter.cs" />
+    <Compile Include="SuperSocketServer\AppBase\MyRequestInfo.cs" />
+    <Compile Include="SuperSocketServer\AppBase\MyServer.cs" />
+    <Compile Include="SuperSocketServer\AppBase\MySession.cs" />
+    <Compile Include="SuperSocketServer\Commands\Announce.cs" />
+    <Compile Include="SuperSocketServer\Commands\BaseService\Commands.cs" />
+    <Compile Include="SuperSocketServer\Commands\BaseService\IPush.cs" />
+    <Compile Include="SuperSocketServer\Commands\Decrypt.cs" />
+    <Compile Include="SuperSocketServer\Commands\ExtractCoefficient.cs" />
+    <Compile Include="SuperSocketServer\Commands\Heart.cs" />
+    <Compile Include="SuperSocketServer\Commands\Login.cs" />
+    <Compile Include="SuperSocketServer\Commands\Signature.cs" />
+    <Compile Include="SuperSocketServer\Commands\Step.cs" />
     <Compile Include="Model\Client.cs" />
     <Compile Include="Model\Device.cs" />
     <Compile Include="ProjectInstaller.cs">
@@ -92,19 +105,9 @@
     <Compile Include="SanNiuSignal\DeviceTcpState.cs" />
     <Compile Include="SanNiuSignal\FigKeyConfig.cs" />
     <Compile Include="SanNiuSignal\FigKeySocketServer.cs" />
-    <Compile Include="SuperSocketServer\BinaryAppServer.cs" />
-    <Compile Include="SuperSocketServer\BinaryAppSession.cs" />
-    <Compile Include="SuperSocketServer\BinaryReceiveFactory.cs" />
-    <Compile Include="SuperSocketServer\BinaryReceiveFilter.cs" />
-    <Compile Include="SuperSocketServer\MyRequestInfo.cs" />
-    <Compile Include="SuperSocketServer\ProcessBinaryMassage.cs" />
-    <Compile Include="SuperSocketServer\ProcessBinaryMessage\ClientProcess.cs" />
-    <Compile Include="SuperSocketServer\ProcessBinaryMessage\DeviceProcess.cs" />
-    <Compile Include="SuperSocketServer\ProcessBinaryMessage\ProcesMsg.cs" />
-    <Compile Include="SuperSocketServer\ProcessStringMassage.cs" />
-    <Compile Include="SuperSocketServer\SocketServerBinary.cs" />
-    <Compile Include="SuperSocketServer\SocketServerString.cs" />
+    <Compile Include="SuperSocketServer\SocketServerControl.cs" />
     <Compile Include="SuperSocketServer\SuperSocketConfig.cs" />
+    <Compile Include="SuperSocketServer\StartServerOfConfig.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -135,8 +138,6 @@
   <ItemGroup>
     <Content Include="Lib\SanNiuSignal.dll" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="SuperSocketServer\ProcessStringMessage\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

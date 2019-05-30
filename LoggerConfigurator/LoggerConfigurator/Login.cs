@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using Telerik.WinControls;
 using CommonUtils.Logger;
 using FigKeyLoggerConfigurator.ClientSocket;
+using LoggerConfigurator.ClientSocket;
 
 namespace LoggerConfigurator
 {
@@ -23,6 +24,35 @@ namespace LoggerConfigurator
             InitializeComponent();
             this.MaximizeBox = false;
             this.StartPosition = FormStartPosition.CenterScreen;
+        }
+
+        /// 解决跨线程调用UI组件问题     
+        private void DelegateAction(Action action)
+        {
+            if (InvokeRequired)
+            {
+                Invoke(action);
+            }
+            else
+            {
+                action();
+            }
+        }
+
+        private void Timer()
+        {
+            var timer = new System.Timers.Timer(1000);
+            timer.Elapsed += (s, x) =>
+            {
+                DelegateAction(() =>
+                {
+                    //txtAll.Text = LogHelper.SetOnLog();
+                    //txtAll.Select(txtAll.TextLength, 0);
+                    //txtAll.ScrollToCaret();
+                });
+            };
+            timer.Enabled = true;
+            timer.Start();
         }
 
         private enum UserType
@@ -149,9 +179,13 @@ namespace LoggerConfigurator
 
         private bool ConnectCloudService()
         {
-            SocketClient client = new SocketClient();
-            client.StartSocket();
-            client.Send();
+            //SocketClient client = new SocketClient();
+            //client.StartSocket();
+            //client.Send();
+            SuperEasyClient.ConnectServer();
+            SuperEasyClient.btnLogin("this is client");
+            //btnDecrypt
+
             return true;
         }
 
