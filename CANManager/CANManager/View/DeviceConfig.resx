@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,53 +117,29 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="cog_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\cog_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="document_export" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\document_export.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="figkey" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\figkey.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="figkeyLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\figkeyLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="folder_vertical_open" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\folder_vertical_open.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="SendDefault" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SendDefault.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="_00_05_" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\(00,05).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="_00_12_" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\(00,12).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="_00_34_" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\(00,34).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="_01_00_" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\(01,00).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="_01_29_" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\(01,29).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="_01_34_" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\(01,34).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="_02_31_" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\(02,31).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="_08_41_" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\(08,41).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="_09_02_" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\(09,02).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="device" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\device.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAA
+        AAD+/v7//v7+//7+/v/+/v7//v7+//7+/v/8/v3/9vTd/+XbnP/3+O3/+/z5//39/f/9/f3//f39//39
+        /f/q6ur//v7+//7+/v/+/v7//v79//39/v/9/f3/+ffq//HovP/r35v/4M9x//v79P/9/f3//f39//7+
+        /v/+/v7/6+vr//39/f/9/f3//f39//79/f/8/vz/+Prw//Tpv//z6Ln/8uaw/9vCLv/m1Xv/+vz3//39
+        /P/+/v7//f39/+vq6//9/f3//f39//39/P/8/Pz/7u3e//Lovv/z57b/8+W0//HjsP/kxz//37YK/+nb
+        lf/7/fr//P39//39/f/p6eP/4tqz//j69P/6/Pn/7OzU/+PWjP/hz3j/382G//Dipv/y4aj/5s5w/9yr
+        Af/dtTT/+vz1//r8+P/y9OP/ysSW/7aGGf/Rv2D/29ei/83AdP/BqT3/vZkq/8GhNP/OsEL/4stz/+zX
+        jP/Omwr/xpIM/87Ah//Z0J7/29CN/7amX/+MaSb/xKlG/8+fHv/w1Xz/69WA/9W3S/+ffiL/lnEX/6WB
+        JP/LrET/uIUT/6FmCP++mkL/xqEp/72dNf+wkzz/zrZy/+DEaP/fxmX/5NGE/+3WhP/s1YH/7NJ0/8eo
+        Nf+vhxj/rIIT/8KRIf+vZQL/tXEL/97DZv/hxGf/z7Zh//r++v/7/vv/+/78//Xx2v/r03z/69uS/+nO
+        Z//pyln/6MhM/+jCQP/jtjT/r2ID/61dBP/n38r//f77/+nr6v/8/f3//P79//z+/f/7/Pf/59J+/+PR
+        fP/nylb/6MZP/+bFRP/nwzf/0ZkP/8iECP+6agX/y6l6//z9/f/q6+v//v7+//7+/v/+/v7//P39/+rb
+        kv/lyVj/5spZ/+jFPv/mxDL/16US/86NAv/JlRj/xJ49/9PAj//7/v3/6uvr//7+/v/+/v7//v7+//39
+        /f/w6cD/5M5u/+fPXv/nwyr/3bET/9SZAP/PkwL/yY4H/9e7dP/6/Pn//P3+/+rr6//+/v7//v7+//7+
+        /v/9/f7/+Pns/+PWjP/gylD/5bkS/9ykAf/XngD/05oE/9zFe//4/Pj//P39//7+/v/r6+v//v7+//7+
+        /v/+/v7//v39//r9+//q5bj/4MZQ/96tA//cqQH/2qUG/+HOgf/7/fj//P79//z+/f/+/v7/6+vr//7+
+        /v/+/v7//v7+//7+/v/8/Pz/6OGm/9y+RP/gxV3/5c54/+nfqP/7/Pn//f78//7+/v/+/v7//v7+/+vr
+        6//+/v7//v7+//7+/v/+/v7//v7+//z9+//9/vn//P39//3+/f/9/fz//f37//3+/f/9/f3//f39//39
+        /f/r6+v/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAA==
+</value>
   </data>
 </root>
