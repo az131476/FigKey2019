@@ -107,6 +107,23 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\solar.png" />
+    <None Include="Resources\designmoo.png" />
+    <None Include="Resources\debian.png" />
+    <None Include="Resources\filter_reapply.png" />
+    <None Include="Resources\cross.png" />
+    <None Include="Resources\cross_shield.png" />
+    <None Include="Resources\clear_formatting.png" />
+    <None Include="Resources\page_save.png" />
+    <None Include="Resources\control_play_blue.png" />
+    <None Include="Resources\control_play.png" />
+    <None Include="Resources\control_pause_blue.png" />
+    <None Include="Resources\control_pause.png" />
+    <None Include="Resources\control_start_blue.png" />
+    <None Include="Resources\control_start.png" />
+    <None Include="Resources\control_stop_blue.png" />
+    <None Include="Resources\control_stop.png" />
+    <None Include="Resources\location_pin.png" />
     <None Include="Resources\device.png" />
     <None Include="Resources\favicon %281%29.ico" />
     <None Include="Resources\figkey.png" />
@@ -129,6 +146,7 @@
   <ItemGroup>
     <Folder Include="Control\" />
     <Folder Include="Model\" />
+    <Folder Include="Test\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
