@@ -70,6 +70,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Test\TestConMonGoose.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Test\TestConMonGoose.Designer.cs">
+      <DependentUpon>TestConMonGoose.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Test\TestMonGoose.cs" />
+    <Compile Include="Test\TestProtocolMds.cs" />
     <Compile Include="View\DeviceConfig.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,6 +98,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Test\TestConMonGoose.resx">
+      <DependentUpon>TestConMonGoose.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\DeviceConfig.resx">
       <DependentUpon>DeviceConfig.cs</DependentUpon>
     </EmbeddedResource>
@@ -107,6 +118,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Test\diagnose.c" />
+    <Content Include="Test\diagnose.h" />
     <None Include="Resources\solar.png" />
     <None Include="Resources\designmoo.png" />
     <None Include="Resources\debian.png" />
@@ -146,7 +159,6 @@
   <ItemGroup>
     <Folder Include="Control\" />
     <Folder Include="Model\" />
-    <Folder Include="Test\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
