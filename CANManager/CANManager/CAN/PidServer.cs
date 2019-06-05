@@ -50,11 +50,11 @@ namespace CANManager.CAN
         /// <summary>
         /// 查询子功能服务
         /// </summary>
-        public int QuerySubCode(FunType funType,out int[] outArray, out int subCodeLen)
-        {
+        //public int QuerySubCode(FunType funType,out int[] outArray, out int subCodeLen)
+        //{
             
-            return 0;
-        }
+        //    return 0;
+        //}
 
         private int ReadCAN(byte[] input,int size,int timeout)
         {

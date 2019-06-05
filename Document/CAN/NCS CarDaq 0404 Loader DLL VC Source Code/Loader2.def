@@ -1,0 +1,18 @@
+LIBRARY 		Loader2
+DESCRIPTION 	"J2534 v02.02 Dll Dynamic Loader for VB"
+
+EXPORTS
+	LoadJ2534Dll
+	UnloadJ2534Dll
+	PassThruConnect
+	PassThruDisconnect
+	PassThruReadMsgs
+	PassThruWriteMsgs
+	PassThruStartPeriodicMsg
+	PassThruStopPeriodicMsg
+	PassThruStartMsgFilter
+	PassThruStopMsgFilter
+	PassThruSetProgrammingVoltage
+	PassThruReadVersion
+	PassThruGetLastError
+	PassThruIoctl
