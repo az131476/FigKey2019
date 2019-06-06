@@ -20,33 +20,33 @@ namespace CANManager
     public class MonGoose
     {
         #region import extern dll
-        [DllImport("monpi432")]
+        [DllImport("MongooseProISO2")]
         private static extern int PassThruOpen(IntPtr name,ref uint deviceID);
-        [DllImport("monpi432")]
+        [DllImport("MongooseProISO2")]
         private static extern int PassThruConnect(uint DeviceID, uint ProtocolID, uint Flags, uint BaudRate, ref uint pChannelID);
-        [DllImport("monpi432")]
+        [DllImport("MongooseProISO2")]
         private static extern int PassThruDisconnect(uint ChannelID);
-        [DllImport("monpi432")]
+        [DllImport("MongooseProISO2")]
         private static extern int PassThruClose(uint DeviceID);
-        [DllImport("monpi432")]
+        [DllImport("MongooseProISO2")]
         private static extern int PassThruReadVersion(uint DeviceID, string pFirmwareVersion, string pDllVersion, string pApiVersion);
-        [DllImport("monpi432")]
+        [DllImport("MongooseProISO2")]
         public static extern int PassThruGetLastError(string pErrorDescription);
         [DllImport("monpi432")]
         private static extern int PassThruIoctl(uint HandleID, uint IoctlID, IntPtr pInput, IntPtr pOutput);
-        [DllImport("monpi432")]
+        [DllImport("MongooseProISO2")]
         private static extern int PassThruReadMsgs(uint ChannelID, ref PassthruMsg pMsg, ref uint pNumMsgs,uint Timeout);
-        [DllImport("monpi432")]
+        [DllImport("MongooseProISO2")]
         private static extern int PassThruStartMsgFilter(uint ChannelID, uint FilterType, ref PassthruMsg pMaskMsg, ref PassthruMsg pPatternMsg, ref PassthruMsg pFlowControlMsg, ref uint pMsgID);
         //[DllImport("monpi432")]
         //public static extern int PassThruIoctl(uint HandleID, uint IoctlID, IntPtr pInput, IntPtr pOutput);
         //[DllImport("monpi432")]
         //private static extern int PassThruIoctl(uint HandleID,uint IoctlID, IntPtr pInput, IntPtr pOutput);
-        [DllImport("monpi432")]
+        [DllImport("MongooseProISO2")]
         private static extern int PassThruWriteMsgs(uint ChannelID, ref PassthruMsg pMsg, ref uint pNumMsgs, uint Timeout);
-        [DllImport("monpi432")]
+        [DllImport("MongooseProISO2")]
         private static extern int PassThruStartPeriodicMsg(uint ChannelID, ref PassthruMsg pMsg, ref uint pMsgID, uint TimeInterval);
-        [DllImport("monpi432")]
+        [DllImport("MongooseProISO2")]
         private static extern int PassThruStopPeriodicMsg(uint ChannelID, uint MsgID);
         //[DllImport("monpi432")]
         //private static extern int PassThruIoctl(uint HandleID, uint IoctlID, IntPtr pInput, IntPtr pOutput);

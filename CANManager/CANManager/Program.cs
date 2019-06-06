@@ -17,7 +17,7 @@ namespace CANManager
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new TestConMonGoose());
+            Application.Run(new MainForm());
         }
     }
 }
