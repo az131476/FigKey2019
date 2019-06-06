@@ -40,9 +40,4 @@ namespace CANManager
         ERR_INVALID_BAUDRATE = 0x19,
         ERR_INVALID_DEVICE_ID = 0x1A,
     }
-
-    enum CAN_SID_COMMAND
-    {
-
-    }
 }
