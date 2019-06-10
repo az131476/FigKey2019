@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using System.IO;
 
 namespace CANManager.Test
 {
@@ -86,12 +87,6 @@ namespace CANManager.Test
             textBox1.Text += "datasize:" + Msg.DataSize+"\r\n";
             textBox1.Text += "data:"+Msg.Data[0] + "|" + Msg.Data[1]+"|"+Msg.Data[2]+"|"+Msg.Data[3]+"|"+Msg.Data[4]+"|"+Msg.Data[5]+"|"
                 + Msg.Data[6] + "|" + Msg.Data[7] + "|" + Msg.Data[8] + "|" + Msg.Data[9]+"\r\n";
-
-        //datasize: 4
-        //data: 0 | 0 | 7 | 223 | 0 | 0 | 0 | 0 | 0 | 0
-        //readMsg: 0
-        //datasize: 10
-        //data: 0 | 0 | 7 | 232 | 65 | 0 | 190 | 62 | 168 | 19
         }
 
         private void Button2_Click(object sender, EventArgs e)
@@ -194,6 +189,12 @@ namespace CANManager.Test
         private void Button8_Click(object sender, EventArgs e)
         {
             textBox1.Clear();
+        }
+
+        private void Button9_Click(object sender, EventArgs e)
+        {
+            byte bt = 0x80;
+            textBox1.Text = (bt + 0x20).ToString();
         }
     }
 }

@@ -21,6 +21,7 @@ namespace CANManager.View
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.device = deviceInfo;
+            device.SelectedDevice = DeviceInfo.SelectDeviceType.USB_CAN_2;
             InitControl();
             EventControl();
         }

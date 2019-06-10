@@ -85,8 +85,8 @@
             this.sid_model9 = new Telerik.WinControls.UI.RadMenuItem();
             this.sid_modelA = new Telerik.WinControls.UI.RadMenuItem();
             this.toolStrip3 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.tool_startDevice_can2 = new System.Windows.Forms.ToolStripButton();
+            this.tool_stopdevice_can2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton11 = new System.Windows.Forms.ToolStripButton();
@@ -305,7 +305,7 @@
             // 
             // radDock1
             // 
-            this.radDock1.ActiveWindow = this.documentWindow2;
+            this.radDock1.ActiveWindow = this.documentWindow1;
             this.radDock1.Controls.Add(this.documentContainer1);
             this.radDock1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radDock1.IsCleanUpTarget = true;
@@ -434,7 +434,7 @@
             // 
             // 
             this.documentTabStrip1.RootElement.MinSize = new System.Drawing.Size(0, 0);
-            this.documentTabStrip1.SelectedIndex = 0;
+            this.documentTabStrip1.SelectedIndex = 1;
             this.documentTabStrip1.Size = new System.Drawing.Size(1024, 478);
             this.documentTabStrip1.TabIndex = 0;
             this.documentTabStrip1.TabStop = false;
@@ -582,8 +582,8 @@
             this.toolStrip3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStrip3.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.toolStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton1,
-            this.toolStripButton2,
+            this.tool_startDevice_can2,
+            this.tool_stopdevice_can2,
             this.toolStripButton5,
             this.toolStripButton6,
             this.toolStripButton11,
@@ -594,21 +594,21 @@
             this.toolStrip3.TabIndex = 2;
             this.toolStrip3.Text = "toolStrip3";
             // 
-            // toolStripButton1
+            // tool_startDevice_can2
             // 
-            this.toolStripButton1.Image = global::CANManager.Properties.Resources.control_start_blue;
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(57, 27);
-            this.toolStripButton1.Text = "启动";
+            this.tool_startDevice_can2.Image = global::CANManager.Properties.Resources.control_start_blue;
+            this.tool_startDevice_can2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tool_startDevice_can2.Name = "tool_startDevice_can2";
+            this.tool_startDevice_can2.Size = new System.Drawing.Size(57, 27);
+            this.tool_startDevice_can2.Text = "启动";
             // 
-            // toolStripButton2
+            // tool_stopdevice_can2
             // 
-            this.toolStripButton2.Image = global::CANManager.Properties.Resources.control_stop_blue;
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(57, 27);
-            this.toolStripButton2.Text = "停止";
+            this.tool_stopdevice_can2.Image = global::CANManager.Properties.Resources.control_stop_blue;
+            this.tool_stopdevice_can2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tool_stopdevice_can2.Name = "tool_stopdevice_can2";
+            this.tool_stopdevice_can2.Size = new System.Drawing.Size(57, 27);
+            this.tool_stopdevice_can2.Text = "停止";
             // 
             // toolStripButton5
             // 
@@ -773,8 +773,8 @@
         private Telerik.WinControls.UI.RadMenuItem sid_modelA;
         private Telerik.WinControls.UI.RadMenuItem sid_model1;
         private System.Windows.Forms.ToolStrip toolStrip3;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.ToolStripButton tool_startDevice_can2;
+        private System.Windows.Forms.ToolStripButton tool_stopdevice_can2;
         private System.Windows.Forms.ToolStripButton toolStripButton5;
         private System.Windows.Forms.ToolStripButton toolStripButton6;
         private System.Windows.Forms.ToolStripButton toolStripButton11;

@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using CANManager.View;
 using CANManager.Model;
 using CommonUtils.Logger;
+using CANManager.CAN;
 
 namespace CANManager
 {
@@ -37,6 +38,100 @@ namespace CANManager
         {
             device_usb_can1.Click += Device_usb_can1_Click;
             device_usb_can2.Click += Device_usb_can2_Click;
+
+            tool_startDevice_can1.Click += Tool_startDevice_can1_Click;
+            tool_startDevice_can2.Click += Tool_startDevice_can2_Click;
+            tool_stopdevice_can1.Click += Tool_stopdevice_can1_Click;
+            tool_stopdevice_can2.Click += Tool_stopdevice_can2_Click;
+
+            sid_model1.Click += Sid_model1_Click;
+            sid_model2.Click += Sid_model2_Click;
+            sid_model3.Click += Sid_model3_Click;
+            sid_model4.Click += Sid_model4_Click;
+            sid_model5.Click += Sid_model5_Click;
+            sid_model6.Click += Sid_model6_Click;
+            sid_model7.Click += Sid_model7_Click;
+            sid_model8.Click += Sid_model8_Click;
+            sid_model9.Click += Sid_model9_Click;
+            sid_modelA.Click += Sid_modelA_Click;
+        }
+
+        #region control event 
+
+        #region command model 1-9
+        private void Sid_modelA_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Sid_model9_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Sid_model8_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Sid_model7_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Sid_model6_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Sid_model5_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Sid_model4_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Sid_model3_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Sid_model2_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Sid_model1_Click(object sender, EventArgs e)
+        {
+            //设备初始化+启动设备
+            //过滤
+            //执行SID1发送+读取整个过程
+            PidServer.PassThruStartMsgFilter(deviceInfo);
+            deviceInfo.ModelSidType = DeviceInfo.ModelType.MODEL1;
+            PidServer.CommandMode(deviceInfo);
+        }
+        #endregion
+        private void Tool_stopdevice_can2_Click(object sender, EventArgs e)
+        {
+            StopDevice();
+        }
+
+        private void Tool_startDevice_can2_Click(object sender, EventArgs e)
+        {
+            StartDevice();
+        }
+
+        private void Tool_stopdevice_can1_Click(object sender, EventArgs e)
+        {
+            StopDevice();
+        }
+
+        private void Tool_startDevice_can1_Click(object sender, EventArgs e)
+        {
+            StartDevice();
         }
 
         /// <summary>
@@ -57,21 +152,28 @@ namespace CANManager
         private void Device_usb_can2_Click(object sender, EventArgs e)
         {
             DeviceConfig deviceCfg = new DeviceConfig(deviceInfo);
-            uint deviceID = deviceInfo.DeviceID;
-            uint channelID = deviceInfo.ChannelID;
+
             if (deviceCfg.ShowDialog() == DialogResult.OK)
             {
-                StartDevice(deviceID,channelID);
+                StartDevice();
             }
         }
+        #endregion
 
+        #region 启动设备
         /// <summary>
         /// 启动设备:初始化+连接设备
         /// </summary>
         /// <param name="deviceID"></param>
         /// <param name="channelID"></param>
-        private void StartDevice(uint deviceID,uint channelID)
+        private void StartDevice()
         {
+            if (deviceInfo == null || deviceInfo.SelectedDevice == DeviceInfo.SelectDeviceType.NONE)
+                return;
+
+            uint deviceID = deviceInfo.DeviceID;
+            uint channelID = deviceInfo.ChannelID;
+
             //初始化设备
             if (deviceInfo.DeviceStatus == DeviceInfo.DeviceStatusEnum.OPEN || deviceInfo.DeviceStatus == DeviceInfo.DeviceStatusEnum.CONNECTION)
             {
@@ -92,27 +194,32 @@ namespace CANManager
                 if (conResEnum == RES_MONGOOSE_HEX.STATUS_NOERROR)
                 {
                     deviceInfo.DeviceStatus = DeviceInfo.DeviceStatusEnum.CONNECTION;
-                    MessageBox.Show("启动设备成功！");
+                    MessageBox.Show("启动设备成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     LogHelper.Log.Info("启动设备成功！");
                 }
                 else
                 {
-                    MessageBox.Show("启动设备失败！" + conResEnum);
+                    MessageBox.Show("启动设备失败！" + conResEnum, "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     LogHelper.Log.Info("启动设备失败！");
                 }
             }
             else
             {
-                MessageBox.Show("初始化设备失败！" + openResEnum);
+                MessageBox.Show("初始化设备失败！" + openResEnum,"提示",MessageBoxButtons.OK,MessageBoxIcon.Warning);
                 LogHelper.Log.Info("初始化设备失败！");
             }
         }
+        #endregion
 
+        #region 关闭设备
         /// <summary>
         /// 关闭设备：断开连接+关闭设备
         /// </summary>
         private void StopDevice()
         {
+            if (deviceInfo == null || deviceInfo.SelectedDevice == DeviceInfo.SelectDeviceType.NONE)
+                return;
+
             if (deviceInfo.DeviceStatus == DeviceInfo.DeviceStatusEnum.DISCONNECTION)
             {
                 LogHelper.Log.Info("已经断开与设备的连接，无须再次重复操作！");
@@ -146,5 +253,6 @@ namespace CANManager
                 LogHelper.Log.Info("断开与设备的连接失败！");
             }
         }
+        #endregion
     }
 }

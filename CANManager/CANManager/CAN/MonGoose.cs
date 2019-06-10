@@ -22,36 +22,40 @@ namespace CANManager
         #region import extern dll
         [DllImport("MongooseProISO2")]
         private static extern int PassThruOpen(IntPtr name,ref uint deviceID);
+
         [DllImport("MongooseProISO2")]
         private static extern int PassThruConnect(uint DeviceID, uint ProtocolID, uint Flags, uint BaudRate, ref uint pChannelID);
+
         [DllImport("MongooseProISO2")]
         private static extern int PassThruDisconnect(uint ChannelID);
+
         [DllImport("MongooseProISO2")]
         private static extern int PassThruClose(uint DeviceID);
+
         [DllImport("MongooseProISO2")]
         private static extern int PassThruReadVersion(uint DeviceID, string pFirmwareVersion, string pDllVersion, string pApiVersion);
+
         [DllImport("MongooseProISO2")]
         public static extern int PassThruGetLastError(string pErrorDescription);
-        [DllImport("monpi432")]
+
+        [DllImport("MongooseProISO2")]
         private static extern int PassThruIoctl(uint HandleID, uint IoctlID, IntPtr pInput, IntPtr pOutput);
+
         [DllImport("MongooseProISO2")]
         private static extern int PassThruReadMsgs(uint ChannelID, ref PassthruMsg pMsg, ref uint pNumMsgs,uint Timeout);
+
         [DllImport("MongooseProISO2")]
         private static extern int PassThruStartMsgFilter(uint ChannelID, uint FilterType, ref PassthruMsg pMaskMsg, ref PassthruMsg pPatternMsg, ref PassthruMsg pFlowControlMsg, ref uint pMsgID);
-        //[DllImport("monpi432")]
-        //public static extern int PassThruIoctl(uint HandleID, uint IoctlID, IntPtr pInput, IntPtr pOutput);
-        //[DllImport("monpi432")]
-        //private static extern int PassThruIoctl(uint HandleID,uint IoctlID, IntPtr pInput, IntPtr pOutput);
+
+
         [DllImport("MongooseProISO2")]
         private static extern int PassThruWriteMsgs(uint ChannelID, ref PassthruMsg pMsg, ref uint pNumMsgs, uint Timeout);
+
         [DllImport("MongooseProISO2")]
         private static extern int PassThruStartPeriodicMsg(uint ChannelID, ref PassthruMsg pMsg, ref uint pMsgID, uint TimeInterval);
+
         [DllImport("MongooseProISO2")]
         private static extern int PassThruStopPeriodicMsg(uint ChannelID, uint MsgID);
-        //[DllImport("monpi432")]
-        //private static extern int PassThruIoctl(uint HandleID, uint IoctlID, IntPtr pInput, IntPtr pOutput);
-        //[DllImport("monpi432")]
-        //private static extern int PassThruIoctl(uint HandleID, uint IoctlID, IntPtr pInput, IntPtr pOutput);
         #endregion
 
         #region func
@@ -125,7 +129,7 @@ namespace CANManager
         }
 
         /// <summary>
-        /// 读取车辆电池电压
+        /// 多重意义，传入参数内容不同，导致不同结果
         /// </summary>
         /// <param name="HandleID"></param>
         /// <param name="IoctlID"></param>

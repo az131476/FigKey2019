@@ -8,6 +8,12 @@ namespace CANManager.Model
 {
     public class DeviceInfo
     {
+        public enum SelectDeviceType
+        {
+            NONE,
+            USB_CAN_1,
+            USB_CAN_2
+        }
         public enum ProtocolType
         {
             /// <summary>
@@ -49,7 +55,7 @@ namespace CANManager.Model
             /// <summary>
             /// Mongoose SCI/CAN
             /// </summary>
-            SCI_B_TRANS = 10 
+            SCI_B_TRANS = 10
         }
 
         public enum DeviceStatusEnum
@@ -60,6 +66,25 @@ namespace CANManager.Model
             DISCONNECTION,
             CLOSE
         }
+
+        public enum ModelType
+        {
+            NONE,
+            MODEL1,
+            MODEL2,
+            MODEL3,
+            MODEL4,
+            MODEL5,
+            MODEL6,
+            MODEL7,
+            MODEL8,
+            MODEL9,
+            MODELA
+        }
+
+        public SelectDeviceType SelectedDevice { get; set; }
+
+        public ModelType ModelSidType { get; set; }
 
         /// <summary>
         /// 设备NAME
@@ -93,6 +118,6 @@ namespace CANManager.Model
         /// </summary>
         public uint ChannelID { get; set; }
 
-
+        public StringBuilder TempBuffer { get; set; }
     }
 }
