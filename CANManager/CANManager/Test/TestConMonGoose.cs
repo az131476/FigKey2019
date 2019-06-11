@@ -194,7 +194,7 @@ namespace CANManager.Test
         private void Button9_Click(object sender, EventArgs e)
         {
             byte bt = 0x80;
-            textBox1.Text = (bt + 0x20).ToString();
+            textBox1.Text = Convert.ToInt32("0f",16)+"";
         }
     }
 }
