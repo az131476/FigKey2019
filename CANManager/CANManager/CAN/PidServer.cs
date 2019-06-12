@@ -233,22 +233,22 @@ namespace CANManager.CAN
         public const string PID_12_DATAA_00 = "pid=12;dataA binaryBit=00 意义：UPS催化转化器上游 结果：";
         public const string PID_12_DATAA_01 = "pid=12;dataA binaryBit=01 意义：DNS催化转化器下游 结果：";
         public const string PID_12_DATAA_02 = "pid=12;dataA binaryBit=02 意义：OFF 大气关闭 结果：";
-        public const string PID_12_DATAA_03 = "pid=12;dataA binaryBit=03 意义：保留 结果：";
-        public const string PID_12_DATAA_04 = "pid=12;dataA binaryBit=04 意义：保留 结果：";
-        public const string PID_12_DATAA_05 = "pid=12;dataA binaryBit=05 意义：保留 结果：";
-        public const string PID_12_DATAA_06 = "pid=12;dataA binaryBit=06 意义：保留 结果：";
-        public const string PID_12_DATAA_07 = "pid=12;dataA binaryBit=07 意义：保留 结果：";
+        public const string PID_12_DATAA_03 = "pid=12;dataA binaryBit=03 意义：保留 ";
+        public const string PID_12_DATAA_04 = "pid=12;dataA binaryBit=04 意义：保留 ";
+        public const string PID_12_DATAA_05 = "pid=12;dataA binaryBit=05 意义：保留 ";
+        public const string PID_12_DATAA_06 = "pid=12;dataA binaryBit=06 意义：保留 ";
+        public const string PID_12_DATAA_07 = "pid=12;dataA binaryBit=07 意义：保留 ";
         #endregion
 
         #region PID=13 氧传感器位置，PID$13不支持时才可由给定车辆支持
-        public const string PID_13_DATAA_00 = "pid=13;dataA binaryBit=00 意义：O2s11 结果：";
-        public const string PID_13_DATAA_01 = "pid=13;dataA binaryBit=01 意义：O2s12 结果：";
-        public const string PID_13_DATAA_02 = "pid=13;dataA binaryBit=02 意义：O2s13 结果：";
-        public const string PID_13_DATAA_03 = "pid=13;dataA binaryBit=03 意义：O2s14 结果：";
-        public const string PID_13_DATAA_04 = "pid=13;dataA binaryBit=04 意义：O2s21 结果：";
-        public const string PID_13_DATAA_05 = "pid=13;dataA binaryBit=05 意义：O2s22 结果：";
-        public const string PID_13_DATAA_06 = "pid=13;dataA binaryBit=06 意义：O2s23 结果：";
-        public const string PID_13_DATAA_07 = "pid=13;dataA binaryBit=07 意义：O2s24 结果：";
+        public const string PID_13_DATAA_00 = "pid=13;dataA binaryBit=00 意义：O2s11(Bank1,Sensors1) 结果：";
+        public const string PID_13_DATAA_01 = "pid=13;dataA binaryBit=01 意义：O2s12(Bank1,Sensors2) 结果：";
+        public const string PID_13_DATAA_02 = "pid=13;dataA binaryBit=02 意义：O2s13(Bank1,Sensors3) 结果：";
+        public const string PID_13_DATAA_03 = "pid=13;dataA binaryBit=03 意义：O2s14(Bank1,Sensors4) 结果：";
+        public const string PID_13_DATAA_04 = "pid=13;dataA binaryBit=04 意义：O2s21(Bank2,Sensors1) 结果：";
+        public const string PID_13_DATAA_05 = "pid=13;dataA binaryBit=05 意义：O2s22(Bank2,Sensors2) 结果：";
+        public const string PID_13_DATAA_06 = "pid=13;dataA binaryBit=06 意义：O2s23(Bank2,Sensors3) 结果：";
+        public const string PID_13_DATAA_07 = "pid=13;dataA binaryBit=07 意义：O2s24(Bank2,Sensors4) 结果：";
         #endregion
 
         #region PID=14-1B 
@@ -258,8 +258,8 @@ namespace CANManager.CAN
         public const string PID_17_DATA = "pid=17;dataA&B 意义：BANK1 – SENSOR4 结果：";
         public const string PID_18_DATA = "pid=18;dataA&B 意义：BANK2 – SENSOR1 结果：";
         public const string PID_19_DATA = "pid=19;dataA&B 意义：BANK2 – SENSOR2 结果：";
-        public const string PID_1a_DATA = "pid=1a;dataA&B 意义：BANK2 – SENSOR3 结果：";
-        public const string PID_1b_DATA = "pid=1b;dataA&B 意义：BANK2 – SENSOR4 DATA A(氧传感器输出电压)，DATA B（短期燃料平衡） 结果：";
+        public const string PID_1A_DATA = "pid=1A;dataA&B 意义：BANK2 – SENSOR3 结果：";
+        public const string PID_1B_DATA = "pid=1B;dataA&B 意义：BANK2 – SENSOR4 结果：";
         #endregion
 
         #region PID=14-1B 
@@ -283,25 +283,19 @@ namespace CANManager.CAN
         #endregion
 
         #region PID=1D 氧传感器位置
-        public const string PID_1D_DATAA_00 = "pid=1D;dataA binaryBit=00 意义：O2s11 结果：";
-        public const string PID_1D_DATAA_01 = "pid=1D;dataA binaryBit=01 意义：O2s12 结果：";
-        public const string PID_1D_DATAA_02 = "pid=1D;dataA binaryBit=02 意义：O2s13 结果：";
-        public const string PID_1D_DATAA_03 = "pid=1D;dataA binaryBit=03 意义：O2s14 结果：";
-        public const string PID_1D_DATAA_04 = "pid=1D;dataA binaryBit=04 意义：O2s21 结果：";
-        public const string PID_1D_DATAA_05 = "pid=1D;dataA binaryBit=05 意义：O2s22 结果：";
-        public const string PID_1D_DATAA_06 = "pid=1D;dataA binaryBit=06 意义：O2s23 结果：";
-        public const string PID_1D_DATAA_07 = "pid=1D;dataA binaryBit=07 意义：O2s24 结果：";
+        public const string PID_1D_DATAA_00 = "pid=1D;dataA binaryBit=00 意义：O2s11(Bank1,Sensors1) 结果：";
+        public const string PID_1D_DATAA_01 = "pid=1D;dataA binaryBit=01 意义：O2s12(Bank1,Sensors2) 结果：";
+        public const string PID_1D_DATAA_02 = "pid=1D;dataA binaryBit=02 意义：O2s13(Bank2,Sensors1) 结果：";
+        public const string PID_1D_DATAA_03 = "pid=1D;dataA binaryBit=03 意义：O2s14(Bank2,Sensors2) 结果：";
+        public const string PID_1D_DATAA_04 = "pid=1D;dataA binaryBit=04 意义：O2s21(Bank3,Sensors1) 结果：";
+        public const string PID_1D_DATAA_05 = "pid=1D;dataA binaryBit=05 意义：O2s22(Bank3,Sensors2) 结果：";
+        public const string PID_1D_DATAA_06 = "pid=1D;dataA binaryBit=06 意义：O2s23(Bank4,Sensors1) 结果：";
+        public const string PID_1D_DATAA_07 = "pid=1D;dataA binaryBit=07 意义：O2s24(Bank4,Sensors2) 结果：";
         #endregion
 
         #region PID=1E
         public const string PID_1E_DATA_A_00 = "pid=1D;dataA binaryBit=00 意义：电源关闭状态 结果：";
-        public const string PID_1E_DATA_A_01 = "pid=1D;dataA binaryBit=01 意义：保留 ";
-        public const string PID_1E_DATA_A_02 = "pid=1D;dataA binaryBit=02 意义：保留 ";
-        public const string PID_1E_DATA_A_03 = "pid=1D;dataA binaryBit=03 意义：保留 ";
-        public const string PID_1E_DATA_A_04 = "pid=1D;dataA binaryBit=04 意义：保留 ";
-        public const string PID_1E_DATA_A_05 = "pid=1D;dataA binaryBit=05 意义：保留 ";
-        public const string PID_1E_DATA_A_06 = "pid=1D;dataA binaryBit=06 意义：保留 ";
-        public const string PID_1E_DATA_A_07 = "pid=1D;dataA binaryBit=07 意义：保留 ";
+        public const string PID_1E_DATA_A_01_07 = "pid=1D,字节长度=1,dataA 意义：保留 ";
         #endregion
 
         #region PID=1F-23
@@ -345,8 +339,115 @@ namespace CANManager.CAN
 
         #endregion
 
-        #region PID=34-3B
-        public const string PID_34_DATA = "pid=2C;字节长度=4 dataA 意义：油量液位情况(0-100%) 结果：";
+        #region PID=34-3B 仅适用于PID13定义的氧传感器位置 1-4bank 1-2传感器
+        public const string PID_34_13_DATA = "pid=34_13;字节长度=4 dataA 意义：AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma) 结果：";
+        public const string PID_35_13_DATA = "pid=35_13;字节长度=4 dataA 意义：AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma) 结果：";
+        public const string PID_36_13_DATA = "pid=36_13;字节长度=4 dataA 意义：AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma) 结果：";
+        public const string PID_37_13_DATA = "pid=37_13;字节长度=4 dataA 意义：AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma) 结果：";
+        public const string PID_38_13_DATA = "pid=38_13;字节长度=4 dataA 意义：AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma) 结果：";
+        public const string PID_39_13_DATA = "pid=39_13;字节长度=4 dataA 意义：AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma) 结果：";
+        public const string PID_3A_13_DATA = "pid=3A_13;字节长度=4 dataA 意义：AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma) 结果：";
+        public const string PID_3B_13_DATA = "pid=3B_13;字节长度=4 dataA 意义：AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma) 结果：";
+        #endregion
+
+        #region PID=34-3B 仅适用于PID1D定义的氧传感器位置 1-4bank 1-2传感器
+        public const string PID_34_1D_DATA = "pid=34_1D;字节长度=4 dataA 意义：AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma) 结果：";
+        public const string PID_35_1D_DATA = "pid=35_1D;字节长度=4 dataA 意义：AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma) 结果：";
+        public const string PID_36_1D_DATA = "pid=36_1D;字节长度=4 dataA 意义：AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma) 结果：";
+        public const string PID_37_1D_DATA = "pid=37_1D;字节长度=4 dataA 意义：AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma) 结果：";
+        public const string PID_38_1D_DATA = "pid=38_1D;字节长度=4 dataA 意义：AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma) 结果：";
+        public const string PID_39_1D_DATA = "pid=39_1D;字节长度=4 dataA 意义：AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma) 结果：";
+        public const string PID_3A_1D_DATA = "pid=3A_1D;字节长度=4 dataA 意义：AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma) 结果：";
+        public const string PID_3B_1D_DATA = "pid=3B_1D;字节长度=4 dataA 意义：AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma) 结果：";
+        #endregion
+
+        #region PID=3C-3F 
+        public const string PID_3C_DATA = "pid=3C;字节长度=2 dataA&B 意义：催化剂温度(通道1，传感器1)(-40-6513.5℃) 结果：";
+        public const string PID_3D_DATA = "pid=3D;字节长度=2 dataA&B 意义：催化剂温度(通道2，传感器1)(-40-6513.5℃) 结果：";
+        public const string PID_3E_DATA = "pid=3C;字节长度=2 dataA&B 意义：催化剂温度(通道1，传感器2)(-40-6513.5℃) 结果：";
+        public const string PID_3F_DATA = "pid=3C;字节长度=2 dataA&B 意义：催化剂温度(通道2，传感器2)(-40-6513.5℃) 结果：";
+        #endregion
+
+        #region PID=41
+        public const string PID_41_DATA_A0_A7 = "pid=41,字节长度=4, DATA A0-A7,意义：保留";
+
+        public const string PID_41_DATA_B0 = "pid=41,字节长度=4, DATA B0,意义：启用失火检测 结果：";
+        public const string PID_41_DATA_B1 = "pid=41,字节长度=4, DATA B1,意义：启用燃油系统监测 结果：";
+        public const string PID_41_DATA_B2 = "pid=41,字节长度=4, DATA B2,意义：启用全面组件监测 结果：";
+        public const string PID_41_DATA_B3 = "pid=41,字节长度=4, DATA B3,意义：保留 ";
+        public const string PID_41_DATA_B4 = "pid=41,字节长度=4, DATA B4,意义：完成失火监测 结果：";
+        public const string PID_41_DATA_B5 = "pid=41,字节长度=4, DATA B5,意义：完成燃油系统监测 结果：";
+        public const string PID_41_DATA_B6 = "pid=41,字节长度=4, DATA B6,意义：完成全面组件监测 结果：";
+        public const string PID_41_DATA_B7 = "pid=41,字节长度=4, DATA B7,意义：保留 ";
+
+        public const string PID_41_DATA_C0 = "pid=41,字节长度=4, DATA C0,意义：催化剂监控 结果：";
+        public const string PID_41_DATA_C1 = "pid=41,字节长度=4, DATA C1,意义：催化剂加热 结果：";
+        public const string PID_41_DATA_C2 = "pid=41,字节长度=4, DATA C2,意义：蒸发系统监控 结果：";
+        public const string PID_41_DATA_C3 = "pid=41,字节长度=4, DATA C3,意义：二次空气系统检测仪 结果：";
+        public const string PID_41_DATA_C4 = "pid=41,字节长度=4, DATA C4,意义：空调系统制冷剂监测 结果：";
+        public const string PID_41_DATA_C5 = "pid=41,字节长度=4, DATA C5,意义：氧传感器监测 结果：";
+        public const string PID_41_DATA_C6 = "pid=41,字节长度=4, DATA C6,意义：氧传感器加热器监控 结果：";
+        public const string PID_41_DATA_C7 = "pid=41,字节长度=4, DATA C7,意义：EGR系统监控 结果：";
+
+        public const string PID_41_DATA_D0 = "pid=41,字节长度=4, DATA D0,意义：催化剂监控完成 结果：";
+        public const string PID_41_DATA_D1 = "pid=41,字节长度=4, DATA D1,意义：加热催化剂完成 结果：";
+        public const string PID_41_DATA_D2 = "pid=41,字节长度=4, DATA D2,意义：蒸发系统监控完成 结果：";
+        public const string PID_41_DATA_D3 = "pid=41,字节长度=4, DATA D3,意义：二次空气系统检测仪完成 结果：";
+        public const string PID_41_DATA_D4 = "pid=41,字节长度=4, DATA D4,意义：空调系统制冷剂监测完成 结果：";
+        public const string PID_41_DATA_D5 = "pid=41,字节长度=4, DATA D5,意义：氧传感器监测完成 结果：";
+        public const string PID_41_DATA_D6 = "pid=41,字节长度=4, DATA D6,意义：氧传感器加热器监控完成 结果：";
+        public const string PID_41_DATA_D7 = "pid=41,字节长度=4, DATA D7,意义：EGR系统监控完成 结果：";
+        #endregion
+
+        #region PID=42-4F
+        public const string PID_42_DATA = "pid=42,字节长度=2, DATA ,意义：电压控制模块(0-65.535V) 结果：";
+        public const string PID_43_DATA = "pid=43,字节长度=2, DATA ,意义：绝对负荷值(0-25700%) 结果：";
+        public const string PID_44_DATA = "pid=44,字节长度=2, DATA ,意义：等效比命令(0-2N/A) 结果：";
+        public const string PID_45_DATA = "pid=45,字节长度=1, DATA ,意义：相对节气门位置(0-100%) 结果：";
+        public const string PID_46_DATA = "pid=46,字节长度=1, DATA ,意义：环境空气温度(-40-215℃) 结果：";
+        public const string PID_47_DATA = "pid=47,字节长度=1, DATA ,意义：绝对气流阀位置B(0-100%) 结果：";
+        public const string PID_48_DATA = "pid=48,字节长度=1, DATA ,意义：绝对气流阀位置C(0-100%) 结果：";
+        public const string PID_49_DATA = "pid=49,字节长度=1, DATA ,意义：绝对气流阀位置D(0-100%) 结果：";
+        public const string PID_4A_DATA = "pid=4A,字节长度=1, DATA ,意义：绝对气流阀位置E(0-100%) 结果：";
+        public const string PID_4B_DATA = "pid=4B,字节长度=1, DATA ,意义：绝对气流阀位置F(0-100%) 结果：";
+        public const string PID_4C_DATA = "pid=4C,字节长度=1, DATA ,意义：通讯节流阀执行机构控制(0-100%) 结果：";
+        public const string PID_4D_DATA = "pid=4D,字节长度=2, DATA ,意义：启动MIL时引擎运行的时间(0-65535分钟) 结果：";
+        public const string PID_4E_DATA = "pid=4E,字节长度=2, DATA ,意义：诊断故障代码清除以来的时间(0-65535分钟) 结果：";
+
+        public const string PID_4F_DATA_A = "pid=4F,字节长度=4, DATA A ,意义：等值比的最大值(0-255) 结果：";
+        public const string PID_4F_DATA_B = "pid=4F,字节长度=4, DATA B ,意义：氧传感器电压最大值(0-255V) 结果：";
+        public const string PID_4F_DATA_C = "pid=4F,字节长度=4, DATA C ,意义：氧传感器电流最大值(0-255mA) 结果：";
+        public const string PID_4F_DATA_D = "pid=4F,字节长度=4, DATA D ,意义：进气歧管绝对压力的最大值(0-2550kPa) 结果：";
+        #endregion
+
+        #region PID=51-FF ，5B-FF保留
+        public const string PID_51_DATA = "pid=51,字节长度=1, DATA A ,意义：车辆目前使用的燃料类型（01-0f） 结果：";
+        public const string PID_52_DATA = "pid=52,字节长度=1, DATA A ,意义：酒精燃料比例（0-100%） 结果：";
+        public const string PID_53_DATA = "pid=53,字节长度=2, DATA AB ,意义：绝对Evap系统蒸汽压（0-327.675kPa） 结果：";
+        public const string PID_54_DATA = "pid=54,字节长度=2, DATA AB ,意义：Evap系统蒸汽压力（-32767-32768pa） 结果：";
+
+        public const string PID_55_DATA_A = "pid=55,字节长度=2, DATA A ,意义：短时间内二级氧传感器燃料修整器BANK1（-100-99.22%） 结果：";
+        public const string PID_55_DATA_B = "pid=55,字节长度=2, DATA B ,意义：短时间内二级氧传感器燃料修整器BANK3（-100-99.22%） 结果：";
+
+        public const string PID_56_DATA_A = "pid=56,字节长度=2, DATA A ,意义：长时间内二级氧传感器燃料修整器BANK1（-100-99.22%） 结果：";
+        public const string PID_56_DATA_B = "pid=56,字节长度=2, DATA B ,意义：长时间内二级氧传感器燃料修整器BANK3（-100-99.22%） 结果：";
+
+        public const string PID_57_DATA_A = "pid=57,字节长度=2, DATA A ,意义：短时间内二级氧传感器燃料修整器BANK2（-100-99.22%） 结果：";
+        public const string PID_57_DATA_B = "pid=57,字节长度=2, DATA B ,意义：短时间内二级氧传感器燃料修整器BANK4（-100-99.22%） 结果：";
+
+        public const string PID_58_DATA_A = "pid=58,字节长度=2, DATA A ,意义：长时间内二级氧传感器燃料修整器BANK2（-100-99.22%） 结果：";
+        public const string PID_58_DATA_B = "pid=58,字节长度=2, DATA B ,意义：长时间内二级氧传感器燃料修整器BANK4（-100-99.22%） 结果：";
+
+        public const string PID_59_DATA = "pid=59,字节长度=2, DATA AB ,意义：燃料轨压力绝对（0-655350kpa） 结果：";
+
+        public const string PID_5A_DATA = "pid=5A,字节长度=1, DATA A ,意义：相对油门踏板（0-100%） 结果：";
+        //5B-FF 保留
+        public const string PID_5B_FF_DATA = "pid=5B-FF,意义：保留";
+
+        public const string PID_FD_DATA = "pid=FD,字节长度=2, DATA AB ,意义：ADP 气流抵消（-32768-32767） 结果：";
+        public const string PID_FE_DATA = "pid=FE,字节长度=2, DATA AB ,意义：ADP燃料乘数（65535） 结果：";
+        public const string PID_FF_DATA = "pid=FF,字节长度=2, DATA AB ,意义：ADP 燃料抵消（-32768-32767） 结果：";
+
         #endregion
     }
 
@@ -636,7 +737,7 @@ namespace CANManager.CAN
                             PID_0X12(framePerBinaryDataA.ToCharArray(), framePerBinaryDataB.ToCharArray(), framePerBinaryDataC.ToCharArray(), framePerBinaryDataD.ToCharArray());
                             break;
                         case (int)Model_PID.PID_0X13:
-                            PID_0X13(framePerBinaryDataA.ToCharArray(), framePerBinaryDataB.ToCharArray(), framePerBinaryDataC.ToCharArray(), framePerBinaryDataD.ToCharArray());
+                            PID_0X13(framePerBinaryDataA.ToCharArray());
                             break;
                         case (int)Model_PID.PID_0X14:
                             PID_0X14(framePerBinaryDataA.ToCharArray(), framePerBinaryDataB.ToCharArray(), framePerBinaryDataC.ToCharArray(), framePerBinaryDataD.ToCharArray());
@@ -1333,7 +1434,7 @@ namespace CANManager.CAN
         {
             //计算负荷值
             //公式：A * 100/255
-            double v = Convert.ToInt32(dataA.ToString()) * (100 / 255.00);
+            double v = Convert.ToInt32(dataA.ToString(), 16) * (100 / 255.00);
             analysisContent.AppendLine($"{PID_MEAN.PID_04_DATAA} {v}%");
         }
 
@@ -1344,7 +1445,7 @@ namespace CANManager.CAN
         private static void PID_0XO5(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
         {
             //公式：A-40
-            double c = Convert.ToInt32(dataA.ToString()) - 40;
+            double c = Convert.ToInt32(dataA.ToString(), 16) - 40;
             analysisContent.AppendLine($"{PID_MEAN.PID_05_DATAA} {c}℃");
         }
 
@@ -1355,7 +1456,7 @@ namespace CANManager.CAN
         private static void PID_0XO6(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
         {
             //公式：（A-128）(100/128)
-            double k = (Convert.ToInt32(dataA.ToString())-128) * (100 / 128.00);
+            double k = (Convert.ToInt32(dataA.ToString(), 16) -128) * (100 / 128.00);
             analysisContent.AppendLine($"{PID_MEAN.PID_06_DATAA} {k}%");
         }
 
@@ -1365,7 +1466,7 @@ namespace CANManager.CAN
         /// <param name="dataA"></param>
         private static void PID_0XO7(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
         {
-            double k = (Convert.ToInt32(dataA.ToString()) - 128) * (100 / 128.00);
+            double k = (Convert.ToInt32(dataA.ToString(), 16) - 128) * (100 / 128.00);
             analysisContent.AppendLine($"{PID_MEAN.PID_07_DATAA} {k}%");
         }
 
@@ -1375,7 +1476,7 @@ namespace CANManager.CAN
         /// <param name="dataA"></param>
         private static void PID_0XO8(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
         {
-            double k = (Convert.ToInt32(dataA.ToString()) - 128) * (100 / 128.00);
+            double k = (Convert.ToInt32(dataA.ToString(), 16) - 128) * (100 / 128.00);
             analysisContent.AppendLine($"{PID_MEAN.PID_08_DATAA} {k}%");
         }
 
@@ -1385,7 +1486,7 @@ namespace CANManager.CAN
         /// <param name="dataA"></param>
         private static void PID_0XO9(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
         {
-            double k = (Convert.ToInt32(dataA.ToString()) - 128) * (100 / 128);
+            double k = (Convert.ToInt32(dataA.ToString(), 16) - 128) * (100 / 128);
             analysisContent.AppendLine($"{PID_MEAN.PID_09_DATAA} {k}%");
         }
 
@@ -1406,7 +1507,7 @@ namespace CANManager.CAN
         /// <param name="dataA"></param>
         private static void PID_0X0B(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
         {
-            double v = Convert.ToInt32(dataA.ToString());
+            double v = Convert.ToInt32(dataA.ToString(), 16);
             analysisContent.AppendLine($"{PID_MEAN.PID_0B_DATAA} {v}kPa");
         }
 
@@ -1418,8 +1519,8 @@ namespace CANManager.CAN
         private static void PID_0X0C(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
         {
             //公式：（A*256+B）/ 4
-            double a = Convert.ToInt32(dataA.ToString());
-            double b = Convert.ToInt32(dataB.ToString());
+            double a = Convert.ToInt32(dataA.ToString(), 16);
+            double b = Convert.ToInt32(dataB.ToString(), 16);
             double v = (a * 256 + b) / 4;
             analysisContent.AppendLine($"{PID_MEAN.PID_0C_DATAA_B} {v}rpm");
         }
@@ -1430,7 +1531,7 @@ namespace CANManager.CAN
         /// <param name="dataA"></param>
         private static void PID_0X0D(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
         {
-            double s = Convert.ToInt32(dataA.ToString());
+            double s = Convert.ToInt32(dataA.ToString(), 16);
             analysisContent.AppendLine($"{PID_MEAN.PID_0D_DATAA} {s} km/h");
         }
 
@@ -1441,7 +1542,7 @@ namespace CANManager.CAN
         private static void PID_0X0E(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
         {
             //公式：(A-128) /2
-            double v = (Convert.ToInt32(dataA.ToString()) - 128) / 2;
+            double v = (Convert.ToInt32(dataA.ToString(), 16) - 128) / 2;
             analysisContent.AppendLine($"{PID_MEAN.PID_0E_DATAA} {v}°");
         }
 
@@ -1452,7 +1553,7 @@ namespace CANManager.CAN
         private static void PID_0X0F(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
         {
             //公式：A-40
-            double v = Convert.ToInt32(dataA.ToString()) - 40;
+            double v = Convert.ToInt32(dataA.ToString(), 16) - 40;
             analysisContent.AppendLine($"{PID_MEAN.PID_0F_DATAA}");
         }
         #endregion
@@ -1467,8 +1568,8 @@ namespace CANManager.CAN
         private static void PID_0X10(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
         {
             //公式：（A * 256 + b） / 100
-            double a = Convert.ToInt32(dataA.ToString());
-            double b = Convert.ToInt32(dataB.ToString());
+            double a = Convert.ToInt32(dataA.ToString(), 16);
+            double b = Convert.ToInt32(dataB.ToString(), 16);
             double v = (a * 256 + b) / 100;
             analysisContent.AppendLine($"{PID_MEAN.PID_10_DATAA} {v}grams/sec");
         }
@@ -1480,7 +1581,7 @@ namespace CANManager.CAN
         private static void PID_0X11(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
         {
             //公式:A * (100/255)
-            double v = Convert.ToInt32(dataA.ToString()) * (100 / 255.00);
+            double v = Convert.ToInt32(dataA.ToString(), 16) * (100 / 255.00);
             analysisContent.AppendLine($"{PID_MEAN.PID_11_DATAA} {v}%");
         }
 
@@ -1491,269 +1592,1017 @@ namespace CANManager.CAN
                 switch (i)
                 {
                     case 0:
-
+                        analysisContent.AppendLine($"{PID_MEAN.PID_12_DATAA_00} AIR_STATUS UPS {dataA[i]}");
                         break;
                     case 1:
-
+                        analysisContent.AppendLine($"{PID_MEAN.PID_12_DATAA_01} AIR_STATUS DNS {dataA[i]}");
                         break;
                     case 2:
-
+                        analysisContent.AppendLine($"{PID_MEAN.PID_12_DATAA_02} AIR_STATUS OFF {dataA[i]}");
                         break;
                     case 3:
-
+                        analysisContent.AppendLine($"{PID_MEAN.PID_12_DATAA_03} {dataA[i]}");
                         break;
                     case 4:
-
+                        analysisContent.AppendLine($"{PID_MEAN.PID_12_DATAA_04} {dataA[i]}");
                         break;
                     case 5:
-
+                        analysisContent.AppendLine($"{PID_MEAN.PID_12_DATAA_05} {dataA[i]}");
                         break;
                     case 6:
-
+                        analysisContent.AppendLine($"{PID_MEAN.PID_12_DATAA_06} {dataA[i]}");
                         break;
                     case 7:
-
+                        analysisContent.AppendLine($"{PID_MEAN.PID_12_DATAA_07} {dataA[i]}");
                         break;
                 }
             }
         }
 
-        private static void PID_0X13(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
+        /// <summary>
+        /// 氧传感器存在情况
+        /// </summary>
+        /// <param name="dataA"></param>
+        private static void PID_0X13(char[] dataA)
         {
+            for (int i = 0; i < dataA.Length; i++)
+            {
+                switch (i)
+                {
+                    case 0:
+                        if (dataA[i] == 1)
+                        {
+                            analysisContent.AppendLine($"{PID_MEAN.PID_13_DATAA_00} {dataA[i]}-存在");
+                        }
+                        else
+                        {
+                            analysisContent.AppendLine($"{PID_MEAN.PID_13_DATAA_00} {dataA[i]}-不存在");
+                        }
+                        break;
 
+                    case 1:
+                        if (dataA[i] == 1)
+                        {
+                            analysisContent.AppendLine($"{PID_MEAN.PID_13_DATAA_01} {dataA[i]}-存在");
+                        }
+                        else
+                        {
+                            analysisContent.AppendLine($"{PID_MEAN.PID_13_DATAA_01} {dataA[i]}-不存在");
+                        }
+                        break;
+                    case 2:
+                        if (dataA[i] == 1)
+                        {
+                            analysisContent.AppendLine($"{PID_MEAN.PID_13_DATAA_02} {dataA[i]}-存在");
+                        }
+                        else
+                        {
+                            analysisContent.AppendLine($"{PID_MEAN.PID_13_DATAA_02} {dataA[i]}-不存在");
+                        }
+                        break;
+                    case 3:
+                        if (dataA[i] == 1)
+                        {
+                            analysisContent.AppendLine($"{PID_MEAN.PID_13_DATAA_03} {dataA[i]}-存在");
+                        }
+                        else
+                        {
+                            analysisContent.AppendLine($"{PID_MEAN.PID_13_DATAA_03} {dataA[i]}-不存在");
+                        }
+                        break;
+                    case 4:
+                        if (dataA[i] == 1)
+                        {
+                            analysisContent.AppendLine($"{PID_MEAN.PID_13_DATAA_04} {dataA[i]}-存在");
+                        }
+                        else
+                        {
+                            analysisContent.AppendLine($"{PID_MEAN.PID_13_DATAA_04} {dataA[i]}-不存在");
+                        }
+                        break;
+                    case 5:
+                        if (dataA[i] == 1)
+                        {
+                            analysisContent.AppendLine($"{PID_MEAN.PID_13_DATAA_05} {dataA[i]}-存在");
+                        }
+                        else
+                        {
+                            analysisContent.AppendLine($"{PID_MEAN.PID_13_DATAA_05} {dataA[i]}-不存在");
+                        }
+                        break;
+                    case 6:
+                        if (dataA[i] == 1)
+                        {
+                            analysisContent.AppendLine($"{PID_MEAN.PID_13_DATAA_06} {dataA[i]}-存在");
+                        }
+                        else
+                        {
+                            analysisContent.AppendLine($"{PID_MEAN.PID_13_DATAA_06} {dataA[i]}-不存在");
+                        }
+                        break;
+                    case 7:
+                        if (dataA[i] == 1)
+                        {
+                            analysisContent.AppendLine($"{PID_MEAN.PID_13_DATAA_07} {dataA[i]}-存在");
+                        }
+                        else
+                        {
+                            analysisContent.AppendLine($"{PID_MEAN.PID_13_DATAA_07} {dataA[i]}-不存在");
+                        }
+                        break;
+                }
+            }
+        }
+        /// <summary>
+        /// 通道1，传感器1
+        /// </summary>
+        /// <param name="dataA"></param>
+        /// <param name="dataB"></param>
+        private static void PID_0X14(char[] dataA, char[] dataB)
+        {
+            ///公式：A/200 Volts;
+            ///(B-128) * 100/128  %
+            double va = Convert.ToInt32(dataA.ToString(),16) / 200.00;
+            double vb = (Convert.ToInt32(dataB.ToString(),16) - 128) * (100 / 128.00);
+            analysisContent.AppendLine($"{PID_MEAN.PID_14_DATA} 氧传感器电压={va}Volts;短期燃油修正={vb}%");
         }
 
-        private static void PID_0X14(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
+        /// <summary>
+        /// 通道1，传感器2
+        /// </summary>
+        /// <param name="dataA"></param>
+        /// <param name="dataB"></param>
+        private static void PID_0X15(char[] dataA, char[] dataB)
         {
-
+            ///公式：A/200 Volts;
+            ///(B-128) * 100/128  %
+            double va = Convert.ToInt32(dataA.ToString(), 16) / 200.00;
+            double vb = (Convert.ToInt32(dataB.ToString(), 16) - 128) * (100 / 128.00);
+            analysisContent.AppendLine($"{PID_MEAN.PID_15_DATA} 氧传感器电压={va}Volts;短期燃油修正={vb}%");
         }
 
-        private static void PID_0X15(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
+        /// <summary>
+        /// 通道1，传感器3
+        /// </summary>
+        /// <param name="dataA"></param>
+        /// <param name="dataB"></param>
+        private static void PID_0X16(char[] dataA, char[] dataB)
         {
-
+            ///公式：A/200 Volts;
+            ///(B-128) * 100/128  %
+            double va = Convert.ToInt32(dataA.ToString(), 16) / 200.00;
+            double vb = (Convert.ToInt32(dataB.ToString(), 16) - 128) * (100 / 128.00);
+            analysisContent.AppendLine($"{PID_MEAN.PID_16_DATA} 氧传感器电压={va}Volts;短期燃油修正={vb}%");
         }
 
-        private static void PID_0X16(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
+        /// <summary>
+        /// 通道1，传感器4
+        /// </summary>
+        /// <param name="dataA"></param>
+        /// <param name="dataB"></param>
+        private static void PID_0X17(char[] dataA, char[] dataB)
         {
-
+            ///公式：A/200 Volts;
+            ///(B-128) * 100/128  %
+            double va = Convert.ToInt32(dataA.ToString(), 16) / 200.00;
+            double vb = (Convert.ToInt32(dataB.ToString(), 16) - 128) * (100 / 128.00);
+            analysisContent.AppendLine($"{PID_MEAN.PID_17_DATA} 氧传感器电压={va}Volts;短期燃油修正={vb}%");
         }
 
-        private static void PID_0X17(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
+        /// <summary>
+        /// 通道2，传感器1
+        /// </summary>
+        /// <param name="dataA"></param>
+        /// <param name="dataB"></param>
+        private static void PID_0X18(char[] dataA, char[] dataB)
         {
-
+            ///公式：A/200 Volts;
+            ///(B-128) * 100/128  %
+            double va = Convert.ToInt32(dataA.ToString(), 16) / 200.00;
+            double vb = (Convert.ToInt32(dataB.ToString(), 16) - 128) * (100 / 128.00);
+            analysisContent.AppendLine($"{PID_MEAN.PID_18_DATA} 氧传感器电压={va}Volts;短期燃油修正={vb}%");
         }
 
-        private static void PID_0X18(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
+        /// <summary>
+        /// 通道2，传感器2
+        /// </summary>
+        /// <param name="dataA"></param>
+        /// <param name="dataB"></param>
+        private static void PID_0X19(char[] dataA, char[] dataB)
         {
-
+            ///公式：A/200 Volts;
+            ///(B-128) * 100/128  %
+            double va = Convert.ToInt32(dataA.ToString(), 16) / 200.00;
+            double vb = (Convert.ToInt32(dataB.ToString(), 16) - 128) * (100 / 128.00);
+            analysisContent.AppendLine($"{PID_MEAN.PID_19_DATA} 氧传感器电压={va}Volts;短期燃油修正={vb}%");
         }
 
-        private static void PID_0X19(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
+        /// <summary>
+        /// 通道2，传感器3
+        /// </summary>
+        /// <param name="dataA"></param>
+        /// <param name="dataB"></param>
+        private static void PID_0X1A(char[] dataA, char[] dataB)
         {
-
+            ///公式：A/200 Volts;
+            ///(B-128) * 100/128  %
+            double va = Convert.ToInt32(dataA.ToString(), 16) / 200.00;
+            double vb = (Convert.ToInt32(dataB.ToString(), 16) - 128) * (100 / 128.00);
+            analysisContent.AppendLine($"{PID_MEAN.PID_1A_DATA} 氧传感器电压={va}Volts;短期燃油修正={vb}%");
         }
 
-        private static void PID_0X1A(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
+        /// <summary>
+        /// 通道2，传感器4
+        /// </summary>
+        /// <param name="dataA"></param>
+        /// <param name="dataB"></param>
+        private static void PID_0X1B(char[] dataA, char[] dataB)
         {
-
-        }
-
-        private static void PID_0X1B(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
-        {
-
+            ///公式：A/200 Volts;
+            ///(B-128) * 100/128  %
+            double va = Convert.ToInt32(dataA.ToString(), 16) / 200.00;
+            double vb = (Convert.ToInt32(dataB.ToString(), 16) - 128) * (100 / 128.00);
+            analysisContent.AppendLine($"{PID_MEAN.PID_1B_DATA} 氧传感器电压={va}Volts;短期燃油修正={vb}%");
         }
 
         private static void PID_0X1C(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
         {
+            for (int i = 0; i < dataA.Length; i++)
+            {
+                switch (i)
+                {
+                    case 0:
+                        analysisContent.AppendLine($"{PID_MEAN.PID_1C_DATA_01} {dataA[i]}");
+                        break;
+                    case 1:
+                        analysisContent.AppendLine($"{PID_MEAN.PID_1C_DATA_02} {dataA[i]}");
+                        break;
+                    case 2:
+                        analysisContent.AppendLine($"{PID_MEAN.PID_1C_DATA_03} {dataA[i]}");
+                        break;
+                    case 3:
+                        analysisContent.AppendLine($"{PID_MEAN.PID_1C_DATA_04} {dataA[i]}");
+                        break;
+                    case 4:
+                        analysisContent.AppendLine($"{PID_MEAN.PID_1C_DATA_05} {dataA[i]}");
+                        break;
+                    case 5:
+                        analysisContent.AppendLine($"{PID_MEAN.PID_1C_DATA_06} {dataA[i]}");
+                        break;
+                    case 6:
+                        analysisContent.AppendLine($"{PID_MEAN.PID_1C_DATA_07} {dataA[i]}");
+                        break;
+                    case 7:
+                        analysisContent.AppendLine($"{PID_MEAN.PID_1C_DATA_08} {dataA[i]}");
+                        break;
+                }
+            }
 
+            for (int i = 0; i < dataB.Length; i++)
+            {
+                switch (i)
+                {
+                    case 0:
+                        analysisContent.AppendLine($"{PID_MEAN.PID_1C_DATA_09} {dataB[i]}");
+                        break;
+                    case 1:
+                        analysisContent.AppendLine($"{PID_MEAN.PID_1C_DATA_0A} {dataB[i]}");
+                        break;
+                    case 2:
+                        analysisContent.AppendLine($"{PID_MEAN.PID_1C_DATA_0B} {dataB[i]}");
+                        break;
+                    case 3:
+                        analysisContent.AppendLine($"{PID_MEAN.PID_1C_DATA_0C} {dataB[i]}");
+                        break;
+                    case 4:
+                        analysisContent.AppendLine($"{PID_MEAN.PID_1C_DATA_0D} {dataB[i]}");
+                        break;
+                    case 5:
+                        analysisContent.AppendLine($"{PID_MEAN.PID_1C_DATA_0E} {dataB[i]}");
+                        break;
+                    case 6:
+                        analysisContent.AppendLine($"{PID_MEAN.PID_1C_DATA_0F} {dataB[i]}");
+                        break;
+                    case 7:
+                        analysisContent.AppendLine($"{PID_MEAN.PID_1C_DATA_10} {dataB[i]}");
+                        break;
+                }
+            }
+
+            for (int i = 0; i < dataC.Length; i++)
+            {
+                switch (i)
+                {
+                    case 0:
+                        analysisContent.AppendLine($"{PID_MEAN.PID_1C_DATA_11} {dataC[i]}");
+                        break;
+                }
+            }
         }
 
-        private static void PID_0X1D(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
+        /// <summary>
+        /// 氧传感器位置存在情况
+        /// </summary>
+        /// <param name="dataA"></param>
+        private static void PID_0X1D(char[] dataA)
         {
+            for (int i = 0; i < dataA.Length; i++)
+            {
+                switch (i)
+                {
+                    case 0:
+                        if (dataA[i] == 1)
+                        {
+                            analysisContent.AppendLine($"{PID_MEAN.PID_1D_DATAA_00} {dataA[i]}-存在");
+                        }
+                        else
+                        {
+                            analysisContent.AppendLine($"{PID_MEAN.PID_1D_DATAA_00} {dataA[i]}-不存在");
+                        }
+                        break;
 
+                    case 1:
+                        if (dataA[i] == 1)
+                        {
+                            analysisContent.AppendLine($"{PID_MEAN.PID_1D_DATAA_01} {dataA[i]}-存在");
+                        }
+                        else
+                        {
+                            analysisContent.AppendLine($"{PID_MEAN.PID_1D_DATAA_01} {dataA[i]}-不存在");
+                        }
+                        break;
+                    case 2:
+                        if (dataA[i] == 1)
+                        {
+                            analysisContent.AppendLine($"{PID_MEAN.PID_1D_DATAA_02} {dataA[i]}-存在");
+                        }
+                        else
+                        {
+                            analysisContent.AppendLine($"{PID_MEAN.PID_1D_DATAA_02} {dataA[i]}-不存在");
+                        }
+                        break;
+                    case 3:
+                        if (dataA[i] == 1)
+                        {
+                            analysisContent.AppendLine($"{PID_MEAN.PID_1D_DATAA_03} {dataA[i]}-存在");
+                        }
+                        else
+                        {
+                            analysisContent.AppendLine($"{PID_MEAN.PID_1D_DATAA_03} {dataA[i]}-不存在");
+                        }
+                        break;
+                    case 4:
+                        if (dataA[i] == 1)
+                        {
+                            analysisContent.AppendLine($"{PID_MEAN.PID_1D_DATAA_04} {dataA[i]}-存在");
+                        }
+                        else
+                        {
+                            analysisContent.AppendLine($"{PID_MEAN.PID_1D_DATAA_04} {dataA[i]}-不存在");
+                        }
+                        break;
+                    case 5:
+                        if (dataA[i] == 1)
+                        {
+                            analysisContent.AppendLine($"{PID_MEAN.PID_1D_DATAA_05} {dataA[i]}-存在");
+                        }
+                        else
+                        {
+                            analysisContent.AppendLine($"{PID_MEAN.PID_1D_DATAA_05} {dataA[i]}-不存在");
+                        }
+                        break;
+                    case 6:
+                        if (dataA[i] == 1)
+                        {
+                            analysisContent.AppendLine($"{PID_MEAN.PID_1D_DATAA_06} {dataA[i]}-存在");
+                        }
+                        else
+                        {
+                            analysisContent.AppendLine($"{PID_MEAN.PID_1D_DATAA_06} {dataA[i]}-不存在");
+                        }
+                        break;
+                    case 7:
+                        if (dataA[i] == 1)
+                        {
+                            analysisContent.AppendLine($"{PID_MEAN.PID_1D_DATAA_07} {dataA[i]}-存在");
+                        }
+                        else
+                        {
+                            analysisContent.AppendLine($"{PID_MEAN.PID_1D_DATAA_07} {dataA[i]}-不存在");
+                        }
+                        break;
+                }
+            }
         }
 
-        private static void PID_0X1E(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
+        /// <summary>
+        /// 辅助输入状态
+        /// </summary>
+        /// <param name="dataA"></param>
+        private static void PID_0X1E(char[] dataA)
         {
-
+            for (int i = 0; i < dataA.Length; i++)
+            {
+                switch (i)
+                {
+                    case 0:
+                        if (dataA[i] == 1)
+                        {
+                            analysisContent.AppendLine($"{PID_MEAN.PID_1E_DATA_A_00} {dataA[i]}-激活");
+                        }
+                        else
+                        {
+                            analysisContent.AppendLine($"{PID_MEAN.PID_1E_DATA_A_00} {dataA[i]}-关闭");
+                        }
+                        break;
+                    default:
+                        analysisContent.AppendLine($"{PID_MEAN.PID_1E_DATA_A_01_07} {dataA[i]}");
+                        break;
+                }
+            }
         }
 
-        private static void PID_0X1F(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
+        /// <summary>
+        /// 引擎启动后的运行时间
+        /// </summary>
+        /// <param name="dataA"></param>
+        /// <param name="dataB"></param>
+        private static void PID_0X1F(char[] dataA, char[] dataB)
         {
-
+            ///公式：A*256 +b
+            double a = Convert.ToInt32(dataA.ToString(), 16);
+            double b = Convert.ToUInt32(dataB.ToString(), 16);
+            double v = a * 256 + b;
+            analysisContent.AppendLine($"{PID_MEAN.PID_1F_DATA} {v}秒");
         }
 
         #endregion
 
         #region pid 21-2f
-        private static void PID_0X21(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
+        /// <summary>
+        /// MIL灯点亮后车辆行驶里程
+        /// </summary>
+        /// <param name="dataA"></param>
+        /// <param name="dataB"></param>
+        private static void PID_0X21(char[] dataA, char[] dataB)
         {
-
+            ///a*256+b
+            double a = Convert.ToInt32(dataA.ToString(), 16);
+            double b = Convert.ToInt32(dataB.ToString(), 16);
+            double v = a * 256 + b;
+            analysisContent.AppendLine($"{PID_MEAN.PID_21_DATA} {v}Km");
         }
 
-        private static void PID_0X22(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
+        /// <summary>
+        /// 油轨压力（相对于歧管真空度）
+        /// </summary>
+        /// <param name="dataA"></param>
+        /// <param name="dataB"></param>
+        private static void PID_0X22(char[] dataA, char[] dataB)
         {
-
+            ///(a*256+b)*0.079
+            double a = Convert.ToInt32(dataA.ToString(), 16);
+            double b = Convert.ToInt32(dataB.ToString(), 16);
+            double v = (a * 256 + b) * 0.079;
+            analysisContent.AppendLine($"{PID_MEAN.PID_22_DATA} {v}kPa");
         }
 
-        private static void PID_0X23(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
+        /// <summary>
+        /// 油轨压力（柴油和汽油直喷）
+        /// </summary>
+        /// <param name="dataA"></param>
+        /// <param name="dataB"></param>
+        private static void PID_0X23(char[] dataA, char[] dataB)
         {
-
+            ///（a*256+b）*10
+            double a = Convert.ToInt32(dataA.ToString(), 16);
+            double b = Convert.ToInt32(dataB.ToString(), 16);
+            double v = (a * 256 + b) * 10;
+            analysisContent.AppendLine($"{PID_MEAN.PID_23_DATA} {v}kPa");
         }
 
+        /// <summary>
+        /// 仅适用于PID13定义的氧传感器位置
+        /// </summary>
+        /// <param name="dataA"></param>
+        /// <param name="dataB"></param>
+        /// <param name="dataC"></param>
+        /// <param name="dataD"></param>
         private static void PID_0X24(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
         {
-
+            //v1 = (a * 256 +b) * 2/65535  or (a*256+b)/32768
+            //v2 = (c*256 +d)*8/65535  or (c*256 + d) /8192
+            double a = Convert.ToInt32(dataA.ToString(), 16);
+            double b = Convert.ToInt32(dataB.ToString(), 16);
+            double c = Convert.ToInt32(dataC.ToString(), 16);
+            double d = Convert.ToInt32(dataD.ToString(), 16);
+            double v1 = (a * 256 + b) / 32768.00;
+            double v2 = (c * 256 + d) / 8192.00;
+            analysisContent.AppendLine($"{PID_MEAN.PID_24_DATA_13} 等效比={v1}N/A,氧传感器电压={v2}V");
         }
 
         private static void PID_0X25(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
         {
-
+            double a = Convert.ToInt32(dataA.ToString(), 16);
+            double b = Convert.ToInt32(dataB.ToString(), 16);
+            double c = Convert.ToInt32(dataC.ToString(), 16);
+            double d = Convert.ToInt32(dataD.ToString(), 16);
+            double v1 = (a * 256 + b) / 32768.00;
+            double v2 = (c * 256 + d) / 8192.00;
+            analysisContent.AppendLine($"{PID_MEAN.PID_25_DATA_13} 等效比={v1}N/A,氧传感器电压={v2}V");
         }
 
         private static void PID_0X26(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
         {
-
+            double a = Convert.ToInt32(dataA.ToString(), 16);
+            double b = Convert.ToInt32(dataB.ToString(), 16);
+            double c = Convert.ToInt32(dataC.ToString(), 16);
+            double d = Convert.ToInt32(dataD.ToString(), 16);
+            double v1 = (a * 256 + b) / 32768.00;
+            double v2 = (c * 256 + d) / 8192.00;
+            analysisContent.AppendLine($"{PID_MEAN.PID_26_DATA_13} 等效比={v1}N/A,氧传感器电压={v2}V");
         }
 
         private static void PID_0X27(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
         {
-
+            double a = Convert.ToInt32(dataA.ToString(), 16);
+            double b = Convert.ToInt32(dataB.ToString(), 16);
+            double c = Convert.ToInt32(dataC.ToString(), 16);
+            double d = Convert.ToInt32(dataD.ToString(), 16);
+            double v1 = (a * 256 + b) / 32768.00;
+            double v2 = (c * 256 + d) / 8192.00;
+            analysisContent.AppendLine($"{PID_MEAN.PID_27_DATA_13} 等效比={v1}N/A,氧传感器电压={v2}V");
         }
 
         private static void PID_0X28(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
         {
-
+            double a = Convert.ToInt32(dataA.ToString(), 16);
+            double b = Convert.ToInt32(dataB.ToString(), 16);
+            double c = Convert.ToInt32(dataC.ToString(), 16);
+            double d = Convert.ToInt32(dataD.ToString(), 16);
+            double v1 = (a * 256 + b) / 32768.00;
+            double v2 = (c * 256 + d) / 8192.00;
+            analysisContent.AppendLine($"{PID_MEAN.PID_28_DATA_13} 等效比={v1}N/A,氧传感器电压={v2}V");
         }
 
         private static void PID_0X29(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
         {
-
+            double a = Convert.ToInt32(dataA.ToString(), 16);
+            double b = Convert.ToInt32(dataB.ToString(), 16);
+            double c = Convert.ToInt32(dataC.ToString(), 16);
+            double d = Convert.ToInt32(dataD.ToString(), 16);
+            double v1 = (a * 256 + b) / 32768.00;
+            double v2 = (c * 256 + d) / 8192.00;
+            analysisContent.AppendLine($"{PID_MEAN.PID_29_DATA_13} 等效比={v1}N/A,氧传感器电压={v2}V");
         }
 
         private static void PID_0X2A(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
         {
-
+            double a = Convert.ToInt32(dataA.ToString(), 16);
+            double b = Convert.ToInt32(dataB.ToString(), 16);
+            double c = Convert.ToInt32(dataC.ToString(), 16);
+            double d = Convert.ToInt32(dataD.ToString(), 16);
+            double v1 = (a * 256 + b) / 32768.00;
+            double v2 = (c * 256 + d) / 8192.00;
+            analysisContent.AppendLine($"{PID_MEAN.PID_2A_DATA_13} 等效比={v1}N/A,氧传感器电压={v2}V");
         }
 
         private static void PID_0X2B(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
         {
-
+            double a = Convert.ToInt32(dataA.ToString(), 16);
+            double b = Convert.ToInt32(dataB.ToString(), 16);
+            double c = Convert.ToInt32(dataC.ToString(),16);
+            double d = Convert.ToInt32(dataD.ToString(),16);
+            double v1 = (a * 256 + b) / 32768.00;
+            double v2 = (c * 256 + d) / 8192.00;
+            analysisContent.AppendLine($"{PID_MEAN.PID_2B_DATA_13} 等效比={v1}N/A,氧传感器电压={v2}V");
         }
 
-        private static void PID_0X2C(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
+        /// <summary>
+        /// 废弃循环命令
+        /// </summary>
+        /// <param name="dataA"></param>
+        private static void PID_0X2C(char[] dataA)
         {
-
+            //公式：a * 100/255
+            double v = Convert.ToInt32(dataA.ToString(),16) * (100 / 255.00);
+            analysisContent.AppendLine($"{PID_MEAN.PID_2C_DATA} {v}%");
         }
 
-        private static void PID_0X2D(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
+        /// <summary>
+        /// 废弃循环错误
+        /// </summary>
+        /// <param name="dataA"></param>
+        private static void PID_0X2D(char[] dataA)
         {
-
+            //(a-128) * 100 / 128
+            double a = Convert.ToInt32(dataA.ToString(), 16);
+            double v = (a - 128) * 100 / 128.00;
+            analysisContent.AppendLine($"{PID_MEAN.PID_2D_DATA} {v}%");
         }
 
-        private static void PID_0X2E(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
+        /// <summary>
+        /// 蒸发净化命令
+        /// </summary>
+        /// <param name="dataA"></param>
+        private static void PID_0X2E(char[] dataA)
         {
-
+            //a * 100 / 128
+            double a = Convert.ToInt32(dataA.ToString(), 16);
+            double v = a * 100 / 128.00;
+            analysisContent.AppendLine($"{PID_MEAN.PID_2E_DATA} {v}%");
         }
 
-        private static void PID_0X2F(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
+        /// <summary>
+        /// 油量液化情况
+        /// </summary>
+        /// <param name="dataA"></param>
+        private static void PID_0X2F(char[] dataA)
         {
-
+            //a * 100 / 128
+            double a = Convert.ToInt32(dataA.ToString(), 16);
+            double v = a * 100 / 128.00;
+            analysisContent.AppendLine($"{PID_MEAN.PID_2F_DATA} {v}%");
         }
 
         #endregion
 
         #region pid 30-3f
-        private static void PID_0X30(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
+        /// <summary>
+        /// 自诊断故障清除后热身次数
+        /// </summary>
+        /// <param name="dataA"></param>
+        private static void PID_0X30(char[] dataA)
         {
+            //A
+            double a = Convert.ToInt32(dataA.ToString(), 16);
 
+            analysisContent.AppendLine($"{PID_MEAN.PID_30_DATA} {a}N/A");
         }
 
-        private static void PID_0X31(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
+        /// <summary>
+        /// 故障码清除后行驶里程
+        /// </summary>
+        /// <param name="dataA"></param>
+        private static void PID_0X31(char[] dataA,char[] dataB)
         {
-
+            //a * 256 +b
+            double a = Convert.ToInt32(dataA.ToString(), 16);
+            double b = Convert.ToInt32(dataB.ToString(), 16);
+            double v = a * 256 + b;
+            analysisContent.AppendLine($"{PID_MEAN.PID_31_DATA} {v}Km");
         }
 
-        private static void PID_0X32(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
+        /// <summary>
+        /// 系统蒸汽压力
+        /// </summary>
+        /// <param name="dataA"></param>
+        /// <param name="dataB"></param>
+        private static void PID_0X32(char[] dataA, char[] dataB)
         {
-
+            //（a * 256 +b）/4
+            double a = Convert.ToInt32(dataA.ToString(), 16);
+            double b = Convert.ToInt32(dataB.ToString(), 16);
+            double v = (a * 256 + b) / 4.00;
+            analysisContent.AppendLine($"{PID_MEAN.PID_32_DATA} {v}Pa");
         }
 
-        private static void PID_0X33(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
+        /// <summary>
+        /// 大气压
+        /// </summary>
+        /// <param name="dataA"></param>
+        private static void PID_0X33(char[] dataA)
         {
+            //a * 256 +b
+            double a = Convert.ToInt32(dataA.ToString(), 16);
 
+            analysisContent.AppendLine($"{PID_MEAN.PID_33_DATA} {a}kPa");
         }
 
+        /// <summary>
+        /// 34-3B 仅适用于PID13定义的氧传感器位置
+        /// </summary>
+        /// <param name="dataA"></param>
+        /// <param name="dataB"></param>
+        /// <param name="dataC"></param>
+        /// <param name="dataD"></param>
         private static void PID_0X34(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
         {
-
+            //v1 = (a*256+b) / 32768
+            //v2 = (c*256 +d) /256 - 128
+            double a = Convert.ToInt32(dataA.ToString(), 16);
+            double b = Convert.ToInt32(dataB.ToString(), 16);
+            double c = Convert.ToInt32(dataC.ToString(), 16);
+            double d = Convert.ToInt32(dataD.ToString(), 16);
+            double v1 = (a * 256 + b) / 32768.00;
+            double v2 = (c * 256 + d) / 256.00 - 128;
+            analysisContent.AppendLine($"{PID_MEAN.PID_34_1D_DATA} 等效比={v1}N/A,氧传感器电流={v2}mA");
         }
 
         private static void PID_0X35(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
         {
-
+            double a = Convert.ToInt32(dataA.ToString(), 16);
+            double b = Convert.ToInt32(dataB.ToString(), 16);
+            double c = Convert.ToInt32(dataC.ToString(), 16);
+            double d = Convert.ToInt32(dataD.ToString(), 16);
+            double v1 = (a * 256 + b) / 32768.00;
+            double v2 = (c * 256 + d) / 256.00 - 128;
+            analysisContent.AppendLine($"{PID_MEAN.PID_35_1D_DATA} 等效比={v1}N/A,氧传感器电流={v2}mA");
         }
 
         private static void PID_0X36(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
         {
-
+            double a = Convert.ToInt32(dataA.ToString(), 16);
+            double b = Convert.ToInt32(dataB.ToString(), 16);
+            double c = Convert.ToInt32(dataC.ToString(), 16);
+            double d = Convert.ToInt32(dataD.ToString(), 16);
+            double v1 = (a * 256 + b) / 32768.00;
+            double v2 = (c * 256 + d) / 256.00 - 128;
+            analysisContent.AppendLine($"{PID_MEAN.PID_36_1D_DATA} 等效比={v1}N/A,氧传感器电流={v2}mA");
         }
 
         private static void PID_0X37(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
         {
-
+            double a = Convert.ToInt32(dataA.ToString(), 16);
+            double b = Convert.ToInt32(dataB.ToString(), 16);
+            double c = Convert.ToInt32(dataC.ToString(), 16);
+            double d = Convert.ToInt32(dataD.ToString(), 16);
+            double v1 = (a * 256 + b) / 32768.00;
+            double v2 = (c * 256 + d) / 256.00 - 128;
+            analysisContent.AppendLine($"{PID_MEAN.PID_37_1D_DATA} 等效比={v1}N/A,氧传感器电流={v2}mA");
         }
 
         private static void PID_0X38(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
         {
-
+            double a = Convert.ToInt32(dataA.ToString(), 16);
+            double b = Convert.ToInt32(dataB.ToString(), 16);
+            double c = Convert.ToInt32(dataC.ToString(), 16);
+            double d = Convert.ToInt32(dataD.ToString(), 16);
+            double v1 = (a * 256 + b) / 32768.00;
+            double v2 = (c * 256 + d) / 256.00 - 128;
+            analysisContent.AppendLine($"{PID_MEAN.PID_38_1D_DATA} 等效比={v1}N/A,氧传感器电流={v2}mA");
         }
 
         private static void PID_0X39(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
         {
-
+            double a = Convert.ToInt32(dataA.ToString(), 16);
+            double b = Convert.ToInt32(dataB.ToString(), 16);
+            double c = Convert.ToInt32(dataC.ToString(), 16);
+            double d = Convert.ToInt32(dataD.ToString(), 16);
+            double v1 = (a * 256 + b) / 32768.00;
+            double v2 = (c * 256 + d) / 256.00 - 128;
+            analysisContent.AppendLine($"{PID_MEAN.PID_39_1D_DATA} 等效比={v1}N/A,氧传感器电流={v2}mA");
         }
 
         private static void PID_0X3A(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
         {
-
+            double a = Convert.ToInt32(dataA.ToString(), 16);
+            double b = Convert.ToInt32(dataB.ToString(), 16);
+            double c = Convert.ToInt32(dataC.ToString(), 16);
+            double d = Convert.ToInt32(dataD.ToString(), 16);
+            double v1 = (a * 256 + b) / 32768.00;
+            double v2 = (c * 256 + d) / 256.00 - 128;
+            analysisContent.AppendLine($"{PID_MEAN.PID_3A_1D_DATA} 等效比={v1}N/A,氧传感器电流={v2}mA");
         }
 
         private static void PID_0X3B(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
         {
-
+            double a = Convert.ToInt32(dataA.ToString(), 16);
+            double b = Convert.ToInt32(dataB.ToString(), 16);
+            double c = Convert.ToInt32(dataC.ToString(), 16);
+            double d = Convert.ToInt32(dataD.ToString(), 16);
+            double v1 = (a * 256 + b) / 32768.00;
+            double v2 = (c * 256 + d) / 256.00 - 128;
+            analysisContent.AppendLine($"{PID_MEAN.PID_3B_1D_DATA} 等效比={v1}N/A,氧传感器电流={v2}mA");
         }
 
-        private static void PID_0X3C(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
+        /// <summary>
+        /// 催化剂温度（通道1，传感器1）
+        /// </summary>
+        /// <param name="dataA"></param>
+        /// <param name="dataB"></param>
+        private static void PID_0X3C(char[] dataA, char[] dataB)
         {
-
+            //s = (a * 256+b) / 10 -40;
+            double a = Convert.ToInt32(dataA.ToString(), 16);
+            double b = Convert.ToInt32(dataB.ToString(), 16);
+            double v = (a * 256 + b) / 10.00 - 40;
+            analysisContent.AppendLine($"{PID_MEAN.PID_3C_DATA} {v}℃");
         }
 
-        private static void PID_0X3D(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
+        /// <summary>
+        /// 催化剂温度（通道2，传感器1）
+        /// </summary>
+        /// <param name="dataA"></param>
+        /// <param name="dataB"></param>
+        private static void PID_0X3D(char[] dataA, char[] dataB)
         {
-
+            //s = (a * 256+b) / 10 -40;
+            double a = Convert.ToInt32(dataA.ToString(), 16);
+            double b = Convert.ToInt32(dataB.ToString(), 16);
+            double v = (a * 256 + b) / 10.00 - 40;
+            analysisContent.AppendLine($"{PID_MEAN.PID_3D_DATA} {v}℃");
         }
 
-        private static void PID_0X3E(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
+        /// <summary>
+        /// 催化剂温度（通道1，传感器2）
+        /// </summary>
+        /// <param name="dataA"></param>
+        /// <param name="dataB"></param>
+        private static void PID_0X3E(char[] dataA, char[] dataB)
         {
-
+            //s = (a * 256+b) / 10 -40;
+            double a = Convert.ToInt32(dataA.ToString(), 16);
+            double b = Convert.ToInt32(dataB.ToString(), 16);
+            double v = (a * 256 + b) / 10.00 - 40;
+            analysisContent.AppendLine($"{PID_MEAN.PID_3E_DATA} {v}℃");
         }
 
-        private static void PID_0X3F(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
+        /// <summary>
+        /// 催化剂温度（通道2，传感器2）
+        /// </summary>
+        /// <param name="dataA"></param>
+        /// <param name="dataB"></param>
+        private static void PID_0X3F(char[] dataA, char[] dataB)
         {
-
+            //s = (a * 256+b) / 10 -40;
+            double a = Convert.ToInt32(dataA.ToString(), 16);
+            double b = Convert.ToInt32(dataB.ToString(), 16);
+            double v = (a * 256 + b) / 10.00 - 40;
+            analysisContent.AppendLine($"{PID_MEAN.PID_3F_DATA} {v}℃");
         }
         #endregion
 
         #region pid 40-4f
         private static void PID_0X40(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
         {
-
+            
         }
 
         private static void PID_0X41(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
         {
-
+            for (int i = 0; i < dataA.Length; i++)
+            {
+                analysisContent.AppendLine($"{PID_MEAN.PID_41_DATA_A0_A7} {dataA[i]}");
+            }
+            for (int i = 0; i < dataB.Length; i++)
+            {
+                switch (i)
+                {
+                    case 0:
+                        if (dataB[i] == 1)
+                        {
+                            analysisContent.AppendLine($"{PID_MEAN.PID_41_DATA_B0} {dataB[i]}-启用");
+                        }
+                        else
+                        {
+                            analysisContent.AppendLine($"{PID_MEAN.PID_41_DATA_B0} {dataB[i]}-未启用");
+                        }
+                        break;
+                    case 1:
+                        if (dataB[i] == 1)
+                        {
+                            analysisContent.AppendLine($"{PID_MEAN.PID_41_DATA_B1} {dataB[i]}-启用");
+                        }
+                        else
+                        {
+                            analysisContent.AppendLine($"{PID_MEAN.PID_41_DATA_B1} {dataB[i]}-未启用");
+                        }
+                        break;
+                    case 2:
+                        if (dataB[i] == 1)
+                        {
+                            analysisContent.AppendLine($"{PID_MEAN.PID_41_DATA_B2} {dataB[i]}-启用");
+                        }
+                        else
+                        {
+                            analysisContent.AppendLine($"{PID_MEAN.PID_41_DATA_B2} {dataB[i]}-未启用");
+                        }
+                        break;
+                    case 3:
+                        analysisContent.AppendLine($"{PID_MEAN.PID_41_DATA_B3} {dataB[i]}");
+                        break;
+                    case 4:
+                        if (dataB[i] == 1)
+                        {
+                            analysisContent.AppendLine($"{PID_MEAN.PID_41_DATA_B4} {dataB[i]}-未完成");
+                        }
+                        else
+                        {
+                            analysisContent.AppendLine($"{PID_MEAN.PID_41_DATA_B4} {dataB[i]}-完成");
+                        }
+                        break;
+                    case 5:
+                        if (dataB[i] == 1)
+                        {
+                            analysisContent.AppendLine($"{PID_MEAN.PID_41_DATA_B5} {dataB[i]}-未完成");
+                        }
+                        else
+                        {
+                            analysisContent.AppendLine($"{PID_MEAN.PID_41_DATA_B5} {dataB[i]}-完成");
+                        }
+                        break;
+                    case 6:
+                        if (dataB[i] == 1)
+                        {
+                            analysisContent.AppendLine($"{PID_MEAN.PID_41_DATA_B6} {dataB[i]}-未完成");
+                        }
+                        else
+                        {
+                            analysisContent.AppendLine($"{PID_MEAN.PID_41_DATA_B6} {dataB[i]}-完成");
+                        }
+                        break;
+                    case 7:
+                        analysisContent.AppendLine($"{PID_MEAN.PID_41_DATA_B7} {dataB[i]}");
+                        break;
+                }
+            }
+            for (int i = 0; i < dataC.Length; i++)
+            {
+                switch (i)
+                {
+                    case 0:
+                        if (dataB[i] == 1)
+                        {
+                            analysisContent.AppendLine($"{PID_MEAN.PID_41_DATA_C0} {dataB[i]}-启用");
+                        }
+                        else
+                        {
+                            analysisContent.AppendLine($"{PID_MEAN.PID_41_DATA_C0} {dataB[i]}-未启用");
+                        }
+                        break;
+                    case 1:
+                        if (dataB[i] == 1)
+                        {
+                            analysisContent.AppendLine($"{PID_MEAN.PID_41_DATA_C1} {dataB[i]}-启用");
+                        }
+                        else
+                        {
+                            analysisContent.AppendLine($"{PID_MEAN.PID_41_DATA_C1} {dataB[i]}-未启用");
+                        }
+                        break;
+                    case 2:
+                        if (dataB[i] == 1)
+                        {
+                            analysisContent.AppendLine($"{PID_MEAN.PID_41_DATA_C2} {dataB[i]}-启用");
+                        }
+                        else
+                        {
+                            analysisContent.AppendLine($"{PID_MEAN.PID_41_DATA_C2} {dataB[i]}-未启用");
+                        }
+                        break;
+                    case 3:
+                        if (dataB[i] == 1)
+                        {
+                            analysisContent.AppendLine($"{PID_MEAN.PID_41_DATA_C3} {dataB[i]}-启用");
+                        }
+                        else
+                        {
+                            analysisContent.AppendLine($"{PID_MEAN.PID_41_DATA_C3} {dataB[i]}-未启用");
+                        }
+                        break;
+                    case 4:
+                        if (dataB[i] == 1)
+                        {
+                            analysisContent.AppendLine($"{PID_MEAN.PID_41_DATA_C4} {dataB[i]}-启用");
+                        }
+                        else
+                        {
+                            analysisContent.AppendLine($"{PID_MEAN.PID_41_DATA_C4} {dataB[i]}-未启用");
+                        }
+                        break;
+                    case 5:
+                        if (dataB[i] == 1)
+                        {
+                            analysisContent.AppendLine($"{PID_MEAN.PID_41_DATA_C5} {dataB[i]}-启用");
+                        }
+                        else
+                        {
+                            analysisContent.AppendLine($"{PID_MEAN.PID_41_DATA_C5} {dataB[i]}-未启用");
+                        }
+                        break;
+                    case 6:
+                        if (dataB[i] == 1)
+                        {
+                            analysisContent.AppendLine($"{PID_MEAN.PID_41_DATA_C6} {dataB[i]}-启用");
+                        }
+                        else
+                        {
+                            analysisContent.AppendLine($"{PID_MEAN.PID_41_DATA_C6} {dataB[i]}-未启用");
+                        }
+                        break;
+                    case 7:
+                        if (dataB[i] == 1)
+                        {
+                            analysisContent.AppendLine($"{PID_MEAN.PID_41_DATA_C7} {dataB[i]}-启用");
+                        }
+                        else
+                        {
+                            analysisContent.AppendLine($"{PID_MEAN.PID_41_DATA_C7} {dataB[i]}-未启用");
+                        }
+                        break;
+                }
+            }
         }
 
         private static void PID_0X42(char[] dataA, char[] dataB, char[] dataC, char[] dataD)

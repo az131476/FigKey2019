@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using CANManager.Test;
 
-namespace CANManager
+namespace mesServer
 {
     static class Program
     {
@@ -17,7 +16,7 @@ namespace CANManager
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new TestConMonGoose());
+            Application.Run(new Form1());
         }
     }
 }
