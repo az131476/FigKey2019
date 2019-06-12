@@ -196,5 +196,10 @@ namespace CANManager.Test
             byte bt = 0x80;
             textBox1.Text = Convert.ToInt32("0f",16)+"";
         }
+
+        private void GridControl1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
