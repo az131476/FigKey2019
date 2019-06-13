@@ -69,7 +69,6 @@
             this.documentTabStrip1 = new Telerik.WinControls.UI.Docking.DocumentTabStrip();
             this.documentWindow2 = new Telerik.WinControls.UI.Docking.DocumentWindow();
             this.radPanel4 = new Telerik.WinControls.UI.RadPanel();
-            this.radTextBox1 = new Telerik.WinControls.UI.RadTextBox();
             this.radPanel3 = new Telerik.WinControls.UI.RadPanel();
             this.toolStrip3 = new System.Windows.Forms.ToolStrip();
             this.tool_startDevice_can2 = new System.Windows.Forms.ToolStripButton();
@@ -93,6 +92,7 @@
             this.sid_model8 = new Telerik.WinControls.UI.RadMenuItem();
             this.sid_model9 = new Telerik.WinControls.UI.RadMenuItem();
             this.sid_modelA = new Telerik.WinControls.UI.RadMenuItem();
+            this.pidResultMsg = new System.Windows.Forms.RichTextBox();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radStatusStrip1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).BeginInit();
@@ -109,7 +109,6 @@
             this.documentWindow2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel4)).BeginInit();
             this.radPanel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel3)).BeginInit();
             this.radPanel3.SuspendLayout();
             this.toolStrip3.SuspendLayout();
@@ -305,7 +304,7 @@
             // 
             // radDock1
             // 
-            this.radDock1.ActiveWindow = this.documentWindow1;
+            this.radDock1.ActiveWindow = this.documentWindow2;
             this.radDock1.Controls.Add(this.documentContainer1);
             this.radDock1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radDock1.IsCleanUpTarget = true;
@@ -434,7 +433,7 @@
             // 
             // 
             this.documentTabStrip1.RootElement.MinSize = new System.Drawing.Size(0, 0);
-            this.documentTabStrip1.SelectedIndex = 1;
+            this.documentTabStrip1.SelectedIndex = 0;
             this.documentTabStrip1.Size = new System.Drawing.Size(1024, 478);
             this.documentTabStrip1.TabIndex = 0;
             this.documentTabStrip1.TabStop = false;
@@ -453,26 +452,12 @@
             // 
             // radPanel4
             // 
-            this.radPanel4.Controls.Add(this.radTextBox1);
+            this.radPanel4.Controls.Add(this.pidResultMsg);
             this.radPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radPanel4.Location = new System.Drawing.Point(0, 30);
             this.radPanel4.Name = "radPanel4";
             this.radPanel4.Size = new System.Drawing.Size(1012, 413);
             this.radPanel4.TabIndex = 4;
-            // 
-            // radTextBox1
-            // 
-            this.radTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radTextBox1.Location = new System.Drawing.Point(0, 0);
-            this.radTextBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.radTextBox1.Multiline = true;
-            this.radTextBox1.Name = "radTextBox1";
-            // 
-            // 
-            // 
-            this.radTextBox1.RootElement.StretchVertically = true;
-            this.radTextBox1.Size = new System.Drawing.Size(1012, 413);
-            this.radTextBox1.TabIndex = 1;
             // 
             // radPanel3
             // 
@@ -599,16 +584,19 @@
             this.radRadioButton2.Name = "radRadioButton2";
             this.radRadioButton2.Size = new System.Drawing.Size(44, 18);
             this.radRadioButton2.TabIndex = 1;
+            this.radRadioButton2.TabStop = false;
             this.radRadioButton2.Text = "循环";
             // 
             // radRadioButton1
             // 
             this.radRadioButton1.BackColor = System.Drawing.Color.Transparent;
+            this.radRadioButton1.CheckState = System.Windows.Forms.CheckState.Checked;
             this.radRadioButton1.Location = new System.Drawing.Point(894, 3);
             this.radRadioButton1.Name = "radRadioButton1";
             this.radRadioButton1.Size = new System.Drawing.Size(44, 18);
             this.radRadioButton1.TabIndex = 0;
             this.radRadioButton1.Text = "单选";
+            this.radRadioButton1.ToggleState = Telerik.WinControls.Enumerations.ToggleState.On;
             // 
             // sid_model1
             // 
@@ -660,6 +648,17 @@
             this.sid_modelA.Name = "sid_modelA";
             this.sid_modelA.Text = "ModelA";
             // 
+            // pidResultMsg
+            // 
+            this.pidResultMsg.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.pidResultMsg.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pidResultMsg.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.pidResultMsg.Location = new System.Drawing.Point(0, 0);
+            this.pidResultMsg.Name = "pidResultMsg";
+            this.pidResultMsg.Size = new System.Drawing.Size(1012, 413);
+            this.pidResultMsg.TabIndex = 0;
+            this.pidResultMsg.Text = "";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -695,8 +694,6 @@
             this.documentWindow2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radPanel4)).EndInit();
             this.radPanel4.ResumeLayout(false);
-            this.radPanel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel3)).EndInit();
             this.radPanel3.ResumeLayout(false);
             this.radPanel3.PerformLayout();
@@ -746,7 +743,6 @@
         private System.Windows.Forms.ToolStrip toolStrip2;
         private System.Windows.Forms.ToolStripButton tool_startDevice_can1;
         private Telerik.WinControls.UI.RadGridView radGridView1;
-        private Telerik.WinControls.UI.RadTextBox radTextBox1;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.ToolStripComboBox toolStripComboBox1;
         private System.Windows.Forms.ToolStripButton toolStripButton3;
@@ -781,6 +777,7 @@
         private System.Windows.Forms.ToolStripButton toolStripButton12;
         private Telerik.WinControls.UI.RadPanel radPanel4;
         private Telerik.WinControls.UI.RadPanel radPanel3;
+        private System.Windows.Forms.RichTextBox pidResultMsg;
     }
 }
 

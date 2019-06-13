@@ -109,9 +109,15 @@ namespace CANManager
             //设备初始化+启动设备
             //过滤
             //执行SID1发送+读取整个过程
+            deviceInfo.TempBuffer = new StringBuilder();
+
             PidServer.PassThruStartMsgFilter(deviceInfo);
+
             deviceInfo.ModelSidType = DeviceInfo.ModelType.MODEL1;
             PidServer.CommandMode(deviceInfo);
+
+            pidResultMsg.Text += deviceInfo.TempBuffer.ToString();
+
         }
         #endregion
         private void Tool_stopdevice_can2_Click(object sender, EventArgs e)

@@ -193,8 +193,14 @@ namespace CANManager.Test
 
         private void Button9_Click(object sender, EventArgs e)
         {
-            byte bt = 0x80;
-            textBox1.Text = Convert.ToInt32("0f",16)+"";
+            char[] ch = new char[] { '1','0','1','1'};
+            string strTemp = "";
+            foreach (var v in ch)
+            {
+                strTemp += v;
+            }
+            char[] strArray = "0000".ToCharArray();
+            textBox1.Text = "hh".PadRight(10);
         }
 
         private void GridControl1_Click(object sender, EventArgs e)
