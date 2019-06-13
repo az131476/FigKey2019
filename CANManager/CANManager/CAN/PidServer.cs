@@ -188,7 +188,7 @@ namespace CANManager.CAN
         #endregion
 
         #region PID=02
-        public const string PID_02_DATAB_00 = "pid=02;dataA/B  意义：导致需要冻结帧数据存储的DTC 结果：";
+        public const string PID_02_DATAB_00 = "pid=02;dataA/B   导致需要冻结帧数据存储的DTC  ";
         #endregion
 
         #region PID=03
@@ -216,247 +216,247 @@ namespace CANManager.CAN
         #endregion
 
         #region PID=05
-        public const string PID_05_DATAA = "pid=05;dataA binaryBit=00 意义：发动机冷却液温度（min:40℃ max:215℃） 结果：";
+        public const string PID_05_DATAA = "发动机冷却液温度（min:40℃ max:215℃）";
         #endregion
 
         #region PID=06-09
-        public const string PID_06_DATAA = "pid=06;dataA 意义：短期燃料调整BANK1 短期燃料调整BANK3 结果：";
-        public const string PID_07_DATAA = "pid=06;dataA 意义：长期燃料调整BANK1 长期燃料调整BANK3 结果：";
-        public const string PID_08_DATAA = "pid=06;dataA 意义：短期燃料调整BANK2 短期燃料调整BANK4 结果：";
-        public const string PID_09_DATAA = "pid=06;dataA 意义：长期燃料调整BANK2 长期燃料调整BANK4 结果：";
+        public const string PID_06_DATAA = "短期燃料调整BANK1 短期燃料调整BANK3 ";
+        public const string PID_07_DATAA = "长期燃料调整BANK1 长期燃料调整BANK3 ";
+        public const string PID_08_DATAA = "短期燃料调整BANK2 短期燃料调整BANK4 ";
+        public const string PID_09_DATAA = "长期燃料调整BANK2 长期燃料调整BANK4 ";
         #endregion
 
         #region PID=0A-11
-        public const string PID_0A_DATAA = "pid=0A;dataA 意义：油压（min:0 max:765kPa） 结果：";
-        public const string PID_0B_DATAA = "pid=0B;dataA 意义：进气歧管绝对压力(min:0 max:255kPa) 结果：";
+        public const string PID_0A_DATAA = "油压（min:0 max:765kPa）";
+        public const string PID_0B_DATAA = "进气歧管绝对压力(min:0 max:255kPa) ";
 
-        public const string PID_0C_DATAA_B = "pid=0C;dataA&B 意义：发动机转速(min:0 max:16383.75rPm) 结果：";
+        public const string PID_0C_DATAA_B = "发动机转速(min:0 max:16383.75rPm) ";
 
-        public const string PID_0D_DATAA = "pid=0D;dataA 意义：车辆速度(0-255) 结果：";
-        public const string PID_0E_DATAA = "pid=0E;dataA 意义：1号气缸点火正时提前(-64-63.5°) 结果：";
-        public const string PID_0F_DATAA = "pid=0F;dataA 意义：摄入空气温度（-40-215℃） 结果：";
-        public const string PID_10_DATAA = "pid=10;dataA 意义：空气流量（0-655.35grams/sec） 结果：";
-        public const string PID_11_DATAA = "pid=11;dataA 意义：绝对的节气门位置(0-100%) 结果：";
+        public const string PID_0D_DATAA = "车辆速度(0-255) ";
+        public const string PID_0E_DATAA = "1号气缸点火正时提前(-64-63.5°) ";
+        public const string PID_0F_DATAA = "摄入空气温度（-40-215℃）";
+        public const string PID_10_DATAA = "空气流量（0-655.35grams/sec）";
+        public const string PID_11_DATAA = "绝对的节气门位置(0-100%)";
         #endregion
 
         #region PID=12
-        public const string PID_12_DATAA_00 = "pid=12;dataA binaryBit=00 意义：UPS催化转化器上游 结果：";
-        public const string PID_12_DATAA_01 = "pid=12;dataA binaryBit=01 意义：DNS催化转化器下游 结果：";
-        public const string PID_12_DATAA_02 = "pid=12;dataA binaryBit=02 意义：OFF 大气关闭 结果：";
-        public const string PID_12_DATAA_03 = "pid=12;dataA binaryBit=03 意义：保留 ";
-        public const string PID_12_DATAA_04 = "pid=12;dataA binaryBit=04 意义：保留 ";
-        public const string PID_12_DATAA_05 = "pid=12;dataA binaryBit=05 意义：保留 ";
-        public const string PID_12_DATAA_06 = "pid=12;dataA binaryBit=06 意义：保留 ";
-        public const string PID_12_DATAA_07 = "pid=12;dataA binaryBit=07 意义：保留 ";
+        public const string PID_12_DATAA_00 = "UPS催化转化器上游 ";
+        public const string PID_12_DATAA_01 = "DNS催化转化器下游  ";
+        public const string PID_12_DATAA_02 = "OFF 大气关闭 ";
+        public const string PID_12_DATAA_03 = "保留";
+        public const string PID_12_DATAA_04 = "保留 ";
+        public const string PID_12_DATAA_05 = "保留 ";
+        public const string PID_12_DATAA_06 = "保留 ";
+        public const string PID_12_DATAA_07 = "保留 ";
         #endregion
 
         #region PID=13 氧传感器位置，PID$13不支持时才可由给定车辆支持
-        public const string PID_13_DATAA_00 = "pid=13;dataA binaryBit=00 意义：O2s11(Bank1,Sensors1) 结果：";
-        public const string PID_13_DATAA_01 = "pid=13;dataA binaryBit=01 意义：O2s12(Bank1,Sensors2) 结果：";
-        public const string PID_13_DATAA_02 = "pid=13;dataA binaryBit=02 意义：O2s13(Bank1,Sensors3) 结果：";
-        public const string PID_13_DATAA_03 = "pid=13;dataA binaryBit=03 意义：O2s14(Bank1,Sensors4) 结果：";
-        public const string PID_13_DATAA_04 = "pid=13;dataA binaryBit=04 意义：O2s21(Bank2,Sensors1) 结果：";
-        public const string PID_13_DATAA_05 = "pid=13;dataA binaryBit=05 意义：O2s22(Bank2,Sensors2) 结果：";
-        public const string PID_13_DATAA_06 = "pid=13;dataA binaryBit=06 意义：O2s23(Bank2,Sensors3) 结果：";
-        public const string PID_13_DATAA_07 = "pid=13;dataA binaryBit=07 意义：O2s24(Bank2,Sensors4) 结果：";
+        public const string PID_13_DATAA_00 = "O2s11(Bank1,Sensors1)";
+        public const string PID_13_DATAA_01 = "O2s12(Bank1,Sensors2)";
+        public const string PID_13_DATAA_02 = "O2s13(Bank1,Sensors3)";
+        public const string PID_13_DATAA_03 = "O2s14(Bank1,Sensors4)";
+        public const string PID_13_DATAA_04 = "O2s21(Bank2,Sensors1)";
+        public const string PID_13_DATAA_05 = "O2s22(Bank2,Sensors2)";
+        public const string PID_13_DATAA_06 = "O2s23(Bank2,Sensors3)";
+        public const string PID_13_DATAA_07 = "O2s24(Bank2,Sensors4)";
         #endregion
 
         #region PID=14-1B 
-        public const string PID_14_DATA = "pid=14;dataA&B 意义：BANK1 – SENSOR1 结果：";
-        public const string PID_15_DATA = "pid=15;dataA&B 意义：BANK1 – SENSOR2 结果：";
-        public const string PID_16_DATA = "pid=16;dataA&B 意义：BANK1 – SENSOR3 结果：";
-        public const string PID_17_DATA = "pid=17;dataA&B 意义：BANK1 – SENSOR4 结果：";
-        public const string PID_18_DATA = "pid=18;dataA&B 意义：BANK2 – SENSOR1 结果：";
-        public const string PID_19_DATA = "pid=19;dataA&B 意义：BANK2 – SENSOR2 结果：";
-        public const string PID_1A_DATA = "pid=1A;dataA&B 意义：BANK2 – SENSOR3 结果：";
-        public const string PID_1B_DATA = "pid=1B;dataA&B 意义：BANK2 – SENSOR4 结果：";
+        public const string PID_14_DATA = "通道1，传感器1";
+        public const string PID_15_DATA = "通道1，传感器2";
+        public const string PID_16_DATA = "通道1，传感器3";
+        public const string PID_17_DATA = "通道1，传感器4";
+        public const string PID_18_DATA = "通道2，传感器1";
+        public const string PID_19_DATA = "通道2，传感器2";
+        public const string PID_1A_DATA = "通道2，传感器3";
+        public const string PID_1B_DATA = "通道2，传感器4";
         #endregion
 
         #region PID=14-1B 
-        public const string PID_1C_DATA_01 = "pid=1C;binaryBit=01 data 意义：OBD 2 结果：";
-        public const string PID_1C_DATA_02 = "pid=1C;binaryBit=02 data 意义：OBD   结果：";
-        public const string PID_1C_DATA_03 = "pid=1C;binaryBit=03 data 意义：OBD OBD2 结果：";
-        public const string PID_1C_DATA_04 = "pid=1C;binaryBit=04 data 意义：OBD 1 结果：";
-        public const string PID_1C_DATA_05 = "pid=1C;binaryBit=05 data 意义：NO OBD 结果：";
-        public const string PID_1C_DATA_06 = "pid=1C;binaryBit=06 data 意义：EOBD 结果：";
-        public const string PID_1C_DATA_07 = "pid=1C;binaryBit=07 data 意义：EOBD OBD2 结果：";
-        public const string PID_1C_DATA_08 = "pid=1C;binaryBit=08 data 意义：EOBD OBD 结果：";
-        public const string PID_1C_DATA_09 = "pid=1C;binaryBit=09 data 意义：EOBD OBD OBD2 结果：";
-        public const string PID_1C_DATA_0A = "pid=1C;binaryBit=0A data 意义：JOBD 结果：";
-        public const string PID_1C_DATA_0B = "pid=1C;binaryBit=0B data 意义：JOBD OBD2 结果：";
-        public const string PID_1C_DATA_0C = "pid=1C;binaryBit=0C data 意义：JOBD EOBD 结果：";
-        public const string PID_1C_DATA_0D = "pid=1C;binaryBit=0D data 意义：JOBD EOBD OBD2 结果：";
-        public const string PID_1C_DATA_0E = "pid=1C;binaryBit=0E data 意义：EURO IV B1 结果：";
-        public const string PID_1C_DATA_0F = "pid=1C;binaryBit=0F data 意义：EURO IV B2 结果：";
-        public const string PID_1C_DATA_10 = "pid=1C;binaryBit=10 data 意义：EURO C 结果：";
-        public const string PID_1C_DATA_11 = "pid=1C;binaryBit=11 data 意义：EMD 结果：";
+        public const string PID_1C_DATA_01 = "OBD 2 ";
+        public const string PID_1C_DATA_02 = "OBD  ";
+        public const string PID_1C_DATA_03 = "OBD OBD2 ";
+        public const string PID_1C_DATA_04 = "OBD 1 ";
+        public const string PID_1C_DATA_05 = "NO OBD ";
+        public const string PID_1C_DATA_06 = "EOBD ";
+        public const string PID_1C_DATA_07 = "EOBD OBD2 ";
+        public const string PID_1C_DATA_08 = "EOBD OBD ";
+        public const string PID_1C_DATA_09 = "EOBD OBD OBD2  ";
+        public const string PID_1C_DATA_0A = "JOBD  ";
+        public const string PID_1C_DATA_0B = "JOBD OBD2  ";
+        public const string PID_1C_DATA_0C = "JOBD EOBD  ";
+        public const string PID_1C_DATA_0D = "JOBD EOBD OBD2  ";
+        public const string PID_1C_DATA_0E = "EURO IV B1  ";
+        public const string PID_1C_DATA_0F = "EURO IV B2  ";
+        public const string PID_1C_DATA_10 = "EURO C  ";
+        public const string PID_1C_DATA_11 = "EMD  ";
         #endregion
 
         #region PID=1D 氧传感器位置
-        public const string PID_1D_DATAA_00 = "pid=1D;dataA binaryBit=00 意义：O2s11(Bank1,Sensors1) 结果：";
-        public const string PID_1D_DATAA_01 = "pid=1D;dataA binaryBit=01 意义：O2s12(Bank1,Sensors2) 结果：";
-        public const string PID_1D_DATAA_02 = "pid=1D;dataA binaryBit=02 意义：O2s13(Bank2,Sensors1) 结果：";
-        public const string PID_1D_DATAA_03 = "pid=1D;dataA binaryBit=03 意义：O2s14(Bank2,Sensors2) 结果：";
-        public const string PID_1D_DATAA_04 = "pid=1D;dataA binaryBit=04 意义：O2s21(Bank3,Sensors1) 结果：";
-        public const string PID_1D_DATAA_05 = "pid=1D;dataA binaryBit=05 意义：O2s22(Bank3,Sensors2) 结果：";
-        public const string PID_1D_DATAA_06 = "pid=1D;dataA binaryBit=06 意义：O2s23(Bank4,Sensors1) 结果：";
-        public const string PID_1D_DATAA_07 = "pid=1D;dataA binaryBit=07 意义：O2s24(Bank4,Sensors2) 结果：";
+        public const string PID_1D_DATAA_00 = "O2s11(Bank1,Sensors1)  ";
+        public const string PID_1D_DATAA_01 = "O2s12(Bank1,Sensors2)  ";
+        public const string PID_1D_DATAA_02 = "O2s13(Bank2,Sensors1)  ";
+        public const string PID_1D_DATAA_03 = "O2s14(Bank2,Sensors2)  ";
+        public const string PID_1D_DATAA_04 = "O2s21(Bank3,Sensors1)  ";
+        public const string PID_1D_DATAA_05 = "O2s22(Bank3,Sensors2)  ";
+        public const string PID_1D_DATAA_06 = "O2s23(Bank4,Sensors1)  ";
+        public const string PID_1D_DATAA_07 = "O2s24(Bank4,Sensors2)  ";
         #endregion
 
         #region PID=1E
-        public const string PID_1E_DATA_A_00 = "pid=1D;dataA binaryBit=00 意义：电源关闭状态 结果：";
-        public const string PID_1E_DATA_A_01_07 = "pid=1D,字节长度=1,dataA 意义：保留 ";
+        public const string PID_1E_DATA_A_00 = "电源关闭状态  ";
+        public const string PID_1E_DATA_A_01_07 = "保留 ";
         #endregion
 
         #region PID=1F-23
-        public const string PID_1F_DATA = "pid=1D;字节长度=2 dataA&B 意义：引擎启动后运行时间（0-65535秒） 结果：";
-        public const string PID_21_DATA = "pid=21;字节长度=2 dataA&B 意义：MIL灯点亮后车辆行驶里程 结果：";
-        public const string PID_22_DATA = "pid=22;字节长度=2 dataA&B 意义：燃料轨压力相对于管道真空(0-5177.265kPa) 结果：";
-        public const string PID_23_DATA = "pid=23;字节长度=2 dataA&B 意义：油轨压力(柴油或汽油直喷)(0-655350kPa) 结果：";
+        public const string PID_1F_DATA = "引擎启动后运行时间（0-65535秒）  ";
+        public const string PID_21_DATA = "MIL灯点亮后车辆行驶里程  ";
+        public const string PID_22_DATA = "燃料轨压力相对于管道真空(0-5177.265kPa)  ";
+        public const string PID_23_DATA = "油轨压力(柴油或汽油直喷)(0-655350kPa)  ";
         #endregion
 
         #region PID=24-2B,仅适用于PID13定义的氧传感器位置 1-2bank 1-4传感器
-        public const string PID_24_DATA_13 = "pid=24;字节长度=4 dataA&B&C&D 意义：AB-等效比,CD-氧传感器电压 结果：";
-        public const string PID_25_DATA_13 = "pid=25;字节长度=4 dataA&B&C&D 意义：AB-等效比,CD-氧传感器电压 结果：";
-        public const string PID_26_DATA_13 = "pid=26;字节长度=4 dataA&B&C&D 意义：AB-等效比,CD-氧传感器电压 结果：";
-        public const string PID_27_DATA_13 = "pid=27;字节长度=4 dataA&B&C&D 意义：AB-等效比,CD-氧传感器电压 结果：";
-        public const string PID_28_DATA_13 = "pid=28;字节长度=4 dataA&B&C&D 意义：AB-等效比,CD-氧传感器电压 结果：";
-        public const string PID_29_DATA_13 = "pid=29;字节长度=4 dataA&B&C&D 意义：AB-等效比,CD-氧传感器电压 结果：";
-        public const string PID_2A_DATA_13 = "pid=2A;字节长度=4 dataA&B&C&D 意义：AB-等效比,CD-氧传感器电压 结果：";
-        public const string PID_2B_DATA_13 = "pid=2B;字节长度=4 dataA&B&C&D 意义：AB-等效比,CD-氧传感器电压 结果：";
+        public const string PID_24_DATA_13 = "AB-等效比,CD-氧传感器电压  ";
+        public const string PID_25_DATA_13 = "AB-等效比,CD-氧传感器电压  ";
+        public const string PID_26_DATA_13 = "AB-等效比,CD-氧传感器电压  ";
+        public const string PID_27_DATA_13 = "AB-等效比,CD-氧传感器电压  ";
+        public const string PID_28_DATA_13 = "AB-等效比,CD-氧传感器电压  ";
+        public const string PID_29_DATA_13 = "AB-等效比,CD-氧传感器电压  ";
+        public const string PID_2A_DATA_13 = "AB-等效比,CD-氧传感器电压  ";
+        public const string PID_2B_DATA_13 = "AB-等效比,CD-氧传感器电压  ";
         #endregion
 
         #region PID=24,仅适用于PID1D定义的氧传感器位置 1-4bank 1-2传感器
-        public const string PID_24_DATA_1D = "pid=24;字节长度=4 dataA&B&C&D 意义：AB-等效比,CD-氧传感器电压结果：";
-        public const string PID_25_DATA_1D = "pid=25;字节长度=4 dataA&B&C&D 意义：AB-等效比,CD-氧传感器电压结果：";
-        public const string PID_26_DATA_1D = "pid=26;字节长度=4 dataA&B&C&D 意义：AB-等效比,CD-氧传感器电压结果：";
-        public const string PID_27_DATA_1D = "pid=27;字节长度=4 dataA&B&C&D 意义：AB-等效比,CD-氧传感器电压结果：";
-        public const string PID_28_DATA_1D = "pid=28;字节长度=4 dataA&B&C&D 意义：AB-等效比,CD-氧传感器电压结果：";
-        public const string PID_29_DATA_1D = "pid=29;字节长度=4 dataA&B&C&D 意义：AB-等效比,CD-氧传感器电压结果：";
-        public const string PID_2A_DATA_1D = "pid=2A;字节长度=4 dataA&B&C&D 意义：AB-等效比,CD-氧传感器电压结果：";
-        public const string PID_2B_DATA_1D = "pid=2B;字节长度=4 dataA&B&C&D 意义：AB-等效比,CD-氧传感器电压结果：";
+        public const string PID_24_DATA_1D = "AB-等效比,CD-氧传感器电压 ";
+        public const string PID_25_DATA_1D = "AB-等效比,CD-氧传感器电压 ";
+        public const string PID_26_DATA_1D = "AB-等效比,CD-氧传感器电压 ";
+        public const string PID_27_DATA_1D = "AB-等效比,CD-氧传感器电压 ";
+        public const string PID_28_DATA_1D = "AB-等效比,CD-氧传感器电压 ";
+        public const string PID_29_DATA_1D = "AB-等效比,CD-氧传感器电压 ";
+        public const string PID_2A_DATA_1D = "AB-等效比,CD-氧传感器电压 ";
+        public const string PID_2B_DATA_1D = "AB-等效比,CD-氧传感器电压 ";
         #endregion
 
         #region PID=2C-33
-        public const string PID_2C_DATA = "pid=2C;字节长度=1 dataA 意义：EGR(废弃循环)命令(0-100%) 结果：";
-        public const string PID_2D_DATA = "pid=2C;字节长度=1 dataA 意义：EGR(废弃循环)错误(-100-99.22%) 结果：";
-        public const string PID_2E_DATA = "pid=2C;字节长度=1 dataA 意义：蒸发净化命令(0-100%) 结果：";
-        public const string PID_2F_DATA = "pid=2C;字节长度=1 dataA 意义：油量液位情况(0-100%) 结果：";
-        public const string PID_30_DATA = "pid=2C;字节长度=1 dataA 意义：自诊断故障清除后热身次数(0-255) 结果：";
-        public const string PID_31_DATA = "pid=2C;字节长度=2 dataA 意义：自诊断故障清除后行驶距离(0-65535km) 结果：";
-        public const string PID_32_DATA = "pid=2C;字节长度=2 dataA 意义：EVAP 系统蒸汽压力(-8192-8192Pa) 结果：";
-        public const string PID_33_DATA = "pid=2C;字节长度=1 dataA 意义：大气压(0-255kPa) 结果：";
+        public const string PID_2C_DATA = "EGR(废弃循环)命令(0-100%)  ";
+        public const string PID_2D_DATA = "EGR(废弃循环)错误(-100-99.22%)  ";
+        public const string PID_2E_DATA = "蒸发净化命令(0-100%)  ";
+        public const string PID_2F_DATA = "油量液位情况(0-100%)  ";
+        public const string PID_30_DATA = "自诊断故障清除后热身次数(0-255)  ";
+        public const string PID_31_DATA = "自诊断故障清除后行驶距离(0-65535km)  ";
+        public const string PID_32_DATA = "EVAP 系统蒸汽压力(-8192-8192Pa)  ";
+        public const string PID_33_DATA = "大气压(0-255kPa)  ";
 
         #endregion
 
         #region PID=34-3B 仅适用于PID13定义的氧传感器位置 1-4bank 1-2传感器
-        public const string PID_34_13_DATA = "pid=34_13;字节长度=4 dataA 意义：AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma) 结果：";
-        public const string PID_35_13_DATA = "pid=35_13;字节长度=4 dataA 意义：AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma) 结果：";
-        public const string PID_36_13_DATA = "pid=36_13;字节长度=4 dataA 意义：AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma) 结果：";
-        public const string PID_37_13_DATA = "pid=37_13;字节长度=4 dataA 意义：AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma) 结果：";
-        public const string PID_38_13_DATA = "pid=38_13;字节长度=4 dataA 意义：AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma) 结果：";
-        public const string PID_39_13_DATA = "pid=39_13;字节长度=4 dataA 意义：AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma) 结果：";
-        public const string PID_3A_13_DATA = "pid=3A_13;字节长度=4 dataA 意义：AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma) 结果：";
-        public const string PID_3B_13_DATA = "pid=3B_13;字节长度=4 dataA 意义：AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma) 结果：";
+        public const string PID_34_13_DATA = "AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma)  ";
+        public const string PID_35_13_DATA = "AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma)  ";
+        public const string PID_36_13_DATA = "AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma)  ";
+        public const string PID_37_13_DATA = "AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma)  ";
+        public const string PID_38_13_DATA = "AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma)  ";
+        public const string PID_39_13_DATA = "AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma)  ";
+        public const string PID_3A_13_DATA = "AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma)  ";
+        public const string PID_3B_13_DATA = "AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma)  ";
         #endregion
 
         #region PID=34-3B 仅适用于PID1D定义的氧传感器位置 1-4bank 1-2传感器
-        public const string PID_34_1D_DATA = "pid=34_1D;字节长度=4 dataA 意义：AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma) 结果：";
-        public const string PID_35_1D_DATA = "pid=35_1D;字节长度=4 dataA 意义：AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma) 结果：";
-        public const string PID_36_1D_DATA = "pid=36_1D;字节长度=4 dataA 意义：AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma) 结果：";
-        public const string PID_37_1D_DATA = "pid=37_1D;字节长度=4 dataA 意义：AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma) 结果：";
-        public const string PID_38_1D_DATA = "pid=38_1D;字节长度=4 dataA 意义：AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma) 结果：";
-        public const string PID_39_1D_DATA = "pid=39_1D;字节长度=4 dataA 意义：AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma) 结果：";
-        public const string PID_3A_1D_DATA = "pid=3A_1D;字节长度=4 dataA 意义：AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma) 结果：";
-        public const string PID_3B_1D_DATA = "pid=3B_1D;字节长度=4 dataA 意义：AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma) 结果：";
+        public const string PID_34_1D_DATA = "AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma)  ";
+        public const string PID_35_1D_DATA = "AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma)  ";
+        public const string PID_36_1D_DATA = "AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma)  ";
+        public const string PID_37_1D_DATA = "AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma)  ";
+        public const string PID_38_1D_DATA = "AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma)  ";
+        public const string PID_39_1D_DATA = "AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma)  ";
+        public const string PID_3A_1D_DATA = "AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma)  ";
+        public const string PID_3B_1D_DATA = "AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma)  ";
         #endregion
 
         #region PID=3C-3F 
-        public const string PID_3C_DATA = "pid=3C;字节长度=2 dataA&B 意义：催化剂温度(通道1，传感器1)(-40-6513.5℃) 结果：";
-        public const string PID_3D_DATA = "pid=3D;字节长度=2 dataA&B 意义：催化剂温度(通道2，传感器1)(-40-6513.5℃) 结果：";
-        public const string PID_3E_DATA = "pid=3C;字节长度=2 dataA&B 意义：催化剂温度(通道1，传感器2)(-40-6513.5℃) 结果：";
-        public const string PID_3F_DATA = "pid=3C;字节长度=2 dataA&B 意义：催化剂温度(通道2，传感器2)(-40-6513.5℃) 结果：";
+        public const string PID_3C_DATA = "催化剂温度(通道1，传感器1)(-40-6513.5℃)  ";
+        public const string PID_3D_DATA = "催化剂温度(通道2，传感器1)(-40-6513.5℃)  ";
+        public const string PID_3E_DATA = "催化剂温度(通道1，传感器2)(-40-6513.5℃)  ";
+        public const string PID_3F_DATA = "催化剂温度(通道2，传感器2)(-40-6513.5℃)  ";
         #endregion
 
         #region PID=41
-        public const string PID_41_DATA_A0_A7 = "pid=41,字节长度=4, DATA A0-A7,意义：保留";
+        public const string PID_41_DATA_A0_A7 = "保留";
 
-        public const string PID_41_DATA_B0 = "pid=41,字节长度=4, DATA B0,意义：启用失火检测 结果：";
-        public const string PID_41_DATA_B1 = "pid=41,字节长度=4, DATA B1,意义：启用燃油系统监测 结果：";
-        public const string PID_41_DATA_B2 = "pid=41,字节长度=4, DATA B2,意义：启用全面组件监测 结果：";
-        public const string PID_41_DATA_B3 = "pid=41,字节长度=4, DATA B3,意义：保留 ";
-        public const string PID_41_DATA_B4 = "pid=41,字节长度=4, DATA B4,意义：完成失火监测 结果：";
-        public const string PID_41_DATA_B5 = "pid=41,字节长度=4, DATA B5,意义：完成燃油系统监测 结果：";
-        public const string PID_41_DATA_B6 = "pid=41,字节长度=4, DATA B6,意义：完成全面组件监测 结果：";
-        public const string PID_41_DATA_B7 = "pid=41,字节长度=4, DATA B7,意义：保留 ";
+        public const string PID_41_DATA_B0 = "启用失火检测  ";
+        public const string PID_41_DATA_B1 = "启用燃油系统监测  ";
+        public const string PID_41_DATA_B2 = "启用全面组件监测  ";
+        public const string PID_41_DATA_B3 = "保留 ";
+        public const string PID_41_DATA_B4 = "完成失火监测  ";
+        public const string PID_41_DATA_B5 = "完成燃油系统监测  ";
+        public const string PID_41_DATA_B6 = "完成全面组件监测  ";
+        public const string PID_41_DATA_B7 = "保留 ";
 
-        public const string PID_41_DATA_C0 = "pid=41,字节长度=4, DATA C0,意义：催化剂监控 结果：";
-        public const string PID_41_DATA_C1 = "pid=41,字节长度=4, DATA C1,意义：催化剂加热 结果：";
-        public const string PID_41_DATA_C2 = "pid=41,字节长度=4, DATA C2,意义：蒸发系统监控 结果：";
-        public const string PID_41_DATA_C3 = "pid=41,字节长度=4, DATA C3,意义：二次空气系统检测仪 结果：";
-        public const string PID_41_DATA_C4 = "pid=41,字节长度=4, DATA C4,意义：空调系统制冷剂监测 结果：";
-        public const string PID_41_DATA_C5 = "pid=41,字节长度=4, DATA C5,意义：氧传感器监测 结果：";
-        public const string PID_41_DATA_C6 = "pid=41,字节长度=4, DATA C6,意义：氧传感器加热器监控 结果：";
-        public const string PID_41_DATA_C7 = "pid=41,字节长度=4, DATA C7,意义：EGR系统监控 结果：";
+        public const string PID_41_DATA_C0 = "催化剂监控  ";
+        public const string PID_41_DATA_C1 = "催化剂加热  ";
+        public const string PID_41_DATA_C2 = "蒸发系统监控  ";
+        public const string PID_41_DATA_C3 = "二次空气系统检测仪  ";
+        public const string PID_41_DATA_C4 = "空调系统制冷剂监测  ";
+        public const string PID_41_DATA_C5 = "氧传感器监测  ";
+        public const string PID_41_DATA_C6 = "氧传感器加热器监控  ";
+        public const string PID_41_DATA_C7 = "EGR系统监控  ";
 
-        public const string PID_41_DATA_D0 = "pid=41,字节长度=4, DATA D0,意义：催化剂监控完成 结果：";
-        public const string PID_41_DATA_D1 = "pid=41,字节长度=4, DATA D1,意义：加热催化剂完成 结果：";
-        public const string PID_41_DATA_D2 = "pid=41,字节长度=4, DATA D2,意义：蒸发系统监控完成 结果：";
-        public const string PID_41_DATA_D3 = "pid=41,字节长度=4, DATA D3,意义：二次空气系统检测仪完成 结果：";
-        public const string PID_41_DATA_D4 = "pid=41,字节长度=4, DATA D4,意义：空调系统制冷剂监测完成 结果：";
-        public const string PID_41_DATA_D5 = "pid=41,字节长度=4, DATA D5,意义：氧传感器监测完成 结果：";
-        public const string PID_41_DATA_D6 = "pid=41,字节长度=4, DATA D6,意义：氧传感器加热器监控完成 结果：";
-        public const string PID_41_DATA_D7 = "pid=41,字节长度=4, DATA D7,意义：EGR系统监控完成 结果：";
+        public const string PID_41_DATA_D0 = "催化剂监控完成  ";
+        public const string PID_41_DATA_D1 = "加热催化剂完成  ";
+        public const string PID_41_DATA_D2 = "蒸发系统监控完成  ";
+        public const string PID_41_DATA_D3 = "二次空气系统检测仪完成  ";
+        public const string PID_41_DATA_D4 = "空调系统制冷剂监测完成  ";
+        public const string PID_41_DATA_D5 = "氧传感器监测完成  ";
+        public const string PID_41_DATA_D6 = "氧传感器加热器监控完成  ";
+        public const string PID_41_DATA_D7 = "EGR系统监控完成  ";
         #endregion
 
         #region PID=42-4F
-        public const string PID_42_DATA = "pid=42,字节长度=2, DATA ,意义：电压控制模块(0-65.535V) 结果：";
-        public const string PID_43_DATA = "pid=43,字节长度=2, DATA ,意义：绝对负荷值(0-25700%) 结果：";
-        public const string PID_44_DATA = "pid=44,字节长度=2, DATA ,意义：等效比命令(0-2N/A) 结果：";
-        public const string PID_45_DATA = "pid=45,字节长度=1, DATA ,意义：相对节气门位置(0-100%) 结果：";
-        public const string PID_46_DATA = "pid=46,字节长度=1, DATA ,意义：环境空气温度(-40-215℃) 结果：";
-        public const string PID_47_DATA = "pid=47,字节长度=1, DATA ,意义：绝对气流阀位置B(0-100%) 结果：";
-        public const string PID_48_DATA = "pid=48,字节长度=1, DATA ,意义：绝对气流阀位置C(0-100%) 结果：";
-        public const string PID_49_DATA = "pid=49,字节长度=1, DATA ,意义：绝对气流阀位置D(0-100%) 结果：";
-        public const string PID_4A_DATA = "pid=4A,字节长度=1, DATA ,意义：绝对气流阀位置E(0-100%) 结果：";
-        public const string PID_4B_DATA = "pid=4B,字节长度=1, DATA ,意义：绝对气流阀位置F(0-100%) 结果：";
-        public const string PID_4C_DATA = "pid=4C,字节长度=1, DATA ,意义：通讯节流阀执行机构控制(0-100%) 结果：";
-        public const string PID_4D_DATA = "pid=4D,字节长度=2, DATA ,意义：启动MIL时引擎运行的时间(0-65535分钟) 结果：";
-        public const string PID_4E_DATA = "pid=4E,字节长度=2, DATA ,意义：诊断故障代码清除以来的时间(0-65535分钟) 结果：";
+        public const string PID_42_DATA = "电压控制模块(0-65.535V)  ";
+        public const string PID_43_DATA = "绝对负荷值(0-25700%)  ";
+        public const string PID_44_DATA = "等效比命令(0-2N/A)  ";
+        public const string PID_45_DATA = "相对节气门位置(0-100%)  ";
+        public const string PID_46_DATA = "环境空气温度(-40-215℃)  ";
+        public const string PID_47_DATA = "绝对气流阀位置B(0-100%)  ";
+        public const string PID_48_DATA = "绝对气流阀位置C(0-100%)  ";
+        public const string PID_49_DATA = "绝对气流阀位置D(0-100%)  ";
+        public const string PID_4A_DATA = "绝对气流阀位置E(0-100%)  ";
+        public const string PID_4B_DATA = "绝对气流阀位置F(0-100%)  ";
+        public const string PID_4C_DATA = "通讯节流阀执行机构控制(0-100%)  ";
+        public const string PID_4D_DATA = "启动MIL时引擎运行的时间(0-65535分钟)  ";
+        public const string PID_4E_DATA = "诊断故障代码清除以来的时间(0-65535分钟)  ";
 
-        public const string PID_4F_DATA_A = "pid=4F,字节长度=4, DATA A ,意义：等值比的最大值(0-255) 结果：";
-        public const string PID_4F_DATA_B = "pid=4F,字节长度=4, DATA B ,意义：氧传感器电压最大值(0-255V) 结果：";
-        public const string PID_4F_DATA_C = "pid=4F,字节长度=4, DATA C ,意义：氧传感器电流最大值(0-255mA) 结果：";
-        public const string PID_4F_DATA_D = "pid=4F,字节长度=4, DATA D ,意义：进气歧管绝对压力的最大值(0-2550kPa) 结果：";
+        public const string PID_4F_DATA_A = "等值比的最大值(0-255)  ";
+        public const string PID_4F_DATA_B = "氧传感器电压最大值(0-255V)  ";
+        public const string PID_4F_DATA_C = "氧传感器电流最大值(0-255mA)  ";
+        public const string PID_4F_DATA_D = "进气歧管绝对压力的最大值(0-2550kPa)  ";
         #endregion
 
         #region PID=51-FF ，5B-FF保留
-        public const string PID_51_DATA = "pid=51,字节长度=1, DATA A ,意义：车辆目前使用的燃料类型（01-0f） 结果：";
-        public const string PID_52_DATA = "pid=52,字节长度=1, DATA A ,意义：酒精燃料比例（0-100%） 结果：";
-        public const string PID_53_DATA = "pid=53,字节长度=2, DATA AB ,意义：绝对Evap系统蒸汽压（0-327.675kPa） 结果：";
-        public const string PID_54_DATA = "pid=54,字节长度=2, DATA AB ,意义：Evap系统蒸汽压力（-32767-32768pa） 结果：";
+        public const string PID_51_DATA = "车辆目前使用的燃料类型（01-0f）  ";
+        public const string PID_52_DATA = "酒精燃料比例（0-100%）  ";
+        public const string PID_53_DATA = "绝对Evap系统蒸汽压（0-327.675kPa）  ";
+        public const string PID_54_DATA = "Evap系统蒸汽压力（-32767-32768pa）  ";
 
-        public const string PID_55_DATA_A = "pid=55,字节长度=2, DATA A ,意义：短时间内二级氧传感器燃料修整器BANK1（-100-99.22%） 结果：";
-        public const string PID_55_DATA_B = "pid=55,字节长度=2, DATA B ,意义：短时间内二级氧传感器燃料修整器BANK3（-100-99.22%） 结果：";
+        public const string PID_55_DATA_A = "短时间内二级氧传感器燃料修整器BANK1（-100-99.22%）  ";
+        public const string PID_55_DATA_B = "短时间内二级氧传感器燃料修整器BANK3（-100-99.22%）  ";
 
-        public const string PID_56_DATA_A = "pid=56,字节长度=2, DATA A ,意义：长时间内二级氧传感器燃料修整器BANK1（-100-99.22%） 结果：";
-        public const string PID_56_DATA_B = "pid=56,字节长度=2, DATA B ,意义：长时间内二级氧传感器燃料修整器BANK3（-100-99.22%） 结果：";
+        public const string PID_56_DATA_A = "长时间内二级氧传感器燃料修整器BANK1（-100-99.22%）  ";
+        public const string PID_56_DATA_B = "长时间内二级氧传感器燃料修整器BANK3（-100-99.22%）  ";
 
-        public const string PID_57_DATA_A = "pid=57,字节长度=2, DATA A ,意义：短时间内二级氧传感器燃料修整器BANK2（-100-99.22%） 结果：";
-        public const string PID_57_DATA_B = "pid=57,字节长度=2, DATA B ,意义：短时间内二级氧传感器燃料修整器BANK4（-100-99.22%） 结果：";
+        public const string PID_57_DATA_A = "短时间内二级氧传感器燃料修整器BANK2（-100-99.22%）  ";
+        public const string PID_57_DATA_B = "短时间内二级氧传感器燃料修整器BANK4（-100-99.22%）  ";
 
-        public const string PID_58_DATA_A = "pid=58,字节长度=2, DATA A ,意义：长时间内二级氧传感器燃料修整器BANK2（-100-99.22%） 结果：";
-        public const string PID_58_DATA_B = "pid=58,字节长度=2, DATA B ,意义：长时间内二级氧传感器燃料修整器BANK4（-100-99.22%） 结果：";
+        public const string PID_58_DATA_A = "长时间内二级氧传感器燃料修整器BANK2（-100-99.22%）  ";
+        public const string PID_58_DATA_B = "长时间内二级氧传感器燃料修整器BANK4（-100-99.22%）  ";
 
-        public const string PID_59_DATA = "pid=59,字节长度=2, DATA AB ,意义：燃料轨压力绝对（0-655350kpa） 结果：";
+        public const string PID_59_DATA = "燃料轨压力绝对（0-655350kpa）  ";
 
-        public const string PID_5A_DATA = "pid=5A,字节长度=1, DATA A ,意义：相对油门踏板（0-100%） 结果：";
+        public const string PID_5A_DATA = "相对油门踏板（0-100%）  ";
         //5B-FF 保留
-        public const string PID_5B_FF_DATA = "pid=5B-FF,意义：保留";
+        public const string PID_5B_FF_DATA = "保留";
 
-        public const string PID_FD_DATA = "pid=FD,字节长度=2, DATA AB ,意义：ADP 气流抵消（-32768-32767） 结果：";
-        public const string PID_FE_DATA = "pid=FE,字节长度=2, DATA AB ,意义：ADP燃料乘数（65535） 结果：";
-        public const string PID_FF_DATA = "pid=FF,字节长度=2, DATA AB ,意义：ADP 燃料抵消（-32768-32767） 结果：";
+        public const string PID_FD_DATA = "ADP 气流抵消（-32768-32767）  ";
+        public const string PID_FE_DATA = "ADP燃料乘数（65535）  ";
+        public const string PID_FF_DATA = "ADP 燃料抵消（-32768-32767）  ";
 
         #endregion
     }
@@ -1586,7 +1586,7 @@ namespace CANManager.CAN
         private static void PID_0XO9(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
         {
             double k = (Convert.ToInt32(CharToString(dataA), 16) - 128) * (100 / 128);
-            WriteContent("PID 09", k.ToString("f3"), "%", PID_MEAN.PID_09_DATAA);
+            WriteContent("PID 09", k.ToString("f3"), "kPa", PID_MEAN.PID_09_DATAA);
         }
 
         /// <summary>
@@ -1607,7 +1607,7 @@ namespace CANManager.CAN
         private static void PID_0X0B(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
         {
             double v = Convert.ToInt32(CharToString(dataA), 16);
-            WriteContent("PID 0B", v.ToString("f3"), "%", PID_MEAN.PID_0B_DATAA);
+            WriteContent("PID 0B", v.ToString("f3"), "kPa", PID_MEAN.PID_0B_DATAA);
         }
 
         /// <summary>
@@ -1631,7 +1631,7 @@ namespace CANManager.CAN
         private static void PID_0X0D(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
         {
             double s = Convert.ToInt32(CharToString(dataA), 16);
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_0D_DATAA} {s} km/h");
+            WriteContent("PID 0D", s.ToString("f3"), "km/h", PID_MEAN.PID_0D_DATAA);
         }
 
         /// <summary>
@@ -1642,7 +1642,7 @@ namespace CANManager.CAN
         {
             //公式：(A-128) /2
             double v = (Convert.ToInt32(CharToString(dataA), 16) - 128) / 2;
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_0E_DATAA} {v}°");
+            WriteContent("PID 0E", v.ToString("f3"), "°", PID_MEAN.PID_0E_DATAA);
         }
 
         /// <summary>
@@ -1653,7 +1653,7 @@ namespace CANManager.CAN
         {
             //公式：A-40
             double v = Convert.ToInt32(CharToString(dataA), 16) - 40;
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_0F_DATAA}");
+            WriteContent("PID 0D", v.ToString("f3"), "℃", PID_MEAN.PID_0F_DATAA);
         }
         #endregion
 
@@ -1670,7 +1670,7 @@ namespace CANManager.CAN
             double a = Convert.ToInt32(CharToString(dataA), 16);
             double b = Convert.ToInt32(CharToString(dataB), 16);
             double v = (a * 256 + b) / 100;
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_10_DATAA} {v}grams/sec");
+            WriteContent("PID 10", v.ToString("f3"), "grams/sec", PID_MEAN.PID_10_DATAA);
         }
 
         /// <summary>
@@ -1681,23 +1681,24 @@ namespace CANManager.CAN
         {
             //公式:A * (100/255)
             double v = Convert.ToInt32(CharToString(dataA), 16) * (100 / 255.00);
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_11_DATAA} {v}%");
+            WriteContent("PID 11", v.ToString("f3"), "%", PID_MEAN.PID_11_DATAA);
         }
 
         private static void PID_0X12(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
         {
+            WriteContent("PID 12",CharToString(dataA),"","二次空气状态");
             for (int i = 0; i < dataA.Length; i++)
             {
                 switch (i)
                 {
                     case 0:
-                        device.TempBuffer.AppendLine($"{PID_MEAN.PID_12_DATAA_00} AIR_STATUS UPS {dataA[i]}");
+                        WriteContent("", "AIR_STATUS UPS", "", PID_MEAN.PID_12_DATAA_00);
                         break;
                     case 1:
-                        device.TempBuffer.AppendLine($"{PID_MEAN.PID_12_DATAA_01} AIR_STATUS DNS {dataA[i]}");
+                        WriteContent("", "AIR_STATUS DNS", "", PID_MEAN.PID_12_DATAA_01);
                         break;
                     case 2:
-                        device.TempBuffer.AppendLine($"{PID_MEAN.PID_12_DATAA_02} AIR_STATUS OFF {dataA[i]}");
+                        WriteContent("", "AIR_STATUS OFF", "", PID_MEAN.PID_12_DATAA_02);
                         break;
                     case 3:
                         device.TempBuffer.AppendLine($"{PID_MEAN.PID_12_DATAA_03} {dataA[i]}");
