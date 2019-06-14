@@ -251,14 +251,14 @@ namespace CANManager.CAN
         #endregion
 
         #region PID=13 氧传感器位置，PID$13不支持时才可由给定车辆支持
-        public const string PID_13_DATAA_00 = "O2s11(Bank1,Sensors1)";
-        public const string PID_13_DATAA_01 = "O2s12(Bank1,Sensors2)";
-        public const string PID_13_DATAA_02 = "O2s13(Bank1,Sensors3)";
-        public const string PID_13_DATAA_03 = "O2s14(Bank1,Sensors4)";
-        public const string PID_13_DATAA_04 = "O2s21(Bank2,Sensors1)";
-        public const string PID_13_DATAA_05 = "O2s22(Bank2,Sensors2)";
-        public const string PID_13_DATAA_06 = "O2s23(Bank2,Sensors3)";
-        public const string PID_13_DATAA_07 = "O2s24(Bank2,Sensors4)";
+        public const string PID_13_DATAA_00 = "通道1，传感器1";
+        public const string PID_13_DATAA_01 = "通道1，传感器2";
+        public const string PID_13_DATAA_02 = "通道1，传感器3";
+        public const string PID_13_DATAA_03 = "通道1，传感器4";
+        public const string PID_13_DATAA_04 = "通道2，传感器1";
+        public const string PID_13_DATAA_05 = "通道2，传感器2";
+        public const string PID_13_DATAA_06 = "通道2，传感器3";
+        public const string PID_13_DATAA_07 = "通道2，传感器2";
         #endregion
 
         #region PID=14-1B 
@@ -293,14 +293,14 @@ namespace CANManager.CAN
         #endregion
 
         #region PID=1D 氧传感器位置
-        public const string PID_1D_DATAA_00 = "O2s11(Bank1,Sensors1)  ";
-        public const string PID_1D_DATAA_01 = "O2s12(Bank1,Sensors2)  ";
-        public const string PID_1D_DATAA_02 = "O2s13(Bank2,Sensors1)  ";
-        public const string PID_1D_DATAA_03 = "O2s14(Bank2,Sensors2)  ";
-        public const string PID_1D_DATAA_04 = "O2s21(Bank3,Sensors1)  ";
-        public const string PID_1D_DATAA_05 = "O2s22(Bank3,Sensors2)  ";
-        public const string PID_1D_DATAA_06 = "O2s23(Bank4,Sensors1)  ";
-        public const string PID_1D_DATAA_07 = "O2s24(Bank4,Sensors2)  ";
+        public const string PID_1D_DATAA_00 = "通道1，传感器1";
+        public const string PID_1D_DATAA_01 = "通道1，传感器2 ";
+        public const string PID_1D_DATAA_02 = "通道2，传感器1";
+        public const string PID_1D_DATAA_03 = "通道2，传感器2";
+        public const string PID_1D_DATAA_04 = "通道3，传感器1";
+        public const string PID_1D_DATAA_05 = "通道3，传感器2 ";
+        public const string PID_1D_DATAA_06 = "通道4，传感器1";
+        public const string PID_1D_DATAA_07 = "通道4，传感器2";
         #endregion
 
         #region PID=1E
@@ -316,14 +316,8 @@ namespace CANManager.CAN
         #endregion
 
         #region PID=24-2B,仅适用于PID13定义的氧传感器位置 1-2bank 1-4传感器
-        public const string PID_24_DATA_13 = "AB-等效比,CD-氧传感器电压  ";
-        public const string PID_25_DATA_13 = "AB-等效比,CD-氧传感器电压  ";
-        public const string PID_26_DATA_13 = "AB-等效比,CD-氧传感器电压  ";
-        public const string PID_27_DATA_13 = "AB-等效比,CD-氧传感器电压  ";
-        public const string PID_28_DATA_13 = "AB-等效比,CD-氧传感器电压  ";
-        public const string PID_29_DATA_13 = "AB-等效比,CD-氧传感器电压  ";
-        public const string PID_2A_DATA_13 = "AB-等效比,CD-氧传感器电压  ";
-        public const string PID_2B_DATA_13 = "AB-等效比,CD-氧传感器电压  ";
+        public const string PID_24_2B_DATA_13_AB = "等效比(AB)";
+        public const string PID_24_2B_DATA_13_CD = "氧传感器电压(CD)";
         #endregion
 
         #region PID=24,仅适用于PID1D定义的氧传感器位置 1-4bank 1-2传感器
@@ -350,14 +344,8 @@ namespace CANManager.CAN
         #endregion
 
         #region PID=34-3B 仅适用于PID13定义的氧传感器位置 1-4bank 1-2传感器
-        public const string PID_34_13_DATA = "AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma)  ";
-        public const string PID_35_13_DATA = "AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma)  ";
-        public const string PID_36_13_DATA = "AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma)  ";
-        public const string PID_37_13_DATA = "AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma)  ";
-        public const string PID_38_13_DATA = "AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma)  ";
-        public const string PID_39_13_DATA = "AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma)  ";
-        public const string PID_3A_13_DATA = "AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma)  ";
-        public const string PID_3B_13_DATA = "AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma)  ";
+        public const string PID_34_3B_13_DATA_AB = "等效比(0-1.999N/A)-AB";
+        public const string PID_34_3B_13_DATA_CD = "氧传感器电流(-128-127.99ma)-CD";
         #endregion
 
         #region PID=34-3B 仅适用于PID1D定义的氧传感器位置 1-4bank 1-2传感器
@@ -381,32 +369,19 @@ namespace CANManager.CAN
         #region PID=41
         public const string PID_41_DATA_A0_A7 = "保留";
 
-        public const string PID_41_DATA_B0 = "启用失火检测  ";
-        public const string PID_41_DATA_B1 = "启用燃油系统监测  ";
-        public const string PID_41_DATA_B2 = "启用全面组件监测  ";
+        public const string PID_41_DATA_B0 = "失火检测";
+        public const string PID_41_DATA_B1 = "燃油系统监测";
+        public const string PID_41_DATA_B2 = "全面组件监测";
         public const string PID_41_DATA_B3 = "保留 ";
-        public const string PID_41_DATA_B4 = "完成失火监测  ";
-        public const string PID_41_DATA_B5 = "完成燃油系统监测  ";
-        public const string PID_41_DATA_B6 = "完成全面组件监测  ";
-        public const string PID_41_DATA_B7 = "保留 ";
 
-        public const string PID_41_DATA_C0 = "催化剂监控  ";
-        public const string PID_41_DATA_C1 = "催化剂加热  ";
-        public const string PID_41_DATA_C2 = "蒸发系统监控  ";
-        public const string PID_41_DATA_C3 = "二次空气系统检测仪  ";
-        public const string PID_41_DATA_C4 = "空调系统制冷剂监测  ";
-        public const string PID_41_DATA_C5 = "氧传感器监测  ";
-        public const string PID_41_DATA_C6 = "氧传感器加热器监控  ";
-        public const string PID_41_DATA_C7 = "EGR系统监控  ";
-
-        public const string PID_41_DATA_D0 = "催化剂监控完成  ";
-        public const string PID_41_DATA_D1 = "加热催化剂完成  ";
-        public const string PID_41_DATA_D2 = "蒸发系统监控完成  ";
-        public const string PID_41_DATA_D3 = "二次空气系统检测仪完成  ";
-        public const string PID_41_DATA_D4 = "空调系统制冷剂监测完成  ";
-        public const string PID_41_DATA_D5 = "氧传感器监测完成  ";
-        public const string PID_41_DATA_D6 = "氧传感器加热器监控完成  ";
-        public const string PID_41_DATA_D7 = "EGR系统监控完成  ";
+        public const string PID_41_DATA_CD0 = "催化剂监控";
+        public const string PID_41_DATA_CD1 = "催化剂加热";
+        public const string PID_41_DATA_CD2 = "蒸发系统监控";
+        public const string PID_41_DATA_CD3 = "二次空气系统检测仪";
+        public const string PID_41_DATA_CD4 = "空调系统制冷剂监测";
+        public const string PID_41_DATA_CD5 = "氧传感器监测";
+        public const string PID_41_DATA_CD6 = "氧传感器加热器监控";
+        public const string PID_41_DATA_CD7 = "EGR系统监控";
         #endregion
 
         #region PID=42-4F
@@ -472,7 +447,7 @@ namespace CANManager.CAN
         private static uint CLEAR_TX_BUFFER = 0x07;
         private static byte sid = 0x01;
         private static byte pid = 0x00;
-        private static List<byte> funCodeList = new List<byte>();
+        private static List<byte> funCodeList;
         private static int frameAddressDef = 0;
         private static int frameAddressIndex;
         private static int framePidNextStartIndex;
@@ -556,34 +531,44 @@ namespace CANManager.CAN
             switch (device.ModelSidType)
             {
                 case DeviceInfo.ModelType.MODEL1:
+                    //pid 重新初始化
+                    sid = 0x02;
+                    pid = 0x00;
+                    framePidNextStartIndex = 0;
+                    funCodeList = new List<byte>();
                     PassThruWriteMsgs(false);
                     break;
                 case DeviceInfo.ModelType.MODEL2:
-
+                    //pid 重新初始化
+                    sid = 0x02;
+                    pid = 0x00;
+                    framePidNextStartIndex = 0;
+                    funCodeList = new List<byte>();
+                    PassThruWriteMsgs(false);
                     break;
                 case DeviceInfo.ModelType.MODEL3:
-
+                    PassThruWriteMsgs(false);
                     break;
                 case DeviceInfo.ModelType.MODEL4:
-
+                    PassThruWriteMsgs(false);
                     break;
                 case DeviceInfo.ModelType.MODEL5:
-
+                    PassThruWriteMsgs(false);
                     break;
                 case DeviceInfo.ModelType.MODEL6:
-
+                    PassThruWriteMsgs(false);
                     break;
                 case DeviceInfo.ModelType.MODEL7:
-
+                    PassThruWriteMsgs(false);
                     break;
                 case DeviceInfo.ModelType.MODEL8:
-
+                    PassThruWriteMsgs(false);
                     break;
                 case DeviceInfo.ModelType.MODEL9:
-
+                    PassThruWriteMsgs(false);
                     break;
                 case DeviceInfo.ModelType.MODELA:
-
+                    PassThruWriteMsgs(false);
                     break;
             }
         }
@@ -659,7 +644,7 @@ namespace CANManager.CAN
                 int res_read = MonGoose.MonReadMsgs(device.ChannelID, ref Msg, ref pnumMsg, timeout);
                 if (res_read != 0)
                 {
-                    LogHelper.Log.Info($"读取失败！{res_read}");
+                    LogHelper.Log.Info($"读取失败！(hex){Convert.ToString(res_read,16)}");
                     return ReadReturnCode.FAIL;
                 }
                 LogHelper.Log.Info($"读取成功！");
@@ -761,52 +746,52 @@ namespace CANManager.CAN
                             PID_0XO2(framePerBinaryDataA.ToCharArray(), framePerBinaryDataB.ToCharArray(), framePerBinaryDataC.ToCharArray(), framePerBinaryDataD.ToCharArray());
                             break;
                         case (int)Model_PID.PID_OX03:
-                            PID_0XO3(framePerBinaryDataA.ToCharArray(), framePerBinaryDataB.ToCharArray(), framePerBinaryDataC.ToCharArray(), framePerBinaryDataD.ToCharArray());
+                            PID_0XO3(framePerBinaryDataA.ToCharArray(), framePerBinaryDataB.ToCharArray());
                             break;
                         case (int)Model_PID.PID_OX04:
-                            PID_0XO4(framePerBinaryDataA.ToCharArray(), framePerBinaryDataB.ToCharArray(), framePerBinaryDataC.ToCharArray(), framePerBinaryDataD.ToCharArray());
+                            PID_0XO4(framePerBinaryDataA.ToCharArray());
                             break;
                         case (int)Model_PID.PID_0X05:
-                            PID_0XO5(framePerBinaryDataA.ToCharArray(), framePerBinaryDataB.ToCharArray(), framePerBinaryDataC.ToCharArray(), framePerBinaryDataD.ToCharArray());
+                            PID_0XO5(framePerBinaryDataA.ToCharArray());
                             break;
                         case (int)Model_PID.PID_0X06:
-                            PID_0XO6(framePerBinaryDataA.ToCharArray(), framePerBinaryDataB.ToCharArray(), framePerBinaryDataC.ToCharArray(), framePerBinaryDataD.ToCharArray());
+                            PID_0XO6(framePerBinaryDataA.ToCharArray());
                             break;
                         case (int)Model_PID.PID_0X07:
-                            PID_0XO7(framePerBinaryDataA.ToCharArray(), framePerBinaryDataB.ToCharArray(), framePerBinaryDataC.ToCharArray(), framePerBinaryDataD.ToCharArray());
+                            PID_0XO7(framePerBinaryDataA.ToCharArray());
                             break;
                         case (int)Model_PID.PID_0X08:
-                            PID_0XO8(framePerBinaryDataA.ToCharArray(), framePerBinaryDataB.ToCharArray(), framePerBinaryDataC.ToCharArray(), framePerBinaryDataD.ToCharArray());
+                            PID_0XO8(framePerBinaryDataA.ToCharArray());
                             break;
                         case (int)Model_PID.PID_0X09:
-                            PID_0XO9(framePerBinaryDataA.ToCharArray(), framePerBinaryDataB.ToCharArray(), framePerBinaryDataC.ToCharArray(), framePerBinaryDataD.ToCharArray());
+                            PID_0XO9(framePerBinaryDataA.ToCharArray());
                             break;
                         case (int)Model_PID.PID_0X0A:
-                            PID_0X0A(framePerBinaryDataA.ToCharArray(), framePerBinaryDataB.ToCharArray(), framePerBinaryDataC.ToCharArray(), framePerBinaryDataD.ToCharArray());
+                            PID_0X0A(framePerBinaryDataA.ToCharArray());
                             break;
                         case (int)Model_PID.PID_0X0B:
-                            PID_0X0B(framePerBinaryDataA.ToCharArray(), framePerBinaryDataB.ToCharArray(), framePerBinaryDataC.ToCharArray(), framePerBinaryDataD.ToCharArray());
+                            PID_0X0B(framePerBinaryDataA.ToCharArray());
                             break;
                         case (int)Model_PID.PID_0X0C:
-                            PID_0X0C(framePerBinaryDataA.ToCharArray(), framePerBinaryDataB.ToCharArray(), framePerBinaryDataC.ToCharArray(), framePerBinaryDataD.ToCharArray());
+                            PID_0X0C(framePerBinaryDataA.ToCharArray(), framePerBinaryDataB.ToCharArray());
                             break;
                         case (int)Model_PID.PID_0X0D:
-                            PID_0X0D(framePerBinaryDataA.ToCharArray(), framePerBinaryDataB.ToCharArray(), framePerBinaryDataC.ToCharArray(), framePerBinaryDataD.ToCharArray());
+                            PID_0X0D(framePerBinaryDataA.ToCharArray());
                             break;
                         case (int)Model_PID.PID_0X0E:
-                            PID_0X0E(framePerBinaryDataA.ToCharArray(), framePerBinaryDataB.ToCharArray(), framePerBinaryDataC.ToCharArray(), framePerBinaryDataD.ToCharArray());
+                            PID_0X0E(framePerBinaryDataA.ToCharArray());
                             break;
                         case (int)Model_PID.PID_0X0F:
-                            PID_0X0F(framePerBinaryDataA.ToCharArray(), framePerBinaryDataB.ToCharArray(), framePerBinaryDataC.ToCharArray(), framePerBinaryDataD.ToCharArray());
+                            PID_0X0F(framePerBinaryDataA.ToCharArray());
                             break;
                         case (int)Model_PID.PID_0X10:
-                            PID_0X10(framePerBinaryDataA.ToCharArray(), framePerBinaryDataB.ToCharArray(), framePerBinaryDataC.ToCharArray(), framePerBinaryDataD.ToCharArray());
+                            PID_0X10(framePerBinaryDataA.ToCharArray(), framePerBinaryDataB.ToCharArray());
                             break;
                         case (int)Model_PID.PID_0X11:
-                            PID_0X11(framePerBinaryDataA.ToCharArray(), framePerBinaryDataB.ToCharArray(), framePerBinaryDataC.ToCharArray(), framePerBinaryDataD.ToCharArray());
+                            PID_0X11(framePerBinaryDataA.ToCharArray());
                             break;
                         case (int)Model_PID.PID_0X12:
-                            PID_0X12(framePerBinaryDataA.ToCharArray(), framePerBinaryDataB.ToCharArray(), framePerBinaryDataC.ToCharArray(), framePerBinaryDataD.ToCharArray());
+                            PID_0X12(framePerBinaryDataA.ToCharArray());
                             break;
                         case (int)Model_PID.PID_0X13:
                             PID_0X13(framePerBinaryDataA.ToCharArray());
@@ -1068,7 +1053,8 @@ namespace CANManager.CAN
             }
             //data A 结果
             int dtc = Convert.ToInt32(dtcNum,2);
-            WriteContent("PID 01",dtc.ToString(),"",PID_MEAN.PID_01_DATAA_0_6);
+            WriteContent("PID 01", "", "", "DTC情况指标");
+            WriteContent("",dtc.ToString(),"",PID_MEAN.PID_01_DATAA_0_6);
             WriteContent("",CharToString(dataA),"",PID_MEAN.PID_01_DATAA_07+ledRes);
 
             string[] resDataB = new string[8];
@@ -1158,8 +1144,6 @@ namespace CANManager.CAN
                         break;
                 }
             }
-
-
             for (int i = 0; i < dataC.Length; i++)
             {
                 switch (i)
@@ -1350,7 +1334,7 @@ namespace CANManager.CAN
             device.TempBuffer.AppendLine($"{PID_MEAN.PID_02_DATAB_00} dataA:{CharToString(dataA)} dataB:{CharToString(dataB)} dataC:{CharToString(dataC)} dataD:{CharToString(dataD)}");
         }
 
-        private static void PID_0XO3(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
+        private static void PID_0XO3(char[] dataA, char[] dataB)
         {
             //燃油系统1
             WriteContent("PID 03",CharToString(dataA),"","燃油系统状态A：");
@@ -1530,7 +1514,7 @@ namespace CANManager.CAN
             }
         }
 
-        private static void PID_0XO4(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
+        private static void PID_0XO4(char[] dataA)
         {
             //计算负荷值
             //公式：A * 100/255
@@ -1541,10 +1525,10 @@ namespace CANManager.CAN
         /// 发动机冷却液温度
         /// </summary>
         /// <param name="dataA"></param>
-        private static void PID_0XO5(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
+        private static void PID_0XO5(char[] dataA)
         {
             //公式：A-40
-            double c = Convert.ToInt32(CharToString(dataA), 16) - 40;
+            double c = Convert.ToInt32(CharToString(dataA), 2) - 40;
             WriteContent("PID 05",c.ToString("f3"), "℃", PID_MEAN.PID_05_DATAA);
         }
 
@@ -1552,10 +1536,10 @@ namespace CANManager.CAN
         /// 短期燃料调整BANK1/3
         /// </summary>
         /// <param name="dataA"></param>
-        private static void PID_0XO6(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
+        private static void PID_0XO6(char[] dataA)
         {
             //公式：（A-128）(100/128)
-            double k = (Convert.ToInt32(CharToString(dataA), 16) -128) * (100 / 128.00);
+            double k = (Convert.ToInt32(CharToString(dataA), 2) -128) * (100 / 128.00);
             WriteContent("PID 06", k.ToString("f3"), "%", PID_MEAN.PID_06_DATAA);
         }
 
@@ -1563,9 +1547,9 @@ namespace CANManager.CAN
         /// 长期燃料调整BANK1/3
         /// </summary>
         /// <param name="dataA"></param>
-        private static void PID_0XO7(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
+        private static void PID_0XO7(char[] dataA)
         {
-            double k = (Convert.ToInt32(CharToString(dataA), 16) - 128) * (100 / 128.00);
+            double k = (Convert.ToInt32(CharToString(dataA), 2) - 128) * (100 / 128.00);
             WriteContent("PID 07", k.ToString("f3"), "%", PID_MEAN.PID_07_DATAA);
         }
 
@@ -1573,9 +1557,9 @@ namespace CANManager.CAN
         /// 短期燃料调整BANK2/4
         /// </summary>
         /// <param name="dataA"></param>
-        private static void PID_0XO8(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
+        private static void PID_0XO8(char[] dataA)
         {
-            double k = (Convert.ToInt32(CharToString(dataA), 16) - 128) * (100 / 128.00);
+            double k = (Convert.ToInt32(CharToString(dataA), 2) - 128) * (100 / 128.00);
             WriteContent("PID 08", k.ToString("f3"), "%", PID_MEAN.PID_08_DATAA);
         }
 
@@ -1583,9 +1567,9 @@ namespace CANManager.CAN
         /// 长期燃料调整BANK2/4
         /// </summary>
         /// <param name="dataA"></param>
-        private static void PID_0XO9(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
+        private static void PID_0XO9(char[] dataA)
         {
-            double k = (Convert.ToInt32(CharToString(dataA), 16) - 128) * (100 / 128);
+            double k = (Convert.ToInt32(CharToString(dataA), 2) - 128) * (100 / 128);
             WriteContent("PID 09", k.ToString("f3"), "kPa", PID_MEAN.PID_09_DATAA);
         }
 
@@ -1593,10 +1577,10 @@ namespace CANManager.CAN
         /// 燃油压力
         /// </summary>
         /// <param name="dataA"></param>
-        private static void PID_0X0A(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
+        private static void PID_0X0A(char[] dataA)
         {
             //公式：A*3
-            double k = Convert.ToInt32(CharToString(dataA), 16) * 3;
+            double k = Convert.ToInt32(CharToString(dataA), 2) * 3;
             WriteContent("PID 0A", k.ToString("f3"), "%", PID_MEAN.PID_0A_DATAA);
         }
 
@@ -1604,9 +1588,9 @@ namespace CANManager.CAN
         /// 油箱压力绝对值
         /// </summary>
         /// <param name="dataA"></param>
-        private static void PID_0X0B(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
+        private static void PID_0X0B(char[] dataA)
         {
-            double v = Convert.ToInt32(CharToString(dataA), 16);
+            double v = Convert.ToInt32(CharToString(dataA), 2);
             WriteContent("PID 0B", v.ToString("f3"), "kPa", PID_MEAN.PID_0B_DATAA);
         }
 
@@ -1615,11 +1599,11 @@ namespace CANManager.CAN
         /// </summary>
         /// <param name="dataA"></param>
         /// <param name="dataB"></param>
-        private static void PID_0X0C(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
+        private static void PID_0X0C(char[] dataA, char[] dataB)
         {
             //公式：（A*256+B）/ 4
-            double a = Convert.ToInt32(CharToString(dataA), 16);
-            double b = Convert.ToInt32(CharToString(dataB), 16);
+            double a = Convert.ToInt32(CharToString(dataA), 2);
+            double b = Convert.ToInt32(CharToString(dataB), 2);
             double v = (a * 256 + b) / 4;
             WriteContent("PID 0C", v.ToString("f3"), "rpm", PID_MEAN.PID_0C_DATAA_B);
         }
@@ -1628,9 +1612,9 @@ namespace CANManager.CAN
         /// 车辆速度
         /// </summary>
         /// <param name="dataA"></param>
-        private static void PID_0X0D(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
+        private static void PID_0X0D(char[] dataA)
         {
-            double s = Convert.ToInt32(CharToString(dataA), 16);
+            double s = Convert.ToInt32(CharToString(dataA), 2);
             WriteContent("PID 0D", s.ToString("f3"), "km/h", PID_MEAN.PID_0D_DATAA);
         }
 
@@ -1638,10 +1622,10 @@ namespace CANManager.CAN
         /// 点火提前值
         /// </summary>
         /// <param name="dataA"></param>
-        private static void PID_0X0E(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
+        private static void PID_0X0E(char[] dataA)
         {
             //公式：(A-128) /2
-            double v = (Convert.ToInt32(CharToString(dataA), 16) - 128) / 2;
+            double v = (Convert.ToInt32(CharToString(dataA), 2) - 128) / 2;
             WriteContent("PID 0E", v.ToString("f3"), "°", PID_MEAN.PID_0E_DATAA);
         }
 
@@ -1649,10 +1633,10 @@ namespace CANManager.CAN
         /// 油箱空气温度
         /// </summary>
         /// <param name="dataA"></param>
-        private static void PID_0X0F(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
+        private static void PID_0X0F(char[] dataA)
         {
             //公式：A-40
-            double v = Convert.ToInt32(CharToString(dataA), 16) - 40;
+            double v = Convert.ToInt32(CharToString(dataA), 2) - 40;
             WriteContent("PID 0D", v.ToString("f3"), "℃", PID_MEAN.PID_0F_DATAA);
         }
         #endregion
@@ -1664,11 +1648,11 @@ namespace CANManager.CAN
         /// </summary>
         /// <param name="dataA"></param>
         /// <param name="dataB"></param>
-        private static void PID_0X10(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
+        private static void PID_0X10(char[] dataA, char[] dataB)
         {
             //公式：（A * 256 + b） / 100
-            double a = Convert.ToInt32(CharToString(dataA), 16);
-            double b = Convert.ToInt32(CharToString(dataB), 16);
+            double a = Convert.ToInt32(CharToString(dataA), 2);
+            double b = Convert.ToInt32(CharToString(dataB), 2);
             double v = (a * 256 + b) / 100;
             WriteContent("PID 10", v.ToString("f3"), "grams/sec", PID_MEAN.PID_10_DATAA);
         }
@@ -1677,14 +1661,14 @@ namespace CANManager.CAN
         /// 节气门位置
         /// </summary>
         /// <param name="dataA"></param>
-        private static void PID_0X11(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
+        private static void PID_0X11(char[] dataA)
         {
             //公式:A * (100/255)
-            double v = Convert.ToInt32(CharToString(dataA), 16) * (100 / 255.00);
+            double v = Convert.ToInt32(CharToString(dataA), 2) * (100 / 255.00);
             WriteContent("PID 11", v.ToString("f3"), "%", PID_MEAN.PID_11_DATAA);
         }
 
-        private static void PID_0X12(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
+        private static void PID_0X12(char[] dataA)
         {
             WriteContent("PID 12",CharToString(dataA),"","二次空气状态");
             for (int i = 0; i < dataA.Length; i++)
@@ -1701,19 +1685,19 @@ namespace CANManager.CAN
                         WriteContent("", "AIR_STATUS OFF", "", PID_MEAN.PID_12_DATAA_02);
                         break;
                     case 3:
-                        device.TempBuffer.AppendLine($"{PID_MEAN.PID_12_DATAA_03} {dataA[i]}");
+                        WriteContent("", "", "", PID_MEAN.PID_12_DATAA_03);
                         break;
                     case 4:
-                        device.TempBuffer.AppendLine($"{PID_MEAN.PID_12_DATAA_04} {dataA[i]}");
+                        WriteContent("", "", "", PID_MEAN.PID_12_DATAA_04);
                         break;
                     case 5:
-                        device.TempBuffer.AppendLine($"{PID_MEAN.PID_12_DATAA_05} {dataA[i]}");
+                        WriteContent("", "", "", PID_MEAN.PID_12_DATAA_05);
                         break;
                     case 6:
-                        device.TempBuffer.AppendLine($"{PID_MEAN.PID_12_DATAA_06} {dataA[i]}");
+                        WriteContent("", "", "", PID_MEAN.PID_12_DATAA_06);
                         break;
                     case 7:
-                        device.TempBuffer.AppendLine($"{PID_MEAN.PID_12_DATAA_07} {dataA[i]}");
+                        WriteContent("", "", "", PID_MEAN.PID_12_DATAA_07);
                         break;
                 }
             }
@@ -1732,82 +1716,82 @@ namespace CANManager.CAN
                     case 0:
                         if (dataA[i] == 1)
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_13_DATAA_00} {dataA[i]}-存在");
+                            WriteContent("PID 13",CharToString(dataA),"",PID_MEAN.PID_13_DATAA_00+"(存在)");
                         }
                         else
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_13_DATAA_00} {dataA[i]}-不存在");
+                            WriteContent("PID 13", CharToString(dataA), "", PID_MEAN.PID_13_DATAA_00 + "(不存在)");
                         }
                         break;
 
                     case 1:
                         if (dataA[i] == 1)
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_13_DATAA_01} {dataA[i]}-存在");
+                            WriteContent("PID 13", "", "", PID_MEAN.PID_13_DATAA_01 + "(存在)");
                         }
                         else
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_13_DATAA_01} {dataA[i]}-不存在");
+                            WriteContent("PID 13", "", "", PID_MEAN.PID_13_DATAA_01 + "(不存在)");
                         }
                         break;
                     case 2:
                         if (dataA[i] == 1)
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_13_DATAA_02} {dataA[i]}-存在");
+                            WriteContent("PID 13", "", "", PID_MEAN.PID_13_DATAA_02 + "(存在)");
                         }
                         else
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_13_DATAA_02} {dataA[i]}-不存在");
+                            WriteContent("PID 13", "", "", PID_MEAN.PID_13_DATAA_01 + "(不存在)");
                         }
                         break;
                     case 3:
                         if (dataA[i] == 1)
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_13_DATAA_03} {dataA[i]}-存在");
+                            WriteContent("PID 13", "", "", PID_MEAN.PID_13_DATAA_02 + "(存在)");
                         }
                         else
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_13_DATAA_03} {dataA[i]}-不存在");
+                            WriteContent("PID 13", "", "", PID_MEAN.PID_13_DATAA_02 + "(不存在)");
                         }
                         break;
                     case 4:
                         if (dataA[i] == 1)
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_13_DATAA_04} {dataA[i]}-存在");
+                            WriteContent("PID 13", "", "", PID_MEAN.PID_13_DATAA_03 + "(存在)");
                         }
                         else
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_13_DATAA_04} {dataA[i]}-不存在");
+                            WriteContent("PID 13", "", "", PID_MEAN.PID_13_DATAA_04 + "(不存在)");
                         }
                         break;
                     case 5:
                         if (dataA[i] == 1)
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_13_DATAA_05} {dataA[i]}-存在");
+                            WriteContent("PID 13", "", "", PID_MEAN.PID_13_DATAA_05 + "(存在)");
                         }
                         else
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_13_DATAA_05} {dataA[i]}-不存在");
+                            WriteContent("PID 13", "", "", PID_MEAN.PID_13_DATAA_05 + "(不存在)");
                         }
                         break;
                     case 6:
                         if (dataA[i] == 1)
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_13_DATAA_06} {dataA[i]}-存在");
+                            WriteContent("PID 13", "", "", PID_MEAN.PID_13_DATAA_06 + "(存在)");
                         }
                         else
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_13_DATAA_06} {dataA[i]}-不存在");
+                            WriteContent("PID 13", "", "", PID_MEAN.PID_13_DATAA_06 + "(不存在)");
                         }
                         break;
                     case 7:
                         if (dataA[i] == 1)
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_13_DATAA_07} {dataA[i]}-存在");
+                            WriteContent("PID 13", "", "", PID_MEAN.PID_13_DATAA_07 + "(存在)");
                         }
                         else
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_13_DATAA_07} {dataA[i]}-不存在");
+                            WriteContent("PID 13", "", "", PID_MEAN.PID_13_DATAA_07 + "(不存在)");
                         }
                         break;
                 }
@@ -1822,9 +1806,11 @@ namespace CANManager.CAN
         {
             ///公式：A/200 Volts;
             ///(B-128) * 100/128  %
-            double va = Convert.ToInt32(CharToString(dataA),16) / 200.00;
-            double vb = (Convert.ToInt32(CharToString(dataB),16) - 128) * (100 / 128.00);
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_14_DATA} 氧传感器电压={va}Volts;短期燃油修正={vb}%");
+            double va = Convert.ToInt32(CharToString(dataA),2) / 200.00;
+            double vb = (Convert.ToInt32(CharToString(dataB),2) - 128) * (100 / 128.00);
+            WriteContent("PID 14", "", "", PID_MEAN.PID_14_DATA);
+            WriteContent("", va.ToString("f3"), "Volts", "氧传感器电压");
+            WriteContent("", vb.ToString("f3"), "%", "短期燃油修正");
         }
 
         /// <summary>
@@ -1836,9 +1822,11 @@ namespace CANManager.CAN
         {
             ///公式：A/200 Volts;
             ///(B-128) * 100/128  %
-            double va = Convert.ToInt32(CharToString(dataA), 16) / 200.00;
-            double vb = (Convert.ToInt32(CharToString(dataB), 16) - 128) * (100 / 128.00);
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_15_DATA} 氧传感器电压={va}Volts;短期燃油修正={vb}%");
+            double va = Convert.ToInt32(CharToString(dataA), 2) / 200.00;
+            double vb = (Convert.ToInt32(CharToString(dataB), 2) - 128) * (100 / 128.00);
+            WriteContent("PID 15", "", "", PID_MEAN.PID_15_DATA);
+            WriteContent("", va.ToString("f3"), "Volts", "氧传感器电压");
+            WriteContent("", vb.ToString("f3"), "%", "短期燃油修正");
         }
 
         /// <summary>
@@ -1850,9 +1838,11 @@ namespace CANManager.CAN
         {
             ///公式：A/200 Volts;
             ///(B-128) * 100/128  %
-            double va = Convert.ToInt32(CharToString(dataA), 16) / 200.00;
-            double vb = (Convert.ToInt32(CharToString(dataB), 16) - 128) * (100 / 128.00);
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_16_DATA} 氧传感器电压={va}Volts;短期燃油修正={vb}%");
+            double va = Convert.ToInt32(CharToString(dataA), 2) / 200.00;
+            double vb = (Convert.ToInt32(CharToString(dataB), 2) - 128) * (100 / 128.00);
+            WriteContent("PID 16", "", "", PID_MEAN.PID_16_DATA);
+            WriteContent("", va.ToString("f3"), "Volts", "氧传感器电压");
+            WriteContent("", vb.ToString("f3"), "%", "短期燃油修正");
         }
 
         /// <summary>
@@ -1864,9 +1854,11 @@ namespace CANManager.CAN
         {
             ///公式：A/200 Volts;
             ///(B-128) * 100/128  %
-            double va = Convert.ToInt32(CharToString(dataA), 16) / 200.00;
-            double vb = (Convert.ToInt32(CharToString(dataB), 16) - 128) * (100 / 128.00);
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_17_DATA} 氧传感器电压={va}Volts;短期燃油修正={vb}%");
+            double va = Convert.ToInt32(CharToString(dataA), 2) / 200.00;
+            double vb = (Convert.ToInt32(CharToString(dataB), 2) - 128) * (100 / 128.00);
+            WriteContent("PID 17", "", "", PID_MEAN.PID_17_DATA);
+            WriteContent("", va.ToString("f3"), "Volts", "氧传感器电压");
+            WriteContent("", vb.ToString("f3"), "%", "短期燃油修正");
         }
 
         /// <summary>
@@ -1878,9 +1870,11 @@ namespace CANManager.CAN
         {
             ///公式：A/200 Volts;
             ///(B-128) * 100/128  %
-            double va = Convert.ToInt32(CharToString(dataA), 16) / 200.00;
-            double vb = (Convert.ToInt32(CharToString(dataB), 16) - 128) * (100 / 128.00);
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_18_DATA} 氧传感器电压={va}Volts;短期燃油修正={vb}%");
+            double va = Convert.ToInt32(CharToString(dataA), 2) / 200.00;
+            double vb = (Convert.ToInt32(CharToString(dataB), 2) - 128) * (100 / 128.00);
+            WriteContent("PID 18", "", "", PID_MEAN.PID_18_DATA);
+            WriteContent("", va.ToString("f3"), "Volts", "氧传感器电压");
+            WriteContent("", vb.ToString("f3"), "%", "短期燃油修正");
         }
 
         /// <summary>
@@ -1892,9 +1886,11 @@ namespace CANManager.CAN
         {
             ///公式：A/200 Volts;
             ///(B-128) * 100/128  %
-            double va = Convert.ToInt32(CharToString(dataA), 16) / 200.00;
-            double vb = (Convert.ToInt32(CharToString(dataB), 16) - 128) * (100 / 128.00);
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_19_DATA} 氧传感器电压={va}Volts;短期燃油修正={vb}%");
+            double va = Convert.ToInt32(CharToString(dataA), 2) / 200.00;
+            double vb = (Convert.ToInt32(CharToString(dataB), 2) - 128) * (100 / 128.00);
+            WriteContent("PID 19", "", "", PID_MEAN.PID_19_DATA);
+            WriteContent("", va.ToString("f3"), "Volts", "氧传感器电压");
+            WriteContent("", vb.ToString("f3"), "%", "短期燃油修正");
         }
 
         /// <summary>
@@ -1906,9 +1902,11 @@ namespace CANManager.CAN
         {
             ///公式：A/200 Volts;
             ///(B-128) * 100/128  %
-            double va = Convert.ToInt32(CharToString(dataA), 16) / 200.00;
-            double vb = (Convert.ToInt32(CharToString(dataB), 16) - 128) * (100 / 128.00);
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_1A_DATA} 氧传感器电压={va}Volts;短期燃油修正={vb}%");
+            double va = Convert.ToInt32(CharToString(dataA), 2) / 200.00;
+            double vb = (Convert.ToInt32(CharToString(dataB), 2) - 128) * (100 / 128.00);
+            WriteContent("PID 1A", "", "", PID_MEAN.PID_1A_DATA);
+            WriteContent("", va.ToString("f3"), "Volts", "氧传感器电压");
+            WriteContent("", vb.ToString("f3"), "%", "短期燃油修正");
         }
 
         /// <summary>
@@ -1920,9 +1918,11 @@ namespace CANManager.CAN
         {
             ///公式：A/200 Volts;
             ///(B-128) * 100/128  %
-            double va = Convert.ToInt32(CharToString(dataA), 16) / 200.00;
-            double vb = (Convert.ToInt32(CharToString(dataB), 16) - 128) * (100 / 128.00);
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_1B_DATA} 氧传感器电压={va}Volts;短期燃油修正={vb}%");
+            double va = Convert.ToInt32(CharToString(dataA), 2) / 200.00;
+            double vb = (Convert.ToInt32(CharToString(dataB), 2) - 128) * (100 / 128.00);
+            WriteContent("PID 1B", "", "", PID_MEAN.PID_1B_DATA);
+            WriteContent("", va.ToString("f3"), "Volts", "氧传感器电压");
+            WriteContent("", vb.ToString("f3"), "%", "短期燃油修正");
         }
 
         private static void PID_0X1C(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
@@ -1932,28 +1932,28 @@ namespace CANManager.CAN
                 switch (i)
                 {
                     case 0:
-                        device.TempBuffer.AppendLine($"{PID_MEAN.PID_1C_DATA_01} {dataA[i]}");
+                        WriteContent("PID 1C", CharToString(dataA), "", PID_MEAN.PID_1C_DATA_01);
                         break;
                     case 1:
-                        device.TempBuffer.AppendLine($"{PID_MEAN.PID_1C_DATA_02} {dataA[i]}");
+                        WriteContent("", "", "", PID_MEAN.PID_1C_DATA_02);
                         break;
                     case 2:
-                        device.TempBuffer.AppendLine($"{PID_MEAN.PID_1C_DATA_03} {dataA[i]}");
+                        WriteContent("", "", "", PID_MEAN.PID_1C_DATA_03);
                         break;
                     case 3:
-                        device.TempBuffer.AppendLine($"{PID_MEAN.PID_1C_DATA_04} {dataA[i]}");
+                        WriteContent("", "", "", PID_MEAN.PID_1C_DATA_04);
                         break;
                     case 4:
-                        device.TempBuffer.AppendLine($"{PID_MEAN.PID_1C_DATA_05} {dataA[i]}");
+                        WriteContent("", "", "", PID_MEAN.PID_1C_DATA_05);
                         break;
                     case 5:
-                        device.TempBuffer.AppendLine($"{PID_MEAN.PID_1C_DATA_06} {dataA[i]}");
+                        WriteContent("", "", "", PID_MEAN.PID_1C_DATA_06); ;
                         break;
                     case 6:
-                        device.TempBuffer.AppendLine($"{PID_MEAN.PID_1C_DATA_07} {dataA[i]}");
+                        WriteContent("", "", "", PID_MEAN.PID_1C_DATA_07);
                         break;
                     case 7:
-                        device.TempBuffer.AppendLine($"{PID_MEAN.PID_1C_DATA_08} {dataA[i]}");
+                        WriteContent("", "", "", PID_MEAN.PID_1C_DATA_08);
                         break;
                 }
             }
@@ -1963,28 +1963,28 @@ namespace CANManager.CAN
                 switch (i)
                 {
                     case 0:
-                        device.TempBuffer.AppendLine($"{PID_MEAN.PID_1C_DATA_09} {dataB[i]}");
+                        WriteContent("", CharToString(dataB), "", PID_MEAN.PID_1C_DATA_09);
                         break;
                     case 1:
-                        device.TempBuffer.AppendLine($"{PID_MEAN.PID_1C_DATA_0A} {dataB[i]}");
+                        WriteContent("", "", "", PID_MEAN.PID_1C_DATA_0A);
                         break;
                     case 2:
-                        device.TempBuffer.AppendLine($"{PID_MEAN.PID_1C_DATA_0B} {dataB[i]}");
+                        WriteContent("", "", "", PID_MEAN.PID_1C_DATA_0B);
                         break;
                     case 3:
-                        device.TempBuffer.AppendLine($"{PID_MEAN.PID_1C_DATA_0C} {dataB[i]}");
+                        WriteContent("", "", "", PID_MEAN.PID_1C_DATA_0C);
                         break;
                     case 4:
-                        device.TempBuffer.AppendLine($"{PID_MEAN.PID_1C_DATA_0D} {dataB[i]}");
+                        WriteContent("", "", "", PID_MEAN.PID_1C_DATA_0D);
                         break;
                     case 5:
-                        device.TempBuffer.AppendLine($"{PID_MEAN.PID_1C_DATA_0E} {dataB[i]}");
+                        WriteContent("", "", "", PID_MEAN.PID_1C_DATA_0E);
                         break;
                     case 6:
-                        device.TempBuffer.AppendLine($"{PID_MEAN.PID_1C_DATA_0F} {dataB[i]}");
+                        WriteContent("", "", "", PID_MEAN.PID_1C_DATA_0F);
                         break;
                     case 7:
-                        device.TempBuffer.AppendLine($"{PID_MEAN.PID_1C_DATA_10} {dataB[i]}");
+                        WriteContent("", "", "", PID_MEAN.PID_1C_DATA_10);
                         break;
                 }
             }
@@ -1994,7 +1994,7 @@ namespace CANManager.CAN
                 switch (i)
                 {
                     case 0:
-                        device.TempBuffer.AppendLine($"{PID_MEAN.PID_1C_DATA_11} {dataC[i]}");
+                        WriteContent("", CharToString(dataC), "", PID_MEAN.PID_1C_DATA_11);
                         break;
                 }
             }
@@ -2013,82 +2013,82 @@ namespace CANManager.CAN
                     case 0:
                         if (dataA[i] == 1)
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_1D_DATAA_00} {dataA[i]}-存在");
+                            WriteContent("PID 1D",CharToString(dataA),"",PID_MEAN.PID_1D_DATAA_00+"存在");
                         }
                         else
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_1D_DATAA_00} {dataA[i]}-不存在");
+                            WriteContent("PID 1D", CharToString(dataA), "", PID_MEAN.PID_1D_DATAA_00 + "不存在");
                         }
                         break;
 
                     case 1:
                         if (dataA[i] == 1)
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_1D_DATAA_01} {dataA[i]}-存在");
+                            WriteContent("PID 1D", "", "", PID_MEAN.PID_1D_DATAA_01 + "存在");
                         }
                         else
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_1D_DATAA_01} {dataA[i]}-不存在");
+                            WriteContent("PID 1D", "", "", PID_MEAN.PID_1D_DATAA_01 + "不存在");
                         }
                         break;
                     case 2:
                         if (dataA[i] == 1)
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_1D_DATAA_02} {dataA[i]}-存在");
+                            WriteContent("PID 1D", "", "", PID_MEAN.PID_1D_DATAA_02 + "存在");
                         }
                         else
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_1D_DATAA_02} {dataA[i]}-不存在");
+                            WriteContent("PID 1D", "", "", PID_MEAN.PID_1D_DATAA_02 + "不存在");
                         }
                         break;
                     case 3:
                         if (dataA[i] == 1)
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_1D_DATAA_03} {dataA[i]}-存在");
+                            WriteContent("PID 1D", "", "", PID_MEAN.PID_1D_DATAA_03 + "存在");
                         }
                         else
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_1D_DATAA_03} {dataA[i]}-不存在");
+                            WriteContent("PID 1D", "", "", PID_MEAN.PID_1D_DATAA_03 + "不存在");
                         }
                         break;
                     case 4:
                         if (dataA[i] == 1)
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_1D_DATAA_04} {dataA[i]}-存在");
+                            WriteContent("PID 1D", "", "", PID_MEAN.PID_1D_DATAA_04 + "存在");
                         }
                         else
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_1D_DATAA_04} {dataA[i]}-不存在");
+                            WriteContent("PID 1D", "", "", PID_MEAN.PID_1D_DATAA_04 + "不存在");
                         }
                         break;
                     case 5:
                         if (dataA[i] == 1)
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_1D_DATAA_05} {dataA[i]}-存在");
+                            WriteContent("PID 1D", "", "", PID_MEAN.PID_1D_DATAA_05 + "存在");
                         }
                         else
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_1D_DATAA_05} {dataA[i]}-不存在");
+                            WriteContent("PID 1D", "", "", PID_MEAN.PID_1D_DATAA_05 + "不存在");
                         }
                         break;
                     case 6:
                         if (dataA[i] == 1)
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_1D_DATAA_06} {dataA[i]}-存在");
+                            WriteContent("PID 1D", "", "", PID_MEAN.PID_1D_DATAA_06 + "存在");
                         }
                         else
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_1D_DATAA_06} {dataA[i]}-不存在");
+                            WriteContent("PID 1D", "", "", PID_MEAN.PID_1D_DATAA_06 + "不存在");
                         }
                         break;
                     case 7:
                         if (dataA[i] == 1)
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_1D_DATAA_07} {dataA[i]}-存在");
+                            WriteContent("PID 1D", "", "", PID_MEAN.PID_1D_DATAA_07 + "存在");
                         }
                         else
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_1D_DATAA_07} {dataA[i]}-不存在");
+                            WriteContent("PID 1D", "", "", PID_MEAN.PID_1D_DATAA_07 + "不存在");
                         }
                         break;
                 }
@@ -2108,15 +2108,15 @@ namespace CANManager.CAN
                     case 0:
                         if (dataA[i] == 1)
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_1E_DATA_A_00} {dataA[i]}-激活");
+                            WriteContent("PID 1E", CharToString(dataA), "", PID_MEAN.PID_1E_DATA_A_00 + "（激活）");
                         }
                         else
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_1E_DATA_A_00} {dataA[i]}-关闭");
+                            WriteContent("PID 1E", "", "", PID_MEAN.PID_1E_DATA_A_00 + "（关闭）");
                         }
                         break;
                     default:
-                        device.TempBuffer.AppendLine($"{PID_MEAN.PID_1E_DATA_A_01_07} {dataA[i]}");
+                        //WriteContent("PID 1E", "", "", PID_MEAN.PID_1E_DATA_A_01_07);
                         break;
                 }
             }
@@ -2130,10 +2130,10 @@ namespace CANManager.CAN
         private static void PID_0X1F(char[] dataA, char[] dataB)
         {
             ///公式：A*256 +b
-            double a = Convert.ToInt32(CharToString(dataA), 16);
-            double b = Convert.ToUInt32(CharToString(dataB), 16);
+            double a = Convert.ToInt32(CharToString(dataA), 2);
+            double b = Convert.ToUInt32(CharToString(dataB), 2);
             double v = a * 256 + b;
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_1F_DATA} {v}秒");
+            WriteContent("PID 1F",v.ToString("f3"),"秒",PID_MEAN.PID_1F_DATA);
         }
 
         #endregion
@@ -2147,10 +2147,10 @@ namespace CANManager.CAN
         private static void PID_0X21(char[] dataA, char[] dataB)
         {
             ///a*256+b
-            double a = Convert.ToInt32(CharToString(dataA), 16);
-            double b = Convert.ToInt32(CharToString(dataB), 16);
+            double a = Convert.ToInt32(CharToString(dataA), 2);
+            double b = Convert.ToInt32(CharToString(dataB), 2);
             double v = a * 256 + b;
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_21_DATA} {v}Km");
+            WriteContent("PID 21", v.ToString("f3"), "Km", PID_MEAN.PID_21_DATA);
         }
 
         /// <summary>
@@ -2161,10 +2161,10 @@ namespace CANManager.CAN
         private static void PID_0X22(char[] dataA, char[] dataB)
         {
             ///(a*256+b)*0.079
-            double a = Convert.ToInt32(CharToString(dataA), 16);
-            double b = Convert.ToInt32(CharToString(dataB), 16);
+            double a = Convert.ToInt32(CharToString(dataA), 2);
+            double b = Convert.ToInt32(CharToString(dataB), 2);
             double v = (a * 256 + b) * 0.079;
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_22_DATA} {v}kPa");
+            WriteContent("PID 22", v.ToString("f3"), "kPa", PID_MEAN.PID_22_DATA);
         }
 
         /// <summary>
@@ -2175,11 +2175,12 @@ namespace CANManager.CAN
         private static void PID_0X23(char[] dataA, char[] dataB)
         {
             ///（a*256+b）*10
-            double a = Convert.ToInt32(CharToString(dataA), 16);
-            double b = Convert.ToInt32(CharToString(dataB), 16);
+            double a = Convert.ToInt32(CharToString(dataA), 2);
+            double b = Convert.ToInt32(CharToString(dataB), 2);
             double v = (a * 256 + b) * 10;
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_23_DATA} {v}kPa");
+            WriteContent("PID 23", v.ToString("f3"), "kPa", PID_MEAN.PID_23_DATA);
         }
+        //24-2B 仅适用于PID13定义的氧传感器位置 1-2BANK 1-4传感器
 
         /// <summary>
         /// 仅适用于PID13定义的氧传感器位置
@@ -2192,90 +2193,98 @@ namespace CANManager.CAN
         {
             //v1 = (a * 256 +b) * 2/65535  or (a*256+b)/32768
             //v2 = (c*256 +d)*8/65535  or (c*256 + d) /8192
-            double a = Convert.ToInt32(CharToString(dataA), 16);
-            double b = Convert.ToInt32(CharToString(dataB), 16);
-            double c = Convert.ToInt32(CharToString(dataC), 16);
-            double d = Convert.ToInt32(CharToString(dataD), 16);
-            double v1 = (a * 256 + b) / 32768.00;
-            double v2 = (c * 256 + d) / 8192.00;
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_24_DATA_13} 等效比={v1}N/A,氧传感器电压={v2}V");
+            double a = Convert.ToInt32(CharToString(dataA), 2);
+            double b = Convert.ToInt32(CharToString(dataB), 2);
+            double c = Convert.ToInt32(CharToString(dataC), 2);
+            double d = Convert.ToInt32(CharToString(dataD), 2);
+            double v1 = (a * 256 + b) * (2 / 65535.00);
+            double v2 = (c * 256 + d) * (8 / 65535.00);
+            WriteContent("PID 24", v1.ToString("f3"), "N/A", PID_MEAN.PID_24_2B_DATA_13_AB);
+            WriteContent("", v2.ToString("f3"), "V", PID_MEAN.PID_24_2B_DATA_13_CD);
         }
 
         private static void PID_0X25(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
         {
-            double a = Convert.ToInt32(CharToString(dataA), 16);
-            double b = Convert.ToInt32(CharToString(dataB), 16);
-            double c = Convert.ToInt32(CharToString(dataC), 16);
-            double d = Convert.ToInt32(CharToString(dataD), 16);
-            double v1 = (a * 256 + b) / 32768.00;
-            double v2 = (c * 256 + d) / 8192.00;
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_25_DATA_13} 等效比={v1}N/A,氧传感器电压={v2}V");
+            double a = Convert.ToInt32(CharToString(dataA), 2);
+            double b = Convert.ToInt32(CharToString(dataB), 2);
+            double c = Convert.ToInt32(CharToString(dataC), 2);
+            double d = Convert.ToInt32(CharToString(dataD), 2);
+            double v1 = (a * 256 + b) * (2 / 65535.00);
+            double v2 = (c * 256 + d) * (8 / 65535.00);
+            WriteContent("PID 25", v1.ToString("f3"), "N/A", PID_MEAN.PID_24_2B_DATA_13_AB);
+            WriteContent("", v2.ToString("f3"), "V", PID_MEAN.PID_24_2B_DATA_13_CD);
         }
 
         private static void PID_0X26(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
         {
-            double a = Convert.ToInt32(CharToString(dataA), 16);
-            double b = Convert.ToInt32(CharToString(dataB), 16);
-            double c = Convert.ToInt32(CharToString(dataC), 16);
-            double d = Convert.ToInt32(CharToString(dataD), 16);
-            double v1 = (a * 256 + b) / 32768.00;
-            double v2 = (c * 256 + d) / 8192.00;
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_26_DATA_13} 等效比={v1}N/A,氧传感器电压={v2}V");
+            double a = Convert.ToInt32(CharToString(dataA), 2);
+            double b = Convert.ToInt32(CharToString(dataB), 2);
+            double c = Convert.ToInt32(CharToString(dataC), 2);
+            double d = Convert.ToInt32(CharToString(dataD), 2);
+            double v1 = (a * 256 + b) * (2 / 65535.00);
+            double v2 = (c * 256 + d) * (8 / 65535.00);
+            WriteContent("PID 26", v1.ToString("f3"), "N/A", PID_MEAN.PID_24_2B_DATA_13_AB);
+            WriteContent("", v2.ToString("f3"), "V", PID_MEAN.PID_24_2B_DATA_13_CD);
         }
 
         private static void PID_0X27(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
         {
-            double a = Convert.ToInt32(CharToString(dataA), 16);
-            double b = Convert.ToInt32(CharToString(dataB), 16);
-            double c = Convert.ToInt32(CharToString(dataC), 16);
-            double d = Convert.ToInt32(CharToString(dataD), 16);
-            double v1 = (a * 256 + b) / 32768.00;
-            double v2 = (c * 256 + d) / 8192.00;
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_27_DATA_13} 等效比={v1}N/A,氧传感器电压={v2}V");
+            double a = Convert.ToInt32(CharToString(dataA), 2);
+            double b = Convert.ToInt32(CharToString(dataB), 2);
+            double c = Convert.ToInt32(CharToString(dataC), 2);
+            double d = Convert.ToInt32(CharToString(dataD), 2);
+            double v1 = (a * 256 + b) * (2 / 65535.00);
+            double v2 = (c * 256 + d) * (8 / 65535.00);
+            WriteContent("PID 27", v1.ToString("f3"), "N/A", PID_MEAN.PID_24_2B_DATA_13_AB);
+            WriteContent("", v2.ToString("f3"), "V", PID_MEAN.PID_24_2B_DATA_13_CD);
         }
 
         private static void PID_0X28(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
         {
-            double a = Convert.ToInt32(CharToString(dataA), 16);
-            double b = Convert.ToInt32(CharToString(dataB), 16);
-            double c = Convert.ToInt32(CharToString(dataC), 16);
-            double d = Convert.ToInt32(CharToString(dataD), 16);
-            double v1 = (a * 256 + b) / 32768.00;
-            double v2 = (c * 256 + d) / 8192.00;
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_28_DATA_13} 等效比={v1}N/A,氧传感器电压={v2}V");
+            double a = Convert.ToInt32(CharToString(dataA), 2);
+            double b = Convert.ToInt32(CharToString(dataB), 2);
+            double c = Convert.ToInt32(CharToString(dataC), 2);
+            double d = Convert.ToInt32(CharToString(dataD), 2);
+            double v1 = (a * 256 + b) * (2 / 65535.00);
+            double v2 = (c * 256 + d) * (8 / 65535.00);
+            WriteContent("PID 28", v1.ToString("f3"), "N/A", PID_MEAN.PID_24_2B_DATA_13_AB);
+            WriteContent("", v2.ToString("f3"), "V", PID_MEAN.PID_24_2B_DATA_13_CD);
         }
 
         private static void PID_0X29(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
         {
-            double a = Convert.ToInt32(CharToString(dataA), 16);
-            double b = Convert.ToInt32(CharToString(dataB), 16);
-            double c = Convert.ToInt32(CharToString(dataC), 16);
-            double d = Convert.ToInt32(CharToString(dataD), 16);
-            double v1 = (a * 256 + b) / 32768.00;
-            double v2 = (c * 256 + d) / 8192.00;
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_29_DATA_13} 等效比={v1}N/A,氧传感器电压={v2}V");
+            double a = Convert.ToInt32(CharToString(dataA), 2);
+            double b = Convert.ToInt32(CharToString(dataB), 2);
+            double c = Convert.ToInt32(CharToString(dataC), 2);
+            double d = Convert.ToInt32(CharToString(dataD), 2);
+            double v1 = (a * 256 + b) * (2 / 65535.00);
+            double v2 = (c * 256 + d) * (8 / 65535.00);
+            WriteContent("PID 29", v1.ToString("f3"), "N/A", PID_MEAN.PID_24_2B_DATA_13_AB);
+            WriteContent("", v2.ToString("f3"), "V", PID_MEAN.PID_24_2B_DATA_13_CD);
         }
 
         private static void PID_0X2A(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
         {
-            double a = Convert.ToInt32(CharToString(dataA), 16);
-            double b = Convert.ToInt32(CharToString(dataB), 16);
-            double c = Convert.ToInt32(CharToString(dataC), 16);
-            double d = Convert.ToInt32(CharToString(dataD), 16);
-            double v1 = (a * 256 + b) / 32768.00;
-            double v2 = (c * 256 + d) / 8192.00;
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_2A_DATA_13} 等效比={v1}N/A,氧传感器电压={v2}V");
+            double a = Convert.ToInt32(CharToString(dataA), 2);
+            double b = Convert.ToInt32(CharToString(dataB), 2);
+            double c = Convert.ToInt32(CharToString(dataC), 2);
+            double d = Convert.ToInt32(CharToString(dataD), 2);
+            double v1 = (a * 256 + b) * (2 / 65535.00);
+            double v2 = (c * 256 + d) * (8 / 65535.00);
+            WriteContent("PID 2A", v1.ToString("f3"), "N/A", PID_MEAN.PID_24_2B_DATA_13_AB);
+            WriteContent("", v2.ToString("f3"), "V", PID_MEAN.PID_24_2B_DATA_13_CD);
         }
 
         private static void PID_0X2B(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
         {
-            double a = Convert.ToInt32(CharToString(dataA), 16);
-            double b = Convert.ToInt32(CharToString(dataB), 16);
-            double c = Convert.ToInt32(CharToString(dataC),16);
-            double d = Convert.ToInt32(CharToString(dataD),16);
-            double v1 = (a * 256 + b) / 32768.00;
-            double v2 = (c * 256 + d) / 8192.00;
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_2B_DATA_13} 等效比={v1}N/A,氧传感器电压={v2}V");
+            double a = Convert.ToInt32(CharToString(dataA), 2);
+            double b = Convert.ToInt32(CharToString(dataB), 2);
+            double c = Convert.ToInt32(CharToString(dataC),2);
+            double d = Convert.ToInt32(CharToString(dataD),2);
+            double v1 = (a * 256 + b) * (2 / 65535.00);
+            double v2 = (c * 256 + d) * (8 / 65535.00);
+            WriteContent("PID 2B", v1.ToString("f3"), "N/A", PID_MEAN.PID_24_2B_DATA_13_AB);
+            WriteContent("", v2.ToString("f3"), "V", PID_MEAN.PID_24_2B_DATA_13_CD);
         }
 
         /// <summary>
@@ -2285,8 +2294,8 @@ namespace CANManager.CAN
         private static void PID_0X2C(char[] dataA)
         {
             //公式：a * 100/255
-            double v = Convert.ToInt32(CharToString(dataA),16) * (100 / 255.00);
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_2C_DATA} {v}%");
+            double v = Convert.ToInt32(CharToString(dataA),2) * (100 / 255.00);
+            WriteContent("PID 2C", v.ToString("f3"), "%", PID_MEAN.PID_2C_DATA);
         }
 
         /// <summary>
@@ -2296,9 +2305,9 @@ namespace CANManager.CAN
         private static void PID_0X2D(char[] dataA)
         {
             //(a-128) * 100 / 128
-            double a = Convert.ToInt32(CharToString(dataA), 16);
+            double a = Convert.ToInt32(CharToString(dataA), 2);
             double v = (a - 128) * 100 / 128.00;
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_2D_DATA} {v}%");
+            WriteContent("PID 2D", v.ToString("f3"), "%", PID_MEAN.PID_2D_DATA);
         }
 
         /// <summary>
@@ -2308,9 +2317,9 @@ namespace CANManager.CAN
         private static void PID_0X2E(char[] dataA)
         {
             //a * 100 / 128
-            double a = Convert.ToInt32(CharToString(dataA), 16);
+            double a = Convert.ToInt32(CharToString(dataA), 2);
             double v = a * 100 / 128.00;
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_2E_DATA} {v}%");
+            WriteContent("PID 2E", v.ToString("f3"), "%", PID_MEAN.PID_2E_DATA);
         }
 
         /// <summary>
@@ -2320,9 +2329,9 @@ namespace CANManager.CAN
         private static void PID_0X2F(char[] dataA)
         {
             //a * 100 / 128
-            double a = Convert.ToInt32(CharToString(dataA), 16);
+            double a = Convert.ToInt32(CharToString(dataA), 2);
             double v = a * 100 / 128.00;
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_2F_DATA} {v}%");
+            WriteContent("PID 2F", v.ToString("f3"), "%", PID_MEAN.PID_2F_DATA);
         }
 
         #endregion
@@ -2335,9 +2344,8 @@ namespace CANManager.CAN
         private static void PID_0X30(char[] dataA)
         {
             //A
-            double a = Convert.ToInt32(CharToString(dataA), 16);
-
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_30_DATA} {a}N/A");
+            double a = Convert.ToInt32(CharToString(dataA), 2);
+            WriteContent("PID 30", a.ToString("f3"), "N/A", PID_MEAN.PID_30_DATA);
         }
 
         /// <summary>
@@ -2347,10 +2355,10 @@ namespace CANManager.CAN
         private static void PID_0X31(char[] dataA,char[] dataB)
         {
             //a * 256 +b
-            double a = Convert.ToInt32(CharToString(dataA), 16);
-            double b = Convert.ToInt32(CharToString(dataB), 16);
+            double a = Convert.ToInt32(CharToString(dataA), 2);
+            double b = Convert.ToInt32(CharToString(dataB), 2);
             double v = a * 256 + b;
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_31_DATA} {v}Km");
+            WriteContent("PID 31", v.ToString("f3"), "Km", PID_MEAN.PID_31_DATA);
         }
 
         /// <summary>
@@ -2361,10 +2369,10 @@ namespace CANManager.CAN
         private static void PID_0X32(char[] dataA, char[] dataB)
         {
             //（a * 256 +b）/4
-            double a = Convert.ToInt32(CharToString(dataA), 16);
-            double b = Convert.ToInt32(CharToString(dataB), 16);
+            double a = Convert.ToInt32(CharToString(dataA), 2);
+            double b = Convert.ToInt32(CharToString(dataB), 2);
             double v = (a * 256 + b) / 4.00;
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_32_DATA} {v}Pa");
+            WriteContent("PID 32", v.ToString("f3"), "Pa", PID_MEAN.PID_32_DATA);
         }
 
         /// <summary>
@@ -2374,10 +2382,10 @@ namespace CANManager.CAN
         private static void PID_0X33(char[] dataA)
         {
             //a * 256 +b
-            double a = Convert.ToInt32(CharToString(dataA), 16);
-
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_33_DATA} {a}kPa");
+            double a = Convert.ToInt32(CharToString(dataA), 2);
+            WriteContent("PID 33", a.ToString("f3"), "kPa", PID_MEAN.PID_33_DATA);
         }
+        //34-3B 仅适用于PID13定义的氧传感器位置 1-2BANK 1-4传感器
 
         /// <summary>
         /// 34-3B 仅适用于PID13定义的氧传感器位置
@@ -2390,90 +2398,98 @@ namespace CANManager.CAN
         {
             //v1 = (a*256+b) / 32768
             //v2 = (c*256 +d) /256 - 128
-            double a = Convert.ToInt32(CharToString(dataA), 16);
-            double b = Convert.ToInt32(CharToString(dataB), 16);
-            double c = Convert.ToInt32(CharToString(dataC), 16);
-            double d = Convert.ToInt32(CharToString(dataD), 16);
+            double a = Convert.ToInt32(CharToString(dataA), 2);
+            double b = Convert.ToInt32(CharToString(dataB), 2);
+            double c = Convert.ToInt32(CharToString(dataC), 2);
+            double d = Convert.ToInt32(CharToString(dataD), 2);
             double v1 = (a * 256 + b) / 32768.00;
             double v2 = (c * 256 + d) / 256.00 - 128;
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_34_1D_DATA} 等效比={v1}N/A,氧传感器电流={v2}mA");
+            WriteContent("PID 34", v1.ToString("f3"), "N/A", PID_MEAN.PID_34_3B_13_DATA_AB);
+            WriteContent("", v1.ToString("f3"), "mA", PID_MEAN.PID_34_3B_13_DATA_CD);
         }
 
         private static void PID_0X35(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
         {
-            double a = Convert.ToInt32(CharToString(dataA), 16);
-            double b = Convert.ToInt32(CharToString(dataB), 16);
-            double c = Convert.ToInt32(CharToString(dataC), 16);
-            double d = Convert.ToInt32(CharToString(dataD), 16);
+            double a = Convert.ToInt32(CharToString(dataA), 2);
+            double b = Convert.ToInt32(CharToString(dataB), 2);
+            double c = Convert.ToInt32(CharToString(dataC), 2);
+            double d = Convert.ToInt32(CharToString(dataD), 2);
             double v1 = (a * 256 + b) / 32768.00;
             double v2 = (c * 256 + d) / 256.00 - 128;
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_35_1D_DATA} 等效比={v1}N/A,氧传感器电流={v2}mA");
+            WriteContent("PID 35", v1.ToString("f3"), "N/A", PID_MEAN.PID_34_3B_13_DATA_AB);
+            WriteContent("", v1.ToString("f3"), "mA", PID_MEAN.PID_34_3B_13_DATA_CD);
         }
 
         private static void PID_0X36(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
         {
-            double a = Convert.ToInt32(CharToString(dataA), 16);
-            double b = Convert.ToInt32(CharToString(dataB), 16);
-            double c = Convert.ToInt32(CharToString(dataC), 16);
-            double d = Convert.ToInt32(CharToString(dataD), 16);
+            double a = Convert.ToInt32(CharToString(dataA), 2);
+            double b = Convert.ToInt32(CharToString(dataB), 2);
+            double c = Convert.ToInt32(CharToString(dataC), 2);
+            double d = Convert.ToInt32(CharToString(dataD), 2);
             double v1 = (a * 256 + b) / 32768.00;
             double v2 = (c * 256 + d) / 256.00 - 128;
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_36_1D_DATA} 等效比={v1}N/A,氧传感器电流={v2}mA");
+            WriteContent("PID 36", v1.ToString("f3"), "N/A", PID_MEAN.PID_34_3B_13_DATA_AB);
+            WriteContent("", v1.ToString("f3"), "mA", PID_MEAN.PID_34_3B_13_DATA_CD);
         }
 
         private static void PID_0X37(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
         {
-            double a = Convert.ToInt32(CharToString(dataA), 16);
-            double b = Convert.ToInt32(CharToString(dataB), 16);
-            double c = Convert.ToInt32(CharToString(dataC), 16);
-            double d = Convert.ToInt32(CharToString(dataD), 16);
+            double a = Convert.ToInt32(CharToString(dataA), 2);
+            double b = Convert.ToInt32(CharToString(dataB), 2);
+            double c = Convert.ToInt32(CharToString(dataC), 2);
+            double d = Convert.ToInt32(CharToString(dataD), 2);
             double v1 = (a * 256 + b) / 32768.00;
             double v2 = (c * 256 + d) / 256.00 - 128;
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_37_1D_DATA} 等效比={v1}N/A,氧传感器电流={v2}mA");
+            WriteContent("PID 37", v1.ToString("f3"), "N/A", PID_MEAN.PID_34_3B_13_DATA_AB);
+            WriteContent("", v1.ToString("f3"), "mA", PID_MEAN.PID_34_3B_13_DATA_CD);
         }
 
         private static void PID_0X38(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
         {
-            double a = Convert.ToInt32(CharToString(dataA), 16);
-            double b = Convert.ToInt32(CharToString(dataB), 16);
-            double c = Convert.ToInt32(CharToString(dataC), 16);
-            double d = Convert.ToInt32(CharToString(dataD), 16);
+            double a = Convert.ToInt32(CharToString(dataA), 2);
+            double b = Convert.ToInt32(CharToString(dataB), 2);
+            double c = Convert.ToInt32(CharToString(dataC), 2);
+            double d = Convert.ToInt32(CharToString(dataD), 2);
             double v1 = (a * 256 + b) / 32768.00;
             double v2 = (c * 256 + d) / 256.00 - 128;
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_38_1D_DATA} 等效比={v1}N/A,氧传感器电流={v2}mA");
+            WriteContent("PID 38", v1.ToString("f3"), "N/A", PID_MEAN.PID_34_3B_13_DATA_AB);
+            WriteContent("", v1.ToString("f3"), "mA", PID_MEAN.PID_34_3B_13_DATA_CD);
         }
 
         private static void PID_0X39(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
         {
-            double a = Convert.ToInt32(CharToString(dataA), 16);
-            double b = Convert.ToInt32(CharToString(dataB), 16);
-            double c = Convert.ToInt32(CharToString(dataC), 16);
-            double d = Convert.ToInt32(CharToString(dataD), 16);
+            double a = Convert.ToInt32(CharToString(dataA), 2);
+            double b = Convert.ToInt32(CharToString(dataB), 2);
+            double c = Convert.ToInt32(CharToString(dataC), 2);
+            double d = Convert.ToInt32(CharToString(dataD), 2);
             double v1 = (a * 256 + b) / 32768.00;
             double v2 = (c * 256 + d) / 256.00 - 128;
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_39_1D_DATA} 等效比={v1}N/A,氧传感器电流={v2}mA");
+            WriteContent("PID 39", v1.ToString("f3"), "N/A", PID_MEAN.PID_34_3B_13_DATA_AB);
+            WriteContent("", v1.ToString("f3"), "mA", PID_MEAN.PID_34_3B_13_DATA_CD);
         }
 
         private static void PID_0X3A(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
         {
-            double a = Convert.ToInt32(CharToString(dataA), 16);
-            double b = Convert.ToInt32(CharToString(dataB), 16);
-            double c = Convert.ToInt32(CharToString(dataC), 16);
-            double d = Convert.ToInt32(CharToString(dataD), 16);
+            double a = Convert.ToInt32(CharToString(dataA), 2);
+            double b = Convert.ToInt32(CharToString(dataB), 2);
+            double c = Convert.ToInt32(CharToString(dataC), 2);
+            double d = Convert.ToInt32(CharToString(dataD), 2);
             double v1 = (a * 256 + b) / 32768.00;
             double v2 = (c * 256 + d) / 256.00 - 128;
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_3A_1D_DATA} 等效比={v1}N/A,氧传感器电流={v2}mA");
+            WriteContent("PID 3A", v1.ToString("f3"), "N/A", PID_MEAN.PID_34_3B_13_DATA_AB);
+            WriteContent("", v1.ToString("f3"), "mA", PID_MEAN.PID_34_3B_13_DATA_CD);
         }
 
         private static void PID_0X3B(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
         {
-            double a = Convert.ToInt32(CharToString(dataA), 16);
-            double b = Convert.ToInt32(CharToString(dataB), 16);
-            double c = Convert.ToInt32(CharToString(dataC), 16);
-            double d = Convert.ToInt32(CharToString(dataD), 16);
+            double a = Convert.ToInt32(CharToString(dataA), 2);
+            double b = Convert.ToInt32(CharToString(dataB), 2);
+            double c = Convert.ToInt32(CharToString(dataC), 2);
+            double d = Convert.ToInt32(CharToString(dataD), 2);
             double v1 = (a * 256 + b) / 32768.00;
             double v2 = (c * 256 + d) / 256.00 - 128;
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_3B_1D_DATA} 等效比={v1}N/A,氧传感器电流={v2}mA");
+            WriteContent("PID 3B", v1.ToString("f3"), "N/A", PID_MEAN.PID_34_3B_13_DATA_AB);
+            WriteContent("", v1.ToString("f3"), "mA", PID_MEAN.PID_34_3B_13_DATA_CD);
         }
 
         /// <summary>
@@ -2484,10 +2500,10 @@ namespace CANManager.CAN
         private static void PID_0X3C(char[] dataA, char[] dataB)
         {
             //s = (a * 256+b) / 10 -40;
-            double a = Convert.ToInt32(CharToString(dataA), 16);
-            double b = Convert.ToInt32(CharToString(dataB), 16);
+            double a = Convert.ToInt32(CharToString(dataA), 2);
+            double b = Convert.ToInt32(CharToString(dataB), 2);
             double v = (a * 256 + b) / 10.00 - 40;
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_3C_DATA} {v}℃");
+            WriteContent("PID 3C", v.ToString("f3"), "℃", PID_MEAN.PID_3C_DATA);
         }
 
         /// <summary>
@@ -2498,10 +2514,10 @@ namespace CANManager.CAN
         private static void PID_0X3D(char[] dataA, char[] dataB)
         {
             //s = (a * 256+b) / 10 -40;
-            double a = Convert.ToInt32(CharToString(dataA), 16);
-            double b = Convert.ToInt32(CharToString(dataB), 16);
+            double a = Convert.ToInt32(CharToString(dataA), 2);
+            double b = Convert.ToInt32(CharToString(dataB), 2);
             double v = (a * 256 + b) / 10.00 - 40;
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_3D_DATA} {v}℃");
+            WriteContent("PID 3D", v.ToString("f3"), "℃", PID_MEAN.PID_3D_DATA);
         }
 
         /// <summary>
@@ -2512,10 +2528,10 @@ namespace CANManager.CAN
         private static void PID_0X3E(char[] dataA, char[] dataB)
         {
             //s = (a * 256+b) / 10 -40;
-            double a = Convert.ToInt32(CharToString(dataA), 16);
-            double b = Convert.ToInt32(CharToString(dataB), 16);
+            double a = Convert.ToInt32(CharToString(dataA), 2);
+            double b = Convert.ToInt32(CharToString(dataB), 2);
             double v = (a * 256 + b) / 10.00 - 40;
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_3E_DATA} {v}℃");
+            WriteContent("PID 3E", v.ToString("f3"), "℃", PID_MEAN.PID_3E_DATA);
         }
 
         /// <summary>
@@ -2526,10 +2542,10 @@ namespace CANManager.CAN
         private static void PID_0X3F(char[] dataA, char[] dataB)
         {
             //s = (a * 256+b) / 10 -40;
-            double a = Convert.ToInt32(CharToString(dataA), 16);
-            double b = Convert.ToInt32(CharToString(dataB), 16);
+            double a = Convert.ToInt32(CharToString(dataA), 2);
+            double b = Convert.ToInt32(CharToString(dataB), 2);
             double v = (a * 256 + b) / 10.00 - 40;
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_3F_DATA} {v}℃");
+            WriteContent("PID 3F", v.ToString("f3"), "℃", PID_MEAN.PID_3F_DATA);
         }
         #endregion
 
@@ -2541,10 +2557,11 @@ namespace CANManager.CAN
 
         private static void PID_0X41(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
         {
-            for (int i = 0; i < dataA.Length; i++)
-            {
-                device.TempBuffer.AppendLine($"{PID_MEAN.PID_41_DATA_A0_A7} {dataA[i]}");
-            }
+            WriteContent("PID 41", "", "", "本次行程监控状态");
+            WriteContent("", CharToString(dataA), "", PID_MEAN.PID_41_DATA_A0_A7);
+            string[] arrayA = new string[4];
+            string[] arrayCD = new string[8];
+
             for (int i = 0; i < dataB.Length; i++)
             {
                 switch (i)
@@ -2552,68 +2569,68 @@ namespace CANManager.CAN
                     case 0:
                         if (dataB[i] == 1)
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_41_DATA_B0} {dataB[i]}-启用");
+                            arrayA[0] = "已启用";
                         }
                         else
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_41_DATA_B0} {dataB[i]}-未启用");
+                            arrayA[0] = "未启用";
                         }
                         break;
                     case 1:
                         if (dataB[i] == 1)
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_41_DATA_B1} {dataB[i]}-启用");
+                            arrayA[1] = "已启用";
                         }
                         else
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_41_DATA_B1} {dataB[i]}-未启用");
+                            arrayA[1] = "未启用";
                         }
                         break;
                     case 2:
                         if (dataB[i] == 1)
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_41_DATA_B2} {dataB[i]}-启用");
+                            arrayA[2] = "已启用";
                         }
                         else
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_41_DATA_B2} {dataB[i]}-未启用");
+                            arrayA[2] = "未启用";
                         }
                         break;
                     case 3:
-                        device.TempBuffer.AppendLine($"{PID_MEAN.PID_41_DATA_B3} {dataB[i]}");
+                        arrayA[3] = "";
                         break;
                     case 4:
                         if (dataB[i] == 1)
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_41_DATA_B4} {dataB[i]}-未完成");
+                            arrayA[0] += ",且未完成";
                         }
                         else
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_41_DATA_B4} {dataB[i]}-完成");
+                            arrayA[0] += ",且完成";
                         }
                         break;
                     case 5:
                         if (dataB[i] == 1)
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_41_DATA_B5} {dataB[i]}-未完成");
+                            arrayA[1] = ",且未完成";
                         }
                         else
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_41_DATA_B5} {dataB[i]}-完成");
+                            arrayA[1] += ",且完成";
                         }
                         break;
                     case 6:
                         if (dataB[i] == 1)
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_41_DATA_B6} {dataB[i]}-未完成");
+                            arrayA[2] += ",且未完成";
                         }
                         else
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_41_DATA_B6} {dataB[i]}-完成");
+                            arrayA[2] += ",且完成";
                         }
                         break;
                     case 7:
-                        device.TempBuffer.AppendLine($"{PID_MEAN.PID_41_DATA_B7} {dataB[i]}");
+                        arrayA[3] += "";
                         break;
                 }
             }
@@ -2624,81 +2641,81 @@ namespace CANManager.CAN
                     case 0:
                         if (dataC[i] == 1)
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_41_DATA_C0} {dataC[i]}-启用");
+                            arrayCD[0] = "已启用";
                         }
                         else
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_41_DATA_C0} {dataC[i]}-未启用");
+                            arrayCD[0] = "未启用";
                         }
                         break;
                     case 1:
                         if (dataC[i] == 1)
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_41_DATA_C1} {dataC[i]}-启用");
+                            arrayCD[1] = "已启用";
                         }
                         else
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_41_DATA_C1} {dataC[i]}-未启用");
+                            arrayCD[1] = "未启用";
                         }
                         break;
                     case 2:
                         if (dataC[i] == 1)
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_41_DATA_C2} {dataC[i]}-启用");
+                            arrayCD[2] = "已启用";
                         }
                         else
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_41_DATA_C2} {dataC[i]}-未启用");
+                            arrayCD[2] = "未启用";
                         }
                         break;
                     case 3:
                         if (dataC[i] == 1)
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_41_DATA_C3} {dataC[i]}-启用");
+                            arrayCD[3] = "已启用";
                         }
                         else
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_41_DATA_C3} {dataC[i]}-未启用");
+                            arrayCD[3] = "已未启用";
                         }
                         break;
                     case 4:
                         if (dataC[i] == 1)
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_41_DATA_C4} {dataC[i]}-启用");
+                            arrayCD[4] = "已启用";
                         }
                         else
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_41_DATA_C4} {dataC[i]}-未启用");
+                            arrayCD[4] = "未启用";
                         }
                         break;
                     case 5:
                         if (dataC[i] == 1)
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_41_DATA_C5} {dataC[i]}-启用");
+                            arrayCD[5] = "已启用";
                         }
                         else
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_41_DATA_C5} {dataC[i]}-未启用");
+                            arrayCD[5] = "未启用";
                         }
                         break;
                     case 6:
                         if (dataC[i] == 1)
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_41_DATA_C6} {dataC[i]}-启用");
+                            arrayCD[6] = "已启用";
                         }
                         else
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_41_DATA_C6} {dataC[i]}-未启用");
+                            arrayCD[6] = "未启用";
                         }
                         break;
                     case 7:
                         if (dataC[i] == 1)
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_41_DATA_C7} {dataC[i]}-启用");
+                            arrayCD[7] = "已启用";
                         }
                         else
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_41_DATA_C7} {dataC[i]}-未启用");
+                            arrayCD[7] = "未启用";
                         }
                         break;
                 }
@@ -2710,85 +2727,100 @@ namespace CANManager.CAN
                     case 0:
                         if (dataD[i] == 1)
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_41_DATA_C0} {dataD[i]}-完成");
+                            arrayCD[0] += "，且已完成";
                         }
                         else
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_41_DATA_C0} {dataD[i]}-未完成");
+                            arrayCD[0] += "，且未完成";
                         }
                         break;
                     case 1:
                         if (dataD[i] == 1)
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_41_DATA_C1} {dataD[i]}-完成");
+                            arrayCD[1] += "，且已完成";
                         }
                         else
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_41_DATA_C1} {dataD[i]}-未完成");
+                            arrayCD[1] += "，且未完成";
                         }
                         break;
                     case 2:
                         if (dataD[i] == 1)
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_41_DATA_C2} {dataD[i]}-完成");
+                            arrayCD[2] += "，且已完成";
                         }
                         else
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_41_DATA_C2} {dataD[i]}-未完成");
+                            arrayCD[2] += "，且未完成";
                         }
                         break;
                     case 3:
                         if (dataD[i] == 1)
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_41_DATA_C3} {dataD[i]}-完成");
+                            arrayCD[3] += "，且已完成";
                         }
                         else
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_41_DATA_C3} {dataD[i]}-未完成");
+                            arrayCD[3] += "，且未完成";
                         }
                         break;
                     case 4:
                         if (dataD[i] == 1)
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_41_DATA_C4} {dataD[i]}-完成");
+                            arrayCD[4] += "，且未完成";
                         }
                         else
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_41_DATA_C4} {dataD[i]}-未完成");
+                            arrayCD[4] += "，且未完成";
                         }
                         break;
                     case 5:
                         if (dataD[i] == 1)
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_41_DATA_C5} {dataD[i]}-完成");
+                            arrayCD[5] += "，且已完成";
                         }
                         else
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_41_DATA_C5} {dataD[i]}-未完成");
+                            arrayCD[5] += "，且未完成";
                         }
                         break;
                     case 6:
                         if (dataD[i] == 1)
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_41_DATA_C6} {dataD[i]}-完成");
+                            arrayCD[6] += "，且已完成";
                         }
                         else
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_41_DATA_C6} {dataD[i]}-未完成");
+                            arrayCD[6] += "，且未完成";
                         }
                         break;
                     case 7:
                         if (dataD[i] == 1)
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_41_DATA_C7} {dataD[i]}-完成");
+                            arrayCD[7] += "，且已完成";
                         }
                         else
                         {
-                            device.TempBuffer.AppendLine($"{PID_MEAN.PID_41_DATA_C7} {dataD[i]}-未完成");
+                            arrayCD[7] += "，且未完成";
                         }
                         break;
                 }
             }
+
+            //B
+            WriteContent("", CharToString(dataB), "", PID_MEAN.PID_41_DATA_B0+arrayA[0]);
+            WriteContent("", "", "", PID_MEAN.PID_41_DATA_B1 + arrayA[1]);
+            WriteContent("", "", "", PID_MEAN.PID_41_DATA_B2 + arrayA[2]);
+            WriteContent("", "", "", PID_MEAN.PID_41_DATA_B3 + arrayA[3]);
+            //C+D
+            WriteContent("", CharToString(dataC), "", PID_MEAN.PID_41_DATA_CD0 + arrayCD[0]);
+            WriteContent("", CharToString(dataD), "", PID_MEAN.PID_41_DATA_CD1 + arrayCD[1]);
+            WriteContent("", "", "", PID_MEAN.PID_41_DATA_CD2 + arrayCD[2]);
+            WriteContent("", "", "", PID_MEAN.PID_41_DATA_CD3 + arrayCD[3]);
+            WriteContent("", "", "", PID_MEAN.PID_41_DATA_CD4 + arrayCD[4]);
+            WriteContent("", "", "", PID_MEAN.PID_41_DATA_CD5 + arrayCD[5]);
+            WriteContent("", "", "", PID_MEAN.PID_41_DATA_CD6 + arrayCD[6]);
+            WriteContent("", "", "", PID_MEAN.PID_41_DATA_CD7 + arrayCD[7]);
         }
 
         /// <summary>
@@ -2799,10 +2831,10 @@ namespace CANManager.CAN
         private static void PID_0X42(char[] dataA, char[] dataB)
         {
             //公式：(a * 256+b) / 1000
-            double a = Convert.ToInt32(CharToString(dataA),16);
-            double b = Convert.ToInt32(CharToString(dataB),16);
+            double a = Convert.ToInt32(CharToString(dataA),2);
+            double b = Convert.ToInt32(CharToString(dataB),2);
             double v = (a * 256 + b) / 1000.00;
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_42_DATA} {v}V");
+            WriteContent("PID 42",v.ToString("f3"),"V",PID_MEAN.PID_42_DATA);
         }
 
         /// <summary>
@@ -2812,10 +2844,10 @@ namespace CANManager.CAN
         /// <param name="dataB"></param>
         private static void PID_0X43(char[] dataA, char[] dataB)
         {
-            double a = Convert.ToInt32(CharToString(dataA), 16);
-            double b = Convert.ToInt32(CharToString(dataB), 16);
+            double a = Convert.ToInt32(CharToString(dataA), 2);
+            double b = Convert.ToInt32(CharToString(dataB), 2);
             double v = (a * 256 + b) * (100 / 255.00);
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_43_DATA} {v}%");
+            WriteContent("PID 43", v.ToString("f3"), "%", PID_MEAN.PID_43_DATA);
         }
 
         /// <summary>
@@ -2825,10 +2857,10 @@ namespace CANManager.CAN
         /// <param name="dataB"></param>
         private static void PID_0X44(char[] dataA, char[] dataB)
         {
-            double a = Convert.ToInt32(CharToString(dataA), 16);
-            double b = Convert.ToInt32(CharToString(dataB), 16);
+            double a = Convert.ToInt32(CharToString(dataA), 2);
+            double b = Convert.ToInt32(CharToString(dataB), 2);
             double v = (a * 256 + b) / 32768.00;
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_44_DATA} {v}N/A");
+            WriteContent("PID 44", v.ToString("f3"), "N/A", PID_MEAN.PID_44_DATA);
         }
 
         /// <summary>
@@ -2838,10 +2870,10 @@ namespace CANManager.CAN
         /// <param name="dataB"></param>
         private static void PID_0X45(char[] dataA, char[] dataB)
         {
-            double a = Convert.ToInt32(CharToString(dataA), 16);
-            double b = Convert.ToInt32(CharToString(dataB), 16);
+            double a = Convert.ToInt32(CharToString(dataA), 2);
+            double b = Convert.ToInt32(CharToString(dataB), 2);
             double v = a * (100 / 255.00);
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_45_DATA} {v}%");
+            WriteContent("PID 45", v.ToString("f3"), "%", PID_MEAN.PID_45_DATA);
         }
 
         /// <summary>
@@ -2850,9 +2882,9 @@ namespace CANManager.CAN
         /// <param name="dataA"></param>
         private static void PID_0X46(char[] dataA)
         {
-            double a = Convert.ToInt32(CharToString(dataA), 16);
+            double a = Convert.ToInt32(CharToString(dataA), 2);
             double v = a - 40;
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_46_DATA} {v}℃");
+            WriteContent("PID 46", v.ToString("f3"), "℃", PID_MEAN.PID_46_DATA);
         }
 
         /// <summary>
@@ -2861,9 +2893,9 @@ namespace CANManager.CAN
         /// <param name="dataA"></param>
         private static void PID_0X47(char[] dataA)
         {
-            double a = Convert.ToInt32(CharToString(dataA), 16);
+            double a = Convert.ToInt32(CharToString(dataA), 2);
             double v = a * (100 / 255.00);
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_47_DATA} {v}%");
+            WriteContent("PID 47", v.ToString("f3"), "%", PID_MEAN.PID_47_DATA);
         }
         /// <summary>
         /// 绝对气流阀位置C
@@ -2871,9 +2903,9 @@ namespace CANManager.CAN
         /// <param name="dataA"></param>
         private static void PID_0X48(char[] dataA)
         {
-            double a = Convert.ToInt32(CharToString(dataA), 16);
+            double a = Convert.ToInt32(CharToString(dataA), 2);
             double v = a * (100 / 255.00);
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_48_DATA} {v}%");
+            WriteContent("PID 48", v.ToString("f3"), "%", PID_MEAN.PID_48_DATA);
         }
 
         /// <summary>
@@ -2882,9 +2914,9 @@ namespace CANManager.CAN
         /// <param name="dataA"></param>
         private static void PID_0X49(char[] dataA)
         {
-            double a = Convert.ToInt32(CharToString(dataA), 16);
+            double a = Convert.ToInt32(CharToString(dataA), 2);
             double v = a * (100 / 255.00);
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_49_DATA} {v}%");
+            WriteContent("PID 49", v.ToString("f3"), "%", PID_MEAN.PID_49_DATA);
         }
 
         /// <summary>
@@ -2893,9 +2925,9 @@ namespace CANManager.CAN
         /// <param name="dataA"></param>
         private static void PID_0X4A(char[] dataA)
         {
-            double a = Convert.ToInt32(CharToString(dataA), 16);
+            double a = Convert.ToInt32(CharToString(dataA), 2);
             double v = a * (100 / 255.00);
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_4A_DATA} {v}%");
+            WriteContent("PID 4A", v.ToString("f3"), "%", PID_MEAN.PID_4A_DATA);
         }
 
         /// <summary>
@@ -2904,9 +2936,9 @@ namespace CANManager.CAN
         /// <param name="dataA"></param>
         private static void PID_0X4B(char[] dataA)
         {
-            double a = Convert.ToInt32(CharToString(dataA), 16);
+            double a = Convert.ToInt32(CharToString(dataA), 2);
             double v = a * (100 / 255.00);
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_4B_DATA} {v}%");
+            WriteContent("PID 4B", v.ToString("f3"), "%", PID_MEAN.PID_4B_DATA);
         }
 
         /// <summary>
@@ -2915,9 +2947,9 @@ namespace CANManager.CAN
         /// <param name="dataA"></param>
         private static void PID_0X4C(char[] dataA)
         {
-            double a = Convert.ToInt32(CharToString(dataA), 16);
+            double a = Convert.ToInt32(CharToString(dataA), 2);
             double v = a * (100 / 255.00);
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_4C_DATA} {v}%");
+            WriteContent("PID 4C", v.ToString("f3"), "%", PID_MEAN.PID_4C_DATA);
         }
 
         /// <summary>
@@ -2928,10 +2960,10 @@ namespace CANManager.CAN
         private static void PID_0X4D(char[] dataA, char[] dataB)
         {
             // a * 256 + b
-            double a = Convert.ToInt32(CharToString(dataA), 16);
-            double b = Convert.ToInt32(CharToString(dataB), 16);
+            double a = Convert.ToInt32(CharToString(dataA), 2);
+            double b = Convert.ToInt32(CharToString(dataB), 2);
             double v = a * 256 + b;
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_4D_DATA} {v}分钟");
+            WriteContent("PID 4D", v.ToString("f3"), "分钟", PID_MEAN.PID_4D_DATA);
         }
 
         /// <summary>
@@ -2941,10 +2973,10 @@ namespace CANManager.CAN
         /// <param name="dataB"></param>
         private static void PID_0X4E(char[] dataA, char[] dataB)
         {
-            double a = Convert.ToInt32(CharToString(dataA), 16);
-            double b = Convert.ToInt32(CharToString(dataB), 16);
+            double a = Convert.ToInt32(CharToString(dataA), 2);
+            double b = Convert.ToInt32(CharToString(dataB), 2);
             double v = a * 256 + b;
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_4E_DATA} {v}分钟");
+            WriteContent("PID 4E", v.ToString("f3"), "分钟", PID_MEAN.PID_4E_DATA);
         }
 
         /// <summary>
@@ -2956,14 +2988,15 @@ namespace CANManager.CAN
         /// <param name="dataD">进气岐管绝对压力的最大值</param>
         private static void PID_0X4F(char[] dataA, char[] dataB, char[] dataC, char[] dataD)
         {
-            double a = Convert.ToInt32(CharToString(dataA),16);
-            double b = Convert.ToInt32(CharToString(dataB), 16);
-            double c = Convert.ToInt32(CharToString(dataC), 16);
-            double d = Convert.ToInt32(CharToString(dataD), 16);
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_4F_DATA_A} {a}");
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_4F_DATA_B} {b}V");
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_4F_DATA_C} {c}mA");
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_4F_DATA_D} {d}kPa");
+            double a = Convert.ToInt32(CharToString(dataA),2);
+            double b = Convert.ToInt32(CharToString(dataB), 2);
+            double c = Convert.ToInt32(CharToString(dataC), 2);
+            double d = Convert.ToInt32(CharToString(dataD), 2);
+
+            WriteContent("PID 4F", a.ToString("f3"), "", PID_MEAN.PID_4F_DATA_A);
+            WriteContent("", b.ToString("f3"), "V", PID_MEAN.PID_4F_DATA_B);
+            WriteContent("", c.ToString("f3"), "mA", PID_MEAN.PID_4F_DATA_C);
+            WriteContent("", d.ToString("f3"), "kPa", PID_MEAN.PID_4F_DATA_D);
         }
         #endregion
 
@@ -2978,14 +3011,14 @@ namespace CANManager.CAN
         /// <param name="dataA"></param>
         private static void PID_0X51(char[] dataA)
         {
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_51_DATA} {CharToString(dataA)}");
+            WriteContent("PID 51", CharToString(dataA), "", PID_MEAN.PID_51_DATA);
         }
 
         private static void PID_0X52(char[] dataA)
         {
-            double a = Convert.ToInt32(CharToString(dataA),16);
+            double a = Convert.ToInt32(CharToString(dataA),2);
             double v = a * (100 / 255.00);
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_52_DATA} {v}%");
+            WriteContent("PID 52", v.ToString("f3"), "%", PID_MEAN.PID_52_DATA);
         }
 
         /// <summary>
@@ -2998,7 +3031,7 @@ namespace CANManager.CAN
             double a = Convert.ToInt32(CharToString(dataA), 16);
             double b = Convert.ToInt32(CharToString(dataB), 16);
             double v = (a * 256 + b) / 200.00;
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_53_DATA} {v}%");
+            WriteContent("PID 53", v.ToString("f3"), "%", PID_MEAN.PID_53_DATA);
         }
 
         /// <summary>
@@ -3011,7 +3044,7 @@ namespace CANManager.CAN
             double a = Convert.ToInt32(CharToString(dataA), 16);
             double b = Convert.ToInt32(CharToString(dataB), 16);
             double v = (a * 256 + b) - 32767;
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_54_DATA} {v}Pa");
+            WriteContent("PID 54", v.ToString("f3"), "Pa", PID_MEAN.PID_54_DATA);
         }
         /// <summary>
         /// 短期二次氧传感器微调组1和组3
@@ -3020,12 +3053,12 @@ namespace CANManager.CAN
         /// <param name="dataB"></param>
         private static void PID_0X55(char[] dataA, char[] dataB)
         {
-            double a = Convert.ToInt32(CharToString(dataA), 16);
-            double b = Convert.ToInt32(CharToString(dataB), 16);
+            double a = Convert.ToInt32(CharToString(dataA), 2);
+            double b = Convert.ToInt32(CharToString(dataB), 2);
             double v1 = (a - 128) * (100 / 128.00);
             double v2 = (b - 128) * (100 / 128.00);
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_55_DATA_A} {v1}%");
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_55_DATA_B} {v2}%");
+            WriteContent("PID 55", v1.ToString("f3"), "%", PID_MEAN.PID_55_DATA_A);
+            WriteContent("", v2.ToString("f3"), "%", PID_MEAN.PID_55_DATA_B);
         }
         /// <summary>
         /// 长期二次氧传感器微调组1和组3
@@ -3034,12 +3067,12 @@ namespace CANManager.CAN
         /// <param name="dataB"></param>
         private static void PID_0X56(char[] dataA, char[] dataB)
         {
-            double a = Convert.ToInt32(CharToString(dataA), 16);
-            double b = Convert.ToInt32(CharToString(dataB), 16);
+            double a = Convert.ToInt32(CharToString(dataA), 2);
+            double b = Convert.ToInt32(CharToString(dataB), 2);
             double v1 = (a - 128) * (100 / 128.00);
             double v2 = (b - 128) * (100 / 128.00);
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_56_DATA_A} {v1}%");
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_56_DATA_B} {v2}%");
+            WriteContent("PID 56", v1.ToString("f3"), "%", PID_MEAN.PID_56_DATA_A);
+            WriteContent("", v2.ToString("f3"), "%", PID_MEAN.PID_56_DATA_B);
         }
         /// <summary>
         /// 短期二次氧传感器微调组2和4
@@ -3048,12 +3081,12 @@ namespace CANManager.CAN
         /// <param name="dataB"></param>
         private static void PID_0X57(char[] dataA, char[] dataB)
         {
-            double a = Convert.ToInt32(CharToString(dataA), 16);
-            double b = Convert.ToInt32(CharToString(dataB), 16);
+            double a = Convert.ToInt32(CharToString(dataA), 2);
+            double b = Convert.ToInt32(CharToString(dataB), 2);
             double v1 = (a - 128) * (100 / 128.00);
             double v2 = (b - 128) * (100 / 128.00);
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_57_DATA_A} {v1}%");
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_57_DATA_B} {v2}%");
+            WriteContent("PID 57", v1.ToString("f3"), "%", PID_MEAN.PID_57_DATA_A);
+            WriteContent("", v2.ToString("f3"), "%", PID_MEAN.PID_57_DATA_B);
         }
         /// <summary>
         /// 长期二次氧传感器微调组2和组4
@@ -3062,12 +3095,12 @@ namespace CANManager.CAN
         /// <param name="dataB"></param>
         private static void PID_0X58(char[] dataA, char[] dataB)
         {
-            double a = Convert.ToInt32(CharToString(dataA), 16);
-            double b = Convert.ToInt32(CharToString(dataB), 16);
+            double a = Convert.ToInt32(CharToString(dataA), 2);
+            double b = Convert.ToInt32(CharToString(dataB), 2);
             double v1 = (a - 128) * (100 / 128.00);
             double v2 = (b - 128) * (100 / 128.00);
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_58_DATA_A} {v1}%");
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_58_DATA_B} {v2}%");
+            WriteContent("PID 58", v1.ToString("f3"), "%", PID_MEAN.PID_58_DATA_A);
+            WriteContent("", v2.ToString("f3"), "%", PID_MEAN.PID_58_DATA_B);
         }
         /// <summary>
         /// 绝对油轨压力
@@ -3076,10 +3109,10 @@ namespace CANManager.CAN
         /// <param name="dataB"></param>
         private static void PID_0X59(char[] dataA, char[] dataB)
         {
-            double a = Convert.ToInt32(CharToString(dataA), 16);
-            double b = Convert.ToInt32(CharToString(dataB), 16);
+            double a = Convert.ToInt32(CharToString(dataA), 2);
+            double b = Convert.ToInt32(CharToString(dataB), 2);
             double v1 = (a * 256 + b) * 10;
-            device.TempBuffer.AppendLine($"{PID_MEAN.PID_59_DATA} {v1}%");
+            WriteContent("PID 59", v1.ToString("f3"), "%", PID_MEAN.PID_59_DATA);
         }
 
         /// <summary>
@@ -3088,9 +3121,10 @@ namespace CANManager.CAN
         /// <param name="dataA"></param>
         private static void PID_0X5A(char[] dataA)
         {
-            double a = Convert.ToInt32(CharToString(dataA), 16);
+            double a = Convert.ToInt32(CharToString(dataA), 2);
             double v1 = a * (100 / 255.00);
             device.TempBuffer.AppendLine($"{PID_MEAN.PID_5A_DATA} {v1}%");
+            WriteContent("PID 5A", v1.ToString("f3"), "%", PID_MEAN.PID_5A_DATA);
 
         }
 

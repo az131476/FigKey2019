@@ -132,6 +132,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="test.txt" />
     <Content Include="Test\diagnose.c" />
     <Content Include="Test\diagnose.h" />
     <None Include="Resources\solar.png" />
@@ -174,7 +175,7 @@
     <Folder Include="Control\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\CommonUtils\CommonLibrary\CommonUtils\CommonUtils\CommonUtils.csproj">
+    <ProjectReference Include="..\..\..\CommonLibrary\CommonUtils\CommonUtils\CommonUtils.csproj">
       <Project>{ebfca1b5-23f1-4f94-928a-db1a7b98eed6}</Project>
       <Name>CommonUtils</Name>
     </ProjectReference>
