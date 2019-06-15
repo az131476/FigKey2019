@@ -161,12 +161,8 @@ namespace CANManager.CAN
 
         public const string PID_01_DATAB_00 = "失火监控";
         public const string PID_01_DATAB_01 = "燃油系统监控";
-        public const string PID_01_DATAB_02 = "支持全面组件监控";
+        public const string PID_01_DATAB_02 = "全面组件监控";
         public const string PID_01_DATAB_03 = "保留";
-        public const string PID_01_DATAB_04 = "失火检测";
-        public const string PID_01_DATAB_05 = "燃油系统检测";
-        public const string PID_01_DATAB_06 = "综合组件检测";
-        public const string PID_01_DATAB_07 = "保留";
 
         public const string PID_01_DATAC_00 = "催化剂监测";
         public const string PID_01_DATAC_01 = "加热催化器监测";
@@ -293,170 +289,170 @@ namespace CANManager.CAN
         #endregion
 
         #region PID=1D 氧传感器位置
-        public const string PID_1D_DATAA_00 = "O2s11(Bank1,Sensors1)  ";
-        public const string PID_1D_DATAA_01 = "O2s12(Bank1,Sensors2)  ";
-        public const string PID_1D_DATAA_02 = "O2s13(Bank2,Sensors1)  ";
-        public const string PID_1D_DATAA_03 = "O2s14(Bank2,Sensors2)  ";
-        public const string PID_1D_DATAA_04 = "O2s21(Bank3,Sensors1)  ";
-        public const string PID_1D_DATAA_05 = "O2s22(Bank3,Sensors2)  ";
-        public const string PID_1D_DATAA_06 = "O2s23(Bank4,Sensors1)  ";
-        public const string PID_1D_DATAA_07 = "O2s24(Bank4,Sensors2)  ";
+        public const string PID_1D_DATAA_00 = " 0  O2s11(Bank1,Sensors1)  ";
+        public const string PID_1D_DATAA_01 = " 1  O2s12(Bank1,Sensors2)  ";
+        public const string PID_1D_DATAA_02 = " 2  O2s13(Bank2,Sensors1)  ";
+        public const string PID_1D_DATAA_03 = " 3  O2s14(Bank2,Sensors2)  ";
+        public const string PID_1D_DATAA_04 = " 4  O2s21(Bank3,Sensors1)  ";
+        public const string PID_1D_DATAA_05 = " 5  O2s22(Bank3,Sensors2)  ";
+        public const string PID_1D_DATAA_06 = " 6  O2s23(Bank4,Sensors1)  ";
+        public const string PID_1D_DATAA_07 = " 7  O2s24(Bank4,Sensors2)  ";
         #endregion
 
         #region PID=1E
-        public const string PID_1E_DATA_A_00 = "电源关闭状态  ";
-        public const string PID_1E_DATA_A_01_07 = "保留 ";
+        public const string PID_1E_DATA_A_00 = " 0  电源关闭状态  ";
+        public const string PID_1E_DATA_A_01_07 = "pid=1D,字节长度=1,dataA  保留 ";
         #endregion
 
         #region PID=1F-23
-        public const string PID_1F_DATA = "引擎启动后运行时间（0-65535秒）  ";
-        public const string PID_21_DATA = "MIL灯点亮后车辆行驶里程  ";
-        public const string PID_22_DATA = "燃料轨压力相对于管道真空(0-5177.265kPa)  ";
-        public const string PID_23_DATA = "油轨压力(柴油或汽油直喷)(0-655350kPa)  ";
+        public const string PID_1F_DATA = "pid=1D;字节长度=2 dataA&B  引擎启动后运行时间（0-65535秒）  ";
+        public const string PID_21_DATA = "pid=21;字节长度=2 dataA&B  MIL灯点亮后车辆行驶里程  ";
+        public const string PID_22_DATA = "pid=22;字节长度=2 dataA&B  燃料轨压力相对于管道真空(0-5177.265kPa)  ";
+        public const string PID_23_DATA = "pid=23;字节长度=2 dataA&B  油轨压力(柴油或汽油直喷)(0-655350kPa)  ";
         #endregion
 
         #region PID=24-2B,仅适用于PID13定义的氧传感器位置 1-2bank 1-4传感器
-        public const string PID_24_DATA_13 = "AB-等效比,CD-氧传感器电压  ";
-        public const string PID_25_DATA_13 = "AB-等效比,CD-氧传感器电压  ";
-        public const string PID_26_DATA_13 = "AB-等效比,CD-氧传感器电压  ";
-        public const string PID_27_DATA_13 = "AB-等效比,CD-氧传感器电压  ";
-        public const string PID_28_DATA_13 = "AB-等效比,CD-氧传感器电压  ";
-        public const string PID_29_DATA_13 = "AB-等效比,CD-氧传感器电压  ";
-        public const string PID_2A_DATA_13 = "AB-等效比,CD-氧传感器电压  ";
-        public const string PID_2B_DATA_13 = "AB-等效比,CD-氧传感器电压  ";
+        public const string PID_24_DATA_13 = "pid=24;字节长度=4 dataA&B&C&D  AB-等效比,CD-氧传感器电压  ";
+        public const string PID_25_DATA_13 = "pid=25;字节长度=4 dataA&B&C&D  AB-等效比,CD-氧传感器电压  ";
+        public const string PID_26_DATA_13 = "pid=26;字节长度=4 dataA&B&C&D  AB-等效比,CD-氧传感器电压  ";
+        public const string PID_27_DATA_13 = "pid=27;字节长度=4 dataA&B&C&D  AB-等效比,CD-氧传感器电压  ";
+        public const string PID_28_DATA_13 = "pid=28;字节长度=4 dataA&B&C&D  AB-等效比,CD-氧传感器电压  ";
+        public const string PID_29_DATA_13 = "pid=29;字节长度=4 dataA&B&C&D  AB-等效比,CD-氧传感器电压  ";
+        public const string PID_2A_DATA_13 = "pid=2A;字节长度=4 dataA&B&C&D  AB-等效比,CD-氧传感器电压  ";
+        public const string PID_2B_DATA_13 = "pid=2B;字节长度=4 dataA&B&C&D  AB-等效比,CD-氧传感器电压  ";
         #endregion
 
         #region PID=24,仅适用于PID1D定义的氧传感器位置 1-4bank 1-2传感器
-        public const string PID_24_DATA_1D = "AB-等效比,CD-氧传感器电压 ";
-        public const string PID_25_DATA_1D = "AB-等效比,CD-氧传感器电压 ";
-        public const string PID_26_DATA_1D = "AB-等效比,CD-氧传感器电压 ";
-        public const string PID_27_DATA_1D = "AB-等效比,CD-氧传感器电压 ";
-        public const string PID_28_DATA_1D = "AB-等效比,CD-氧传感器电压 ";
-        public const string PID_29_DATA_1D = "AB-等效比,CD-氧传感器电压 ";
-        public const string PID_2A_DATA_1D = "AB-等效比,CD-氧传感器电压 ";
-        public const string PID_2B_DATA_1D = "AB-等效比,CD-氧传感器电压 ";
+        public const string PID_24_DATA_1D = "pid=24;字节长度=4 dataA&B&C&D  AB-等效比,CD-氧传感器电压 ";
+        public const string PID_25_DATA_1D = "pid=25;字节长度=4 dataA&B&C&D  AB-等效比,CD-氧传感器电压 ";
+        public const string PID_26_DATA_1D = "pid=26;字节长度=4 dataA&B&C&D  AB-等效比,CD-氧传感器电压 ";
+        public const string PID_27_DATA_1D = "pid=27;字节长度=4 dataA&B&C&D  AB-等效比,CD-氧传感器电压 ";
+        public const string PID_28_DATA_1D = "pid=28;字节长度=4 dataA&B&C&D  AB-等效比,CD-氧传感器电压 ";
+        public const string PID_29_DATA_1D = "pid=29;字节长度=4 dataA&B&C&D  AB-等效比,CD-氧传感器电压 ";
+        public const string PID_2A_DATA_1D = "pid=2A;字节长度=4 dataA&B&C&D  AB-等效比,CD-氧传感器电压 ";
+        public const string PID_2B_DATA_1D = "pid=2B;字节长度=4 dataA&B&C&D  AB-等效比,CD-氧传感器电压 ";
         #endregion
 
         #region PID=2C-33
-        public const string PID_2C_DATA = "EGR(废弃循环)命令(0-100%)  ";
-        public const string PID_2D_DATA = "EGR(废弃循环)错误(-100-99.22%)  ";
-        public const string PID_2E_DATA = "蒸发净化命令(0-100%)  ";
-        public const string PID_2F_DATA = "油量液位情况(0-100%)  ";
-        public const string PID_30_DATA = "自诊断故障清除后热身次数(0-255)  ";
-        public const string PID_31_DATA = "自诊断故障清除后行驶距离(0-65535km)  ";
-        public const string PID_32_DATA = "EVAP 系统蒸汽压力(-8192-8192Pa)  ";
-        public const string PID_33_DATA = "大气压(0-255kPa)  ";
+        public const string PID_2C_DATA = "pid=2C;字节长度=1 dataA  EGR(废弃循环)命令(0-100%)  ";
+        public const string PID_2D_DATA = "pid=2C;字节长度=1 dataA  EGR(废弃循环)错误(-100-99.22%)  ";
+        public const string PID_2E_DATA = "pid=2C;字节长度=1 dataA  蒸发净化命令(0-100%)  ";
+        public const string PID_2F_DATA = "pid=2C;字节长度=1 dataA  油量液位情况(0-100%)  ";
+        public const string PID_30_DATA = "pid=2C;字节长度=1 dataA  自诊断故障清除后热身次数(0-255)  ";
+        public const string PID_31_DATA = "pid=2C;字节长度=2 dataA  自诊断故障清除后行驶距离(0-65535km)  ";
+        public const string PID_32_DATA = "pid=2C;字节长度=2 dataA  EVAP 系统蒸汽压力(-8192-8192Pa)  ";
+        public const string PID_33_DATA = "pid=2C;字节长度=1 dataA  大气压(0-255kPa)  ";
 
         #endregion
 
         #region PID=34-3B 仅适用于PID13定义的氧传感器位置 1-4bank 1-2传感器
-        public const string PID_34_13_DATA = "AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma)  ";
-        public const string PID_35_13_DATA = "AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma)  ";
-        public const string PID_36_13_DATA = "AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma)  ";
-        public const string PID_37_13_DATA = "AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma)  ";
-        public const string PID_38_13_DATA = "AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma)  ";
-        public const string PID_39_13_DATA = "AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma)  ";
-        public const string PID_3A_13_DATA = "AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma)  ";
-        public const string PID_3B_13_DATA = "AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma)  ";
+        public const string PID_34_13_DATA = "pid=34_13;字节长度=4 dataA  AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma)  ";
+        public const string PID_35_13_DATA = "pid=35_13;字节长度=4 dataA  AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma)  ";
+        public const string PID_36_13_DATA = "pid=36_13;字节长度=4 dataA  AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma)  ";
+        public const string PID_37_13_DATA = "pid=37_13;字节长度=4 dataA  AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma)  ";
+        public const string PID_38_13_DATA = "pid=38_13;字节长度=4 dataA  AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma)  ";
+        public const string PID_39_13_DATA = "pid=39_13;字节长度=4 dataA  AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma)  ";
+        public const string PID_3A_13_DATA = "pid=3A_13;字节长度=4 dataA  AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma)  ";
+        public const string PID_3B_13_DATA = "pid=3B_13;字节长度=4 dataA  AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma)  ";
         #endregion
 
         #region PID=34-3B 仅适用于PID1D定义的氧传感器位置 1-4bank 1-2传感器
-        public const string PID_34_1D_DATA = "AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma)  ";
-        public const string PID_35_1D_DATA = "AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma)  ";
-        public const string PID_36_1D_DATA = "AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma)  ";
-        public const string PID_37_1D_DATA = "AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma)  ";
-        public const string PID_38_1D_DATA = "AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma)  ";
-        public const string PID_39_1D_DATA = "AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma)  ";
-        public const string PID_3A_1D_DATA = "AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma)  ";
-        public const string PID_3B_1D_DATA = "AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma)  ";
+        public const string PID_34_1D_DATA = "pid=34_1D;字节长度=4 dataA  AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma)  ";
+        public const string PID_35_1D_DATA = "pid=35_1D;字节长度=4 dataA  AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma)  ";
+        public const string PID_36_1D_DATA = "pid=36_1D;字节长度=4 dataA  AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma)  ";
+        public const string PID_37_1D_DATA = "pid=37_1D;字节长度=4 dataA  AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma)  ";
+        public const string PID_38_1D_DATA = "pid=38_1D;字节长度=4 dataA  AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma)  ";
+        public const string PID_39_1D_DATA = "pid=39_1D;字节长度=4 dataA  AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma)  ";
+        public const string PID_3A_1D_DATA = "pid=3A_1D;字节长度=4 dataA  AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma)  ";
+        public const string PID_3B_1D_DATA = "pid=3B_1D;字节长度=4 dataA  AB-等效比(0-1.999N/A)，CD-氧传感器电流(-128-127.99ma)  ";
         #endregion
 
         #region PID=3C-3F 
-        public const string PID_3C_DATA = "催化剂温度(通道1，传感器1)(-40-6513.5℃)  ";
-        public const string PID_3D_DATA = "催化剂温度(通道2，传感器1)(-40-6513.5℃)  ";
-        public const string PID_3E_DATA = "催化剂温度(通道1，传感器2)(-40-6513.5℃)  ";
-        public const string PID_3F_DATA = "催化剂温度(通道2，传感器2)(-40-6513.5℃)  ";
+        public const string PID_3C_DATA = "pid=3C;字节长度=2 dataA&B  催化剂温度(通道1，传感器1)(-40-6513.5℃)  ";
+        public const string PID_3D_DATA = "pid=3D;字节长度=2 dataA&B  催化剂温度(通道2，传感器1)(-40-6513.5℃)  ";
+        public const string PID_3E_DATA = "pid=3C;字节长度=2 dataA&B  催化剂温度(通道1，传感器2)(-40-6513.5℃)  ";
+        public const string PID_3F_DATA = "pid=3C;字节长度=2 dataA&B  催化剂温度(通道2，传感器2)(-40-6513.5℃)  ";
         #endregion
 
         #region PID=41
-        public const string PID_41_DATA_A0_A7 = "保留";
+        public const string PID_41_DATA_A0_A7 = "pid=41,字节长度=4, DATA A0-A7, 保留";
 
-        public const string PID_41_DATA_B0 = "启用失火检测  ";
-        public const string PID_41_DATA_B1 = "启用燃油系统监测  ";
-        public const string PID_41_DATA_B2 = "启用全面组件监测  ";
-        public const string PID_41_DATA_B3 = "保留 ";
-        public const string PID_41_DATA_B4 = "完成失火监测  ";
-        public const string PID_41_DATA_B5 = "完成燃油系统监测  ";
-        public const string PID_41_DATA_B6 = "完成全面组件监测  ";
-        public const string PID_41_DATA_B7 = "保留 ";
+        public const string PID_41_DATA_B0 = "pid=41,字节长度=4, DATA B0, 启用失火检测  ";
+        public const string PID_41_DATA_B1 = "pid=41,字节长度=4, DATA B1, 启用燃油系统监测  ";
+        public const string PID_41_DATA_B2 = "pid=41,字节长度=4, DATA B2, 启用全面组件监测  ";
+        public const string PID_41_DATA_B3 = "pid=41,字节长度=4, DATA B3, 保留 ";
+        public const string PID_41_DATA_B4 = "pid=41,字节长度=4, DATA B4, 完成失火监测  ";
+        public const string PID_41_DATA_B5 = "pid=41,字节长度=4, DATA B5, 完成燃油系统监测  ";
+        public const string PID_41_DATA_B6 = "pid=41,字节长度=4, DATA B6, 完成全面组件监测  ";
+        public const string PID_41_DATA_B7 = "pid=41,字节长度=4, DATA B7, 保留 ";
 
-        public const string PID_41_DATA_C0 = "催化剂监控  ";
-        public const string PID_41_DATA_C1 = "催化剂加热  ";
-        public const string PID_41_DATA_C2 = "蒸发系统监控  ";
-        public const string PID_41_DATA_C3 = "二次空气系统检测仪  ";
-        public const string PID_41_DATA_C4 = "空调系统制冷剂监测  ";
-        public const string PID_41_DATA_C5 = "氧传感器监测  ";
-        public const string PID_41_DATA_C6 = "氧传感器加热器监控  ";
-        public const string PID_41_DATA_C7 = "EGR系统监控  ";
+        public const string PID_41_DATA_C0 = "pid=41,字节长度=4, DATA C0, 催化剂监控  ";
+        public const string PID_41_DATA_C1 = "pid=41,字节长度=4, DATA C1, 催化剂加热  ";
+        public const string PID_41_DATA_C2 = "pid=41,字节长度=4, DATA C2, 蒸发系统监控  ";
+        public const string PID_41_DATA_C3 = "pid=41,字节长度=4, DATA C3, 二次空气系统检测仪  ";
+        public const string PID_41_DATA_C4 = "pid=41,字节长度=4, DATA C4, 空调系统制冷剂监测  ";
+        public const string PID_41_DATA_C5 = "pid=41,字节长度=4, DATA C5, 氧传感器监测  ";
+        public const string PID_41_DATA_C6 = "pid=41,字节长度=4, DATA C6, 氧传感器加热器监控  ";
+        public const string PID_41_DATA_C7 = "pid=41,字节长度=4, DATA C7, EGR系统监控  ";
 
-        public const string PID_41_DATA_D0 = "催化剂监控完成  ";
-        public const string PID_41_DATA_D1 = "加热催化剂完成  ";
-        public const string PID_41_DATA_D2 = "蒸发系统监控完成  ";
-        public const string PID_41_DATA_D3 = "二次空气系统检测仪完成  ";
-        public const string PID_41_DATA_D4 = "空调系统制冷剂监测完成  ";
-        public const string PID_41_DATA_D5 = "氧传感器监测完成  ";
-        public const string PID_41_DATA_D6 = "氧传感器加热器监控完成  ";
-        public const string PID_41_DATA_D7 = "EGR系统监控完成  ";
+        public const string PID_41_DATA_D0 = "pid=41,字节长度=4, DATA D0, 催化剂监控完成  ";
+        public const string PID_41_DATA_D1 = "pid=41,字节长度=4, DATA D1, 加热催化剂完成  ";
+        public const string PID_41_DATA_D2 = "pid=41,字节长度=4, DATA D2, 蒸发系统监控完成  ";
+        public const string PID_41_DATA_D3 = "pid=41,字节长度=4, DATA D3, 二次空气系统检测仪完成  ";
+        public const string PID_41_DATA_D4 = "pid=41,字节长度=4, DATA D4, 空调系统制冷剂监测完成  ";
+        public const string PID_41_DATA_D5 = "pid=41,字节长度=4, DATA D5, 氧传感器监测完成  ";
+        public const string PID_41_DATA_D6 = "pid=41,字节长度=4, DATA D6, 氧传感器加热器监控完成  ";
+        public const string PID_41_DATA_D7 = "pid=41,字节长度=4, DATA D7, EGR系统监控完成  ";
         #endregion
 
         #region PID=42-4F
-        public const string PID_42_DATA = "电压控制模块(0-65.535V)  ";
-        public const string PID_43_DATA = "绝对负荷值(0-25700%)  ";
-        public const string PID_44_DATA = "等效比命令(0-2N/A)  ";
-        public const string PID_45_DATA = "相对节气门位置(0-100%)  ";
-        public const string PID_46_DATA = "环境空气温度(-40-215℃)  ";
-        public const string PID_47_DATA = "绝对气流阀位置B(0-100%)  ";
-        public const string PID_48_DATA = "绝对气流阀位置C(0-100%)  ";
-        public const string PID_49_DATA = "绝对气流阀位置D(0-100%)  ";
-        public const string PID_4A_DATA = "绝对气流阀位置E(0-100%)  ";
-        public const string PID_4B_DATA = "绝对气流阀位置F(0-100%)  ";
-        public const string PID_4C_DATA = "通讯节流阀执行机构控制(0-100%)  ";
-        public const string PID_4D_DATA = "启动MIL时引擎运行的时间(0-65535分钟)  ";
-        public const string PID_4E_DATA = "诊断故障代码清除以来的时间(0-65535分钟)  ";
+        public const string PID_42_DATA = "pid=42,字节长度=2, DATA , 电压控制模块(0-65.535V)  ";
+        public const string PID_43_DATA = "pid=43,字节长度=2, DATA , 绝对负荷值(0-25700%)  ";
+        public const string PID_44_DATA = "pid=44,字节长度=2, DATA , 等效比命令(0-2N/A)  ";
+        public const string PID_45_DATA = "pid=45,字节长度=1, DATA , 相对节气门位置(0-100%)  ";
+        public const string PID_46_DATA = "pid=46,字节长度=1, DATA , 环境空气温度(-40-215℃)  ";
+        public const string PID_47_DATA = "pid=47,字节长度=1, DATA , 绝对气流阀位置B(0-100%)  ";
+        public const string PID_48_DATA = "pid=48,字节长度=1, DATA , 绝对气流阀位置C(0-100%)  ";
+        public const string PID_49_DATA = "pid=49,字节长度=1, DATA , 绝对气流阀位置D(0-100%)  ";
+        public const string PID_4A_DATA = "pid=4A,字节长度=1, DATA , 绝对气流阀位置E(0-100%)  ";
+        public const string PID_4B_DATA = "pid=4B,字节长度=1, DATA , 绝对气流阀位置F(0-100%)  ";
+        public const string PID_4C_DATA = "pid=4C,字节长度=1, DATA , 通讯节流阀执行机构控制(0-100%)  ";
+        public const string PID_4D_DATA = "pid=4D,字节长度=2, DATA , 启动MIL时引擎运行的时间(0-65535分钟)  ";
+        public const string PID_4E_DATA = "pid=4E,字节长度=2, DATA , 诊断故障代码清除以来的时间(0-65535分钟)  ";
 
-        public const string PID_4F_DATA_A = "等值比的最大值(0-255)  ";
-        public const string PID_4F_DATA_B = "氧传感器电压最大值(0-255V)  ";
-        public const string PID_4F_DATA_C = "氧传感器电流最大值(0-255mA)  ";
-        public const string PID_4F_DATA_D = "进气歧管绝对压力的最大值(0-2550kPa)  ";
+        public const string PID_4F_DATA_A = "pid=4F,字节长度=4, DATA A , 等值比的最大值(0-255)  ";
+        public const string PID_4F_DATA_B = "pid=4F,字节长度=4, DATA B , 氧传感器电压最大值(0-255V)  ";
+        public const string PID_4F_DATA_C = "pid=4F,字节长度=4, DATA C , 氧传感器电流最大值(0-255mA)  ";
+        public const string PID_4F_DATA_D = "pid=4F,字节长度=4, DATA D , 进气歧管绝对压力的最大值(0-2550kPa)  ";
         #endregion
 
         #region PID=51-FF ，5B-FF保留
-        public const string PID_51_DATA = "车辆目前使用的燃料类型（01-0f）  ";
-        public const string PID_52_DATA = "酒精燃料比例（0-100%）  ";
-        public const string PID_53_DATA = "绝对Evap系统蒸汽压（0-327.675kPa）  ";
-        public const string PID_54_DATA = "Evap系统蒸汽压力（-32767-32768pa）  ";
+        public const string PID_51_DATA = "pid=51,字节长度=1, DATA A , 车辆目前使用的燃料类型（01-0f）  ";
+        public const string PID_52_DATA = "pid=52,字节长度=1, DATA A , 酒精燃料比例（0-100%）  ";
+        public const string PID_53_DATA = "pid=53,字节长度=2, DATA AB , 绝对Evap系统蒸汽压（0-327.675kPa）  ";
+        public const string PID_54_DATA = "pid=54,字节长度=2, DATA AB , Evap系统蒸汽压力（-32767-32768pa）  ";
 
-        public const string PID_55_DATA_A = "短时间内二级氧传感器燃料修整器BANK1（-100-99.22%）  ";
-        public const string PID_55_DATA_B = "短时间内二级氧传感器燃料修整器BANK3（-100-99.22%）  ";
+        public const string PID_55_DATA_A = "pid=55,字节长度=2, DATA A , 短时间内二级氧传感器燃料修整器BANK1（-100-99.22%）  ";
+        public const string PID_55_DATA_B = "pid=55,字节长度=2, DATA B , 短时间内二级氧传感器燃料修整器BANK3（-100-99.22%）  ";
 
-        public const string PID_56_DATA_A = "长时间内二级氧传感器燃料修整器BANK1（-100-99.22%）  ";
-        public const string PID_56_DATA_B = "长时间内二级氧传感器燃料修整器BANK3（-100-99.22%）  ";
+        public const string PID_56_DATA_A = "pid=56,字节长度=2, DATA A , 长时间内二级氧传感器燃料修整器BANK1（-100-99.22%）  ";
+        public const string PID_56_DATA_B = "pid=56,字节长度=2, DATA B , 长时间内二级氧传感器燃料修整器BANK3（-100-99.22%）  ";
 
-        public const string PID_57_DATA_A = "短时间内二级氧传感器燃料修整器BANK2（-100-99.22%）  ";
-        public const string PID_57_DATA_B = "短时间内二级氧传感器燃料修整器BANK4（-100-99.22%）  ";
+        public const string PID_57_DATA_A = "pid=57,字节长度=2, DATA A , 短时间内二级氧传感器燃料修整器BANK2（-100-99.22%）  ";
+        public const string PID_57_DATA_B = "pid=57,字节长度=2, DATA B , 短时间内二级氧传感器燃料修整器BANK4（-100-99.22%）  ";
 
-        public const string PID_58_DATA_A = "长时间内二级氧传感器燃料修整器BANK2（-100-99.22%）  ";
-        public const string PID_58_DATA_B = "长时间内二级氧传感器燃料修整器BANK4（-100-99.22%）  ";
+        public const string PID_58_DATA_A = "pid=58,字节长度=2, DATA A , 长时间内二级氧传感器燃料修整器BANK2（-100-99.22%）  ";
+        public const string PID_58_DATA_B = "pid=58,字节长度=2, DATA B , 长时间内二级氧传感器燃料修整器BANK4（-100-99.22%）  ";
 
-        public const string PID_59_DATA = "燃料轨压力绝对（0-655350kpa）  ";
+        public const string PID_59_DATA = "pid=59,字节长度=2, DATA AB , 燃料轨压力绝对（0-655350kpa）  ";
 
-        public const string PID_5A_DATA = "相对油门踏板（0-100%）  ";
+        public const string PID_5A_DATA = "pid=5A,字节长度=1, DATA A , 相对油门踏板（0-100%）  ";
         //5B-FF 保留
-        public const string PID_5B_FF_DATA = "保留";
+        public const string PID_5B_FF_DATA = "pid=5B-FF, 保留";
 
-        public const string PID_FD_DATA = "ADP 气流抵消（-32768-32767）  ";
-        public const string PID_FE_DATA = "ADP燃料乘数（65535）  ";
-        public const string PID_FF_DATA = "ADP 燃料抵消（-32768-32767）  ";
+        public const string PID_FD_DATA = "pid=FD,字节长度=2, DATA AB , ADP 气流抵消（-32768-32767）  ";
+        public const string PID_FE_DATA = "pid=FE,字节长度=2, DATA AB , ADP燃料乘数（65535）  ";
+        public const string PID_FF_DATA = "pid=FF,字节长度=2, DATA AB , ADP 燃料抵消（-32768-32767）  ";
 
         #endregion
     }
@@ -1071,7 +1067,9 @@ namespace CANManager.CAN
             WriteContent("PID 01",dtc.ToString(),"",PID_MEAN.PID_01_DATAA_0_6);
             WriteContent("",CharToString(dataA),"",PID_MEAN.PID_01_DATAA_07+ledRes);
 
-            string[] resDataB = new string[8];
+            string[] arrayDataB = new string[4];
+            string[] arrayDataCD = new string[8];
+
             for (int i = 0; i < dataB.Length; i++)
             {
                 switch (i)
@@ -1079,86 +1077,85 @@ namespace CANManager.CAN
                     case 0:
                         if (dataB[i] == 1)
                         {
-                            WriteContent("",CharToString(dataB),"",PID_MEAN.PID_01_DATAB_00+"（支持）");
+                            arrayDataB[0] = "支持";
                         }
                         else
                         {
-                            WriteContent("", CharToString(dataB), "", PID_MEAN.PID_01_DATAB_00 + "（不支持）");
+                            arrayDataB[0] = "不支持";
                         }
                         break;
                     case 1:
                         if (dataB[i] == 1)
                         {
-                            WriteContent("", "", "", PID_MEAN.PID_01_DATAB_01 + "（支持）");
+                            arrayDataB[1] = "支持";
                         }
                         else
                         {
-                            WriteContent("", "", "", PID_MEAN.PID_01_DATAB_01 + "（支持）");
+                            arrayDataB[1] = "不支持";
                         }
                         break;
                     case 2:
                         if (dataB[i] == 1)
                         {
-                            WriteContent("", "", "", PID_MEAN.PID_01_DATAB_02 + "（支持）");
+                            arrayDataB[2] = "支持";
                         }
                         else
                         {
-                            WriteContent("", "", "", PID_MEAN.PID_01_DATAB_02 + "（支持）");
+                            arrayDataB[2] = "不支持";
                         }
                         break;
                     case 3:
                         if (dataB[i] == 1)
                         {
-                            WriteContent("", "", "", PID_MEAN.PID_01_DATAB_03 + "（支持）");
+                            arrayDataB[3] = "";
                         }
                         else
                         {
-                            WriteContent("", "", "", PID_MEAN.PID_01_DATAB_03 + "（支持）");
+                            arrayDataB[3] = "";
                         }
                         break;
                     case 4:
                         if (dataB[i] == 1)
                         {
-                            WriteContent("", "", "", PID_MEAN.PID_01_DATAB_04 + "（就绪）");
+                            arrayDataB[0] += "，且完成";
                         }
                         else
                         {
-                            WriteContent("", "", "", PID_MEAN.PID_01_DATAB_04 + "（未完成）");
+                            arrayDataB[0] += "，且未完成";
                         }
                         break;
                     case 5:
                         if (dataB[i] == 1)
                         {
-                            WriteContent("", "", "", PID_MEAN.PID_01_DATAB_05 + "（就绪）");
+                            arrayDataB[1] += "，且完成";
                         }
                         else
                         {
-                            WriteContent("", "", "", PID_MEAN.PID_01_DATAB_05 + "（未完成）");
+                            arrayDataB[1] += "，且未完成";
                         }
                         break;
                     case 6:
                         if (dataB[i] == 1)
                         {
-                            WriteContent("", "", "", PID_MEAN.PID_01_DATAB_06 + "（就绪）");
+                            arrayDataB[2] += "，且完成";
                         }
                         else
                         {
-                            WriteContent("", "", "", PID_MEAN.PID_01_DATAB_02 + "（未完成）");
+                            arrayDataB[2] += "，且未完成";
                         }
                         break;
                     case 7:
                         if (dataB[i] == 1)
                         {
-                            WriteContent("", "", "", PID_MEAN.PID_01_DATAB_02 + "（就绪）");
+                            arrayDataB[3] += "，且完成";
                         }
                         else
                         {
-                            WriteContent("", "", "", PID_MEAN.PID_01_DATAB_02 + "（未完成）");
+                            arrayDataB[3] += "，且未完成";
                         }
                         break;
                 }
             }
-
 
             for (int i = 0; i < dataC.Length; i++)
             {
@@ -1167,81 +1164,81 @@ namespace CANManager.CAN
                     case 0:
                         if (dataC[i] == 1)
                         {
-                            resDataB[0] = "（支持）";
+                            arrayDataCD[0] = "（支持）";
                         }
                         else
                         {
-                            resDataB[0] = "（不支持）";
+                            arrayDataCD[0] = "（不支持）";
                         }
                         break;
                     case 1:
                         if (dataC[i] == 1)
                         {
-                            resDataB[1] = "（支持）";
+                            arrayDataCD[1] = "（支持）";
                         }
                         else
                         {
-                            resDataB[1] = "（不支持）";
+                            arrayDataCD[1] = "（不支持）";
                         }
                         break;
                     case 2:
                         if (dataC[i] == 1)
                         {
-                            resDataB[2] = "（支持）";
+                            arrayDataCD[2] = "（支持）";
                         }
                         else
                         {
-                            resDataB[2] = "（不支持）";
+                            arrayDataCD[2] = "（不支持）";
                         }
                         break;
                     case 3:
                         if (dataC[i] == 1)
                         {
-                            resDataB[3] = "（支持）";
+                            arrayDataCD[3] = "（支持）";
                         }
                         else
                         {
-                            resDataB[3] = "（不支持）";
+                            arrayDataCD[3] = "（不支持）";
                         }
                         break;
                     case 4:
                         if (dataC[i] == 1)
                         {
-                            resDataB[4] = "（支持）";
+                            arrayDataCD[4] = "（支持）";
                         }
                         else
                         {
-                            resDataB[4] = "（不支持）";
+                            arrayDataCD[4] = "（不支持）";
                         }
                         break;
                     case 5:
                         if (dataC[i] == 1)
                         {
-                            resDataB[5] = "（支持）";
+                            arrayDataCD[5] = "（支持）";
                         }
                         else
                         {
-                            resDataB[5] = "（不支持）";
+                            arrayDataCD[5] = "（不支持）";
                         }
                         break;
                     case 6:
                         if (dataC[i] == 1)
                         {
-                            resDataB[6] = "（支持）";
+                            arrayDataCD[6] = "（支持）";
                         }
                         else
                         {
-                            resDataB[6] = "（不支持）";
+                            arrayDataCD[6] = "（不支持）";
                         }
                         break;
                     case 7:
                         if (dataC[i] == 1)
                         {
-                            resDataB[7] = "（支持）";
+                            arrayDataCD[7] = "（支持）";
                         }
                         else
                         {
-                            resDataB[7] = "（不支持）";
+                            arrayDataCD[7] = "（不支持）";
                         }
                         break;
                 }
@@ -1253,95 +1250,100 @@ namespace CANManager.CAN
                     case 0:
                         if (dataD[i] == 1)
                         {
-                            resDataB[0] += "且（就绪）";
+                            arrayDataCD[0] += "且（就绪）";
                         }
                         else
                         {
-                            resDataB[0] += "且（未完成）";
+                            arrayDataCD[0] += "且（未完成）";
                         }
                         break;
                     case 1:
                         if (dataD[i] == 1)
                         {
-                            resDataB[1] += "且（就绪）";
+                            arrayDataCD[1] += "且（就绪）";
                         }
                         else
                         {
-                            resDataB[1] += "且（未完成）";
+                            arrayDataCD[1] += "且（未完成）";
                         }
                         break;
                     case 2:
                         if (dataD[i] == 1)
                         {
-                            resDataB[2] += "且（就绪）";
+                            arrayDataCD[2] += "且（就绪）";
                         }
                         else
                         {
-                            resDataB[2] += "且（未完成）";
+                            arrayDataCD[2] += "且（未完成）";
                         }
                         break;
                     case 3:
                         if (dataD[i] == 1)
                         {
-                            resDataB[3] += "且（就绪）";
+                            arrayDataCD[3] += "且（就绪）";
                         }
                         else
                         {
-                            resDataB[3] += "且（未完成）";
+                            arrayDataCD[3] += "且（未完成）";
                         }
                         break;
                     case 4:
                         if (dataD[i] == 1)
                         {
-                            resDataB[4] += "且（就绪）";
+                            arrayDataCD[4] += "且（就绪）";
                         }
                         else
                         {
-                            resDataB[4] += "且（未完成）";
+                            arrayDataCD[4] += "且（未完成）";
                         }
                         break;
                     case 5:
                         if (dataD[i] == 1)
                         {
-                            resDataB[5] += "且（就绪）";
+                            arrayDataCD[5] += "且（就绪）";
                         }
                         else
                         {
-                            resDataB[5] += "且（未完成）";
+                            arrayDataCD[5] += "且（未完成）";
                         }
                         break;
                     case 6:
                         if (dataD[i] == 1)
                         {
-                            resDataB[6] += "且（就绪）";
+                            arrayDataCD[6] += "且（就绪）";
                         }
                         else
                         {
-                            resDataB[6] += "且（未完成）";
+                            arrayDataCD[6] += "且（未完成）";
                         }
                         break;
                     case 7:
                         if (dataD[i] == 1)
                         {
-                            resDataB[7] += "且（就绪）";
+                            arrayDataCD[7] += "且（就绪）";
                         }
                         else
                         {
-                            resDataB[7] += "且（未完成）";
+                            arrayDataCD[7] += "且（未完成）";
                         }
                         break;
                 }
             }
+            //B
+            WriteContent("",CharToString(dataB),"",PID_MEAN.PID_01_DATAB_00+arrayDataB[0]);
+            WriteContent("", "", "", PID_MEAN.PID_01_DATAB_00 + arrayDataB[1]);
+            WriteContent("", "", "", PID_MEAN.PID_01_DATAB_00 + arrayDataB[2]);
+            WriteContent("", "", "", PID_MEAN.PID_01_DATAB_00 + arrayDataB[3]);
 
             //C D 合并显示
-            WriteContent("", CharToString(dataC), "", PID_MEAN.PID_01_DATAC_00 + resDataB[0]);
-            WriteContent("", CharToString(dataD), "", PID_MEAN.PID_01_DATAC_01 + resDataB[1]);
-            WriteContent("", "", "", PID_MEAN.PID_01_DATAC_02 + resDataB[2]);
-            WriteContent("", "", "", PID_MEAN.PID_01_DATAC_03 + resDataB[3]);
-            WriteContent("", "", "", PID_MEAN.PID_01_DATAC_04 + resDataB[4]);
-            WriteContent("", "", "", PID_MEAN.PID_01_DATAC_05 + resDataB[5]);
-            WriteContent("", "", "", PID_MEAN.PID_01_DATAC_06 + resDataB[6]);
-            WriteContent("", "", "", PID_MEAN.PID_01_DATAC_07 + resDataB[7]);
+            WriteContent("", CharToString(dataC), "", PID_MEAN.PID_01_DATAC_00 + arrayDataCD[0]);
+            WriteContent("", CharToString(dataD), "", PID_MEAN.PID_01_DATAC_01 + arrayDataCD[1]);
+            WriteContent("", "", "", PID_MEAN.PID_01_DATAC_02 + arrayDataCD[2]);
+            WriteContent("", "", "", PID_MEAN.PID_01_DATAC_03 + arrayDataCD[3]);
+            WriteContent("", "", "", PID_MEAN.PID_01_DATAC_04 + arrayDataCD[4]);
+            WriteContent("", "", "", PID_MEAN.PID_01_DATAC_05 + arrayDataCD[5]);
+            WriteContent("", "", "", PID_MEAN.PID_01_DATAC_06 + arrayDataCD[6]);
+            WriteContent("", "", "", PID_MEAN.PID_01_DATAC_07 + arrayDataCD[7]);
         }
 
 
