@@ -62,7 +62,7 @@ namespace CANManager.Test
             writeStruct.Data[1] = 0x00;
             writeStruct.Data[2] = 0x07;
             writeStruct.Data[3] = 0xdf;//7df  7e0
-            writeStruct.Data[4] = 0x01;
+            writeStruct.Data[4] = 0x02;
             writeStruct.Data[5] = 0x00;
             writeStruct.DataSize = 6;
             uint pNumMsg = 1;
@@ -193,14 +193,7 @@ namespace CANManager.Test
 
         private void Button9_Click(object sender, EventArgs e)
         {
-            char[] ch = new char[] { '1','0','1','1'};
-            string strTemp = "";
-            foreach (var v in ch)
-            {
-                strTemp += v;
-            }
-            char[] strArray = "0000".ToCharArray();
-            textBox1.Text = "hh".PadRight(10);
+            
         }
 
         private void GridControl1_Click(object sender, EventArgs e)

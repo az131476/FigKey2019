@@ -132,6 +132,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="test.txt" />
     <Content Include="Test\diagnose.c" />
     <Content Include="Test\diagnose.h" />
     <None Include="Resources\solar.png" />

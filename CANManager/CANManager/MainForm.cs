@@ -25,13 +25,8 @@ namespace CANManager
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            Init();
-            EventControl();
-        }
-
-        private void Init()
-        {
             deviceInfo = new DeviceInfo();
+            EventControl();
         }
 
         private void EventControl()
@@ -61,47 +56,47 @@ namespace CANManager
         #region command model 1-9
         private void Sid_modelA_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
         }
 
         private void Sid_model9_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+
         }
 
         private void Sid_model8_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
         }
 
         private void Sid_model7_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
         }
 
         private void Sid_model6_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
         }
 
         private void Sid_model5_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
         }
 
         private void Sid_model4_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
         }
 
         private void Sid_model3_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
         }
 
         private void Sid_model2_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            pidResultMsg.Clear();
+            deviceInfo.TempBuffer = new StringBuilder();
+            deviceInfo.ModelSidType = DeviceInfo.ModelType.MODEL2;
+
+            PidServer.PassThruStartMsgFilter(deviceInfo);
+            PidServer.CommandMode(deviceInfo);
+
+            pidResultMsg.Text = deviceInfo.TempBuffer.ToString();
         }
 
         private void Sid_model1_Click(object sender, EventArgs e)
@@ -109,14 +104,15 @@ namespace CANManager
             //设备初始化+启动设备
             //过滤
             //执行SID1发送+读取整个过程
+            pidResultMsg.Clear();
+
             deviceInfo.TempBuffer = new StringBuilder();
+            deviceInfo.ModelSidType = DeviceInfo.ModelType.MODEL1;
 
             PidServer.PassThruStartMsgFilter(deviceInfo);
-
-            deviceInfo.ModelSidType = DeviceInfo.ModelType.MODEL1;
             PidServer.CommandMode(deviceInfo);
 
-            pidResultMsg.Text += deviceInfo.TempBuffer.ToString();
+            pidResultMsg.Text = deviceInfo.TempBuffer.ToString();
 
         }
         #endregion
