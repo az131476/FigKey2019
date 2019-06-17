@@ -157,6 +157,7 @@
             this.Controls.Add(this.button1);
             this.Name = "TestConMonGoose";
             this.Text = "TestConMonGoose";
+            this.Load += new System.EventHandler(this.TestConMonGoose_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

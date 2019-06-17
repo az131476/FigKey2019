@@ -14,6 +14,8 @@ namespace CANManager.Test
 {
     public partial class TestConMonGoose : Form
     {
+        public delegate void PDelegate(string msg);
+        PDelegate myDelegate;
         uint deviceID = 0;
         uint deviceName = 0;
         uint protocolID = 6;//ISO15765
@@ -193,12 +195,28 @@ namespace CANManager.Test
 
         private void Button9_Click(object sender, EventArgs e)
         {
-            
+            //
+            this.Invoke(new Action(() =>
+            {
+
+            }));
         }
 
         private void GridControl1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void TestConMonGoose_Load(object sender, EventArgs e)
+        {
+            
+        }
+
+        public void RefreshText(string msg)
+        {
+            textBox1.Text += msg;
+            //dsl1807200473
+            //123456
         }
     }
 }
