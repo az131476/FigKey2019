@@ -582,13 +582,6 @@ namespace mesdemo
 
             return sResult;
         }
-        private void Form1_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            //if (e.KeyChar == 13) //当按下回车键
-            //{
-            //    SendKeys.Send("{TAB}");
-            //}
-        }
 
         private void skinButton6Click()
         {
