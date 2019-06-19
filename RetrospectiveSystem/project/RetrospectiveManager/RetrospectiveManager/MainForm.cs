@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using Telerik.WinControls;
+using CommonUtils.Logger;
 
 namespace RetrospectiveManager
 {
@@ -14,6 +15,12 @@ namespace RetrospectiveManager
         public MainForm()
         {
             InitializeComponent();
+            radButton4.Click += RadButton4_Click;
+        }
+
+        private void RadButton4_Click(object sender, EventArgs e)
+        {
+            
         }
 
         private void RadMenuItem3_Click(object sender, EventArgs e)

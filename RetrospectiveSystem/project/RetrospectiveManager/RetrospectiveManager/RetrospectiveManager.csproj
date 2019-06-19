@@ -64,8 +64,16 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="SqlSugar">
+      <HintPath>..\Lib\DB\SqlSugar.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -82,6 +90,15 @@
     <Reference Include="TelerikCommon, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Connected Services\MesService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="DB\Config.cs" />
+    <Compile Include="DB\Order.cs" />
+    <Compile Include="DB\OrderItem.cs" />
+    <Compile Include="DB\SQLServer.cs" />
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -130,6 +147,39 @@
     <EmbeddedResource Include="SetStationAdmin.resx">
       <DependentUpon>SetStationAdmin.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Connected Services\MesService\MesService.wsdl" />
+    <None Include="Connected Services\MesService\MesService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\MesService\MesService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\MesService\MesService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\MesService\MesService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\MesService\MesService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\MesService\RetrospectiveManager.MesService.CompositeType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\MesService\RetrospectiveManager.MesService.GetUserInfoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\MesService\RetrospectiveManager.MesService.LoginResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\MesService\RetrospectiveManager.MesService.QueryResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\MesService\RetrospectiveManager.MesService.RegisterResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\System.Data.DataSet.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -151,6 +201,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Connected Services\MesService\MesService.disco" />
+    <None Include="Connected Services\MesService\configuration91.svcinfo" />
+    <None Include="Connected Services\MesService\configuration.svcinfo" />
+    <None Include="Connected Services\MesService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="说明.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -167,6 +224,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\MesService\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -44,10 +44,13 @@ namespace FigKeyLoggerConfigurator.Control
         private const string DBC_DEATIL_METHOLD_NAME = "DBCTab";
 
         private const string EXINFO_TYPE_HEAD = "static ExInfoType ";
-        private const string EXINFO_TYPE_METHOLD_NAME = "ExInfo[] = \r\n{";
+        private const string EXINFO_Head = "ExInfo";
+        private const string EXINFO_TYPE_METHOLD_NAME = "[] = \r\n{";
 
         private static List<StringBuilder> allDbcGroupData;
         private static List<AnalysisSignal> acturalDBCList;
+
+        private static int exInfoLen;
         #endregion
         #endregion
 
@@ -60,11 +63,16 @@ namespace FigKeyLoggerConfigurator.Control
             if (fileType == FileType.A2L)
             {
                 A2lDetailData(targetPath, gridView, gridData);
+                AddA2lDetailGroup(gridData,targetPath);
+                AddA2lRxidTab(targetPath);
+                AddA2lCanChInfo(targetPath);
             }
             else if (fileType == FileType.DBC)
             {
                 DbcDetailData(targetPath, gridView, analysisData);
                 AddDBCDetailGroup(targetPath);
+                AddDBCRxidTab(targetPath);
+                AddDBCCanChInfo(targetPath);
             }
         }
 
@@ -121,14 +129,31 @@ namespace FigKeyLoggerConfigurator.Control
             }
         }
 
-        private static void AddA2lDetailGroup()
+        private static void AddA2lDetailGroup(GridViewData listData, string path)
         {
             StringBuilder sbExInfo = new StringBuilder();
             sbExInfo.Append(EXINFO_TYPE_HEAD);
-            sbExInfo.AppendLine(EXINFO_TYPE_METHOLD_NAME);
+            sbExInfo.AppendLine(EXINFO_Head+EXINFO_TYPE_METHOLD_NAME);
             sbExInfo.AppendLine("\t\t" + "0" + "," + "0x7f1" + "," + "0");
             sbExInfo.AppendLine("\t\t" + "1" + "," + "0x7f2" + "," + "0");
-
+            exInfoLen = 2;
+            if (listData.LimitTimeListSegMent.Count > 0)
+            {
+                sbExInfo.AppendLine("\t\t" + "2" + "," + SEGMENT_NAME + "," + listData.LimitTimeListSegMent.Count);
+                exInfoLen += 1;
+            }
+            if (listData.LimitTimeList10ms.Count > 0)
+            {
+                sbExInfo.AppendLine($"\t\t2,{_10MS_NAME},{listData.LimitTimeList10ms.Count}");
+                exInfoLen += 1;
+            }
+            if (listData.LimitTimeList100ms.Count > 0)
+            {
+                sbExInfo.AppendLine($"\t\t2,{_100MS_NAME},{listData.LimitTimeList100ms.Count}");
+                exInfoLen += 1;
+            }
+            sbExInfo.AppendLine("};");
+            WriteData.WriteString(sbExInfo,path);
         }
 
         private static void DbcDetailData(string targetPath, RadGridView gridView,AnalysisData dbcData)
@@ -191,9 +216,9 @@ namespace FigKeyLoggerConfigurator.Control
         {
             StringBuilder sbExInfo = new StringBuilder();
             sbExInfo.Append(EXINFO_TYPE_HEAD);
-            sbExInfo.AppendLine(EXINFO_TYPE_METHOLD_NAME);
-            sbExInfo.AppendLine("\t\t0" + "," + "0" + "," + "0" + ",");
-            sbExInfo.AppendLine("\t\t1" + "," + "0" + "," + "0" + ",");
+            sbExInfo.AppendLine(EXINFO_Head+EXINFO_TYPE_METHOLD_NAME);
+            //sbExInfo.AppendLine("\t\t0" + "," + "0" + "," + "0" + ",");
+            //sbExInfo.AppendLine("\t\t1" + "," + "0" + "," + "0" + ",");
             for (int i = 0; i < frameIdList.Count; i++)
             {
                 var resdbcList = acturalDBCList.FindAll(dbc => dbc.DataAddress == frameIdList[i]);
@@ -210,6 +235,67 @@ namespace FigKeyLoggerConfigurator.Control
             {
                 frameIdList.Add(dbcSignal.DataAddress);
             }
+        }
+
+        //static   uint32_t RxidTab1[]={(uint32_t)(&ExInfo[0]),(uint32_t)(&ExInfo[1]),(uint32_t)(&ExInfo[2])};
+
+        private static void AddDBCRxidTab(string path)
+        {
+            string rxidHead = "static uint32_t RxidTab[] = {";
+            StringBuilder sb = new StringBuilder();
+            sb.Append(rxidHead);
+            for (int i = 0; i < frameIdList.Count; i++)
+            {
+                if (i < frameIdList.Count - 1)
+                {
+                    sb.Append($"(uint32_t)(&{EXINFO_Head}[{i}]),");
+                }
+                else
+                {
+                    sb.Append($"(uint32_t)(&{EXINFO_Head}[{i}])");
+                }
+            }
+            sb.AppendLine("};");
+            WriteData.WriteString(sb,path);
+        }
+
+        private static void AddA2lRxidTab(string path)
+        {
+            string rxidHead = "static uint32_t RxidTab[] = {";
+            StringBuilder sb = new StringBuilder();
+            sb.Append(rxidHead);
+            for (int i = 0; i < exInfoLen; i++)
+            {
+                if (i < exInfoLen - 1)
+                {
+                    sb.Append($"(uint32_t)(&{EXINFO_Head}[{i}]),");
+                }
+                else
+                {
+                    sb.Append($"(uint32_t)(&{EXINFO_Head}[{i}])");
+                }
+            }
+            sb.AppendLine("};");
+            WriteData.WriteString(sb, path);
+        }
+        private static void AddDBCCanChInfo(string path)
+        {
+            string infoHead = "\r\nCanChInfo INFO[1] = \r\n{";
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine(infoHead);
+            sb.AppendLine($"\t3,500000,(uint32_t)RxidTab,{frameIdList.Count}");
+            sb.AppendLine("};");
+            WriteData.WriteString(sb,path);
+        }
+
+        private static void AddA2lCanChInfo(string targPath)
+        {
+            string infoHead = "CanChInfo INFO[1] = \r\n{";
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine(infoHead);
+            sb.AppendLine($"\t2,500000,(uint32_t)RxidTab,{exInfoLen}");
+            sb.AppendLine("};");
+            WriteData.WriteString(sb, targPath);
         }
 
         private static void ProduceFile()

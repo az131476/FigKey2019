@@ -5,7 +5,8 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
-using MESInterface.Model;
+using MESInterface.Molde;
+using System.Data;
 
 namespace MESInterface
 {
@@ -23,11 +24,15 @@ namespace MESInterface
         // TODO: 在此添加您的服务操作
         [OperationContract]
         LoginResult Login(string username, string password, LoginUser loginUser);
-        [OperationContract]
-        f_user GetUserInfo(string userName);
 
         [OperationContract]
-        bool SQLConnection();
+        QueryResult GetUserInfo(string userName,out DataSet dataSet);
+
+        [OperationContract]
+        DataSet GetAllUserInfo();
+
+        [OperationContract]
+        RegisterResult Register(string username, string pwd, string phone, string email, LoginUser loginUser);
     }
 
 

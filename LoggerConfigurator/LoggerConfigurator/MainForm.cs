@@ -56,7 +56,7 @@ namespace LoggerConfigurator
         {
             int width = Screen.PrimaryScreen.Bounds.Width;
             int height = Screen.PrimaryScreen.Bounds.Height;
-            //this.Size = new Size(width, height);
+            this.Size = new Size(width,height);
             gridViewData = new GridViewData();
             gridViewData.LimitTimeListSegMent = new List<LimitTimeCfg>();
             gridViewData.LimitTimeList10ms = new List<LimitTimeCfg>();
@@ -84,87 +84,94 @@ namespace LoggerConfigurator
         private void RadGridView1_ValueChanged(object sender, EventArgs e)
         {
             //设置不可选
-            switch (this.radGridView1.CurrentCell.ColumnIndex)
+            try
             {
-                case 12:
-                    if (this.radGridView1.CurrentRow.Cells[13].Value.ToString() is "1")
-                        this.radGridView1.CurrentRow.Cells[13].Value = 0;
-                    if (this.radGridView1.CurrentRow.Cells[14].Value.ToString() is "1")
-                        this.radGridView1.CurrentRow.Cells[14].Value = 0;
-                    break;
-                case 13:
-                    if (this.radGridView1.CurrentRow.Cells[12].Value.ToString() is "1")
-                        this.radGridView1.CurrentRow.Cells[12].Value = 0;
-                    if (this.radGridView1.CurrentRow.Cells[14].Value.ToString() is "1")
-                        this.radGridView1.CurrentRow.Cells[14].Value = 0;
-                    break;
-                case 14:
-                    if (this.radGridView1.CurrentRow.Cells[12].Value.ToString() is "1")
-                        this.radGridView1.CurrentRow.Cells[12].Value = 0;
-                    if (this.radGridView1.CurrentRow.Cells[13].Value.ToString() is "1")
-                        this.radGridView1.CurrentRow.Cells[13].Value = 0;
-                    break;
+                switch (this.radGridView1.CurrentCell.ColumnIndex)
+                {
+                    case 12:
+                        if (this.radGridView1.CurrentRow.Cells[13].Value.ToString() is "1")
+                            this.radGridView1.CurrentRow.Cells[13].Value = 0;
+                        if (this.radGridView1.CurrentRow.Cells[14].Value.ToString() is "1")
+                            this.radGridView1.CurrentRow.Cells[14].Value = 0;
+                        break;
+                    case 13:
+                        if (this.radGridView1.CurrentRow.Cells[12].Value.ToString() is "1")
+                            this.radGridView1.CurrentRow.Cells[12].Value = 0;
+                        if (this.radGridView1.CurrentRow.Cells[14].Value.ToString() is "1")
+                            this.radGridView1.CurrentRow.Cells[14].Value = 0;
+                        break;
+                    case 14:
+                        if (this.radGridView1.CurrentRow.Cells[12].Value.ToString() is "1")
+                            this.radGridView1.CurrentRow.Cells[12].Value = 0;
+                        if (this.radGridView1.CurrentRow.Cells[13].Value.ToString() is "1")
+                            this.radGridView1.CurrentRow.Cells[13].Value = 0;
+                        break;
+                }
+
+                if (this.radGridView1.ActiveEditor is RadCheckBoxEditor)
+                {
+                    int rowIndex = this.radGridView1.CurrentCell.RowIndex;
+                    int columnIndex = this.radGridView1.CurrentCell.ColumnIndex;
+
+                    if (this.radGridView1.ActiveEditor.Value.ToString() is "On")
+                    {
+                        limitCfg = new LimitTimeCfg();
+                        limitCfg.RowIndex = rowIndex;
+                        if (columnIndex == 12)
+                        {
+                            if (!ExistCurCheckBoxRow(rowIndex, gridViewData.LimitTimeListSegMent))
+                            {
+                                limitCfg.LimitType = TimeLimitType._segMent;
+                                gridViewData.LimitTimeListSegMent.Add(limitCfg);
+                            }
+                        }
+                        else if (columnIndex == 13)
+                        {
+                            if (!ExistCurCheckBoxRow(rowIndex, gridViewData.LimitTimeList10ms))
+                            {
+                                limitCfg.LimitType = TimeLimitType._10ms;
+                                gridViewData.LimitTimeList10ms.Add(limitCfg);
+                            }
+                        }
+                        else if (columnIndex == 14)
+                        {
+                            if (!ExistCurCheckBoxRow(rowIndex, gridViewData.LimitTimeList100ms))
+                            {
+                                limitCfg.LimitType = TimeLimitType._100ms;
+                                gridViewData.LimitTimeList100ms.Add(limitCfg);
+                            }
+                        }
+                    }
+                    else if (this.radGridView1.ActiveEditor.Value.ToString() is "Off")
+                    {
+                        if (columnIndex == 12)
+                        {
+                            if (ExistCurCheckBoxRow(rowIndex, gridViewData.LimitTimeListSegMent))
+                            {
+                                gridViewData.LimitTimeListSegMent.Remove(limitCfg);
+                            }
+                        }
+                        else if (columnIndex == 13)
+                        {
+                            if (ExistCurCheckBoxRow(rowIndex, gridViewData.LimitTimeList10ms))
+                            {
+                                gridViewData.LimitTimeList10ms.Remove(limitCfg);
+                            }
+                        }
+                        else if (columnIndex == 14)
+                        {
+                            if (ExistCurCheckBoxRow(rowIndex, gridViewData.LimitTimeList100ms))
+                            {
+                                gridViewData.LimitTimeList100ms.Remove(limitCfg);
+                            }
+                        }
+                    }
+                    ////三列CheckBox 只能选择一列
+                }
             }
-
-            if (this.radGridView1.ActiveEditor is RadCheckBoxEditor)
+            catch (Exception ex)
             {
-                int rowIndex = this.radGridView1.CurrentCell.RowIndex;
-                int columnIndex = this.radGridView1.CurrentCell.ColumnIndex;
-
-                if (this.radGridView1.ActiveEditor.Value.ToString() is "On")
-                {
-                    limitCfg = new LimitTimeCfg();
-                    limitCfg.RowIndex = rowIndex;
-                    if (columnIndex == 12)
-                    {
-                        if (!ExistCurCheckBoxRow(rowIndex, gridViewData.LimitTimeListSegMent))
-                        {
-                            limitCfg.LimitType = TimeLimitType._segMent;
-                            gridViewData.LimitTimeListSegMent.Add(limitCfg);
-                        }
-                    }
-                    else if (columnIndex == 13)
-                    {
-                        if (!ExistCurCheckBoxRow(rowIndex, gridViewData.LimitTimeList10ms))
-                        {
-                            limitCfg.LimitType = TimeLimitType._10ms;
-                            gridViewData.LimitTimeList10ms.Add(limitCfg);
-                        }
-                    }
-                    else if (columnIndex == 14)
-                    {
-                        if (!ExistCurCheckBoxRow(rowIndex, gridViewData.LimitTimeList100ms))
-                        {
-                            limitCfg.LimitType = TimeLimitType._100ms;
-                            gridViewData.LimitTimeList100ms.Add(limitCfg);
-                        }
-                    }
-                }
-                else if (this.radGridView1.ActiveEditor.Value.ToString() is "Off")
-                {
-                    if (columnIndex == 12)
-                    {
-                        if (ExistCurCheckBoxRow(rowIndex, gridViewData.LimitTimeListSegMent))
-                        {
-                            gridViewData.LimitTimeListSegMent.Remove(limitCfg);
-                        }
-                    }
-                    else if (columnIndex == 13)
-                    {
-                        if (ExistCurCheckBoxRow(rowIndex, gridViewData.LimitTimeList10ms))
-                        {
-                            gridViewData.LimitTimeList10ms.Remove(limitCfg);
-                        }
-                    }
-                    else if (columnIndex == 14)
-                    {
-                        if (ExistCurCheckBoxRow(rowIndex, gridViewData.LimitTimeList100ms))
-                        {
-                            gridViewData.LimitTimeList100ms.Remove(limitCfg);
-                        }
-                    }
-                }
-                ////三列CheckBox 只能选择一列
+                LogHelper.Log.Error(ex.Message+"\r\n"+ex.StackTrace);
             }
         }
 
@@ -290,7 +297,12 @@ namespace LoggerConfigurator
                                 {
                                     LogHelper.Log.Info("DBC合并数据失败!");
                                 }
-                                gridViewControl.BindRadGridView(analysisData.AnalysisDbcDataList);
+                                if (dataSource != null)
+                                {
+                                    dataSource.Clear();
+                                }
+                                dataSource = gridViewControl.BindRadGridView(analysisData.AnalysisDbcDataList);
+                                GridViewLoadDataSource();
                                 //gridViewControl.BindRadGridView(xcpdata);
                                 LogHelper.Log.Info("DBC加载完成！");
                             }
@@ -318,6 +330,10 @@ namespace LoggerConfigurator
                                 else
                                 {
                                     LogHelper.Log.Info("a2l合并数据失败!");
+                                }
+                                if (dataSource != null)
+                                {
+                                    dataSource.Clear();
                                 }
                                 dataSource = gridViewControl.BindRadGridView(analysisData.AnalysisiXcpDataList);
                                 GridViewLoadDataSource();

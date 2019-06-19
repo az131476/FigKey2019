@@ -50,7 +50,7 @@ namespace FigKeyLoggerConfigurator.Control
             gridView.AllowAutoSizeColumns = true;
             
             //gridView.AutoScrollMinSize = new System.Drawing.Size(8,20);
-            gridView.ReadOnly = true;
+            gridView.ReadOnly = false;
             //gridView.ColumnChooserSortOrder = RadSortOrder.Ascending;
         }
         #endregion
