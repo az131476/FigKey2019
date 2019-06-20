@@ -204,7 +204,36 @@ namespace MESInterface
         #endregion
 
         #region 找回密码
-        
+
+        #endregion
+
+        #region 验证传入工站是否可以生产/测试
+        /// <summary>
+        /// flash为首站，传入二维码后，查询二维码是否存在，不存在-则根据型号和二维码创建信息，存在-判断是不是在本站生产
+        /// </summary>
+        /// <param name="sn">追溯号/条码</param>
+        /// <param name="sTypeNumber">型号/零件号</param>
+        /// <param name="sStationName">工站名称/站位名称</param>
+        public string Firstcheck(string sn, string sTypeNumber, string sStationName)
+        {
+
+        }
+        #endregion
+
+        #region 接收传入参数，保存数据到数据库
+        /// <summary>
+        /// 传递质检工位过站、生产工位过站信息给MES
+        /// </summary>
+        /// <param name="sn">追溯号/条码号</param>
+        /// <param name="sTypeNumber">型号/零件号</param>
+        /// <param name="sStationName">工站名称</param>
+        /// <param name="sTestResult">测试结果：PASS/FAIL</param>
+        /// <param name="sTime">测试日期</param>
+        /// <returns></returns>
+        public string InsertWIP(string sn, string sTypeNumber, string sStationName, string sTestResult, string sTime)
+        {
+
+        }
         #endregion
     }
 }

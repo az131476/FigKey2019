@@ -22,6 +22,7 @@ namespace MESInterface
         CompositeType GetDataUsingDataContract(CompositeType composite);
 
         // TODO: 在此添加您的服务操作
+        
         [OperationContract]
         LoginResult Login(string username, string password, LoginUser loginUser);
 
@@ -33,6 +34,15 @@ namespace MESInterface
 
         [OperationContract]
         RegisterResult Register(string username, string pwd, string phone, string email, LoginUser loginUser);
+
+        /// <returns></returns>
+        [OperationContract]
+        string Firstcheck(string sn, string sTypeNumber, string sStationName);
+
+        [OperationContract]
+        string InsertWIP(string sn, string sTypeNumber, string sStationName, string sTestResult, string sTime);
+
+
     }
 
 

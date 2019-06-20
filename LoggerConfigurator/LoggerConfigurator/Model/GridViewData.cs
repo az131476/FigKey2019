@@ -33,11 +33,11 @@ namespace FigKeyLoggerConfigurator.Model
             public const string CYLE = "圈数";
             
         }
-        public List<LimitTimeCfg> LimitTimeListSegMent { get; set; }
+        public List<int> LimitTimeListSegMent { get; set; }
 
-        public List<LimitTimeCfg> LimitTimeList10ms { get; set; }
+        public List<int> LimitTimeList10ms { get; set; }
 
-        public List<LimitTimeCfg> LimitTimeList100ms { get; set; }
+        public List<int> LimitTimeList100ms { get; set; }
     }
 
     public enum TimeLimitType

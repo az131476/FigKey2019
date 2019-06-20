@@ -39,7 +39,7 @@ namespace FigKeyLoggerConfigurator.Control
         private static string _len10msHeaderName;
         private static string _len100msHeaderName;
         #region DBC
-        private static List<int> frameIdList;//用于存储DBC明细时的分组ID
+        private static List<long> frameIdList;//用于存储DBC明细时的分组ID
         private const string DBC_DETAIL_HEAD = "static XCPDataRecordType ";
         private const string DBC_DEATIL_METHOLD_NAME = "DBCTab";
 
@@ -162,7 +162,7 @@ namespace FigKeyLoggerConfigurator.Control
             {
                 //遍历行数据
                 acturalDBCList = new List<AnalysisSignal>();
-                frameIdList = new List<int>();
+                frameIdList = new List<long>();
                 allDbcGroupData = new List<StringBuilder>();
                 //遍历选择行数据
                 for (int i = 0; i < gridView.Rows.Count; i++)
@@ -323,7 +323,7 @@ namespace FigKeyLoggerConfigurator.Control
         /// <param name="list"></param>
         /// <param name="builder"></param>
         /// <param name="gridView"></param>
-        private static void AppendData(List<LimitTimeCfg> list,StringBuilder builder,RadGridView gridView)
+        private static void AppendData(List<int> list,StringBuilder builder,RadGridView gridView)
         {
             lock(objAppend)
             {
@@ -332,17 +332,17 @@ namespace FigKeyLoggerConfigurator.Control
                     //数据格式：
                     //名称+描述+单位+数据类型+数据长度+字节顺序+截取开始地址(dbc有用)+
                     //截取长度+数据地址(a2l-ecu地址，monitor-canid)+系数+偏移量
-                    builder.Append("\t" + '"'+gridView.Rows[list[i].RowIndex].Cells[1].Value.ToString() +'"'+ "," +
-                                   gridView.Rows[list[i].RowIndex].Cells[2].Value.ToString() + "," +
-                                   gridView.Rows[list[i].RowIndex].Cells[3].Value.ToString() + "," +
-                                   gridView.Rows[list[i].RowIndex].Cells[4].Value.ToString() + "," +
-                                   gridView.Rows[list[i].RowIndex].Cells[5].Value.ToString() + "," +
-                                   gridView.Rows[list[i].RowIndex].Cells[6].Value.ToString() + "," +
-                                   gridView.Rows[list[i].RowIndex].Cells[7].Value.ToString() + "," +
-                                   gridView.Rows[list[i].RowIndex].Cells[8].Value.ToString() + "," +
-                                   gridView.Rows[list[i].RowIndex].Cells[9].Value.ToString() + "," +
-                                   gridView.Rows[list[i].RowIndex].Cells[10].Value.ToString() + "," +
-                                   gridView.Rows[list[i].RowIndex].Cells[11].Value.ToString() + "\r\n");
+                    builder.Append("\t" + '"'+gridView.Rows[list[i]].Cells[1].Value.ToString() +'"'+ "," +
+                                   gridView.Rows[list[i]].Cells[2].Value.ToString() + "," +
+                                   gridView.Rows[list[i]].Cells[3].Value.ToString() + "," +
+                                   gridView.Rows[list[i]].Cells[4].Value.ToString() + "," +
+                                   gridView.Rows[list[i]].Cells[5].Value.ToString() + "," +
+                                   gridView.Rows[list[i]].Cells[6].Value.ToString() + "," +
+                                   gridView.Rows[list[i]].Cells[7].Value.ToString() + "," +
+                                   gridView.Rows[list[i]].Cells[8].Value.ToString() + "," +
+                                   gridView.Rows[list[i]].Cells[9].Value.ToString() + "," +
+                                   gridView.Rows[list[i]].Cells[10].Value.ToString() + "," +
+                                   gridView.Rows[list[i]].Cells[11].Value.ToString() + "\r\n");
                 }
                 builder.Append("};\r\n");
             }
