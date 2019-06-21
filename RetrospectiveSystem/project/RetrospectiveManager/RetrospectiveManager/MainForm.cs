@@ -18,16 +18,43 @@ namespace RetrospectiveManager
         public MainForm()
         {
             InitializeComponent();
-            radButton4.Click += RadButton4_Click;
+            this.WindowState = FormWindowState.Maximized;
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
-        private void RadButton4_Click(object sender, EventArgs e)
+        private void MainForm_Load(object sender, EventArgs e)
         {
+            menu_set_station.Click += Menu_set_station_Click;
+            menu_produce_config.Click += Menu_produce_config_Click;
+
         }
 
-        private void RadMenuItem3_Click(object sender, EventArgs e)
+        private void Menu_produce_config_Click(object sender, EventArgs e)
         {
+            SetProduce setProduce = new SetProduce();
+            setProduce.StartPosition = FormStartPosition.CenterParent;
+            setProduce.ShowDialog();
+        }
 
+        private void Menu_set_station_Click(object sender, EventArgs e)
+        {
+            Login login = new Login();
+            Login.UserType userType = login.GetUserType;
+            if (userType == Login.UserType.USER_ADMIN)
+            {
+                //管理员
+                SetStationAdmin setStationAdmin = new SetStationAdmin();
+                setStationAdmin.StartPosition = FormStartPosition.CenterParent;
+                setStationAdmin.ShowDialog();
+                
+            }
+            else if (userType == Login.UserType.USER_ORDINARY)
+            {
+                //普通用户
+                SetStation setStation = new SetStation();
+                setStation.StartPosition = FormStartPosition.CenterParent;
+                setStation.ShowDialog();
+            }
         }
     }
 }

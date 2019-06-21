@@ -52,14 +52,14 @@
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(101, 125);
+            this.textBox3.Location = new System.Drawing.Point(121, 197);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(175, 21);
+            this.textBox3.Size = new System.Drawing.Size(200, 21);
             this.textBox3.TabIndex = 24;
             // 
             // radLabel6
             // 
-            this.radLabel6.Location = new System.Drawing.Point(43, 125);
+            this.radLabel6.Location = new System.Drawing.Point(43, 197);
             this.radLabel6.Name = "radLabel6";
             this.radLabel6.Size = new System.Drawing.Size(30, 18);
             this.radLabel6.TabIndex = 23;
@@ -67,7 +67,7 @@
             // 
             // radLabel4
             // 
-            this.radLabel4.Location = new System.Drawing.Point(309, 82);
+            this.radLabel4.Location = new System.Drawing.Point(43, 156);
             this.radLabel4.Name = "radLabel4";
             this.radLabel4.Size = new System.Drawing.Size(54, 18);
             this.radLabel4.TabIndex = 20;
@@ -76,14 +76,14 @@
             // comboBox3
             // 
             this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(369, 80);
+            this.comboBox3.Location = new System.Drawing.Point(121, 156);
             this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(175, 20);
+            this.comboBox3.Size = new System.Drawing.Size(200, 20);
             this.comboBox3.TabIndex = 19;
             // 
             // radLabel3
             // 
-            this.radLabel3.Location = new System.Drawing.Point(309, 34);
+            this.radLabel3.Location = new System.Drawing.Point(43, 115);
             this.radLabel3.Name = "radLabel3";
             this.radLabel3.Size = new System.Drawing.Size(42, 18);
             this.radLabel3.TabIndex = 18;
@@ -92,21 +92,21 @@
             // comboBox2
             // 
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(367, 32);
+            this.comboBox2.Location = new System.Drawing.Point(121, 115);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(175, 20);
+            this.comboBox2.Size = new System.Drawing.Size(200, 20);
             this.comboBox2.TabIndex = 17;
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(101, 82);
+            this.textBox1.Location = new System.Drawing.Point(121, 74);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(175, 21);
+            this.textBox1.Size = new System.Drawing.Size(200, 21);
             this.textBox1.TabIndex = 16;
             // 
             // radLabel2
             // 
-            this.radLabel2.Location = new System.Drawing.Point(43, 82);
+            this.radLabel2.Location = new System.Drawing.Point(43, 77);
             this.radLabel2.Name = "radLabel2";
             this.radLabel2.Size = new System.Drawing.Size(42, 18);
             this.radLabel2.TabIndex = 15;
@@ -115,9 +115,9 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(101, 32);
+            this.comboBox1.Location = new System.Drawing.Point(121, 32);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(175, 20);
+            this.comboBox1.Size = new System.Drawing.Size(200, 20);
             this.comboBox1.TabIndex = 14;
             // 
             // radLabel1
@@ -130,17 +130,17 @@
             // 
             // radButton1
             // 
-            this.radButton1.Location = new System.Drawing.Point(357, 191);
+            this.radButton1.Location = new System.Drawing.Point(161, 248);
             this.radButton1.Name = "radButton1";
-            this.radButton1.Size = new System.Drawing.Size(75, 24);
+            this.radButton1.Size = new System.Drawing.Size(60, 24);
             this.radButton1.TabIndex = 25;
             this.radButton1.Text = "应用";
             // 
             // radButton2
             // 
-            this.radButton2.Location = new System.Drawing.Point(467, 191);
+            this.radButton2.Location = new System.Drawing.Point(257, 248);
             this.radButton2.Name = "radButton2";
-            this.radButton2.Size = new System.Drawing.Size(75, 24);
+            this.radButton2.Size = new System.Drawing.Size(64, 24);
             this.radButton2.TabIndex = 26;
             this.radButton2.Text = "取消";
             // 
@@ -148,7 +148,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(563, 256);
+            this.ClientSize = new System.Drawing.Size(372, 297);
             this.Controls.Add(this.radButton2);
             this.Controls.Add(this.radButton1);
             this.Controls.Add(this.textBox3);

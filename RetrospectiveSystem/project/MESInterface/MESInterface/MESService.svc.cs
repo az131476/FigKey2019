@@ -173,7 +173,6 @@ namespace MESInterface
                 {
                     //用户不存在，可以注册
                     string dateTimeNow = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                    Hashtable ht = new Hashtable();
                     string insertString = "INSERT INTO [WT_SCL].[dbo].[f_user]" +
                         "([username]," +
                         "[password] ," +
@@ -185,7 +184,7 @@ namespace MESInterface
                         "[status]," +
                         "[user_type]) " +
                         $"VALUES('{username}', '{pwd}', '{phone}', '{email}', '', '', '{dateTimeNow}', '', '{(int)loginUser}')";
-                    int executeResult = SQLServer.ExecuteNonQuery(ref ht,insertString,null);
+                    int executeResult = SQLServer.ExecuteNonQuery(insertString);
                     if (executeResult < 1)
                     {
                         return RegisterResult.REGISTER_FAIL_SQL;
@@ -216,7 +215,17 @@ namespace MESInterface
         /// <param name="sStationName">工站名称/站位名称</param>
         public string Firstcheck(string sn, string sTypeNumber, string sStationName)
         {
-
+            /*
+             * 1、判断传入站是不是首站，首站的判断：根据设置的首站判断
+             * 2、判断上一站是否通过
+             * 3、判断传入站追溯号是否存在
+             * 4、判断传入站型号是否存在
+             * 5、判断传入站站位名称是否存在
+             * 
+             */
+            //根据传入站-查询该站的产线流程中的上一站
+            //
+            return "";
         }
         #endregion
 
@@ -232,8 +241,124 @@ namespace MESInterface
         /// <returns></returns>
         public string InsertWIP(string sn, string sTypeNumber, string sStationName, string sTestResult, string sTime)
         {
-
+            return "";
         }
         #endregion
+
+        #region 产线站位增删改查
+
+        /// <summary>
+        /// 配置产线包含哪些站位，按顺序插入
+        /// </summary>
+        /// <param name="dctData"></param>
+        /// <returns>成功返回1，失败返回0+空格+序号+键+空格+值</returns>
+        public string InsertProduce(Dictionary<int,string> dctData)
+        {
+            LogHelper.Log.Info($"接口被调用-InsertProduce");
+            foreach (var item in dctData.Keys)
+            {
+                string value = dctData[item];
+                //插入数据库
+                //插入SQL
+                if (!IsExistProduceID(item))
+                {
+                    string insertSQL = "INSERT INTO [WT_SCL].[dbo].[Produce_Process] " +
+                    "([Station_Order],[Station_Name]) " +
+                    $"VALUES('{item}','{value}')";
+                    LogHelper.Log.Info($" insertSQL:{insertSQL}");
+                    int res = SQLServer.ExecuteNonQuery(insertSQL);
+                    LogHelper.Log.Info($"insert res:{res}");
+                    if (res < 1)
+                    {
+                        //插入失败
+                        return "0" + $" {item} {dctData[item]}";
+                    }
+                }
+                else
+                {
+                    //已存在
+                    //update
+                    LogHelper.Log.Info("InsertProduce Excute UpdateProduceDB...");
+                    UpdateProduceDB(item,value);
+
+                }
+            }
+            return "1";
+        }
+
+        /// <summary>
+        /// 查询当前产线的站位流程
+        /// </summary>
+        /// <returns></returns>
+        public DataSet SelectProduce()
+        {
+            string selectSQL = "SELECT * FROM [WT_SCL].[dbo].[Produce_Process] ";
+            return SQLServer.ExecuteDataSet(selectSQL);
+        }
+
+        /// <summary>
+        /// 更新产线数据表《接口函数》
+        /// </summary>
+        /// <param name="data">键值集合</param>
+        /// <returns></returns>
+        public string UpdateProduce(Dictionary<int,string> data)
+        {
+            foreach (var item in data.Keys)
+            {
+                string v = data[item];
+                
+                if (IsExistProduceID(item))
+                {
+                    //更新
+                    if (!UpdateProduceDB(item, v))
+                    {
+                        return "0";
+                    }
+                }
+            }
+            return "1";
+        }
+
+        /// <summary>
+        /// 产线序号是否为空
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        private bool IsExistProduceID(int id)
+        {
+            string selectSQL = "SELECT  * " +
+                    "FROM [WT_SCL].[dbo].[Produce_Process] " +
+                    $"WHERE [Station_Order] = '{id}'";
+            LogHelper.Log.Info($"start IsExistProduceID...{selectSQL}");
+            DataTable dt = SQLServer.ExecuteDataSet(selectSQL).Tables[0];
+            LogHelper.Log.Info($"{dt.Rows.Count}");
+            if (dt.Rows.Count > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// 执行更新数据库产线站位表
+        /// </summary>
+        /// <param name="order"></param>
+        /// <param name="stationName"></param>
+        /// <returns></returns>
+        private bool UpdateProduceDB(int order,string stationName)
+        {
+            string updateSQL = "UPDATE [WT_SWL].[dbo].[Produce_Process] " +
+                "SET " +
+                $"[Station_Order]='{order}' ,[Station_Name]='{stationName}'";
+            int r = SQLServer.ExecuteNonQuery(updateSQL);
+            if (r > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        #endregion
+
     }
 }

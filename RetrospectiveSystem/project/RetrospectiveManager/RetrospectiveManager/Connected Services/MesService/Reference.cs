@@ -179,6 +179,36 @@ namespace RetrospectiveManager.MesService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/Register", ReplyAction="http://tempuri.org/IMesService/RegisterResponse")]
         System.Threading.Tasks.Task<RetrospectiveManager.MesService.RegisterResult> RegisterAsync(string username, string pwd, string phone, string email, RetrospectiveManager.MesService.LoginUser loginUser);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/Firstcheck", ReplyAction="http://tempuri.org/IMesService/FirstcheckResponse")]
+        string Firstcheck(string sn, string sTypeNumber, string sStationName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/Firstcheck", ReplyAction="http://tempuri.org/IMesService/FirstcheckResponse")]
+        System.Threading.Tasks.Task<string> FirstcheckAsync(string sn, string sTypeNumber, string sStationName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/InsertWIP", ReplyAction="http://tempuri.org/IMesService/InsertWIPResponse")]
+        string InsertWIP(string sn, string sTypeNumber, string sStationName, string sTestResult, string sTime);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/InsertWIP", ReplyAction="http://tempuri.org/IMesService/InsertWIPResponse")]
+        System.Threading.Tasks.Task<string> InsertWIPAsync(string sn, string sTypeNumber, string sStationName, string sTestResult, string sTime);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/InsertProduce", ReplyAction="http://tempuri.org/IMesService/InsertProduceResponse")]
+        string InsertProduce(System.Collections.Generic.Dictionary<int, string> dctData);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/InsertProduce", ReplyAction="http://tempuri.org/IMesService/InsertProduceResponse")]
+        System.Threading.Tasks.Task<string> InsertProduceAsync(System.Collections.Generic.Dictionary<int, string> dctData);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectProduce", ReplyAction="http://tempuri.org/IMesService/SelectProduceResponse")]
+        System.Data.DataSet SelectProduce();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectProduce", ReplyAction="http://tempuri.org/IMesService/SelectProduceResponse")]
+        System.Threading.Tasks.Task<System.Data.DataSet> SelectProduceAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/UpdateProduce", ReplyAction="http://tempuri.org/IMesService/UpdateProduceResponse")]
+        string UpdateProduce(System.Collections.Generic.Dictionary<int, string> data);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/UpdateProduce", ReplyAction="http://tempuri.org/IMesService/UpdateProduceResponse")]
+        System.Threading.Tasks.Task<string> UpdateProduceAsync(System.Collections.Generic.Dictionary<int, string> data);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -299,6 +329,46 @@ namespace RetrospectiveManager.MesService {
         
         public System.Threading.Tasks.Task<RetrospectiveManager.MesService.RegisterResult> RegisterAsync(string username, string pwd, string phone, string email, RetrospectiveManager.MesService.LoginUser loginUser) {
             return base.Channel.RegisterAsync(username, pwd, phone, email, loginUser);
+        }
+        
+        public string Firstcheck(string sn, string sTypeNumber, string sStationName) {
+            return base.Channel.Firstcheck(sn, sTypeNumber, sStationName);
+        }
+        
+        public System.Threading.Tasks.Task<string> FirstcheckAsync(string sn, string sTypeNumber, string sStationName) {
+            return base.Channel.FirstcheckAsync(sn, sTypeNumber, sStationName);
+        }
+        
+        public string InsertWIP(string sn, string sTypeNumber, string sStationName, string sTestResult, string sTime) {
+            return base.Channel.InsertWIP(sn, sTypeNumber, sStationName, sTestResult, sTime);
+        }
+        
+        public System.Threading.Tasks.Task<string> InsertWIPAsync(string sn, string sTypeNumber, string sStationName, string sTestResult, string sTime) {
+            return base.Channel.InsertWIPAsync(sn, sTypeNumber, sStationName, sTestResult, sTime);
+        }
+        
+        public string InsertProduce(System.Collections.Generic.Dictionary<int, string> dctData) {
+            return base.Channel.InsertProduce(dctData);
+        }
+        
+        public System.Threading.Tasks.Task<string> InsertProduceAsync(System.Collections.Generic.Dictionary<int, string> dctData) {
+            return base.Channel.InsertProduceAsync(dctData);
+        }
+        
+        public System.Data.DataSet SelectProduce() {
+            return base.Channel.SelectProduce();
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> SelectProduceAsync() {
+            return base.Channel.SelectProduceAsync();
+        }
+        
+        public string UpdateProduce(System.Collections.Generic.Dictionary<int, string> data) {
+            return base.Channel.UpdateProduce(data);
+        }
+        
+        public System.Threading.Tasks.Task<string> UpdateProduceAsync(System.Collections.Generic.Dictionary<int, string> data) {
+            return base.Channel.UpdateProduceAsync(data);
         }
     }
 }

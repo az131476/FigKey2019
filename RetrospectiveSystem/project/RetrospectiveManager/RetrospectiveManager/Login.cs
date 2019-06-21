@@ -18,7 +18,7 @@ namespace RetrospectiveManager
         private const string USER_ADMIN = "管理员";
         private const string USER_ORDINARY = "普通用户";
         private MesService.MesServiceClient mesService;
-
+        public UserType GetUserType { get; set; }
         public Login()
         {
             InitializeComponent();
@@ -55,7 +55,7 @@ namespace RetrospectiveManager
             timer.Start();
         }
 
-        private enum UserType
+        public enum UserType
         {
             USER_ADMIN,
             USER_ORDINARY
@@ -79,6 +79,7 @@ namespace RetrospectiveManager
                 if (!LocalValidate())
                     return;
                 RemoteValidate(MesService.LoginUser.ADMIN_USER);
+                GetUserType = UserType.USER_ADMIN;
             }
             else if (cob_userType.SelectedIndex == (int)UserType.USER_ORDINARY)
             {
@@ -86,6 +87,7 @@ namespace RetrospectiveManager
                 if (!LocalValidate())
                     return;
                 RemoteValidate(MesService.LoginUser.ORDINARY_USER);
+                GetUserType = UserType.USER_ORDINARY;
             }
         }
 

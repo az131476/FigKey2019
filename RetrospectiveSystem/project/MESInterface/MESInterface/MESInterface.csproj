@@ -72,11 +72,14 @@
       <DependentUpon>MesService.svc</DependentUpon>
     </Compile>
     <Compile Include="IMesService.cs" />
-    <Compile Include="Model\LoginInfo.cs" />
+    <Compile Include="Model\FirstcheckResultEnum.cs" />
+    <Compile Include="Model\InsertWIPResultEnum.cs" />
+    <Compile Include="Model\LoginInfoEnum.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="DB\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

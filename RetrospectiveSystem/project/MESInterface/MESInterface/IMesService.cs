@@ -42,7 +42,14 @@ namespace MESInterface
         [OperationContract]
         string InsertWIP(string sn, string sTypeNumber, string sStationName, string sTestResult, string sTime);
 
+        [OperationContract]
+        string InsertProduce(Dictionary<int, string> dctData);
 
+        [OperationContract]
+        DataSet SelectProduce();
+
+        [OperationContract]
+        string UpdateProduce(Dictionary<int, string> data);
     }
 
 

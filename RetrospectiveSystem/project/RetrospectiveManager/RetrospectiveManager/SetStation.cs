@@ -14,6 +14,7 @@ namespace RetrospectiveManager
         public SetStation()
         {
             InitializeComponent();
+            this.MaximizeBox = false;
         }
     }
 }

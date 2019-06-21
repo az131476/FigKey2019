@@ -7,6 +7,7 @@
       <xsd:import schemaLocation="http://192.168.0.175/MesService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/MESInterface" />
       <xsd:import schemaLocation="http://192.168.0.175/MesService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/MESInterface.Molde" />
       <xsd:import schemaLocation="http://192.168.0.175/MesService.svc?xsd=xsd4" />
+      <xsd:import schemaLocation="http://192.168.0.175/MesService.svc?xsd=xsd5" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IMesService_GetData_InputMessage">
@@ -45,6 +46,36 @@
   <wsdl:message name="IMesService_Register_OutputMessage">
     <wsdl:part name="parameters" element="tns:RegisterResponse" />
   </wsdl:message>
+  <wsdl:message name="IMesService_Firstcheck_InputMessage">
+    <wsdl:part name="parameters" element="tns:Firstcheck" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_Firstcheck_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FirstcheckResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_InsertWIP_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertWIP" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_InsertWIP_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertWIPResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_InsertProduce_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertProduce" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_InsertProduce_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertProduceResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_SelectProduce_InputMessage">
+    <wsdl:part name="parameters" element="tns:SelectProduce" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_SelectProduce_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SelectProduceResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_UpdateProduce_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateProduce" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_UpdateProduce_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateProduceResponse" />
+  </wsdl:message>
   <wsdl:portType name="IMesService">
     <wsdl:operation name="GetData">
       <wsdl:input wsaw:Action="http://tempuri.org/IMesService/GetData" message="tns:IMesService_GetData_InputMessage" />
@@ -69,6 +100,26 @@
     <wsdl:operation name="Register">
       <wsdl:input wsaw:Action="http://tempuri.org/IMesService/Register" message="tns:IMesService_Register_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMesService/RegisterResponse" message="tns:IMesService_Register_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Firstcheck">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/Firstcheck" message="tns:IMesService_Firstcheck_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/FirstcheckResponse" message="tns:IMesService_Firstcheck_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertWIP">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/InsertWIP" message="tns:IMesService_InsertWIP_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/InsertWIPResponse" message="tns:IMesService_InsertWIP_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertProduce">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/InsertProduce" message="tns:IMesService_InsertProduce_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/InsertProduceResponse" message="tns:IMesService_InsertProduce_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectProduce">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/SelectProduce" message="tns:IMesService_SelectProduce_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/SelectProduceResponse" message="tns:IMesService_SelectProduce_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateProduce">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/UpdateProduce" message="tns:IMesService_UpdateProduce_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/UpdateProduceResponse" message="tns:IMesService_UpdateProduce_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IMesService" type="tns:IMesService">
@@ -120,6 +171,51 @@
     </wsdl:operation>
     <wsdl:operation name="Register">
       <soap:operation soapAction="http://tempuri.org/IMesService/Register" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Firstcheck">
+      <soap:operation soapAction="http://tempuri.org/IMesService/Firstcheck" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertWIP">
+      <soap:operation soapAction="http://tempuri.org/IMesService/InsertWIP" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertProduce">
+      <soap:operation soapAction="http://tempuri.org/IMesService/InsertProduce" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectProduce">
+      <soap:operation soapAction="http://tempuri.org/IMesService/SelectProduce" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateProduce">
+      <soap:operation soapAction="http://tempuri.org/IMesService/UpdateProduce" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

@@ -48,6 +48,7 @@ namespace LoggerConfigurator
         public MainForm()
         {
             InitializeComponent();
+            this.WindowState = FormWindowState.Maximized;
             Initial();
             LoadTreeView();
             LoadRadGridView();
@@ -61,9 +62,6 @@ namespace LoggerConfigurator
 
         private void Initial()
         {
-            int width = Screen.PrimaryScreen.Bounds.Width;
-            int height = Screen.PrimaryScreen.Bounds.Height;
-            this.Size = new Size(width,height);
             gridViewData = new GridViewData();
             gridViewData.LimitTimeListSegMent = new List<int>();
             gridViewData.LimitTimeList10ms = new List<int>();

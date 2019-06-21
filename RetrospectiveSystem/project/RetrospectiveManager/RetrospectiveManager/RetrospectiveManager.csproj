@@ -113,6 +113,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SetProduce.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SetProduce.Designer.cs">
+      <DependentUpon>SetProduce.cs</DependentUpon>
+    </Compile>
     <Compile Include="SetStation.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -141,6 +147,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="SetProduce.cs.resx" />
+    <EmbeddedResource Include="SetProduce.resx">
+      <DependentUpon>SetProduce.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SetStation.resx">
       <DependentUpon>SetStation.cs</DependentUpon>
     </EmbeddedResource>
@@ -161,6 +171,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\MesService\MesService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\MesService\MesService5.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\MesService\RetrospectiveManager.MesService.CompositeType.datasource">
@@ -201,6 +214,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="需求.txt" />
     <None Include="Connected Services\MesService\MesService.disco" />
     <None Include="Connected Services\MesService\configuration91.svcinfo" />
     <None Include="Connected Services\MesService\configuration.svcinfo" />
