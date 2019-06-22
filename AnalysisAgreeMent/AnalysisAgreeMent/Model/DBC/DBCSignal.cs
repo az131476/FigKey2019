@@ -50,12 +50,12 @@ namespace AnalysisAgreeMent.Model.DBC
         /// <summary>
         /// 系数
         /// </summary>
-        public float Factor { get; set; }
+        public string Factor { get; set; }
 
         /// <summary>
         /// 偏移量
         /// </summary>
-        public float Offset { get; set; }
+        public string Offset { get; set; }
 
         /// <summary>
         /// 最小值

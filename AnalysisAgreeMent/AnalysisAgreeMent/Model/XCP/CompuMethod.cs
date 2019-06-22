@@ -40,11 +40,11 @@ namespace AnalysisAgreeMent.Model.XCP
         /// <summary>
         /// 系数，a2l-表达式值计算转换后两位结果中的a
         /// </summary>
-        public double Factor { get; set; }
+        public string Factor { get; set; }
 
         /// <summary>
         /// 系数，a2l-表达式值计算转换后两位结果中的b
         /// </summary>
-        public double OffSet { get; set; }
+        public string OffSet { get; set; }
     }
 }

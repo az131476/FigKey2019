@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.28803.156
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SentConfigurator", "SentConfigurator\SentConfigurator.csproj", "{6320974C-5858-4B7C-A9AB-658504D9311F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonUtils", "..\..\CommonLibrary2019\CommonUtils\CommonUtils\CommonUtils.csproj", "{EBFCA1B5-23F1-4F94-928A-DB1A7B98EED6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonUtils", "..\..\CommonLibrary\CommonUtils\CommonUtils\CommonUtils.csproj", "{EBFCA1B5-23F1-4F94-928A-DB1A7B98EED6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

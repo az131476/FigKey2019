@@ -61,7 +61,7 @@ namespace AnalysisAgreeMent.Model.XCP
         /// <summary>
         /// Ecu地址
         /// </summary>
-        public Int32 EcuAddress { get; set; }
+        public long EcuAddress { get; set; }
 
         /// <summary>
         /// 长度

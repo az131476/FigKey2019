@@ -75,8 +75,8 @@ namespace AnalysisAgreeMent.Analysis
                             analysisSignal.Factor = mdList.Factor;
                             analysisSignal.OffSet = mdList.OffSet;
                             analysisData.AnalysisiXcpDataList.Add(analysisSignal);
-                            if (i == 2000)
-                                break;
+                            //if (i == 1000)
+                            //    break;
                         }
                         break;
                     case FileType.DBC:

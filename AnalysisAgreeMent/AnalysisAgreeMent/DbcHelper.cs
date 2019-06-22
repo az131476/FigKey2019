@@ -128,9 +128,9 @@ namespace AnalysisAgreeMent
                 dbcSignal.ByteOrder = ByteOrder.BYTE_ORDER_MSB_FIRST;
             dbcSignal.SymbolType = cacheResult.Substring(1, 1);
             cacheResult = cacheResult.Substring(cacheResult.IndexOf('(') + 1);
-            dbcSignal.Factor = float.Parse(cacheResult.Substring(0, cacheResult.IndexOf(',')));
+            dbcSignal.Factor = cacheResult.Substring(0, cacheResult.IndexOf(','));
             cacheResult = cacheResult.Substring(cacheResult.IndexOf(',') + 1);
-            dbcSignal.Offset = float.Parse(cacheResult.Substring(0, cacheResult.IndexOf(')')));
+            dbcSignal.Offset = cacheResult.Substring(0, cacheResult.IndexOf(')'));
             cacheResult = cacheResult.Substring(cacheResult.IndexOf(')') + 1).TrimStart();
             dbcSignal.Minimum = float.Parse(cacheResult.Substring(cacheResult.IndexOf('[') + 1, cacheResult.IndexOf('|') - 1));
             dbcSignal.Maximun = float.Parse(cacheResult.Substring(cacheResult.IndexOf('|') + 1, cacheResult.IndexOf(']') - cacheResult.IndexOf('|') - 1));

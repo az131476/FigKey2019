@@ -30,13 +30,14 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.radMenuItem1 = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItem2 = new Telerik.WinControls.UI.RadMenuItem();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.radMenuItem3 = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItem4 = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItem5 = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItem6 = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItem7 = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItem2 = new Telerik.WinControls.UI.RadMenuItem();
+            this.menu_produce_config = new Telerik.WinControls.UI.RadMenuItem();
+            this.menu_set_station = new Telerik.WinControls.UI.RadMenuItem();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
@@ -54,7 +55,6 @@
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radMenuItem12 = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItem13 = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItem7 = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenu1 = new Telerik.WinControls.UI.RadMenu();
             this.toolStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -67,8 +67,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.radListView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
             // radMenuItem1
@@ -80,13 +80,38 @@
             this.radMenuItem1.Name = "radMenuItem1";
             this.radMenuItem1.Text = "文件";
             // 
+            // radMenuItem3
+            // 
+            this.radMenuItem3.Name = "radMenuItem3";
+            this.radMenuItem3.Text = "打开";
+            // 
+            // radMenuItem4
+            // 
+            this.radMenuItem4.Name = "radMenuItem4";
+            this.radMenuItem4.Text = "保存";
+            // 
+            // radMenuItem7
+            // 
+            this.radMenuItem7.Name = "radMenuItem7";
+            this.radMenuItem7.Text = "退出";
+            // 
             // radMenuItem2
             // 
             this.radMenuItem2.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.radMenuItem5,
-            this.radMenuItem6});
+            this.menu_produce_config,
+            this.menu_set_station});
             this.radMenuItem2.Name = "radMenuItem2";
             this.radMenuItem2.Text = "配置";
+            // 
+            // menu_produce_config
+            // 
+            this.menu_produce_config.Name = "menu_produce_config";
+            this.menu_produce_config.Text = "生产线配置";
+            // 
+            // menu_set_station
+            // 
+            this.menu_set_station.Name = "menu_set_station";
+            this.menu_set_station.Text = "设置站位";
             // 
             // toolStrip1
             // 
@@ -110,27 +135,6 @@
             this.toolStripButton1.Name = "toolStripButton1";
             this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton1.Text = "toolStripButton1";
-            // 
-            // radMenuItem3
-            // 
-            this.radMenuItem3.Name = "radMenuItem3";
-            this.radMenuItem3.Text = "打开";
-            this.radMenuItem3.Click += new System.EventHandler(this.RadMenuItem3_Click);
-            // 
-            // radMenuItem4
-            // 
-            this.radMenuItem4.Name = "radMenuItem4";
-            this.radMenuItem4.Text = "保存";
-            // 
-            // radMenuItem5
-            // 
-            this.radMenuItem5.Name = "radMenuItem5";
-            this.radMenuItem5.Text = "站位配置";
-            // 
-            // radMenuItem6
-            // 
-            this.radMenuItem6.Name = "radMenuItem6";
-            this.radMenuItem6.Text = "设置站位";
             // 
             // toolStripButton2
             // 
@@ -291,18 +295,6 @@
             this.radMenuItem13.Name = "radMenuItem13";
             this.radMenuItem13.Text = "关于";
             // 
-            // radMenuItem7
-            // 
-            this.radMenuItem7.Name = "radMenuItem7";
-            this.radMenuItem7.Text = "退出";
-            // 
-            // MainForm
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(1321, 701);
-            // 
             // radMenu1
             // 
             this.radMenu1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -315,6 +307,13 @@
             this.radMenu1.Name = "radMenu1";
             this.radMenu1.Size = new System.Drawing.Size(1321, 23);
             this.radMenu1.TabIndex = 0;
+            // 
+            // MainForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
+            this.ClientSize = new System.Drawing.Size(1321, 701);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.radMenu1);
@@ -324,6 +323,7 @@
             // 
             this.RootElement.ApplyShapeToControl = true;
             this.Text = "MainForm";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
@@ -352,8 +352,8 @@
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private Telerik.WinControls.UI.RadMenuItem radMenuItem3;
         private Telerik.WinControls.UI.RadMenuItem radMenuItem4;
-        private Telerik.WinControls.UI.RadMenuItem radMenuItem5;
-        private Telerik.WinControls.UI.RadMenuItem radMenuItem6;
+        private Telerik.WinControls.UI.RadMenuItem menu_produce_config;
+        private Telerik.WinControls.UI.RadMenuItem menu_set_station;
         private System.Windows.Forms.ToolStripButton toolStripButton2;
         private System.Windows.Forms.ToolStripButton toolStripButton3;
         private System.Windows.Forms.ToolStripButton toolStripButton4;

@@ -22,10 +22,6 @@ namespace RetrospectiveManager
             {
                 Application.Run(new MainForm());
             }
-            else
-            {
-                Application.Run(new MainForm());
-            }
         }
     }
 }

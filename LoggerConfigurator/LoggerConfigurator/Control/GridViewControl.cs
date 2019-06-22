@@ -20,8 +20,11 @@ namespace FigKeyLoggerConfigurator.Control
     public class GridViewControl
     {
         private RadGridView gridView;
-        private DataTable dataSource;
-        
+        //private DataTable dataSource;
+        GridViewCheckBoxColumn segMent;
+        GridViewCheckBoxColumn _10ms;
+        GridViewCheckBoxColumn _100ms;
+
         public GridViewControl(RadGridView view)
         {
             this.gridView = view;
@@ -29,7 +32,7 @@ namespace FigKeyLoggerConfigurator.Control
 
         public void InitGridView()
         {
-            AddCollumn();
+            //dataSource = SetDataSource();
             SetRadGridView();
         }
 
@@ -50,7 +53,7 @@ namespace FigKeyLoggerConfigurator.Control
             gridView.AllowAutoSizeColumns = true;
             
             //gridView.AutoScrollMinSize = new System.Drawing.Size(8,20);
-            gridView.ReadOnly = true;
+            gridView.ReadOnly = false;
             //gridView.ColumnChooserSortOrder = RadSortOrder.Ascending;
         }
         #endregion
@@ -59,10 +62,10 @@ namespace FigKeyLoggerConfigurator.Control
         /// <summary>
         /// 添加table 列
         /// </summary>
-        private void AddCollumn()
+        private DataTable SetDataSource()
         {
             //名称+描述+单位+数据类型+数据长度+是否摩托罗拉+开始地址+截取长度+数据地址+系数+偏移量
-            dataSource = new DataTable();
+            DataTable dataSource = new DataTable();
             dataSource.Columns.Add(GridViewData.GridViewColumns.ORDER);
             dataSource.Columns.Add(GridViewData.GridViewColumns.NAME);
             dataSource.Columns.Add(GridViewData.GridViewColumns.DESCRIBLE);
@@ -75,6 +78,7 @@ namespace FigKeyLoggerConfigurator.Control
             dataSource.Columns.Add(GridViewData.GridViewColumns.DATA_ADDRESS);
             dataSource.Columns.Add(GridViewData.GridViewColumns.FACTOR);
             dataSource.Columns.Add(GridViewData.GridViewColumns.OFF_SET);
+            return dataSource;
         }
         #endregion
 
@@ -110,40 +114,53 @@ namespace FigKeyLoggerConfigurator.Control
         /// </summary>
         private void AddCheckBox()
         {
-            GridViewCheckBoxColumn segMent = new GridViewCheckBoxColumn();
-            segMent.DataType = typeof(int);
-            segMent.Name = "segMent";
-            segMent.FieldName = "segMent";
-            segMent.HeaderText = "segMent";
-            gridView.MasterTemplate.Columns.Add(segMent);
-            gridView.Columns[8].BestFit();
-
-            GridViewCheckBoxColumn _10ms = new GridViewCheckBoxColumn();
-            _10ms.DataType = typeof(int);
-            _10ms.Name = "_10ms";
-            _10ms.FieldName = "_10ms";
-            _10ms.HeaderText = "10ms";
-            gridView.MasterTemplate.Columns.Add(_10ms);
-            gridView.Columns[9].BestFit();
-
-            GridViewCheckBoxColumn _100ms = new GridViewCheckBoxColumn();
-            _100ms.DataType = typeof(int);
-            _100ms.Name = "_100ms";
-            _100ms.FieldName = "_100ms";
-            _100ms.HeaderText = "100ms";
-            gridView.MasterTemplate.Columns.Add(_100ms);
-            gridView.Columns[10].BestFit();
-            
+            if (segMent == null)
+            {
+                segMent = new GridViewCheckBoxColumn();
+                segMent.DataType = typeof(int);
+                segMent.Name = "segMent";
+                segMent.FieldName = "segMent";
+                segMent.HeaderText = "segMent";
+                gridView.MasterTemplate.Columns.Add(segMent);
+                //gridView.Columns[12].BestFit();
+            }
+            if (_10ms == null)
+            {
+                _10ms = new GridViewCheckBoxColumn();
+                _10ms.DataType = typeof(int);
+                _10ms.Name = "_10ms";
+                _10ms.FieldName = "_10ms";
+                _10ms.HeaderText = "10ms";
+                gridView.MasterTemplate.Columns.Add(_10ms);
+                //gridView.Columns[13].BestFit();
+            }
+            if (_100ms == null)
+            {
+                _100ms = new GridViewCheckBoxColumn();
+                _100ms.DataType = typeof(int);
+                _100ms.Name = "_100ms";
+                _100ms.FieldName = "_100ms";
+                _100ms.HeaderText = "100ms";
+                gridView.MasterTemplate.Columns.Add(_100ms);
+                //gridView.Columns[14].BestFit();
+            }
         }
         #endregion
 
         private void SetCheckValue()
         {
-            foreach (GridViewDataRowInfo row in this.gridView.Rows)
+            try
             {
-                row.Cells[12].Value = 0;
-                row.Cells[13].Value = 0;
-                row.Cells[14].Value = 0;
+                foreach (GridViewDataRowInfo row in this.gridView.Rows)
+                {
+                    row.Cells[12].Value = 0;
+                    row.Cells[13].Value = 0;
+                    row.Cells[14].Value = 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Log.Error($"{ex.Message}\r\n{ex.StackTrace}");
             }
         }
 
@@ -154,6 +171,7 @@ namespace FigKeyLoggerConfigurator.Control
         /// <param name="data">数据源</param>
         public DataTable BindRadGridView(List<AnalysisSignal> dataList)
         {
+            DataTable dataSource = SetDataSource();
             for (int i = 0; i < dataList.Count; i++)
             {
                 DataRow dr = dataSource.NewRow();
@@ -183,8 +201,9 @@ namespace FigKeyLoggerConfigurator.Control
         /// </summary>
         /// <param name="data">数据源</param>
         /// <param name="filter">查询条件</param>
-        public void SearchRadGridView(XcpData data, string filter)
+        public void SearchRadGridView(RadGridView gridData, string filter)
         {
+
             //var measure = data.MeasureData;
             //var methold = data.MetholdData;
             //DataTable dtTemp = dataSource.Clone();

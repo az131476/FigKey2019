@@ -7,6 +7,9 @@ using System.Text;
 using System.Windows.Forms;
 using Telerik.WinControls;
 using CommonUtils.Logger;
+using System.Web;
+using System.Net;
+using System.IO;
 
 namespace RetrospectiveManager
 {
@@ -14,9 +17,8 @@ namespace RetrospectiveManager
     {
         private const string USER_ADMIN = "管理员";
         private const string USER_ORDINARY = "普通用户";
-
-        //private ServiceReference1.FigKeyLoggerServiceClient remoteService;
-
+        private MesService.MesServiceClient mesService;
+        public UserType GetUserType { get; set; }
         public Login()
         {
             InitializeComponent();
@@ -53,7 +55,7 @@ namespace RetrospectiveManager
             timer.Start();
         }
 
-        private enum UserType
+        public enum UserType
         {
             USER_ADMIN,
             USER_ORDINARY
@@ -62,7 +64,7 @@ namespace RetrospectiveManager
         private void Login_Load(object sender, EventArgs e)
         {
             Init();
-            //remoteService = new ServiceReference1.FigKeyLoggerServiceClient();
+            mesService = new MesService.MesServiceClient();
         }
 
         private void Btn_login_Click(object sender, EventArgs e)
@@ -76,14 +78,16 @@ namespace RetrospectiveManager
                 //管理员登录
                 if (!LocalValidate())
                     return;
-                //RemoteValidate(ServiceReference1.LoginUser.ADMIN_USER);
+                RemoteValidate(MesService.LoginUser.ADMIN_USER);
+                GetUserType = UserType.USER_ADMIN;
             }
             else if (cob_userType.SelectedIndex == (int)UserType.USER_ORDINARY)
             {
                 //普通用户登录
                 if (!LocalValidate())
                     return;
-                //RemoteValidate(ServiceReference1.LoginUser.ORDINARY_USER);
+                RemoteValidate(MesService.LoginUser.ORDINARY_USER);
+                GetUserType = UserType.USER_ORDINARY;
             }
         }
 
@@ -130,49 +134,42 @@ namespace RetrospectiveManager
         /// 调用接口验证用户名和密码
         /// </summary>
         /// <param name="loginUser"></param>
-        //private void RemoteValidate(ServiceReference1.LoginUser loginUser)
-        //{
-        //    ServiceReference1.f_user userInfo = remoteService.GetUserInfo(tbx_username.Text.Trim());
-        //    ServiceReference1.LoginResult loginRes = remoteService.Login(tbx_username.Text,tbx_pwd.Text,loginUser);
-        //    if (userInfo == null)
-        //    {
-        //        //该用户不存在
-        //        tbx_username.ForeColor = Color.Red;
-        //        tbx_username.Focus();
-        //        return;
-        //    }
-        //    tbx_username.ForeColor = Color.Black;
-
-        //    //验证用户密码
-        //    switch (loginRes)
-        //    {
-        //        case ServiceReference1.LoginResult.SUCCESS:
-        //            LogHelper.Log.Info("登录验证成功！");
-        //            //连接云服务
-        //            if (!ConnectCloudService())
-        //            {
-        //                MessageBox.Show("连接服务失败！","提示",MessageBoxButtons.OK,MessageBoxIcon.Warning);
-        //                return;
-        //            }
-        //            LogHelper.Log.Info("连接服务成功！");
-        //            //启动主界面
-        //            this.DialogResult = DialogResult.OK;
-        //            this.Close();
-        //            break;
-        //        case ServiceReference1.LoginResult.FAIL_EXCEP:
-        //            LogHelper.Log.Info("登录失败!");
-        //            break;
-
-        //        case ServiceReference1.LoginResult.USER_NAME_PWD_ERR:
-        //            //MessageBox.Show("输入密码错误！","提示",MessageBoxButtons.OK,MessageBoxIcon.Warning);
-        //            tbx_pwd.ForeColor = Color.Red;
-        //            tbx_pwd.Focus();
-        //            return;
-        //        default:
-        //            break;
-        //    }
-        //    tbx_pwd.ForeColor = Color.Black;
-        //}
+        private void RemoteValidate(MesService.LoginUser loginUser)
+        {
+            MesService.LoginResult loginRes = mesService.Login(tbx_username.Text, tbx_pwd.Text, loginUser);
+            //验证用户密码
+            switch (loginRes)
+            {
+                case MesService.LoginResult.SUCCESS:
+                    LogHelper.Log.Info("登录验证成功！");
+                    //连接云服务
+                    if (!ConnectCloudService())
+                    {
+                        MessageBox.Show("连接服务失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+                    LogHelper.Log.Info("连接服务成功！");
+                    //启动主界面
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+                    break;
+                case MesService.LoginResult.FAIL_EXCEP:
+                    LogHelper.Log.Info("登录失败!");
+                    break;
+                case MesService.LoginResult.USER_NAME_ERR:
+                    //该用户不存在
+                    tbx_username.ForeColor = Color.Red;
+                    tbx_username.Focus();
+                    break;
+                case MesService.LoginResult.USER_PWD_ERR:
+                    tbx_pwd.ForeColor = Color.Red;
+                    tbx_pwd.Focus();
+                    return;
+                default:
+                    break;
+            }
+            tbx_pwd.ForeColor = Color.Black;
+        }
         #endregion
 
         private bool ConnectCloudService()

@@ -142,6 +142,10 @@ namespace AnalysisAgreeMent
             while (readLineResult.ToLower() != A2lContent.BeginmodCommon.END_MOD_COMMON.ToLower())
             {
                 readLineResult = A2lReader.ReadLine().Trim();
+                if (readLineResult.ToLower() == A2lContent.BeginmodCommon.END_MOD_COMMON.ToLower())
+                {
+                    break;
+                }
                 switch (index)
                 {
                     case (int)XcpFormat.XcpMod_Common.BYTE_ORDER:
@@ -163,9 +167,10 @@ namespace AnalysisAgreeMent
                     case (int)XcpFormat.XcpMod_Common.ALIGNMENT_FLOAT32_IEEE:
                         break;
                 }
-                propertyList.Add(propertyInformation);
+
                 index++;
             }
+            propertyList.Add(propertyInformation);
         }
 
         private CodeCommand AnalysisXcpOnCan(int Protocol)
@@ -309,6 +314,10 @@ namespace AnalysisAgreeMent
             while (readLineResult.ToLower() != A2lContent.BeginMeasurement.END_MEASUREMENT)
             {
                 readLineResult = A2lReader.ReadLine().Trim();
+                if (readLineResult.ToLower() == A2lContent.BeginMeasurement.END_MEASUREMENT)
+                {
+                    break;
+                }
                 switch (index)
                 {
                     case (int)XcpFormat.XcpMeasureFormat.NAME:
@@ -336,12 +345,17 @@ namespace AnalysisAgreeMent
                     case (int)XcpFormat.XcpMeasureFormat.FORMAT_11:
                         break;
                     case (int)XcpFormat.XcpMeasureFormat.ECU_ADDRESS:
-                        measureMent.EcuAddress = int.Parse(ConvertString.ConvertToDec(readLineResult.ToLower().Replace("ecu_address", "")));
                         break;
                 }
-                measureList.Add(measureMent);
+                if (readLineResult.ToUpper().Contains("ECU_ADDRESS"))
+                {
+                    string ecuDecString = readLineResult.ToLower().Replace("ecu_address", "").Trim();
+                    string tem = ecuDecString.Replace("0x", "").Trim();
+                    measureMent.EcuAddress = Convert.ToInt64(tem, 16);
+                }
                 index++;
             }
+            measureList.Add(measureMent);
         }
 
         private CodeCommand AnalysisCharactoritics()
@@ -565,6 +579,10 @@ namespace AnalysisAgreeMent
             while (readLineResult.ToLower() != A2lContent.BegincompuMedthod.ENDCOMPU_MEDTHOD)
             {
                 readLineResult = A2lReader.ReadLine().Trim();
+                if (readLineResult.ToLower() == A2lContent.BegincompuMedthod.ENDCOMPU_MEDTHOD)
+                {
+                    break;
+                }
                 switch (index)
                 {
                     case (int)XcpFormat.XcpCompu_Method.REFERENCE_METHOD:
@@ -583,27 +601,43 @@ namespace AnalysisAgreeMent
                         compuMethod.unit = readLineResult;
                         break;
                     case (int)XcpFormat.XcpCompu_Method.COEFFS:
-                        if (compuMethod.funType == A2lContent.BegincompuMedthod.RAT_FUNC)
+                        if (compuMethod.funType.ToLower() == A2lContent.BegincompuMedthod.RAT_FUNC)
                         {
                             ///函数类型为rat_func时，显示值v1= b/f,v2 = c/f;
                             ///
                             compuMethod.coeffsValue = readLineResult.Replace(A2lContent.BegincompuMedthod.COEFFS, "");
-                            string[] res = readLineResult.Replace(A2lContent.BegincompuMedthod.COEFFS, "").Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-                            double v1 = double.Parse(res[1]) / double.Parse(res[5]);
-                            double v2 = double.Parse(res[2]) / double.Parse(res[5]);
-                            compuMethod.Factor = v1;//v1.ToString("f5");
+                            string[] res = readLineResult.ToLower().Replace(A2lContent.BegincompuMedthod.COEFFS, "").Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                            string v1 = "0",v2 = "0";
+
+                            if (double.Parse(res[1]) != 0 && double.Parse(res[5]) != 0)
+                            {
+                                v1 = (double.Parse(res[5]) / double.Parse(res[1])).ToString("f7");
+                            }
+                            else
+                            {
+                                v1 = 0.ToString("f0");
+                            }
+                            if (double.Parse(res[2]) != 0 && double.Parse(res[5]) != 0)
+                            {
+                                v2 = (double.Parse(res[5]) / double.Parse(res[2])).ToString("f7");
+                            }
+                            else
+                            {
+                                v2 = 0.ToString("f0");
+                            }
+                            compuMethod.Factor = v1;
                             compuMethod.OffSet = v2;
                         }
                         else
                         {
-                            compuMethod.Factor = 1;
-                            compuMethod.OffSet = 0;
+                            compuMethod.Factor = 1.ToString("f0");
+                            compuMethod.OffSet = 0.ToString("f0");
                         }
                         break;
                 }
-                MetholdList.Add(compuMethod);
                 index++;
             }
+            MetholdList.Add(compuMethod);
         }
 
         private void AnalysisCompu_Vtab()

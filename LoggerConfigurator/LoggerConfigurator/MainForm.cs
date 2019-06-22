@@ -43,24 +43,42 @@ namespace LoggerConfigurator
         private AnalysisData analysisData;
         private FileType analysisFileType;
         private DataTable dataSource;
+        private SelectedCan selectedCan;
         #endregion
         public MainForm()
         {
             InitializeComponent();
+            this.WindowState = FormWindowState.Maximized;
             Initial();
             LoadTreeView();
             LoadRadGridView();
         }
 
+        enum SelectedCan
+        {
+            CAN_1,
+            CAN_2
+        }
+
         private void Initial()
         {
-            int width = Screen.PrimaryScreen.Bounds.Width;
-            int height = Screen.PrimaryScreen.Bounds.Height;
-            //this.Size = new Size(width, height);
             gridViewData = new GridViewData();
-            gridViewData.LimitTimeListSegMent = new List<LimitTimeCfg>();
-            gridViewData.LimitTimeList10ms = new List<LimitTimeCfg>();
-            gridViewData.LimitTimeList100ms = new List<LimitTimeCfg>();
+            gridViewData.LimitTimeListSegMent = new List<int>();
+            gridViewData.LimitTimeList10ms = new List<int>();
+            gridViewData.LimitTimeList100ms = new List<int>();
+
+            //配置
+            cb_porte.Items.Clear();
+            cb_porte.Items.Add("100000");
+            cb_porte.Items.Add("500000");
+            cb_porte.Items.Add("1000000");
+            cb_porte.SelectedIndex = 1;
+
+            cb_protocol.Items.Clear();
+            cb_protocol.Items.Add("CCP");
+            cb_protocol.Items.Add("XCP");
+            cb_protocol.Items.Add("CanMonnitor");
+            cb_protocol.SelectedIndex = 0;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -69,7 +87,6 @@ namespace LoggerConfigurator
             rbtn_search.Click += Rbtn_search_Click;
             xcpFilterCondition.KeyDown += XcpFilterCondition_KeyDown;
 
-            radBtnExport.Click += RadBtnExport_Click;
             radGridView1.ValueChanged += RadGridView1_ValueChanged;
 
             tool_exportfile.Click += Tool_exportfile_Click;
@@ -83,88 +100,95 @@ namespace LoggerConfigurator
         /// <param name="e"></param>
         private void RadGridView1_ValueChanged(object sender, EventArgs e)
         {
-            //设置不可选
-            switch (this.radGridView1.CurrentCell.ColumnIndex)
+            try
             {
-                case 12:
-                    if (this.radGridView1.CurrentRow.Cells[13].Value.ToString() is "1")
-                        this.radGridView1.CurrentRow.Cells[13].Value = 0;
-                    if (this.radGridView1.CurrentRow.Cells[14].Value.ToString() is "1")
-                        this.radGridView1.CurrentRow.Cells[14].Value = 0;
-                    break;
-                case 13:
-                    if (this.radGridView1.CurrentRow.Cells[12].Value.ToString() is "1")
-                        this.radGridView1.CurrentRow.Cells[12].Value = 0;
-                    if (this.radGridView1.CurrentRow.Cells[14].Value.ToString() is "1")
-                        this.radGridView1.CurrentRow.Cells[14].Value = 0;
-                    break;
-                case 14:
-                    if (this.radGridView1.CurrentRow.Cells[12].Value.ToString() is "1")
-                        this.radGridView1.CurrentRow.Cells[12].Value = 0;
-                    if (this.radGridView1.CurrentRow.Cells[13].Value.ToString() is "1")
-                        this.radGridView1.CurrentRow.Cells[13].Value = 0;
-                    break;
+                //设置不可选
+                switch (this.radGridView1.CurrentCell.ColumnIndex)
+                {
+                    case 12:
+                        if (this.radGridView1.CurrentRow.Cells[13].Value.ToString() is "1")
+                            this.radGridView1.CurrentRow.Cells[13].Value = 0;
+                        if (this.radGridView1.CurrentRow.Cells[14].Value.ToString() is "1")
+                            this.radGridView1.CurrentRow.Cells[14].Value = 0;
+                        break;
+                    case 13:
+                        if (this.radGridView1.CurrentRow.Cells[12].Value.ToString() is "1")
+                            this.radGridView1.CurrentRow.Cells[12].Value = 0;
+                        if (this.radGridView1.CurrentRow.Cells[14].Value.ToString() is "1")
+                            this.radGridView1.CurrentRow.Cells[14].Value = 0;
+                        break;
+                    case 14:
+                        if (this.radGridView1.CurrentRow.Cells[12].Value.ToString() is "1")
+                            this.radGridView1.CurrentRow.Cells[12].Value = 0;
+                        if (this.radGridView1.CurrentRow.Cells[13].Value.ToString() is "1")
+                            this.radGridView1.CurrentRow.Cells[13].Value = 0;
+                        break;
+                }
+
+                //if (this.radGridView1.ActiveEditor is RadCheckBoxEditor)
+                //{
+                //    int rowIndex = this.radGridView1.CurrentCell.RowIndex;
+                //    int columnIndex = this.radGridView1.CurrentCell.ColumnIndex;
+
+                //    if (this.radGridView1.ActiveEditor.Value.ToString() is "On")
+                //    {
+                //        limitCfg = new LimitTimeCfg();
+                //        limitCfg.RowIndex = rowIndex;
+                //        if (columnIndex == 12)
+                //        {
+                //            if (!ExistCurCheckBoxRow(rowIndex, gridViewData.LimitTimeListSegMent))
+                //            {
+                //                limitCfg.LimitType = TimeLimitType._segMent;
+                //                gridViewData.LimitTimeListSegMent.Add(limitCfg);
+                //            }
+                //        }
+                //        else if (columnIndex == 13)
+                //        {
+                //            if (!ExistCurCheckBoxRow(rowIndex, gridViewData.LimitTimeList10ms))
+                //            {
+                //                limitCfg.LimitType = TimeLimitType._10ms;
+                //                gridViewData.LimitTimeList10ms.Add(limitCfg);
+                //            }
+                //        }
+                //        else if (columnIndex == 14)
+                //        {
+                //            if (!ExistCurCheckBoxRow(rowIndex, gridViewData.LimitTimeList100ms))
+                //            {
+                //                limitCfg.LimitType = TimeLimitType._100ms;
+                //                gridViewData.LimitTimeList100ms.Add(limitCfg);
+                //            }
+                //        }
+                //    }
+                //    else if (this.radGridView1.ActiveEditor.Value.ToString() is "Off")
+                //    {
+                //        if (columnIndex == 12)
+                //        {
+                //            if (ExistCurCheckBoxRow(rowIndex, gridViewData.LimitTimeListSegMent))
+                //            {
+                //                gridViewData.LimitTimeListSegMent.Remove(limitCfg);
+                //            }
+                //        }
+                //        else if (columnIndex == 13)
+                //        {
+                //            if (ExistCurCheckBoxRow(rowIndex, gridViewData.LimitTimeList10ms))
+                //            {
+                //                gridViewData.LimitTimeList10ms.Remove(limitCfg);
+                //            }
+                //        }
+                //        else if (columnIndex == 14)
+                //        {
+                //            if (ExistCurCheckBoxRow(rowIndex, gridViewData.LimitTimeList100ms))
+                //            {
+                //                gridViewData.LimitTimeList100ms.Remove(limitCfg);
+                //            }
+                //        }
+                //    }
+                //    ////三列CheckBox 只能选择一列
+                //}
             }
-
-            if (this.radGridView1.ActiveEditor is RadCheckBoxEditor)
+            catch (Exception ex)
             {
-                int rowIndex = this.radGridView1.CurrentCell.RowIndex;
-                int columnIndex = this.radGridView1.CurrentCell.ColumnIndex;
-
-                if (this.radGridView1.ActiveEditor.Value.ToString() is "On")
-                {
-                    limitCfg = new LimitTimeCfg();
-                    limitCfg.RowIndex = rowIndex;
-                    if (columnIndex == 12)
-                    {
-                        if (!ExistCurCheckBoxRow(rowIndex, gridViewData.LimitTimeListSegMent))
-                        {
-                            limitCfg.LimitType = TimeLimitType._segMent;
-                            gridViewData.LimitTimeListSegMent.Add(limitCfg);
-                        }
-                    }
-                    else if (columnIndex == 13)
-                    {
-                        if (!ExistCurCheckBoxRow(rowIndex, gridViewData.LimitTimeList10ms))
-                        {
-                            limitCfg.LimitType = TimeLimitType._10ms;
-                            gridViewData.LimitTimeList10ms.Add(limitCfg);
-                        }
-                    }
-                    else if (columnIndex == 14)
-                    {
-                        if (!ExistCurCheckBoxRow(rowIndex, gridViewData.LimitTimeList100ms))
-                        {
-                            limitCfg.LimitType = TimeLimitType._100ms;
-                            gridViewData.LimitTimeList100ms.Add(limitCfg);
-                        }
-                    }
-                }
-                else if (this.radGridView1.ActiveEditor.Value.ToString() is "Off")
-                {
-                    if (columnIndex == 12)
-                    {
-                        if (ExistCurCheckBoxRow(rowIndex, gridViewData.LimitTimeListSegMent))
-                        {
-                            gridViewData.LimitTimeListSegMent.Remove(limitCfg);
-                        }
-                    }
-                    else if (columnIndex == 13)
-                    {
-                        if (ExistCurCheckBoxRow(rowIndex, gridViewData.LimitTimeList10ms))
-                        {
-                            gridViewData.LimitTimeList10ms.Remove(limitCfg);
-                        }
-                    }
-                    else if (columnIndex == 14)
-                    {
-                        if (ExistCurCheckBoxRow(rowIndex, gridViewData.LimitTimeList100ms))
-                        {
-                            gridViewData.LimitTimeList100ms.Remove(limitCfg);
-                        }
-                    }
-                }
-                ////三列CheckBox 只能选择一列
+                LogHelper.Log.Error(ex.Message+"\r\n"+ex.StackTrace);
             }
         }
 
@@ -181,29 +205,60 @@ namespace LoggerConfigurator
 
         #region 导出行数据
         /// <summary>
-        /// 导出选择行数据
+        /// 导出选中行数据
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void RadBtnExport_Click(object sender, EventArgs e)
+        private void ExportData()
         {
+            SelectedRowCal();
             if (gridViewData.LimitTimeListSegMent.Count < 1 && gridViewData.LimitTimeList10ms.Count < 1 && gridViewData.LimitTimeList100ms.Count < 1)
             {
-                MessageBox.Show("未选择行","提示");
+                MessageBox.Show("未选择行", "提示");
                 return;
             }
             string path = FileSelect.SaveAs("(*.c)|*.c");
-
+            if (string.IsNullOrEmpty(path))
+            {
+                return;
+            }
             if (analysisFileType == FileType.A2L)
             {
-                ExportFile.ExportFileToLocal(path, radGridView1, gridViewData,analysisData,analysisFileType);
+                ExportFile.ExportFileToLocal(path, radGridView1, gridViewData, analysisData, analysisFileType);
             }
             else if (analysisFileType == FileType.DBC)
             {
-                ExportFile.ExportFileToLocal(path, radGridView1, gridViewData, analysisData,analysisFileType);
+                ExportFile.ExportFileToLocal(path, radGridView1, gridViewData, analysisData, analysisFileType);
             }
         }
         #endregion
+
+        /// <summary>
+        /// 遍历行，查询CHECKBOX选中行
+        /// </summary>
+        private void SelectedRowCal()
+        {
+            int rdex = 0;
+            gridViewData.LimitTimeListSegMent.Clear();
+            gridViewData.LimitTimeList10ms.Clear();
+            gridViewData.LimitTimeList100ms.Clear();
+
+            foreach (GridViewDataRowInfo row in this.radGridView1.Rows)
+            {
+                //将选中得行添加到集合
+                if (this.radGridView1.Rows[rdex].Cells[12].Value.ToString() is "1")
+                {
+                    gridViewData.LimitTimeListSegMent.Add(rdex);
+                }
+                if (this.radGridView1.Rows[rdex].Cells[13].Value.ToString() is "1")
+                {
+                    gridViewData.LimitTimeList10ms.Add(rdex);
+                }
+                if (this.radGridView1.Rows[rdex].Cells[14].Value.ToString() is "1")
+                {
+                    gridViewData.LimitTimeList100ms.Add(rdex);
+                }
+                rdex++;
+            }
+        }
 
         #region 导出数据/快捷菜单
         /// <summary>
@@ -213,13 +268,7 @@ namespace LoggerConfigurator
         /// <param name="e"></param>
         private void Tool_exportfile_Click(object sender, EventArgs e)
         {
-            if (gridViewData.LimitTimeListSegMent.Count < 1 && gridViewData.LimitTimeList10ms.Count < 1 && gridViewData.LimitTimeList100ms.Count < 1)
-            {
-                MessageBox.Show("未选择行", "提示");
-                return;
-            }
-            string path = FileSelect.SaveAs("*.c)|*.c");
-            ExportFile.ExportFileToLocal(path, radGridView1, gridViewData, analysisData,analysisFileType);
+            ExportData();
         }
         #endregion
 
@@ -244,7 +293,28 @@ namespace LoggerConfigurator
         /// <param name="e"></param>
         private void Rbtn_search_Click(object sender, EventArgs e)
         {
-            gridViewControl.SearchRadGridView(xcpdata,xcpFilterCondition.Text.Trim());
+            gridViewControl.SearchRadGridView(radGridView1,xcpFilterCondition.Text.Trim());
+
+            if (selectedCan == SelectedCan.CAN_1)
+            {
+                //can1
+                if (openFileContent.OpenFileResult.FilterIndex == (int)FileType.DBC)
+                {
+
+                }
+                else if (openFileContent.OpenFileResult.FilterIndex == (int)FileType.A2L)
+                {
+
+                }
+            }
+            else if (selectedCan == SelectedCan.CAN_2)
+            {
+                //can2
+
+            }
+            
+            dataSource = gridViewControl.BindRadGridView(analysisData.AnalysisDbcDataList);
+            GridViewLoadDataSource();
         }
         #endregion
 
@@ -262,6 +332,7 @@ namespace LoggerConfigurator
             if (string.IsNullOrEmpty(openFileContent.FileName))
                 return;
             //xcpFilePathCur.Text = openFileContent.FileName;
+
             if (!string.IsNullOrEmpty(openFileContent.FileName))
             {
                 ///解析文件
@@ -290,7 +361,12 @@ namespace LoggerConfigurator
                                 {
                                     LogHelper.Log.Info("DBC合并数据失败!");
                                 }
-                                gridViewControl.BindRadGridView(analysisData.AnalysisDbcDataList);
+                                if (dataSource != null)
+                                {
+                                    dataSource.Clear();
+                                }
+                                dataSource = gridViewControl.BindRadGridView(analysisData.AnalysisDbcDataList);
+                                GridViewLoadDataSource();
                                 //gridViewControl.BindRadGridView(xcpdata);
                                 LogHelper.Log.Info("DBC加载完成！");
                             }
@@ -318,6 +394,10 @@ namespace LoggerConfigurator
                                 else
                                 {
                                     LogHelper.Log.Info("a2l合并数据失败!");
+                                }
+                                if (dataSource != null)
+                                {
+                                    dataSource.Clear();
                                 }
                                 dataSource = gridViewControl.BindRadGridView(analysisData.AnalysisiXcpDataList);
                                 GridViewLoadDataSource();
@@ -406,13 +486,16 @@ namespace LoggerConfigurator
             switch (treeNode.Text)
             {
                 case TreeViewData.HardWare.CAN_CHILD + "1":
-                    //tabControl1.SelectedIndex = 1;
-                    tabPage_gridview.Parent = null;
+                    tabPage_gridview_can1.Parent = tabControl1;
                     tabPage_hardware.Parent = tabControl1;
+                    tabPage_gridview_can2.Parent = null;
+                    selectedCan = SelectedCan.CAN_1;
                     break;
                 case TreeViewData.HardWare.CAN_CHILD + "2":
-                    tabPage_gridview.Parent = tabControl1;
-                    tabPage_hardware.Parent = null;
+                    tabPage_gridview_can2.Parent = tabControl1;
+                    tabPage_hardware.Parent = tabControl1;
+                    tabPage_gridview_can1.Parent = null;
+                    selectedCan = SelectedCan.CAN_2;
                     break;
 
                 case TreeViewData.CcpOrXcp.DESCRIPTIONS:
