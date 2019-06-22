@@ -580,7 +580,7 @@ namespace CANManager.CAN
             else
                 writeStruct.TxFlags = 0x00;
             writeStruct.Timestamp = 0;
-
+            //前4位为头
             writeStruct.Data[0] = 0x00;
             writeStruct.Data[1] = 0x00;
             writeStruct.Data[2] = 0x07;

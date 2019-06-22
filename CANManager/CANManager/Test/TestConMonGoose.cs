@@ -64,7 +64,7 @@ namespace CANManager.Test
             writeStruct.Data[1] = 0x00;
             writeStruct.Data[2] = 0x07;
             writeStruct.Data[3] = 0xdf;//7df  7e0
-            writeStruct.Data[4] = 0x02;
+            writeStruct.Data[4] = 0x01;
             writeStruct.Data[5] = 0x00;
             writeStruct.DataSize = 6;
             uint pNumMsg = 1;
