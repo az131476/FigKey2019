@@ -260,27 +260,38 @@ namespace MESInterface
                 string value = dctData[item];
                 //插入数据库
                 //插入SQL
-                if (!IsExistProduceID(item))
+                if (IsExistProduceID(item) && !IsExistProduceStation(value))
                 {
-                    string insertSQL = "INSERT INTO [WT_SCL].[dbo].[Produce_Process] " +
-                    "([Station_Order],[Station_Name]) " +
-                    $"VALUES('{item}','{value}')";
-                    LogHelper.Log.Info($" insertSQL:{insertSQL}");
-                    int res = SQLServer.ExecuteNonQuery(insertSQL);
-                    LogHelper.Log.Info($"insert res:{res}");
-                    if (res < 1)
-                    {
-                        //插入失败
-                        return "0" + $" {item} {dctData[item]}";
-                    }
+                    //ID已存在
+                    //update
+                    LogHelper.Log.Info("ID is exist,name is not exist, InsertProduce Excute UpdateProduceDB...");
+                    UpdateProduceDB(item, value, item.ToString(), "");
+                }
+                else if (!IsExistProduceID(item) && IsExistProduceStation(value))
+                {
+                    //name exist
+                    LogHelper.Log.Info("ID is not exist ,name is exist,InsertProduce Excute UpdateProduceDB...");
+                    UpdateProduceDB(item, value, "", value);
+                }
+                else if (IsExistProduceID(item) && IsExistProduceStation(value))
+                {
+                    LogHelper.Log.Info("ID is exist,name is exist, InsertProduce Excute UpdateProduceDB...");
+                    UpdateProduceDB(item, value,item.ToString(), value);
                 }
                 else
                 {
-                    //已存在
-                    //update
-                    LogHelper.Log.Info("InsertProduce Excute UpdateProduceDB...");
-                    UpdateProduceDB(item,value);
+                    //不存在，插入
+                    string insertSQL = "INSERT INTO [WT_SCL].[dbo].[Produce_Process] " +
+                    "([Station_Order],[Station_Name]) " +
+                    $"VALUES('{item}','{value}')";
 
+                    int res = SQLServer.ExecuteNonQuery(insertSQL);
+                    if (res < 1)
+                    {
+                        //插入失败
+                        LogHelper.Log.Info($"insert fail {insertSQL}");
+                        return "0" + $" {item} {dctData[item]}";
+                    }
                 }
             }
             return "1";
@@ -292,8 +303,30 @@ namespace MESInterface
         /// <returns></returns>
         public DataSet SelectProduce()
         {
-            string selectSQL = "SELECT * FROM [WT_SCL].[dbo].[Produce_Process] ";
+            string selectSQL = "SELECT * FROM [WT_SCL].[dbo].[Produce_Process] ORDER BY [Station_Order]";
             return SQLServer.ExecuteDataSet(selectSQL);
+        }
+
+        /// <summary>
+        /// 清除所有数据
+        /// </summary>
+        /// <returns></returns>
+        public int DeleteAllProduce()
+        {
+            string deleteSQL = "DELETE FROM [WT_SCL].[dbo].[Produce_Process]";
+            return SQLServer.ExecuteNonQuery(deleteSQL);
+        }
+
+        /// <summary>
+        /// 删除某条记录
+        /// </summary>
+        /// <param name="stationName"></param>
+        /// <returns></returns>
+        public int DeleteProduce(string stationName)
+        {
+            string deleteSQL = $"DELETE FROM [WT_SCL].[dbo].[Produce_Process] WHERE [Station_Name] = '{stationName}'";
+            LogHelper.Log.Info($"deleteSQL={deleteSQL}");
+            return SQLServer.ExecuteNonQuery(deleteSQL);
         }
 
         /// <summary>
@@ -310,7 +343,7 @@ namespace MESInterface
                 if (IsExistProduceID(item))
                 {
                     //更新
-                    if (!UpdateProduceDB(item, v))
+                    if (!UpdateProduceDB(item, v,item.ToString(),v))
                     {
                         return "0";
                     }
@@ -329,9 +362,27 @@ namespace MESInterface
             string selectSQL = "SELECT  * " +
                     "FROM [WT_SCL].[dbo].[Produce_Process] " +
                     $"WHERE [Station_Order] = '{id}'";
-            LogHelper.Log.Info($"start IsExistProduceID...{selectSQL}");
+            LogHelper.Log.Info($"ExistID = {selectSQL}");
             DataTable dt = SQLServer.ExecuteDataSet(selectSQL).Tables[0];
-            LogHelper.Log.Info($"{dt.Rows.Count}");
+            if (dt.Rows.Count > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// 产线站位名称是否为空
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        private bool IsExistProduceStation(string name)
+        {
+            string selectSQL = "SELECT  * " +
+                    "FROM [WT_SCL].[dbo].[Produce_Process] " +
+                    $"WHERE [Station_Name] = '{name}'";
+            LogHelper.Log.Info($"ExistStation = {selectSQL}");
+            DataTable dt = SQLServer.ExecuteDataSet(selectSQL).Tables[0];
             if (dt.Rows.Count > 0)
             {
                 return true;
@@ -345,12 +396,15 @@ namespace MESInterface
         /// <param name="order"></param>
         /// <param name="stationName"></param>
         /// <returns></returns>
-        private bool UpdateProduceDB(int order,string stationName)
+        private bool UpdateProduceDB(int order,string stationName,string oldOrder,string oldName)
         {
-            string updateSQL = "UPDATE [WT_SWL].[dbo].[Produce_Process] " +
+            string updateSQL = "UPDATE [WT_SCL].[dbo].[Produce_Process] " +
                 "SET " +
-                $"[Station_Order]='{order}' ,[Station_Name]='{stationName}'";
+                $"[Station_Order]='{order}' ,[Station_Name]='{stationName}' " +
+                $"WHERE " +
+                $"[Station_Name] = '{oldName}' or [Station_Order] = '{oldOrder}'";
             int r = SQLServer.ExecuteNonQuery(updateSQL);
+            LogHelper.Log.Info($"update={updateSQL}");
             if (r > 0)
             {
                 return true;
@@ -358,6 +412,117 @@ namespace MESInterface
             return false;
         }
 
+        #endregion
+
+        #region 产品型号增删改查
+
+        public string CommitProductType(Dictionary<int, string> dctData)
+        {
+            LogHelper.Log.Info($"接口被调用-InsertProductType");
+            foreach (var item in dctData.Keys)
+            {
+                string value = dctData[item];
+                //插入数据库
+                //插入SQL
+                if (IsExistProductType(item))
+                {
+                    //ID已存在
+                    //update
+                    LogHelper.Log.Info("productName is exist, InsertProduce Excute UpdateProduceDB...");
+                    UpdateProductType(item, value, "");
+                }
+                else
+                {
+                    //不存在，插入
+                    string insertSQL = "INSERT INTO [WT_SCL].[dbo].[Product_Type] " +
+                    "([Product_ID],[Product_Name]) " +
+                    $"VALUES('{item}','{value}')";
+
+                    int res = SQLServer.ExecuteNonQuery(insertSQL);
+                    if (res < 1)
+                    {
+                        //插入失败
+                        LogHelper.Log.Info($"product type table insert fail {insertSQL}");
+                        return "0" + $" {item} {dctData[item]}";
+                    }
+                }
+            }
+            return "1";
+        }
+
+        /// <summary>
+        /// 产品型号是否为空
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        private bool IsExistProductType(int id)
+        {
+            string selectSQL = "SELECT  * " +
+                    "FROM [WT_SCL].[dbo].[Product_Type] " +
+                    $"WHERE [Product_Name] = '{id}'";
+            LogHelper.Log.Info($"ExistProductName = {selectSQL}");
+            DataTable dt = SQLServer.ExecuteDataSet(selectSQL).Tables[0];
+            if (dt.Rows.Count > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// 执行更新数据库产品型号表
+        /// </summary>
+        /// <param name="order"></param>
+        /// <param name="stationName"></param>
+        /// <returns></returns>
+        private bool UpdateProductType(int ID, string productName,string oldProductName)
+        {
+            string updateSQL = "UPDATE [WT_SCL].[dbo].[Product_Type] " +
+                "SET " +
+                $"[Product_ID]='{ID}' ,[Station_Name]='{productName}' " +
+                $"WHERE " +
+                $"[Station_Name] = '{oldProductName}'";
+            int r = SQLServer.ExecuteNonQuery(updateSQL);
+            LogHelper.Log.Info($"UpdateProductType={updateSQL}");
+            if (r > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// 查询当前产线的站位流程
+        /// </summary>
+        /// <returns></returns>
+        public DataSet SelectProductType()
+        {
+            string selectSQL = "SELECT * FROM [WT_SCL].[dbo].[Product_Type] ORDER BY [Product_ID]";
+            LogHelper.Log.Info($"SelectProductType={selectSQL}");
+            return SQLServer.ExecuteDataSet(selectSQL);
+        }
+
+        /// <summary>
+        /// 清除所有数据
+        /// </summary>
+        /// <returns></returns>
+        public int DeleteAllProductType()
+        {
+            string deleteSQL = "DELETE FROM [WT_SCL].[dbo].[Product_Type]";
+            return SQLServer.ExecuteNonQuery(deleteSQL);
+        }
+
+        /// <summary>
+        /// 删除某条记录
+        /// </summary>
+        /// <param name="stationName"></param>
+        /// <returns></returns>
+        public int DeleteProductType(string productName)
+        {
+            string deleteSQL = $"DELETE FROM [WT_SCL].[dbo].[Product_Type] WHERE [Product_Name] = '{productName}'";
+            LogHelper.Log.Info($"DeleteProductType={deleteSQL}");
+            return SQLServer.ExecuteNonQuery(deleteSQL);
+        }
         #endregion
 
     }

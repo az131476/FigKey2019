@@ -209,6 +209,42 @@ namespace RetrospectiveManager.MesService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/UpdateProduce", ReplyAction="http://tempuri.org/IMesService/UpdateProduceResponse")]
         System.Threading.Tasks.Task<string> UpdateProduceAsync(System.Collections.Generic.Dictionary<int, string> data);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/DeleteProduce", ReplyAction="http://tempuri.org/IMesService/DeleteProduceResponse")]
+        int DeleteProduce(string stationName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/DeleteProduce", ReplyAction="http://tempuri.org/IMesService/DeleteProduceResponse")]
+        System.Threading.Tasks.Task<int> DeleteProduceAsync(string stationName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/DeleteAllProduce", ReplyAction="http://tempuri.org/IMesService/DeleteAllProduceResponse")]
+        int DeleteAllProduce();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/DeleteAllProduce", ReplyAction="http://tempuri.org/IMesService/DeleteAllProduceResponse")]
+        System.Threading.Tasks.Task<int> DeleteAllProduceAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/DeleteProductType", ReplyAction="http://tempuri.org/IMesService/DeleteProductTypeResponse")]
+        int DeleteProductType(string productName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/DeleteProductType", ReplyAction="http://tempuri.org/IMesService/DeleteProductTypeResponse")]
+        System.Threading.Tasks.Task<int> DeleteProductTypeAsync(string productName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/DeleteAllProductType", ReplyAction="http://tempuri.org/IMesService/DeleteAllProductTypeResponse")]
+        int DeleteAllProductType();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/DeleteAllProductType", ReplyAction="http://tempuri.org/IMesService/DeleteAllProductTypeResponse")]
+        System.Threading.Tasks.Task<int> DeleteAllProductTypeAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectProductType", ReplyAction="http://tempuri.org/IMesService/SelectProductTypeResponse")]
+        System.Data.DataSet SelectProductType();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectProductType", ReplyAction="http://tempuri.org/IMesService/SelectProductTypeResponse")]
+        System.Threading.Tasks.Task<System.Data.DataSet> SelectProductTypeAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/CommitProductType", ReplyAction="http://tempuri.org/IMesService/CommitProductTypeResponse")]
+        string CommitProductType(System.Collections.Generic.Dictionary<int, string> dctData);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/CommitProductType", ReplyAction="http://tempuri.org/IMesService/CommitProductTypeResponse")]
+        System.Threading.Tasks.Task<string> CommitProductTypeAsync(System.Collections.Generic.Dictionary<int, string> dctData);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -369,6 +405,54 @@ namespace RetrospectiveManager.MesService {
         
         public System.Threading.Tasks.Task<string> UpdateProduceAsync(System.Collections.Generic.Dictionary<int, string> data) {
             return base.Channel.UpdateProduceAsync(data);
+        }
+        
+        public int DeleteProduce(string stationName) {
+            return base.Channel.DeleteProduce(stationName);
+        }
+        
+        public System.Threading.Tasks.Task<int> DeleteProduceAsync(string stationName) {
+            return base.Channel.DeleteProduceAsync(stationName);
+        }
+        
+        public int DeleteAllProduce() {
+            return base.Channel.DeleteAllProduce();
+        }
+        
+        public System.Threading.Tasks.Task<int> DeleteAllProduceAsync() {
+            return base.Channel.DeleteAllProduceAsync();
+        }
+        
+        public int DeleteProductType(string productName) {
+            return base.Channel.DeleteProductType(productName);
+        }
+        
+        public System.Threading.Tasks.Task<int> DeleteProductTypeAsync(string productName) {
+            return base.Channel.DeleteProductTypeAsync(productName);
+        }
+        
+        public int DeleteAllProductType() {
+            return base.Channel.DeleteAllProductType();
+        }
+        
+        public System.Threading.Tasks.Task<int> DeleteAllProductTypeAsync() {
+            return base.Channel.DeleteAllProductTypeAsync();
+        }
+        
+        public System.Data.DataSet SelectProductType() {
+            return base.Channel.SelectProductType();
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> SelectProductTypeAsync() {
+            return base.Channel.SelectProductTypeAsync();
+        }
+        
+        public string CommitProductType(System.Collections.Generic.Dictionary<int, string> dctData) {
+            return base.Channel.CommitProductType(dctData);
+        }
+        
+        public System.Threading.Tasks.Task<string> CommitProductTypeAsync(System.Collections.Generic.Dictionary<int, string> dctData) {
+            return base.Channel.CommitProductTypeAsync(dctData);
         }
     }
 }

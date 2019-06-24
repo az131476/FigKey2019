@@ -50,6 +50,24 @@ namespace MESInterface
 
         [OperationContract]
         string UpdateProduce(Dictionary<int, string> data);
+
+        [OperationContract]
+        int DeleteProduce(string stationName);
+
+        [OperationContract]
+        int DeleteAllProduce();
+
+        [OperationContract]
+        int DeleteProductType(string productName);
+
+        [OperationContract]
+        int DeleteAllProductType();
+
+        [OperationContract]
+        DataSet SelectProductType();
+
+        [OperationContract]
+        string CommitProductType(Dictionary<int, string> dctData);
     }
 
 

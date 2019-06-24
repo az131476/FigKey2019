@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             this.radGridView1 = new Telerik.WinControls.UI.RadGridView();
             this.btn_apply = new Telerik.WinControls.UI.RadButton();
             this.rlbx_explain = new Telerik.WinControls.UI.RadLabel();
@@ -36,6 +36,8 @@
             this.btn_select = new Telerik.WinControls.UI.RadButton();
             this.radGroupBox2 = new Telerik.WinControls.UI.RadGroupBox();
             this.btn_cancel = new Telerik.WinControls.UI.RadButton();
+            this.btn_clear_server_data = new Telerik.WinControls.UI.RadButton();
+            this.btn_clear_dgv = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_apply)).BeginInit();
@@ -46,6 +48,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).BeginInit();
             this.radGroupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btn_cancel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_clear_server_data)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_clear_dgv)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -55,7 +59,7 @@
             // 
             // 
             // 
-            this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition2;
             this.radGridView1.Name = "radGridView1";
             this.radGridView1.Size = new System.Drawing.Size(413, 478);
             this.radGridView1.TabIndex = 0;
@@ -89,15 +93,17 @@
             // 
             // btn_select
             // 
-            this.btn_select.Location = new System.Drawing.Point(348, 21);
+            this.btn_select.Location = new System.Drawing.Point(14, 21);
             this.btn_select.Name = "btn_select";
             this.btn_select.Size = new System.Drawing.Size(79, 24);
             this.btn_select.TabIndex = 5;
-            this.btn_select.Text = "查询";
+            this.btn_select.Text = "刷新";
             // 
             // radGroupBox2
             // 
             this.radGroupBox2.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this.radGroupBox2.Controls.Add(this.btn_clear_dgv);
+            this.radGroupBox2.Controls.Add(this.btn_clear_server_data);
             this.radGroupBox2.Controls.Add(this.radGridView1);
             this.radGroupBox2.Controls.Add(this.btn_select);
             this.radGroupBox2.HeaderText = "生产线站位";
@@ -114,6 +120,22 @@
             this.btn_cancel.Size = new System.Drawing.Size(110, 29);
             this.btn_cancel.TabIndex = 7;
             this.btn_cancel.Text = "取消";
+            // 
+            // btn_clear_server_data
+            // 
+            this.btn_clear_server_data.Location = new System.Drawing.Point(345, 21);
+            this.btn_clear_server_data.Name = "btn_clear_server_data";
+            this.btn_clear_server_data.Size = new System.Drawing.Size(79, 24);
+            this.btn_clear_server_data.TabIndex = 6;
+            this.btn_clear_server_data.Text = "清空数据";
+            // 
+            // btn_clear_dgv
+            // 
+            this.btn_clear_dgv.Location = new System.Drawing.Point(250, 21);
+            this.btn_clear_dgv.Name = "btn_clear_dgv";
+            this.btn_clear_dgv.Size = new System.Drawing.Size(79, 24);
+            this.btn_clear_dgv.TabIndex = 7;
+            this.btn_clear_dgv.Text = "清空显示";
             // 
             // SetProduce
             // 
@@ -142,6 +164,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).EndInit();
             this.radGroupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btn_cancel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_clear_server_data)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_clear_dgv)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -156,5 +180,7 @@
         private Telerik.WinControls.UI.RadButton btn_select;
         private Telerik.WinControls.UI.RadGroupBox radGroupBox2;
         private Telerik.WinControls.UI.RadButton btn_cancel;
+        private Telerik.WinControls.UI.RadButton btn_clear_dgv;
+        private Telerik.WinControls.UI.RadButton btn_clear_server_data;
     }
 }

@@ -56,6 +56,7 @@
             this.radMenuItem12 = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItem13 = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenu1 = new Telerik.WinControls.UI.RadMenu();
+            this.menu_productType = new Telerik.WinControls.UI.RadMenuItem();
             this.toolStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -99,6 +100,7 @@
             // 
             this.radMenuItem2.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.menu_produce_config,
+            this.menu_productType,
             this.menu_set_station});
             this.radMenuItem2.Name = "radMenuItem2";
             this.radMenuItem2.Text = "配置";
@@ -106,7 +108,7 @@
             // menu_produce_config
             // 
             this.menu_produce_config.Name = "menu_produce_config";
-            this.menu_produce_config.Text = "生产线配置";
+            this.menu_produce_config.Text = "生产线站位";
             // 
             // menu_set_station
             // 
@@ -308,6 +310,11 @@
             this.radMenu1.Size = new System.Drawing.Size(1321, 23);
             this.radMenu1.TabIndex = 0;
             // 
+            // menu_productType
+            // 
+            this.menu_productType.Name = "menu_productType";
+            this.menu_productType.Text = "产品型号";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -373,5 +380,6 @@
         private Telerik.WinControls.UI.RadMenuItem radMenuItem13;
         private Telerik.WinControls.UI.RadMenu radMenu1;
         private Telerik.WinControls.UI.RadMenuItem radMenuItem7;
+        private Telerik.WinControls.UI.RadMenuItem menu_productType;
     }
 }

@@ -1036,7 +1036,7 @@ namespace SentConfigurator
 
         private void Dgv_groupdata_RowsChanged(object sender, Telerik.WinControls.UI.GridViewCollectionChangedEventArgs e)
         {
-            Telerik.WinControls.UI.GridViewTemplate m = e.GridViewTemplate;
+            GridViewTemplate m = e.GridViewTemplate;
             int row = m.Rows.Count;
             if (IsEditEnd)
             {

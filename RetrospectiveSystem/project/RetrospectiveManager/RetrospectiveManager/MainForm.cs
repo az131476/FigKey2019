@@ -26,7 +26,14 @@ namespace RetrospectiveManager
         {
             menu_set_station.Click += Menu_set_station_Click;
             menu_produce_config.Click += Menu_produce_config_Click;
+            menu_productType.Click += Menu_productType_Click;
+        }
 
+        private void Menu_productType_Click(object sender, EventArgs e)
+        {
+            ProductType productType = new ProductType();
+            productType.StartPosition = FormStartPosition.CenterParent;
+            productType.ShowDialog();
         }
 
         private void Menu_produce_config_Click(object sender, EventArgs e)

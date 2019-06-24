@@ -12,6 +12,7 @@ namespace RetrospectiveManager
 {
     public partial class SetStationAdmin : RadForm
     {
+        private MesService.MesServiceClient mesService;
         public SetStationAdmin()
         {
             InitializeComponent();
@@ -20,8 +21,16 @@ namespace RetrospectiveManager
 
         private void SetStationAdmin_Load(object sender, EventArgs e)
         {
+
             rdb_sn.CheckStateChanged += Rdb_sn_CheckStateChanged;
             rdb_type_no.CheckStateChanged += Rdb_type_no_CheckStateChanged;
+        }
+
+        private void OptionRemoteData()
+        {
+            mesService = new MesService.MesServiceClient();
+            //获取零件号可选项
+
         }
 
         private void Rdb_type_no_CheckStateChanged(object sender, EventArgs e)
