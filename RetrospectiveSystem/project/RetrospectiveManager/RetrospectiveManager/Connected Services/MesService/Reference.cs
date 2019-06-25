@@ -235,16 +235,40 @@ namespace RetrospectiveManager.MesService {
         System.Threading.Tasks.Task<int> DeleteAllProductTypeAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectProductType", ReplyAction="http://tempuri.org/IMesService/SelectProductTypeResponse")]
-        System.Data.DataSet SelectProductType();
+        System.Data.DataSet SelectProductType(string productName);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectProductType", ReplyAction="http://tempuri.org/IMesService/SelectProductTypeResponse")]
-        System.Threading.Tasks.Task<System.Data.DataSet> SelectProductTypeAsync();
+        System.Threading.Tasks.Task<System.Data.DataSet> SelectProductTypeAsync(string productName);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/CommitProductType", ReplyAction="http://tempuri.org/IMesService/CommitProductTypeResponse")]
         string CommitProductType(System.Collections.Generic.Dictionary<int, string> dctData);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/CommitProductType", ReplyAction="http://tempuri.org/IMesService/CommitProductTypeResponse")]
         System.Threading.Tasks.Task<string> CommitProductTypeAsync(System.Collections.Generic.Dictionary<int, string> dctData);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/DeleteAllTypeStation", ReplyAction="http://tempuri.org/IMesService/DeleteAllTypeStationResponse")]
+        int DeleteAllTypeStation();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/DeleteAllTypeStation", ReplyAction="http://tempuri.org/IMesService/DeleteAllTypeStationResponse")]
+        System.Threading.Tasks.Task<int> DeleteAllTypeStationAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/DeleteTypeStation", ReplyAction="http://tempuri.org/IMesService/DeleteTypeStationResponse")]
+        int DeleteTypeStation(string typeNumber);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/DeleteTypeStation", ReplyAction="http://tempuri.org/IMesService/DeleteTypeStationResponse")]
+        System.Threading.Tasks.Task<int> DeleteTypeStationAsync(string typeNumber);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectTypeStation", ReplyAction="http://tempuri.org/IMesService/SelectTypeStationResponse")]
+        System.Data.DataSet SelectTypeStation(string typeNumber);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectTypeStation", ReplyAction="http://tempuri.org/IMesService/SelectTypeStationResponse")]
+        System.Threading.Tasks.Task<System.Data.DataSet> SelectTypeStationAsync(string typeNumber);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/CommitTypeStation", ReplyAction="http://tempuri.org/IMesService/CommitTypeStationResponse")]
+        string CommitTypeStation(System.Collections.Generic.Dictionary<string, string[]> dctData);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/CommitTypeStation", ReplyAction="http://tempuri.org/IMesService/CommitTypeStationResponse")]
+        System.Threading.Tasks.Task<string> CommitTypeStationAsync(System.Collections.Generic.Dictionary<string, string[]> dctData);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -439,12 +463,12 @@ namespace RetrospectiveManager.MesService {
             return base.Channel.DeleteAllProductTypeAsync();
         }
         
-        public System.Data.DataSet SelectProductType() {
-            return base.Channel.SelectProductType();
+        public System.Data.DataSet SelectProductType(string productName) {
+            return base.Channel.SelectProductType(productName);
         }
         
-        public System.Threading.Tasks.Task<System.Data.DataSet> SelectProductTypeAsync() {
-            return base.Channel.SelectProductTypeAsync();
+        public System.Threading.Tasks.Task<System.Data.DataSet> SelectProductTypeAsync(string productName) {
+            return base.Channel.SelectProductTypeAsync(productName);
         }
         
         public string CommitProductType(System.Collections.Generic.Dictionary<int, string> dctData) {
@@ -453,6 +477,38 @@ namespace RetrospectiveManager.MesService {
         
         public System.Threading.Tasks.Task<string> CommitProductTypeAsync(System.Collections.Generic.Dictionary<int, string> dctData) {
             return base.Channel.CommitProductTypeAsync(dctData);
+        }
+        
+        public int DeleteAllTypeStation() {
+            return base.Channel.DeleteAllTypeStation();
+        }
+        
+        public System.Threading.Tasks.Task<int> DeleteAllTypeStationAsync() {
+            return base.Channel.DeleteAllTypeStationAsync();
+        }
+        
+        public int DeleteTypeStation(string typeNumber) {
+            return base.Channel.DeleteTypeStation(typeNumber);
+        }
+        
+        public System.Threading.Tasks.Task<int> DeleteTypeStationAsync(string typeNumber) {
+            return base.Channel.DeleteTypeStationAsync(typeNumber);
+        }
+        
+        public System.Data.DataSet SelectTypeStation(string typeNumber) {
+            return base.Channel.SelectTypeStation(typeNumber);
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> SelectTypeStationAsync(string typeNumber) {
+            return base.Channel.SelectTypeStationAsync(typeNumber);
+        }
+        
+        public string CommitTypeStation(System.Collections.Generic.Dictionary<string, string[]> dctData) {
+            return base.Channel.CommitTypeStation(dctData);
+        }
+        
+        public System.Threading.Tasks.Task<string> CommitTypeStationAsync(System.Collections.Generic.Dictionary<string, string[]> dctData) {
+            return base.Channel.CommitTypeStationAsync(dctData);
         }
     }
 }

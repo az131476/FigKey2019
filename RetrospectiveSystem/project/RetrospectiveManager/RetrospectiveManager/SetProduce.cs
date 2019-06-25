@@ -126,6 +126,7 @@ namespace RetrospectiveManager
             {
                 int del = await mesService.DeleteProduceAsync(curRowStationName);
             }
+            SelectData();
         }
 
         async private void Btn_clear_server_data_Click(object sender, EventArgs e)

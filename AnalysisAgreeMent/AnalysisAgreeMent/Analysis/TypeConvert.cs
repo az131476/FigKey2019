@@ -14,15 +14,15 @@ namespace AnalysisAgreeMent.Analysis
             switch (type)
             {
                 case DataTypeEnum.UBYTE:
-                    return SaveDataTypeEnum.V_UNIT;
+                    return SaveDataTypeEnum.V_UINT;
                 case DataTypeEnum.SBYTE:
                     return SaveDataTypeEnum.V_INT;
                 case DataTypeEnum.UWORD:
-                    return SaveDataTypeEnum.V_UNIT;
+                    return SaveDataTypeEnum.V_UINT;
                 case DataTypeEnum.SWORD:
                     return SaveDataTypeEnum.V_INT;
                 case DataTypeEnum.ULONG:
-                    return SaveDataTypeEnum.V_UNIT;
+                    return SaveDataTypeEnum.V_UINT;
                 case DataTypeEnum.SLONG:
                     return SaveDataTypeEnum.V_INT;
                 case DataTypeEnum.FLOAT32_IEEE:

@@ -31,23 +31,24 @@
             this.rdb_sn = new Telerik.WinControls.UI.RadRadioButton();
             this.rdb_type_no = new Telerik.WinControls.UI.RadRadioButton();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.radListView1 = new Telerik.WinControls.UI.RadListView();
+            this.cb_type_no = new System.Windows.Forms.ComboBox();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.btn_apply = new Telerik.WinControls.UI.RadButton();
             this.btn_cancel = new Telerik.WinControls.UI.RadButton();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.cb_sn_type_num = new System.Windows.Forms.ComboBox();
+            this.cb_sn_station = new System.Windows.Forms.ComboBox();
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tb_sn_sn = new System.Windows.Forms.TextBox();
             this.radGroupBox_type = new Telerik.WinControls.UI.RadGroupBox();
             this.radGroupBox_sn = new Telerik.WinControls.UI.RadGroupBox();
+            this.lbx_explain_sn = new Telerik.WinControls.UI.RadLabel();
+            this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
+            this.listView_select_station = new System.Windows.Forms.ListView();
             ((System.ComponentModel.ISupportInitialize)(this.rdb_sn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rdb_type_no)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radListView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_apply)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_cancel)).BeginInit();
@@ -58,6 +59,9 @@
             this.radGroupBox_type.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox_sn)).BeginInit();
             this.radGroupBox_sn.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lbx_explain_sn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
+            this.radGroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -85,20 +89,13 @@
             this.radLabel1.TabIndex = 2;
             this.radLabel1.Text = "零件号";
             // 
-            // comboBox1
+            // cb_type_no
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(65, 36);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(217, 20);
-            this.comboBox1.TabIndex = 3;
-            // 
-            // radListView1
-            // 
-            this.radListView1.Location = new System.Drawing.Point(65, 78);
-            this.radListView1.Name = "radListView1";
-            this.radListView1.Size = new System.Drawing.Size(217, 315);
-            this.radListView1.TabIndex = 4;
+            this.cb_type_no.FormattingEnabled = true;
+            this.cb_type_no.Location = new System.Drawing.Point(65, 36);
+            this.cb_type_no.Name = "cb_type_no";
+            this.cb_type_no.Size = new System.Drawing.Size(217, 20);
+            this.cb_type_no.TabIndex = 3;
             // 
             // radLabel2
             // 
@@ -132,21 +129,21 @@
             this.radLabel3.TabIndex = 0;
             this.radLabel3.Text = "零件号";
             // 
-            // comboBox2
+            // cb_sn_type_num
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(93, 29);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(160, 20);
-            this.comboBox2.TabIndex = 1;
+            this.cb_sn_type_num.FormattingEnabled = true;
+            this.cb_sn_type_num.Location = new System.Drawing.Point(93, 29);
+            this.cb_sn_type_num.Name = "cb_sn_type_num";
+            this.cb_sn_type_num.Size = new System.Drawing.Size(160, 20);
+            this.cb_sn_type_num.TabIndex = 1;
             // 
-            // comboBox3
+            // cb_sn_station
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(93, 125);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(160, 20);
-            this.comboBox3.TabIndex = 3;
+            this.cb_sn_station.FormattingEnabled = true;
+            this.cb_sn_station.Location = new System.Drawing.Point(93, 125);
+            this.cb_sn_station.Name = "cb_sn_station";
+            this.cb_sn_station.Size = new System.Drawing.Size(160, 20);
+            this.cb_sn_station.TabIndex = 3;
             // 
             // radLabel4
             // 
@@ -164,20 +161,20 @@
             this.radLabel5.TabIndex = 4;
             this.radLabel5.Text = "追溯码";
             // 
-            // textBox1
+            // tb_sn_sn
             // 
-            this.textBox1.Location = new System.Drawing.Point(93, 77);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(160, 21);
-            this.textBox1.TabIndex = 5;
+            this.tb_sn_sn.Location = new System.Drawing.Point(93, 77);
+            this.tb_sn_sn.Name = "tb_sn_sn";
+            this.tb_sn_sn.Size = new System.Drawing.Size(160, 21);
+            this.tb_sn_sn.TabIndex = 5;
             // 
             // radGroupBox_type
             // 
             this.radGroupBox_type.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this.radGroupBox_type.Controls.Add(this.listView_select_station);
             this.radGroupBox_type.Controls.Add(this.radLabel1);
-            this.radGroupBox_type.Controls.Add(this.comboBox1);
+            this.radGroupBox_type.Controls.Add(this.cb_type_no);
             this.radGroupBox_type.Controls.Add(this.radLabel2);
-            this.radGroupBox_type.Controls.Add(this.radListView1);
             this.radGroupBox_type.HeaderText = "按零件号配置站位";
             this.radGroupBox_type.Location = new System.Drawing.Point(3, 57);
             this.radGroupBox_type.Name = "radGroupBox_type";
@@ -188,18 +185,46 @@
             // radGroupBox_sn
             // 
             this.radGroupBox_sn.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this.radGroupBox_sn.Controls.Add(this.textBox1);
+            this.radGroupBox_sn.Controls.Add(this.radGroupBox1);
+            this.radGroupBox_sn.Controls.Add(this.tb_sn_sn);
             this.radGroupBox_sn.Controls.Add(this.radLabel3);
             this.radGroupBox_sn.Controls.Add(this.radLabel5);
-            this.radGroupBox_sn.Controls.Add(this.comboBox2);
-            this.radGroupBox_sn.Controls.Add(this.comboBox3);
+            this.radGroupBox_sn.Controls.Add(this.cb_sn_type_num);
+            this.radGroupBox_sn.Controls.Add(this.cb_sn_station);
             this.radGroupBox_sn.Controls.Add(this.radLabel4);
             this.radGroupBox_sn.HeaderText = "按追溯码设置";
-            this.radGroupBox_sn.Location = new System.Drawing.Point(3, 49);
+            this.radGroupBox_sn.Location = new System.Drawing.Point(3, 47);
             this.radGroupBox_sn.Name = "radGroupBox_sn";
             this.radGroupBox_sn.Size = new System.Drawing.Size(329, 406);
             this.radGroupBox_sn.TabIndex = 10;
             this.radGroupBox_sn.Text = "按追溯码设置";
+            // 
+            // lbx_explain_sn
+            // 
+            this.lbx_explain_sn.Location = new System.Drawing.Point(7, 39);
+            this.lbx_explain_sn.Name = "lbx_explain_sn";
+            this.lbx_explain_sn.Size = new System.Drawing.Size(77, 18);
+            this.lbx_explain_sn.TabIndex = 6;
+            this.lbx_explain_sn.Text = "lbx_explain_sn";
+            // 
+            // radGroupBox1
+            // 
+            this.radGroupBox1.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this.radGroupBox1.Controls.Add(this.lbx_explain_sn);
+            this.radGroupBox1.HeaderText = "说明";
+            this.radGroupBox1.Location = new System.Drawing.Point(9, 239);
+            this.radGroupBox1.Name = "radGroupBox1";
+            this.radGroupBox1.Size = new System.Drawing.Size(313, 159);
+            this.radGroupBox1.TabIndex = 11;
+            this.radGroupBox1.Text = "说明";
+            // 
+            // listView_select_station
+            // 
+            this.listView_select_station.Location = new System.Drawing.Point(65, 102);
+            this.listView_select_station.Name = "listView_select_station";
+            this.listView_select_station.Size = new System.Drawing.Size(217, 291);
+            this.listView_select_station.TabIndex = 6;
+            this.listView_select_station.UseCompatibleStateImageBehavior = false;
             // 
             // SetStationAdmin
             // 
@@ -222,7 +247,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.rdb_sn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rdb_type_no)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radListView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_apply)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_cancel)).EndInit();
@@ -235,6 +259,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox_sn)).EndInit();
             this.radGroupBox_sn.ResumeLayout(false);
             this.radGroupBox_sn.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lbx_explain_sn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).EndInit();
+            this.radGroupBox1.ResumeLayout(false);
+            this.radGroupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -246,18 +274,20 @@
         private Telerik.WinControls.UI.RadRadioButton rdb_sn;
         private Telerik.WinControls.UI.RadRadioButton rdb_type_no;
         private Telerik.WinControls.UI.RadLabel radLabel1;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private Telerik.WinControls.UI.RadListView radListView1;
+        private System.Windows.Forms.ComboBox cb_type_no;
         private Telerik.WinControls.UI.RadLabel radLabel2;
         private Telerik.WinControls.UI.RadButton btn_apply;
         private Telerik.WinControls.UI.RadButton btn_cancel;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tb_sn_sn;
         private Telerik.WinControls.UI.RadLabel radLabel5;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox cb_sn_station;
         private Telerik.WinControls.UI.RadLabel radLabel4;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox cb_sn_type_num;
         private Telerik.WinControls.UI.RadLabel radLabel3;
         private Telerik.WinControls.UI.RadGroupBox radGroupBox_type;
         private Telerik.WinControls.UI.RadGroupBox radGroupBox_sn;
+        private Telerik.WinControls.UI.RadGroupBox radGroupBox1;
+        private Telerik.WinControls.UI.RadLabel lbx_explain_sn;
+        private System.Windows.Forms.ListView listView_select_station;
     }
 }

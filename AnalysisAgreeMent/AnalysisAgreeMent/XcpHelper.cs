@@ -598,13 +598,15 @@ namespace AnalysisAgreeMent
                         compuMethod.format = readLineResult;
                         break;
                     case (int)XcpFormat.XcpCompu_Method.UNIT:
+                        if (readLineResult.Contains("-"))
+                            readLineResult = readLineResult.Replace("-","").Trim();
                         compuMethod.unit = readLineResult;
                         break;
                     case (int)XcpFormat.XcpCompu_Method.COEFFS:
                         if (compuMethod.funType.ToLower() == A2lContent.BegincompuMedthod.RAT_FUNC)
                         {
-                            ///函数类型为rat_func时，显示值v1= b/f,v2 = c/f;
-                            ///
+                            ///函数类型为rat_func时，显示值v1 = f/b  v2 = -c/b
+                            ///a b c d e f
                             compuMethod.coeffsValue = readLineResult.Replace(A2lContent.BegincompuMedthod.COEFFS, "");
                             string[] res = readLineResult.ToLower().Replace(A2lContent.BegincompuMedthod.COEFFS, "").Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
                             string v1 = "0",v2 = "0";
@@ -619,7 +621,7 @@ namespace AnalysisAgreeMent
                             }
                             if (double.Parse(res[2]) != 0 && double.Parse(res[5]) != 0)
                             {
-                                v2 = (double.Parse(res[5]) / double.Parse(res[2])).ToString("f7");
+                                v2 = (- double.Parse(res[2]) / double.Parse(res[1])).ToString("f7");
                             }
                             else
                             {

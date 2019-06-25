@@ -424,7 +424,7 @@ namespace MESInterface
                 string value = dctData[item];
                 //插入数据库
                 //插入SQL
-                if (IsExistProductType(item))
+                if (IsExistProductType(value))
                 {
                     //ID已存在
                     //update
@@ -434,9 +434,10 @@ namespace MESInterface
                 else
                 {
                     //不存在，插入
+                    LogHelper.Log.Info($"productName is not exist value={value}, InsertProduce Excute Insert Into Table...");
                     string insertSQL = "INSERT INTO [WT_SCL].[dbo].[Product_Type] " +
-                    "([Product_ID],[Product_Name]) " +
-                    $"VALUES('{item}','{value}')";
+                    "([Type_Number]) " +
+                    $"VALUES('{value}')";
 
                     int res = SQLServer.ExecuteNonQuery(insertSQL);
                     if (res < 1)
@@ -455,11 +456,11 @@ namespace MESInterface
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        private bool IsExistProductType(int id)
+        private bool IsExistProductType(string productName)
         {
             string selectSQL = "SELECT  * " +
                     "FROM [WT_SCL].[dbo].[Product_Type] " +
-                    $"WHERE [Product_Name] = '{id}'";
+                    $"WHERE [Type_Number] = '{productName}'";
             LogHelper.Log.Info($"ExistProductName = {selectSQL}");
             DataTable dt = SQLServer.ExecuteDataSet(selectSQL).Tables[0];
             if (dt.Rows.Count > 0)
@@ -495,9 +496,18 @@ namespace MESInterface
         /// 查询当前产线的站位流程
         /// </summary>
         /// <returns></returns>
-        public DataSet SelectProductType()
+        public DataSet SelectProductType(string typeNumber)
         {
-            string selectSQL = "SELECT * FROM [WT_SCL].[dbo].[Product_Type] ORDER BY [Product_ID]";
+            string selectSQL = "";
+            if (string.IsNullOrEmpty(typeNumber.Trim()))
+            {
+                selectSQL = $"SELECT * FROM [WT_SCL].[dbo].[Product_Type] ORDER BY [Product_ID]";
+            }
+            else
+            {
+                selectSQL = $"SELECT * FROM [WT_SCL].[dbo].[Product_Type] WHERE [Type_Number] like '%{typeNumber}%' ORDER BY [Product_ID]";
+            }
+            
             LogHelper.Log.Info($"SelectProductType={selectSQL}");
             return SQLServer.ExecuteDataSet(selectSQL);
         }
@@ -519,11 +529,132 @@ namespace MESInterface
         /// <returns></returns>
         public int DeleteProductType(string productName)
         {
-            string deleteSQL = $"DELETE FROM [WT_SCL].[dbo].[Product_Type] WHERE [Product_Name] = '{productName}'";
+            string deleteSQL = $"DELETE FROM [WT_SCL].[dbo].[Product_Type] WHERE [Type_Number] = '{productName}'";
             LogHelper.Log.Info($"DeleteProductType={deleteSQL}");
             return SQLServer.ExecuteNonQuery(deleteSQL);
         }
         #endregion
 
+        #region 型号所属站位增删改查
+        public string CommitTypeStation(Dictionary<string, string[]> dctData)
+        {
+            LogHelper.Log.Info($"接口被调用-CommitTypeStation");
+            foreach (var typeNumber in dctData.Keys)
+            {
+                string[] arrayStation = dctData[typeNumber];
+                //插入数据库
+                //插入SQL
+                if (IsExistTypeStation(typeNumber))
+                {
+                    //ID已存在
+                    //update
+                    LogHelper.Log.Info("product type_number is exist, Excute UpdateProduceDB...");
+                    UpdateTypeStation(typeNumber, arrayStation);
+                }
+                else
+                {
+                    //不存在，插入
+                    LogHelper.Log.Info($"product type number is not exist value={typeNumber}, Excute Insert Into Table...");
+                    string insertSQL = "INSERT INTO [WT_SCL].[dbo].[Product_Process]" +
+                            "([Type_Number],[Station_Name_1],[Station_Name_2],[Station_Name_3],[Station_Name_4],[Station_Name_5]," +
+                            "[Station_Name_6],[Station_Name_7],[Station_Name_8],[Station_Name_9],[Station_Name_10]) " +
+                            $"VALUES('{typeNumber}','{arrayStation[0]}','{arrayStation[1]}','{arrayStation[2]}','{arrayStation[3]}'," +
+                            $"'{arrayStation[4]}','{arrayStation[5]}','{arrayStation[6]}','{arrayStation[7]}','{arrayStation[8]}','{arrayStation[9]}')";
+
+                    int res = SQLServer.ExecuteNonQuery(insertSQL);
+                    if (res < 1)
+                    {
+                        //插入失败
+                        LogHelper.Log.Info($"product type number table insert fail {insertSQL}");
+                        return "0" + $" {typeNumber}";
+                    }
+                }
+            }
+            return "1";
+        }
+
+        /// <summary>
+        /// 产品型号是否为空
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        private bool IsExistTypeStation(string typeNumber)
+        {
+            string selectSQL = "SELECT  * " +
+                    "FROM [WT_SCL].[dbo].[Product_Process] " +
+                    $"WHERE [Type_Number] = '{typeNumber}'";
+            LogHelper.Log.Info($"Exist Product type number = {selectSQL}");
+            DataTable dt = SQLServer.ExecuteDataSet(selectSQL).Tables[0];
+            if (dt.Rows.Count > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// 执行更新数据库产品型号所属站位表
+        /// </summary>
+        /// <param name="order"></param>
+        /// <param name="stationName"></param>
+        /// <returns></returns>
+        private bool UpdateTypeStation(string typeNumber,string[] arrayStation)
+        {
+            string updateSQL = "UPDATE [ST_SCL].[dbo].[Product_Process] " +
+                $"SET Station_Name1 = '{arrayStation[0]}',Station_Name2='{arrayStation[1]}',Station_Name3='{arrayStation[2]}'," +
+                $"Station_Name4='{arrayStation[3]}',Station_Name5='{arrayStation[4]}',Station_Name6 = '{arrayStation[5]}'," +
+                $"Station_Name7 = '{arrayStation[6]}',Station_Name8 = '{arrayStation[7]}',Station_Name9 = '{arrayStation[8]}',Station_Name10 = '{arrayStation[9]}' " +
+                $"WHERE Type_Number = '{typeNumber}'";
+            int r = SQLServer.ExecuteNonQuery(updateSQL);
+            LogHelper.Log.Info($"Update Product Type Number={updateSQL}");
+            if (r > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// 查询当前型号所属站位列表
+        /// </summary>
+        /// <returns></returns>
+        public DataSet SelectTypeStation(string typeNumber)
+        {
+            string selectSQL = "";
+            if (string.IsNullOrEmpty(typeNumber.Trim()))
+            {
+                selectSQL = $"SELECT * FROM [WT_SCL].[dbo].[Product_Process] ORDER BY [Type_Number]";
+            }
+            else
+            {
+                selectSQL = $"SELECT * FROM [WT_SCL].[dbo].[Product_Process] WHERE [Type_Number] like '%{typeNumber}%' ORDER BY [Type_Number]";
+            }
+
+            LogHelper.Log.Info($"Select Product Type Number={selectSQL}");
+            return SQLServer.ExecuteDataSet(selectSQL);
+        }
+
+        /// <summary>
+        /// 清除所有数据
+        /// </summary>
+        /// <returns></returns>
+        public int DeleteAllTypeStation()
+        {
+            string deleteSQL = "DELETE FROM [WT_SCL].[dbo].[Product_Process]";
+            return SQLServer.ExecuteNonQuery(deleteSQL);
+        }
+
+        /// <summary>
+        /// 删除某条记录
+        /// </summary>
+        /// <param name="stationName"></param>
+        /// <returns></returns>
+        public int DeleteTypeStation(string typeNumber)
+        {
+            string deleteSQL = $"DELETE FROM [WT_SCL].[dbo].[Product_Process] WHERE [Type_Number] = '{typeNumber}'";
+            LogHelper.Log.Info($"DeleteProductType={deleteSQL}");
+            return SQLServer.ExecuteNonQuery(deleteSQL);
+        }
+        #endregion
     }
 }

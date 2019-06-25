@@ -38,7 +38,7 @@ namespace AnalysisAgreeMent.Model
     /// </summary>
     public enum SaveDataTypeEnum
     {
-        V_UNIT = 0,
+        V_UINT = 0,
         V_INT = 1,
         V_FL4 = 2,
         V_FL8 = 3,

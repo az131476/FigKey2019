@@ -64,10 +64,22 @@ namespace MESInterface
         int DeleteAllProductType();
 
         [OperationContract]
-        DataSet SelectProductType();
+        DataSet SelectProductType(string productName);
 
         [OperationContract]
         string CommitProductType(Dictionary<int, string> dctData);
+
+        [OperationContract]
+        int DeleteAllTypeStation();
+
+        [OperationContract]
+        int DeleteTypeStation(string typeNumber);
+
+        [OperationContract]
+        DataSet SelectTypeStation(string typeNumber);
+
+        [OperationContract]
+        string CommitTypeStation(Dictionary<string, string[]> dctData);
     }
 
 

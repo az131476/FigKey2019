@@ -112,6 +112,30 @@
   <wsdl:message name="IMesService_CommitProductType_OutputMessage">
     <wsdl:part name="parameters" element="tns:CommitProductTypeResponse" />
   </wsdl:message>
+  <wsdl:message name="IMesService_DeleteAllTypeStation_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAllTypeStation" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_DeleteAllTypeStation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAllTypeStationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_DeleteTypeStation_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteTypeStation" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_DeleteTypeStation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteTypeStationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_SelectTypeStation_InputMessage">
+    <wsdl:part name="parameters" element="tns:SelectTypeStation" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_SelectTypeStation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SelectTypeStationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_CommitTypeStation_InputMessage">
+    <wsdl:part name="parameters" element="tns:CommitTypeStation" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_CommitTypeStation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CommitTypeStationResponse" />
+  </wsdl:message>
   <wsdl:portType name="IMesService">
     <wsdl:operation name="GetData">
       <wsdl:input wsaw:Action="http://tempuri.org/IMesService/GetData" message="tns:IMesService_GetData_InputMessage" />
@@ -180,6 +204,22 @@
     <wsdl:operation name="CommitProductType">
       <wsdl:input wsaw:Action="http://tempuri.org/IMesService/CommitProductType" message="tns:IMesService_CommitProductType_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMesService/CommitProductTypeResponse" message="tns:IMesService_CommitProductType_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAllTypeStation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/DeleteAllTypeStation" message="tns:IMesService_DeleteAllTypeStation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/DeleteAllTypeStationResponse" message="tns:IMesService_DeleteAllTypeStation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTypeStation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/DeleteTypeStation" message="tns:IMesService_DeleteTypeStation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/DeleteTypeStationResponse" message="tns:IMesService_DeleteTypeStation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectTypeStation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/SelectTypeStation" message="tns:IMesService_SelectTypeStation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/SelectTypeStationResponse" message="tns:IMesService_SelectTypeStation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CommitTypeStation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/CommitTypeStation" message="tns:IMesService_CommitTypeStation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/CommitTypeStationResponse" message="tns:IMesService_CommitTypeStation_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IMesService" type="tns:IMesService">
@@ -330,6 +370,42 @@
     </wsdl:operation>
     <wsdl:operation name="CommitProductType">
       <soap:operation soapAction="http://tempuri.org/IMesService/CommitProductType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAllTypeStation">
+      <soap:operation soapAction="http://tempuri.org/IMesService/DeleteAllTypeStation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTypeStation">
+      <soap:operation soapAction="http://tempuri.org/IMesService/DeleteTypeStation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectTypeStation">
+      <soap:operation soapAction="http://tempuri.org/IMesService/SelectTypeStation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CommitTypeStation">
+      <soap:operation soapAction="http://tempuri.org/IMesService/CommitTypeStation" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

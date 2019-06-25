@@ -90,6 +90,11 @@ namespace LoggerConfigurator
             radGridView1.ValueChanged += RadGridView1_ValueChanged;
 
             tool_exportfile.Click += Tool_exportfile_Click;
+
+            tabPage_gridview_can1.Parent = tabControl1;
+            tabPage_hardware.Parent = tabControl1;
+            tabPage_gridview_can2.Parent = null;
+            selectedCan = SelectedCan.CAN_1;
         }
 
         #region 复选框行值处理

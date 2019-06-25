@@ -26,6 +26,10 @@ namespace RetrospectiveManager
 
         private void ProductType_Load(object sender, EventArgs e)
         {
+            mesService = new MesService.MesServiceClient();
+            InitDataSource();
+            SetRadGridViewProperty();
+
             btn_commit.Click += Btn_commit_Click;
             btn_select.Click += Btn_select_Click;
             btn_clear_server.Click += Btn_clear_server_Click;
@@ -66,7 +70,7 @@ namespace RetrospectiveManager
                         e.ContextMenu.Items[i].Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
                         break;
                     case "Cut":
-                        e.ContextMenu.Items[i].Click += SetCutProduce_Click;
+                        e.ContextMenu.Items[i].Click += SetCutProductType_Click;
                         break;
                     case "Copy":
                         break;
@@ -77,13 +81,13 @@ namespace RetrospectiveManager
                     case "Clear Value":
                         break;
                     case "Delete Row":
-                        e.ContextMenu.Items[i].Click += SetCutProduce_Click; ;
+                        e.ContextMenu.Items[i].Click += SetCutProductType_Click; ;
                         break;
                 }
             }
         }
 
-        private void SetCutProduce_Click(object sender, EventArgs e)
+        private void SetCutProductType_Click(object sender, EventArgs e)
         {
             DeleteProduceData();
         }
@@ -93,20 +97,25 @@ namespace RetrospectiveManager
             //cut 执行delete 服务数据
             if (MessageBox.Show("是否删除该行数据", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
             {
-                int del = await mesService.DeleteProduceAsync(curRowStationName);
+                int del = await mesService.DeleteProductTypeAsync(curRowStationName);
             }
+            SelectServiceData("");
         }
 
         async private void Btn_clear_server_Click(object sender, EventArgs e)
         {
             //清空服务所有数据
-            int del = await mesService.DeleteAllProductTypeAsync();
+            if (MessageBox.Show("是否删除数据库服务所有数据", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+            {
+                int del = await mesService.DeleteAllProductTypeAsync();
+            }
+            SelectServiceData("");
         }
 
         private void Btn_select_Click(object sender, EventArgs e)
         {
             //查询/搜索
-            SelectServiceData();
+            SelectServiceData(tbx_select_filter.Text.Trim());
         }
 
         private void Btn_commit_Click(object sender, EventArgs e)
@@ -114,7 +123,7 @@ namespace RetrospectiveManager
             CommitMesService();
         }
 
-        private DataTable DataSource()
+        private DataTable InitDataSource()
         {
             if (dataSource == null)
             {
@@ -126,12 +135,29 @@ namespace RetrospectiveManager
         }
 
         /// <summary>
+        /// 设置视图属性
+        /// </summary>
+        private void SetRadGridViewProperty()
+        {
+            radGridView1.EnableGrouping = false;
+            radGridView1.AllowDrop = true;
+            radGridView1.AllowRowReorder = true;
+            /////显示每行前面的标记
+            radGridView1.AddNewRowPosition = Telerik.WinControls.UI.SystemRowPosition.Bottom;
+            radGridView1.ShowRowHeaderColumn = true;
+            radGridView1.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
+            radGridView1.ReadOnly = false;
+            //gridView.ColumnChooserSortOrder = RadSortOrder.Ascending;
+            //dgv.AllowRowHeaderContextMenu = false;
+        }
+
+        /// <summary>
         /// 查询数据，并显示
         /// </summary>
-        async private void SelectServiceData()
+        async private void SelectServiceData(string filterText)
         {
             //调用查询接口
-            DataSet dataSet = await mesService.SelectProductTypeAsync();
+            DataSet dataSet = await mesService.SelectProductTypeAsync(filterText);
             DataTable dataTable = dataSet.Tables[0];
             dataSource.Clear();
             if (dataTable.Rows.Count > 0)
@@ -140,7 +166,7 @@ namespace RetrospectiveManager
                 for (int i = 0; i < dataTable.Rows.Count; i++)
                 {
                     DataRow dr = dataSource.NewRow();
-                    dr[DATA_ORDER_NAME] = dataTable.Rows[i][0].ToString();
+                    dr[DATA_ORDER_NAME] = i + 1;
                     dr[DATA_STATION_NAME] = dataTable.Rows[i][1].ToString();
                     dataSource.Rows.Add(dr);
                 }
@@ -179,11 +205,11 @@ namespace RetrospectiveManager
                 string res = await mesService.CommitProductTypeAsync(keyValuePairs);
                 if (res == "1")
                 {
-                    MessageBox.Show("提交成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("更新成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    MessageBox.Show($"提交失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show($"更新失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
