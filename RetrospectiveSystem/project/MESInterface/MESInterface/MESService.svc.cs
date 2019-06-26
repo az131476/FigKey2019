@@ -225,6 +225,32 @@ namespace MESInterface
              */
             //根据传入站-查询该站的产线流程中的上一站
             //
+            //判断首站
+            DataTable dataSet = SelectProduce(sStationName,"").Tables[0];
+            var station = dataSet.Rows[0][1].ToString().Trim();
+            var order = int.Parse(dataSet.Rows[0][0].ToString().Trim());
+            if (sStationName == station)
+            {
+                //插入数据库
+
+            }
+            else
+            {
+                //非首站
+                //判断上一站位是否通过
+                DataTable data = SelectTypeStation(sTypeNumber).Tables[0];
+                int lastIndex = 0;
+                for (int i = 0; i < data.Columns.Count; i++)
+                {
+                    if (data.Rows[0][i].ToString().Trim() == sStationName)
+                    {
+                        lastIndex = i - 1;
+                        break;
+                    }
+                }
+                string lastStation = data.Rows[0][lastIndex].ToString().Trim();
+
+            }
             return "";
         }
         #endregion
@@ -242,6 +268,13 @@ namespace MESInterface
         public string InsertWIP(string sn, string sTypeNumber, string sStationName, string sTestResult, string sTime)
         {
             return "";
+        }
+
+        public void SelectProductData()
+        {
+            string selectSQL = "SELECT [SN],[Type_Number],[Station_Name],[Test_Result],[CreateDate],[UpdateDate],[Remark] " +
+                "FROM [WT_SCL].[dbo].[Product_Data] " +
+                "WHERE ";
         }
         #endregion
 
@@ -301,9 +334,10 @@ namespace MESInterface
         /// 查询当前产线的站位流程
         /// </summary>
         /// <returns></returns>
-        public DataSet SelectProduce()
+        public DataSet SelectProduce(string stationName,string stationOrder)
         {
-            string selectSQL = "SELECT * FROM [WT_SCL].[dbo].[Produce_Process] ORDER BY [Station_Order]";
+            string selectSQL = $"SELECT * FROM [WT_SCL].[dbo].[Produce_Process] WHERE Station_Name = '{stationName}' " +
+                $"or Station_Order ='{stationOrder}' ORDER BY [Station_Order]";
             return SQLServer.ExecuteDataSet(selectSQL);
         }
 
@@ -600,10 +634,10 @@ namespace MESInterface
         /// <returns></returns>
         private bool UpdateTypeStation(string typeNumber,string[] arrayStation)
         {
-            string updateSQL = "UPDATE [ST_SCL].[dbo].[Product_Process] " +
-                $"SET Station_Name1 = '{arrayStation[0]}',Station_Name2='{arrayStation[1]}',Station_Name3='{arrayStation[2]}'," +
-                $"Station_Name4='{arrayStation[3]}',Station_Name5='{arrayStation[4]}',Station_Name6 = '{arrayStation[5]}'," +
-                $"Station_Name7 = '{arrayStation[6]}',Station_Name8 = '{arrayStation[7]}',Station_Name9 = '{arrayStation[8]}',Station_Name10 = '{arrayStation[9]}' " +
+            string updateSQL = "UPDATE [WT_SCL].[dbo].[Product_Process] " +
+                $"SET Station_Name_1 = '{arrayStation[0]}',Station_Name_2='{arrayStation[1]}',Station_Name_3='{arrayStation[2]}'," +
+                $"Station_Name_4='{arrayStation[3]}',Station_Name_5='{arrayStation[4]}',Station_Name_6 = '{arrayStation[5]}'," +
+                $"Station_Name_7 = '{arrayStation[6]}',Station_Name_8 = '{arrayStation[7]}',Station_Name_9 = '{arrayStation[8]}',Station_Name_10 = '{arrayStation[9]}' " +
                 $"WHERE Type_Number = '{typeNumber}'";
             int r = SQLServer.ExecuteNonQuery(updateSQL);
             LogHelper.Log.Info($"Update Product Type Number={updateSQL}");
@@ -627,7 +661,7 @@ namespace MESInterface
             }
             else
             {
-                selectSQL = $"SELECT * FROM [WT_SCL].[dbo].[Product_Process] WHERE [Type_Number] like '%{typeNumber}%' ORDER BY [Type_Number]";
+                selectSQL = $"SELECT * FROM [WT_SCL].[dbo].[Product_Process] WHERE [Type_Number] = '{typeNumber}' ORDER BY [Type_Number]";
             }
 
             LogHelper.Log.Info($"Select Product Type Number={selectSQL}");

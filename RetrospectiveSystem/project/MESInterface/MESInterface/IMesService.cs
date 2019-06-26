@@ -46,7 +46,7 @@ namespace MESInterface
         string InsertProduce(Dictionary<int, string> dctData);
 
         [OperationContract]
-        DataSet SelectProduce();
+        DataSet SelectProduce(string stationName,string stationOrder);
 
         [OperationContract]
         string UpdateProduce(Dictionary<int, string> data);

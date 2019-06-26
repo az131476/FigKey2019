@@ -15,6 +15,8 @@ namespace RetrospectiveManager
         {
             InitializeComponent();
             this.MaximizeBox = false;
+            this.FormBorderStyle = FormBorderStyle.FixedDialog;
+            this.StartPosition = FormStartPosition.CenterParent;
         }
     }
 }

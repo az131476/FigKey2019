@@ -18,6 +18,8 @@ namespace RetrospectiveManager
         {
             InitializeComponent();
             this.MaximizeBox = false;
+            this.FormBorderStyle = FormBorderStyle.FixedDialog;
+            this.StartPosition = FormStartPosition.CenterParent;
             this.lbx_explain_sn.Text = "\t当该站不能测试时（上一站位测试结果为失败），\r\n 可手动设置到当前站位";
         }
 
@@ -119,8 +121,15 @@ namespace RetrospectiveManager
             //所有
             DataTable dataSource =  (await mesService.SelectProduceAsync()).Tables[0];
             //更新listview
-            if (curTypeNumberData.Columns.Count < 1)
+            if (curTypeNumberData.Rows.Count < 1)
+            {
+                //设置不可选
+                foreach (ListViewItem item in this.listView_select_station.Items)
+                {
+                    item.Checked = false;
+                }
                 return;
+            }
             for (int i = 0; i < curTypeNumberData.Columns.Count; i++)
             {
                 var v1 = curTypeNumberData.Rows[0][i].ToString().Trim();

@@ -22,6 +22,7 @@ namespace RetrospectiveManager
         {
             InitializeComponent();
             this.MaximizeBox = false;
+            this.FormBorderStyle = FormBorderStyle.Fixed3D;
             rlbx_explain.Text = "按顺序添加生产线包含的站位，也可修改站位信息";
         }
 

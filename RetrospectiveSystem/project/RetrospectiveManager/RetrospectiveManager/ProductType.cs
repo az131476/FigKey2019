@@ -22,6 +22,8 @@ namespace RetrospectiveManager
         {
             InitializeComponent();
             this.MaximizeBox = false;
+            this.StartPosition = FormStartPosition.CenterParent;
+            this.FormBorderStyle = FormBorderStyle.FixedDialog;
         }
 
         private void ProductType_Load(object sender, EventArgs e)

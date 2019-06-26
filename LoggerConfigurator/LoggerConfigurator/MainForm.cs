@@ -14,6 +14,7 @@ using Telerik.Data;
 using Telerik.Collections;
 using Telerik.WinControls.Themes;
 using Telerik.WinControls.Enumerations;
+using Telerik.WinControls.UI.Docking;
 using FigKeyLoggerConfigurator.Control;
 using FigKeyLoggerConfigurator.Model;
 using CommonUtils.FileHelper;
@@ -28,7 +29,7 @@ using System.IO;
 
 namespace LoggerConfigurator
 {
-    public partial class MainForm : Form
+    public partial class MainForm : RadForm
     {
         #region 私有成员变量
         private FileContent openFileContent;
@@ -44,14 +45,35 @@ namespace LoggerConfigurator
         private FileType analysisFileType;
         private DataTable dataSource;
         private SelectedCan selectedCan;
+        private DocumentWindow documentWindow1;
+        private DocumentWindow documentWindow2;
+        private DocumentWindow documentWindow3;
         #endregion
         public MainForm()
         {
             InitializeComponent();
-            this.WindowState = FormWindowState.Maximized;
+            this.StartPosition = FormStartPosition.CenterScreen;
+        }
+
+        public void Init()
+        {
             Initial();
             LoadTreeView();
             LoadRadGridView();
+        }
+
+        private void RadForm1_Load(object sender, EventArgs e)
+        {
+            Login login = new Login();
+            login.ShowDialog();
+
+            btn_openFile_Can1.Click += OpenXcp_Click;
+            btn_search_can1.Click += Rbtn_search_Click;
+            tb_filter_can1.KeyDown += XcpFilterCondition_KeyDown;
+
+            radGridView_can1.ValueChanged += RadGridView1_ValueChanged;
+
+            tool_exportfile.Click += Tool_exportfile_Click;
         }
 
         enum SelectedCan
@@ -79,22 +101,9 @@ namespace LoggerConfigurator
             cb_protocol.Items.Add("XCP");
             cb_protocol.Items.Add("CanMonnitor");
             cb_protocol.SelectedIndex = 0;
-        }
 
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-            openXcp.Click += OpenXcp_Click;
-            rbtn_search.Click += Rbtn_search_Click;
-            xcpFilterCondition.KeyDown += XcpFilterCondition_KeyDown;
-
-            radGridView1.ValueChanged += RadGridView1_ValueChanged;
-
-            tool_exportfile.Click += Tool_exportfile_Click;
-
-            tabPage_gridview_can1.Parent = tabControl1;
-            tabPage_hardware.Parent = tabControl1;
-            tabPage_gridview_can2.Parent = null;
-            selectedCan = SelectedCan.CAN_1;
+            //document set
+            //documentTabStrip1.Hide();
         }
 
         #region 复选框行值处理
@@ -108,25 +117,25 @@ namespace LoggerConfigurator
             try
             {
                 //设置不可选
-                switch (this.radGridView1.CurrentCell.ColumnIndex)
+                switch (this.radGridView_can1.CurrentCell.ColumnIndex)
                 {
                     case 12:
-                        if (this.radGridView1.CurrentRow.Cells[13].Value.ToString() is "1")
-                            this.radGridView1.CurrentRow.Cells[13].Value = 0;
-                        if (this.radGridView1.CurrentRow.Cells[14].Value.ToString() is "1")
-                            this.radGridView1.CurrentRow.Cells[14].Value = 0;
+                        if (this.radGridView_can1.CurrentRow.Cells[13].Value.ToString() is "1")
+                            this.radGridView_can1.CurrentRow.Cells[13].Value = 0;
+                        if (this.radGridView_can1.CurrentRow.Cells[14].Value.ToString() is "1")
+                            this.radGridView_can1.CurrentRow.Cells[14].Value = 0;
                         break;
                     case 13:
-                        if (this.radGridView1.CurrentRow.Cells[12].Value.ToString() is "1")
-                            this.radGridView1.CurrentRow.Cells[12].Value = 0;
-                        if (this.radGridView1.CurrentRow.Cells[14].Value.ToString() is "1")
-                            this.radGridView1.CurrentRow.Cells[14].Value = 0;
+                        if (this.radGridView_can1.CurrentRow.Cells[12].Value.ToString() is "1")
+                            this.radGridView_can1.CurrentRow.Cells[12].Value = 0;
+                        if (this.radGridView_can1.CurrentRow.Cells[14].Value.ToString() is "1")
+                            this.radGridView_can1.CurrentRow.Cells[14].Value = 0;
                         break;
                     case 14:
-                        if (this.radGridView1.CurrentRow.Cells[12].Value.ToString() is "1")
-                            this.radGridView1.CurrentRow.Cells[12].Value = 0;
-                        if (this.radGridView1.CurrentRow.Cells[13].Value.ToString() is "1")
-                            this.radGridView1.CurrentRow.Cells[13].Value = 0;
+                        if (this.radGridView_can1.CurrentRow.Cells[12].Value.ToString() is "1")
+                            this.radGridView_can1.CurrentRow.Cells[12].Value = 0;
+                        if (this.radGridView_can1.CurrentRow.Cells[13].Value.ToString() is "1")
+                            this.radGridView_can1.CurrentRow.Cells[13].Value = 0;
                         break;
                 }
 
@@ -193,7 +202,7 @@ namespace LoggerConfigurator
             }
             catch (Exception ex)
             {
-                LogHelper.Log.Error(ex.Message+"\r\n"+ex.StackTrace);
+                LogHelper.Log.Error(ex.Message + "\r\n" + ex.StackTrace);
             }
         }
 
@@ -227,11 +236,11 @@ namespace LoggerConfigurator
             }
             if (analysisFileType == FileType.A2L)
             {
-                ExportFile.ExportFileToLocal(path, radGridView1, gridViewData, analysisData, analysisFileType);
+                ExportFile.ExportFileToLocal(path, radGridView_can1, gridViewData, analysisData, analysisFileType);
             }
             else if (analysisFileType == FileType.DBC)
             {
-                ExportFile.ExportFileToLocal(path, radGridView1, gridViewData, analysisData, analysisFileType);
+                ExportFile.ExportFileToLocal(path, radGridView_can1, gridViewData, analysisData, analysisFileType);
             }
         }
         #endregion
@@ -246,18 +255,18 @@ namespace LoggerConfigurator
             gridViewData.LimitTimeList10ms.Clear();
             gridViewData.LimitTimeList100ms.Clear();
 
-            foreach (GridViewDataRowInfo row in this.radGridView1.Rows)
+            foreach (GridViewDataRowInfo row in this.radGridView_can1.Rows)
             {
                 //将选中得行添加到集合
-                if (this.radGridView1.Rows[rdex].Cells[12].Value.ToString() is "1")
+                if (this.radGridView_can1.Rows[rdex].Cells[12].Value.ToString() is "1")
                 {
                     gridViewData.LimitTimeListSegMent.Add(rdex);
                 }
-                if (this.radGridView1.Rows[rdex].Cells[13].Value.ToString() is "1")
+                if (this.radGridView_can1.Rows[rdex].Cells[13].Value.ToString() is "1")
                 {
                     gridViewData.LimitTimeList10ms.Add(rdex);
                 }
-                if (this.radGridView1.Rows[rdex].Cells[14].Value.ToString() is "1")
+                if (this.radGridView_can1.Rows[rdex].Cells[14].Value.ToString() is "1")
                 {
                     gridViewData.LimitTimeList100ms.Add(rdex);
                 }
@@ -298,7 +307,7 @@ namespace LoggerConfigurator
         /// <param name="e"></param>
         private void Rbtn_search_Click(object sender, EventArgs e)
         {
-            gridViewControl.SearchRadGridView(radGridView1,xcpFilterCondition.Text.Trim());
+            gridViewControl.SearchRadGridView(radGridView_can1, tb_filter_can1.Text.Trim());
 
             if (selectedCan == SelectedCan.CAN_1)
             {
@@ -317,7 +326,7 @@ namespace LoggerConfigurator
                 //can2
 
             }
-            
+
             dataSource = gridViewControl.BindRadGridView(analysisData.AnalysisDbcDataList);
             GridViewLoadDataSource();
         }
@@ -331,7 +340,7 @@ namespace LoggerConfigurator
         /// <param name="e"></param>
         private void OpenXcp_Click(object sender, EventArgs e)
         {
-            openFileContent = FileSelect.GetSelectFileContent("(*.dbc)|*.dbc|(*.A2L)|*.a2l","选择文件");
+            openFileContent = FileSelect.GetSelectFileContent("(*.dbc)|*.dbc|(*.A2L)|*.a2l", "选择文件");
             if (openFileContent == null)
                 return;
             if (string.IsNullOrEmpty(openFileContent.FileName))
@@ -391,7 +400,7 @@ namespace LoggerConfigurator
                             {
                                 LogHelper.Log.Info("**********解析a2l文件成功************" + res);
                                 //将解析后的数据绑定到gridview显示
-                                analysisData = AnalysisDataSet.UnionXcpDbc(FileType.A2L,xcpdata,null);
+                                analysisData = AnalysisDataSet.UnionXcpDbc(FileType.A2L, xcpdata, null);
                                 if (analysisData != null)
                                 {
                                     LogHelper.Log.Info("a2l合并数据完成!" + analysisData.AnalysisiXcpDataList.Count);
@@ -418,11 +427,11 @@ namespace LoggerConfigurator
                         default:
                             break;
                     }
-                    
+
                 }
                 catch (Exception ex)
                 {
-                    LogHelper.Log.Error(ex.Message+"\r\n"+ex.StackTrace);
+                    LogHelper.Log.Error(ex.Message + "\r\n" + ex.StackTrace);
                 }
             }
         }
@@ -432,10 +441,10 @@ namespace LoggerConfigurator
             //radGridView1.VirtualMode = true;
             //radGridView1.ColumnCount = dataSource.Columns.Count;
             //radGridView1.RowCount = dataSource.Rows.Count;
-            radGridView1.BeginEdit();
-            radGridView1.DataSource = dataSource;
+            radGridView_can1.BeginEdit();
+            radGridView_can1.DataSource = dataSource;
             gridViewControl.RefreshRadViewColumn();
-            radGridView1.EndUpdate();
+            radGridView_can1.EndUpdate();
         }
         #endregion
 
@@ -445,9 +454,9 @@ namespace LoggerConfigurator
         /// </summary>
         public void LoadTreeView()
         {
-            TreeViewControl treeView = new TreeViewControl(rtreeViewList);
+            TreeViewControl treeView = new TreeViewControl(rTreeViewList);
             treeView.InitTreeView();
-            rtreeViewList.NodeMouseClick += RtreeViewList_NodeMouseClick;
+            rTreeViewList.NodeMouseClick += RtreeViewList_NodeMouseClick;
         }
         #endregion
 
@@ -457,10 +466,10 @@ namespace LoggerConfigurator
         /// </summary>
         private void LoadRadGridView()
         {
-            gridViewControl = new GridViewControl(radGridView1);
+            gridViewControl = new GridViewControl(radGridView_can1);
             gridViewControl.InitGridView();
-            radGridView1.CellValueNeeded += RadGridView1_CellValueNeeded;
-            radGridView1.CellValuePushed += RadGridView1_CellValuePushed;
+            radGridView_can1.CellValueNeeded += RadGridView1_CellValueNeeded;
+            radGridView_can1.CellValuePushed += RadGridView1_CellValuePushed;
         }
 
         private void RadGridView1_CellValuePushed(object sender, GridViewCellValueEventArgs e)
@@ -470,7 +479,7 @@ namespace LoggerConfigurator
 
         private void RadGridView1_CellValueNeeded(object sender, GridViewCellValueEventArgs e)
         {
-            if (e.RowIndex == radGridView1.RowCount)
+            if (e.RowIndex == radGridView_can1.RowCount)
             {
                 return;
             }
@@ -491,16 +500,11 @@ namespace LoggerConfigurator
             switch (treeNode.Text)
             {
                 case TreeViewData.HardWare.CAN_CHILD + "1":
-                    tabPage_gridview_can1.Parent = tabControl1;
-                    tabPage_hardware.Parent = tabControl1;
-                    tabPage_gridview_can2.Parent = null;
-                    selectedCan = SelectedCan.CAN_1;
+                    documentTabStrip1.Show();
                     break;
                 case TreeViewData.HardWare.CAN_CHILD + "2":
-                    tabPage_gridview_can2.Parent = tabControl1;
-                    tabPage_hardware.Parent = tabControl1;
-                    tabPage_gridview_can1.Parent = null;
-                    selectedCan = SelectedCan.CAN_2;
+                    documentWindow_can1.Show();
+                    
                     break;
 
                 case TreeViewData.CcpOrXcp.DESCRIPTIONS:

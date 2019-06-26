@@ -35,6 +35,7 @@
             this.radMenuItem7 = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItem2 = new Telerik.WinControls.UI.RadMenuItem();
             this.menu_produce_config = new Telerik.WinControls.UI.RadMenuItem();
+            this.menu_productType = new Telerik.WinControls.UI.RadMenuItem();
             this.menu_set_station = new Telerik.WinControls.UI.RadMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
@@ -56,7 +57,6 @@
             this.radMenuItem12 = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItem13 = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenu1 = new Telerik.WinControls.UI.RadMenu();
-            this.menu_productType = new Telerik.WinControls.UI.RadMenuItem();
             this.toolStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -109,6 +109,11 @@
             // 
             this.menu_produce_config.Name = "menu_produce_config";
             this.menu_produce_config.Text = "生产线站位";
+            // 
+            // menu_productType
+            // 
+            this.menu_productType.Name = "menu_productType";
+            this.menu_productType.Text = "产品型号";
             // 
             // menu_set_station
             // 
@@ -181,7 +186,7 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.tabPage1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.tabPage1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.tabPage1.Controls.Add(this.radListView1);
             this.tabPage1.Controls.Add(this.radButton2);
@@ -240,7 +245,7 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.tabPage2.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.tabPage2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.tabPage2.Controls.Add(this.radListView2);
             this.tabPage2.Controls.Add(this.radButton4);
@@ -309,11 +314,6 @@
             this.radMenu1.Name = "radMenu1";
             this.radMenu1.Size = new System.Drawing.Size(1321, 23);
             this.radMenu1.TabIndex = 0;
-            // 
-            // menu_productType
-            // 
-            this.menu_productType.Name = "menu_productType";
-            this.menu_productType.Text = "产品型号";
             // 
             // MainForm
             // 
