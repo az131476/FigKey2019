@@ -213,7 +213,7 @@ namespace MESInterface
         /// <param name="sn">追溯号/条码</param>
         /// <param name="sTypeNumber">型号/零件号</param>
         /// <param name="sStationName">工站名称/站位名称</param>
-        public string Firstcheck(string sn, string sTypeNumber, string sStationName)
+        public string FirstCheck(string sn_inner,string sn_outter, string sTypeNumber, string sStationName)
         {
             /*
              * 1、判断传入站是不是首站，首站的判断：根据设置的首站判断
@@ -226,19 +226,24 @@ namespace MESInterface
             //根据传入站-查询该站的产线流程中的上一站
             //
             //判断首站
+            LogHelper.Log.Info($"FirstCheck接口被调用，传入参数[{sn_inner},{sn_outter},{sTypeNumber},{sStationName}]");
             DataTable dataSet = SelectProduce(sStationName,"").Tables[0];
             var station = dataSet.Rows[0][1].ToString().Trim();
             var order = int.Parse(dataSet.Rows[0][0].ToString().Trim());
             if (sStationName == station)
             {
                 //插入数据库
+                LogHelper.Log.Info("判断结果为首站，将插入到数据库");
 
+                return Convert.ToString((int)FirstCheckResultEnum.STATUS_FIRST_STATION_INSERT_SUCCESS,16)+"0X"; ;
             }
             else
             {
                 //非首站
                 //判断上一站位是否通过
+                //查询该产品型号的所属站位
                 DataTable data = SelectTypeStation(sTypeNumber).Tables[0];
+                string lastTestResult = "";
                 int lastIndex = 0;
                 for (int i = 0; i < data.Columns.Count; i++)
                 {
@@ -248,8 +253,25 @@ namespace MESInterface
                         break;
                     }
                 }
+                //查询到上一个站位
                 string lastStation = data.Rows[0][lastIndex].ToString().Trim();
+                //验证传入参数是否存在：追溯号+型号+站位号
 
+                //查询上一个站位的测试结果
+                DataTable dt = SelectProductData(sn_inner.Trim(),sn_outter.Trim(),sTypeNumber,sStationName).Tables[0];
+                if (dt.Rows.Count > 0)
+                {
+                    lastTestResult = dt.Rows[0][3].ToString().Trim();
+                }
+                if (lastTestResult == "PASS")
+                {
+
+                    LogHelper.Log.Info("last test result is pass...");
+                }
+                else
+                {
+                    LogHelper.Log.Info("last test result is fail...");
+                }
             }
             return "";
         }
@@ -270,11 +292,54 @@ namespace MESInterface
             return "";
         }
 
-        public void SelectProductData()
+        /// <summary>
+        /// 查询结果
+        /// </summary>
+        /// <param name="snInner"></param>
+        /// <param name="snOutter"></param>
+        /// <param name="typeNumber"></param>
+        /// <param name="stationName"></param>
+        /// <returns></returns>
+        public DataSet SelectProductData(string snInner,string snOutter,string typeNumber,string stationName)
         {
             string selectSQL = "SELECT [SN],[Type_Number],[Station_Name],[Test_Result],[CreateDate],[UpdateDate],[Remark] " +
                 "FROM [WT_SCL].[dbo].[Product_Data] " +
-                "WHERE ";
+                $"WHERE [SN] = '{snInner}' OR [SN]='{snInner}-{snOutter}' AND [Type_Number]='{typeNumber}' AND [Station_Name]='{stationName}'";
+            return SQLServer.ExecuteDataSet(selectSQL);
+        }
+
+        public bool IsExistSn(string snInner, string snOutter)
+        {
+            string selectSQL = "SELECT [SN],[Type_Number],[Station_Name],[Test_Result],[CreateDate],[UpdateDate],[Remark] " +
+                "FROM [WT_SCL].[dbo].[Product_Data] " +
+                $"WHERE [SN]='{snInner}-{snOutter}'";
+            DataTable dt = SQLServer.ExecuteDataSet(selectSQL).Tables[0];
+            if (dt.Rows.Count > 0)
+                return true;
+            else
+                return false;
+        }
+
+        public bool IsExistTypeNumber(string typeNumber)
+        {
+            string selectSQL = "SELECT [SN],[Type_Number],[Station_Name],[Test_Result],[CreateDate],[UpdateDate],[Remark] " +
+                "FROM [WT_SCL].[dbo].[Product_Data] " +
+                $"WHERE [Type_Number]='{typeNumber}'";
+            DataTable dt = SQLServer.ExecuteDataSet(selectSQL).Tables[0];
+            if (dt.Rows.Count > 0)
+                return true;
+            return false;
+        }
+
+        public bool IsExistStation(string stationName)
+        {
+            string selectSQL = "SELECT [SN],[Type_Number],[Station_Name],[Test_Result],[CreateDate],[UpdateDate],[Remark] " +
+                "FROM [WT_SCL].[dbo].[Product_Data] " +
+                $"WHERE [Station_Name]='{stationName}'";
+            DataTable dt = SQLServer.ExecuteDataSet(selectSQL).Tables[0];
+            if (dt.Rows.Count > 0)
+                return true;
+            return false;
         }
         #endregion
 

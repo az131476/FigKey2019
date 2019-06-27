@@ -15,4 +15,22 @@
 	（7）查询：点击执行查询
 【疑问】
 1、测试端同时发送内壳码与外壳码是从第一个站位开始就发两个码，还是在看不到内壳码之后才同时发两个码
-2、
+（1）每次发送两个码
+（2）仅有内壳码时发内壳码，有外壳码时发外壳码
+
+
+sn		type_number		stationName		result		
+
+001		type1			stationName1
+001		type1			stationName2
+001		type1			stationName3
+
+001-002		type1			stationName4
+001-002		type1			stationName5
+
+003		type1			stationName1
+
+
+
+追溯码（数据库存储中的码由内壳码+外壳码组成，有的仅有内壳码，有的同时包含内壳码和外壳码）
+	数据中所有包含内壳码或外壳码的记录为一个产品

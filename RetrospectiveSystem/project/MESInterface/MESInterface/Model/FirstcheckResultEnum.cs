@@ -3,14 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace MESInterface.Model
+namespace MESInterface.Molde
 {
-    public enum FirstcheckResultEnum
+    public enum FirstCheckResultEnum
     {
         /// <summary>
         /// 验证成功
         /// </summary>
         STATUS_SUCCESS = 0X00,
+        /// <summary>
+        /// 判断传入站位为首站，插入成功
+        /// </summary>
+        STATUS_FIRST_STATION_INSERT_SUCCESS = 0X01,
+        /// <summary>
+        /// 判断传入站位为首战，插入失败
+        /// </summary>
+        ERR_FIRST_STATION_INSERT_FAIL = 0X02,
         /// <summary>
         /// 上一个站位失败
         /// </summary>

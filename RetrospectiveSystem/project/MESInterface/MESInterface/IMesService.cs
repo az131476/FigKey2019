@@ -37,9 +37,9 @@ namespace MESInterface
 
         /// <returns></returns>
         [OperationContract]
-        string Firstcheck(string sn, string sTypeNumber, string sStationName);
+        string FirstCheck(string snInner,string snOutter, string sTypeNumber, string sStationName); 
 
-        [OperationContract]
+         [OperationContract]
         string InsertWIP(string sn, string sTypeNumber, string sStationName, string sTestResult, string sTime);
 
         [OperationContract]

@@ -74,6 +74,21 @@ namespace LoggerConfigurator
             radGridView_can1.ValueChanged += RadGridView1_ValueChanged;
 
             tool_exportfile.Click += Tool_exportfile_Click;
+
+            this.documentTabStrip1.DockChanged += DocumentTabStrip1_DockChanged;
+            this.documentTabStrip1.ControlRemoved += DocumentTabStrip1_ControlRemoved;
+
+            this.documentTabStrip1.ActiveWindow = documentWindow_hardWare;
+        }
+
+        private void DocumentTabStrip1_ControlRemoved(object sender, ControlEventArgs e)
+        {
+            
+        }
+
+        private void DocumentTabStrip1_DockChanged(object sender, EventArgs e)
+        {
+            
         }
 
         enum SelectedCan
@@ -500,11 +515,12 @@ namespace LoggerConfigurator
             switch (treeNode.Text)
             {
                 case TreeViewData.HardWare.CAN_CHILD + "1":
-                    documentTabStrip1.Show();
+                    documentWindow_can2.Hide();
+                    documentTabStrip1.ActiveWindow = documentWindow_can1;
                     break;
                 case TreeViewData.HardWare.CAN_CHILD + "2":
-                    documentWindow_can1.Show();
-                    
+                    documentWindow_can1.Hide();
+                    documentTabStrip1.ActiveWindow = documentWindow_can2;
                     break;
 
                 case TreeViewData.CcpOrXcp.DESCRIPTIONS:
