@@ -180,11 +180,11 @@ namespace RetrospectiveManager.MesService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/Register", ReplyAction="http://tempuri.org/IMesService/RegisterResponse")]
         System.Threading.Tasks.Task<RetrospectiveManager.MesService.RegisterResult> RegisterAsync(string username, string pwd, string phone, string email, RetrospectiveManager.MesService.LoginUser loginUser);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/Firstcheck", ReplyAction="http://tempuri.org/IMesService/FirstcheckResponse")]
-        string Firstcheck(string sn, string sTypeNumber, string sStationName);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/FirstCheck", ReplyAction="http://tempuri.org/IMesService/FirstCheckResponse")]
+        string FirstCheck(string snInner, string snOutter, string sTypeNumber, string sStationName);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/Firstcheck", ReplyAction="http://tempuri.org/IMesService/FirstcheckResponse")]
-        System.Threading.Tasks.Task<string> FirstcheckAsync(string sn, string sTypeNumber, string sStationName);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/FirstCheck", ReplyAction="http://tempuri.org/IMesService/FirstCheckResponse")]
+        System.Threading.Tasks.Task<string> FirstCheckAsync(string snInner, string snOutter, string sTypeNumber, string sStationName);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/InsertWIP", ReplyAction="http://tempuri.org/IMesService/InsertWIPResponse")]
         string InsertWIP(string sn, string sTypeNumber, string sStationName, string sTestResult, string sTime);
@@ -199,10 +199,10 @@ namespace RetrospectiveManager.MesService {
         System.Threading.Tasks.Task<string> InsertProduceAsync(System.Collections.Generic.Dictionary<int, string> dctData);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectProduce", ReplyAction="http://tempuri.org/IMesService/SelectProduceResponse")]
-        System.Data.DataSet SelectProduce();
+        System.Data.DataSet SelectProduce(string stationName, string stationOrder);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectProduce", ReplyAction="http://tempuri.org/IMesService/SelectProduceResponse")]
-        System.Threading.Tasks.Task<System.Data.DataSet> SelectProduceAsync();
+        System.Threading.Tasks.Task<System.Data.DataSet> SelectProduceAsync(string stationName, string stationOrder);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/UpdateProduce", ReplyAction="http://tempuri.org/IMesService/UpdateProduceResponse")]
         string UpdateProduce(System.Collections.Generic.Dictionary<int, string> data);
@@ -269,6 +269,18 @@ namespace RetrospectiveManager.MesService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/CommitTypeStation", ReplyAction="http://tempuri.org/IMesService/CommitTypeStationResponse")]
         System.Threading.Tasks.Task<string> CommitTypeStationAsync(System.Collections.Generic.Dictionary<string, string[]> dctData);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectProductDataOfSN", ReplyAction="http://tempuri.org/IMesService/SelectProductDataOfSNResponse")]
+        System.Data.DataSet SelectProductDataOfSN(string sn, bool IsSnFuzzy);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectProductDataOfSN", ReplyAction="http://tempuri.org/IMesService/SelectProductDataOfSNResponse")]
+        System.Threading.Tasks.Task<System.Data.DataSet> SelectProductDataOfSNAsync(string sn, bool IsSnFuzzy);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectProductDataOfTypeNo", ReplyAction="http://tempuri.org/IMesService/SelectProductDataOfTypeNoResponse")]
+        System.Data.DataSet SelectProductDataOfTypeNo(string typeNo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectProductDataOfTypeNo", ReplyAction="http://tempuri.org/IMesService/SelectProductDataOfTypeNoResponse")]
+        System.Threading.Tasks.Task<System.Data.DataSet> SelectProductDataOfTypeNoAsync(string typeNo);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -391,12 +403,12 @@ namespace RetrospectiveManager.MesService {
             return base.Channel.RegisterAsync(username, pwd, phone, email, loginUser);
         }
         
-        public string Firstcheck(string sn, string sTypeNumber, string sStationName) {
-            return base.Channel.Firstcheck(sn, sTypeNumber, sStationName);
+        public string FirstCheck(string snInner, string snOutter, string sTypeNumber, string sStationName) {
+            return base.Channel.FirstCheck(snInner, snOutter, sTypeNumber, sStationName);
         }
         
-        public System.Threading.Tasks.Task<string> FirstcheckAsync(string sn, string sTypeNumber, string sStationName) {
-            return base.Channel.FirstcheckAsync(sn, sTypeNumber, sStationName);
+        public System.Threading.Tasks.Task<string> FirstCheckAsync(string snInner, string snOutter, string sTypeNumber, string sStationName) {
+            return base.Channel.FirstCheckAsync(snInner, snOutter, sTypeNumber, sStationName);
         }
         
         public string InsertWIP(string sn, string sTypeNumber, string sStationName, string sTestResult, string sTime) {
@@ -415,12 +427,12 @@ namespace RetrospectiveManager.MesService {
             return base.Channel.InsertProduceAsync(dctData);
         }
         
-        public System.Data.DataSet SelectProduce() {
-            return base.Channel.SelectProduce();
+        public System.Data.DataSet SelectProduce(string stationName, string stationOrder) {
+            return base.Channel.SelectProduce(stationName, stationOrder);
         }
         
-        public System.Threading.Tasks.Task<System.Data.DataSet> SelectProduceAsync() {
-            return base.Channel.SelectProduceAsync();
+        public System.Threading.Tasks.Task<System.Data.DataSet> SelectProduceAsync(string stationName, string stationOrder) {
+            return base.Channel.SelectProduceAsync(stationName, stationOrder);
         }
         
         public string UpdateProduce(System.Collections.Generic.Dictionary<int, string> data) {
@@ -509,6 +521,22 @@ namespace RetrospectiveManager.MesService {
         
         public System.Threading.Tasks.Task<string> CommitTypeStationAsync(System.Collections.Generic.Dictionary<string, string[]> dctData) {
             return base.Channel.CommitTypeStationAsync(dctData);
+        }
+        
+        public System.Data.DataSet SelectProductDataOfSN(string sn, bool IsSnFuzzy) {
+            return base.Channel.SelectProductDataOfSN(sn, IsSnFuzzy);
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> SelectProductDataOfSNAsync(string sn, bool IsSnFuzzy) {
+            return base.Channel.SelectProductDataOfSNAsync(sn, IsSnFuzzy);
+        }
+        
+        public System.Data.DataSet SelectProductDataOfTypeNo(string typeNo) {
+            return base.Channel.SelectProductDataOfTypeNo(typeNo);
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> SelectProductDataOfTypeNoAsync(string typeNo) {
+            return base.Channel.SelectProductDataOfTypeNoAsync(typeNo);
         }
     }
 }

@@ -17,13 +17,17 @@
 1、测试端同时发送内壳码与外壳码是从第一个站位开始就发两个码，还是在看不到内壳码之后才同时发两个码
 （1）每次发送两个码
 （2）仅有内壳码时发内壳码，有外壳码时发外壳码
+（3）传入参数后，判断追溯号、型号、站位号是否存在
+	判断是否存在的目的是，是否是以前测试过的产品对应的站位
+	无论哪个产品，哪个工位，第一次请求时都直接插入，如果已经存在，则判断上一工位后在做测试，最后传入测试结果
+	判断条件：以传入参数追溯号+型号+站位号为唯一条件查询
 
 
 sn		type_number		stationName		result		
 
-001		type1			stationName1
-001		type1			stationName2
-001		type1			stationName3
+001		type1			stationName1	PASS
+001		type1			stationName2	
+001		type1			stationName3	
 
 001-002		type1			stationName4
 001-002		type1			stationName5

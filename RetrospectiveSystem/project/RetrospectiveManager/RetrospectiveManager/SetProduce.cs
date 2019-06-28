@@ -242,7 +242,7 @@ namespace RetrospectiveManager
         async private void SelectData()
         {
             //调用查询接口
-            DataSet dataSet = await mesService.SelectProduceAsync();
+            DataSet dataSet = await mesService.SelectProduceAsync("","");
             DataTable dataTable = dataSet.Tables[0];
             dataSource.Clear();
             if (dataTable.Rows.Count > 0)

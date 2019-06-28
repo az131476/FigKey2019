@@ -119,7 +119,7 @@ namespace RetrospectiveManager
             //当前型号的站位流程
             DataTable curTypeNumberData = (await mesService.SelectTypeStationAsync(typeNumber)).Tables[0];
             //所有
-            DataTable dataSource =  (await mesService.SelectProduceAsync()).Tables[0];
+            DataTable dataSource =  (await mesService.SelectProduceAsync("","")).Tables[0];
             //更新listview
             if (curTypeNumberData.Rows.Count < 1)
             {
@@ -159,7 +159,7 @@ namespace RetrospectiveManager
                 cb_sn_type_num.Items.Add(dataSource.Rows[i][1].ToString().Trim());
             }
             //获取所有站位可选项
-            DataTable stations = (await mesService.SelectProduceAsync()).Tables[0];
+            DataTable stations = (await mesService.SelectProduceAsync("","")).Tables[0];
             cb_sn_station.Items.Clear();
             listView_select_station.Items.Clear();
             for (int i = 0; i < stations.Rows.Count; i++)

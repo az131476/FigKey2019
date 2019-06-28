@@ -116,19 +116,20 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="Firstcheck">
+  <xs:element name="FirstCheck">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="sn" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="snInner" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="snOutter" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="sTypeNumber" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="sStationName" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="FirstcheckResponse">
+  <xs:element name="FirstCheckResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="FirstcheckResult" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="FirstCheckResult" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -166,7 +167,10 @@
   </xs:element>
   <xs:element name="SelectProduce">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element minOccurs="0" name="stationName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="stationOrder" nillable="true" type="xs:string" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="SelectProduceResponse">
@@ -357,6 +361,59 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="CommitTypeStationResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SelectProductDataOfSN">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="sn" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="IsSnFuzzy" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SelectProductDataOfSNResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SelectProductDataOfSNResult" nillable="true">
+          <xs:complexType>
+            <xs:annotation>
+              <xs:appinfo>
+                <ActualType Name="DataSet" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+              </xs:appinfo>
+            </xs:annotation>
+            <xs:sequence>
+              <xs:element ref="xs:schema" />
+              <xs:any />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SelectProductDataOfTypeNo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="typeNo" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SelectProductDataOfTypeNoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SelectProductDataOfTypeNoResult" nillable="true">
+          <xs:complexType>
+            <xs:annotation>
+              <xs:appinfo>
+                <ActualType Name="DataSet" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+              </xs:appinfo>
+            </xs:annotation>
+            <xs:sequence>
+              <xs:element ref="xs:schema" />
+              <xs:any />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:sequence>
     </xs:complexType>
   </xs:element>

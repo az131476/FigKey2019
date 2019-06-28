@@ -18,7 +18,7 @@ namespace RetrospectiveManager
         private const string USER_ADMIN = "管理员";
         private const string USER_ORDINARY = "普通用户";
         private MesService.MesServiceClient mesService;
-        public UserType GetUserType { get; set; }
+        public static UserType GetUserType { get; set; }
         public Login()
         {
             InitializeComponent();

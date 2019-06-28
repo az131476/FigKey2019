@@ -26,12 +26,6 @@ namespace MesClientTest
 
         private void Btn_commit_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(Convert.ToString((int)testEnum.first,16));
-        }
-
-        enum testEnum
-        {
-            first = 0X11
         }
     }
 }

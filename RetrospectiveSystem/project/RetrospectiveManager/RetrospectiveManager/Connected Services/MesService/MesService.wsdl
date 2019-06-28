@@ -46,11 +46,11 @@
   <wsdl:message name="IMesService_Register_OutputMessage">
     <wsdl:part name="parameters" element="tns:RegisterResponse" />
   </wsdl:message>
-  <wsdl:message name="IMesService_Firstcheck_InputMessage">
-    <wsdl:part name="parameters" element="tns:Firstcheck" />
+  <wsdl:message name="IMesService_FirstCheck_InputMessage">
+    <wsdl:part name="parameters" element="tns:FirstCheck" />
   </wsdl:message>
-  <wsdl:message name="IMesService_Firstcheck_OutputMessage">
-    <wsdl:part name="parameters" element="tns:FirstcheckResponse" />
+  <wsdl:message name="IMesService_FirstCheck_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FirstCheckResponse" />
   </wsdl:message>
   <wsdl:message name="IMesService_InsertWIP_InputMessage">
     <wsdl:part name="parameters" element="tns:InsertWIP" />
@@ -136,6 +136,18 @@
   <wsdl:message name="IMesService_CommitTypeStation_OutputMessage">
     <wsdl:part name="parameters" element="tns:CommitTypeStationResponse" />
   </wsdl:message>
+  <wsdl:message name="IMesService_SelectProductDataOfSN_InputMessage">
+    <wsdl:part name="parameters" element="tns:SelectProductDataOfSN" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_SelectProductDataOfSN_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SelectProductDataOfSNResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_SelectProductDataOfTypeNo_InputMessage">
+    <wsdl:part name="parameters" element="tns:SelectProductDataOfTypeNo" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_SelectProductDataOfTypeNo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SelectProductDataOfTypeNoResponse" />
+  </wsdl:message>
   <wsdl:portType name="IMesService">
     <wsdl:operation name="GetData">
       <wsdl:input wsaw:Action="http://tempuri.org/IMesService/GetData" message="tns:IMesService_GetData_InputMessage" />
@@ -161,9 +173,9 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IMesService/Register" message="tns:IMesService_Register_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMesService/RegisterResponse" message="tns:IMesService_Register_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="Firstcheck">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/Firstcheck" message="tns:IMesService_Firstcheck_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/FirstcheckResponse" message="tns:IMesService_Firstcheck_OutputMessage" />
+    <wsdl:operation name="FirstCheck">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/FirstCheck" message="tns:IMesService_FirstCheck_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/FirstCheckResponse" message="tns:IMesService_FirstCheck_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="InsertWIP">
       <wsdl:input wsaw:Action="http://tempuri.org/IMesService/InsertWIP" message="tns:IMesService_InsertWIP_InputMessage" />
@@ -220,6 +232,14 @@
     <wsdl:operation name="CommitTypeStation">
       <wsdl:input wsaw:Action="http://tempuri.org/IMesService/CommitTypeStation" message="tns:IMesService_CommitTypeStation_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMesService/CommitTypeStationResponse" message="tns:IMesService_CommitTypeStation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectProductDataOfSN">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/SelectProductDataOfSN" message="tns:IMesService_SelectProductDataOfSN_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/SelectProductDataOfSNResponse" message="tns:IMesService_SelectProductDataOfSN_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectProductDataOfTypeNo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/SelectProductDataOfTypeNo" message="tns:IMesService_SelectProductDataOfTypeNo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/SelectProductDataOfTypeNoResponse" message="tns:IMesService_SelectProductDataOfTypeNo_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IMesService" type="tns:IMesService">
@@ -278,8 +298,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Firstcheck">
-      <soap:operation soapAction="http://tempuri.org/IMesService/Firstcheck" style="document" />
+    <wsdl:operation name="FirstCheck">
+      <soap:operation soapAction="http://tempuri.org/IMesService/FirstCheck" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -406,6 +426,24 @@
     </wsdl:operation>
     <wsdl:operation name="CommitTypeStation">
       <soap:operation soapAction="http://tempuri.org/IMesService/CommitTypeStation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectProductDataOfSN">
+      <soap:operation soapAction="http://tempuri.org/IMesService/SelectProductDataOfSN" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectProductDataOfTypeNo">
+      <soap:operation soapAction="http://tempuri.org/IMesService/SelectProductDataOfTypeNo" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

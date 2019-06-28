@@ -80,6 +80,12 @@ namespace MESInterface
 
         [OperationContract]
         string CommitTypeStation(Dictionary<string, string[]> dctData);
+
+        [OperationContract]
+        DataSet SelectProductDataOfSN(string sn, bool IsSnFuzzy);
+
+        [OperationContract]
+        DataSet SelectProductDataOfTypeNo(string typeNo);
     }
 
 

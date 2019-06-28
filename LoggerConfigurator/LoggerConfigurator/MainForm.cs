@@ -45,9 +45,6 @@ namespace LoggerConfigurator
         private FileType analysisFileType;
         private DataTable dataSource;
         private SelectedCan selectedCan;
-        private DocumentWindow documentWindow1;
-        private DocumentWindow documentWindow2;
-        private DocumentWindow documentWindow3;
         #endregion
         public MainForm()
         {
@@ -74,21 +71,6 @@ namespace LoggerConfigurator
             radGridView_can1.ValueChanged += RadGridView1_ValueChanged;
 
             tool_exportfile.Click += Tool_exportfile_Click;
-
-            this.documentTabStrip1.DockChanged += DocumentTabStrip1_DockChanged;
-            this.documentTabStrip1.ControlRemoved += DocumentTabStrip1_ControlRemoved;
-
-            this.documentTabStrip1.ActiveWindow = documentWindow_hardWare;
-        }
-
-        private void DocumentTabStrip1_ControlRemoved(object sender, ControlEventArgs e)
-        {
-            
-        }
-
-        private void DocumentTabStrip1_DockChanged(object sender, EventArgs e)
-        {
-            
         }
 
         enum SelectedCan
@@ -118,7 +100,7 @@ namespace LoggerConfigurator
             cb_protocol.SelectedIndex = 0;
 
             //document set
-            //documentTabStrip1.Hide();
+            this.radDock1.RemoveAllDocumentWindows();
         }
 
         #region 复选框行值处理
@@ -515,12 +497,14 @@ namespace LoggerConfigurator
             switch (treeNode.Text)
             {
                 case TreeViewData.HardWare.CAN_CHILD + "1":
-                    documentWindow_can2.Hide();
-                    documentTabStrip1.ActiveWindow = documentWindow_can1;
+                    this.radDock1.RemoveWindow(documentWindow_can2);
+                    this.radDock1.AddDocument(documentWindow_can1);
+                    this.radDock1.AddDocument(documentWindow_hardWare);
                     break;
                 case TreeViewData.HardWare.CAN_CHILD + "2":
-                    documentWindow_can1.Hide();
-                    documentTabStrip1.ActiveWindow = documentWindow_can2;
+                    this.radDock1.RemoveWindow(documentWindow_can1);
+                    this.radDock1.AddDocument(documentWindow_can2);
+                    this.radDock1.AddDocument(documentWindow_hardWare);
                     break;
 
                 case TreeViewData.CcpOrXcp.DESCRIPTIONS:
