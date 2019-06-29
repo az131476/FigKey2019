@@ -37,19 +37,55 @@ namespace MESInterface
 
         /// <returns></returns>
         [OperationContract]
-        string Firstcheck(string sn, string sTypeNumber, string sStationName);
+        string FirstCheck(string snInner,string snOutter, string sTypeNumber, string sStationName); 
 
-        [OperationContract]
+         [OperationContract]
         string InsertWIP(string sn, string sTypeNumber, string sStationName, string sTestResult, string sTime);
 
         [OperationContract]
         string InsertProduce(Dictionary<int, string> dctData);
 
         [OperationContract]
-        DataSet SelectProduce();
+        DataSet SelectProduce(string stationName,string stationOrder);
 
         [OperationContract]
         string UpdateProduce(Dictionary<int, string> data);
+
+        [OperationContract]
+        int DeleteProduce(string stationName);
+
+        [OperationContract]
+        int DeleteAllProduce();
+
+        [OperationContract]
+        int DeleteProductType(string productName);
+
+        [OperationContract]
+        int DeleteAllProductType();
+
+        [OperationContract]
+        DataSet SelectProductType(string productName);
+
+        [OperationContract]
+        string CommitProductType(Dictionary<int, string> dctData);
+
+        [OperationContract]
+        int DeleteAllTypeStation();
+
+        [OperationContract]
+        int DeleteTypeStation(string typeNumber);
+
+        [OperationContract]
+        DataSet SelectTypeStation(string typeNumber);
+
+        [OperationContract]
+        string CommitTypeStation(Dictionary<string, string[]> dctData);
+
+        [OperationContract]
+        DataSet SelectProductDataOfSN(string sn, bool IsSnFuzzy);
+
+        [OperationContract]
+        DataSet SelectProductDataOfTypeNo(string typeNo);
     }
 
 

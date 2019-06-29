@@ -28,34 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.tb_remark = new System.Windows.Forms.TextBox();
             this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.cb_testRes = new System.Windows.Forms.ComboBox();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.cb_station = new System.Windows.Forms.ComboBox();
+            this.tb_sn = new System.Windows.Forms.TextBox();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cb_typeNo = new System.Windows.Forms.ComboBox();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
-            this.radButton1 = new Telerik.WinControls.UI.RadButton();
-            this.radButton2 = new Telerik.WinControls.UI.RadButton();
+            this.btn_apply = new Telerik.WinControls.UI.RadButton();
+            this.btn_cancel = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_apply)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_cancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
-            // textBox3
+            // tb_remark
             // 
-            this.textBox3.Location = new System.Drawing.Point(121, 197);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(200, 21);
-            this.textBox3.TabIndex = 24;
+            this.tb_remark.Location = new System.Drawing.Point(121, 197);
+            this.tb_remark.Name = "tb_remark";
+            this.tb_remark.Size = new System.Drawing.Size(200, 21);
+            this.tb_remark.TabIndex = 24;
             // 
             // radLabel6
             // 
@@ -73,13 +73,13 @@
             this.radLabel4.TabIndex = 20;
             this.radLabel4.Text = "测试结果";
             // 
-            // comboBox3
+            // cb_testRes
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(121, 156);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(200, 20);
-            this.comboBox3.TabIndex = 19;
+            this.cb_testRes.FormattingEnabled = true;
+            this.cb_testRes.Location = new System.Drawing.Point(121, 156);
+            this.cb_testRes.Name = "cb_testRes";
+            this.cb_testRes.Size = new System.Drawing.Size(200, 20);
+            this.cb_testRes.TabIndex = 19;
             // 
             // radLabel3
             // 
@@ -89,20 +89,20 @@
             this.radLabel3.TabIndex = 18;
             this.radLabel3.Text = "站位名";
             // 
-            // comboBox2
+            // cb_station
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(121, 115);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(200, 20);
-            this.comboBox2.TabIndex = 17;
+            this.cb_station.FormattingEnabled = true;
+            this.cb_station.Location = new System.Drawing.Point(121, 115);
+            this.cb_station.Name = "cb_station";
+            this.cb_station.Size = new System.Drawing.Size(200, 20);
+            this.cb_station.TabIndex = 17;
             // 
-            // textBox1
+            // tb_sn
             // 
-            this.textBox1.Location = new System.Drawing.Point(121, 74);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(200, 21);
-            this.textBox1.TabIndex = 16;
+            this.tb_sn.Location = new System.Drawing.Point(121, 74);
+            this.tb_sn.Name = "tb_sn";
+            this.tb_sn.Size = new System.Drawing.Size(200, 21);
+            this.tb_sn.TabIndex = 16;
             // 
             // radLabel2
             // 
@@ -112,13 +112,13 @@
             this.radLabel2.TabIndex = 15;
             this.radLabel2.Text = "追溯码";
             // 
-            // comboBox1
+            // cb_typeNo
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(121, 32);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(200, 20);
-            this.comboBox1.TabIndex = 14;
+            this.cb_typeNo.FormattingEnabled = true;
+            this.cb_typeNo.Location = new System.Drawing.Point(121, 32);
+            this.cb_typeNo.Name = "cb_typeNo";
+            this.cb_typeNo.Size = new System.Drawing.Size(200, 20);
+            this.cb_typeNo.TabIndex = 14;
             // 
             // radLabel1
             // 
@@ -128,38 +128,40 @@
             this.radLabel1.TabIndex = 13;
             this.radLabel1.Text = "零件号";
             // 
-            // radButton1
+            // btn_apply
             // 
-            this.radButton1.Location = new System.Drawing.Point(161, 248);
-            this.radButton1.Name = "radButton1";
-            this.radButton1.Size = new System.Drawing.Size(60, 24);
-            this.radButton1.TabIndex = 25;
-            this.radButton1.Text = "应用";
+            this.btn_apply.Location = new System.Drawing.Point(161, 248);
+            this.btn_apply.Name = "btn_apply";
+            this.btn_apply.Size = new System.Drawing.Size(60, 24);
+            this.btn_apply.TabIndex = 25;
+            this.btn_apply.Text = "应用";
+            this.btn_apply.Click += new System.EventHandler(this.Btn_apply_Click);
             // 
-            // radButton2
+            // btn_cancel
             // 
-            this.radButton2.Location = new System.Drawing.Point(257, 248);
-            this.radButton2.Name = "radButton2";
-            this.radButton2.Size = new System.Drawing.Size(64, 24);
-            this.radButton2.TabIndex = 26;
-            this.radButton2.Text = "取消";
+            this.btn_cancel.Location = new System.Drawing.Point(257, 248);
+            this.btn_cancel.Name = "btn_cancel";
+            this.btn_cancel.Size = new System.Drawing.Size(64, 24);
+            this.btn_cancel.TabIndex = 26;
+            this.btn_cancel.Text = "取消";
+            this.btn_cancel.Click += new System.EventHandler(this.Btn_cancel_Click);
             // 
             // SetStation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(372, 297);
-            this.Controls.Add(this.radButton2);
-            this.Controls.Add(this.radButton1);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.btn_cancel);
+            this.Controls.Add(this.btn_apply);
+            this.Controls.Add(this.tb_remark);
             this.Controls.Add(this.radLabel6);
             this.Controls.Add(this.radLabel4);
-            this.Controls.Add(this.comboBox3);
+            this.Controls.Add(this.cb_testRes);
             this.Controls.Add(this.radLabel3);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.cb_station);
+            this.Controls.Add(this.tb_sn);
             this.Controls.Add(this.radLabel2);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cb_typeNo);
             this.Controls.Add(this.radLabel1);
             this.Name = "SetStation";
             // 
@@ -167,13 +169,14 @@
             // 
             this.RootElement.ApplyShapeToControl = true;
             this.Text = "设站";
+            this.Load += new System.EventHandler(this.SetStation_Load);
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_apply)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_cancel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -182,17 +185,17 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox tb_remark;
         private Telerik.WinControls.UI.RadLabel radLabel6;
         private Telerik.WinControls.UI.RadLabel radLabel4;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox cb_testRes;
         private Telerik.WinControls.UI.RadLabel radLabel3;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ComboBox cb_station;
+        private System.Windows.Forms.TextBox tb_sn;
         private Telerik.WinControls.UI.RadLabel radLabel2;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cb_typeNo;
         private Telerik.WinControls.UI.RadLabel radLabel1;
-        private Telerik.WinControls.UI.RadButton radButton1;
-        private Telerik.WinControls.UI.RadButton radButton2;
+        private Telerik.WinControls.UI.RadButton btn_apply;
+        private Telerik.WinControls.UI.RadButton btn_cancel;
     }
 }

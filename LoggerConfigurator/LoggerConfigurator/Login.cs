@@ -201,6 +201,12 @@ namespace LoggerConfigurator
             cob_userType.SelectedIndex = (int)UserType.USER_ADMIN;
         }
 
+        private void Btn_cancel_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
+        }
+
         //找回密码
 
         //注册新账号

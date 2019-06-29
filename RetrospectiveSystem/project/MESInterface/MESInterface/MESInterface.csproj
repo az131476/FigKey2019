@@ -66,13 +66,15 @@
   <ItemGroup>
     <Content Include="MesService.svc" />
     <Content Include="Web.config" />
+    <Content Include="接口说明.txt" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MessageQueue\RemoteClient\FirstCheckQueue.cs" />
     <Compile Include="MesService.svc.cs">
       <DependentUpon>MesService.svc</DependentUpon>
     </Compile>
     <Compile Include="IMesService.cs" />
-    <Compile Include="Model\FirstcheckResultEnum.cs" />
+    <Compile Include="Model\FirstCheckResultEnum.cs" />
     <Compile Include="Model\InsertWIPResultEnum.cs" />
     <Compile Include="Model\LoginInfoEnum.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -80,6 +82,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="DB\" />
+    <Folder Include="MessageQueue\LocalClient\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -18,11 +18,12 @@ namespace RetrospectiveManager
         private const string USER_ADMIN = "管理员";
         private const string USER_ORDINARY = "普通用户";
         private MesService.MesServiceClient mesService;
-        public UserType GetUserType { get; set; }
+        public static UserType GetUserType { get; set; }
         public Login()
         {
             InitializeComponent();
             this.MaximizeBox = false;
+            this.FormBorderStyle = FormBorderStyle.FixedDialog;
             this.StartPosition = FormStartPosition.CenterScreen;
         }
 
@@ -136,39 +137,47 @@ namespace RetrospectiveManager
         /// <param name="loginUser"></param>
         private void RemoteValidate(MesService.LoginUser loginUser)
         {
-            MesService.LoginResult loginRes = mesService.Login(tbx_username.Text, tbx_pwd.Text, loginUser);
-            //验证用户密码
-            switch (loginRes)
+            try
             {
-                case MesService.LoginResult.SUCCESS:
-                    LogHelper.Log.Info("登录验证成功！");
-                    //连接云服务
-                    if (!ConnectCloudService())
-                    {
-                        MessageBox.Show("连接服务失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MesService.LoginResult loginRes = mesService.Login(tbx_username.Text, tbx_pwd.Text, loginUser);
+                //验证用户密码
+                switch (loginRes)
+                {
+                    case MesService.LoginResult.SUCCESS:
+                        LogHelper.Log.Info("登录验证成功！");
+                        //连接云服务
+                        if (!ConnectCloudService())
+                        {
+                            MessageBox.Show("连接服务失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
+                        LogHelper.Log.Info("连接服务成功！");
+                        //启动主界面
+                        this.DialogResult = DialogResult.OK;
+                        this.Close();
+                        break;
+                    case MesService.LoginResult.FAIL_EXCEP:
+                        LogHelper.Log.Info("登录失败!");
+                        break;
+                    case MesService.LoginResult.USER_NAME_ERR:
+                        //该用户不存在
+                        tbx_username.ForeColor = Color.Red;
+                        tbx_username.Focus();
+                        break;
+                    case MesService.LoginResult.USER_PWD_ERR:
+                        tbx_pwd.ForeColor = Color.Red;
+                        tbx_pwd.Focus();
                         return;
-                    }
-                    LogHelper.Log.Info("连接服务成功！");
-                    //启动主界面
-                    this.DialogResult = DialogResult.OK;
-                    this.Close();
-                    break;
-                case MesService.LoginResult.FAIL_EXCEP:
-                    LogHelper.Log.Info("登录失败!");
-                    break;
-                case MesService.LoginResult.USER_NAME_ERR:
-                    //该用户不存在
-                    tbx_username.ForeColor = Color.Red;
-                    tbx_username.Focus();
-                    break;
-                case MesService.LoginResult.USER_PWD_ERR:
-                    tbx_pwd.ForeColor = Color.Red;
-                    tbx_pwd.Focus();
-                    return;
-                default:
-                    break;
+                    default:
+                        break;
+                }
+                tbx_pwd.ForeColor = Color.Black;
             }
-            tbx_pwd.ForeColor = Color.Black;
+            catch (Exception ex)
+            {
+                LogHelper.Log.Error(ex.Message);
+                MessageBox.Show(ex.Message,"Err");
+            }
         }
         #endregion
 

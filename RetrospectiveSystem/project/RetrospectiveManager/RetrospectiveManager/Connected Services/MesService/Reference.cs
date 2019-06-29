@@ -180,11 +180,11 @@ namespace RetrospectiveManager.MesService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/Register", ReplyAction="http://tempuri.org/IMesService/RegisterResponse")]
         System.Threading.Tasks.Task<RetrospectiveManager.MesService.RegisterResult> RegisterAsync(string username, string pwd, string phone, string email, RetrospectiveManager.MesService.LoginUser loginUser);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/Firstcheck", ReplyAction="http://tempuri.org/IMesService/FirstcheckResponse")]
-        string Firstcheck(string sn, string sTypeNumber, string sStationName);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/FirstCheck", ReplyAction="http://tempuri.org/IMesService/FirstCheckResponse")]
+        string FirstCheck(string snInner, string snOutter, string sTypeNumber, string sStationName);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/Firstcheck", ReplyAction="http://tempuri.org/IMesService/FirstcheckResponse")]
-        System.Threading.Tasks.Task<string> FirstcheckAsync(string sn, string sTypeNumber, string sStationName);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/FirstCheck", ReplyAction="http://tempuri.org/IMesService/FirstCheckResponse")]
+        System.Threading.Tasks.Task<string> FirstCheckAsync(string snInner, string snOutter, string sTypeNumber, string sStationName);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/InsertWIP", ReplyAction="http://tempuri.org/IMesService/InsertWIPResponse")]
         string InsertWIP(string sn, string sTypeNumber, string sStationName, string sTestResult, string sTime);
@@ -199,16 +199,88 @@ namespace RetrospectiveManager.MesService {
         System.Threading.Tasks.Task<string> InsertProduceAsync(System.Collections.Generic.Dictionary<int, string> dctData);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectProduce", ReplyAction="http://tempuri.org/IMesService/SelectProduceResponse")]
-        System.Data.DataSet SelectProduce();
+        System.Data.DataSet SelectProduce(string stationName, string stationOrder);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectProduce", ReplyAction="http://tempuri.org/IMesService/SelectProduceResponse")]
-        System.Threading.Tasks.Task<System.Data.DataSet> SelectProduceAsync();
+        System.Threading.Tasks.Task<System.Data.DataSet> SelectProduceAsync(string stationName, string stationOrder);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/UpdateProduce", ReplyAction="http://tempuri.org/IMesService/UpdateProduceResponse")]
         string UpdateProduce(System.Collections.Generic.Dictionary<int, string> data);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/UpdateProduce", ReplyAction="http://tempuri.org/IMesService/UpdateProduceResponse")]
         System.Threading.Tasks.Task<string> UpdateProduceAsync(System.Collections.Generic.Dictionary<int, string> data);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/DeleteProduce", ReplyAction="http://tempuri.org/IMesService/DeleteProduceResponse")]
+        int DeleteProduce(string stationName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/DeleteProduce", ReplyAction="http://tempuri.org/IMesService/DeleteProduceResponse")]
+        System.Threading.Tasks.Task<int> DeleteProduceAsync(string stationName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/DeleteAllProduce", ReplyAction="http://tempuri.org/IMesService/DeleteAllProduceResponse")]
+        int DeleteAllProduce();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/DeleteAllProduce", ReplyAction="http://tempuri.org/IMesService/DeleteAllProduceResponse")]
+        System.Threading.Tasks.Task<int> DeleteAllProduceAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/DeleteProductType", ReplyAction="http://tempuri.org/IMesService/DeleteProductTypeResponse")]
+        int DeleteProductType(string productName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/DeleteProductType", ReplyAction="http://tempuri.org/IMesService/DeleteProductTypeResponse")]
+        System.Threading.Tasks.Task<int> DeleteProductTypeAsync(string productName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/DeleteAllProductType", ReplyAction="http://tempuri.org/IMesService/DeleteAllProductTypeResponse")]
+        int DeleteAllProductType();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/DeleteAllProductType", ReplyAction="http://tempuri.org/IMesService/DeleteAllProductTypeResponse")]
+        System.Threading.Tasks.Task<int> DeleteAllProductTypeAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectProductType", ReplyAction="http://tempuri.org/IMesService/SelectProductTypeResponse")]
+        System.Data.DataSet SelectProductType(string productName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectProductType", ReplyAction="http://tempuri.org/IMesService/SelectProductTypeResponse")]
+        System.Threading.Tasks.Task<System.Data.DataSet> SelectProductTypeAsync(string productName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/CommitProductType", ReplyAction="http://tempuri.org/IMesService/CommitProductTypeResponse")]
+        string CommitProductType(System.Collections.Generic.Dictionary<int, string> dctData);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/CommitProductType", ReplyAction="http://tempuri.org/IMesService/CommitProductTypeResponse")]
+        System.Threading.Tasks.Task<string> CommitProductTypeAsync(System.Collections.Generic.Dictionary<int, string> dctData);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/DeleteAllTypeStation", ReplyAction="http://tempuri.org/IMesService/DeleteAllTypeStationResponse")]
+        int DeleteAllTypeStation();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/DeleteAllTypeStation", ReplyAction="http://tempuri.org/IMesService/DeleteAllTypeStationResponse")]
+        System.Threading.Tasks.Task<int> DeleteAllTypeStationAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/DeleteTypeStation", ReplyAction="http://tempuri.org/IMesService/DeleteTypeStationResponse")]
+        int DeleteTypeStation(string typeNumber);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/DeleteTypeStation", ReplyAction="http://tempuri.org/IMesService/DeleteTypeStationResponse")]
+        System.Threading.Tasks.Task<int> DeleteTypeStationAsync(string typeNumber);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectTypeStation", ReplyAction="http://tempuri.org/IMesService/SelectTypeStationResponse")]
+        System.Data.DataSet SelectTypeStation(string typeNumber);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectTypeStation", ReplyAction="http://tempuri.org/IMesService/SelectTypeStationResponse")]
+        System.Threading.Tasks.Task<System.Data.DataSet> SelectTypeStationAsync(string typeNumber);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/CommitTypeStation", ReplyAction="http://tempuri.org/IMesService/CommitTypeStationResponse")]
+        string CommitTypeStation(System.Collections.Generic.Dictionary<string, string[]> dctData);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/CommitTypeStation", ReplyAction="http://tempuri.org/IMesService/CommitTypeStationResponse")]
+        System.Threading.Tasks.Task<string> CommitTypeStationAsync(System.Collections.Generic.Dictionary<string, string[]> dctData);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectProductDataOfSN", ReplyAction="http://tempuri.org/IMesService/SelectProductDataOfSNResponse")]
+        System.Data.DataSet SelectProductDataOfSN(string sn, bool IsSnFuzzy);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectProductDataOfSN", ReplyAction="http://tempuri.org/IMesService/SelectProductDataOfSNResponse")]
+        System.Threading.Tasks.Task<System.Data.DataSet> SelectProductDataOfSNAsync(string sn, bool IsSnFuzzy);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectProductDataOfTypeNo", ReplyAction="http://tempuri.org/IMesService/SelectProductDataOfTypeNoResponse")]
+        System.Data.DataSet SelectProductDataOfTypeNo(string typeNo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectProductDataOfTypeNo", ReplyAction="http://tempuri.org/IMesService/SelectProductDataOfTypeNoResponse")]
+        System.Threading.Tasks.Task<System.Data.DataSet> SelectProductDataOfTypeNoAsync(string typeNo);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -331,12 +403,12 @@ namespace RetrospectiveManager.MesService {
             return base.Channel.RegisterAsync(username, pwd, phone, email, loginUser);
         }
         
-        public string Firstcheck(string sn, string sTypeNumber, string sStationName) {
-            return base.Channel.Firstcheck(sn, sTypeNumber, sStationName);
+        public string FirstCheck(string snInner, string snOutter, string sTypeNumber, string sStationName) {
+            return base.Channel.FirstCheck(snInner, snOutter, sTypeNumber, sStationName);
         }
         
-        public System.Threading.Tasks.Task<string> FirstcheckAsync(string sn, string sTypeNumber, string sStationName) {
-            return base.Channel.FirstcheckAsync(sn, sTypeNumber, sStationName);
+        public System.Threading.Tasks.Task<string> FirstCheckAsync(string snInner, string snOutter, string sTypeNumber, string sStationName) {
+            return base.Channel.FirstCheckAsync(snInner, snOutter, sTypeNumber, sStationName);
         }
         
         public string InsertWIP(string sn, string sTypeNumber, string sStationName, string sTestResult, string sTime) {
@@ -355,12 +427,12 @@ namespace RetrospectiveManager.MesService {
             return base.Channel.InsertProduceAsync(dctData);
         }
         
-        public System.Data.DataSet SelectProduce() {
-            return base.Channel.SelectProduce();
+        public System.Data.DataSet SelectProduce(string stationName, string stationOrder) {
+            return base.Channel.SelectProduce(stationName, stationOrder);
         }
         
-        public System.Threading.Tasks.Task<System.Data.DataSet> SelectProduceAsync() {
-            return base.Channel.SelectProduceAsync();
+        public System.Threading.Tasks.Task<System.Data.DataSet> SelectProduceAsync(string stationName, string stationOrder) {
+            return base.Channel.SelectProduceAsync(stationName, stationOrder);
         }
         
         public string UpdateProduce(System.Collections.Generic.Dictionary<int, string> data) {
@@ -369,6 +441,102 @@ namespace RetrospectiveManager.MesService {
         
         public System.Threading.Tasks.Task<string> UpdateProduceAsync(System.Collections.Generic.Dictionary<int, string> data) {
             return base.Channel.UpdateProduceAsync(data);
+        }
+        
+        public int DeleteProduce(string stationName) {
+            return base.Channel.DeleteProduce(stationName);
+        }
+        
+        public System.Threading.Tasks.Task<int> DeleteProduceAsync(string stationName) {
+            return base.Channel.DeleteProduceAsync(stationName);
+        }
+        
+        public int DeleteAllProduce() {
+            return base.Channel.DeleteAllProduce();
+        }
+        
+        public System.Threading.Tasks.Task<int> DeleteAllProduceAsync() {
+            return base.Channel.DeleteAllProduceAsync();
+        }
+        
+        public int DeleteProductType(string productName) {
+            return base.Channel.DeleteProductType(productName);
+        }
+        
+        public System.Threading.Tasks.Task<int> DeleteProductTypeAsync(string productName) {
+            return base.Channel.DeleteProductTypeAsync(productName);
+        }
+        
+        public int DeleteAllProductType() {
+            return base.Channel.DeleteAllProductType();
+        }
+        
+        public System.Threading.Tasks.Task<int> DeleteAllProductTypeAsync() {
+            return base.Channel.DeleteAllProductTypeAsync();
+        }
+        
+        public System.Data.DataSet SelectProductType(string productName) {
+            return base.Channel.SelectProductType(productName);
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> SelectProductTypeAsync(string productName) {
+            return base.Channel.SelectProductTypeAsync(productName);
+        }
+        
+        public string CommitProductType(System.Collections.Generic.Dictionary<int, string> dctData) {
+            return base.Channel.CommitProductType(dctData);
+        }
+        
+        public System.Threading.Tasks.Task<string> CommitProductTypeAsync(System.Collections.Generic.Dictionary<int, string> dctData) {
+            return base.Channel.CommitProductTypeAsync(dctData);
+        }
+        
+        public int DeleteAllTypeStation() {
+            return base.Channel.DeleteAllTypeStation();
+        }
+        
+        public System.Threading.Tasks.Task<int> DeleteAllTypeStationAsync() {
+            return base.Channel.DeleteAllTypeStationAsync();
+        }
+        
+        public int DeleteTypeStation(string typeNumber) {
+            return base.Channel.DeleteTypeStation(typeNumber);
+        }
+        
+        public System.Threading.Tasks.Task<int> DeleteTypeStationAsync(string typeNumber) {
+            return base.Channel.DeleteTypeStationAsync(typeNumber);
+        }
+        
+        public System.Data.DataSet SelectTypeStation(string typeNumber) {
+            return base.Channel.SelectTypeStation(typeNumber);
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> SelectTypeStationAsync(string typeNumber) {
+            return base.Channel.SelectTypeStationAsync(typeNumber);
+        }
+        
+        public string CommitTypeStation(System.Collections.Generic.Dictionary<string, string[]> dctData) {
+            return base.Channel.CommitTypeStation(dctData);
+        }
+        
+        public System.Threading.Tasks.Task<string> CommitTypeStationAsync(System.Collections.Generic.Dictionary<string, string[]> dctData) {
+            return base.Channel.CommitTypeStationAsync(dctData);
+        }
+        
+        public System.Data.DataSet SelectProductDataOfSN(string sn, bool IsSnFuzzy) {
+            return base.Channel.SelectProductDataOfSN(sn, IsSnFuzzy);
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> SelectProductDataOfSNAsync(string sn, bool IsSnFuzzy) {
+            return base.Channel.SelectProductDataOfSNAsync(sn, IsSnFuzzy);
+        }
+        
+        public System.Data.DataSet SelectProductDataOfTypeNo(string typeNo) {
+            return base.Channel.SelectProductDataOfTypeNo(typeNo);
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> SelectProductDataOfTypeNoAsync(string typeNo) {
+            return base.Channel.SelectProductDataOfTypeNoAsync(typeNo);
         }
     }
 }

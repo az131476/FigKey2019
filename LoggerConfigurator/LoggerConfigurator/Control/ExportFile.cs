@@ -134,22 +134,22 @@ namespace FigKeyLoggerConfigurator.Control
             StringBuilder sbExInfo = new StringBuilder();
             sbExInfo.Append(EXINFO_TYPE_HEAD);
             sbExInfo.AppendLine(EXINFO_Head+EXINFO_TYPE_METHOLD_NAME);
-            sbExInfo.AppendLine("\t\t" + "0" + "," + "0x7f1" + "," + "0");
-            sbExInfo.AppendLine("\t\t" + "1" + "," + "0x7f2" + "," + "0");
+            sbExInfo.AppendLine("\t\t" + "0" + "," + "0x7f1" + "," + "0"+",");
+            sbExInfo.AppendLine("\t\t" + "1" + "," + "0x7f2" + "," + "0"+",");
             exInfoLen = 2;
             if (listData.LimitTimeListSegMent.Count > 0)
             {
-                sbExInfo.AppendLine("\t\t" + "2" + "," + SEGMENT_NAME + "," + listData.LimitTimeListSegMent.Count);
+                sbExInfo.AppendLine("\t\t" + "2" + "," + SEGMENT_NAME + "," + listData.LimitTimeListSegMent.Count+",");
                 exInfoLen += 1;
             }
             if (listData.LimitTimeList10ms.Count > 0)
             {
-                sbExInfo.AppendLine($"\t\t2,{_10MS_NAME},{listData.LimitTimeList10ms.Count}");
+                sbExInfo.AppendLine($"\t\t2,{_10MS_NAME},{listData.LimitTimeList10ms.Count},");
                 exInfoLen += 1;
             }
             if (listData.LimitTimeList100ms.Count > 0)
             {
-                sbExInfo.AppendLine($"\t\t2,{_100MS_NAME},{listData.LimitTimeList100ms.Count}");
+                sbExInfo.AppendLine($"\t\t2,{_100MS_NAME},{listData.LimitTimeList100ms.Count},");
                 exInfoLen += 1;
             }
             sbExInfo.AppendLine("};");
@@ -342,7 +342,7 @@ namespace FigKeyLoggerConfigurator.Control
                                    gridView.Rows[list[i]].Cells[8].Value.ToString() + "," +
                                    gridView.Rows[list[i]].Cells[9].Value.ToString() + "," +
                                    gridView.Rows[list[i]].Cells[10].Value.ToString() + "," +
-                                   gridView.Rows[list[i]].Cells[11].Value.ToString() + "\r\n");
+                                   gridView.Rows[list[i]].Cells[11].Value.ToString() + ",\r\n");
                 }
                 builder.Append("};\r\n");
             }
