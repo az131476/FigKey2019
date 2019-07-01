@@ -13,6 +13,8 @@ using System.Web;
 using System.IO;
 using System.Net;
 using System.Runtime.InteropServices;
+using RetrospectiveManager.RadView;
+using RetrospectiveManager.Control;
 
 namespace RetrospectiveManager
 {
@@ -32,9 +34,13 @@ namespace RetrospectiveManager
         {
             serviceClient = new MesService.MesServiceClient();
             InitListView();
+            LoadTreeView();
             this.radDock1.RemoveAllDocumentWindows();
             this.radDock1.AddDocument(documentWindow_typeNo);
             this.radDock1.AddDocument(documentWindow_sn);
+            this.radDock1.AddDocument(documentWindow_packageProduct);
+            this.radDock1.AddDocument(documentWindow_statistic);
+
             if (Login.GetUserType == Login.UserType.USER_ADMIN)
             {
                 tool_status_user.Text = "管理员";
@@ -49,30 +55,62 @@ namespace RetrospectiveManager
             menu_productType.Click += Menu_productType_Click;
             menu_sn.Click += Menu_sn_Click;
             menu_typeno.Click += Menu_typeno_Click;
+            menu_material_msg.Click += Menu_material_msg_Click;
+            menu_product_binding.Click += Menu_product_binding_Click;
+            menu_outbox_material.Click += Menu_outbox_material_Click;
+            menu_product_material.Click += Menu_product_material_Click;
 
             btn_search_record.Click += Btn_search_record_Click;
-            btn_search_typeNo.Click += Btn_search_typeNo_Click;
-            btn_search_last_station.Click += Btn_search_last_station_Click;
+            btn_search_testRes.Click += Btn_search_testRes_Click;
         }
 
-        private void Btn_search_last_station_Click(object sender, EventArgs e)
+        private void Menu_product_material_Click(object sender, EventArgs e)
         {
-            //由追溯码 查询上一站位
-
+            ProductMaterial productMaterial = new ProductMaterial();
+            productMaterial.ShowDialog();
         }
 
-        async private void Btn_search_typeNo_Click(object sender, EventArgs e)
+        private void Menu_outbox_material_Click(object sender, EventArgs e)
         {
-            //由零件号 查询记录
-            DataTable dt = (await serviceClient.SelectProductDataOfTypeNoAsync(tb_typeNo.Text.Trim())).Tables[0];
-            radListView2.DataSource = dt;
+            MaterialOutBox materialOutBox = new MaterialOutBox();
+            materialOutBox.ShowDialog();
+        }
+
+        private void Menu_product_binding_Click(object sender, EventArgs e)
+        {
+            PackageProduct packageProduct = new PackageProduct();
+            packageProduct.ShowDialog();
+        }
+
+        private void Menu_material_msg_Click(object sender, EventArgs e)
+        {
+            Material material = new Material();
+            material.ShowDialog();
+        }
+
+        async private void Btn_search_testRes_Click(object sender, EventArgs e)
+        {
+            listView_TestRes.Items.Clear();
+            if (rdb_typeNo.CheckState == CheckState.Checked)
+            {
+                //由零件号 查询记录
+                DataTable dt = (await serviceClient.SelectProductDataOfTypeNoAsync(tb_input.Text.Trim())).Tables[0];
+                listView_TestRes.DataSource = dt;
+                btn_search_testRes.Text = "查询";
+            }
+            else if (rdb_sn.CheckState == CheckState.Checked)
+            {
+                //查询上一站位
+                btn_search_testRes.Text = "查询上一站位";
+            }
         }
 
         async private void Btn_search_record_Click(object sender, EventArgs e)
         {
             //由追溯码 查询历史记录
+            listView_TestRes.Items.Clear();
             DataTable dt = (await serviceClient.SelectProductDataOfSNAsync(tb_sn.Text.Trim(), true)).Tables[0];
-            radListView1.DataSource = dt;
+            listView_TestRes.DataSource = dt;
         }
 
         private void Menu_typeno_Click(object sender, EventArgs e)
@@ -124,8 +162,26 @@ namespace RetrospectiveManager
             radListView1.ViewType = ListViewType.DetailsView;
             radListView1.ShowGridLines = true;
 
-            radListView2.ViewType = ListViewType.DetailsView;
-            radListView2.ShowGridLines = true;
+            listView_TestRes.ViewType = ListViewType.DetailsView;
+            listView_TestRes.ShowGridLines = true;
+        }
+
+        public void LoadTreeView()
+        {
+            TreeViewControl treeView = new TreeViewControl(radTreeView1);
+            treeView.LoadTreeView();
+            radTreeView1.NodeMouseClick += RadTreeView1_NodeMouseClick;
+        }
+
+        private void RadTreeView1_NodeMouseClick(object sender, RadTreeViewEventArgs e)
+        {
+            RadTreeNode treeNode = e.Node;
+            switch (treeNode.Text)
+            {
+                case "产品A":
+                    
+                    break;
+            }
         }
     }
 }

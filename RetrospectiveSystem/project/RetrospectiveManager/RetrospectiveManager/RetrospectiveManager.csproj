@@ -94,6 +94,7 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Telerik.WinControls, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="Telerik.WinControls.ChartView, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
     <Reference Include="Telerik.WinControls.GridView, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
     <Reference Include="Telerik.WinControls.RadDock, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
     <Reference Include="Telerik.WinControls.UI, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
@@ -105,6 +106,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Control\TreeViewControl.cs" />
     <Compile Include="DB\Config.cs" />
     <Compile Include="DB\Order.cs" />
     <Compile Include="DB\OrderItem.cs" />
@@ -153,6 +155,30 @@
     <Compile Include="SetStationAdmin.Designer.cs">
       <DependentUpon>SetStationAdmin.cs</DependentUpon>
     </Compile>
+    <Compile Include="RadView\Material.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RadView\Material.Designer.cs">
+      <DependentUpon>Material.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RadView\MaterialOutBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RadView\MaterialOutBox.Designer.cs">
+      <DependentUpon>MaterialOutBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RadView\PackageProduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RadView\PackageProduct.Designer.cs">
+      <DependentUpon>PackageProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RadView\ProductMaterial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RadView\ProductMaterial.Designer.cs">
+      <DependentUpon>ProductMaterial.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
@@ -184,6 +210,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SetStationAdmin.resx">
       <DependentUpon>SetStationAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RadView\Material.resx">
+      <DependentUpon>Material.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RadView\MaterialOutBox.resx">
+      <DependentUpon>MaterialOutBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RadView\PackageProduct.resx">
+      <DependentUpon>PackageProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RadView\ProductMaterial.resx">
+      <DependentUpon>ProductMaterial.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Connected Services\MesService\MesService.wsdl" />
     <None Include="Connected Services\MesService\MesService.xsd">
@@ -236,6 +274,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="新需求.txt" />
     <Content Include="需求.txt" />
     <None Include="Connected Services\MesService\MesService.disco" />
     <None Include="Connected Services\MesService\configuration91.svcinfo" />
