@@ -11,6 +11,8 @@ namespace AnalysisAgreeMent.Model.XCP
     /// </summary>
     public class XcpData
     {
+        public AgreementType AgreeMentType { get; set; }
+
         public List<MeasureMent> MeasureData { get; set; }
 
         public List<Characteristic> CharacterData { get; set; }

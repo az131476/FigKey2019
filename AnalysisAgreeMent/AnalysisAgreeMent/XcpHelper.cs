@@ -36,6 +36,8 @@ namespace AnalysisAgreeMent
         private static RecordLayoutClass RecordInformation;
         private static MemorySegmentClass MemoryInformation;
         private static PropertyClass propertyInformation;
+        private static IF_DATA_ASAP1B_CCP if_data_asap1b_ccp;
+        private static ProtocolLayer protocolLayer;
 
         private static List<MeasureMent> measureList = new List<MeasureMent>();
         private static List<Characteristic> characterList = new List<Characteristic>();
@@ -44,6 +46,7 @@ namespace AnalysisAgreeMent
         private static List<RecordLayoutClass> RecordList = new List<RecordLayoutClass>();
         private static List<MemorySegmentClass> MemoryList = new List<MemorySegmentClass>();
         private static List<PropertyClass> propertyList = new List<PropertyClass>();
+        private static List<IF_DATA_ASAP1B_CCP> asap1b_ccp_list = new List<IF_DATA_ASAP1B_CCP>();
         #endregion
 
         #region 公有成员变量
@@ -60,7 +63,7 @@ namespace AnalysisAgreeMent
         /// 解析a2l文件，解析成功返回值1
         /// </summary>
         /// <param name="A2lPath">a2l绝对路径</param>
-        /// <param name="Protocol">协议类型：1/2=calibrationcan；3/4=vehiclecan</param>
+        /// <param name="Protocol">0-CCP,1-XCP</param>
         /// <returns></returns>
         public CodeCommand AnalyzeXcpFile(string A2lPath, int Protocol)
         {
@@ -80,9 +83,14 @@ namespace AnalysisAgreeMent
                 {
                     readLineResult = A2lReader.ReadLine().Trim();
                     string signTemp = readLineResult.ToLower();
-                    if (signTemp.Contains(A2lContent.BeginmodCommon.BEGINMOD_COMMON.ToLower()))
+                    //特俗标记
+                    if (signTemp.Contains(A2lContent.BeginmodCommon.BEGINMOD_COMMON))
                     {
                         signTemp = A2lContent.BeginmodCommon.BEGINMOD_COMMON;
+                    }
+                    if (signTemp.Contains(A2lContent.Begin_If_Data_Asap1b_ccp.BEGIN_IF_DATA_ASAP1B_CCP))
+                    {
+                        signTemp = signTemp.TrimStart();
                     }
                     switch (signTemp)
                     {
@@ -108,6 +116,15 @@ namespace AnalysisAgreeMent
                             break;
                         case A2lContent.BegincompuVtab.BEGIN_COMPU_VTAB:
                             //AnalysisCompu_Vtab();
+                            break;
+                        case A2lContent.Begin_If_Data_Asap1b_ccp.BEGIN_IF_DATA_ASAP1B_CCP:
+                            //data exist ,protocol is ccp
+                            xcpData.AgreeMentType = AgreementType.CCP;
+                            AnalysisIF_DATA_ASAP1B_CCP();
+                            break;
+                        case "TRANSPORT_LAYER_INSTANCE":
+                            xcpData.AgreeMentType = AgreementType.XCP;
+                            TRANSPORT_LAYER_INSTANCE();
                             break;
 
                         default:
@@ -915,6 +932,58 @@ namespace AnalysisAgreeMent
                 xcpData.MemorySedData = MemoryList;
             }
             return CodeCommand.DEAFAULT_SUCCESS;
+        }
+
+        /// <summary>
+        /// 将协议类型为CCP时，读取segment / 10ms /100ms 的相关参数
+        /// </summary>
+        private void AnalysisIF_DATA_ASAP1B_CCP()
+        {
+            index = 0;
+            if_data_asap1b_ccp = new IF_DATA_ASAP1B_CCP();
+            while (readLineResult.ToLower() != A2lContent.Begin_If_Data_Asap1b_ccp.END_IF_DATA_ASAP1B_CCP)
+            {
+                readLineResult = A2lReader.ReadLine().Trim();
+                if (readLineResult.ToLower() == A2lContent.Begin_If_Data_Asap1b_ccp.END_IF_DATA_ASAP1B_CCP)
+                {
+                    break;
+                }
+                if (readLineResult.Contains("/* daq name"))
+                {
+
+                }
+
+
+                if (readLineResult.ToUpper().Contains("ECU_ADDRESS"))
+                {
+                    string ecuDecString = readLineResult.ToLower().Replace("ecu_address", "").Trim();
+                    string tem = ecuDecString.Replace("0x", "").Trim();
+                    measureMent.EcuAddress = Convert.ToInt64(tem, 16);
+                }
+                index++;
+            }
+            measureList.Add(measureMent);
+            xcpData.AgreeMentType = AgreementType.CCP;
+        }
+
+        /// <summary>
+        /// 读取TRANSPORT_LAYER_INSTANCE的所有类型的分类
+        /// </summary>
+        private void TRANSPORT_LAYER_INSTANCE()
+        {
+            protocolLayer = new ProtocolLayer();
+            List<string> protocolLayerList = new List<string>();
+            readLineResult = readLineResult.Replace("TRANSPORT_LAYER_INSTANCE", "").Trim().Replace('"',' ');
+            if(readLineResult.Contains("CAN"))
+                protocolLayerList.Add(readLineResult);
+            while (true)
+            {
+                readLineResult = A2lReader.ReadLine().Trim();
+                if (readLineResult.Contains("TRANSPORT_LAYER_INSTANCE"))
+                    readLineResult = readLineResult.Replace("TRANSPORT_LAYER_INSTANCE","").Trim().Replace('"',' ');
+                if (readLineResult.Contains("CAN"))
+                    protocolLayerList.Add(readLineResult);
+            }
         }
 
         #region 检查A2l是否是XCP类型，如果不是，则返回
