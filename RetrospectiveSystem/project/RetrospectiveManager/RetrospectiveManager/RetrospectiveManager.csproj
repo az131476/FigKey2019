@@ -61,7 +61,7 @@
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CommonUtils">
@@ -100,11 +100,6 @@
     <Reference Include="TelerikCommon, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Connected Services\MesService\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
     <Compile Include="DB\Config.cs" />
     <Compile Include="DB\Order.cs" />
     <Compile Include="DB\OrderItem.cs" />
@@ -185,40 +180,6 @@
     <EmbeddedResource Include="SetStationAdmin.resx">
       <DependentUpon>SetStationAdmin.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="Connected Services\MesService\MesService.wsdl" />
-    <None Include="Connected Services\MesService\MesService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\MesService\MesService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\MesService\MesService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\MesService\MesService3.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\MesService\MesService4.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\MesService\MesService5.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\MesService\RetrospectiveManager.MesService.CompositeType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\MesService\RetrospectiveManager.MesService.GetUserInfoResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\MesService\RetrospectiveManager.MesService.LoginResult.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\MesService\RetrospectiveManager.MesService.QueryResult.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\MesService\RetrospectiveManager.MesService.RegisterResult.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\System.Data.DataSet.datasource" />
     <None Include="Properties\Settings.settings">
@@ -237,13 +198,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="需求.txt" />
-    <None Include="Connected Services\MesService\MesService.disco" />
-    <None Include="Connected Services\MesService\configuration91.svcinfo" />
-    <None Include="Connected Services\MesService\configuration.svcinfo" />
-    <None Include="Connected Services\MesService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
     <Content Include="说明.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -260,9 +214,6 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadataStorage Include="Connected Services\MesService\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

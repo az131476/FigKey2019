@@ -65,7 +65,15 @@ namespace RetrospectiveManager
         private void Login_Load(object sender, EventArgs e)
         {
             Init();
-            mesService = new MesService.MesServiceClient();
+            try
+            {
+                mesService = new MesService.MesServiceClient();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("连接服务异常","提示",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                LogHelper.Log.Error("获取服务异常！"+ex.Message);
+            }
         }
 
         private void Btn_login_Click(object sender, EventArgs e)
