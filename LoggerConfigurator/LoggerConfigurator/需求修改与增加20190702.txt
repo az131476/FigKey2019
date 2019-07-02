@@ -1,0 +1,23 @@
+﻿1）选择协议类型：数据显示时，需要先验证协议类型，并初始化
+2）选择波特率
+
+
+
+查询所有 TRANSPORT_LAYER_INSTANCE "Vehicle CAN (APPL)"
+
+
+CCP协议：
+	（1）/begin IF_DATA ASAP1B_CCP
+	     内容：segment/10ms/100ms   CAN_ID_FIXED值
+				/begin TP_BLOB  中得数据
+
+
+XCP协议：
+	（1）查询所有TRANSPORT_LAYER_INSTANCE，XPC协议需要选择与勾选
+		
+	（2）/begin XCP_ON_CAN   查主从地址等
+		根据选择的不同TRANSPORT_LAYER_INSTANCE，导出不同的参数
+
+判断a2l协议类型：存在TRANSPORT_LAYER_INSTANCE为XCP，存在IF_DATA ASAP1B_CCP为CCP
+
+

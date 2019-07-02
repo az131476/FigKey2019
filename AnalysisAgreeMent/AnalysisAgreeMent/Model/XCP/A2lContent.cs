@@ -10,8 +10,8 @@ namespace AnalysisAgreeMent.Model.XCP
     {
         public static class BeginmodCommon
         {
-            public const string BEGINMOD_COMMON = "/begin MOD_COMMON";
-            public const string END_MOD_COMMON = "/end MOD_COMMON";
+            public const string BEGINMOD_COMMON = "/begin mod_common";
+            public const string END_MOD_COMMON = "/end mod_common";
             public const string BYTE_ORDER = "byte_order";
             public const string MSB_LAST = "msb_last";
             public const string MSB_FIRST = "msb_first";
@@ -82,6 +82,12 @@ namespace AnalysisAgreeMent.Model.XCP
             public const string BEGIN_COMPU_VTAB = "/begin compu_vtab";
             public const string END_COMPU_VTAB = "/end compu_vtab";
             public const string TAB_VERB = "tab_verb";
+        }
+
+        public static class Begin_If_Data_Asap1b_ccp
+        {
+            public const string BEGIN_IF_DATA_ASAP1B_CCP = "/begin if_data asap1b_ccp";
+            public const string END_IF_DATA_ASAP1B_CCP = "/end if_data";
         }
     }
 }

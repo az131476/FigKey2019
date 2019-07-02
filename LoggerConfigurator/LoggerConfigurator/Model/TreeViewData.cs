@@ -28,7 +28,9 @@ namespace FigKeyLoggerConfigurator.Model
             public const string WLAN_3G = "WLAN/3G";
 
             public const string CAN_CHILD = "CAN ";
-
+            public const string CAN_1_DATA = "CAN1数据";
+            public const string CAN_2_DATA = "CAN2数据";
+            public const string CAN_HARDWARE_CONFIG = "硬件配置";
         }
         #endregion
 

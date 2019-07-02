@@ -26,6 +26,7 @@ using AnalysisAgreeMent.Model.DBC;
 using AnalysisAgreeMent.Model;
 using AnalysisAgreeMent.Analysis;
 using System.IO;
+using LoggerConfigurator.Model;
 
 namespace LoggerConfigurator
 {
@@ -33,7 +34,6 @@ namespace LoggerConfigurator
     {
         #region 私有成员变量
         private FileContent openFileContent;
-        private int protocol;
         private XcpData xcpdata;
         private XcpHelper xcpHelper;
         private DBCData dbcData;
@@ -64,13 +64,49 @@ namespace LoggerConfigurator
             Login login = new Login();
             login.ShowDialog();
 
-            btn_openFile_Can1.Click += OpenXcp_Click;
+            btn_openFile_Can1.Click += Btn_openFile_Can1_Click;
+            btn_openFile_can2.Click += Btn_openFile_can2_Click;
             btn_search_can1.Click += Rbtn_search_Click;
             tb_filter_can1.KeyDown += XcpFilterCondition_KeyDown;
 
             radGridView_can1.ValueChanged += RadGridView1_ValueChanged;
 
             tool_exportfile.Click += Tool_exportfile_Click;
+            menu_logger_manager.Click += Menu_logger_manager_Click;
+
+            cb_protocol_can1.SelectedIndexChanged += Cb_protocol_can1_SelectedIndexChanged;
+            cb_protocol_can2.SelectedIndexChanged += Cb_protocol_can2_SelectedIndexChanged;
+        }
+
+        private void Cb_protocol_can2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cb_protocol_can2.SelectedIndex == 2)
+            {
+                //select monitor can,do not set it
+                cb_baud_can2.Enabled = false;
+            }
+            else
+            {
+                cb_baud_can2.Enabled = true;
+            }
+        }
+
+        private void Cb_protocol_can1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cb_protocol_can1.SelectedIndex == 2)
+            {
+                //select monitor can,do not set it
+                cb_baud_can1.Enabled = false;
+            }
+            else
+            {
+                cb_baud_can1.Enabled = true;
+            }
+        }
+
+        private void Menu_logger_manager_Click(object sender, EventArgs e)
+        {
+            this.toolWindow_left.Show();
         }
 
         enum SelectedCan
@@ -87,20 +123,36 @@ namespace LoggerConfigurator
             gridViewData.LimitTimeList100ms = new List<int>();
 
             //配置
-            cb_porte.Items.Clear();
-            cb_porte.Items.Add("100000");
-            cb_porte.Items.Add("500000");
-            cb_porte.Items.Add("1000000");
-            cb_porte.SelectedIndex = 1;
+            //can1
+            cb_baud_can1.Items.Clear();
+            cb_baud_can1.Items.Add("100000");
+            cb_baud_can1.Items.Add("500000");
+            cb_baud_can1.Items.Add("1000000");
+            cb_baud_can1.SelectedIndex = 1;
 
-            cb_protocol.Items.Clear();
-            cb_protocol.Items.Add("CCP");
-            cb_protocol.Items.Add("XCP");
-            cb_protocol.Items.Add("CanMonnitor");
-            cb_protocol.SelectedIndex = 0;
+            cb_protocol_can1.Items.Clear();
+            cb_protocol_can1.Items.Add(ProtocolTypeEnum.CCP);
+            cb_protocol_can1.Items.Add(ProtocolTypeEnum.XCP);
+            cb_protocol_can1.Items.Add(ProtocolTypeEnum.CanMonnitor);
+            cb_protocol_can1.SelectedIndex = 0;
+
+            //can2
+            cb_baud_can2.Items.Clear();
+            cb_baud_can2.Items.Add("100000");
+            cb_baud_can2.Items.Add("500000");
+            cb_baud_can2.Items.Add("1000000");
+            cb_baud_can2.SelectedIndex = 1;
+
+            cb_protocol_can2.Items.Clear();
+            cb_protocol_can2.Items.Add(ProtocolTypeEnum.CCP);
+            cb_protocol_can2.Items.Add(ProtocolTypeEnum.XCP);
+            cb_protocol_can2.Items.Add(ProtocolTypeEnum.CanMonnitor);
+            cb_protocol_can2.SelectedIndex = 0;
 
             //document set
             this.radDock1.RemoveAllDocumentWindows();
+
+            lbx_protocol_remark.Text += "DBC时配置波特率有效，XCP直接从文件读取，配置无效";
         }
 
         #region 复选框行值处理
@@ -335,101 +387,164 @@ namespace LoggerConfigurator
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OpenXcp_Click(object sender, EventArgs e)
+        private void Btn_openFile_Can1_Click(object sender, EventArgs e)
         {
-            openFileContent = FileSelect.GetSelectFileContent("(*.dbc)|*.dbc|(*.A2L)|*.a2l", "选择文件");
+            OpenAnalysisFile(SelectedCan.CAN_1);
+        }
+
+        private void Btn_openFile_can2_Click(object sender, EventArgs e)
+        {
+            OpenAnalysisFile(SelectedCan.CAN_2);
+        }
+
+        private void OpenAnalysisFile(SelectedCan selectedCan)
+        {
+            string openFilter = "(*.*)|*.*";
+            ProtocolTypeEnum selectProtocol = ProtocolTypeEnum.CCP;
+            if (selectedCan == SelectedCan.CAN_1)
+            {
+                //CAN1 判断协议类型是否选择正确
+                if (string.IsNullOrEmpty(cb_protocol_can1.Text))
+                {
+                    MessageBox.Show("未选择协议类型","提示",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                    return;
+                }
+                if (!Enum.TryParse(cb_protocol_can1.Text, out selectProtocol))
+                {
+                    LogHelper.Log.Info("CAN1选择协议后类型转换失败！协议类型错误=>"+cb_protocol_can1.Text);
+                    MessageBox.Show("协议类型不存在！当前支持CCP/XCP/CanMonnitor", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (selectProtocol == ProtocolTypeEnum.CanMonnitor)
+                {
+                    openFilter = "(*.dbc)|*.dbc";
+                }
+                else if ((selectProtocol == ProtocolTypeEnum.CCP) || (selectProtocol == ProtocolTypeEnum.XCP))
+                {
+                    openFilter = "(*.a2l)|*.a2l";
+                }
+            }
+            else if (selectedCan == SelectedCan.CAN_2)
+            {
+                //CAN2 判断协议类型选择是否正确
+                if (string.IsNullOrEmpty(cb_protocol_can2.Text))
+                {
+                    MessageBox.Show("未选择协议类型", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                if (!Enum.TryParse(cb_protocol_can2.Text, out selectProtocol))
+                {
+                    LogHelper.Log.Info("CAN2选择协议后类型转换失败！协议类型错误=>" + cb_protocol_can2.Text);
+                    MessageBox.Show("协议类型不存在！当前支持CCP/XCP/CanMonnitor", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                if (selectProtocol == ProtocolTypeEnum.CanMonnitor)
+                {
+                    openFilter = "(*.dbc)|*.dbc";
+                }
+                else if ((selectProtocol == ProtocolTypeEnum.CCP) || (selectProtocol == ProtocolTypeEnum.XCP))
+                {
+                    openFilter = "(*.a2l)|*.a2l";
+                }
+            }
+
+            openFileContent = FileSelect.GetSelectFileContent(openFilter, "选择文件");
             if (openFileContent == null)
                 return;
             if (string.IsNullOrEmpty(openFileContent.FileName))
                 return;
-            //xcpFilePathCur.Text = openFileContent.FileName;
-
             if (!string.IsNullOrEmpty(openFileContent.FileName))
             {
-                ///解析文件
-                ///
-                protocol = 1;//设置为1，目前用不到，需要时从新取值
-                //判断文件类型
-                try
+                //开始解析
+                StartAnalysis(selectProtocol);
+            }
+        }
+        private void StartAnalysis(ProtocolTypeEnum protocolType)
+        {
+            if (protocolType == ProtocolTypeEnum.XCP)
+            {
+                LogHelper.Log.Info("开始解析XCP...");
+                A2lAnalysis(ProtocolTypeEnum.XCP);
+            }
+            else if (protocolType == ProtocolTypeEnum.CCP)
+            {
+                LogHelper.Log.Info("开始解析CCP...");
+                A2lAnalysis(ProtocolTypeEnum.CCP);
+            }
+            else if (protocolType == ProtocolTypeEnum.CanMonnitor)
+            {
+                LogHelper.Log.Info("开始解析DBC...");
+                DbcAnalysis();
+            }
+        }
+        private void DbcAnalysis()
+        {
+            //case = 1 解析DBC文件
+            dbcData = new DBCData();
+            dbcHelper = new DbcHelper(dbcData);
+            analysisFileType = FileType.DBC;
+            DbcResultEnum dbcResult = dbcHelper.AnalysisDbc(openFileContent.FileName);
+            if (dbcResult == DbcResultEnum.SUCCESS)
+            {
+                LogHelper.Log.Info("【解析DBC文件成功！】");
+                analysisData = AnalysisDataSet.UnionXcpDbc(FileType.DBC, null, dbcData);
+                if (analysisData != null)
                 {
-                    switch (openFileContent.OpenFileResult.FilterIndex)
-                    {
-                        case (int)FileType.DBC:
-                            //case = 1 解析DBC文件
-                            dbcData = new DBCData();
-                            dbcHelper = new DbcHelper(dbcData);
-                            analysisFileType = FileType.DBC;
-                            DbcResultEnum dbcResult = dbcHelper.AnalysisDbc(openFileContent.FileName);
-                            if (dbcResult == DbcResultEnum.SUCCESS)
-                            {
-                                LogHelper.Log.Info("【解析DBC文件成功！】");
-                                analysisData = AnalysisDataSet.UnionXcpDbc(FileType.DBC, null, dbcData);
-                                if (analysisData != null)
-                                {
-                                    LogHelper.Log.Info("DBC合并数据完成!" + analysisData.AnalysisDbcDataList.Count);
-                                }
-                                else
-                                {
-                                    LogHelper.Log.Info("DBC合并数据失败!");
-                                }
-                                if (dataSource != null)
-                                {
-                                    dataSource.Clear();
-                                }
-                                dataSource = gridViewControl.BindRadGridView(analysisData.AnalysisDbcDataList);
-                                GridViewLoadDataSource();
-                                //gridViewControl.BindRadGridView(xcpdata);
-                                LogHelper.Log.Info("DBC加载完成！");
-                            }
-                            else if (dbcResult == DbcResultEnum.FAILT)
-                            {
-                                LogHelper.Log.Info("【解析DBC文件失败！】");
-                            }
-                            break;
-                        case (int)FileType.A2L:
-                            //case = 2 解析a2l文件
-                            xcpdata = new XcpData();
-                            xcpHelper = new XcpHelper(xcpdata);
-                            analysisFileType = FileType.A2L;
-                            LogHelper.Log.Info("开始解析A2L...");
-                            CodeCommand res = xcpHelper.AnalyzeXcpFile(openFileContent.FileName, protocol);
-                            if (res == CodeCommand.RESULT)
-                            {
-                                LogHelper.Log.Info("**********解析a2l文件成功************" + res);
-                                //将解析后的数据绑定到gridview显示
-                                analysisData = AnalysisDataSet.UnionXcpDbc(FileType.A2L, xcpdata, null);
-                                if (analysisData != null)
-                                {
-                                    LogHelper.Log.Info("a2l合并数据完成!" + analysisData.AnalysisiXcpDataList.Count);
-                                }
-                                else
-                                {
-                                    LogHelper.Log.Info("a2l合并数据失败!");
-                                }
-                                if (dataSource != null)
-                                {
-                                    dataSource.Clear();
-                                }
-                                dataSource = gridViewControl.BindRadGridView(analysisData.AnalysisiXcpDataList);
-                                GridViewLoadDataSource();
-                                //gridViewControl.BindRadGridView(xcpdata);
-                                LogHelper.Log.Info("a2l加载完成！");
-                                //MockIntegerDataSource
-                            }
-                            else
-                            {
-                                LogHelper.Log.Error("********解析a2l文件失败********** " + res);
-                            }
-                            break;
-                        default:
-                            break;
-                    }
-
+                    LogHelper.Log.Info("DBC合并数据完成!" + analysisData.AnalysisDbcDataList.Count);
                 }
-                catch (Exception ex)
+                else
                 {
-                    LogHelper.Log.Error(ex.Message + "\r\n" + ex.StackTrace);
+                    LogHelper.Log.Info("DBC合并数据失败!");
                 }
+                if (dataSource != null)
+                {
+                    dataSource.Clear();
+                }
+                dataSource = gridViewControl.BindRadGridView(analysisData.AnalysisDbcDataList);
+                GridViewLoadDataSource();
+                //gridViewControl.BindRadGridView(xcpdata);
+                LogHelper.Log.Info("DBC加载完成！");
+            }
+            else if (dbcResult == DbcResultEnum.FAILT)
+            {
+                LogHelper.Log.Info("【解析DBC文件失败！】");
+            }
+        }
+        private void A2lAnalysis(ProtocolTypeEnum protocol)
+        {
+            //case = 2 解析a2l文件
+            xcpdata = new XcpData();
+            xcpHelper = new XcpHelper(xcpdata);
+            analysisFileType = FileType.A2L;
+            CodeCommand res = xcpHelper.AnalyzeXcpFile(openFileContent.FileName, (int)protocol);
+            if (res == CodeCommand.RESULT)
+            {
+                LogHelper.Log.Info("**********解析a2l文件成功************" + res);
+                //判断协议类型
+                //将解析后的数据绑定到gridview显示
+                analysisData = AnalysisDataSet.UnionXcpDbc(FileType.A2L, xcpdata, null);
+                if (analysisData != null)
+                {
+                    LogHelper.Log.Info("a2l合并数据完成!" + analysisData.AnalysisiXcpDataList.Count);
+                }
+                else
+                {
+                    LogHelper.Log.Info("a2l合并数据失败!");
+                }
+                if (dataSource != null)
+                {
+                    dataSource.Clear();
+                }
+                dataSource = gridViewControl.BindRadGridView(analysisData.AnalysisiXcpDataList);
+                GridViewLoadDataSource();
+                //gridViewControl.BindRadGridView(xcpdata);
+                LogHelper.Log.Info("a2l加载完成！");
+                //MockIntegerDataSource
+            }
+            else
+            {
+                LogHelper.Log.Error("********解析a2l文件失败********** " + res);
             }
         }
         private void GridViewLoadDataSource()
@@ -496,15 +611,14 @@ namespace LoggerConfigurator
             RadTreeNode treeNode = e.Node;
             switch (treeNode.Text)
             {
-                case TreeViewData.HardWare.CAN_CHILD + "1":
-                    this.radDock1.RemoveWindow(documentWindow_can2);
+                case TreeViewData.HardWare.CAN_1_DATA:
                     this.radDock1.AddDocument(documentWindow_can1);
+                    break;
+                case TreeViewData.HardWare.CAN_HARDWARE_CONFIG:
                     this.radDock1.AddDocument(documentWindow_hardWare);
                     break;
-                case TreeViewData.HardWare.CAN_CHILD + "2":
-                    this.radDock1.RemoveWindow(documentWindow_can1);
+                case TreeViewData.HardWare.CAN_2_DATA:
                     this.radDock1.AddDocument(documentWindow_can2);
-                    this.radDock1.AddDocument(documentWindow_hardWare);
                     break;
 
                 case TreeViewData.CcpOrXcp.DESCRIPTIONS:

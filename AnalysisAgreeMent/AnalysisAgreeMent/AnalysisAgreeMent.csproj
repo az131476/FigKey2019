@@ -58,6 +58,7 @@
     <Compile Include="Model\XCP\AnalysisCodeCmd.cs" />
     <Compile Include="Model\XCP\Characteristic.cs" />
     <Compile Include="Model\XCP\CompuMethod.cs" />
+    <Compile Include="Model\XCP\IF_DATA_ASAP1B_CCP.cs" />
     <Compile Include="Model\XCP\MeasureMent.cs" />
     <Compile Include="Model\XCP\MemorySegmentClass.cs" />
     <Compile Include="Model\XCP\PropertyClass.cs" />

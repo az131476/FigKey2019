@@ -24,7 +24,7 @@ namespace FigKeyLoggerConfigurator.Control
             #region hardWard tree
             RadTreeNode hardWardRoot = radTreeView.AddNodeByPath(TreeViewData.HardWare.ROOT);
             //hardWardRoot.Nodes.Add(TreeViewData.HardWare.COMMENT);
-            RadTreeNode radTreeNode = hardWardRoot.Nodes.Add(TreeViewData.HardWare.CAN_CHANNELS);
+            RadTreeNode nodeCanChannel = hardWardRoot.Nodes.Add(TreeViewData.HardWare.CAN_CHANNELS);
             hardWardRoot.Nodes.Add(TreeViewData.HardWare.LIN_CHANNELS);
             //hardWardRoot.Nodes.Add(TreeViewData.HardWare.FLEXRAY_CHANNELS);
             //hardWardRoot.Nodes.Add(TreeViewData.HardWare.MOST150_CHANNELS);
@@ -34,10 +34,12 @@ namespace FigKeyLoggerConfigurator.Control
             //hardWardRoot.Nodes.Add(TreeViewData.HardWare.MONITORING);
             //hardWardRoot.Nodes.Add(TreeViewData.HardWare.WLAN_3G);
 
-            for (int i = 1; i < 10; i++)
-            {
-                radTreeNode.Nodes.Add(TreeViewData.HardWare.CAN_CHILD+i);
-            }
+            RadTreeNode nodeCan1 = nodeCanChannel.Nodes.Add(TreeViewData.HardWare.CAN_CHILD + 1);
+            nodeCan1.Nodes.Add(TreeViewData.HardWare.CAN_HARDWARE_CONFIG);
+            nodeCan1.Nodes.Add(TreeViewData.HardWare.CAN_1_DATA);
+            RadTreeNode nodeCan2 = nodeCanChannel.Nodes.Add(TreeViewData.HardWare.CAN_CHILD + 2);
+            nodeCan2.Nodes.Add(TreeViewData.HardWare.CAN_HARDWARE_CONFIG);
+            nodeCan2.Nodes.Add(TreeViewData.HardWare.CAN_2_DATA);
             #endregion
 
             #region hardWard tree

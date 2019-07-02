@@ -229,6 +229,7 @@
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\GridViewData.cs" />
+    <Compile Include="Model\ProtocolTypeEnum.cs" />
     <Compile Include="Model\TreeViewData.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -449,6 +450,7 @@
     <None Include="Resources\stop_16.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="需求修改与增加20190702.txt" />
     <None Include="Connected Services\ServiceReference1\item.disco" />
     <None Include="Connected Services\ServiceReference1\configuration91.svcinfo" />
     <None Include="Connected Services\ServiceReference1\configuration.svcinfo" />
