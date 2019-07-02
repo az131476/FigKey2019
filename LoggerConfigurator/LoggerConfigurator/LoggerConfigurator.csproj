@@ -461,7 +461,7 @@
     <Content Include="需求.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\CommonLibrary\CommonUtils\CommonUtils\CommonUtils.csproj">
+    <ProjectReference Include="..\..\..\..\CommonUtils\CommonLibrary\CommonUtils\CommonUtils\CommonUtils.csproj">
       <Project>{ebfca1b5-23f1-4f94-928a-db1a7b98eed6}</Project>
       <Name>CommonUtils</Name>
     </ProjectReference>

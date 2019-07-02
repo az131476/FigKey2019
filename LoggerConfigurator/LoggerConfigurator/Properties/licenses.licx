@@ -1,3 +1,4 @@
+DevExpress.Patch.InMemoryPatch, DevExpress.Patch.Common, Version=6.2.0.0, Culture=neutral, PublicKeyToken=87f9927a37ac6066
 Telerik.WinControls.UI.RadGridView, Telerik.WinControls.GridView, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e
 Telerik.WinControls.UI.RadTreeView, Telerik.WinControls.UI, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e
 Telerik.WinControls.UI.RadTabbedFormControl, Telerik.WinControls.UI, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e
