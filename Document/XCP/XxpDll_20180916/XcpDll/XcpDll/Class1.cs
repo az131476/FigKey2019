@@ -78,7 +78,7 @@ namespace XcpDll
                             }
                         }
                         break;
-                    case "/beginxcp_on_can":
+                    case "/begin xcp_on_can":
                         string SendID = "";
                         string ReceiveID = "";
                         string Baudrate = "";

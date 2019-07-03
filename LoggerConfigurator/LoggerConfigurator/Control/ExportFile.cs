@@ -38,6 +38,7 @@ namespace FigKeyLoggerConfigurator.Control
         private static string _lensegHeaderName;
         private static string _len10msHeaderName;
         private static string _len100msHeaderName;
+
         #region DBC
         private static List<long> frameIdList;//用于存储DBC明细时的分组ID
         private const string DBC_DETAIL_HEAD = "static XCPDataRecordType ";
@@ -52,28 +53,35 @@ namespace FigKeyLoggerConfigurator.Control
 
         private static int exInfoLen;
         #endregion
+
+        enum ExInfoType
+        {
+            SLAVER_ID_TYPE = 0,
+            MASTER_ID_TYPE = 1,
+            DAQ10_ID_TYPE = 2,
+            DAQ100_ID_TYPE = 3,
+            DAQ10_TAB_TYPE = 4,
+            DAQ100_TAB_TYPE = 5,
+            MORNITOR_TAB_TYPE = 6,
+            CCP_ECUADDR_TYPE = 7
+        }
         #endregion
 
         #region 导出数据
         /// <summary>
-        /// 导出文件到本地
+        /// 导出a2l与dbc文件到本地
         /// </summary>
-        public static void ExportFileToLocal(string targetPath, RadGridView gridView, GridViewData gridData, AnalysisData analysisData, FileType fileType)
+        public static void ExportFileToLocal(string targetPath, RadGridView gridView1,RadGridView gridView2, GridViewData gridData, AnalysisData analysisData)
         {
-            if (fileType == FileType.A2L)
-            {
-                A2lDetailData(targetPath, gridView, gridData);
-                AddA2lDetailGroup(gridData,targetPath);
-                AddA2lRxidTab(targetPath);
-                AddA2lCanChInfo(targetPath);
-            }
-            else if (fileType == FileType.DBC)
-            {
-                DbcDetailData(targetPath, gridView, analysisData);
-                AddDBCDetailGroup(targetPath);
-                AddDBCRxidTab(targetPath);
-                AddDBCCanChInfo(targetPath);
-            }
+            A2lDetailData(targetPath, gridView1, gridData);
+            AddA2lDetailGroup(gridData, targetPath, analysisData);
+            AddA2lRxidTab(targetPath);
+            AddA2lCanChInfo(targetPath);
+
+            DbcDetailData(targetPath, gridView2, analysisData);
+            AddDBCDetailGroup(targetPath);
+            AddDBCRxidTab(targetPath);
+            AddDBCCanChInfo(targetPath);
         }
 
         private static void A2lDetailData(string targetPath, RadGridView gridView, GridViewData listData)
@@ -129,13 +137,18 @@ namespace FigKeyLoggerConfigurator.Control
             }
         }
 
-        private static void AddA2lDetailGroup(GridViewData listData, string path)
+        private static void AddA2lDetailGroup(GridViewData listData, string path, AnalysisData analysisData)
         {
             StringBuilder sbExInfo = new StringBuilder();
             sbExInfo.Append(EXINFO_TYPE_HEAD);
-            sbExInfo.AppendLine(EXINFO_Head+EXINFO_TYPE_METHOLD_NAME);
-            sbExInfo.AppendLine("\t\t" + "0" + "," + "0x7f1" + "," + "0"+",");
-            sbExInfo.AppendLine("\t\t" + "1" + "," + "0x7f2" + "," + "0"+",");
+            sbExInfo.AppendLine(EXINFO_Head + EXINFO_TYPE_METHOLD_NAME);
+            if (analysisData.AgreeMentXCP == AgreementType.CCP)
+            {
+            } else if (analysisData.AgreeMentXCP == AgreementType.XCP)
+            {
+            }
+            sbExInfo.AppendLine($"\t\t{ExInfoType.SLAVER_ID_TYPE}, {} + "," + "0"+",");
+            sbExInfo.AppendLine($"\t\t" + "1" + "," + "0x7f2" + "," + "0"+",");
             exInfoLen = 2;
             if (listData.LimitTimeListSegMent.Count > 0)
             {

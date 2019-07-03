@@ -19,6 +19,7 @@ namespace AnalysisAgreeMent.Analysis
         {
             ////name + describle+unit+dataType+dataLen+IsMotorola+startIndex+dataBitLen+dataAddress+factor+offset
             AnalysisData analysisData = new AnalysisData();
+            analysisData.AgreeMentXCP = xcpData.AgreeMentType;
             try
             {
                 switch (fileType)

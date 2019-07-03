@@ -62,6 +62,7 @@
     <Compile Include="Model\XCP\MeasureMent.cs" />
     <Compile Include="Model\XCP\MemorySegmentClass.cs" />
     <Compile Include="Model\XCP\PropertyClass.cs" />
+    <Compile Include="Model\XCP\XcpOnCan.cs" />
     <Compile Include="Model\XCP\RecordLayoutClass.cs" />
     <Compile Include="Model\XCP\TableClass.cs" />
     <Compile Include="Model\XCP\XcpData.cs" />
@@ -74,7 +75,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\CommonUtils\CommonLibrary\CommonUtils\CommonUtils\CommonUtils.csproj">
+    <ProjectReference Include="..\..\..\CommonLibrary\CommonUtils\CommonUtils\CommonUtils.csproj">
       <Project>{ebfca1b5-23f1-4f94-928a-db1a7b98eed6}</Project>
       <Name>CommonUtils</Name>
     </ProjectReference>

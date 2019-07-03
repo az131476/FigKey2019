@@ -89,5 +89,15 @@ namespace AnalysisAgreeMent.Model.XCP
             public const string BEGIN_IF_DATA_ASAP1B_CCP = "/begin if_data asap1b_ccp";
             public const string END_IF_DATA_ASAP1B_CCP = "/end if_data";
         }
+
+        public static class Xcp_On_Can
+        {
+            public const string XCP_ON_CAN_BEGIN = "/begin xcp_on_can";
+            public const string XCP_ON_CAN_END = "/end xcp_on_can";
+            public const string XCP_ON_CAN_VEHICLE_APPL = "vehicle can (appl)";//START
+            public const string XCP_ON_CAN_VEHICLE_APPL_ED_RAM = "vehicle can (appl) (ed-ram)";
+            public const string XCP_ON_CAN_CALIBRATION_LE = "calibrationcan (le)";
+            public const string XCP_ON_CAN_CALIBRATION_LE_ED_RAM = "calibrationcan (le) (ed-ram)";//END
+        }
     }
 }

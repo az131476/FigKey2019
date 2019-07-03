@@ -26,5 +26,9 @@ namespace AnalysisAgreeMent.Model.XCP
         public List<MemorySegmentClass> MemorySedData { get; set; }
 
         public List<PropertyClass> PropertyData { get; set; }
+
+        public XcpOnCan XcpOnCanData { get; set; }
+
+        public IF_DATA_ASAP1B_CCP IF_DATA_ASAP1B_CCP_DATA { get; set; }
     }
 }

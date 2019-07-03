@@ -19,20 +19,23 @@ namespace FigKeyLoggerConfigurator.Control
 {
     public class GridViewControl
     {
-        private RadGridView gridView;
+        private RadGridView gridViewCan1;
+        private RadGridView gridViewCan2;
         //private DataTable dataSource;
-        GridViewCheckBoxColumn segMent;
-        GridViewCheckBoxColumn _10ms;
-        GridViewCheckBoxColumn _100ms;
+        GridViewCheckBoxColumn segMentCan1;
+        GridViewCheckBoxColumn _10msCan1;
+        GridViewCheckBoxColumn _100msCan1;
 
-        public GridViewControl(RadGridView view)
+        GridViewCheckBoxColumn checkCan2;
+
+        public GridViewControl(RadGridView view1,RadGridView view2)
         {
-            this.gridView = view;
+            this.gridViewCan1 = view1;
+            this.gridViewCan2 = view2;
         }
 
         public void InitGridView()
         {
-            //dataSource = SetDataSource();
             SetRadGridView();
         }
 
@@ -42,19 +45,36 @@ namespace FigKeyLoggerConfigurator.Control
         /// </summary>
         private void SetRadGridView()
         {
-            gridView.EnableGrouping = false;
-            gridView.AllowDrop = true;
-            gridView.AllowRowReorder = true;
+            gridViewCan1.EnableGrouping = false;
+            gridViewCan1.AllowDrop = true;
+            gridViewCan1.AllowRowReorder = true;
             ///显示每行前面的标记
-            gridView.AddNewRowPosition = SystemRowPosition.Bottom;
-            gridView.ShowRowHeaderColumn = true;
-            gridView.AutoSizeRows = true;
-            gridView.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
-            gridView.AllowAutoSizeColumns = true;
-            
+            gridViewCan1.AddNewRowPosition = SystemRowPosition.Bottom;
+            gridViewCan1.ShowRowHeaderColumn = true;
+            gridViewCan1.AutoSizeRows = true;
+            gridViewCan1.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
+            gridViewCan1.AllowAutoSizeColumns = true;
+
             //gridView.AutoScrollMinSize = new System.Drawing.Size(8,20);
-            gridView.ReadOnly = false;
+            gridViewCan1.ReadOnly = false;
             //gridView.ColumnChooserSortOrder = RadSortOrder.Ascending;
+
+
+            //can2
+            gridViewCan2.EnableGrouping = false;
+            gridViewCan2.AllowDrop = true;
+            gridViewCan2.AllowRowReorder = true;
+            ///显示每行前面的标记
+            gridViewCan2.AddNewRowPosition = SystemRowPosition.Bottom;
+            gridViewCan2.ShowRowHeaderColumn = true;
+            gridViewCan2.AutoSizeRows = true;
+            gridViewCan2.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
+            gridViewCan2.AllowAutoSizeColumns = true;
+
+            //gridView.AutoScrollMinSize = new System.Drawing.Size(8,20);
+            gridViewCan2.ReadOnly = false;
+            //gridView.ColumnChooserSortOrder = RadSortOrder.Ascending;
+
         }
         #endregion
 
@@ -83,11 +103,18 @@ namespace FigKeyLoggerConfigurator.Control
         #endregion
 
         #region 设置列
-        public void RefreshRadViewColumn()
+        public void RefreshRadViewColumnCan1()
         {
-            AddCheckBox();
+            AddCheckBoxCan1();
             //SetColumnsPeoperties();
-            SetCheckValue();
+            SetCheckValueCan1();
+        }
+
+        public void RefreshRadViewColumnCan2()
+        {
+            AddCheckBoxCan2();
+            //SetColumnsPeoperties();
+            SetCheckValueCan2();
         }
         /// <summary>
         /// 设置列宽
@@ -101,61 +128,101 @@ namespace FigKeyLoggerConfigurator.Control
             //设置只读
             for (int i = 0; i < 8; i++)
             {
-                gridView.Columns[i].ReadOnly = true;
+                gridViewCan1.Columns[i].ReadOnly = true;
             }
             for (int i = 0; i < 11; i++)
             {
-                gridView.Columns[i].BestFit();
+                gridViewCan1.Columns[i].BestFit();
+            }
+            //can2
+            for (int i = 0; i < 8; i++)
+            {
+                gridViewCan2.Columns[i].ReadOnly = true;
+            }
+            for (int i = 0; i < 11; i++)
+            {
+                gridViewCan2.Columns[i].BestFit();
             }
         }
 
         /// <summary>
         /// 添加复选框 设置限制时间
         /// </summary>
-        private void AddCheckBox()
+        private void AddCheckBoxCan1()
         {
-            if (segMent == null)
+            #region can1
+            if (segMentCan1 == null)
             {
-                segMent = new GridViewCheckBoxColumn();
-                segMent.DataType = typeof(int);
-                segMent.Name = "segMent";
-                segMent.FieldName = "segMent";
-                segMent.HeaderText = "segMent";
-                gridView.MasterTemplate.Columns.Add(segMent);
+                segMentCan1 = new GridViewCheckBoxColumn();
+                segMentCan1.DataType = typeof(int);
+                segMentCan1.Name = "segMent";
+                segMentCan1.FieldName = "segMent";
+                segMentCan1.HeaderText = "segMent";
+                gridViewCan1.MasterTemplate.Columns.Add(segMentCan1);
                 //gridView.Columns[12].BestFit();
             }
-            if (_10ms == null)
+            if (_10msCan1 == null)
             {
-                _10ms = new GridViewCheckBoxColumn();
-                _10ms.DataType = typeof(int);
-                _10ms.Name = "_10ms";
-                _10ms.FieldName = "_10ms";
-                _10ms.HeaderText = "10ms";
-                gridView.MasterTemplate.Columns.Add(_10ms);
+                _10msCan1 = new GridViewCheckBoxColumn();
+                _10msCan1.DataType = typeof(int);
+                _10msCan1.Name = "_10ms";
+                _10msCan1.FieldName = "_10ms";
+                _10msCan1.HeaderText = "10ms";
+                gridViewCan1.MasterTemplate.Columns.Add(_10msCan1);
                 //gridView.Columns[13].BestFit();
             }
-            if (_100ms == null)
+            if (_100msCan1 == null)
             {
-                _100ms = new GridViewCheckBoxColumn();
-                _100ms.DataType = typeof(int);
-                _100ms.Name = "_100ms";
-                _100ms.FieldName = "_100ms";
-                _100ms.HeaderText = "100ms";
-                gridView.MasterTemplate.Columns.Add(_100ms);
+                _100msCan1 = new GridViewCheckBoxColumn();
+                _100msCan1.DataType = typeof(int);
+                _100msCan1.Name = "_100ms";
+                _100msCan1.FieldName = "_100ms";
+                _100msCan1.HeaderText = "100ms";
+                gridViewCan1.MasterTemplate.Columns.Add(_100msCan1);
                 //gridView.Columns[14].BestFit();
+            }
+            #endregion
+        }
+
+        private void AddCheckBoxCan2()
+        {
+            if (checkCan2 == null)
+            {
+                checkCan2 = new GridViewCheckBoxColumn();
+                checkCan2.DataType = typeof(int);
+                checkCan2.Name = "checkCan";
+                checkCan2.FieldName = "checkCan";
+                checkCan2.HeaderText = "选择";
+                gridViewCan2.MasterTemplate.Columns.Add(checkCan2);
+                //gridView.Columns[12].BestFit();
             }
         }
         #endregion
 
-        private void SetCheckValue()
+        private void SetCheckValueCan1()
         {
             try
             {
-                foreach (GridViewDataRowInfo row in this.gridView.Rows)
+                foreach (GridViewDataRowInfo row in this.gridViewCan1.Rows)
                 {
                     row.Cells[12].Value = 0;
                     row.Cells[13].Value = 0;
                     row.Cells[14].Value = 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Log.Error($"{ex.Message}\r\n{ex.StackTrace}");
+            }
+        }
+
+        private void SetCheckValueCan2()
+        {
+            try
+            {
+                foreach (GridViewDataRowInfo row in this.gridViewCan2.Rows)
+                {
+                    row.Cells[12].Value = 0;
                 }
             }
             catch (Exception ex)
