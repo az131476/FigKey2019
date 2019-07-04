@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition5 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition6 = new Telerik.WinControls.UI.TableViewDefinition();
             this.radMenuItem1 = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItem3 = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItem4 = new Telerik.WinControls.UI.RadMenuItem();
@@ -879,7 +879,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(23, 38);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(41, 12);
+            this.label3.Size = new System.Drawing.Size(46, 13);
             this.label3.TabIndex = 1;
             this.label3.Text = "波特率";
             // 
@@ -888,7 +888,7 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(23, 83);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(29, 12);
+            this.label4.Size = new System.Drawing.Size(33, 13);
             this.label4.TabIndex = 2;
             this.label4.Text = "协议";
             // 
@@ -956,7 +956,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(23, 38);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 12);
+            this.label1.Size = new System.Drawing.Size(46, 13);
             this.label1.TabIndex = 1;
             this.label1.Text = "波特率";
             // 
@@ -965,7 +965,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(23, 83);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(29, 12);
+            this.label2.Size = new System.Drawing.Size(33, 13);
             this.label2.TabIndex = 2;
             this.label2.Text = "协议";
             // 
@@ -1000,7 +1000,7 @@
             // 
             // 
             // 
-            this.radGridView_can2.MasterTemplate.ViewDefinition = tableViewDefinition2;
+            this.radGridView_can2.MasterTemplate.ViewDefinition = tableViewDefinition5;
             this.radGridView_can2.Name = "radGridView_can2";
             this.radGridView_can2.Size = new System.Drawing.Size(958, 587);
             this.radGridView_can2.TabIndex = 9;
@@ -1013,7 +1013,7 @@
             // 
             // 
             // 
-            this.radGridView_can1.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.radGridView_can1.MasterTemplate.ViewDefinition = tableViewDefinition6;
             this.radGridView_can1.Name = "radGridView_can1";
             this.radGridView_can1.Size = new System.Drawing.Size(958, 587);
             this.radGridView_can1.TabIndex = 7;

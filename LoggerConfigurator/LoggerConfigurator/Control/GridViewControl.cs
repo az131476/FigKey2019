@@ -22,7 +22,7 @@ namespace FigKeyLoggerConfigurator.Control
         private RadGridView gridViewCan1;
         private RadGridView gridViewCan2;
         //private DataTable dataSource;
-        GridViewCheckBoxColumn segMentCan1;
+        //GridViewCheckBoxColumn segMentCan1;
         GridViewCheckBoxColumn _10msCan1;
         GridViewCheckBoxColumn _100msCan1;
 
@@ -82,7 +82,7 @@ namespace FigKeyLoggerConfigurator.Control
         /// <summary>
         /// 添加table 列
         /// </summary>
-        private DataTable SetDataSource()
+        public DataTable GetDataSource()
         {
             //名称+描述+单位+数据类型+数据长度+是否摩托罗拉+开始地址+截取长度+数据地址+系数+偏移量
             DataTable dataSource = new DataTable();
@@ -151,16 +151,16 @@ namespace FigKeyLoggerConfigurator.Control
         private void AddCheckBoxCan1()
         {
             #region can1
-            if (segMentCan1 == null)
-            {
-                segMentCan1 = new GridViewCheckBoxColumn();
-                segMentCan1.DataType = typeof(int);
-                segMentCan1.Name = "segMent";
-                segMentCan1.FieldName = "segMent";
-                segMentCan1.HeaderText = "segMent";
-                gridViewCan1.MasterTemplate.Columns.Add(segMentCan1);
-                //gridView.Columns[12].BestFit();
-            }
+            //if (segMentCan1 == null)
+            //{
+            //    segMentCan1 = new GridViewCheckBoxColumn();
+            //    segMentCan1.DataType = typeof(int);
+            //    segMentCan1.Name = "segMent";
+            //    segMentCan1.FieldName = "segMent";
+            //    segMentCan1.HeaderText = "segMent";
+            //    gridViewCan1.MasterTemplate.Columns.Add(segMentCan1);
+            //    //gridView.Columns[12].BestFit();
+            //}
             if (_10msCan1 == null)
             {
                 _10msCan1 = new GridViewCheckBoxColumn();
@@ -207,7 +207,6 @@ namespace FigKeyLoggerConfigurator.Control
                 {
                     row.Cells[12].Value = 0;
                     row.Cells[13].Value = 0;
-                    row.Cells[14].Value = 0;
                 }
             }
             catch (Exception ex)
@@ -238,7 +237,7 @@ namespace FigKeyLoggerConfigurator.Control
         /// <param name="data">数据源</param>
         public DataTable BindRadGridView(List<AnalysisSignal> dataList)
         {
-            DataTable dataSource = SetDataSource();
+            DataTable dataSource = GetDataSource();
             for (int i = 0; i < dataList.Count; i++)
             {
                 DataRow dr = dataSource.NewRow();

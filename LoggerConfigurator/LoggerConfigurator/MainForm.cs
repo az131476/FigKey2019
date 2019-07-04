@@ -73,9 +73,12 @@ namespace LoggerConfigurator
             btn_openFile_Can1.Click += Btn_openFile_Can1_Click;
             btn_openFile_can2.Click += Btn_openFile_can2_Click;
             btn_search_can1.Click += Rbtn_search_Click;
+            btn_search_can2.Click += Btn_search_can2_Click;
             tb_filter_can1.KeyDown += XcpFilterCondition_KeyDown;
+            tb_filter_can2.KeyDown += Tb_filter_can2_KeyDown;
 
             radGridView_can1.ValueChanged += RadGridView1_ValueChanged;
+            radGridView_can2.ValueChanged += RadGridView_can2_ValueChanged;
 
             tool_exportfile.Click += Tool_exportfile_Click;
             menu_logger_manager.Click += Menu_logger_manager_Click;
@@ -161,6 +164,8 @@ namespace LoggerConfigurator
         }
 
         #region 复选框行值处理
+        bool IsCheck10msCan1;
+        bool IsCheck100msCan1;
         /// <summary>
         /// 复选框状态添加行数据
         /// </summary>
@@ -174,25 +179,35 @@ namespace LoggerConfigurator
                 switch (this.radGridView_can1.CurrentCell.ColumnIndex)
                 {
                     case 12:
+                        if (!IsCheck10msCan1)
+                        {
+                            this.radGridView_can1.CurrentRow.Cells[12].Value = 1;
+                            IsCheck10msCan1 = !IsCheck10msCan1;
+                        }
+                        else
+                        {
+                            this.radGridView_can1.CurrentRow.Cells[12].Value = 0;
+                            IsCheck10msCan1 = !IsCheck10msCan1;
+                        }
                         if (this.radGridView_can1.CurrentRow.Cells[13].Value.ToString() is "1")
                             this.radGridView_can1.CurrentRow.Cells[13].Value = 0;
-                        if (this.radGridView_can1.CurrentRow.Cells[14].Value.ToString() is "1")
-                            this.radGridView_can1.CurrentRow.Cells[14].Value = 0;
                         break;
                     case 13:
-                        if (this.radGridView_can1.CurrentRow.Cells[12].Value.ToString() is "1")
-                            this.radGridView_can1.CurrentRow.Cells[12].Value = 0;
-                        if (this.radGridView_can1.CurrentRow.Cells[14].Value.ToString() is "1")
-                            this.radGridView_can1.CurrentRow.Cells[14].Value = 0;
-                        break;
-                    case 14:
-                        if (this.radGridView_can1.CurrentRow.Cells[12].Value.ToString() is "1")
-                            this.radGridView_can1.CurrentRow.Cells[12].Value = 0;
-                        if (this.radGridView_can1.CurrentRow.Cells[13].Value.ToString() is "1")
+                        if (!IsCheck100msCan1)
+                        {
+                            this.radGridView_can1.CurrentRow.Cells[13].Value = 1;
+                            IsCheck100msCan1 = !IsCheck100msCan1;
+                        }
+                        else
+                        {
                             this.radGridView_can1.CurrentRow.Cells[13].Value = 0;
+                            IsCheck100msCan1 = !IsCheck100msCan1;
+                        }
+                        if (this.radGridView_can1.CurrentRow.Cells[12].Value.ToString() is "1")
+                            this.radGridView_can1.CurrentRow.Cells[12].Value = 0;
                         break;
                 }
-
+                #region
                 //if (this.radGridView1.ActiveEditor is RadCheckBoxEditor)
                 //{
                 //    int rowIndex = this.radGridView1.CurrentCell.RowIndex;
@@ -253,6 +268,33 @@ namespace LoggerConfigurator
                 //    }
                 //    ////三列CheckBox 只能选择一列
                 //}
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Log.Error(ex.Message + "\r\n" + ex.StackTrace);
+            }
+        }
+        bool IsCheckCan2;
+        private void RadGridView_can2_ValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                switch (this.radGridView_can2.CurrentCell.ColumnIndex)
+                {
+                    case 12:
+                        if (!IsCheckCan2)
+                        {
+                            this.radGridView_can2.CurrentRow.Cells[12].Value = 1;
+                            IsCheckCan2 = !IsCheckCan2;
+                        }
+                        else
+                        {
+                            this.radGridView_can2.CurrentRow.Cells[12].Value = 0;
+                            IsCheckCan2 = !IsCheckCan2;
+                        }
+                        break;
+                }
             }
             catch (Exception ex)
             {
@@ -278,9 +320,9 @@ namespace LoggerConfigurator
         private void ExportData()
         {
             SelectedRowCal();
-            if (gridViewData.LimitTimeListSegMent.Count < 1 && gridViewData.LimitTimeList10ms.Count < 1 && gridViewData.LimitTimeList100ms.Count < 1)
+            if (gridViewData.LimitTimeList10ms.Count < 1 && gridViewData.LimitTimeList100ms.Count < 1 || gridViewData.DbcCheckIndex.Count < 1)
             {
-                MessageBox.Show("未选择行", "提示");
+                MessageBox.Show("未选择行数据", "提示",MessageBoxButtons.OK,MessageBoxIcon.Warning);
                 return;
             }
             string path = FileSelect.SaveAs("(*.c)|*.c");
@@ -288,7 +330,7 @@ namespace LoggerConfigurator
             {
                 return;
             }
-            ExportFile.ExportFileToLocal(path, radGridView_can1, radGridView_can2, gridViewData, analysisData);
+            ExportFile.ExportFileToLocal(path, radGridView_can1, radGridView_can2, gridViewData, analysisData,xcpdataCan1);
         }
         #endregion
 
@@ -309,13 +351,9 @@ namespace LoggerConfigurator
                 //将选中得行添加到集合
                 if (this.radGridView_can1.Rows[rdex].Cells[12].Value.ToString() is "1")
                 {
-                    gridViewData.LimitTimeListSegMent.Add(rdex);
-                }
-                if (this.radGridView_can1.Rows[rdex].Cells[13].Value.ToString() is "1")
-                {
                     gridViewData.LimitTimeList10ms.Add(rdex);
                 }
-                if (this.radGridView_can1.Rows[rdex].Cells[14].Value.ToString() is "1")
+                if (this.radGridView_can1.Rows[rdex].Cells[13].Value.ToString() is "1")
                 {
                     gridViewData.LimitTimeList100ms.Add(rdex);
                 }
@@ -357,6 +395,14 @@ namespace LoggerConfigurator
             }
         }
 
+        private void Tb_filter_can2_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                Btn_search_can2_Click(sender,e);
+            }
+        }
+
         /// <summary>
         /// 关键字搜索data
         /// </summary>
@@ -364,28 +410,64 @@ namespace LoggerConfigurator
         /// <param name="e"></param>
         private void Rbtn_search_Click(object sender, EventArgs e)
         {
-            gridViewControl.SearchRadGridView(radGridView_can1, tb_filter_can1.Text.Trim());
-
-            if (selectedCan == SelectedCan.CAN_1)
+            //DataTable dt = dataSourceCan1;//radGridView_can1.DataSource as DataTable;
+            DataTable updateDt = dataSourceCan1.Clone();
+            if (dataSourceCan1.Rows.Count < 1)
+                return;
+            string filter = tb_filter_can1.Text.Trim();
+            //can2
+            string condition = "";
+            if (string.IsNullOrEmpty(filter))
             {
-                //can1
-                if (openFileContent.OpenFileResult.FilterIndex == (int)FileType.DBC)
-                {
-
-                }
-                else if (openFileContent.OpenFileResult.FilterIndex == (int)FileType.A2L)
-                {
-
-                }
+                condition = "";
             }
-            else if (selectedCan == SelectedCan.CAN_2)
+            else
             {
-                //can2
-
+                condition = $"名称 like '%{filter}%' or 名称 like '%{filter.ToLower()}%' or 名称 like '%{filter.ToUpper()}%' or 数据地址 like '%{filter}%'";
             }
+            DataRow[] dataRows = dataSourceCan1.Select(condition);
+            foreach (var row in dataRows)
+            {
+                updateDt.Rows.Add(row.ItemArray);
+            }
+            //update end
+            radGridView_can1.BeginEdit();
+            radGridView_can1.DataSource = updateDt;
+            gridViewControl.RefreshRadViewColumnCan1();
+            radGridView_can1.EndUpdate();
+            tb_filter_can1.Clear();
+            tb_filter_can1.Focus();
+        }
 
-            //dataSource = gridViewControl.BindRadGridView(analysisData.AnalysisDbcDataList);
-            //GridViewLoadDataSource();
+        private void Btn_search_can2_Click(object sender, EventArgs e)
+        {
+            //DataTable dt = radGridView_can2.DataSource as DataTable;
+            DataTable updateDt = dataSourceCan2.Clone();
+            string filter = tb_filter_can2.Text.Trim();
+            if (dataSourceCan2.Rows.Count < 1)
+                return;
+            //can2
+            string condition = "";
+            if (string.IsNullOrEmpty(filter))
+            {
+                condition = "";
+            }
+            else
+            {
+                condition = $"名称 like '%{filter}%' or 名称 like '%{filter.ToLower()}%' or 名称 like '%{filter.ToUpper()}%' or 数据地址 like '%{filter}%'";
+            }
+            DataRow[] dataRows = dataSourceCan2.Select(condition);
+            foreach (var row in dataRows)
+            {
+                updateDt.Rows.Add(row.ItemArray);
+            }
+            //update end
+            radGridView_can2.BeginEdit();
+            radGridView_can2.DataSource = updateDt;
+            gridViewControl.RefreshRadViewColumnCan2();
+            radGridView_can2.EndUpdate();
+            tb_filter_can2.Clear();
+            tb_filter_can2.Focus();
         }
         #endregion
 
@@ -515,11 +597,11 @@ namespace LoggerConfigurator
                 LogHelper.Log.Info("【解析DBC文件成功！】");
                 if (selectedCan == SelectedCan.CAN_1)
                 {
-                    analysisData = AnalysisDataSet.UnionXcpDbc(FileType.DBC, null, dbcDataCan1);
+                    analysisData = AnalysisDataSet.UnionXcpDbc(FileType.DBC, null, dbcDataCan1,cb_baud_can2.Text);
                 }
                 else if (selectedCan == SelectedCan.CAN_2)
                 {
-                    analysisData = AnalysisDataSet.UnionXcpDbc(FileType.DBC, null, dbcDataCan2);
+                    analysisData = AnalysisDataSet.UnionXcpDbc(FileType.DBC, null, dbcDataCan2,cb_baud_can2.Text);
                 }
                 
                 if (analysisData != null)
@@ -611,11 +693,11 @@ namespace LoggerConfigurator
                 //将解析后的数据绑定到gridview显示
                 if (selectedCan == SelectedCan.CAN_1)
                 {
-                    analysisData = AnalysisDataSet.UnionXcpDbc(FileType.A2L, xcpdataCan1, null);
+                    analysisData = AnalysisDataSet.UnionXcpDbc(FileType.A2L, xcpdataCan1, null,"");
                 }
                 else if (selectedCan == SelectedCan.CAN_2)
                 {
-                    analysisData = AnalysisDataSet.UnionXcpDbc(FileType.A2L, xcpdataCan2, null);
+                    analysisData = AnalysisDataSet.UnionXcpDbc(FileType.A2L, xcpdataCan2, null,"");
                 }
                 
                 if (analysisData != null)

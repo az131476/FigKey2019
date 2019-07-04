@@ -22,7 +22,7 @@ namespace AnalysisAgreeMent.Model.DBC
         /// <summary>
         /// 帧ID
         /// </summary>
-        public Int32 FrameID { get; set; }
+        public string FrameID { get; set; }
 
         /// <summary>
         /// 帧名称

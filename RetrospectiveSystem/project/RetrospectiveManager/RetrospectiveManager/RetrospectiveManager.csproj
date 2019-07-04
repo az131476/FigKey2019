@@ -101,15 +101,12 @@
     <Reference Include="TelerikCommon, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
-=======
     <Compile Include="Connected Services\MesService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Control\TreeViewControl.cs" />
->>>>>>> 492f626e2432b954475936a0574c223f6f62e5d3
     <Compile Include="DB\Config.cs" />
     <Compile Include="DB\Order.cs" />
     <Compile Include="DB\OrderItem.cs" />
@@ -191,7 +188,6 @@
     <EmbeddedResource Include="ProductType.resx">
       <DependentUpon>ProductType.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -214,8 +210,6 @@
     <EmbeddedResource Include="SetStationAdmin.resx">
       <DependentUpon>SetStationAdmin.cs</DependentUpon>
     </EmbeddedResource>
-<<<<<<< HEAD
-=======
     <EmbeddedResource Include="RadView\Material.resx">
       <DependentUpon>Material.cs</DependentUpon>
     </EmbeddedResource>
@@ -262,7 +256,6 @@
     <None Include="Connected Services\MesService\RetrospectiveManager.MesService.RegisterResult.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
->>>>>>> 492f626e2432b954475936a0574c223f6f62e5d3
     <None Include="packages.config" />
     <None Include="Properties\DataSources\System.Data.DataSet.datasource" />
     <None Include="Properties\Settings.settings">

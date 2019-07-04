@@ -381,7 +381,7 @@ namespace AnalysisAgreeMent
                 {
                     string ecuDecString = readLineResult.ToLower().Replace("ecu_address", "").Trim();
                     string tem = ecuDecString.Replace("0x", "").Trim();
-                    measureMent.EcuAddress = Convert.ToInt64(tem, 16);
+                    measureMent.EcuAddress = ecuDecString;//Convert.ToInt64(tem, 16);
                 }
                 index++;
             }
@@ -971,7 +971,7 @@ namespace AnalysisAgreeMent
                         break;
                     if (readLineResult.Contains("daq name"))
                     {
-                        readLineResult = readLineResult.Replace("/* dap name", "").Replace("/*", "").Replace('"', ' ').Trim();
+                        readLineResult = readLineResult.Replace("/* dap name", "").Replace("*/", "").Replace('"', ' ').Trim();
                         cCP_SEG.DAQ_NAME = readLineResult;
                     }
                     if (readLineResult.Contains("CAN_ID_FIXED"))
@@ -987,12 +987,14 @@ namespace AnalysisAgreeMent
                         break;
                     if (readLineResult.Contains("daq name"))
                     {
-                        readLineResult = readLineResult.Replace("/* dap name", "").Replace("/*", "").Replace('"', ' ').Trim();
+                        readLineResult = readLineResult.Replace("/*", "").Replace("dap name","").Replace("*/", "").Replace('"', ' ').Trim();
                         cCP_10MS.DAQ_NAME = readLineResult;
                     }
                     if (readLineResult.Contains("CAN_ID_FIXED"))
                     {
+                        LogHelper.Log.Info($"10msatfer={readLineResult}");
                         readLineResult = readLineResult.Replace("CAN_ID_FIXED", "").Trim();
+                        LogHelper.Log.Info($"10msatfer={readLineResult}");
                         cCP_10MS.CAN_ID_FIXED = readLineResult;
                     }
                 }
@@ -1003,7 +1005,7 @@ namespace AnalysisAgreeMent
                         break;
                     if (readLineResult.Contains("daq name"))
                     {
-                        readLineResult = readLineResult.Replace("/* dap name", "").Replace("/*", "").Replace('"', ' ').Trim();
+                        readLineResult = readLineResult.Replace("/* dap name", "").Replace("*/", "").Replace('"', ' ').Trim();
                         cCP_100MS.DAQ_NAME = readLineResult;
                     }
                     if (readLineResult.Contains("CAN_ID_FIXED"))
@@ -1019,38 +1021,38 @@ namespace AnalysisAgreeMent
                         break;
                     if (readLineResult.Contains("CCP version"))
                     {
-                        readLineResult = readLineResult.Replace("CCP version","").Replace("/*","").Trim();
+                        readLineResult = readLineResult.Replace("CCP version","").Replace("*/","").Replace("/*","").Trim();
                         if_data_asap1b_ccp.CCP_VERSION = readLineResult;
                     }
                     if (readLineResult.Contains("Blob version"))
                     {
-                        readLineResult = readLineResult.Replace("Blob version","").Replace("/*","").Trim();
+                        readLineResult = readLineResult.Replace("Blob version","").Replace("*/","").Replace("/*", "").Trim();
                         if_data_asap1b_ccp.BLOB_VERSION = readLineResult;
                     }
                     if (readLineResult.Contains("CAN msg ID-send"))
                     {
-                        readLineResult = readLineResult.Replace("CAN msg ID-send","").Replace("/*","").Trim();
+                        readLineResult = readLineResult.Replace("CAN msg ID-send","").Replace("*/","").Replace("/*", "").Trim();
                         if_data_asap1b_ccp.CAN_MSG_ID_SEND = readLineResult;
                     }
                     if (readLineResult.Contains("CAN msg ID-recv"))
                     {
-                        readLineResult = readLineResult.Replace("CAN msg ID-recv", "").Replace("/*", "").Trim();
+                        readLineResult = readLineResult.Replace("CAN msg ID-recv", "").Replace("*/", "").Replace("/*", "").Trim();
                         if_data_asap1b_ccp.CAN_MSG_ID_RECE = readLineResult;
                     }
                     if (readLineResult.Contains("station address"))
                     {
-                        readLineResult = readLineResult.Replace("station address", "").Replace("/*", "").Trim();
+                        readLineResult = readLineResult.Replace("station address", "").Replace("*/", "").Replace("/*", "").Trim();
                         if_data_asap1b_ccp.STATION_ADDRESS = readLineResult;
                     }
                     if (readLineResult.Contains("byte order"))
                     {
-                        readLineResult = readLineResult.Replace("byte order", "").Replace("/*", "").Trim();
+                        readLineResult = readLineResult.Replace("byte order", "").Replace("*/", "").Replace("/*", "").Trim();
                         if_data_asap1b_ccp.BYTE_ORDER = readLineResult;
                     }
                     if (readLineResult.Contains("BAUDRATE"))
                     {
                         readLineResult = readLineResult.Replace("BAUDRATE","").Trim();
-                        readLineResult = readLineResult.Substring(0,readLineResult.IndexOf('/')+1).Trim();
+                        readLineResult = readLineResult.Substring(0,readLineResult.IndexOf('/')).Replace("/*", "").Trim();
                         if_data_asap1b_ccp.BAUDRATE = readLineResult;
                     }
                 }

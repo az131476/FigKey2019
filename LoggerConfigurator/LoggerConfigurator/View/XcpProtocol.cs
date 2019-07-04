@@ -36,7 +36,8 @@ namespace LoggerConfigurator.View
 
         private void Btn_apply_Click(object sender, EventArgs e)
         {
-            xcpData.XcpOnCanData.CurrentSelectItem = cb_list.SelectedItem.ToString();
+            string str = cb_list.SelectedItem.ToString();
+            xcpData.XcpOnCanData.CurrentSelectItem = str.Substring(XCP_ON_CAN.Length);
             this.Close();
         }
 

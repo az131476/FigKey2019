@@ -99,7 +99,7 @@ namespace AnalysisAgreeMent
         {
             dbcMessage = new DBCMessage();
             cacheResult = cacheResult.Substring(cacheResult.IndexOf('_') + 1).TrimStart();
-            dbcMessage.FrameID = int.Parse(cacheResult.Substring(0, cacheResult.IndexOf(' ')));
+            dbcMessage.FrameID = cacheResult.Substring(0, cacheResult.IndexOf(' '));
             cacheResult = cacheResult.Substring(cacheResult.IndexOf(' ') + 1).TrimStart();
             dbcMessage.FrameName = cacheResult.Substring(0, cacheResult.IndexOf(':'));
             cacheResult = cacheResult.Substring(cacheResult.IndexOf(':') + 1).TrimStart();

@@ -40,12 +40,13 @@ namespace FigKeyLoggerConfigurator.Control
         private static string _len100msHeaderName;
 
         #region DBC
-        private static List<long> frameIdList;//用于存储DBC明细时的分组ID
+        private static List<string> frameIdList;//用于存储DBC明细时的分组ID
         private const string DBC_DETAIL_HEAD = "static XCPDataRecordType ";
         private const string DBC_DEATIL_METHOLD_NAME = "DBCTab";
 
         private const string EXINFO_TYPE_HEAD = "static ExInfoType ";
-        private const string EXINFO_Head = "ExInfo";
+        private const string EXINFO_FUN_NAME_CAN1 = "ExInfoCan1";
+        private const string EXINFO_FUN_NAME_CAN2 = "ExInfoCan2";
         private const string EXINFO_TYPE_METHOLD_NAME = "[] = \r\n{";
 
         private static List<StringBuilder> allDbcGroupData;
@@ -65,23 +66,28 @@ namespace FigKeyLoggerConfigurator.Control
             MORNITOR_TAB_TYPE = 6,
             CCP_ECUADDR_TYPE = 7
         }
+
+        enum ExportProtocolType
+        {
+            CHANNEL_CLOSE = 0,
+            CCP_OPEN = 1,
+            XCP_OPEN_2,
+            CAN_MONITOR =3
+        }
         #endregion
 
         #region 导出数据
         /// <summary>
         /// 导出a2l与dbc文件到本地
         /// </summary>
-        public static void ExportFileToLocal(string targetPath, RadGridView gridView1,RadGridView gridView2, GridViewData gridData, AnalysisData analysisData)
+        public static void ExportFileToLocal(string targetPath, RadGridView gridView1,RadGridView gridView2, 
+            GridViewData gridData, AnalysisData analysisData,XcpData dataCan1)
         {
             A2lDetailData(targetPath, gridView1, gridData);
-            AddA2lDetailGroup(gridData, targetPath, analysisData);
-            AddA2lRxidTab(targetPath);
-            AddA2lCanChInfo(targetPath);
-
-            DbcDetailData(targetPath, gridView2, analysisData);
+            DbcDetailData(targetPath, gridView2, gridData);
+            AddA2lDetailGroup(gridData, targetPath, analysisData,dataCan1);
             AddDBCDetailGroup(targetPath);
-            AddDBCRxidTab(targetPath);
-            AddDBCCanChInfo(targetPath);
+            AddCanChInfo(targetPath, dataCan1,analysisData);
         }
 
         private static void A2lDetailData(string targetPath, RadGridView gridView, GridViewData listData)
@@ -137,54 +143,91 @@ namespace FigKeyLoggerConfigurator.Control
             }
         }
 
-        private static void AddA2lDetailGroup(GridViewData listData, string path, AnalysisData analysisData)
+        private static void AddA2lDetailGroup(GridViewData listData, string path, AnalysisData analysisData,XcpData dataCan1)
         {
             StringBuilder sbExInfo = new StringBuilder();
             sbExInfo.Append(EXINFO_TYPE_HEAD);
-            sbExInfo.AppendLine(EXINFO_Head + EXINFO_TYPE_METHOLD_NAME);
-            if (analysisData.AgreeMentXCP == AgreementType.CCP)
+            sbExInfo.AppendLine(EXINFO_FUN_NAME_CAN1 + EXINFO_TYPE_METHOLD_NAME);
+            if (dataCan1.AgreeMentType == AgreementType.CCP)
             {
-            } else if (analysisData.AgreeMentXCP == AgreementType.XCP)
-            {
+                sbExInfo.AppendLine($"\t\t{(int)ExInfoType.SLAVER_ID_TYPE},{dataCan1.IF_DATA_ASAP1B_CCP_DATA.CAN_MSG_ID_RECE},0,");
+                sbExInfo.AppendLine($"\t\t{(int)ExInfoType.MASTER_ID_TYPE},{dataCan1.IF_DATA_ASAP1B_CCP_DATA.CAN_MSG_ID_SEND},0,");
+                sbExInfo.AppendLine($"\t\t{(int)ExInfoType.DAQ100_ID_TYPE},{dataCan1.IF_DATA_ASAP1B_CCP_DATA.CCP_100MS_DATA.CAN_ID_FIXED},0,");
+                sbExInfo.AppendLine($"\t\t{(int)ExInfoType.DAQ10_ID_TYPE},{dataCan1.IF_DATA_ASAP1B_CCP_DATA.CCP_10MS_DATA.CAN_ID_FIXED},0,");
+                exInfoLen = 4;
+                if (listData.LimitTimeListSegMent.Count > 0)
+                {
+                    sbExInfo.AppendLine("\t\t" + "2" + "," + SEGMENT_NAME + "," + listData.LimitTimeListSegMent.Count + ",");
+                    exInfoLen += 1;
+                }
+                if (listData.LimitTimeList100ms.Count > 0)
+                {
+                    sbExInfo.AppendLine($"\t\t{(int)ExInfoType.DAQ100_TAB_TYPE},(uint32_t){_100MS_NAME},{listData.LimitTimeList100ms.Count},");
+                    exInfoLen++;
+                }
+                if (listData.LimitTimeList10ms.Count > 0)
+                {
+                    sbExInfo.AppendLine($"\t\t{(int)ExInfoType.DAQ10_TAB_TYPE},(uint32_t){_10MS_NAME},{listData.LimitTimeList10ms.Count},");
+                    exInfoLen++;
+                }
+                sbExInfo.AppendLine($"\t\t{(int)ExInfoType.CCP_ECUADDR_TYPE},{dataCan1.IF_DATA_ASAP1B_CCP_DATA.STATION_ADDRESS},0,");
+                exInfoLen++;
+                sbExInfo.AppendLine("};");
             }
-            sbExInfo.AppendLine($"\t\t{ExInfoType.SLAVER_ID_TYPE}, {} + "," + "0"+",");
-            sbExInfo.AppendLine($"\t\t" + "1" + "," + "0x7f2" + "," + "0"+",");
-            exInfoLen = 2;
-            if (listData.LimitTimeListSegMent.Count > 0)
+            else if (dataCan1.AgreeMentType == AgreementType.XCP)
             {
-                sbExInfo.AppendLine("\t\t" + "2" + "," + SEGMENT_NAME + "," + listData.LimitTimeListSegMent.Count+",");
-                exInfoLen += 1;
+                exInfoLen = 2;
+                if (dataCan1.XcpOnCanData.CurrentSelectItem == dataCan1.XcpOnCanData.VehicleApplData.CanName)
+                {
+                    sbExInfo.AppendLine($"\t\t{(int)ExInfoType.SLAVER_ID_TYPE},{dataCan1.XcpOnCanData.VehicleApplData.SlaveID},0,");
+                    sbExInfo.AppendLine($"\t\t{(int)ExInfoType.MASTER_ID_TYPE},{dataCan1.XcpOnCanData.VehicleApplData.MasterID},0,");
+                } else if (dataCan1.XcpOnCanData.CurrentSelectItem == dataCan1.XcpOnCanData.VehicleApplRamData.CanName)
+                {
+                    sbExInfo.AppendLine($"\t\t{(int)ExInfoType.SLAVER_ID_TYPE},{dataCan1.XcpOnCanData.VehicleApplRamData.SlaveID},0,");
+                    sbExInfo.AppendLine($"\t\t{(int)ExInfoType.MASTER_ID_TYPE},{dataCan1.XcpOnCanData.VehicleApplRamData.MasterID},0,");
+                } else if (dataCan1.XcpOnCanData.CurrentSelectItem == dataCan1.XcpOnCanData.CalibrationLeData.CanName)
+                {
+                    sbExInfo.AppendLine($"\t\t{(int)ExInfoType.SLAVER_ID_TYPE},{dataCan1.XcpOnCanData.CalibrationLeData.SlaveID},0,");
+                    sbExInfo.AppendLine($"\t\t{(int)ExInfoType.MASTER_ID_TYPE},{dataCan1.XcpOnCanData.CalibrationLeData.MasterID},0,");
+                } else if (dataCan1.XcpOnCanData.CurrentSelectItem == dataCan1.XcpOnCanData.CalibrationLeRamData.CanName)
+                {
+                    sbExInfo.AppendLine($"\t\t{(int)ExInfoType.SLAVER_ID_TYPE},{dataCan1.XcpOnCanData.CalibrationLeRamData.SlaveID},0,");
+                    sbExInfo.AppendLine($"\t\t{(int)ExInfoType.MASTER_ID_TYPE},{dataCan1.XcpOnCanData.CalibrationLeRamData.MasterID},0,");
+                }
+                //sbExInfo.AppendLine($"\t\t{(int)ExInfoType.DAQ100_ID_TYPE},{dataCan1.IF_DATA_ASAP1B_CCP_DATA.CCP_100MS_DATA.CAN_ID_FIXED},0,");
+                //sbExInfo.AppendLine($"\t\t{(int)ExInfoType.DAQ10_ID_TYPE},{dataCan1.IF_DATA_ASAP1B_CCP_DATA.CCP_10MS_DATA.CAN_ID_FIXED},0,");
+                if (listData.LimitTimeListSegMent.Count > 0)
+                {
+                    sbExInfo.AppendLine("\t\t" + "2" + "," + SEGMENT_NAME + "," + listData.LimitTimeListSegMent.Count + ",");
+                }
+                if (listData.LimitTimeList100ms.Count > 0)
+                {
+                    sbExInfo.AppendLine($"\t\t{(int)ExInfoType.DAQ100_TAB_TYPE},(uint32_t){_100MS_NAME},{listData.LimitTimeList100ms.Count},");
+                    exInfoLen++;
+                }
+                if (listData.LimitTimeList10ms.Count > 0)
+                {
+                    sbExInfo.AppendLine($"\t\t{(int)ExInfoType.DAQ10_TAB_TYPE},(uint32_t){_10MS_NAME},{listData.LimitTimeList10ms.Count},");
+                    exInfoLen++;
+                }
+                //sbExInfo.AppendLine($"\t\t{(int)ExInfoType.CCP_ECUADDR_TYPE},{dataCan1.IF_DATA_ASAP1B_CCP_DATA.STATION_ADDRESS},0,");
+                sbExInfo.AppendLine("};");
             }
-            if (listData.LimitTimeList10ms.Count > 0)
-            {
-                sbExInfo.AppendLine($"\t\t2,{_10MS_NAME},{listData.LimitTimeList10ms.Count},");
-                exInfoLen += 1;
-            }
-            if (listData.LimitTimeList100ms.Count > 0)
-            {
-                sbExInfo.AppendLine($"\t\t2,{_100MS_NAME},{listData.LimitTimeList100ms.Count},");
-                exInfoLen += 1;
-            }
-            sbExInfo.AppendLine("};");
             WriteData.WriteString(sbExInfo,path);
         }
 
-        private static void DbcDetailData(string targetPath, RadGridView gridView,AnalysisData dbcData)
+        private static void DbcDetailData(string targetPath, RadGridView gridView, GridViewData listData)
         {
             try
             {
                 //遍历行数据
+                StringBuilder dbcBuilder = new StringBuilder();
                 acturalDBCList = new List<AnalysisSignal>();
-                frameIdList = new List<long>();
+                frameIdList = new List<string>();
                 allDbcGroupData = new List<StringBuilder>();
                 //遍历选择行数据
-                for (int i = 0; i < gridView.Rows.Count; i++)
-                {
-                    string signalName = gridView.Rows[i].Cells[1].Value.ToString();
-                    AnalysisSignal dbcSignal = dbcData.AnalysisDbcDataList.Find(dbc => dbc.Name == signalName);
-                    AddFrameGroupID(dbcSignal);//添加分组ID
-                    acturalDBCList.Add(dbcSignal);//添加实际保存数据
-                }
+                List<AnalysisSignal> analysisDbcDataList = DbcDataToSignal(listData, gridView);
+
                 //根据分组ID查询该ID对应所有数据行
                 for (int i = 0; i < frameIdList.Count; i++)
                 {
@@ -197,7 +240,7 @@ namespace FigKeyLoggerConfigurator.Control
                     for (int j = 0; j < resdbcList.Count; j++)
                     {
                         dbcGroupData.Append("\t\t"+'"'+resdbcList[j].Name+'"'+",");
-                        var dbcMsg = dbcData.AnalysisDbcDataList.Find(dbc => dbc.DataAddress == resdbcList[j].DataAddress);
+                        var dbcMsg = analysisDbcDataList.Find(dbc => dbc.DataAddress == resdbcList[j].DataAddress);
                         dbcGroupData.Append('"'+dbcMsg.Describle+'"'+",");
                         dbcGroupData.Append('"'+resdbcList[j].Unit+'"'+",");
                         dbcGroupData.Append(resdbcList[j].SaveDataType+",");
@@ -229,14 +272,14 @@ namespace FigKeyLoggerConfigurator.Control
         {
             StringBuilder sbExInfo = new StringBuilder();
             sbExInfo.Append(EXINFO_TYPE_HEAD);
-            sbExInfo.AppendLine(EXINFO_Head+EXINFO_TYPE_METHOLD_NAME);
+            sbExInfo.AppendLine(EXINFO_FUN_NAME_CAN2 + EXINFO_TYPE_METHOLD_NAME);
             //sbExInfo.AppendLine("\t\t0" + "," + "0" + "," + "0" + ",");
             //sbExInfo.AppendLine("\t\t1" + "," + "0" + "," + "0" + ",");
             for (int i = 0; i < frameIdList.Count; i++)
             {
                 var resdbcList = acturalDBCList.FindAll(dbc => dbc.DataAddress == frameIdList[i]);
                 string metholdName = DBC_DEATIL_METHOLD_NAME + "_" + frameIdList[i];
-                sbExInfo.AppendLine("\t\t2"+","+metholdName+","+resdbcList.Count+",");
+                sbExInfo.AppendLine($"\t\t{(int)ExInfoType.MORNITOR_TAB_TYPE},{metholdName},{resdbcList.Count},");
             }
             sbExInfo.AppendLine("};");
             WriteData.WriteString(sbExInfo, targPath);
@@ -250,63 +293,35 @@ namespace FigKeyLoggerConfigurator.Control
             }
         }
 
-        //static   uint32_t RxidTab1[]={(uint32_t)(&ExInfo[0]),(uint32_t)(&ExInfo[1]),(uint32_t)(&ExInfo[2])};
-
-        private static void AddDBCRxidTab(string path)
+        private static void AddCanChInfo(string targPath,XcpData xcpData, AnalysisData analysisData)
         {
-            string rxidHead = "static uint32_t RxidTab[] = {";
-            StringBuilder sb = new StringBuilder();
-            sb.Append(rxidHead);
-            for (int i = 0; i < frameIdList.Count; i++)
-            {
-                if (i < frameIdList.Count - 1)
-                {
-                    sb.Append($"(uint32_t)(&{EXINFO_Head}[{i}]),");
-                }
-                else
-                {
-                    sb.Append($"(uint32_t)(&{EXINFO_Head}[{i}])");
-                }
-            }
-            sb.AppendLine("};");
-            WriteData.WriteString(sb,path);
-        }
-
-        private static void AddA2lRxidTab(string path)
-        {
-            string rxidHead = "static uint32_t RxidTab[] = {";
-            StringBuilder sb = new StringBuilder();
-            sb.Append(rxidHead);
-            for (int i = 0; i < exInfoLen; i++)
-            {
-                if (i < exInfoLen - 1)
-                {
-                    sb.Append($"(uint32_t)(&{EXINFO_Head}[{i}]),");
-                }
-                else
-                {
-                    sb.Append($"(uint32_t)(&{EXINFO_Head}[{i}])");
-                }
-            }
-            sb.AppendLine("};");
-            WriteData.WriteString(sb, path);
-        }
-        private static void AddDBCCanChInfo(string path)
-        {
-            string infoHead = "\r\nCanChInfo INFO[1] = \r\n{";
+            string infoHead = "CanChInfo INFO[2] = \r\n{";
             StringBuilder sb = new StringBuilder();
             sb.AppendLine(infoHead);
-            sb.AppendLine($"\t3,500000,(uint32_t)RxidTab,{frameIdList.Count}");
-            sb.AppendLine("};");
-            WriteData.WriteString(sb,path);
-        }
-
-        private static void AddA2lCanChInfo(string targPath)
-        {
-            string infoHead = "CanChInfo INFO[1] = \r\n{";
-            StringBuilder sb = new StringBuilder();
-            sb.AppendLine(infoHead);
-            sb.AppendLine($"\t2,500000,(uint32_t)RxidTab,{exInfoLen}");
+            if (xcpData.AgreeMentType == AgreementType.CCP)
+            {
+                sb.AppendLine($"\t{(int)ExportProtocolType.CCP_OPEN},{xcpData.IF_DATA_ASAP1B_CCP_DATA.BAUDRATE},(uint32_t){EXINFO_FUN_NAME_CAN1},{exInfoLen}");
+            }
+            else if (xcpData.AgreeMentType == AgreementType.XCP)
+            {
+                if (xcpData.XcpOnCanData.CurrentSelectItem == xcpData.XcpOnCanData.VehicleApplData.CanName)
+                {
+                    sb.AppendLine($"\t{(int)ExportProtocolType.CCP_OPEN},{xcpData.XcpOnCanData.VehicleApplData.Baudrate},(uint32_t){EXINFO_FUN_NAME_CAN1},{exInfoLen}");
+                }
+                else if (xcpData.XcpOnCanData.CurrentSelectItem == xcpData.XcpOnCanData.VehicleApplRamData.CanName)
+                {
+                    sb.AppendLine($"\t{(int)ExportProtocolType.CCP_OPEN},{xcpData.XcpOnCanData.VehicleApplRamData.Baudrate},(uint32_t){EXINFO_FUN_NAME_CAN1},{exInfoLen}");
+                }
+                else if (xcpData.XcpOnCanData.CurrentSelectItem == xcpData.XcpOnCanData.CalibrationLeData.CanName)
+                {
+                    sb.AppendLine($"\t{(int)ExportProtocolType.CCP_OPEN},{xcpData.XcpOnCanData.CalibrationLeData.Baudrate},(uint32_t){EXINFO_FUN_NAME_CAN1},{exInfoLen}");
+                }
+                else if (xcpData.XcpOnCanData.CurrentSelectItem == xcpData.XcpOnCanData.CalibrationLeRamData.CanName)
+                {
+                    sb.AppendLine($"\t{(int)ExportProtocolType.CCP_OPEN},{xcpData.XcpOnCanData.CalibrationLeRamData.Baudrate},(uint32_t){EXINFO_FUN_NAME_CAN1},{exInfoLen}");
+                }
+            }
+            sb.AppendLine($"\t{(int)ExportProtocolType.CAN_MONITOR},{analysisData.BaudRateDbc},(uint32_t){EXINFO_FUN_NAME_CAN2},{frameIdList.Count}");
             sb.AppendLine("};");
             WriteData.WriteString(sb, targPath);
         }
@@ -359,6 +374,33 @@ namespace FigKeyLoggerConfigurator.Control
                 }
                 builder.Append("};\r\n");
             }
+        }
+
+        private static List<AnalysisSignal> DbcDataToSignal(GridViewData listData,RadGridView gridView)
+        {
+            if (listData.DbcCheckIndex.Count < 1)
+                return null;
+            AnalysisSignal analysisSignal = new AnalysisSignal();
+            List<AnalysisSignal> analysisSignalList = new List<AnalysisSignal>();
+            for (int i = 0; i < listData.DbcCheckIndex.Count; i++)
+            {
+                analysisSignal.Name = gridView.Rows[listData.DbcCheckIndex[i]].Cells[1].Value.ToString();
+                analysisSignal.Describle = gridView.Rows[listData.DbcCheckIndex[i]].Cells[2].Value.ToString();
+                analysisSignal.Unit = gridView.Rows[listData.DbcCheckIndex[i]].Cells[3].Value.ToString();
+                analysisSignal.SaveDataType = (SaveDataTypeEnum)Enum.Parse(typeof(SaveDataTypeEnum),gridView.Rows[listData.DbcCheckIndex[i]].Cells[4].Value.ToString());
+                analysisSignal.SaveDataLen = int.Parse(gridView.Rows[listData.DbcCheckIndex[i]].Cells[5].Value.ToString());
+                analysisSignal.IsMotorola = int.Parse(gridView.Rows[listData.DbcCheckIndex[i]].Cells[6].Value.ToString());
+                analysisSignal.StartIndex = int.Parse(gridView.Rows[listData.DbcCheckIndex[i]].Cells[7].Value.ToString());
+                analysisSignal.DataBitLen = int.Parse(gridView.Rows[listData.DbcCheckIndex[i]].Cells[8].Value.ToString());
+                analysisSignal.DataAddress =  gridView.Rows[listData.DbcCheckIndex[i]].Cells[9].Value.ToString();
+                analysisSignal.Factor = gridView.Rows[listData.DbcCheckIndex[i]].Cells[10].Value.ToString();
+                analysisSignal.OffSet = gridView.Rows[listData.DbcCheckIndex[i]].Cells[11].Value.ToString();
+
+                analysisSignalList.Add(analysisSignal);
+                AddFrameGroupID(analysisSignal);//添加分组ID
+                acturalDBCList.Add(analysisSignal);//添加实际保存数据
+            }
+            return analysisSignalList;
         }
         #endregion
 
