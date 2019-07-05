@@ -29,22 +29,22 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            Telerik.WinControls.UI.CartesianArea cartesianArea2 = new Telerik.WinControls.UI.CartesianArea();
-            Telerik.WinControls.UI.CategoricalAxis categoricalAxis2 = new Telerik.WinControls.UI.CategoricalAxis();
-            Telerik.WinControls.UI.LinearAxis linearAxis2 = new Telerik.WinControls.UI.LinearAxis();
-            Telerik.WinControls.UI.BarSeries barSeries3 = new Telerik.WinControls.UI.BarSeries();
-            Telerik.Charting.CategoricalDataPoint categoricalDataPoint11 = new Telerik.Charting.CategoricalDataPoint();
-            Telerik.Charting.CategoricalDataPoint categoricalDataPoint12 = new Telerik.Charting.CategoricalDataPoint();
-            Telerik.Charting.CategoricalDataPoint categoricalDataPoint13 = new Telerik.Charting.CategoricalDataPoint();
-            Telerik.Charting.CategoricalDataPoint categoricalDataPoint14 = new Telerik.Charting.CategoricalDataPoint();
-            Telerik.Charting.CategoricalDataPoint categoricalDataPoint15 = new Telerik.Charting.CategoricalDataPoint();
-            Telerik.WinControls.UI.BarSeries barSeries4 = new Telerik.WinControls.UI.BarSeries();
-            Telerik.Charting.CategoricalDataPoint categoricalDataPoint16 = new Telerik.Charting.CategoricalDataPoint();
-            Telerik.Charting.CategoricalDataPoint categoricalDataPoint17 = new Telerik.Charting.CategoricalDataPoint();
-            Telerik.Charting.CategoricalDataPoint categoricalDataPoint18 = new Telerik.Charting.CategoricalDataPoint();
-            Telerik.Charting.CategoricalDataPoint categoricalDataPoint19 = new Telerik.Charting.CategoricalDataPoint();
-            Telerik.Charting.CategoricalDataPoint categoricalDataPoint20 = new Telerik.Charting.CategoricalDataPoint();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition4 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.CartesianArea cartesianArea1 = new Telerik.WinControls.UI.CartesianArea();
+            Telerik.WinControls.UI.CategoricalAxis categoricalAxis1 = new Telerik.WinControls.UI.CategoricalAxis();
+            Telerik.WinControls.UI.LinearAxis linearAxis1 = new Telerik.WinControls.UI.LinearAxis();
+            Telerik.WinControls.UI.BarSeries barSeries1 = new Telerik.WinControls.UI.BarSeries();
+            Telerik.Charting.CategoricalDataPoint categoricalDataPoint1 = new Telerik.Charting.CategoricalDataPoint();
+            Telerik.Charting.CategoricalDataPoint categoricalDataPoint2 = new Telerik.Charting.CategoricalDataPoint();
+            Telerik.Charting.CategoricalDataPoint categoricalDataPoint3 = new Telerik.Charting.CategoricalDataPoint();
+            Telerik.Charting.CategoricalDataPoint categoricalDataPoint4 = new Telerik.Charting.CategoricalDataPoint();
+            Telerik.Charting.CategoricalDataPoint categoricalDataPoint5 = new Telerik.Charting.CategoricalDataPoint();
+            Telerik.WinControls.UI.BarSeries barSeries2 = new Telerik.WinControls.UI.BarSeries();
+            Telerik.Charting.CategoricalDataPoint categoricalDataPoint6 = new Telerik.Charting.CategoricalDataPoint();
+            Telerik.Charting.CategoricalDataPoint categoricalDataPoint7 = new Telerik.Charting.CategoricalDataPoint();
+            Telerik.Charting.CategoricalDataPoint categoricalDataPoint8 = new Telerik.Charting.CategoricalDataPoint();
+            Telerik.Charting.CategoricalDataPoint categoricalDataPoint9 = new Telerik.Charting.CategoricalDataPoint();
+            Telerik.Charting.CategoricalDataPoint categoricalDataPoint10 = new Telerik.Charting.CategoricalDataPoint();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.radMenuItem1 = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItem3 = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItem4 = new Telerik.WinControls.UI.RadMenuItem();
@@ -57,36 +57,43 @@
             this.radMenuItem2 = new Telerik.WinControls.UI.RadMenuItem();
             this.menu_productType = new Telerik.WinControls.UI.RadMenuItem();
             this.menu_material_msg = new Telerik.WinControls.UI.RadMenuItem();
+            this.menu_produce_config = new Telerik.WinControls.UI.RadMenuItem();
+            this.menu_set_station = new Telerik.WinControls.UI.RadMenuItem();
             this.menu_product_material = new Telerik.WinControls.UI.RadMenuItem();
             this.menu_outbox_material = new Telerik.WinControls.UI.RadMenuItem();
             this.menu_product_binding = new Telerik.WinControls.UI.RadMenuItem();
-            this.menu_produce_config = new Telerik.WinControls.UI.RadMenuItem();
-            this.menu_set_station = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItem16 = new Telerik.WinControls.UI.RadMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.radMenuItem12 = new Telerik.WinControls.UI.RadMenuItem();
-            this.menu_typeno = new Telerik.WinControls.UI.RadMenuItem();
-            this.menu_sn = new Telerik.WinControls.UI.RadMenuItem();
+            this.menu_select_testRes = new Telerik.WinControls.UI.RadMenuItem();
+            this.menu_select_material = new Telerik.WinControls.UI.RadMenuItem();
+            this.menu_select_packageProduct = new Telerik.WinControls.UI.RadMenuItem();
+            this.menu_select_passRate = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItem13 = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItem5 = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItem6 = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItem8 = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenu1 = new Telerik.WinControls.UI.RadMenu();
             this.radMenuItem19 = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItem20 = new Telerik.WinControls.UI.RadMenuItem();
+            this.menu_manager = new Telerik.WinControls.UI.RadMenuItem();
             this.radStatusStrip1 = new Telerik.WinControls.UI.RadStatusStrip();
             this.radLabelElement1 = new Telerik.WinControls.UI.RadLabelElement();
             this.tool_status_user = new Telerik.WinControls.UI.RadLabelElement();
             this.radDock1 = new Telerik.WinControls.UI.Docking.RadDock();
-            this.documentWindow_statistic = new Telerik.WinControls.UI.Docking.DocumentWindow();
-            this.radChartView1 = new Telerik.WinControls.UI.RadChartView();
+            this.documentWindow_sn = new Telerik.WinControls.UI.Docking.DocumentWindow();
+            this.radPanel4 = new Telerik.WinControls.UI.RadPanel();
+            this.radListView1 = new Telerik.WinControls.UI.RadListView();
+            this.radPanel3 = new Telerik.WinControls.UI.RadPanel();
             this.toolTabStrip1 = new Telerik.WinControls.UI.Docking.ToolTabStrip();
-            this.toolWindow1 = new Telerik.WinControls.UI.Docking.ToolWindow();
+            this.toolWindow_left = new Telerik.WinControls.UI.Docking.ToolWindow();
+            this.radTreeView1 = new Telerik.WinControls.UI.RadTreeView();
             this.documentContainer2 = new Telerik.WinControls.UI.Docking.DocumentContainer();
             this.documentTabStrip1 = new Telerik.WinControls.UI.Docking.DocumentTabStrip();
+            this.documentWindow_statistic = new Telerik.WinControls.UI.Docking.DocumentWindow();
+            this.radChartView1 = new Telerik.WinControls.UI.RadChartView();
             this.documentWindow_packageProduct = new Telerik.WinControls.UI.Docking.DocumentWindow();
             this.radRadioButton2 = new Telerik.WinControls.UI.RadRadioButton();
             this.radRadioButton1 = new Telerik.WinControls.UI.RadRadioButton();
@@ -97,32 +104,33 @@
             this.radPanel2 = new Telerik.WinControls.UI.RadPanel();
             this.listView_TestRes = new Telerik.WinControls.UI.RadListView();
             this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
+            this.btn_search_record = new Telerik.WinControls.UI.RadButton();
+            this.rdb_sn = new Telerik.WinControls.UI.RadRadioButton();
+            this.rdb_typeNo = new Telerik.WinControls.UI.RadRadioButton();
             this.tb_input = new System.Windows.Forms.TextBox();
             this.btn_search_testRes = new Telerik.WinControls.UI.RadButton();
-            this.documentWindow_sn = new Telerik.WinControls.UI.Docking.DocumentWindow();
-            this.radPanel4 = new Telerik.WinControls.UI.RadPanel();
-            this.radListView1 = new Telerik.WinControls.UI.RadListView();
-            this.radPanel3 = new Telerik.WinControls.UI.RadPanel();
-            this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
-            this.tb_sn = new System.Windows.Forms.TextBox();
-            this.radTreeView1 = new Telerik.WinControls.UI.RadTreeView();
-            this.rdb_typeNo = new Telerik.WinControls.UI.RadRadioButton();
-            this.rdb_sn = new Telerik.WinControls.UI.RadRadioButton();
-            this.btn_search_record = new Telerik.WinControls.UI.RadButton();
+            this.radMenu1 = new Telerik.WinControls.UI.RadMenu();
+            this.radMenuItem17 = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItem18 = new Telerik.WinControls.UI.RadMenuItem();
             this.toolStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radStatusStrip1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radDock1)).BeginInit();
             this.radDock1.SuspendLayout();
-            this.documentWindow_statistic.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radChartView1)).BeginInit();
+            this.documentWindow_sn.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radPanel4)).BeginInit();
+            this.radPanel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radListView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radPanel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip1)).BeginInit();
             this.toolTabStrip1.SuspendLayout();
-            this.toolWindow1.SuspendLayout();
+            this.toolWindow_left.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radTreeView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentContainer2)).BeginInit();
             this.documentContainer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.documentTabStrip1)).BeginInit();
             this.documentTabStrip1.SuspendLayout();
+            this.documentWindow_statistic.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radChartView1)).BeginInit();
             this.documentWindow_packageProduct.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radRadioButton2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radRadioButton1)).BeginInit();
@@ -136,18 +144,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.listView_TestRes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
             this.radPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btn_search_testRes)).BeginInit();
-            this.documentWindow_sn.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanel4)).BeginInit();
-            this.radPanel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radListView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanel3)).BeginInit();
-            this.radPanel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radTreeView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rdb_typeNo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rdb_sn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_search_record)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rdb_sn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rdb_typeNo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_search_testRes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -210,23 +211,38 @@
             this.radMenuItem2.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.menu_productType,
             this.menu_material_msg,
+            this.menu_produce_config,
+            this.menu_set_station,
             this.menu_product_material,
             this.menu_outbox_material,
             this.menu_product_binding,
-            this.menu_produce_config,
-            this.menu_set_station});
+            this.radMenuItem16});
             this.radMenuItem2.Name = "radMenuItem2";
             this.radMenuItem2.Text = "操作";
             // 
             // menu_productType
             // 
+            this.menu_productType.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.radMenuItem17,
+            this.radMenuItem18});
             this.menu_productType.Name = "menu_productType";
-            this.menu_productType.Text = "产品型号";
+            this.menu_productType.Text = "配置型号";
+            this.menu_productType.UseCompatibleTextRendering = false;
             // 
             // menu_material_msg
             // 
             this.menu_material_msg.Name = "menu_material_msg";
-            this.menu_material_msg.Text = "物料信息";
+            this.menu_material_msg.Text = "配置物料";
+            // 
+            // menu_produce_config
+            // 
+            this.menu_produce_config.Name = "menu_produce_config";
+            this.menu_produce_config.Text = "配置站位";
+            // 
+            // menu_set_station
+            // 
+            this.menu_set_station.Name = "menu_set_station";
+            this.menu_set_station.Text = "产品站位";
             // 
             // menu_product_material
             // 
@@ -236,22 +252,17 @@
             // menu_outbox_material
             // 
             this.menu_outbox_material.Name = "menu_outbox_material";
-            this.menu_outbox_material.Text = "外箱物料";
+            this.menu_outbox_material.Text = "物料统计";
             // 
             // menu_product_binding
             // 
             this.menu_product_binding.Name = "menu_product_binding";
-            this.menu_product_binding.Text = "产品装箱";
+            this.menu_product_binding.Text = "产品打包";
             // 
-            // menu_produce_config
+            // radMenuItem16
             // 
-            this.menu_produce_config.Name = "menu_produce_config";
-            this.menu_produce_config.Text = "生产线站位";
-            // 
-            // menu_set_station
-            // 
-            this.menu_set_station.Name = "menu_set_station";
-            this.menu_set_station.Text = "设置站位";
+            this.radMenuItem16.Name = "radMenuItem16";
+            this.radMenuItem16.Text = "radMenuItem16";
             // 
             // toolStrip1
             // 
@@ -306,20 +317,32 @@
             // radMenuItem12
             // 
             this.radMenuItem12.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.menu_typeno,
-            this.menu_sn});
+            this.menu_select_testRes,
+            this.menu_select_material,
+            this.menu_select_packageProduct,
+            this.menu_select_passRate});
             this.radMenuItem12.Name = "radMenuItem12";
             this.radMenuItem12.Text = "查询";
             // 
-            // menu_typeno
+            // menu_select_testRes
             // 
-            this.menu_typeno.Name = "menu_typeno";
-            this.menu_typeno.Text = "零件号";
+            this.menu_select_testRes.Name = "menu_select_testRes";
+            this.menu_select_testRes.Text = "测试结果";
             // 
-            // menu_sn
+            // menu_select_material
             // 
-            this.menu_sn.Name = "menu_sn";
-            this.menu_sn.Text = "追溯号";
+            this.menu_select_material.Name = "menu_select_material";
+            this.menu_select_material.Text = "物料统计";
+            // 
+            // menu_select_packageProduct
+            // 
+            this.menu_select_packageProduct.Name = "menu_select_packageProduct";
+            this.menu_select_packageProduct.Text = "打包产品";
+            // 
+            // menu_select_passRate
+            // 
+            this.menu_select_passRate.Name = "menu_select_passRate";
+            this.menu_select_passRate.Text = "合格率";
             // 
             // radMenuItem13
             // 
@@ -345,31 +368,18 @@
             this.radMenuItem8.Name = "radMenuItem8";
             this.radMenuItem8.Text = "关于";
             // 
-            // radMenu1
-            // 
-            this.radMenu1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radMenu1.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.radMenuItem1,
-            this.radMenuItem2,
-            this.radMenuItem12,
-            this.radMenuItem19,
-            this.radMenuItem13});
-            this.radMenu1.Location = new System.Drawing.Point(0, 0);
-            this.radMenu1.Name = "radMenu1";
-            this.radMenu1.Size = new System.Drawing.Size(1321, 23);
-            this.radMenu1.TabIndex = 0;
-            // 
             // radMenuItem19
             // 
             this.radMenuItem19.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.radMenuItem20});
+            this.menu_manager});
             this.radMenuItem19.Name = "radMenuItem19";
             this.radMenuItem19.Text = "视图";
             // 
-            // radMenuItem20
+            // menu_manager
             // 
-            this.radMenuItem20.Name = "radMenuItem20";
-            this.radMenuItem20.Text = "产品资源管理器";
+            this.menu_manager.Name = "menu_manager";
+            this.menu_manager.Text = "产品资源管理器";
+            this.menu_manager.Click += new System.EventHandler(this.Menu_manager_Click);
             // 
             // radStatusStrip1
             // 
@@ -397,7 +407,7 @@
             // 
             // radDock1
             // 
-            this.radDock1.ActiveWindow = this.documentWindow_typeNo;
+            this.radDock1.ActiveWindow = this.toolWindow_left;
             this.radDock1.CausesValidation = false;
             this.radDock1.Controls.Add(this.toolTabStrip1);
             this.radDock1.Controls.Add(this.documentContainer2);
@@ -414,94 +424,47 @@
             this.radDock1.TabIndex = 6;
             this.radDock1.TabStop = false;
             // 
-            // documentWindow_statistic
+            // documentWindow_sn
             // 
-            this.documentWindow_statistic.Controls.Add(this.radChartView1);
-            this.documentWindow_statistic.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.documentWindow_statistic.Location = new System.Drawing.Point(6, 29);
-            this.documentWindow_statistic.Name = "documentWindow_statistic";
-            this.documentWindow_statistic.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.TabbedDocument;
-            this.documentWindow_statistic.Size = new System.Drawing.Size(1039, 582);
-            this.documentWindow_statistic.Text = "产品统计";
+            this.documentWindow_sn.Controls.Add(this.radPanel4);
+            this.documentWindow_sn.Controls.Add(this.radPanel3);
+            this.documentWindow_sn.Font = new System.Drawing.Font("宋体", 9F);
+            this.documentWindow_sn.Location = new System.Drawing.Point(6, 29);
+            this.documentWindow_sn.Name = "documentWindow_sn";
+            this.documentWindow_sn.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.TabbedDocument;
+            this.documentWindow_sn.Size = new System.Drawing.Size(1039, 582);
+            this.documentWindow_sn.Text = "追溯号查询";
             // 
-            // radChartView1
+            // radPanel4
             // 
-            this.radChartView1.AreaDesign = cartesianArea2;
-            categoricalAxis2.IsPrimary = true;
-            categoricalAxis2.LabelRotationAngle = 300D;
-            categoricalAxis2.Title = "";
-            linearAxis2.AxisType = Telerik.Charting.AxisType.Second;
-            linearAxis2.IsPrimary = true;
-            linearAxis2.LabelRotationAngle = 300D;
-            linearAxis2.MajorStep = 10D;
-            linearAxis2.TickOrigin = null;
-            linearAxis2.Title = "";
-            this.radChartView1.Axes.AddRange(new Telerik.WinControls.UI.Axis[] {
-            categoricalAxis2,
-            linearAxis2});
-            this.radChartView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radChartView1.Location = new System.Drawing.Point(0, 0);
-            this.radChartView1.Name = "radChartView1";
-            categoricalDataPoint11.Category = "A";
-            categoricalDataPoint11.Label = 43D;
-            categoricalDataPoint11.Value = 43D;
-            categoricalDataPoint12.Category = "B";
-            categoricalDataPoint12.Label = 87D;
-            categoricalDataPoint12.Value = 87D;
-            categoricalDataPoint13.Category = "C";
-            categoricalDataPoint13.Label = 65D;
-            categoricalDataPoint13.Value = 65D;
-            categoricalDataPoint14.Category = "D";
-            categoricalDataPoint14.Label = 65D;
-            categoricalDataPoint14.Value = 65D;
-            categoricalDataPoint15.Category = "E";
-            categoricalDataPoint15.Label = 48D;
-            categoricalDataPoint15.Value = 48D;
-            barSeries3.DataPoints.AddRange(new Telerik.Charting.DataPoint[] {
-            categoricalDataPoint11,
-            categoricalDataPoint12,
-            categoricalDataPoint13,
-            categoricalDataPoint14,
-            categoricalDataPoint15});
-            barSeries3.HorizontalAxis = categoricalAxis2;
-            barSeries3.LabelMode = Telerik.WinControls.UI.BarLabelModes.Top;
-            barSeries3.VerticalAxis = linearAxis2;
-            categoricalDataPoint16.Category = "A";
-            categoricalDataPoint16.Label = 29D;
-            categoricalDataPoint16.Value = 29D;
-            categoricalDataPoint17.Category = "B";
-            categoricalDataPoint17.Label = 50D;
-            categoricalDataPoint17.Value = 50D;
-            categoricalDataPoint18.Category = "C";
-            categoricalDataPoint18.Label = 82D;
-            categoricalDataPoint18.Value = 82D;
-            categoricalDataPoint19.Category = "D";
-            categoricalDataPoint19.Label = 71D;
-            categoricalDataPoint19.Value = 71D;
-            categoricalDataPoint20.Category = "E";
-            categoricalDataPoint20.Label = 65D;
-            categoricalDataPoint20.Value = 65D;
-            barSeries4.DataPoints.AddRange(new Telerik.Charting.DataPoint[] {
-            categoricalDataPoint16,
-            categoricalDataPoint17,
-            categoricalDataPoint18,
-            categoricalDataPoint19,
-            categoricalDataPoint20});
-            barSeries4.HorizontalAxis = categoricalAxis2;
-            barSeries4.LabelMode = Telerik.WinControls.UI.BarLabelModes.Top;
-            barSeries4.LegendTitle = null;
-            barSeries4.VerticalAxis = linearAxis2;
-            this.radChartView1.Series.AddRange(new Telerik.WinControls.UI.ChartSeries[] {
-            barSeries3,
-            barSeries4});
-            this.radChartView1.ShowGrid = false;
-            this.radChartView1.Size = new System.Drawing.Size(1039, 582);
-            this.radChartView1.TabIndex = 0;
+            this.radPanel4.Controls.Add(this.radListView1);
+            this.radPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radPanel4.Location = new System.Drawing.Point(0, 47);
+            this.radPanel4.Name = "radPanel4";
+            this.radPanel4.Size = new System.Drawing.Size(1039, 535);
+            this.radPanel4.TabIndex = 7;
+            // 
+            // radListView1
+            // 
+            this.radListView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radListView1.Font = new System.Drawing.Font("新宋体", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.radListView1.Location = new System.Drawing.Point(0, 0);
+            this.radListView1.Name = "radListView1";
+            this.radListView1.Size = new System.Drawing.Size(1039, 535);
+            this.radListView1.TabIndex = 5;
+            // 
+            // radPanel3
+            // 
+            this.radPanel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.radPanel3.Location = new System.Drawing.Point(0, 0);
+            this.radPanel3.Name = "radPanel3";
+            this.radPanel3.Size = new System.Drawing.Size(1039, 47);
+            this.radPanel3.TabIndex = 6;
             // 
             // toolTabStrip1
             // 
             this.toolTabStrip1.CanUpdateChildIndex = true;
-            this.toolTabStrip1.Controls.Add(this.toolWindow1);
+            this.toolTabStrip1.Controls.Add(this.toolWindow_left);
             this.toolTabStrip1.Location = new System.Drawing.Point(5, 5);
             this.toolTabStrip1.Name = "toolTabStrip1";
             // 
@@ -515,16 +478,25 @@
             this.toolTabStrip1.TabIndex = 1;
             this.toolTabStrip1.TabStop = false;
             // 
-            // toolWindow1
+            // toolWindow_left
             // 
-            this.toolWindow1.Caption = null;
-            this.toolWindow1.Controls.Add(this.radTreeView1);
-            this.toolWindow1.Font = new System.Drawing.Font("宋体", 9F);
-            this.toolWindow1.Location = new System.Drawing.Point(1, 24);
-            this.toolWindow1.Name = "toolWindow1";
-            this.toolWindow1.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.Docked;
-            this.toolWindow1.Size = new System.Drawing.Size(254, 591);
-            this.toolWindow1.Text = "产品资源管理器";
+            this.toolWindow_left.Caption = null;
+            this.toolWindow_left.Controls.Add(this.radTreeView1);
+            this.toolWindow_left.Font = new System.Drawing.Font("宋体", 9F);
+            this.toolWindow_left.Location = new System.Drawing.Point(1, 24);
+            this.toolWindow_left.Name = "toolWindow_left";
+            this.toolWindow_left.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.Docked;
+            this.toolWindow_left.Size = new System.Drawing.Size(254, 591);
+            this.toolWindow_left.Text = "产品资源管理器";
+            // 
+            // radTreeView1
+            // 
+            this.radTreeView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radTreeView1.Location = new System.Drawing.Point(0, 0);
+            this.radTreeView1.Name = "radTreeView1";
+            this.radTreeView1.Size = new System.Drawing.Size(254, 591);
+            this.radTreeView1.SpacingBetweenNodes = -1;
+            this.radTreeView1.TabIndex = 0;
             // 
             // documentContainer2
             // 
@@ -554,10 +526,94 @@
             // 
             // 
             this.documentTabStrip1.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.documentTabStrip1.SelectedIndex = 2;
+            this.documentTabStrip1.SelectedIndex = 3;
             this.documentTabStrip1.Size = new System.Drawing.Size(1051, 617);
             this.documentTabStrip1.TabIndex = 0;
             this.documentTabStrip1.TabStop = false;
+            // 
+            // documentWindow_statistic
+            // 
+            this.documentWindow_statistic.Controls.Add(this.radChartView1);
+            this.documentWindow_statistic.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.documentWindow_statistic.Location = new System.Drawing.Point(6, 29);
+            this.documentWindow_statistic.Name = "documentWindow_statistic";
+            this.documentWindow_statistic.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.TabbedDocument;
+            this.documentWindow_statistic.Size = new System.Drawing.Size(1039, 582);
+            this.documentWindow_statistic.Text = "产品统计";
+            // 
+            // radChartView1
+            // 
+            this.radChartView1.AreaDesign = cartesianArea1;
+            categoricalAxis1.IsPrimary = true;
+            categoricalAxis1.LabelRotationAngle = 300D;
+            categoricalAxis1.Title = "";
+            linearAxis1.AxisType = Telerik.Charting.AxisType.Second;
+            linearAxis1.IsPrimary = true;
+            linearAxis1.LabelRotationAngle = 300D;
+            linearAxis1.MajorStep = 10D;
+            linearAxis1.TickOrigin = null;
+            linearAxis1.Title = "";
+            this.radChartView1.Axes.AddRange(new Telerik.WinControls.UI.Axis[] {
+            categoricalAxis1,
+            linearAxis1});
+            this.radChartView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radChartView1.Location = new System.Drawing.Point(0, 0);
+            this.radChartView1.Name = "radChartView1";
+            categoricalDataPoint1.Category = "A";
+            categoricalDataPoint1.Label = 43D;
+            categoricalDataPoint1.Value = 43D;
+            categoricalDataPoint2.Category = "B";
+            categoricalDataPoint2.Label = 87D;
+            categoricalDataPoint2.Value = 87D;
+            categoricalDataPoint3.Category = "C";
+            categoricalDataPoint3.Label = 65D;
+            categoricalDataPoint3.Value = 65D;
+            categoricalDataPoint4.Category = "D";
+            categoricalDataPoint4.Label = 65D;
+            categoricalDataPoint4.Value = 65D;
+            categoricalDataPoint5.Category = "E";
+            categoricalDataPoint5.Label = 48D;
+            categoricalDataPoint5.Value = 48D;
+            barSeries1.DataPoints.AddRange(new Telerik.Charting.DataPoint[] {
+            categoricalDataPoint1,
+            categoricalDataPoint2,
+            categoricalDataPoint3,
+            categoricalDataPoint4,
+            categoricalDataPoint5});
+            barSeries1.HorizontalAxis = categoricalAxis1;
+            barSeries1.LabelMode = Telerik.WinControls.UI.BarLabelModes.Top;
+            barSeries1.VerticalAxis = linearAxis1;
+            categoricalDataPoint6.Category = "A";
+            categoricalDataPoint6.Label = 29D;
+            categoricalDataPoint6.Value = 29D;
+            categoricalDataPoint7.Category = "B";
+            categoricalDataPoint7.Label = 50D;
+            categoricalDataPoint7.Value = 50D;
+            categoricalDataPoint8.Category = "C";
+            categoricalDataPoint8.Label = 82D;
+            categoricalDataPoint8.Value = 82D;
+            categoricalDataPoint9.Category = "D";
+            categoricalDataPoint9.Label = 71D;
+            categoricalDataPoint9.Value = 71D;
+            categoricalDataPoint10.Category = "E";
+            categoricalDataPoint10.Label = 65D;
+            categoricalDataPoint10.Value = 65D;
+            barSeries2.DataPoints.AddRange(new Telerik.Charting.DataPoint[] {
+            categoricalDataPoint6,
+            categoricalDataPoint7,
+            categoricalDataPoint8,
+            categoricalDataPoint9,
+            categoricalDataPoint10});
+            barSeries2.HorizontalAxis = categoricalAxis1;
+            barSeries2.LabelMode = Telerik.WinControls.UI.BarLabelModes.Top;
+            barSeries2.LegendTitle = null;
+            barSeries2.VerticalAxis = linearAxis1;
+            this.radChartView1.Series.AddRange(new Telerik.WinControls.UI.ChartSeries[] {
+            barSeries1,
+            barSeries2});
+            this.radChartView1.ShowGrid = false;
+            this.radChartView1.Size = new System.Drawing.Size(1039, 582);
+            this.radChartView1.TabIndex = 0;
             // 
             // documentWindow_packageProduct
             // 
@@ -603,7 +659,7 @@
             // 
             // 
             // 
-            this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition4;
+            this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.radGridView1.Name = "radGridView1";
             this.radGridView1.Size = new System.Drawing.Size(1033, 539);
             this.radGridView1.TabIndex = 2;
@@ -657,6 +713,31 @@
             this.radPanel1.Size = new System.Drawing.Size(1039, 35);
             this.radPanel1.TabIndex = 11;
             // 
+            // btn_search_record
+            // 
+            this.btn_search_record.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_search_record.Location = new System.Drawing.Point(473, 11);
+            this.btn_search_record.Name = "btn_search_record";
+            this.btn_search_record.Size = new System.Drawing.Size(108, 21);
+            this.btn_search_record.TabIndex = 12;
+            this.btn_search_record.Text = "查询历史记录";
+            // 
+            // rdb_sn
+            // 
+            this.rdb_sn.Location = new System.Drawing.Point(77, 11);
+            this.rdb_sn.Name = "rdb_sn";
+            this.rdb_sn.Size = new System.Drawing.Size(56, 18);
+            this.rdb_sn.TabIndex = 10;
+            this.rdb_sn.Text = "追溯号";
+            // 
+            // rdb_typeNo
+            // 
+            this.rdb_typeNo.Location = new System.Drawing.Point(18, 11);
+            this.rdb_typeNo.Name = "rdb_typeNo";
+            this.rdb_typeNo.Size = new System.Drawing.Size(44, 18);
+            this.rdb_typeNo.TabIndex = 9;
+            this.rdb_typeNo.Text = "型号";
+            // 
             // tb_input
             // 
             this.tb_input.Location = new System.Drawing.Point(139, 11);
@@ -673,93 +754,29 @@
             this.btn_search_testRes.TabIndex = 8;
             this.btn_search_testRes.Text = "查询";
             // 
-            // documentWindow_sn
+            // radMenu1
             // 
-            this.documentWindow_sn.Controls.Add(this.radPanel4);
-            this.documentWindow_sn.Controls.Add(this.radPanel3);
-            this.documentWindow_sn.Font = new System.Drawing.Font("宋体", 9F);
-            this.documentWindow_sn.Location = new System.Drawing.Point(6, 29);
-            this.documentWindow_sn.Name = "documentWindow_sn";
-            this.documentWindow_sn.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.TabbedDocument;
-            this.documentWindow_sn.Size = new System.Drawing.Size(1039, 582);
-            this.documentWindow_sn.Text = "追溯号查询";
+            this.radMenu1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radMenu1.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.radMenuItem1,
+            this.radMenuItem2,
+            this.radMenuItem12,
+            this.radMenuItem19,
+            this.radMenuItem13});
+            this.radMenu1.Location = new System.Drawing.Point(0, 0);
+            this.radMenu1.Name = "radMenu1";
+            this.radMenu1.Size = new System.Drawing.Size(1321, 23);
+            this.radMenu1.TabIndex = 0;
             // 
-            // radPanel4
+            // radMenuItem17
             // 
-            this.radPanel4.Controls.Add(this.radListView1);
-            this.radPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radPanel4.Location = new System.Drawing.Point(0, 47);
-            this.radPanel4.Name = "radPanel4";
-            this.radPanel4.Size = new System.Drawing.Size(1039, 535);
-            this.radPanel4.TabIndex = 7;
+            this.radMenuItem17.Name = "radMenuItem17";
+            this.radMenuItem17.Text = "radMenuItem17";
             // 
-            // radListView1
+            // radMenuItem18
             // 
-            this.radListView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radListView1.Font = new System.Drawing.Font("新宋体", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.radListView1.Location = new System.Drawing.Point(0, 0);
-            this.radListView1.Name = "radListView1";
-            this.radListView1.Size = new System.Drawing.Size(1039, 535);
-            this.radListView1.TabIndex = 5;
-            // 
-            // radPanel3
-            // 
-            this.radPanel3.Controls.Add(this.radLabel1);
-            this.radPanel3.Controls.Add(this.tb_sn);
-            this.radPanel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.radPanel3.Location = new System.Drawing.Point(0, 0);
-            this.radPanel3.Name = "radPanel3";
-            this.radPanel3.Size = new System.Drawing.Size(1039, 47);
-            this.radPanel3.TabIndex = 6;
-            // 
-            // radLabel1
-            // 
-            this.radLabel1.Location = new System.Drawing.Point(3, 15);
-            this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(42, 18);
-            this.radLabel1.TabIndex = 0;
-            this.radLabel1.Text = "追溯码";
-            // 
-            // tb_sn
-            // 
-            this.tb_sn.Location = new System.Drawing.Point(67, 15);
-            this.tb_sn.Name = "tb_sn";
-            this.tb_sn.Size = new System.Drawing.Size(126, 21);
-            this.tb_sn.TabIndex = 1;
-            // 
-            // radTreeView1
-            // 
-            this.radTreeView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radTreeView1.Location = new System.Drawing.Point(0, 0);
-            this.radTreeView1.Name = "radTreeView1";
-            this.radTreeView1.Size = new System.Drawing.Size(254, 591);
-            this.radTreeView1.SpacingBetweenNodes = -1;
-            this.radTreeView1.TabIndex = 0;
-            // 
-            // rdb_typeNo
-            // 
-            this.rdb_typeNo.Location = new System.Drawing.Point(18, 11);
-            this.rdb_typeNo.Name = "rdb_typeNo";
-            this.rdb_typeNo.Size = new System.Drawing.Size(44, 18);
-            this.rdb_typeNo.TabIndex = 9;
-            this.rdb_typeNo.Text = "型号";
-            // 
-            // rdb_sn
-            // 
-            this.rdb_sn.Location = new System.Drawing.Point(77, 11);
-            this.rdb_sn.Name = "rdb_sn";
-            this.rdb_sn.Size = new System.Drawing.Size(56, 18);
-            this.rdb_sn.TabIndex = 10;
-            this.rdb_sn.Text = "追溯号";
-            // 
-            // btn_search_record
-            // 
-            this.btn_search_record.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_search_record.Location = new System.Drawing.Point(473, 11);
-            this.btn_search_record.Name = "btn_search_record";
-            this.btn_search_record.Size = new System.Drawing.Size(108, 21);
-            this.btn_search_record.TabIndex = 12;
-            this.btn_search_record.Text = "查询历史记录";
+            this.radMenuItem18.Name = "radMenuItem18";
+            this.radMenuItem18.Text = "radMenuItem18";
             // 
             // MainForm
             // 
@@ -780,19 +797,24 @@
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radStatusStrip1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radDock1)).EndInit();
             this.radDock1.ResumeLayout(false);
-            this.documentWindow_statistic.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radChartView1)).EndInit();
+            this.documentWindow_sn.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radPanel4)).EndInit();
+            this.radPanel4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radListView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radPanel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip1)).EndInit();
             this.toolTabStrip1.ResumeLayout(false);
-            this.toolWindow1.ResumeLayout(false);
+            this.toolWindow_left.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radTreeView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentContainer2)).EndInit();
             this.documentContainer2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.documentTabStrip1)).EndInit();
             this.documentTabStrip1.ResumeLayout(false);
+            this.documentWindow_statistic.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radChartView1)).EndInit();
             this.documentWindow_packageProduct.ResumeLayout(false);
             this.documentWindow_packageProduct.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radRadioButton2)).EndInit();
@@ -808,19 +830,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
             this.radPanel1.ResumeLayout(false);
             this.radPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btn_search_testRes)).EndInit();
-            this.documentWindow_sn.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radPanel4)).EndInit();
-            this.radPanel4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radListView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanel3)).EndInit();
-            this.radPanel3.ResumeLayout(false);
-            this.radPanel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radTreeView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rdb_typeNo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rdb_sn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_search_record)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rdb_sn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rdb_typeNo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_search_testRes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -841,14 +855,12 @@
         private System.Windows.Forms.ToolStripButton toolStripButton4;
         private Telerik.WinControls.UI.RadMenuItem radMenuItem12;
         private Telerik.WinControls.UI.RadMenuItem radMenuItem13;
-        private Telerik.WinControls.UI.RadMenu radMenu1;
         private Telerik.WinControls.UI.RadMenuItem radMenuItem7;
         private Telerik.WinControls.UI.RadMenuItem menu_productType;
         private Telerik.WinControls.UI.RadMenuItem radMenuItem5;
         private Telerik.WinControls.UI.RadMenuItem radMenuItem6;
         private Telerik.WinControls.UI.RadMenuItem radMenuItem8;
-        private Telerik.WinControls.UI.RadMenuItem menu_typeno;
-        private Telerik.WinControls.UI.RadMenuItem menu_sn;
+        private Telerik.WinControls.UI.RadMenuItem menu_select_testRes;
         private Telerik.WinControls.UI.RadStatusStrip radStatusStrip1;
         private Telerik.WinControls.UI.RadLabelElement radLabelElement1;
         private Telerik.WinControls.UI.RadLabelElement tool_status_user;
@@ -865,8 +877,6 @@
         private Telerik.WinControls.UI.RadPanel radPanel4;
         private Telerik.WinControls.UI.RadListView radListView1;
         private Telerik.WinControls.UI.RadPanel radPanel3;
-        private Telerik.WinControls.UI.RadLabel radLabel1;
-        private System.Windows.Forms.TextBox tb_sn;
         private Telerik.WinControls.UI.RadMenuItem radMenuItem9;
         private Telerik.WinControls.UI.RadMenuItem radMenuItem10;
         private Telerik.WinControls.UI.RadMenuItem radMenuItem11;
@@ -876,8 +886,8 @@
         private Telerik.WinControls.UI.RadMenuItem menu_outbox_material;
         private Telerik.WinControls.UI.RadMenuItem menu_product_binding;
         private Telerik.WinControls.UI.RadMenuItem radMenuItem19;
-        private Telerik.WinControls.UI.RadMenuItem radMenuItem20;
-        private Telerik.WinControls.UI.Docking.ToolWindow toolWindow1;
+        private Telerik.WinControls.UI.RadMenuItem menu_manager;
+        private Telerik.WinControls.UI.Docking.ToolWindow toolWindow_left;
         private Telerik.WinControls.UI.Docking.ToolTabStrip toolTabStrip1;
         private Telerik.WinControls.UI.Docking.DocumentWindow documentWindow_packageProduct;
         private Telerik.WinControls.UI.RadButton radButton1;
@@ -892,5 +902,12 @@
         private Telerik.WinControls.UI.RadRadioButton rdb_sn;
         private Telerik.WinControls.UI.RadRadioButton rdb_typeNo;
         private Telerik.WinControls.UI.RadButton btn_search_record;
+        private Telerik.WinControls.UI.RadMenuItem menu_select_passRate;
+        private Telerik.WinControls.UI.RadMenuItem menu_select_material;
+        private Telerik.WinControls.UI.RadMenuItem menu_select_packageProduct;
+        private Telerik.WinControls.UI.RadMenu radMenu1;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItem16;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItem17;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItem18;
     }
 }

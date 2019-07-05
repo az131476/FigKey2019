@@ -53,8 +53,7 @@ namespace RetrospectiveManager
             menu_set_station.Click += Menu_set_station_Click;
             menu_produce_config.Click += Menu_produce_config_Click;
             menu_productType.Click += Menu_productType_Click;
-            menu_sn.Click += Menu_sn_Click;
-            menu_typeno.Click += Menu_typeno_Click;
+            menu_select_testRes.Click += Menu_typeno_Click;
             menu_material_msg.Click += Menu_material_msg_Click;
             menu_product_binding.Click += Menu_product_binding_Click;
             menu_outbox_material.Click += Menu_outbox_material_Click;
@@ -62,6 +61,27 @@ namespace RetrospectiveManager
 
             btn_search_record.Click += Btn_search_record_Click;
             btn_search_testRes.Click += Btn_search_testRes_Click;
+
+            rdb_sn.CheckStateChanged += Rdb_sn_CheckStateChanged;
+            rdb_typeNo.CheckStateChanged += Rdb_typeNo_CheckStateChanged;
+        }
+
+        private void Rdb_typeNo_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (rdb_typeNo.CheckState == CheckState.Checked)
+            {
+                btn_search_testRes.Text = "查询";
+                btn_search_record.Visible = false;
+            }
+        }
+
+        private void Rdb_sn_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (rdb_sn.CheckState == CheckState.Checked)
+            {
+                btn_search_testRes.Text = "查询上一站位";
+                btn_search_record.Visible = true;
+            }
         }
 
         private void Menu_product_material_Click(object sender, EventArgs e)
@@ -90,37 +110,35 @@ namespace RetrospectiveManager
 
         async private void Btn_search_testRes_Click(object sender, EventArgs e)
         {
-            listView_TestRes.Items.Clear();
-            if (rdb_typeNo.CheckState == CheckState.Checked)
+            try
             {
-                //由零件号 查询记录
-                DataTable dt = (await serviceClient.SelectProductDataOfTypeNoAsync(tb_input.Text.Trim())).Tables[0];
-                listView_TestRes.DataSource = dt;
-                btn_search_testRes.Text = "查询";
+                if (rdb_typeNo.CheckState == CheckState.Checked)
+                {
+                    //由零件号 查询记录
+                    DataTable dt = (await serviceClient.SelectProductDataOfTypeNoAsync(tb_input.Text.Trim())).Tables[0];
+                    listView_TestRes.DataSource = dt;
+                }
+                else if (rdb_sn.CheckState == CheckState.Checked)
+                {
+                    //查询上一站位
+                }
             }
-            else if (rdb_sn.CheckState == CheckState.Checked)
+            catch (Exception ex)
             {
-                //查询上一站位
-                btn_search_testRes.Text = "查询上一站位";
+                LogHelper.Log.Error(ex.Message+"\r\n"+ex.StackTrace);
             }
         }
 
         async private void Btn_search_record_Click(object sender, EventArgs e)
         {
             //由追溯码 查询历史记录
-            listView_TestRes.Items.Clear();
-            DataTable dt = (await serviceClient.SelectProductDataOfSNAsync(tb_sn.Text.Trim(), true)).Tables[0];
+            DataTable dt = (await serviceClient.SelectProductDataOfSNAsync(tb_input.Text.Trim(), true)).Tables[0];
             listView_TestRes.DataSource = dt;
         }
 
         private void Menu_typeno_Click(object sender, EventArgs e)
         {
             this.radDock1.AddDocument(documentWindow_typeNo);
-        }
-
-        private void Menu_sn_Click(object sender, EventArgs e)
-        {
-            this.radDock1.AddDocument(documentWindow_sn);
         }
 
         private void Menu_productType_Click(object sender, EventArgs e)
@@ -182,6 +200,11 @@ namespace RetrospectiveManager
                     
                     break;
             }
+        }
+
+        private void Menu_manager_Click(object sender, EventArgs e)
+        {
+            this.toolWindow_left.Show();
         }
     }
 }
