@@ -62,6 +62,7 @@
     <Compile Include="Model\XCP\MeasureMent.cs" />
     <Compile Include="Model\XCP\MemorySegmentClass.cs" />
     <Compile Include="Model\XCP\PropertyClass.cs" />
+    <Compile Include="Model\XCP\ProtocolLayer.cs" />
     <Compile Include="Model\XCP\RecordLayoutClass.cs" />
     <Compile Include="Model\XCP\TableClass.cs" />
     <Compile Include="Model\XCP\XcpData.cs" />
