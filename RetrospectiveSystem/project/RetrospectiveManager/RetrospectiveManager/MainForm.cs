@@ -36,10 +36,10 @@ namespace RetrospectiveManager
             InitListView();
             LoadTreeView();
             this.radDock1.RemoveAllDocumentWindows();
-            this.radDock1.AddDocument(documentWindow_typeNo);
-            this.radDock1.AddDocument(documentWindow_sn);
+            this.radDock1.AddDocument(documentWindow_testRes);
+            this.radDock1.AddDocument(documentWindow_material_select);
             this.radDock1.AddDocument(documentWindow_packageProduct);
-            this.radDock1.AddDocument(documentWindow_statistic);
+            this.radDock1.AddDocument(documentWindow_passRes);
 
             if (Login.GetUserType == Login.UserType.USER_ADMIN)
             {
@@ -56,14 +56,41 @@ namespace RetrospectiveManager
             menu_select_testRes.Click += Menu_typeno_Click;
             menu_material_msg.Click += Menu_material_msg_Click;
             menu_product_binding.Click += Menu_product_binding_Click;
-            menu_outbox_material.Click += Menu_outbox_material_Click;
             menu_product_material.Click += Menu_product_material_Click;
+            menu_select_testRes.Click += Menu_select_testRes_Click;
+            menu_select_material.Click += Menu_select_material_Click;
+            menu_select_packageProduct.Click += Menu_select_packageProduct_Click;
+            menu_select_passRate.Click += Menu_select_passRate_Click;
 
             btn_search_record.Click += Btn_search_record_Click;
             btn_search_testRes.Click += Btn_search_testRes_Click;
 
             rdb_sn.CheckStateChanged += Rdb_sn_CheckStateChanged;
             rdb_typeNo.CheckStateChanged += Rdb_typeNo_CheckStateChanged;
+        }
+
+        private void Menu_select_passRate_Click(object sender, EventArgs e)
+        {
+            //合格率
+            this.radDock1.AddDocument(this.documentWindow_passRes);
+        }
+
+        private void Menu_select_packageProduct_Click(object sender, EventArgs e)
+        {
+            //产品打包
+            this.radDock1.AddDocument(this.documentWindow_packageProduct);
+        }
+
+        private void Menu_select_material_Click(object sender, EventArgs e)
+        {
+            //物料统计
+            this.radDock1.AddDocument(this.documentWindow_material_select);
+        }
+
+        private void Menu_select_testRes_Click(object sender, EventArgs e)
+        {
+            //测试结果
+            this.radDock1.AddDocument(documentWindow_testRes);
         }
 
         private void Rdb_typeNo_CheckStateChanged(object sender, EventArgs e)
@@ -88,12 +115,6 @@ namespace RetrospectiveManager
         {
             ProductMaterial productMaterial = new ProductMaterial();
             productMaterial.ShowDialog();
-        }
-
-        private void Menu_outbox_material_Click(object sender, EventArgs e)
-        {
-            MaterialOutBox materialOutBox = new MaterialOutBox();
-            materialOutBox.ShowDialog();
         }
 
         private void Menu_product_binding_Click(object sender, EventArgs e)
@@ -138,7 +159,7 @@ namespace RetrospectiveManager
 
         private void Menu_typeno_Click(object sender, EventArgs e)
         {
-            this.radDock1.AddDocument(documentWindow_typeNo);
+            this.radDock1.AddDocument(documentWindow_testRes);
         }
 
         private void Menu_productType_Click(object sender, EventArgs e)
