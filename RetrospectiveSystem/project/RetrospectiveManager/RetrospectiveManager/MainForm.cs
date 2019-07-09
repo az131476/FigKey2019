@@ -198,9 +198,6 @@ namespace RetrospectiveManager
 
         private void InitListView()
         {
-            radListView1.ViewType = ListViewType.DetailsView;
-            radListView1.ShowGridLines = true;
-
             listView_TestRes.ViewType = ListViewType.DetailsView;
             listView_TestRes.ShowGridLines = true;
         }

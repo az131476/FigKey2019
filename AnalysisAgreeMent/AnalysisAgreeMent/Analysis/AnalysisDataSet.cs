@@ -110,7 +110,7 @@ namespace AnalysisAgreeMent.Analysis
                                 }
                                 //signal.SaveDataLen = dbcmsgList[i].MessageLen;
                                 //len = (bitLen+7)/len
-                                signal.SaveDataLen = (dbcList[j].BitLength + 7) / dbcmsgList[i].MessageLen;
+                                signal.SaveDataLen = (dbcList[j].BitLength + 7) / 8;
                                 signal.IsMotorola = (int)dbcList[j].ByteOrder;
                                 signal.StartIndex = dbcList[j].StartBitIndex;
                                 signal.DataBitLen = dbcList[j].BitLength;

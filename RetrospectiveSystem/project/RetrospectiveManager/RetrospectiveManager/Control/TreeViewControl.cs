@@ -16,6 +16,7 @@ namespace RetrospectiveManager.Control
         }
         public void LoadTreeView()
         {
+            //数据库读取初始化视图
             RadTreeNode hardWardRoot = treeView.AddNodeByPath("产品");
             //hardWardRoot.Nodes.Add(TreeViewData.HardWare.COMMENT);
             RadTreeNode nodeProductA = hardWardRoot.Nodes.Add("产品A");

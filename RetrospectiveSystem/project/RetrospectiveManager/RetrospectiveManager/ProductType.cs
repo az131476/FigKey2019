@@ -151,6 +151,18 @@ namespace RetrospectiveManager
             radGridView1.ReadOnly = false;
             //gridView.ColumnChooserSortOrder = RadSortOrder.Ascending;
             //dgv.AllowRowHeaderContextMenu = false;
+            SetPreferences();
+        }
+
+        private void SetPreferences()
+        {
+            this.radGridView1.MasterTemplate.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
+            this.radGridView1.ShowGroupPanel = false;
+            this.radGridView1.MasterTemplate.EnableGrouping = false;
+            this.radGridView1.EnableHotTracking = true;
+            //this.radRadioDataReader.ToggleState = Telerik.WinControls.Enumerations.ToggleState.On;
+            this.radGridView1.MasterTemplate.AllowAddNewRow = false;
+            this.radGridView1.MasterTemplate.AutoGenerateColumns = true;
         }
 
         /// <summary>

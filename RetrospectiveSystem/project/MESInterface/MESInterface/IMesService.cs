@@ -14,13 +14,6 @@ namespace MESInterface
     [ServiceContract]
     public interface IMesService
     {
-
-        [OperationContract]
-        string GetData(int value);
-
-        [OperationContract]
-        CompositeType GetDataUsingDataContract(CompositeType composite);
-
         // TODO: 在此添加您的服务操作
         
         [OperationContract]

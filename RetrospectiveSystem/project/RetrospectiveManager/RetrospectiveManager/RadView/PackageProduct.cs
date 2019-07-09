@@ -20,7 +20,7 @@ namespace RetrospectiveManager.RadView
 
         private void PackageProduct_Load(object sender, EventArgs e)
         {
-            tbx_binding_log.Text = "绑定日志\r\n产品A绑定成功！";
+            
         }
     }
 }

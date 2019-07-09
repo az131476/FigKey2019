@@ -22,28 +22,11 @@ namespace MESInterface
         private string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ToString();
         private Queue<string[]> fcQueue = new Queue<string[]>();
 
-        public string GetData(int value)
-        {
-            return string.Format("You entered: {0}", value);
-        }
-
-        public CompositeType GetDataUsingDataContract(CompositeType composite)
-        {
-            if (composite == null)
-            {
-                throw new ArgumentNullException("composite");
-            }
-            if (composite.BoolValue)
-            {
-                composite.StringValue += "Suffix";
-            }
-            return composite;
-        }
-
         private string GetDateTimeNow()
         {
             return DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
         }
+        #region 用户信息接口
 
         #region 用户登录
         /// <summary>
@@ -211,6 +194,80 @@ namespace MESInterface
 
         #region 找回密码
 
+        #endregion
+
+        #endregion
+
+        #region 站位信息接口
+
+        #endregion
+
+        #region 型号信息接口
+
+        #endregion
+
+        #region 产品设站接口
+        #endregion
+
+        #region 测试结果数据接口
+        /// <summary>
+        /// 根据SN查询
+        /// </summary>
+        /// <param name="sn"></param>
+        /// <param name="IsSnFuzzy">true-sn为模糊查询，否则完全匹配</param>
+        /// <returns></returns>
+        public DataSet SelectProductDataOfSN(string sn, bool IsSnFuzzy)
+        {
+            string selectSQL = "";
+            if (IsSnFuzzy)
+            {
+                selectSQL = "SELECT [SN],[Type_Number],[Station_Name],[Test_Result],[CreateDate],[UpdateDate],[Remark] " +
+                "FROM [WT_SCL].[dbo].[Product_Data] " +
+                $"WHERE [SN] like '%{sn}%'";
+            }
+            else
+            {
+                selectSQL = "SELECT [SN],[Type_Number],[Station_Name],[Test_Result],[CreateDate],[UpdateDate],[Remark] " +
+                "FROM [WT_SCL].[dbo].[Product_Data] " +
+                $"WHERE [SN] = '{sn}'";
+            }
+            return SQLServer.ExecuteDataSet(selectSQL);
+        }
+        /// <summary>
+        /// 根据型号查询
+        /// </summary>
+        /// <param name="typeNo"></param>
+        /// <returns></returns>
+        public DataSet SelectProductDataOfTypeNo(string typeNo)
+        {
+            string selectSQL = "SELECT [SN],[Type_Number],[Station_Name],[Test_Result],[CreateDate],[UpdateDate],[Remark] " +
+                "FROM [WT_SCL].[dbo].[Product_Data] " +
+                $"WHERE [Type_Number] like '%{typeNo}%'";
+            return SQLServer.ExecuteDataSet(selectSQL);
+        }
+        #endregion
+
+        #region 物料信息接口
+
+        #endregion
+
+        #region 产品物料配置接口
+
+        #endregion
+
+        #region 物料统计表
+
+        #endregion
+
+        #region 成品打包接口
+
+        #endregion
+
+        #region 外箱容量接口
+
+        #endregion
+
+        #region 产品合格率统计接口
         #endregion
 
         #region 验证传入工站是否可以生产/测试
@@ -667,45 +724,6 @@ namespace MESInterface
             LogHelper.Log.Info($"DeleteProductType={deleteSQL}");
             return SQLServer.ExecuteNonQuery(deleteSQL);
         }
-        #endregion
-
-        #region 查询产品记录
-        /// <summary>
-        /// 根据SN查询
-        /// </summary>
-        /// <param name="sn"></param>
-        /// <param name="IsSnFuzzy">true-sn为模糊查询，否则完全匹配</param>
-        /// <returns></returns>
-        public DataSet SelectProductDataOfSN(string sn,bool IsSnFuzzy)
-        {
-            string selectSQL = "";
-            if (IsSnFuzzy)
-            {
-                selectSQL = "SELECT [SN],[Type_Number],[Station_Name],[Test_Result],[CreateDate],[UpdateDate],[Remark] " +
-                "FROM [WT_SCL].[dbo].[Product_Data] " +
-                $"WHERE [SN] like '%{sn}%'";
-            }
-            else
-            {
-                selectSQL = "SELECT [SN],[Type_Number],[Station_Name],[Test_Result],[CreateDate],[UpdateDate],[Remark] " +
-                "FROM [WT_SCL].[dbo].[Product_Data] " +
-                $"WHERE [SN] = '{sn}'";
-            }
-            return SQLServer.ExecuteDataSet(selectSQL);
-        }
-        /// <summary>
-        /// 根据型号查询
-        /// </summary>
-        /// <param name="typeNo"></param>
-        /// <returns></returns>
-        public DataSet SelectProductDataOfTypeNo(string typeNo)
-        {
-            string selectSQL = "SELECT [SN],[Type_Number],[Station_Name],[Test_Result],[CreateDate],[UpdateDate],[Remark] " +
-                "FROM [WT_SCL].[dbo].[Product_Data] " +
-                $"WHERE [Type_Number] like '%{typeNo}%'";
-            return SQLServer.ExecuteDataSet(selectSQL);
-        }
-
         #endregion
     }
 }
