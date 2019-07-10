@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
-using MESInterface.Molde;
+using MESInterface.Model;
 using System.Data;
 
 namespace MESInterface
@@ -15,7 +15,8 @@ namespace MESInterface
     public interface IMesService
     {
         // TODO: 在此添加您的服务操作
-        
+
+        //用户信息
         [OperationContract]
         LoginResult Login(string username, string password, LoginUser loginUser);
 
@@ -32,24 +33,10 @@ namespace MESInterface
         [OperationContract]
         string FirstCheck(string snInner,string snOutter, string sTypeNumber, string sStationName); 
 
-         [OperationContract]
-        string InsertWIP(string sn, string sTypeNumber, string sStationName, string sTestResult, string sTime);
+        // [OperationContract]
+        //string InsertWIP(string sn, string sTypeNumber, string sStationName, string sTestResult, string sTime);
 
-        [OperationContract]
-        string InsertProduce(Dictionary<int, string> dctData);
-
-        [OperationContract]
-        DataSet SelectProduce(string stationName,string stationOrder);
-
-        [OperationContract]
-        string UpdateProduce(Dictionary<int, string> data);
-
-        [OperationContract]
-        int DeleteProduce(string stationName);
-
-        [OperationContract]
-        int DeleteAllProduce();
-
+        //产品型号
         [OperationContract]
         int DeleteProductType(string productName);
 
@@ -60,7 +47,7 @@ namespace MESInterface
         DataSet SelectProductType(string productName);
 
         [OperationContract]
-        string CommitProductType(Dictionary<int, string> dctData);
+        string CommitProductType(List<string> list);
 
         [OperationContract]
         int DeleteAllTypeStation();
@@ -74,11 +61,51 @@ namespace MESInterface
         [OperationContract]
         string CommitTypeStation(Dictionary<string, string[]> dctData);
 
+
+        //测试数据接口
         [OperationContract]
-        DataSet SelectProductDataOfSN(string sn, bool IsSnFuzzy);
+        string InsertTestResultData(string sn, string typeNo, string station, string dateTime, string result);
+        [OperationContract]
+        string SelectLastTestResult(string sn, string typeNo, string station);
+        [OperationContract]
+        DataSet SelectTestResultOfSN(string sn, bool IsSnFuzzy);
 
         [OperationContract]
-        DataSet SelectProductDataOfTypeNo(string typeNo);
+        DataSet SelectTestResultOfTypeNo(string typeNo);
+
+        //物料信息接口
+        [OperationContract]
+        string CommitMaterial(List<MaterialMsg> list);
+
+        [OperationContract]
+        int DeleteMaterial(string materialCode);
+
+        [OperationContract]
+        string CommitProductMaterial(Dictionary<string, List<string>> keyValuePairs);
+
+        [OperationContract]
+        int DeleteProductMaterial(string typeNo, string materialCode);
+
+        //物料统计
+        [OperationContract]
+        string InsertMaterialStatistics(string snInner, string snOutter, string typeNo, string stationName, string materialCode, string amount);
+
+        [OperationContract]
+        DataSet SelectMaterialStatistics(string typeNo);
+
+        //外箱容量
+        [OperationContract]
+        int CommitOutCaseBoxStorage(string out_case_code, string amount);
+
+        //成品打包
+        [OperationContract]
+        int CommitPackageProduct(PackageProduct packageProduct);
+
+        [OperationContract]
+        int UpdatePackageProduct(PackageProduct packageProduct);
+
+        [OperationContract]
+        DataSet SelectPackageProduct(PackageProduct packageProduct);
     }
 
 

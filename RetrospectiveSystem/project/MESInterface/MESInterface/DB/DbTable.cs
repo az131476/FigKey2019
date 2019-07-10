@@ -57,6 +57,7 @@ namespace MESInterface.DB
         public class F_Material
         {
             public const string MATERIAL_CODE = "[material_code]";
+            public const string MATERIAL_AMOUNT = "[amount]";
         }
 
         public class F_PRODUCT_MATERIAL
