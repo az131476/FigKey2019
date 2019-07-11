@@ -10,7 +10,7 @@ namespace MESInterface.DB
         public const string F_USER_NAME                 = "[WT_SCL].[dbo].[f_user]";
         public const string F_STATION_NAME              = "[WT_SCL].[dbo].[f_station]";
         public const string F_TEST_RESULT_NAME          = "[WT_SCL].[dbo].[f_test_result_data]";
-        public const string F_PRODUCT_STATION_NAME      = "[WT_SCL].[dbo].[f_prouct_station]";
+        public const string F_PRODUCT_STATION_NAME      = "[WT_SCL].[dbo].[f_product_station]";
         public const string F_PRODUCT_TYPE_NO_NAME      = "[WT_SCL].[dbo].[f_product_typeNo]";
         public const string F_PRODUCT_MATERIAL_NAME     = "[WT_SCL].[dbo].[f_product_material]";
         public const string F_MATERIAL_NAME             = "[WT_SCL].[dbo].[f_material]";
@@ -33,6 +33,13 @@ namespace MESInterface.DB
 
         public class F_Station
         {
+            public const string STATION_ORDER = "[station_order]";
+            public const string STATION_NAME = "[station_name]";
+        }
+
+        public class F_Product_Station
+        {
+            public const string TYPE_NO = "[type_no]";
             public const string STATION_ORDER = "[station_order]";
             public const string STATION_NAME = "[station_name]";
         }

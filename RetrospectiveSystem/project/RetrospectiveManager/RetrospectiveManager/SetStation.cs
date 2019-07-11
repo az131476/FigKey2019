@@ -35,7 +35,7 @@ namespace RetrospectiveManager
         {
             serviceClient = new MesService.MesServiceClient();
             //获取零件号可选项
-            DataSet dataSet = await serviceClient.SelectProductTypeAsync("");
+            DataSet dataSet = await serviceClient.SelectProductTypeNoAsync("");
             DataTable dataSource = dataSet.Tables[0];
             cb_typeNo.Items.Clear();
             for (int i = 0; i < dataSource.Rows.Count; i++)
@@ -43,7 +43,7 @@ namespace RetrospectiveManager
                 cb_typeNo.Items.Add(dataSource.Rows[i][1].ToString().Trim());
             }
             //获取所有站位可选项
-            DataTable stations = (await serviceClient.SelectProduceAsync("", "")).Tables[0];
+            DataTable stations = new DataTable();//(await serviceClient.SelectProduceAsync("", "")).Tables[0];
             cb_station.Items.Clear();
             for (int i = 0; i < stations.Rows.Count; i++)
             {

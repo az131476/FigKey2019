@@ -22,7 +22,6 @@
     <MetadataSource Address="http://192.168.0.175/MesService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="MesService.xsd" MetadataType="Schema" ID="6b53eb36-7d10-4e7b-97c5-999addc9aebe" SourceId="1" SourceUrl="http://192.168.0.175/MesService.svc?xsd=xsd5" />
     <MetadataFile FileName="MesService1.xsd" MetadataType="Schema" ID="877219b0-8acf-4bec-b4d9-a9413324027b" SourceId="1" SourceUrl="http://192.168.0.175/MesService.svc?xsd=xsd0" />
     <MetadataFile FileName="MesService.wsdl" MetadataType="Wsdl" ID="b6832540-b71a-4d67-94e4-ef9514e534b2" SourceId="1" SourceUrl="http://192.168.0.175/MesService.svc?wsdl" />
     <MetadataFile FileName="MesService2.xsd" MetadataType="Schema" ID="67022426-843b-4ba9-a316-a6b2cdbc8414" SourceId="1" SourceUrl="http://192.168.0.175/MesService.svc?xsd=xsd3" />

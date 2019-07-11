@@ -44,8 +44,8 @@
             Telerik.Charting.CategoricalDataPoint categoricalDataPoint18 = new Telerik.Charting.CategoricalDataPoint();
             Telerik.Charting.CategoricalDataPoint categoricalDataPoint19 = new Telerik.Charting.CategoricalDataPoint();
             Telerik.Charting.CategoricalDataPoint categoricalDataPoint20 = new Telerik.Charting.CategoricalDataPoint();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition4 = new Telerik.WinControls.UI.TableViewDefinition();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition3 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition4 = new Telerik.WinControls.UI.TableViewDefinition();
             this.radMenuItem1 = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItem3 = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItem4 = new Telerik.WinControls.UI.RadMenuItem();
@@ -82,9 +82,20 @@
             this.radLabelElement1 = new Telerik.WinControls.UI.RadLabelElement();
             this.tool_status_user = new Telerik.WinControls.UI.RadLabelElement();
             this.radDock1 = new Telerik.WinControls.UI.Docking.RadDock();
+            this.documentWindow_testRes = new Telerik.WinControls.UI.Docking.DocumentWindow();
+            this.radPanel2 = new Telerik.WinControls.UI.RadPanel();
+            this.listView_TestRes = new Telerik.WinControls.UI.RadListView();
+            this.追溯码 = new Telerik.WinControls.UI.RadPanel();
+            this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
+            this.btn_search_lastTestRes = new Telerik.WinControls.UI.RadButton();
+            this.btn_search_record = new Telerik.WinControls.UI.RadButton();
+            this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
+            this.tb_sn = new System.Windows.Forms.TextBox();
+            this.toolTabStrip1 = new Telerik.WinControls.UI.Docking.ToolTabStrip();
             this.toolWindow_left = new Telerik.WinControls.UI.Docking.ToolWindow();
             this.radTreeView1 = new Telerik.WinControls.UI.RadTreeView();
-            this.toolTabStrip1 = new Telerik.WinControls.UI.Docking.ToolTabStrip();
             this.documentContainer2 = new Telerik.WinControls.UI.Docking.DocumentContainer();
             this.documentTabStrip1 = new Telerik.WinControls.UI.Docking.DocumentTabStrip();
             this.documentWindow_passRes = new Telerik.WinControls.UI.Docking.DocumentWindow();
@@ -95,29 +106,35 @@
             this.radButton1 = new Telerik.WinControls.UI.RadButton();
             this.radGridView1 = new Telerik.WinControls.UI.RadGridView();
             this.radTextBox1 = new Telerik.WinControls.UI.RadTextBox();
-            this.documentWindow_testRes = new Telerik.WinControls.UI.Docking.DocumentWindow();
-            this.radPanel2 = new Telerik.WinControls.UI.RadPanel();
-            this.listView_TestRes = new Telerik.WinControls.UI.RadListView();
-            this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
-            this.btn_search_record = new Telerik.WinControls.UI.RadButton();
-            this.rdb_sn = new Telerik.WinControls.UI.RadRadioButton();
-            this.rdb_typeNo = new Telerik.WinControls.UI.RadRadioButton();
-            this.tb_input = new System.Windows.Forms.TextBox();
-            this.btn_search_testRes = new Telerik.WinControls.UI.RadButton();
             this.documentWindow_material_select = new Telerik.WinControls.UI.Docking.DocumentWindow();
-            this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.radButton2 = new Telerik.WinControls.UI.RadButton();
             this.radGridView2 = new Telerik.WinControls.UI.RadGridView();
+            this.radButton2 = new Telerik.WinControls.UI.RadButton();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.radMenu1 = new Telerik.WinControls.UI.RadMenu();
+            this.cb_station = new System.Windows.Forms.ComboBox();
+            this.cb_typeNo = new System.Windows.Forms.ComboBox();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radStatusStrip1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radDock1)).BeginInit();
             this.radDock1.SuspendLayout();
-            this.toolWindow_left.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radTreeView1)).BeginInit();
+            this.documentWindow_testRes.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radPanel2)).BeginInit();
+            this.radPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.listView_TestRes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.追溯码)).BeginInit();
+            this.追溯码.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
+            this.radGroupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_search_lastTestRes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_search_record)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip1)).BeginInit();
             this.toolTabStrip1.SuspendLayout();
+            this.toolWindow_left.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radTreeView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentContainer2)).BeginInit();
             this.documentContainer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.documentTabStrip1)).BeginInit();
@@ -131,23 +148,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radTextBox1)).BeginInit();
-            this.documentWindow_testRes.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanel2)).BeginInit();
-            this.radPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.listView_TestRes)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
-            this.radPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btn_search_record)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rdb_sn)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rdb_typeNo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btn_search_testRes)).BeginInit();
             this.documentWindow_material_select.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView2.MasterTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
             // radMenuItem1
@@ -390,7 +397,7 @@
             // 
             // radDock1
             // 
-            this.radDock1.ActiveWindow = this.documentWindow_material_select;
+            this.radDock1.ActiveWindow = this.toolWindow_left;
             this.radDock1.CausesValidation = false;
             this.radDock1.Controls.Add(this.toolTabStrip1);
             this.radDock1.Controls.Add(this.documentContainer2);
@@ -406,6 +413,129 @@
             this.radDock1.Size = new System.Drawing.Size(1321, 627);
             this.radDock1.TabIndex = 6;
             this.radDock1.TabStop = false;
+            // 
+            // documentWindow_testRes
+            // 
+            this.documentWindow_testRes.Controls.Add(this.radPanel2);
+            this.documentWindow_testRes.Controls.Add(this.追溯码);
+            this.documentWindow_testRes.Font = new System.Drawing.Font("宋体", 9F);
+            this.documentWindow_testRes.Location = new System.Drawing.Point(6, 29);
+            this.documentWindow_testRes.Name = "documentWindow_testRes";
+            this.documentWindow_testRes.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.TabbedDocument;
+            this.documentWindow_testRes.Size = new System.Drawing.Size(1039, 582);
+            this.documentWindow_testRes.Text = "测试结果";
+            // 
+            // radPanel2
+            // 
+            this.radPanel2.Controls.Add(this.listView_TestRes);
+            this.radPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radPanel2.Location = new System.Drawing.Point(0, 68);
+            this.radPanel2.Name = "radPanel2";
+            this.radPanel2.Size = new System.Drawing.Size(1039, 514);
+            this.radPanel2.TabIndex = 12;
+            // 
+            // listView_TestRes
+            // 
+            this.listView_TestRes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listView_TestRes.Font = new System.Drawing.Font("新宋体", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listView_TestRes.Location = new System.Drawing.Point(0, 0);
+            this.listView_TestRes.Name = "listView_TestRes";
+            this.listView_TestRes.Size = new System.Drawing.Size(1039, 514);
+            this.listView_TestRes.TabIndex = 10;
+            // 
+            // 追溯码
+            // 
+            this.追溯码.Controls.Add(this.radGroupBox1);
+            this.追溯码.Dock = System.Windows.Forms.DockStyle.Top;
+            this.追溯码.Location = new System.Drawing.Point(0, 0);
+            this.追溯码.Name = "追溯码";
+            this.追溯码.Size = new System.Drawing.Size(1039, 68);
+            this.追溯码.TabIndex = 11;
+            // 
+            // radGroupBox1
+            // 
+            this.radGroupBox1.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this.radGroupBox1.Controls.Add(this.cb_typeNo);
+            this.radGroupBox1.Controls.Add(this.cb_station);
+            this.radGroupBox1.Controls.Add(this.btn_search_lastTestRes);
+            this.radGroupBox1.Controls.Add(this.btn_search_record);
+            this.radGroupBox1.Controls.Add(this.radLabel4);
+            this.radGroupBox1.Controls.Add(this.radLabel3);
+            this.radGroupBox1.Controls.Add(this.radLabel2);
+            this.radGroupBox1.Controls.Add(this.tb_sn);
+            this.radGroupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radGroupBox1.HeaderText = "查询条件";
+            this.radGroupBox1.Location = new System.Drawing.Point(0, 0);
+            this.radGroupBox1.Name = "radGroupBox1";
+            this.radGroupBox1.Size = new System.Drawing.Size(1039, 68);
+            this.radGroupBox1.TabIndex = 14;
+            this.radGroupBox1.Text = "查询条件";
+            // 
+            // btn_search_lastTestRes
+            // 
+            this.btn_search_lastTestRes.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_search_lastTestRes.Location = new System.Drawing.Point(648, 18);
+            this.btn_search_lastTestRes.Name = "btn_search_lastTestRes";
+            this.btn_search_lastTestRes.Size = new System.Drawing.Size(108, 22);
+            this.btn_search_lastTestRes.TabIndex = 8;
+            this.btn_search_lastTestRes.Text = "查询上一站位";
+            // 
+            // btn_search_record
+            // 
+            this.btn_search_record.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_search_record.Location = new System.Drawing.Point(792, 18);
+            this.btn_search_record.Name = "btn_search_record";
+            this.btn_search_record.Size = new System.Drawing.Size(108, 21);
+            this.btn_search_record.TabIndex = 12;
+            this.btn_search_record.Text = "查询历史记录";
+            // 
+            // radLabel4
+            // 
+            this.radLabel4.Location = new System.Drawing.Point(435, 24);
+            this.radLabel4.Name = "radLabel4";
+            this.radLabel4.Size = new System.Drawing.Size(42, 18);
+            this.radLabel4.TabIndex = 13;
+            this.radLabel4.Text = "站位名";
+            // 
+            // radLabel3
+            // 
+            this.radLabel3.Location = new System.Drawing.Point(248, 24);
+            this.radLabel3.Name = "radLabel3";
+            this.radLabel3.Size = new System.Drawing.Size(42, 18);
+            this.radLabel3.TabIndex = 10;
+            this.radLabel3.Text = "零件号";
+            // 
+            // radLabel2
+            // 
+            this.radLabel2.Location = new System.Drawing.Point(5, 25);
+            this.radLabel2.Name = "radLabel2";
+            this.radLabel2.Size = new System.Drawing.Size(42, 18);
+            this.radLabel2.TabIndex = 9;
+            this.radLabel2.Text = "追溯码";
+            // 
+            // tb_sn
+            // 
+            this.tb_sn.Location = new System.Drawing.Point(53, 23);
+            this.tb_sn.Name = "tb_sn";
+            this.tb_sn.Size = new System.Drawing.Size(180, 21);
+            this.tb_sn.TabIndex = 7;
+            // 
+            // toolTabStrip1
+            // 
+            this.toolTabStrip1.CanUpdateChildIndex = true;
+            this.toolTabStrip1.Controls.Add(this.toolWindow_left);
+            this.toolTabStrip1.Location = new System.Drawing.Point(5, 5);
+            this.toolTabStrip1.Name = "toolTabStrip1";
+            // 
+            // 
+            // 
+            this.toolTabStrip1.RootElement.MinSize = new System.Drawing.Size(25, 25);
+            this.toolTabStrip1.SelectedIndex = 0;
+            this.toolTabStrip1.Size = new System.Drawing.Size(256, 617);
+            this.toolTabStrip1.SizeInfo.AbsoluteSize = new System.Drawing.Size(256, 200);
+            this.toolTabStrip1.SizeInfo.SplitterCorrection = new System.Drawing.Size(56, 0);
+            this.toolTabStrip1.TabIndex = 1;
+            this.toolTabStrip1.TabStop = false;
             // 
             // toolWindow_left
             // 
@@ -426,23 +556,6 @@
             this.radTreeView1.Size = new System.Drawing.Size(254, 591);
             this.radTreeView1.SpacingBetweenNodes = -1;
             this.radTreeView1.TabIndex = 0;
-            // 
-            // toolTabStrip1
-            // 
-            this.toolTabStrip1.CanUpdateChildIndex = true;
-            this.toolTabStrip1.Controls.Add(this.toolWindow_left);
-            this.toolTabStrip1.Location = new System.Drawing.Point(5, 5);
-            this.toolTabStrip1.Name = "toolTabStrip1";
-            // 
-            // 
-            // 
-            this.toolTabStrip1.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.toolTabStrip1.SelectedIndex = 0;
-            this.toolTabStrip1.Size = new System.Drawing.Size(256, 617);
-            this.toolTabStrip1.SizeInfo.AbsoluteSize = new System.Drawing.Size(256, 200);
-            this.toolTabStrip1.SizeInfo.SplitterCorrection = new System.Drawing.Size(56, 0);
-            this.toolTabStrip1.TabIndex = 1;
-            this.toolTabStrip1.TabStop = false;
             // 
             // documentContainer2
             // 
@@ -472,7 +585,7 @@
             // 
             // 
             this.documentTabStrip1.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.documentTabStrip1.SelectedIndex = 3;
+            this.documentTabStrip1.SelectedIndex = 2;
             this.documentTabStrip1.Size = new System.Drawing.Size(1051, 617);
             this.documentTabStrip1.TabIndex = 0;
             this.documentTabStrip1.TabStop = false;
@@ -608,7 +721,7 @@
             // 
             // 
             // 
-            this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition4;
+            this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition3;
             this.radGridView1.Name = "radGridView1";
             this.radGridView1.Size = new System.Drawing.Size(1038, 545);
             this.radGridView1.TabIndex = 2;
@@ -619,89 +732,6 @@
             this.radTextBox1.Name = "radTextBox1";
             this.radTextBox1.Size = new System.Drawing.Size(189, 20);
             this.radTextBox1.TabIndex = 1;
-            // 
-            // documentWindow_testRes
-            // 
-            this.documentWindow_testRes.Controls.Add(this.radPanel2);
-            this.documentWindow_testRes.Controls.Add(this.radPanel1);
-            this.documentWindow_testRes.Font = new System.Drawing.Font("宋体", 9F);
-            this.documentWindow_testRes.Location = new System.Drawing.Point(6, 29);
-            this.documentWindow_testRes.Name = "documentWindow_testRes";
-            this.documentWindow_testRes.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.TabbedDocument;
-            this.documentWindow_testRes.Size = new System.Drawing.Size(1039, 582);
-            this.documentWindow_testRes.Text = "测试结果";
-            // 
-            // radPanel2
-            // 
-            this.radPanel2.Controls.Add(this.listView_TestRes);
-            this.radPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radPanel2.Location = new System.Drawing.Point(0, 35);
-            this.radPanel2.Name = "radPanel2";
-            this.radPanel2.Size = new System.Drawing.Size(1039, 547);
-            this.radPanel2.TabIndex = 12;
-            // 
-            // listView_TestRes
-            // 
-            this.listView_TestRes.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView_TestRes.Font = new System.Drawing.Font("新宋体", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listView_TestRes.Location = new System.Drawing.Point(0, 0);
-            this.listView_TestRes.Name = "listView_TestRes";
-            this.listView_TestRes.Size = new System.Drawing.Size(1039, 547);
-            this.listView_TestRes.TabIndex = 10;
-            // 
-            // radPanel1
-            // 
-            this.radPanel1.Controls.Add(this.btn_search_record);
-            this.radPanel1.Controls.Add(this.rdb_sn);
-            this.radPanel1.Controls.Add(this.rdb_typeNo);
-            this.radPanel1.Controls.Add(this.tb_input);
-            this.radPanel1.Controls.Add(this.btn_search_testRes);
-            this.radPanel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.radPanel1.Location = new System.Drawing.Point(0, 0);
-            this.radPanel1.Name = "radPanel1";
-            this.radPanel1.Size = new System.Drawing.Size(1039, 35);
-            this.radPanel1.TabIndex = 11;
-            // 
-            // btn_search_record
-            // 
-            this.btn_search_record.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_search_record.Location = new System.Drawing.Point(473, 11);
-            this.btn_search_record.Name = "btn_search_record";
-            this.btn_search_record.Size = new System.Drawing.Size(108, 21);
-            this.btn_search_record.TabIndex = 12;
-            this.btn_search_record.Text = "查询历史记录";
-            // 
-            // rdb_sn
-            // 
-            this.rdb_sn.Location = new System.Drawing.Point(77, 11);
-            this.rdb_sn.Name = "rdb_sn";
-            this.rdb_sn.Size = new System.Drawing.Size(56, 18);
-            this.rdb_sn.TabIndex = 10;
-            this.rdb_sn.Text = "追溯号";
-            // 
-            // rdb_typeNo
-            // 
-            this.rdb_typeNo.Location = new System.Drawing.Point(18, 11);
-            this.rdb_typeNo.Name = "rdb_typeNo";
-            this.rdb_typeNo.Size = new System.Drawing.Size(44, 18);
-            this.rdb_typeNo.TabIndex = 9;
-            this.rdb_typeNo.Text = "型号";
-            // 
-            // tb_input
-            // 
-            this.tb_input.Location = new System.Drawing.Point(139, 11);
-            this.tb_input.Name = "tb_input";
-            this.tb_input.Size = new System.Drawing.Size(180, 21);
-            this.tb_input.TabIndex = 7;
-            // 
-            // btn_search_testRes
-            // 
-            this.btn_search_testRes.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_search_testRes.Location = new System.Drawing.Point(343, 10);
-            this.btn_search_testRes.Name = "btn_search_testRes";
-            this.btn_search_testRes.Size = new System.Drawing.Size(108, 22);
-            this.btn_search_testRes.TabIndex = 8;
-            this.btn_search_testRes.Text = "查询";
             // 
             // documentWindow_material_select
             // 
@@ -716,30 +746,6 @@
             this.documentWindow_material_select.Size = new System.Drawing.Size(1039, 582);
             this.documentWindow_material_select.Text = "物料统计";
             // 
-            // radLabel1
-            // 
-            this.radLabel1.Location = new System.Drawing.Point(3, 24);
-            this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(54, 18);
-            this.radLabel1.TabIndex = 1;
-            this.radLabel1.Text = "产品型号";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(65, 22);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 20);
-            this.comboBox1.TabIndex = 2;
-            // 
-            // radButton2
-            // 
-            this.radButton2.Location = new System.Drawing.Point(213, 22);
-            this.radButton2.Name = "radButton2";
-            this.radButton2.Size = new System.Drawing.Size(110, 21);
-            this.radButton2.TabIndex = 3;
-            this.radButton2.Text = "查询";
-            // 
             // radGridView2
             // 
             this.radGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -749,17 +755,34 @@
             // 
             // 
             // 
-            this.radGridView2.MasterTemplate.ViewDefinition = tableViewDefinition3;
+            this.radGridView2.MasterTemplate.ViewDefinition = tableViewDefinition4;
             this.radGridView2.Name = "radGridView2";
             this.radGridView2.Size = new System.Drawing.Size(1038, 534);
             this.radGridView2.TabIndex = 4;
             // 
-            // MainForm
+            // radButton2
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(1321, 701);
+            this.radButton2.Location = new System.Drawing.Point(213, 22);
+            this.radButton2.Name = "radButton2";
+            this.radButton2.Size = new System.Drawing.Size(110, 21);
+            this.radButton2.TabIndex = 3;
+            this.radButton2.Text = "查询";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(65, 22);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 20);
+            this.comboBox1.TabIndex = 2;
+            // 
+            // radLabel1
+            // 
+            this.radLabel1.Location = new System.Drawing.Point(3, 24);
+            this.radLabel1.Name = "radLabel1";
+            this.radLabel1.Size = new System.Drawing.Size(54, 18);
+            this.radLabel1.TabIndex = 1;
+            this.radLabel1.Text = "产品型号";
             // 
             // radMenu1
             // 
@@ -774,6 +797,29 @@
             this.radMenu1.Name = "radMenu1";
             this.radMenu1.Size = new System.Drawing.Size(1321, 23);
             this.radMenu1.TabIndex = 0;
+            // 
+            // cb_station
+            // 
+            this.cb_station.FormattingEnabled = true;
+            this.cb_station.Location = new System.Drawing.Point(483, 20);
+            this.cb_station.Name = "cb_station";
+            this.cb_station.Size = new System.Drawing.Size(127, 20);
+            this.cb_station.TabIndex = 14;
+            // 
+            // cb_typeNo
+            // 
+            this.cb_typeNo.FormattingEnabled = true;
+            this.cb_typeNo.Location = new System.Drawing.Point(296, 23);
+            this.cb_typeNo.Name = "cb_typeNo";
+            this.cb_typeNo.Size = new System.Drawing.Size(119, 20);
+            this.cb_typeNo.TabIndex = 15;
+            // 
+            // MainForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
+            this.ClientSize = new System.Drawing.Size(1321, 701);
             this.Controls.Add(this.radDock1);
             this.Controls.Add(this.radStatusStrip1);
             this.Controls.Add(this.toolStrip1);
@@ -790,10 +836,24 @@
             ((System.ComponentModel.ISupportInitialize)(this.radStatusStrip1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radDock1)).EndInit();
             this.radDock1.ResumeLayout(false);
-            this.toolWindow_left.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radTreeView1)).EndInit();
+            this.documentWindow_testRes.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radPanel2)).EndInit();
+            this.radPanel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.listView_TestRes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.追溯码)).EndInit();
+            this.追溯码.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).EndInit();
+            this.radGroupBox1.ResumeLayout(false);
+            this.radGroupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_search_lastTestRes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_search_record)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip1)).EndInit();
             this.toolTabStrip1.ResumeLayout(false);
+            this.toolWindow_left.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radTreeView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentContainer2)).EndInit();
             this.documentContainer2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.documentTabStrip1)).EndInit();
@@ -808,23 +868,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radTextBox1)).EndInit();
-            this.documentWindow_testRes.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radPanel2)).EndInit();
-            this.radPanel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.listView_TestRes)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
-            this.radPanel1.ResumeLayout(false);
-            this.radPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btn_search_record)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rdb_sn)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rdb_typeNo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btn_search_testRes)).EndInit();
             this.documentWindow_material_select.ResumeLayout(false);
             this.documentWindow_material_select.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView2.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
@@ -859,9 +908,9 @@
         private Telerik.WinControls.UI.Docking.DocumentWindow documentWindow_testRes;
         private Telerik.WinControls.UI.RadPanel radPanel2;
         private Telerik.WinControls.UI.RadListView listView_TestRes;
-        private Telerik.WinControls.UI.RadPanel radPanel1;
-        private System.Windows.Forms.TextBox tb_input;
-        private Telerik.WinControls.UI.RadButton btn_search_testRes;
+        private Telerik.WinControls.UI.RadPanel 追溯码;
+        private System.Windows.Forms.TextBox tb_sn;
+        private Telerik.WinControls.UI.RadButton btn_search_lastTestRes;
         private Telerik.WinControls.UI.Docking.DocumentContainer documentContainer2;
         private Telerik.WinControls.UI.Docking.DocumentTabStrip documentTabStrip1;
         private Telerik.WinControls.UI.Docking.DocumentWindow documentWindow_material_select;
@@ -886,8 +935,6 @@
         private Telerik.WinControls.UI.RadChartView radChartView1;
         private Telerik.WinControls.UI.RadMenuItem menu_material_msg;
         private Telerik.WinControls.UI.RadTreeView radTreeView1;
-        private Telerik.WinControls.UI.RadRadioButton rdb_sn;
-        private Telerik.WinControls.UI.RadRadioButton rdb_typeNo;
         private Telerik.WinControls.UI.RadButton btn_search_record;
         private Telerik.WinControls.UI.RadMenuItem menu_select_passRate;
         private Telerik.WinControls.UI.RadMenuItem menu_select_material;
@@ -897,5 +944,11 @@
         private Telerik.WinControls.UI.RadLabel radLabel1;
         private Telerik.WinControls.UI.RadGridView radGridView2;
         private Telerik.WinControls.UI.RadButton radButton2;
+        private Telerik.WinControls.UI.RadGroupBox radGroupBox1;
+        private Telerik.WinControls.UI.RadLabel radLabel4;
+        private Telerik.WinControls.UI.RadLabel radLabel3;
+        private Telerik.WinControls.UI.RadLabel radLabel2;
+        private System.Windows.Forms.ComboBox cb_typeNo;
+        private System.Windows.Forms.ComboBox cb_station;
     }
 }

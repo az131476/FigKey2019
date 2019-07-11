@@ -12,13 +12,13 @@ using Telerik.WinControls.UI;
 
 namespace RetrospectiveManager
 {
-    public partial class SetProduce : Telerik.WinControls.UI.RadForm
+    public partial class Station : RadForm
     {
         private DataTable dataSource;
         private MesService.MesServiceClient mesService;
         private const string DATA_ORDER_NAME = "序号";
         private const string DATA_STATION_NAME = "站位名称";
-        public SetProduce()
+        public Station()
         {
             InitializeComponent();
             this.MaximizeBox = false;
@@ -125,7 +125,7 @@ namespace RetrospectiveManager
             //cut 执行delete 服务数据
             if (MessageBox.Show("是否删除该行数据", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
             {
-                int del = await mesService.DeleteProduceAsync(curRowStationName);
+                int del = await mesService.DeleteTypeStationAsync(curRowStationName);
             }
             SelectData();
         }
@@ -138,7 +138,7 @@ namespace RetrospectiveManager
             DialogResult dialogResult = MessageBox.Show("是否删除数据库服务中得数据", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
             if (dialogResult == DialogResult.OK)
             {
-                int del = await mesService.DeleteAllProduceAsync();
+                int del = await mesService.DeleteAllTypeStationAsync();
                 //更新显示
                 SelectData();
             }
@@ -159,7 +159,7 @@ namespace RetrospectiveManager
             CommitMesService();
         }
 
-        private void CommitMesService()
+        async private void CommitMesService()
         {
             //将新增数据提交到服务
             try
@@ -193,7 +193,7 @@ namespace RetrospectiveManager
                     this.radGridView1.Rows[i].Cells[1].Style.ForeColor = Color.Black;
                     keyValuePairs.Add(int.Parse(ID), stationName);
                 }
-                string res = mesService.InsertProduce(keyValuePairs);
+                string res = "";//await mesService.CommitTypeStationAsync(keyValuePairs);
                 if (res == "1")
                 {
                     MessageBox.Show("更新成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -242,7 +242,7 @@ namespace RetrospectiveManager
         async private void SelectData()
         {
             //调用查询接口
-            DataSet dataSet = await mesService.SelectProduceAsync("","");
+            DataSet dataSet = await mesService.SelectStationAsync("","");
             DataTable dataTable = dataSet.Tables[0];
             dataSource.Clear();
             if (dataTable.Rows.Count > 0)

@@ -30,11 +30,13 @@ namespace RetrospectiveManager
             this.StartPosition = FormStartPosition.CenterScreen;
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
+        async private void MainForm_Load(object sender, EventArgs e)
         {
             serviceClient = new MesService.MesServiceClient();
+            await serviceClient.InitConnectStringAsync();
             InitListView();
             LoadTreeView();
+            InitControl();
             this.radDock1.RemoveAllDocumentWindows();
             this.radDock1.AddDocument(documentWindow_testRes);
             this.radDock1.AddDocument(documentWindow_material_select);
@@ -63,10 +65,7 @@ namespace RetrospectiveManager
             menu_select_passRate.Click += Menu_select_passRate_Click;
 
             btn_search_record.Click += Btn_search_record_Click;
-            btn_search_testRes.Click += Btn_search_testRes_Click;
-
-            rdb_sn.CheckStateChanged += Rdb_sn_CheckStateChanged;
-            rdb_typeNo.CheckStateChanged += Rdb_typeNo_CheckStateChanged;
+            btn_search_lastTestRes.Click += Btn_search_LastTestRes_Click;
         }
 
         private void Menu_select_passRate_Click(object sender, EventArgs e)
@@ -93,24 +92,6 @@ namespace RetrospectiveManager
             this.radDock1.AddDocument(documentWindow_testRes);
         }
 
-        private void Rdb_typeNo_CheckStateChanged(object sender, EventArgs e)
-        {
-            if (rdb_typeNo.CheckState == CheckState.Checked)
-            {
-                btn_search_testRes.Text = "查询";
-                btn_search_record.Visible = false;
-            }
-        }
-
-        private void Rdb_sn_CheckStateChanged(object sender, EventArgs e)
-        {
-            if (rdb_sn.CheckState == CheckState.Checked)
-            {
-                btn_search_testRes.Text = "查询上一站位";
-                btn_search_record.Visible = true;
-            }
-        }
-
         private void Menu_product_material_Click(object sender, EventArgs e)
         {
             ProductMaterial productMaterial = new ProductMaterial();
@@ -129,20 +110,28 @@ namespace RetrospectiveManager
             material.ShowDialog();
         }
 
-        async private void Btn_search_testRes_Click(object sender, EventArgs e)
+        async private void Btn_search_LastTestRes_Click(object sender, EventArgs e)
         {
             try
             {
-                if (rdb_typeNo.CheckState == CheckState.Checked)
+                if (string.IsNullOrEmpty(tb_sn.Text))
                 {
-                    //由零件号 查询记录
-                    DataTable dt = (await serviceClient.SelectProductDataOfTypeNoAsync(tb_input.Text.Trim())).Tables[0];
-                    listView_TestRes.DataSource = dt;
+                    MessageBox.Show("追溯号不能为空！","提示",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                    return;
                 }
-                else if (rdb_sn.CheckState == CheckState.Checked)
+                if (string.IsNullOrEmpty(cb_typeNo.Text))
                 {
-                    //查询上一站位
+                    MessageBox.Show("零件号不能为空！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
                 }
+                if(string.IsNullOrEmpty(cb_station.Text))
+                {
+                    MessageBox.Show("站位名不能为空！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                //由追溯码+型号+当前站位
+                DataTable dt = (await serviceClient.SelectLastTestResultUpperAsync(tb_sn.Text.Trim(), cb_typeNo.Text.Trim(),cb_station.Text.Trim())).Tables[0];
+                listView_TestRes.DataSource = dt;
             }
             catch (Exception ex)
             {
@@ -152,8 +141,13 @@ namespace RetrospectiveManager
 
         async private void Btn_search_record_Click(object sender, EventArgs e)
         {
-            //由追溯码 查询历史记录
-            DataTable dt = (await serviceClient.SelectProductDataOfSNAsync(tb_input.Text.Trim(), true)).Tables[0];
+            //由追溯码/零件号/站位名 查询历史记录
+            string sn = tb_sn.Text.Trim();
+            string typeNo = cb_typeNo.Text.Trim();
+            string station = cb_station.Text.Trim();
+            DataTable dt = null;
+            dt = (await serviceClient.SelectTestResultUpperAsync(sn, typeNo, station, false)).Tables[0];
+
             listView_TestRes.DataSource = dt;
         }
 
@@ -171,7 +165,7 @@ namespace RetrospectiveManager
 
         private void Menu_produce_config_Click(object sender, EventArgs e)
         {
-            SetProduce setProduce = new SetProduce();
+            Station setProduce = new Station();
             setProduce.StartPosition = FormStartPosition.CenterParent;
             setProduce.ShowDialog();
         }
@@ -223,6 +217,33 @@ namespace RetrospectiveManager
         private void Menu_manager_Click(object sender, EventArgs e)
         {
             this.toolWindow_left.Show();
+        }
+
+        async private void InitControl()
+        {
+            //type no 
+            cb_typeNo.Items.Clear();
+            cb_station.Items.Clear();
+            try
+            {
+                DataTable dt = (await serviceClient.SelectProductTypeNoAsync("")).Tables[0];
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    cb_typeNo.Items.Add(dt.Rows[i][0]);
+                }
+                cb_typeNo.Items.Add("");
+                //station
+                dt = (await serviceClient.SelectStationAsync("", "")).Tables[0];
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    cb_station.Items.Add(dt.Rows[i][1]);
+                }
+                cb_station.Items.Add("");
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Log.Error(ex.Message+"\r\n"+ex.StackTrace);
+            }
         }
     }
 }

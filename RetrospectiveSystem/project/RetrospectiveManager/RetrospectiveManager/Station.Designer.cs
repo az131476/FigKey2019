@@ -1,6 +1,6 @@
 ﻿namespace RetrospectiveManager
 {
-    partial class SetProduce
+    partial class Station
     {
         /// <summary>
         /// Required designer variable.
@@ -137,7 +137,7 @@
             this.btn_cancel.TabIndex = 7;
             this.btn_cancel.Text = "取消";
             // 
-            // SetProduce
+            // Station
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -146,7 +146,7 @@
             this.Controls.Add(this.radGroupBox2);
             this.Controls.Add(this.radGroupBox1);
             this.Controls.Add(this.btn_apply);
-            this.Name = "SetProduce";
+            this.Name = "Station";
             // 
             // 
             // 

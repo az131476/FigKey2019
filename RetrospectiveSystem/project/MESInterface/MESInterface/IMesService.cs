@@ -15,7 +15,8 @@ namespace MESInterface
     public interface IMesService
     {
         // TODO: 在此添加您的服务操作
-
+        [OperationContract]
+        void InitConnectString();
         //用户信息
         [OperationContract]
         LoginResult Login(string username, string password, LoginUser loginUser);
@@ -31,24 +32,37 @@ namespace MESInterface
 
         /// <returns></returns>
         [OperationContract]
-        string FirstCheck(string snInner,string snOutter, string sTypeNumber, string sStationName); 
+        string FirstCheck(string snInner,string snOutter, string sTypeNumber, string sStationName);
 
         // [OperationContract]
         //string InsertWIP(string sn, string sTypeNumber, string sStationName, string sTestResult, string sTime);
 
+        //站位信息
+        [OperationContract]
+        int DeleteStation(string stationName);
+        [OperationContract]
+        int DeleteAllStation();
+        [OperationContract]
+        DataSet SelectStation(string stationName, string stationOrder);
+        [OperationContract]
+        string InsertStation(Dictionary<int, string> dctData);
+        [OperationContract]
+        string UpdateStation(Dictionary<int, string> data);
+
         //产品型号
         [OperationContract]
-        int DeleteProductType(string productName);
+        int DeleteProductTypeNo(string productName);
 
         [OperationContract]
-        int DeleteAllProductType();
+        int DeleteAllProductTypeNo();
 
         [OperationContract]
-        DataSet SelectProductType(string productName);
+        DataSet SelectProductTypeNo(string productName);
 
         [OperationContract]
-        string CommitProductType(List<string> list);
+        string CommitProductTypeNo(List<string> list);
 
+        //站位接口
         [OperationContract]
         int DeleteAllTypeStation();
 
@@ -68,12 +82,14 @@ namespace MESInterface
         [OperationContract]
         string SelectLastTestResult(string sn, string typeNo, string station);
         [OperationContract]
-        DataSet SelectTestResultOfSN(string sn, bool IsSnFuzzy);
+        DataSet SelectLastTestResultUpper(string sn, string typeNo, string station);
 
         [OperationContract]
-        DataSet SelectTestResultOfTypeNo(string typeNo);
+        DataSet SelectTestResultUpper(string sn, string typeNo, string station, bool IsSnFuzzy);
 
         //物料信息接口
+        [OperationContract]
+        DataSet SelectMaterial();
         [OperationContract]
         string CommitMaterial(List<MaterialMsg> list);
 

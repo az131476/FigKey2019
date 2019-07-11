@@ -62,12 +62,14 @@ namespace RetrospectiveManager
             USER_ORDINARY
         }
 
-        private void Login_Load(object sender, EventArgs e)
+        async private void Login_Load(object sender, EventArgs e)
         {
+
             Init();
             try
             {
                 mesService = new MesService.MesServiceClient();
+                await mesService.InitConnectStringAsync();
             }
             catch (Exception ex)
             {

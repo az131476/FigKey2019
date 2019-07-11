@@ -4,23 +4,16 @@
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://192.168.0.175/MesService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://192.168.0.175/MesService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import schemaLocation="http://192.168.0.175/MesService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/MESInterface" />
-      <xsd:import schemaLocation="http://192.168.0.175/MesService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/MESInterface.Molde" />
-      <xsd:import schemaLocation="http://192.168.0.175/MesService.svc?xsd=xsd4" />
-      <xsd:import schemaLocation="http://192.168.0.175/MesService.svc?xsd=xsd5" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://192.168.0.175/MesService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/MESInterface.Model" />
+      <xsd:import schemaLocation="http://192.168.0.175/MesService.svc?xsd=xsd3" />
+      <xsd:import schemaLocation="http://192.168.0.175/MesService.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="IMesService_GetData_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetData" />
+  <wsdl:message name="IMesService_InitConnectString_InputMessage">
+    <wsdl:part name="parameters" element="tns:InitConnectString" />
   </wsdl:message>
-  <wsdl:message name="IMesService_GetData_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetDataResponse" />
-  </wsdl:message>
-  <wsdl:message name="IMesService_GetDataUsingDataContract_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetDataUsingDataContract" />
-  </wsdl:message>
-  <wsdl:message name="IMesService_GetDataUsingDataContract_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetDataUsingDataContractResponse" />
+  <wsdl:message name="IMesService_InitConnectString_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InitConnectStringResponse" />
   </wsdl:message>
   <wsdl:message name="IMesService_Login_InputMessage">
     <wsdl:part name="parameters" element="tns:Login" />
@@ -52,65 +45,59 @@
   <wsdl:message name="IMesService_FirstCheck_OutputMessage">
     <wsdl:part name="parameters" element="tns:FirstCheckResponse" />
   </wsdl:message>
-  <wsdl:message name="IMesService_InsertWIP_InputMessage">
-    <wsdl:part name="parameters" element="tns:InsertWIP" />
+  <wsdl:message name="IMesService_DeleteStation_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteStation" />
   </wsdl:message>
-  <wsdl:message name="IMesService_InsertWIP_OutputMessage">
-    <wsdl:part name="parameters" element="tns:InsertWIPResponse" />
+  <wsdl:message name="IMesService_DeleteStation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteStationResponse" />
   </wsdl:message>
-  <wsdl:message name="IMesService_InsertProduce_InputMessage">
-    <wsdl:part name="parameters" element="tns:InsertProduce" />
+  <wsdl:message name="IMesService_DeleteAllStation_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAllStation" />
   </wsdl:message>
-  <wsdl:message name="IMesService_InsertProduce_OutputMessage">
-    <wsdl:part name="parameters" element="tns:InsertProduceResponse" />
+  <wsdl:message name="IMesService_DeleteAllStation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAllStationResponse" />
   </wsdl:message>
-  <wsdl:message name="IMesService_SelectProduce_InputMessage">
-    <wsdl:part name="parameters" element="tns:SelectProduce" />
+  <wsdl:message name="IMesService_SelectStation_InputMessage">
+    <wsdl:part name="parameters" element="tns:SelectStation" />
   </wsdl:message>
-  <wsdl:message name="IMesService_SelectProduce_OutputMessage">
-    <wsdl:part name="parameters" element="tns:SelectProduceResponse" />
+  <wsdl:message name="IMesService_SelectStation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SelectStationResponse" />
   </wsdl:message>
-  <wsdl:message name="IMesService_UpdateProduce_InputMessage">
-    <wsdl:part name="parameters" element="tns:UpdateProduce" />
+  <wsdl:message name="IMesService_InsertStation_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertStation" />
   </wsdl:message>
-  <wsdl:message name="IMesService_UpdateProduce_OutputMessage">
-    <wsdl:part name="parameters" element="tns:UpdateProduceResponse" />
+  <wsdl:message name="IMesService_InsertStation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertStationResponse" />
   </wsdl:message>
-  <wsdl:message name="IMesService_DeleteProduce_InputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteProduce" />
+  <wsdl:message name="IMesService_UpdateStation_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateStation" />
   </wsdl:message>
-  <wsdl:message name="IMesService_DeleteProduce_OutputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteProduceResponse" />
+  <wsdl:message name="IMesService_UpdateStation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateStationResponse" />
   </wsdl:message>
-  <wsdl:message name="IMesService_DeleteAllProduce_InputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteAllProduce" />
+  <wsdl:message name="IMesService_DeleteProductTypeNo_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteProductTypeNo" />
   </wsdl:message>
-  <wsdl:message name="IMesService_DeleteAllProduce_OutputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteAllProduceResponse" />
+  <wsdl:message name="IMesService_DeleteProductTypeNo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteProductTypeNoResponse" />
   </wsdl:message>
-  <wsdl:message name="IMesService_DeleteProductType_InputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteProductType" />
+  <wsdl:message name="IMesService_DeleteAllProductTypeNo_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAllProductTypeNo" />
   </wsdl:message>
-  <wsdl:message name="IMesService_DeleteProductType_OutputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteProductTypeResponse" />
+  <wsdl:message name="IMesService_DeleteAllProductTypeNo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAllProductTypeNoResponse" />
   </wsdl:message>
-  <wsdl:message name="IMesService_DeleteAllProductType_InputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteAllProductType" />
+  <wsdl:message name="IMesService_SelectProductTypeNo_InputMessage">
+    <wsdl:part name="parameters" element="tns:SelectProductTypeNo" />
   </wsdl:message>
-  <wsdl:message name="IMesService_DeleteAllProductType_OutputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteAllProductTypeResponse" />
+  <wsdl:message name="IMesService_SelectProductTypeNo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SelectProductTypeNoResponse" />
   </wsdl:message>
-  <wsdl:message name="IMesService_SelectProductType_InputMessage">
-    <wsdl:part name="parameters" element="tns:SelectProductType" />
+  <wsdl:message name="IMesService_CommitProductTypeNo_InputMessage">
+    <wsdl:part name="parameters" element="tns:CommitProductTypeNo" />
   </wsdl:message>
-  <wsdl:message name="IMesService_SelectProductType_OutputMessage">
-    <wsdl:part name="parameters" element="tns:SelectProductTypeResponse" />
-  </wsdl:message>
-  <wsdl:message name="IMesService_CommitProductType_InputMessage">
-    <wsdl:part name="parameters" element="tns:CommitProductType" />
-  </wsdl:message>
-  <wsdl:message name="IMesService_CommitProductType_OutputMessage">
-    <wsdl:part name="parameters" element="tns:CommitProductTypeResponse" />
+  <wsdl:message name="IMesService_CommitProductTypeNo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CommitProductTypeNoResponse" />
   </wsdl:message>
   <wsdl:message name="IMesService_DeleteAllTypeStation_InputMessage">
     <wsdl:part name="parameters" element="tns:DeleteAllTypeStation" />
@@ -136,26 +123,100 @@
   <wsdl:message name="IMesService_CommitTypeStation_OutputMessage">
     <wsdl:part name="parameters" element="tns:CommitTypeStationResponse" />
   </wsdl:message>
-  <wsdl:message name="IMesService_SelectProductDataOfSN_InputMessage">
-    <wsdl:part name="parameters" element="tns:SelectProductDataOfSN" />
+  <wsdl:message name="IMesService_InsertTestResultData_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertTestResultData" />
   </wsdl:message>
-  <wsdl:message name="IMesService_SelectProductDataOfSN_OutputMessage">
-    <wsdl:part name="parameters" element="tns:SelectProductDataOfSNResponse" />
+  <wsdl:message name="IMesService_InsertTestResultData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertTestResultDataResponse" />
   </wsdl:message>
-  <wsdl:message name="IMesService_SelectProductDataOfTypeNo_InputMessage">
-    <wsdl:part name="parameters" element="tns:SelectProductDataOfTypeNo" />
+  <wsdl:message name="IMesService_SelectLastTestResult_InputMessage">
+    <wsdl:part name="parameters" element="tns:SelectLastTestResult" />
   </wsdl:message>
-  <wsdl:message name="IMesService_SelectProductDataOfTypeNo_OutputMessage">
-    <wsdl:part name="parameters" element="tns:SelectProductDataOfTypeNoResponse" />
+  <wsdl:message name="IMesService_SelectLastTestResult_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SelectLastTestResultResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_SelectLastTestResultUpper_InputMessage">
+    <wsdl:part name="parameters" element="tns:SelectLastTestResultUpper" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_SelectLastTestResultUpper_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SelectLastTestResultUpperResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_SelectTestResultUpper_InputMessage">
+    <wsdl:part name="parameters" element="tns:SelectTestResultUpper" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_SelectTestResultUpper_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SelectTestResultUpperResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_SelectMaterial_InputMessage">
+    <wsdl:part name="parameters" element="tns:SelectMaterial" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_SelectMaterial_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SelectMaterialResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_CommitMaterial_InputMessage">
+    <wsdl:part name="parameters" element="tns:CommitMaterial" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_CommitMaterial_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CommitMaterialResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_DeleteMaterial_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteMaterial" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_DeleteMaterial_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteMaterialResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_CommitProductMaterial_InputMessage">
+    <wsdl:part name="parameters" element="tns:CommitProductMaterial" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_CommitProductMaterial_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CommitProductMaterialResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_DeleteProductMaterial_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteProductMaterial" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_DeleteProductMaterial_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteProductMaterialResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_InsertMaterialStatistics_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertMaterialStatistics" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_InsertMaterialStatistics_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertMaterialStatisticsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_SelectMaterialStatistics_InputMessage">
+    <wsdl:part name="parameters" element="tns:SelectMaterialStatistics" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_SelectMaterialStatistics_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SelectMaterialStatisticsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_CommitOutCaseBoxStorage_InputMessage">
+    <wsdl:part name="parameters" element="tns:CommitOutCaseBoxStorage" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_CommitOutCaseBoxStorage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CommitOutCaseBoxStorageResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_CommitPackageProduct_InputMessage">
+    <wsdl:part name="parameters" element="tns:CommitPackageProduct" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_CommitPackageProduct_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CommitPackageProductResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_UpdatePackageProduct_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdatePackageProduct" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_UpdatePackageProduct_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdatePackageProductResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_SelectPackageProduct_InputMessage">
+    <wsdl:part name="parameters" element="tns:SelectPackageProduct" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_SelectPackageProduct_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SelectPackageProductResponse" />
   </wsdl:message>
   <wsdl:portType name="IMesService">
-    <wsdl:operation name="GetData">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/GetData" message="tns:IMesService_GetData_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/GetDataResponse" message="tns:IMesService_GetData_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetDataUsingDataContract">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/GetDataUsingDataContract" message="tns:IMesService_GetDataUsingDataContract_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/GetDataUsingDataContractResponse" message="tns:IMesService_GetDataUsingDataContract_OutputMessage" />
+    <wsdl:operation name="InitConnectString">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/InitConnectString" message="tns:IMesService_InitConnectString_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/InitConnectStringResponse" message="tns:IMesService_InitConnectString_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="Login">
       <wsdl:input wsaw:Action="http://tempuri.org/IMesService/Login" message="tns:IMesService_Login_InputMessage" />
@@ -177,45 +238,41 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IMesService/FirstCheck" message="tns:IMesService_FirstCheck_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMesService/FirstCheckResponse" message="tns:IMesService_FirstCheck_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="InsertWIP">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/InsertWIP" message="tns:IMesService_InsertWIP_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/InsertWIPResponse" message="tns:IMesService_InsertWIP_OutputMessage" />
+    <wsdl:operation name="DeleteStation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/DeleteStation" message="tns:IMesService_DeleteStation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/DeleteStationResponse" message="tns:IMesService_DeleteStation_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="InsertProduce">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/InsertProduce" message="tns:IMesService_InsertProduce_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/InsertProduceResponse" message="tns:IMesService_InsertProduce_OutputMessage" />
+    <wsdl:operation name="DeleteAllStation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/DeleteAllStation" message="tns:IMesService_DeleteAllStation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/DeleteAllStationResponse" message="tns:IMesService_DeleteAllStation_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="SelectProduce">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/SelectProduce" message="tns:IMesService_SelectProduce_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/SelectProduceResponse" message="tns:IMesService_SelectProduce_OutputMessage" />
+    <wsdl:operation name="SelectStation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/SelectStation" message="tns:IMesService_SelectStation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/SelectStationResponse" message="tns:IMesService_SelectStation_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="UpdateProduce">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/UpdateProduce" message="tns:IMesService_UpdateProduce_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/UpdateProduceResponse" message="tns:IMesService_UpdateProduce_OutputMessage" />
+    <wsdl:operation name="InsertStation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/InsertStation" message="tns:IMesService_InsertStation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/InsertStationResponse" message="tns:IMesService_InsertStation_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="DeleteProduce">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/DeleteProduce" message="tns:IMesService_DeleteProduce_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/DeleteProduceResponse" message="tns:IMesService_DeleteProduce_OutputMessage" />
+    <wsdl:operation name="UpdateStation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/UpdateStation" message="tns:IMesService_UpdateStation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/UpdateStationResponse" message="tns:IMesService_UpdateStation_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="DeleteAllProduce">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/DeleteAllProduce" message="tns:IMesService_DeleteAllProduce_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/DeleteAllProduceResponse" message="tns:IMesService_DeleteAllProduce_OutputMessage" />
+    <wsdl:operation name="DeleteProductTypeNo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/DeleteProductTypeNo" message="tns:IMesService_DeleteProductTypeNo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/DeleteProductTypeNoResponse" message="tns:IMesService_DeleteProductTypeNo_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="DeleteProductType">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/DeleteProductType" message="tns:IMesService_DeleteProductType_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/DeleteProductTypeResponse" message="tns:IMesService_DeleteProductType_OutputMessage" />
+    <wsdl:operation name="DeleteAllProductTypeNo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/DeleteAllProductTypeNo" message="tns:IMesService_DeleteAllProductTypeNo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/DeleteAllProductTypeNoResponse" message="tns:IMesService_DeleteAllProductTypeNo_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="DeleteAllProductType">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/DeleteAllProductType" message="tns:IMesService_DeleteAllProductType_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/DeleteAllProductTypeResponse" message="tns:IMesService_DeleteAllProductType_OutputMessage" />
+    <wsdl:operation name="SelectProductTypeNo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/SelectProductTypeNo" message="tns:IMesService_SelectProductTypeNo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/SelectProductTypeNoResponse" message="tns:IMesService_SelectProductTypeNo_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="SelectProductType">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/SelectProductType" message="tns:IMesService_SelectProductType_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/SelectProductTypeResponse" message="tns:IMesService_SelectProductType_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="CommitProductType">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/CommitProductType" message="tns:IMesService_CommitProductType_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/CommitProductTypeResponse" message="tns:IMesService_CommitProductType_OutputMessage" />
+    <wsdl:operation name="CommitProductTypeNo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/CommitProductTypeNo" message="tns:IMesService_CommitProductTypeNo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/CommitProductTypeNoResponse" message="tns:IMesService_CommitProductTypeNo_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="DeleteAllTypeStation">
       <wsdl:input wsaw:Action="http://tempuri.org/IMesService/DeleteAllTypeStation" message="tns:IMesService_DeleteAllTypeStation_InputMessage" />
@@ -233,28 +290,71 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IMesService/CommitTypeStation" message="tns:IMesService_CommitTypeStation_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMesService/CommitTypeStationResponse" message="tns:IMesService_CommitTypeStation_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="SelectProductDataOfSN">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/SelectProductDataOfSN" message="tns:IMesService_SelectProductDataOfSN_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/SelectProductDataOfSNResponse" message="tns:IMesService_SelectProductDataOfSN_OutputMessage" />
+    <wsdl:operation name="InsertTestResultData">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/InsertTestResultData" message="tns:IMesService_InsertTestResultData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/InsertTestResultDataResponse" message="tns:IMesService_InsertTestResultData_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="SelectProductDataOfTypeNo">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/SelectProductDataOfTypeNo" message="tns:IMesService_SelectProductDataOfTypeNo_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/SelectProductDataOfTypeNoResponse" message="tns:IMesService_SelectProductDataOfTypeNo_OutputMessage" />
+    <wsdl:operation name="SelectLastTestResult">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/SelectLastTestResult" message="tns:IMesService_SelectLastTestResult_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/SelectLastTestResultResponse" message="tns:IMesService_SelectLastTestResult_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectLastTestResultUpper">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/SelectLastTestResultUpper" message="tns:IMesService_SelectLastTestResultUpper_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/SelectLastTestResultUpperResponse" message="tns:IMesService_SelectLastTestResultUpper_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectTestResultUpper">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/SelectTestResultUpper" message="tns:IMesService_SelectTestResultUpper_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/SelectTestResultUpperResponse" message="tns:IMesService_SelectTestResultUpper_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectMaterial">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/SelectMaterial" message="tns:IMesService_SelectMaterial_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/SelectMaterialResponse" message="tns:IMesService_SelectMaterial_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CommitMaterial">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/CommitMaterial" message="tns:IMesService_CommitMaterial_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/CommitMaterialResponse" message="tns:IMesService_CommitMaterial_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMaterial">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/DeleteMaterial" message="tns:IMesService_DeleteMaterial_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/DeleteMaterialResponse" message="tns:IMesService_DeleteMaterial_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CommitProductMaterial">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/CommitProductMaterial" message="tns:IMesService_CommitProductMaterial_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/CommitProductMaterialResponse" message="tns:IMesService_CommitProductMaterial_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteProductMaterial">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/DeleteProductMaterial" message="tns:IMesService_DeleteProductMaterial_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/DeleteProductMaterialResponse" message="tns:IMesService_DeleteProductMaterial_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertMaterialStatistics">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/InsertMaterialStatistics" message="tns:IMesService_InsertMaterialStatistics_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/InsertMaterialStatisticsResponse" message="tns:IMesService_InsertMaterialStatistics_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectMaterialStatistics">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/SelectMaterialStatistics" message="tns:IMesService_SelectMaterialStatistics_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/SelectMaterialStatisticsResponse" message="tns:IMesService_SelectMaterialStatistics_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CommitOutCaseBoxStorage">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/CommitOutCaseBoxStorage" message="tns:IMesService_CommitOutCaseBoxStorage_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/CommitOutCaseBoxStorageResponse" message="tns:IMesService_CommitOutCaseBoxStorage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CommitPackageProduct">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/CommitPackageProduct" message="tns:IMesService_CommitPackageProduct_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/CommitPackageProductResponse" message="tns:IMesService_CommitPackageProduct_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePackageProduct">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/UpdatePackageProduct" message="tns:IMesService_UpdatePackageProduct_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/UpdatePackageProductResponse" message="tns:IMesService_UpdatePackageProduct_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectPackageProduct">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/SelectPackageProduct" message="tns:IMesService_SelectPackageProduct_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/SelectPackageProductResponse" message="tns:IMesService_SelectPackageProduct_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IMesService" type="tns:IMesService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="GetData">
-      <soap:operation soapAction="http://tempuri.org/IMesService/GetData" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetDataUsingDataContract">
-      <soap:operation soapAction="http://tempuri.org/IMesService/GetDataUsingDataContract" style="document" />
+    <wsdl:operation name="InitConnectString">
+      <soap:operation soapAction="http://tempuri.org/IMesService/InitConnectString" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -307,8 +407,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="InsertWIP">
-      <soap:operation soapAction="http://tempuri.org/IMesService/InsertWIP" style="document" />
+    <wsdl:operation name="DeleteStation">
+      <soap:operation soapAction="http://tempuri.org/IMesService/DeleteStation" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -316,8 +416,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="InsertProduce">
-      <soap:operation soapAction="http://tempuri.org/IMesService/InsertProduce" style="document" />
+    <wsdl:operation name="DeleteAllStation">
+      <soap:operation soapAction="http://tempuri.org/IMesService/DeleteAllStation" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -325,8 +425,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="SelectProduce">
-      <soap:operation soapAction="http://tempuri.org/IMesService/SelectProduce" style="document" />
+    <wsdl:operation name="SelectStation">
+      <soap:operation soapAction="http://tempuri.org/IMesService/SelectStation" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -334,8 +434,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="UpdateProduce">
-      <soap:operation soapAction="http://tempuri.org/IMesService/UpdateProduce" style="document" />
+    <wsdl:operation name="InsertStation">
+      <soap:operation soapAction="http://tempuri.org/IMesService/InsertStation" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -343,8 +443,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="DeleteProduce">
-      <soap:operation soapAction="http://tempuri.org/IMesService/DeleteProduce" style="document" />
+    <wsdl:operation name="UpdateStation">
+      <soap:operation soapAction="http://tempuri.org/IMesService/UpdateStation" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -352,8 +452,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="DeleteAllProduce">
-      <soap:operation soapAction="http://tempuri.org/IMesService/DeleteAllProduce" style="document" />
+    <wsdl:operation name="DeleteProductTypeNo">
+      <soap:operation soapAction="http://tempuri.org/IMesService/DeleteProductTypeNo" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -361,8 +461,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="DeleteProductType">
-      <soap:operation soapAction="http://tempuri.org/IMesService/DeleteProductType" style="document" />
+    <wsdl:operation name="DeleteAllProductTypeNo">
+      <soap:operation soapAction="http://tempuri.org/IMesService/DeleteAllProductTypeNo" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -370,8 +470,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="DeleteAllProductType">
-      <soap:operation soapAction="http://tempuri.org/IMesService/DeleteAllProductType" style="document" />
+    <wsdl:operation name="SelectProductTypeNo">
+      <soap:operation soapAction="http://tempuri.org/IMesService/SelectProductTypeNo" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -379,17 +479,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="SelectProductType">
-      <soap:operation soapAction="http://tempuri.org/IMesService/SelectProductType" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="CommitProductType">
-      <soap:operation soapAction="http://tempuri.org/IMesService/CommitProductType" style="document" />
+    <wsdl:operation name="CommitProductTypeNo">
+      <soap:operation soapAction="http://tempuri.org/IMesService/CommitProductTypeNo" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -433,8 +524,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="SelectProductDataOfSN">
-      <soap:operation soapAction="http://tempuri.org/IMesService/SelectProductDataOfSN" style="document" />
+    <wsdl:operation name="InsertTestResultData">
+      <soap:operation soapAction="http://tempuri.org/IMesService/InsertTestResultData" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -442,8 +533,125 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="SelectProductDataOfTypeNo">
-      <soap:operation soapAction="http://tempuri.org/IMesService/SelectProductDataOfTypeNo" style="document" />
+    <wsdl:operation name="SelectLastTestResult">
+      <soap:operation soapAction="http://tempuri.org/IMesService/SelectLastTestResult" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectLastTestResultUpper">
+      <soap:operation soapAction="http://tempuri.org/IMesService/SelectLastTestResultUpper" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectTestResultUpper">
+      <soap:operation soapAction="http://tempuri.org/IMesService/SelectTestResultUpper" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectMaterial">
+      <soap:operation soapAction="http://tempuri.org/IMesService/SelectMaterial" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CommitMaterial">
+      <soap:operation soapAction="http://tempuri.org/IMesService/CommitMaterial" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMaterial">
+      <soap:operation soapAction="http://tempuri.org/IMesService/DeleteMaterial" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CommitProductMaterial">
+      <soap:operation soapAction="http://tempuri.org/IMesService/CommitProductMaterial" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteProductMaterial">
+      <soap:operation soapAction="http://tempuri.org/IMesService/DeleteProductMaterial" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertMaterialStatistics">
+      <soap:operation soapAction="http://tempuri.org/IMesService/InsertMaterialStatistics" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectMaterialStatistics">
+      <soap:operation soapAction="http://tempuri.org/IMesService/SelectMaterialStatistics" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CommitOutCaseBoxStorage">
+      <soap:operation soapAction="http://tempuri.org/IMesService/CommitOutCaseBoxStorage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CommitPackageProduct">
+      <soap:operation soapAction="http://tempuri.org/IMesService/CommitPackageProduct" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePackageProduct">
+      <soap:operation soapAction="http://tempuri.org/IMesService/UpdatePackageProduct" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectPackageProduct">
+      <soap:operation soapAction="http://tempuri.org/IMesService/SelectPackageProduct" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

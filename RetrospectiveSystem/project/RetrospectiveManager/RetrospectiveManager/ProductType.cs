@@ -99,7 +99,7 @@ namespace RetrospectiveManager
             //cut 执行delete 服务数据
             if (MessageBox.Show("是否删除该行数据", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
             {
-                int del = await mesService.DeleteProductTypeAsync(curRowStationName);
+                int del = await mesService.DeleteProductTypeNoAsync(curRowStationName);
             }
             SelectServiceData("");
         }
@@ -109,7 +109,7 @@ namespace RetrospectiveManager
             //清空服务所有数据
             if (MessageBox.Show("是否删除数据库服务所有数据", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
             {
-                int del = await mesService.DeleteAllProductTypeAsync();
+                int del = await mesService.DeleteAllProductTypeNoAsync();
             }
             SelectServiceData("");
         }
@@ -171,7 +171,7 @@ namespace RetrospectiveManager
         async private void SelectServiceData(string filterText)
         {
             //调用查询接口
-            DataSet dataSet = await mesService.SelectProductTypeAsync(filterText);
+            DataSet dataSet = await mesService.SelectProductTypeNoAsync(filterText);
             DataTable dataTable = dataSet.Tables[0];
             dataSource.Clear();
             if (dataTable.Rows.Count > 0)
@@ -199,24 +199,24 @@ namespace RetrospectiveManager
             try
             {
                 int row = radGridView1.RowCount;
-                Dictionary<int, string> keyValuePairs = new Dictionary<int, string>();
+                string[] array = new string[row];
                 for (int i = 0; i < row; i++)
                 {
                     var ID = radGridView1.Rows[i].Cells[0].Value.ToString().Trim();
                     var productName = radGridView1.Rows[i].Cells[1].Value.ToString().Trim();
-                    
-                    if (keyValuePairs.ContainsValue(productName))
-                    {
-                        this.radGridView1.Rows[i].Cells[1].Style.ForeColor = Color.Red;
-                        this.radGridView1.Rows[i].Cells[1].BeginEdit();
-                        return;
-                    }
+                    array[i] = productName;
+                    //if (keyValuePairs.ContainsValue(productName))
+                    //{
+                    //    this.radGridView1.Rows[i].Cells[1].Style.ForeColor = Color.Red;
+                    //    this.radGridView1.Rows[i].Cells[1].BeginEdit();
+                    //    return;
+                    //}
 
-                    this.radGridView1.Rows[i].Cells[0].Style.ForeColor = Color.Black;
-                    this.radGridView1.Rows[i].Cells[1].Style.ForeColor = Color.Black;
-                    keyValuePairs.Add(int.Parse(ID), productName);
+                    //this.radGridView1.Rows[i].Cells[0].Style.ForeColor = Color.Black;
+                    //this.radGridView1.Rows[i].Cells[1].Style.ForeColor = Color.Black;
+                    //keyValuePairs.Add(int.Parse(ID), productName);
                 }
-                string res = await mesService.CommitProductTypeAsync(keyValuePairs);
+                string res = await mesService.CommitProductTypeNoAsync(array);
                 if (res == "1")
                 {
                     MessageBox.Show("更新成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);

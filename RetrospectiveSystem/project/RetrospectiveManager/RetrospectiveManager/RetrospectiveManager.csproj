@@ -104,6 +104,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Control\DataGridViewCommon.cs" />
     <Compile Include="Control\TreeViewControl.cs" />
     <Compile Include="DB\Config.cs" />
     <Compile Include="DB\Order.cs" />
@@ -141,11 +142,11 @@
     <Compile Include="RadView\UpLoadImage.Designer.cs">
       <DependentUpon>UpLoadImage.cs</DependentUpon>
     </Compile>
-    <Compile Include="SetProduce.cs">
+    <Compile Include="Station.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SetProduce.Designer.cs">
-      <DependentUpon>SetProduce.cs</DependentUpon>
+    <Compile Include="Station.Designer.cs">
+      <DependentUpon>Station.cs</DependentUpon>
     </Compile>
     <Compile Include="SetStation.cs">
       <SubType>Form</SubType>
@@ -209,8 +210,8 @@
       <DependentUpon>UpLoadImage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SetProduce.cs.resx" />
-    <EmbeddedResource Include="SetProduce.resx">
-      <DependentUpon>SetProduce.cs</DependentUpon>
+    <EmbeddedResource Include="Station.resx">
+      <DependentUpon>Station.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SetStation.resx">
       <DependentUpon>SetStation.cs</DependentUpon>
@@ -231,9 +232,6 @@
       <DependentUpon>ProductMaterial.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Connected Services\MesService\MesService.wsdl" />
-    <None Include="Connected Services\MesService\MesService.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Connected Services\MesService\MesService1.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -248,9 +246,6 @@
     </None>
     <None Include="Connected Services\MesService\MesService5.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\MesService\RetrospectiveManager.MesService.CompositeType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\MesService\RetrospectiveManager.MesService.GetUserInfoResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>

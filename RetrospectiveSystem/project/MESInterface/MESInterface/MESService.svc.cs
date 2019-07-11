@@ -31,6 +31,10 @@ namespace MESInterface
         {
             return DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
         }
+        public void InitConnectString()
+        {
+            SQLServer.SqlConnectionString = connectionString;
+        }
         #region 用户信息接口
 
         #region 用户登录
@@ -101,7 +105,6 @@ namespace MESInterface
             $"[username] = '{username}' or [phone] = '{username}' or [email] = '{username}' ";
             try
             {
-                SQLServer.SqlConnectionString = connectionString;
                 dataSet = SQLServer.ExecuteDataSet(sqlString);
                 if (dataSet.Tables[0].Rows.Count < 1)
                 {
@@ -131,7 +134,6 @@ namespace MESInterface
         {
             try
             {
-                SQLServer.SqlConnectionString = connectionString;
                 string sqlString = "SELECT * " +
                             "FROM [WT_SCL].[dbo].[f_user] ";
                 return SQLServer.ExecuteDataSet(sqlString);
@@ -264,12 +266,12 @@ namespace MESInterface
             string selectSQL = "";
             if (string.IsNullOrEmpty(stationName) && string.IsNullOrEmpty(stationOrder))
             {
-                selectSQL = $"SELECT * FROM [WT_SCL].[dbo].[Produce_Process] ORDER BY [Station_Order]";
+                selectSQL = $"SELECT * FROM {DbTable.F_STATION_NAME} ORDER BY {DbTable.F_Station.STATION_ORDER}";
             }
             else
             {
-                selectSQL = $"SELECT * FROM [WT_SCL].[dbo].[Produce_Process] WHERE Station_Name = '{stationName}' " +
-                $"or Station_Order ='{stationOrder}' ORDER BY [Station_Order]";
+                selectSQL = $"SELECT * FROM {DbTable.F_STATION_NAME} WHERE {DbTable.F_Station.STATION_NAME} = '{stationName}' OR " +
+                    $"{DbTable.F_Station.STATION_ORDER} ORDER BY {DbTable.F_Station.STATION_ORDER}";
             }
             return SQLServer.ExecuteDataSet(selectSQL);
         }
@@ -280,7 +282,7 @@ namespace MESInterface
         /// <returns></returns>
         public int DeleteAllStation()
         {
-            string deleteSQL = "DELETE FROM [WT_SCL].[dbo].[Produce_Process]";
+            string deleteSQL = $"DELETE FROM {DbTable.F_STATION_NAME}";
             return SQLServer.ExecuteNonQuery(deleteSQL);
         }
 
@@ -291,8 +293,7 @@ namespace MESInterface
         /// <returns></returns>
         public int DeleteStation(string stationName)
         {
-            string deleteSQL = $"DELETE FROM [WT_SCL].[dbo].[Produce_Process] WHERE [Station_Name] = '{stationName}'";
-            LogHelper.Log.Info($"deleteSQL={deleteSQL}");
+            string deleteSQL = $"DELETE FROM {DbTable.F_STATION_NAME} WHERE {DbTable.F_Station.STATION_NAME} = '{stationName}'";
             return SQLServer.ExecuteNonQuery(deleteSQL);
         }
 
@@ -303,10 +304,7 @@ namespace MESInterface
         /// <returns></returns>
         private bool IsExistStationID(int id)
         {
-            string selectSQL = "SELECT  * " +
-                    "FROM [WT_SCL].[dbo].[Produce_Process] " +
-                    $"WHERE [Station_Order] = '{id}'";
-            LogHelper.Log.Info($"ExistID = {selectSQL}");
+            string selectSQL = $"SELECT * FROM {DbTable.F_STATION_NAME} WHERE {DbTable.F_Station.STATION_ORDER} = '{id}'";
             DataTable dt = SQLServer.ExecuteDataSet(selectSQL).Tables[0];
             if (dt.Rows.Count > 0)
             {
@@ -322,10 +320,7 @@ namespace MESInterface
         /// <returns></returns>
         private bool IsExistStationName(string name)
         {
-            string selectSQL = "SELECT  * " +
-                    "FROM [WT_SCL].[dbo].[Produce_Process] " +
-                    $"WHERE [Station_Name] = '{name}'";
-            LogHelper.Log.Info($"ExistStation = {selectSQL}");
+            string selectSQL = $"SELECT * FROM {DbTable.F_STATION_NAME} WHERE {DbTable.F_Station.STATION_NAME} = '{name}'";
             DataTable dt = SQLServer.ExecuteDataSet(selectSQL).Tables[0];
             if (dt.Rows.Count > 0)
             {
@@ -365,11 +360,9 @@ namespace MESInterface
         /// <returns></returns>
         private bool UpdateStationDB(int order, string stationName, string oldOrder, string oldName)
         {
-            string updateSQL = "UPDATE [WT_SCL].[dbo].[Produce_Process] " +
-                "SET " +
-                $"[Station_Order]='{order}' ,[Station_Name]='{stationName}' " +
-                $"WHERE " +
-                $"[Station_Name] = '{oldName}' or [Station_Order] = '{oldOrder}'";
+            string updateSQL = $"UPDATE {DbTable.F_STATION_NAME} SET {DbTable.F_Station.STATION_ORDER} = '{order}'," +
+                $"{DbTable.F_Station.STATION_NAME} = '{stationName}' " +
+                $"WHERE {DbTable.F_Station.STATION_NAME} = '{oldName}' OR {DbTable.F_Station.STATION_ORDER} = '{oldOrder}'";
             int r = SQLServer.ExecuteNonQuery(updateSQL);
             LogHelper.Log.Info($"update={updateSQL}");
             if (r > 0)
@@ -382,7 +375,7 @@ namespace MESInterface
 
         #region 型号信息接口
 
-        public string CommitProductType(List<string> list)
+        public string CommitProductTypeNo(List<string> list)
         {
             LogHelper.Log.Info($"接口被调用-InsertProductType");
             foreach (var item in list)
@@ -424,16 +417,16 @@ namespace MESInterface
         /// 查询当前产线的站位流程
         /// </summary>
         /// <returns></returns>
-        public DataSet SelectProductType(string typeNumber)
+        public DataSet SelectProductTypeNo(string typeNo)
         {
             string selectSQL = "";
-            if (string.IsNullOrEmpty(typeNumber.Trim()))
+            if (string.IsNullOrEmpty(typeNo.Trim()))
             {
-                selectSQL = $"SELECT * FROM [WT_SCL].[dbo].[Product_Type] ORDER BY [Product_ID]";
+                selectSQL = $"SELECT {DbTable.F_TypeNo.TYPE_NO} FROM {DbTable.F_PRODUCT_TYPE_NO_NAME} ";
             }
             else
             {
-                selectSQL = $"SELECT * FROM [WT_SCL].[dbo].[Product_Type] WHERE [Type_Number] like '%{typeNumber}%' ORDER BY [Product_ID]";
+                selectSQL = $"SELECT {DbTable.F_TypeNo.TYPE_NO} FROM {DbTable.F_PRODUCT_TYPE_NO_NAME} WHERE {DbTable.F_TypeNo.TYPE_NO} like '%{typeNo}%'";
             }
 
             LogHelper.Log.Info($"SelectProductType={selectSQL}");
@@ -444,7 +437,7 @@ namespace MESInterface
         /// 清除所有数据
         /// </summary>
         /// <returns></returns>
-        public int DeleteAllProductType()
+        public int DeleteAllProductTypeNo()
         {
             string deleteSQL = $"DELETE FROM {DbTable.F_PRODUCT_TYPE_NO_NAME}";
             return SQLServer.ExecuteNonQuery(deleteSQL);
@@ -455,7 +448,7 @@ namespace MESInterface
         /// </summary>
         /// <param name="stationName"></param>
         /// <returns></returns>
-        public int DeleteProductType(string typeNo)
+        public int DeleteProductTypeNo(string typeNo)
         {
             string deleteSQL = $"DELETE FROM {DbTable.F_PRODUCT_TYPE_NO_NAME} WHERE {DbTable.F_TypeNo.TYPE_NO} = '{typeNo}'";
             return SQLServer.ExecuteNonQuery(deleteSQL);
@@ -463,61 +456,115 @@ namespace MESInterface
         #endregion
 
         #region 测试结果数据接口
+        /// <summary>
+        /// 测试端插入测试结果
+        /// </summary>
+        /// <param name="sn"></param>
+        /// <param name="typeNo"></param>
+        /// <param name="station"></param>
+        /// <param name="dateTime"></param>
+        /// <param name="result"></param>
+        /// <returns></returns>
         public string InsertTestResultData(string sn, string typeNo, string station, string dateTime, string result)
         {
             string[] array = new string[] { sn, typeNo, station, dateTime, result };
             insertDataQueue.Enqueue(array);
+            SQLServer.SqlConnectionString = connectionString;
             return TestResult.InsertTestResult(insertDataQueue);
         }
 
+        /// <summary>
+        /// 测试端查询上一站位的最后一条记录
+        /// </summary>
+        /// <param name="sn"></param>
+        /// <param name="typeNo"></param>
+        /// <param name="station"></param>
+        /// <returns></returns>
         public string SelectLastTestResult(string sn, string typeNo, string station)
         {
             string[] array = new string[] { sn, typeNo, station };
             selectDataQueue.Enqueue(array);
+            SQLServer.SqlConnectionString = connectionString;
             return TestResult.SelectTestResult(selectDataQueue);
         }
 
         /// <summary>
-        /// 根据SN查询
+        /// 上位机查询测试结果
         /// </summary>
-        /// <param name="sn"></param>
-        /// <param name="IsSnFuzzy">true-sn为模糊查询，否则完全匹配</param>
+        /// <param name="sn">追溯号，可为空</param>
+        /// <param name="typeNo">型号，可为空</param>
+        /// <param name="station">站位名，可为空</param>
+        /// <param name="IsSnFuzzy">true-模糊查询，false-非模糊查询</param>
         /// <returns></returns>
-        public DataSet SelectTestResultOfSN(string sn, bool IsSnFuzzy)
+        public DataSet SelectTestResultUpper(string sn,string typeNo,string station, bool IsSnFuzzy)
         {
             //查询时返回
             string selectSQL = "";
-            if (IsSnFuzzy)
+            if (string.IsNullOrEmpty(sn) && string.IsNullOrEmpty(typeNo) && string.IsNullOrEmpty(station))
             {
                 selectSQL = $"SELECT {DbTable.F_Test_Result.SN},{DbTable.F_Test_Result.TYPE_NO}," +
                 $"{DbTable.F_Test_Result.STATION_NAME},{DbTable.F_Test_Result.TEST_RESULT}," +
                 $"{DbTable.F_Test_Result.UPDATE_DATE},{DbTable.F_Test_Result.REMARK} " +
-                $"FROM {DbTable.F_TEST_RESULT_NAME} " +
-                $"WHERE {DbTable.F_Test_Result.SN} like '%{sn}%'";
+                $"FROM {DbTable.F_TEST_RESULT_NAME}";
             }
             else
             {
-                selectSQL = $"SELECT {DbTable.F_Test_Result.SN},{DbTable.F_Test_Result.TYPE_NO}," +
-                $"{DbTable.F_Test_Result.STATION_NAME},{DbTable.F_Test_Result.TEST_RESULT}," +
-                $"{DbTable.F_Test_Result.UPDATE_DATE},{DbTable.F_Test_Result.REMARK} " +
-                $"FROM {DbTable.F_TEST_RESULT_NAME} " +
-                $"WHERE {DbTable.F_Test_Result.SN} = '{sn}'";
+                if (IsSnFuzzy)
+                {
+                    selectSQL = $"SELECT {DbTable.F_Test_Result.SN},{DbTable.F_Test_Result.TYPE_NO}," +
+                    $"{DbTable.F_Test_Result.STATION_NAME},{DbTable.F_Test_Result.TEST_RESULT}," +
+                    $"{DbTable.F_Test_Result.UPDATE_DATE},{DbTable.F_Test_Result.REMARK} " +
+                    $"FROM {DbTable.F_TEST_RESULT_NAME} " +
+                    $"WHERE {DbTable.F_Test_Result.SN} like '%{sn}%' OR " +
+                    $"{DbTable.F_Test_Result.TYPE_NO} like '%{typeNo}%' OR " +
+                    $"{DbTable.F_Test_Result.STATION_NAME} like '%{station}%'";
+                }
+                else
+                {
+                    selectSQL = $"SELECT {DbTable.F_Test_Result.SN},{DbTable.F_Test_Result.TYPE_NO}," +
+                    $"{DbTable.F_Test_Result.STATION_NAME},{DbTable.F_Test_Result.TEST_RESULT}," +
+                    $"{DbTable.F_Test_Result.UPDATE_DATE},{DbTable.F_Test_Result.REMARK} " +
+                    $"FROM {DbTable.F_TEST_RESULT_NAME} " +
+                    $"WHERE {DbTable.F_Test_Result.SN} = '{sn}' OR " +
+                    $"{DbTable.F_Test_Result.TYPE_NO} = '{typeNo}' OR " +
+                    $"{DbTable.F_Test_Result.STATION_NAME} = '{station}'";
+                }
             }
+            LogHelper.Log.Info(selectSQL);
+            SQLServer.SqlConnectionString = connectionString;
             return SQLServer.ExecuteDataSet(selectSQL);
         }
 
         /// <summary>
-        /// 根据型号查询
+        /// 上位机查询上一站位的所有记录
         /// </summary>
+        /// <param name="sn"></param>
         /// <param name="typeNo"></param>
+        /// <param name="station"></param>
         /// <returns></returns>
-        public DataSet SelectTestResultOfTypeNo(string typeNo)
+        public DataSet SelectLastTestResultUpper(string sn,string typeNo,string station)
         {
+            //根据型号与站位，查询其上一站位
+            SQLServer.SqlConnectionString = connectionString;
+            LogHelper.Log.Info("上位机查询测试结果,传入站位为" + station);
+            string selectOrderSQL = $"SELECT {DbTable.F_Product_Station.STATION_ORDER} FROM {DbTable.F_PRODUCT_STATION_NAME} " +
+                $"WHERE {DbTable.F_Product_Station.STATION_NAME} = '{station}'";
+            LogHelper.Log.Info(selectOrderSQL);
+            DataTable dt = SQLServer.ExecuteDataSet(selectOrderSQL).Tables[0];
+            int lastOrder = int.Parse(dt.Rows[0][0].ToString()) - 1;
+            selectOrderSQL = $"SELECT {DbTable.F_Product_Station.STATION_NAME} FROM {DbTable.F_PRODUCT_STATION_NAME} " +
+                $"WHERE {DbTable.F_Product_Station.STATION_ORDER} = '{lastOrder}'";
+            dt = SQLServer.ExecuteDataSet(selectOrderSQL).Tables[0];
+            station = dt.Rows[0][0].ToString();
+            LogHelper.Log.Info("测试端查询测试结果,上一站位为" + station);
+            //由上一站位查询记录
             string selectSQL = $"SELECT {DbTable.F_Test_Result.SN},{DbTable.F_Test_Result.TYPE_NO}," +
-                $"{DbTable.F_Test_Result.STATION_NAME},{DbTable.F_Test_Result.TEST_RESULT}," +
-                $"{DbTable.F_Test_Result.UPDATE_DATE},{DbTable.F_Test_Result.REMARK} " +
-                $"FROM {DbTable.F_TEST_RESULT_NAME} " +
-                $"WHERE {DbTable.F_Test_Result.TYPE_NO} like '%{typeNo}%'";
+                 $"{DbTable.F_Test_Result.STATION_NAME},{DbTable.F_Test_Result.TEST_RESULT}," +
+                 $"{DbTable.F_Test_Result.UPDATE_DATE},{DbTable.F_Test_Result.REMARK} " +
+                 $"FROM {DbTable.F_TEST_RESULT_NAME} " +
+                 $"WHERE {DbTable.F_Test_Result.SN} = '{sn}' AND {DbTable.F_Test_Result.TYPE_NO} = '{typeNo}' AND " +
+                 $"{DbTable.F_Test_Result.STATION_NAME} = '{station}'" +
+                 $"ORDER BY {DbTable.F_Test_Result.UPDATE_DATE}";
             return SQLServer.ExecuteDataSet(selectSQL);
         }
         #endregion
@@ -527,7 +574,7 @@ namespace MESInterface
         {
             foreach (var item in list)
             {
-                if (IsExistMaterial(item.MaterialCode))
+                if (!IsExistMaterial(item.MaterialCode))
                 {
                     //update
                     if (InsertMaterial(item) < 1)
@@ -550,6 +597,11 @@ namespace MESInterface
             return SQLServer.ExecuteNonQuery(deleteSQL);
         }
 
+        public DataSet SelectMaterial()
+        {
+            string updateSQL = $"SELECT * FROM {DbTable.F_MATERIAL_NAME}";
+            return SQLServer.ExecuteDataSet(updateSQL);
+        }
         private bool IsExistMaterial(string materialCode)
         {
             string selectSQL = $"SELECT * FROM {DbTable.F_MATERIAL_NAME} WHERE {DbTable.F_Material.MATERIAL_CODE} = '{materialCode}'";
@@ -561,15 +613,18 @@ namespace MESInterface
         }
         private int InsertMaterial(MaterialMsg material)
         {
-            string insertSQL = $"INSERT INTO {DbTable.F_MATERIAL_NAME}() VALUES('{material.MaterialCode}','{material.MaterialAmount}')";
+            string insertSQL = $"INSERT INTO {DbTable.F_MATERIAL_NAME}() VALUES('{material.MaterialCode}','{material.MaterialAmount}'";
+            LogHelper.Log.Info($"InsertMaterial={insertSQL}");
             return SQLServer.ExecuteNonQuery(insertSQL);
         }
         private int UpdateMaterial(MaterialMsg material)
         {
             string updateSQL = $"UPDATE {DbTable.F_MATERIAL_NAME} SET {DbTable.F_Material.MATERIAL_AMOUNT} = '{material.MaterialAmount}' " +
-                $"WHERE {DbTable.F_Material.MATERIAL_CODE} = '{material.MaterialCode}')";
+                $"WHERE {DbTable.F_Material.MATERIAL_CODE} = '{material.MaterialCode}'";
+            LogHelper.Log.Info($"UpdateMaterial={updateSQL}");
             return SQLServer.ExecuteNonQuery(updateSQL);
         }
+        
         #endregion
 
         #region 产品物料配置

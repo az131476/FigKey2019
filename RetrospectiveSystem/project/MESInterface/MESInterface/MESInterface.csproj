@@ -75,7 +75,10 @@
     <Content Include="接口说明.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MessageQueue\RemoteClient\FirstCheckQueue.cs" />
+    <Compile Include="DB\DbTable.cs" />
+    <Compile Include="MessageQueue\FirstCheckQueue.cs" />
+    <Compile Include="MessageQueue\RemoteClient\MaterialStatistics.cs" />
+    <Compile Include="MessageQueue\RemoteClient\TestResult.cs" />
     <Compile Include="MesService.svc.cs">
       <DependentUpon>MesService.svc</DependentUpon>
     </Compile>
@@ -83,11 +86,12 @@
     <Compile Include="Model\FirstCheckResultEnum.cs" />
     <Compile Include="Model\InsertWIPResultEnum.cs" />
     <Compile Include="Model\LoginInfoEnum.cs" />
+    <Compile Include="Model\MaterialMsg.cs" />
+    <Compile Include="Model\PackageProduct.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="DB\" />
     <Folder Include="MessageQueue\LocalClient\" />
   </ItemGroup>
   <ItemGroup>
