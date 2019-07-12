@@ -431,6 +431,12 @@ namespace RetrospectiveManager.MesService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/CommitProductMaterial", ReplyAction="http://tempuri.org/IMesService/CommitProductMaterialResponse")]
         System.Threading.Tasks.Task<string> CommitProductMaterialAsync(System.Collections.Generic.Dictionary<string, string[]> keyValuePairs);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectProductMaterial", ReplyAction="http://tempuri.org/IMesService/SelectProductMaterialResponse")]
+        System.Data.DataSet SelectProductMaterial(string typeNo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectProductMaterial", ReplyAction="http://tempuri.org/IMesService/SelectProductMaterialResponse")]
+        System.Threading.Tasks.Task<System.Data.DataSet> SelectProductMaterialAsync(string typeNo);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/DeleteProductMaterial", ReplyAction="http://tempuri.org/IMesService/DeleteProductMaterialResponse")]
         int DeleteProductMaterial(string typeNo, string materialCode);
         
@@ -454,6 +460,12 @@ namespace RetrospectiveManager.MesService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/CommitOutCaseBoxStorage", ReplyAction="http://tempuri.org/IMesService/CommitOutCaseBoxStorageResponse")]
         System.Threading.Tasks.Task<int> CommitOutCaseBoxStorageAsync(string out_case_code, string amount);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectOutCaseBoxStorage", ReplyAction="http://tempuri.org/IMesService/SelectOutCaseBoxStorageResponse")]
+        System.Data.DataSet SelectOutCaseBoxStorage(string caseCode);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectOutCaseBoxStorage", ReplyAction="http://tempuri.org/IMesService/SelectOutCaseBoxStorageResponse")]
+        System.Threading.Tasks.Task<System.Data.DataSet> SelectOutCaseBoxStorageAsync(string caseCode);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/CommitPackageProduct", ReplyAction="http://tempuri.org/IMesService/CommitPackageProductResponse")]
         int CommitPackageProduct(RetrospectiveManager.MesService.PackageProduct packageProduct);
@@ -762,6 +774,14 @@ namespace RetrospectiveManager.MesService {
             return base.Channel.CommitProductMaterialAsync(keyValuePairs);
         }
         
+        public System.Data.DataSet SelectProductMaterial(string typeNo) {
+            return base.Channel.SelectProductMaterial(typeNo);
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> SelectProductMaterialAsync(string typeNo) {
+            return base.Channel.SelectProductMaterialAsync(typeNo);
+        }
+        
         public int DeleteProductMaterial(string typeNo, string materialCode) {
             return base.Channel.DeleteProductMaterial(typeNo, materialCode);
         }
@@ -792,6 +812,14 @@ namespace RetrospectiveManager.MesService {
         
         public System.Threading.Tasks.Task<int> CommitOutCaseBoxStorageAsync(string out_case_code, string amount) {
             return base.Channel.CommitOutCaseBoxStorageAsync(out_case_code, amount);
+        }
+        
+        public System.Data.DataSet SelectOutCaseBoxStorage(string caseCode) {
+            return base.Channel.SelectOutCaseBoxStorage(caseCode);
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> SelectOutCaseBoxStorageAsync(string caseCode) {
+            return base.Channel.SelectOutCaseBoxStorageAsync(caseCode);
         }
         
         public int CommitPackageProduct(RetrospectiveManager.MesService.PackageProduct packageProduct) {

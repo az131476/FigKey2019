@@ -18,8 +18,10 @@ namespace RetrospectiveManager.RadView
         private DataTable dataSource;
         private const string DATA_ORDER = "序号";
         private const string DATA_MATERIAL = "物料名称";
-        private const string DATA_AMOUNT = "物料数量";
-        private string keyMaterialCode,keyMaterialAmount;
+        private const string DATA_AMOUNT = "物料库存";
+        private string keyMaterialCode;//记录修改前的编码
+        private List<string> materialCodeTemp;//存储用户修改的物料编码
+        private string curMaterialCode;//记录鼠标右键选中行编码
 
         public Material()
         {
@@ -32,31 +34,89 @@ namespace RetrospectiveManager.RadView
         {
             serviceClient = new MesService.MesServiceClient();
             await serviceClient.InitConnectStringAsync();
-            DataGridViewCommon.SetRadGridViewProperty(this.radGridView1);
+            DataGridViewCommon.SetRadGridViewProperty(this.radGridView1,true);
+            materialCodeTemp = new List<string>();
+            rlbx_explain.Text = "在新行添加物料名称、物料库存，右键行头可删除行数据";
             //设置第一列为只读
             this.radGridView1.DataSource = DataSource();
+            SelectMaterial();//查询数据
             this.radGridView1.Columns[0].ReadOnly = true;
 
             this.radGridView1.CellBeginEdit += RadGridView1_CellBeginEdit;
             this.radGridView1.CellEndEdit += RadGridView1_CellEndEdit;
+            this.radGridView1.ContextMenuOpening += RadGridView1_ContextMenuOpening;
+            this.radGridView1.MouseDown += RadGridView1_MouseDown;
+        }
+
+        private void RadGridView1_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                if (this.radGridView1.CurrentRow.Index < 0)
+                    return;
+                curMaterialCode = this.radGridView1.CurrentRow.Cells[1].Value.ToString().Trim();
+            }
+        }
+
+        private void RadGridView1_ContextMenuOpening(object sender, ContextMenuOpeningEventArgs e)
+        {
+            for (int i = 0; i < e.ContextMenu.Items.Count; i++)
+            {
+                String contextMenuText = e.ContextMenu.Items[i].Text;
+                switch (contextMenuText)
+                {
+                    case "Conditional Formatting":
+                        e.ContextMenu.Items[i].Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
+                        e.ContextMenu.Items[i + 1].Visibility = ElementVisibility.Collapsed;
+                        break;
+                    case "Hide Column":
+                        e.ContextMenu.Items[i].Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
+                        break;
+                    case "Pinned state":
+                        e.ContextMenu.Items[i].Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
+                        break;
+                    case "Best Fit":
+                        e.ContextMenu.Items[i].Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
+                        break;
+                    case "Cut":
+                        e.ContextMenu.Items[i].Click += Delete_Material_Click;
+                        break;
+                    case "Copy":
+                        break;
+                    case "Paste":
+                        break;
+                    case "Edit":
+                        break;
+                    case "Clear Value":
+                        break;
+                    case "Delete Row":
+                        e.ContextMenu.Items[i].Click += Delete_Material_Click;
+                        break;
+                }
+            }
+        }
+
+        async private void Delete_Material_Click(object sender, EventArgs e)
+        {
+            //cut 执行delete 服务数据
+            if (MessageBox.Show("是否删除该行数据", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+            {
+                int del = await serviceClient.DeleteMaterialAsync(curMaterialCode);
+            }
+            //刷新一下
+            SelectMaterial();
         }
 
         private void RadGridView1_CellEndEdit(object sender, GridViewCellEventArgs e)
         {
             //结束编辑，记录下value;与编辑前比较，值改变则执行修改
             string curMaterialCode = "";
-            string curMaterialAmount = "";
             if (this.radGridView1.CurrentRow.Cells[1].Value != null)
                 curMaterialCode = this.radGridView1.CurrentRow.Cells[1].Value.ToString();
-            if (this.radGridView1.CurrentRow.Cells[2].Value != null)
-                curMaterialAmount = this.radGridView1.CurrentRow.Cells[2].Value.ToString();
 
             if (curMaterialCode != keyMaterialCode)
             {
-                
-            }
-            if (curMaterialAmount != keyMaterialAmount)
-            {
+                materialCodeTemp.Add(keyMaterialCode);
             }
         }
 
@@ -65,8 +125,6 @@ namespace RetrospectiveManager.RadView
             //开始编辑，记录下value
             if(this.radGridView1.CurrentRow.Cells[1].Value != null)
                 keyMaterialCode = this.radGridView1.CurrentRow.Cells[1].Value.ToString();
-            if (this.radGridView1.CurrentRow.Cells[2].Value != null)
-                keyMaterialAmount = this.radGridView1.CurrentRow.Cells[2].Value.ToString();
         }
 
         private DataTable DataSource()
@@ -97,9 +155,10 @@ namespace RetrospectiveManager.RadView
             this.radGridView1.DataSource = dataSource;
         }
 
-        private void Btn_clear_server_data_Click(object sender, EventArgs e)
+        async private void Btn_clear_server_data_Click(object sender, EventArgs e)
         {
-
+            //清除所有数据库数据
+            await serviceClient.DeleteMaterialAsync("");
         }
 
         private void Btn_select_Click(object sender, EventArgs e)
@@ -149,6 +208,11 @@ namespace RetrospectiveManager.RadView
                     material.MaterialCode = materialCode;
                     material.MaterialAmount = int.Parse(amount);
                     materialMsg[i] = material;
+                }
+                //判断主键是否有修改，将原记录删除后，再执行其他更新
+                foreach (var code in materialCodeTemp)
+                {
+                    await serviceClient.DeleteMaterialAsync(code);
                 }
                 string res = await serviceClient.CommitMaterialAsync(materialMsg);
                 if (res == "1")

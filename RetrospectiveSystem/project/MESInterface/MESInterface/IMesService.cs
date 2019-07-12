@@ -98,6 +98,8 @@ namespace MESInterface
 
         [OperationContract]
         string CommitProductMaterial(Dictionary<string, List<string>> keyValuePairs);
+        [OperationContract]
+        DataSet SelectProductMaterial(string typeNo);
 
         [OperationContract]
         int DeleteProductMaterial(string typeNo, string materialCode);
@@ -112,6 +114,8 @@ namespace MESInterface
         //外箱容量
         [OperationContract]
         int CommitOutCaseBoxStorage(string out_case_code, string amount);
+        [OperationContract]
+        DataSet SelectOutCaseBoxStorage(string caseCode);
 
         //成品打包
         [OperationContract]

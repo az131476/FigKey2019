@@ -112,6 +112,7 @@
             this.btn_apply.Size = new System.Drawing.Size(73, 24);
             this.btn_apply.TabIndex = 6;
             this.btn_apply.Text = "应用";
+            this.btn_apply.Click += new System.EventHandler(this.Btn_apply_Click_1);
             // 
             // btn_cancel
             // 

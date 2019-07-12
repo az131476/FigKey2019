@@ -9,7 +9,7 @@ namespace RetrospectiveManager.Control
 {
     class DataGridViewCommon
     {
-        public static void SetRadGridViewProperty(RadGridView radGridView)
+        public static void SetRadGridViewProperty(RadGridView radGridView,bool allowAddNewRow)
         {
             radGridView.EnableGrouping = false;
             radGridView.AllowDrop = true;
@@ -23,7 +23,7 @@ namespace RetrospectiveManager.Control
             //dgv.AllowRowHeaderContextMenu = false;
             radGridView.ShowGroupPanel = false;
             radGridView.MasterTemplate.EnableGrouping = false;
-            radGridView.MasterTemplate.AllowAddNewRow = true;
+            radGridView.MasterTemplate.AllowAddNewRow = allowAddNewRow;
             radGridView.EnableHotTracking = true;
             //radRadioDataReader.ToggleState = Telerik.WinControls.Enumerations.ToggleState.On;
         }

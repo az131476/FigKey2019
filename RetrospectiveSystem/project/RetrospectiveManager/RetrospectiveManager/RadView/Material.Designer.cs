@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition7 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition8 = new Telerik.WinControls.UI.TableViewDefinition();
             this.radGridView1 = new Telerik.WinControls.UI.RadGridView();
             this.btn_apply = new Telerik.WinControls.UI.RadButton();
             this.rlbx_explain = new Telerik.WinControls.UI.RadLabel();
@@ -59,7 +59,7 @@
             // 
             // 
             // 
-            this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition7;
+            this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition8;
             this.radGridView1.Name = "radGridView1";
             this.radGridView1.Size = new System.Drawing.Size(413, 478);
             this.radGridView1.TabIndex = 0;
@@ -146,7 +146,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(465, 685);
+            this.ClientSize = new System.Drawing.Size(465, 643);
             this.Controls.Add(this.btn_apply);
             this.Controls.Add(this.radGroupBox1);
             this.Controls.Add(this.radGroupBox2);

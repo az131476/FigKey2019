@@ -105,6 +105,7 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Control\DataGridViewCommon.cs" />
+    <Compile Include="Control\ListViewCommon.cs" />
     <Compile Include="Control\TreeViewControl.cs" />
     <Compile Include="DB\Config.cs" />
     <Compile Include="DB\Order.cs" />

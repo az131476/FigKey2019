@@ -171,6 +171,12 @@
   <wsdl:message name="IMesService_CommitProductMaterial_OutputMessage">
     <wsdl:part name="parameters" element="tns:CommitProductMaterialResponse" />
   </wsdl:message>
+  <wsdl:message name="IMesService_SelectProductMaterial_InputMessage">
+    <wsdl:part name="parameters" element="tns:SelectProductMaterial" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_SelectProductMaterial_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SelectProductMaterialResponse" />
+  </wsdl:message>
   <wsdl:message name="IMesService_DeleteProductMaterial_InputMessage">
     <wsdl:part name="parameters" element="tns:DeleteProductMaterial" />
   </wsdl:message>
@@ -194,6 +200,12 @@
   </wsdl:message>
   <wsdl:message name="IMesService_CommitOutCaseBoxStorage_OutputMessage">
     <wsdl:part name="parameters" element="tns:CommitOutCaseBoxStorageResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_SelectOutCaseBoxStorage_InputMessage">
+    <wsdl:part name="parameters" element="tns:SelectOutCaseBoxStorage" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_SelectOutCaseBoxStorage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SelectOutCaseBoxStorageResponse" />
   </wsdl:message>
   <wsdl:message name="IMesService_CommitPackageProduct_InputMessage">
     <wsdl:part name="parameters" element="tns:CommitPackageProduct" />
@@ -322,6 +334,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IMesService/CommitProductMaterial" message="tns:IMesService_CommitProductMaterial_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMesService/CommitProductMaterialResponse" message="tns:IMesService_CommitProductMaterial_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="SelectProductMaterial">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/SelectProductMaterial" message="tns:IMesService_SelectProductMaterial_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/SelectProductMaterialResponse" message="tns:IMesService_SelectProductMaterial_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="DeleteProductMaterial">
       <wsdl:input wsaw:Action="http://tempuri.org/IMesService/DeleteProductMaterial" message="tns:IMesService_DeleteProductMaterial_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMesService/DeleteProductMaterialResponse" message="tns:IMesService_DeleteProductMaterial_OutputMessage" />
@@ -337,6 +353,10 @@
     <wsdl:operation name="CommitOutCaseBoxStorage">
       <wsdl:input wsaw:Action="http://tempuri.org/IMesService/CommitOutCaseBoxStorage" message="tns:IMesService_CommitOutCaseBoxStorage_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMesService/CommitOutCaseBoxStorageResponse" message="tns:IMesService_CommitOutCaseBoxStorage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectOutCaseBoxStorage">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/SelectOutCaseBoxStorage" message="tns:IMesService_SelectOutCaseBoxStorage_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/SelectOutCaseBoxStorageResponse" message="tns:IMesService_SelectOutCaseBoxStorage_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="CommitPackageProduct">
       <wsdl:input wsaw:Action="http://tempuri.org/IMesService/CommitPackageProduct" message="tns:IMesService_CommitPackageProduct_InputMessage" />
@@ -596,6 +616,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="SelectProductMaterial">
+      <soap:operation soapAction="http://tempuri.org/IMesService/SelectProductMaterial" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="DeleteProductMaterial">
       <soap:operation soapAction="http://tempuri.org/IMesService/DeleteProductMaterial" style="document" />
       <wsdl:input>
@@ -625,6 +654,15 @@
     </wsdl:operation>
     <wsdl:operation name="CommitOutCaseBoxStorage">
       <soap:operation soapAction="http://tempuri.org/IMesService/CommitOutCaseBoxStorage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectOutCaseBoxStorage">
+      <soap:operation soapAction="http://tempuri.org/IMesService/SelectOutCaseBoxStorage" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

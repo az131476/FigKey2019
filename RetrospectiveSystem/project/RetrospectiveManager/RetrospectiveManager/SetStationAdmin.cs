@@ -212,5 +212,10 @@ namespace RetrospectiveManager
                 radGroupBox_type.Visible = false;
             }
         }
+
+        private void Btn_apply_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

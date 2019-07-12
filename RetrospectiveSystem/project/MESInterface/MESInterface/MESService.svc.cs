@@ -14,6 +14,7 @@ using System.Collections;
 using MESInterface.MessageQueue.RemoteClient;
 using MESInterface.DB;
 using MESInterface.Model;
+using System.Data.SqlClient;
 
 namespace MESInterface
 {
@@ -589,14 +590,22 @@ namespace MESInterface
             }
             return "1";
         }
-
         public int DeleteMaterial(string materialCode)
         {
-            string deleteSQL = $"DELETE FROM {DbTable.F_MATERIAL_NAME} " +
+            string deleteSQL = "";
+            if (string.IsNullOrEmpty(materialCode))
+            {
+                //delete all data
+                deleteSQL = $"DELETE FROM {DbTable.F_MATERIAL_NAME}";
+            }
+            else
+            {
+                //delete one row
+                deleteSQL = $"DELETE FROM {DbTable.F_MATERIAL_NAME} " +
                 $"WHERE {DbTable.F_Material.MATERIAL_CODE} = '{materialCode}'";
+            }
             return SQLServer.ExecuteNonQuery(deleteSQL);
         }
-
         public DataSet SelectMaterial()
         {
             string updateSQL = $"SELECT * FROM {DbTable.F_MATERIAL_NAME}";
@@ -613,7 +622,8 @@ namespace MESInterface
         }
         private int InsertMaterial(MaterialMsg material)
         {
-            string insertSQL = $"INSERT INTO {DbTable.F_MATERIAL_NAME}() VALUES('{material.MaterialCode}','{material.MaterialAmount}'";
+            string insertSQL = $"INSERT INTO {DbTable.F_MATERIAL_NAME}({DbTable.F_Material.MATERIAL_CODE},{DbTable.F_Material.MATERIAL_AMOUNT}) " +
+                $"VALUES('{material.MaterialCode}','{material.MaterialAmount}')";
             LogHelper.Log.Info($"InsertMaterial={insertSQL}");
             return SQLServer.ExecuteNonQuery(insertSQL);
         }
@@ -632,19 +642,21 @@ namespace MESInterface
         {
             foreach (KeyValuePair<string, List<string>> kv in keyValuePairs)
             {
+                string deleteSQL = $"DELETE FROM {DbTable.F_PRODUCT_MATERIAL_NAME} WHERE {DbTable.F_PRODUCT_MATERIAL.TYPE_NO} = '{kv.Key}'";
+                SQLServer.ExecuteNonQuery(deleteSQL);
                 foreach (var v in kv.Value)
                 {
-                    if (IsExistProductMaterial(kv.Key, v))
+                    if (!IsExistProductMaterial(kv.Key, v))
                     {
-                        //update
+                        //insert
                         if (InsertProductMaterial(kv.Key, v) < 1)
                             return "I0";//插入失败
                     }
                     else
                     {
-                        //insert
-                        if (UpdateProductMaterial(kv.Key, v) < 1)
-                            return "G0";//更新失败
+                        // not update
+                        //if (UpdateProductMaterial(kv.Key, v) < 1)
+                        //    return "G0";//更新失败
                     }
                 }
             }
@@ -657,6 +669,16 @@ namespace MESInterface
                 $"WHERE {DbTable.F_PRODUCT_MATERIAL.TYPE_NO} = '{typeNo}' AND " +
                 $"{DbTable.F_PRODUCT_MATERIAL.MATERIAL_CODE} = '{materialCode}'";
             return SQLServer.ExecuteNonQuery(deleteSQL);
+        }
+        public DataSet SelectProductMaterial(string typeNo)
+        {
+            string selectSQL = "";
+            if (!string.IsNullOrEmpty(typeNo))
+                selectSQL = $"SELECT {DbTable.F_PRODUCT_MATERIAL.MATERIAL_CODE} FROM {DbTable.F_PRODUCT_MATERIAL_NAME} " +
+                $"WHERE {DbTable.F_PRODUCT_MATERIAL.TYPE_NO} = '{typeNo}'";
+            else
+                selectSQL = $"SELECT * FROM {DbTable.F_PRODUCT_MATERIAL_NAME} ";
+            return SQLServer.ExecuteDataSet(selectSQL);
         }
         private bool IsExistProductMaterial(string typeNo, string materialCode)
         {
@@ -671,12 +693,13 @@ namespace MESInterface
         }
         private int InsertProductMaterial(string typeNo, string materialCode)
         {
-            string insertSQL = $"INSERT INTO {DbTable.F_PRODUCT_MATERIAL_NAME}() VALUES('{typeNo}','{materialCode}')";
+            string insertSQL = $"INSERT INTO {DbTable.F_PRODUCT_MATERIAL_NAME}({DbTable.F_PRODUCT_MATERIAL.TYPE_NO},{DbTable.F_PRODUCT_MATERIAL.MATERIAL_CODE}) " +
+                $"VALUES('{typeNo}','{materialCode}')";
             return SQLServer.ExecuteNonQuery(insertSQL);
         }
         private int UpdateProductMaterial(string typeNo, string materialCode)
         {
-            string updateSQL = $"UPDATE {DbTable.F_PRODUCT_MATERIAL_NAME} SET {DbTable.F_PRODUCT_MATERIAL.MATERIAL_CODE} = '{materialCode}')";
+            string updateSQL = $"UPDATE {DbTable.F_PRODUCT_MATERIAL_NAME} SET {DbTable.F_PRODUCT_MATERIAL.MATERIAL_CODE} = '{materialCode}'";
             return SQLServer.ExecuteNonQuery(updateSQL);
         }
         #endregion
@@ -865,9 +888,14 @@ namespace MESInterface
         #region 成品打包接口
         public int CommitPackageProduct(PackageProduct packageProduct)
         {
-            string insertSQL = $"INSERT INTO {DbTable.F_OUT_CASE_PRODUCT_NAME}() " +
-                $"VALUES('{packageProduct.CaseCode}','{packageProduct.SnOutter}','{packageProduct.TypeNo}','{packageProduct.Picture}'," +
+            string imageName = "@imageData";
+            string insertSQL = $"INSERT INTO {DbTable.F_OUT_CASE_PRODUCT_NAME}({DbTable.F_Out_Case_Product.OUT_CASE_CODE}," +
+                $"{DbTable.F_Out_Case_Product.SN_OUTTER},{DbTable.F_Out_Case_Product.TYPE_NO}," +
+                $"{DbTable.F_Out_Case_Product.PICTURE},{DbTable.F_Out_Case_Product.BINDING_STATE}," +
+                $"{DbTable.F_Out_Case_Product.BINDING_DATE}) " +
+                $"VALUES('{packageProduct.CaseCode}','{packageProduct.SnOutter}','{packageProduct.TypeNo}',{imageName}," +
                 $"'{packageProduct.BindingState}','{packageProduct.BindingDate}')";
+            LogHelper.Log.Info($"CommitPackageProduct Init Insert={insertSQL}");
             if (IsExistPackageProduct(packageProduct.CaseCode, packageProduct.SnOutter))
             {
                 //update
@@ -876,7 +904,35 @@ namespace MESInterface
             else
             {
                 //insert
-                return SQLServer.ExecuteNonQuery(insertSQL);
+                insertSQL = $"INSERT INTO {DbTable.F_OUT_CASE_PRODUCT_NAME}({DbTable.F_Out_Case_Product.PICTURE}) " +
+                $"VALUES(@ImageData)";
+                LogHelper.Log.Info($"CommitPackageProduct EXCute Insert={insertSQL}");
+                SqlParameter[] sqlParameters = new SqlParameter[1];
+                sqlParameters[0].ParameterName = "@ImageData";
+                sqlParameters[0].SqlDbType = SqlDbType.Binary;
+                sqlParameters[0].Value = packageProduct.Picture;
+                return SQLServer.ExecuteNonQuery(insertSQL,sqlParameters);
+                //return ExecuteSQL(insertSQL,packageProduct.Picture);
+            }
+        }
+
+        private int ExecuteSQL(string comText, byte[] byteImage)
+        {
+            try
+            {
+                SqlConnection sqlConnection = new SqlConnection(connectionString);
+                sqlConnection.Open();
+                SqlCommand sqlCommand = new SqlCommand(comText, sqlConnection);
+                sqlCommand.Parameters.Add("@ImageData", SqlDbType.Binary);
+                sqlCommand.Parameters["@ImageData"].Value = byteImage;
+                int r = sqlCommand.ExecuteNonQuery();
+                sqlConnection.Close();
+                return r;
+            }
+            catch (SqlException ex)
+            {
+                LogHelper.Log.Error(ex.Message+"\r\n"+ex.StackTrace);
+                return -1;
             }
         }
         private bool IsExistPackageProduct(string caseCode, string snOutter)
@@ -895,6 +951,7 @@ namespace MESInterface
                 $"{DbTable.F_Out_Case_Product.BINDING_STATE} = '{packageProduct.BindingState}' " +
                 $"WHERE {DbTable.F_Out_Case_Product.OUT_CASE_CODE} = '{packageProduct.CaseCode}' AND " +
                 $"{DbTable.F_Out_Case_Product.SN_OUTTER} = '{packageProduct.SnOutter}' ";
+            LogHelper.LogInfo($"UpdatePackageProduct={updateSQL}");
             return SQLServer.ExecuteNonQuery(updateSQL);
         }
         public DataSet SelectPackageProduct(PackageProduct packageProduct)
@@ -918,7 +975,8 @@ namespace MESInterface
         #region 外箱容量接口
         public int CommitOutCaseBoxStorage(string out_case_code, string amount)
         {
-            string insertSQL = $"INSERT INTO() VALUES('{out_case_code}','{amount}')";
+            string insertSQL = $"INSERT INTO {DbTable.F_OUT_CASE_STORAGE_NAME}({DbTable.F_Out_Case_Storage.OUT_CASE_CODE},{DbTable.F_Out_Case_Storage.STORAGE_CAPACITY}) " +
+                $"VALUES('{out_case_code}','{amount}')";
             if (IsExistOutCaseBoxStorage(out_case_code))
             {
                 //update
@@ -935,6 +993,19 @@ namespace MESInterface
             string updateSQL = $"UPDATE {DbTable.F_OUT_CASE_STORAGE_NAME} SET {DbTable.F_Out_Case_Storage.STORAGE_CAPACITY} = '{amount}' " +
                 $"WHERE {DbTable.F_Out_Case_Storage.OUT_CASE_CODE} = '{out_case_code}'";
             return SQLServer.ExecuteNonQuery(updateSQL);
+        }
+        public DataSet SelectOutCaseBoxStorage(string caseCode)
+        {
+            string selectSQL = "";
+            if (string.IsNullOrEmpty(caseCode))
+            {
+                selectSQL = $"SELECT * FROM {DbTable.F_OUT_CASE_STORAGE_NAME}";
+            }
+            else
+            {
+                selectSQL = $"SELECT * FROM {DbTable.F_OUT_CASE_STORAGE_NAME} WHERE {DbTable.F_Out_Case_Storage.OUT_CASE_CODE} = '{caseCode}'";
+            }
+            return SQLServer.ExecuteDataSet(selectSQL);
         }
         private bool IsExistOutCaseBoxStorage(string out_case_code)
         {
