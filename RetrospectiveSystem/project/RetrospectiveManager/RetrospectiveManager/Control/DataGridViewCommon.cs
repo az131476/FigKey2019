@@ -25,6 +25,7 @@ namespace RetrospectiveManager.Control
             radGridView.MasterTemplate.EnableGrouping = false;
             radGridView.MasterTemplate.AllowAddNewRow = allowAddNewRow;
             radGridView.EnableHotTracking = true;
+            radGridView.MasterTemplate.SelectLastAddedRow = false;
             //radRadioDataReader.ToggleState = Telerik.WinControls.Enumerations.ToggleState.On;
         }
     }

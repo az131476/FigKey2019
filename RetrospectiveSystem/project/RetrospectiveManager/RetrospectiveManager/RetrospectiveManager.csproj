@@ -123,42 +123,36 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ProductType.cs">
+    <Compile Include="RadView\ProductType.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ProductType.Designer.cs">
+    <Compile Include="RadView\ProductType.Designer.cs">
       <DependentUpon>ProductType.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RadForm1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="RadForm1.Designer.cs">
-      <DependentUpon>RadForm1.cs</DependentUpon>
-    </Compile>
     <Compile Include="RadView\UpLoadImage.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="RadView\UpLoadImage.Designer.cs">
       <DependentUpon>UpLoadImage.cs</DependentUpon>
     </Compile>
-    <Compile Include="Station.cs">
+    <Compile Include="RadView\Station.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Station.Designer.cs">
+    <Compile Include="RadView\Station.Designer.cs">
       <DependentUpon>Station.cs</DependentUpon>
     </Compile>
-    <Compile Include="SetStation.cs">
+    <Compile Include="RadView\SetStation.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SetStation.Designer.cs">
+    <Compile Include="RadView\SetStation.Designer.cs">
       <DependentUpon>SetStation.cs</DependentUpon>
     </Compile>
-    <Compile Include="SetStationAdmin.cs">
+    <Compile Include="RadView\SetStationAdmin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SetStationAdmin.Designer.cs">
+    <Compile Include="RadView\SetStationAdmin.Designer.cs">
       <DependentUpon>SetStationAdmin.cs</DependentUpon>
     </Compile>
     <Compile Include="RadView\Material.cs">
@@ -185,13 +179,18 @@
     <Compile Include="RadView\ProductMaterial.Designer.cs">
       <DependentUpon>ProductMaterial.cs</DependentUpon>
     </Compile>
+    <Compile Include="SetProduce.cs.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SetProduce.cs.resx</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProductType.resx">
+    <EmbeddedResource Include="RadView\ProductType.resx">
       <DependentUpon>ProductType.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
@@ -203,21 +202,22 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="RadForm1.resx">
-      <DependentUpon>RadForm1.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="RadView\UpLoadImage.resx">
       <DependentUpon>UpLoadImage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SetProduce.cs.resx" />
-    <EmbeddedResource Include="Station.resx">
+    <EmbeddedResource Include="SetProduce.cs.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>SetProduce.cs.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RadView\Station.resx">
       <DependentUpon>Station.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SetStation.resx">
+    <EmbeddedResource Include="RadView\SetStation.resx">
       <DependentUpon>SetStation.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SetStationAdmin.resx">
+    <EmbeddedResource Include="RadView\SetStationAdmin.resx">
       <DependentUpon>SetStationAdmin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RadView\Material.resx">
@@ -284,6 +284,8 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Resources\figkeyLogo.png" />
+    <None Include="Resources\figkeyLogo1.png" />
     <Content Include="新需求.txt" />
     <Content Include="需求.txt" />
     <Content Include="说明.txt" />

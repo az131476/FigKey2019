@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using Telerik.WinControls;
+using RetrospectiveManager.Control;
 
 namespace RetrospectiveManager.RadView
 {
@@ -32,6 +33,22 @@ namespace RetrospectiveManager.RadView
             Init();
             cb_caseCode.SelectedIndexChanged += Cb_caseCode_SelectedIndexChanged;
             cb_caseCode.TextChanged += Cb_caseCode_TextChanged;
+            tb_sn.TextChanged += Tb_sn_TextChanged;
+        }
+
+        private void Tb_sn_TextChanged(object sender, EventArgs e)
+        {
+            //输入完成,由条码长度决定
+            if (tb_sn.Text.Length == 13)
+            {
+                //查询产品型号
+
+                //自动执行绑定
+                if (ch_auto_bingding.CheckState == CheckState.Checked)
+                {
+                    CommitBinding();
+                }
+            }
         }
 
         private void Cb_caseCode_TextChanged(object sender, EventArgs e)
@@ -74,6 +91,21 @@ namespace RetrospectiveManager.RadView
             serviceClient = new MesService.MesServiceClient();
             await serviceClient.InitConnectStringAsync();
             packageProduct = new MesService.PackageProduct();
+            InitCaseCodeList();
+            //获取型号
+            cb_typeNo.Items.Clear();
+            DataTable dt = (await serviceClient.SelectProductTypeNoAsync("")).Tables[0];
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                cb_typeNo.Items.Add(dt.Rows[i][0].ToString());
+            }
+            cb_typeNo.Items.Add("");
+            DataSource();
+            DataGridViewCommon.SetRadGridViewProperty(this.radGridView1,false);
+        }
+
+        async private void InitCaseCodeList()
+        {
             DataTable dt = (await serviceClient.SelectOutCaseBoxStorageAsync("")).Tables[0];
             cb_caseCode.Items.Clear();
             if (dt.Rows.Count > 0)
@@ -82,8 +114,8 @@ namespace RetrospectiveManager.RadView
                 {
                     cb_caseCode.Items.Add(dt.Rows[i][0].ToString());
                 }
+                cb_caseCode.Items.Add("");
             }
-            DataSource();
         }
 
         private DataTable DataSource()
@@ -141,10 +173,32 @@ namespace RetrospectiveManager.RadView
             packageProduct.Picture = UpLoadImage.ProductImage;
             int x = await serviceClient.CommitPackageProductAsync(packageProduct);
             //绑定完成后，添加到显示列表
+            UpLoadImage.ProductImage = null;
             if (x < 1)
             {
                 MessageBox.Show("绑定失败！","提示",MessageBoxButtons.OK,MessageBoxIcon.Warning);
             }
+            packageProduct.BindingState = 1;//查询绑定成功的记录
+            packageProduct.CaseCode = "";
+            packageProduct.SnOutter = "";
+            SelectBindingData(packageProduct.CaseCode,packageProduct.SnOutter);
+        }
+
+        /// <summary>
+        /// 解除绑定set state = 0;
+        /// </summary>
+        async private void DelBindingRow()
+        {
+            var casecode = this.radGridView1.CurrentRow.Cells[0].Value.ToString();
+            var sncode = this.radGridView1.CurrentRow.Cells[1].Value.ToString();
+            packageProduct.CaseCode = casecode;
+            packageProduct.SnOutter = sncode;
+            packageProduct.BindingState = 0;
+            await serviceClient.UpdatePackageProductAsync(packageProduct);
+            //更新查询结果,查询所有已绑定的数据
+            packageProduct.BindingState = 1;
+            packageProduct.CaseCode = "";
+            packageProduct.SnOutter = "";
             SelectBindingData(packageProduct.CaseCode,packageProduct.SnOutter);
         }
 
@@ -155,9 +209,14 @@ namespace RetrospectiveManager.RadView
             DataTable dt = (await serviceClient.SelectPackageProductAsync(packageProduct)).Tables[0];
             if (dt.Rows.Count < 1)
                 return;
-            DataRow dataRow = dt.Rows[0];
-            dataSource.ImportRow(dataRow);
+            DataRow[] dataRows = dt.Select("","binding_date desc");
+            dataSource.Clear();
+            foreach (DataRow dataRow in dataRows)
+            {
+                dataSource.Rows.Add(dataRow.ItemArray);
+            }
             this.radGridView1.DataSource = dataSource;
+            this.radGridView1.CurrentRow = this.radGridView1.Rows[0];
         }
 
         private void Btn_apply_Click(object sender, EventArgs e)
@@ -169,6 +228,57 @@ namespace RetrospectiveManager.RadView
         {
             UpLoadImage upLoadImage = new UpLoadImage();
             upLoadImage.ShowDialog();
+        }
+
+        private void Btn_cancel_Click(object sender, EventArgs e)
+        {
+            //解除绑定
+            DelBindingRow();
+        }
+
+        private void Btn_refresh_Click(object sender, EventArgs e)
+        {
+            InitCaseCodeList();
+            //更新查询结果,查询所有已绑定的数据
+            packageProduct.BindingState = 1;
+            packageProduct.CaseCode = "";
+            packageProduct.SnOutter = "";
+            SelectBindingData(packageProduct.CaseCode, packageProduct.SnOutter);
+        }
+
+        async private void Btn_delRow_Click(object sender, EventArgs e)
+        {
+            //删除选择行数据
+            var casecode = this.radGridView1.CurrentRow.Cells[0].Value.ToString();
+            var sncode = this.radGridView1.CurrentRow.Cells[1].Value.ToString();
+            packageProduct.CaseCode = casecode;
+            packageProduct.SnOutter = sncode;
+            await serviceClient.DeletePackageProductAsync(packageProduct);
+            //更新查询
+            packageProduct.BindingState = 1;
+            packageProduct.CaseCode = "";
+            packageProduct.SnOutter = "";
+            SelectBindingData(packageProduct.CaseCode, packageProduct.SnOutter);
+        }
+
+        private void Btn_clearLocal_Click(object sender, EventArgs e)
+        {
+            //清空表数据
+            dataSource.Clear();
+            this.radGridView1.DataSource = dataSource;
+        }
+
+        async private void Btn_clearServer_Click(object sender, EventArgs e)
+        {
+            //清空数据库
+            packageProduct.CaseCode = "";
+            packageProduct.SnOutter = "";
+            await serviceClient.DeletePackageProductAsync(packageProduct);
+            //更新查询
+            packageProduct.BindingState = 1;
+            packageProduct.CaseCode = "";
+            packageProduct.SnOutter = "";
+            SelectBindingData(packageProduct.CaseCode, packageProduct.SnOutter);
         }
     }
 }

@@ -117,6 +117,7 @@
   <xs:element name="DeleteStation">
     <xs:complexType>
       <xs:sequence>
+        <xs:element minOccurs="0" name="order" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="stationName" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
@@ -125,18 +126,6 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="DeleteStationResult" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="DeleteAllStation">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="DeleteAllStationResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="DeleteAllStationResult" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -170,28 +159,14 @@
   <xs:element name="InsertStation">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="dctData" nillable="true" type="q6:ArrayOfKeyValueOfintstring" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/MESInterface.Model" minOccurs="0" name="stationList" nillable="true" type="q6:ArrayOfStation" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="InsertStationResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="InsertStationResult" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="UpdateStation">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="data" nillable="true" type="q7:ArrayOfKeyValueOfintstring" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="UpdateStationResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="UpdateStationResult" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="InsertStationResult" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -250,7 +225,7 @@
   <xs:element name="CommitProductTypeNo">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="list" nillable="true" type="q8:ArrayOfstring" />
+        <xs:element xmlns:q7="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="list" nillable="true" type="q7:ArrayOfstring" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -316,7 +291,7 @@
   <xs:element name="CommitTypeStation">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="dctData" nillable="true" type="q9:ArrayOfKeyValueOfstringArrayOfstringty7Ep6D1" />
+        <xs:element xmlns:q8="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="dctData" nillable="true" type="q8:ArrayOfKeyValueOfstringArrayOfstringty7Ep6D1" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -445,7 +420,7 @@
   <xs:element name="CommitMaterial">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/MESInterface.Model" minOccurs="0" name="list" nillable="true" type="q10:ArrayOfMaterialMsg" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/MESInterface.Model" minOccurs="0" name="list" nillable="true" type="q9:ArrayOfMaterialMsg" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -473,7 +448,7 @@
   <xs:element name="CommitProductMaterial">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q11="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="keyValuePairs" nillable="true" type="q11:ArrayOfKeyValueOfstringArrayOfstringty7Ep6D1" />
+        <xs:element xmlns:q10="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="keyValuePairs" nillable="true" type="q10:ArrayOfKeyValueOfstringArrayOfstringty7Ep6D1" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -614,7 +589,7 @@
   <xs:element name="CommitPackageProduct">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/MESInterface.Model" minOccurs="0" name="packageProduct" nillable="true" type="q12:PackageProduct" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/MESInterface.Model" minOccurs="0" name="packageProduct" nillable="true" type="q11:PackageProduct" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -628,7 +603,7 @@
   <xs:element name="UpdatePackageProduct">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/MESInterface.Model" minOccurs="0" name="packageProduct" nillable="true" type="q13:PackageProduct" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/MESInterface.Model" minOccurs="0" name="packageProduct" nillable="true" type="q12:PackageProduct" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -642,7 +617,7 @@
   <xs:element name="SelectPackageProduct">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/MESInterface.Model" minOccurs="0" name="packageProduct" nillable="true" type="q14:PackageProduct" />
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/MESInterface.Model" minOccurs="0" name="packageProduct" nillable="true" type="q13:PackageProduct" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -662,6 +637,20 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeletePackageProduct">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/MESInterface.Model" minOccurs="0" name="packageProduct" nillable="true" type="q14:PackageProduct" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeletePackageProductResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DeletePackageProductResult" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

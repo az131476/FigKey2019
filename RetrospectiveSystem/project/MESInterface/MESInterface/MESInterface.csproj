@@ -88,6 +88,7 @@
     <Compile Include="Model\LoginInfoEnum.cs" />
     <Compile Include="Model\MaterialMsg.cs" />
     <Compile Include="Model\PackageProduct.cs" />
+    <Compile Include="Model\Station.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

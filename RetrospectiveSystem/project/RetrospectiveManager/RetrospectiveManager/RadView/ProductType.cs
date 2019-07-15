@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
 using CommonUtils.Logger;
+using RetrospectiveManager.Control;
 
 namespace RetrospectiveManager
 {
@@ -16,6 +17,8 @@ namespace RetrospectiveManager
         private MesService.MesServiceClient mesService;
         private const string DATA_ORDER_NAME = "序号";
         private const string DATA_STATION_NAME = "型号名称";
+        private string keyTypeNo;
+        private List<string> modifyTypeNoTemp;
         private DataTable dataSource;
 
         public ProductType()
@@ -29,8 +32,11 @@ namespace RetrospectiveManager
         private void ProductType_Load(object sender, EventArgs e)
         {
             mesService = new MesService.MesServiceClient();
+            mesService.InitConnectString();
+            modifyTypeNoTemp = new List<string>();
             InitDataSource();
-            SetRadGridViewProperty();
+            DataGridViewCommon.SetRadGridViewProperty(this.radGridView1,true);
+            SelectServiceData("");
 
             btn_commit.Click += Btn_commit_Click;
             btn_select.Click += Btn_select_Click;
@@ -38,6 +44,28 @@ namespace RetrospectiveManager
 
             this.radGridView1.ContextMenuOpening += RadGridView1_ContextMenuOpening;
             this.radGridView1.MouseDown += RadGridView1_MouseDown;
+            this.radGridView1.CellBeginEdit += RadGridView1_CellBeginEdit;
+            this.radGridView1.CellEndEdit += RadGridView1_CellEndEdit;
+        }
+
+        private void RadGridView1_CellEndEdit(object sender, GridViewCellEventArgs e)
+        {
+            var key = this.radGridView1.CurrentRow.Cells[1].Value;
+            if (key == null)
+                return;
+            if (keyTypeNo != key.ToString())
+            {
+                modifyTypeNoTemp.Add(keyTypeNo);
+            }
+        }
+
+        private void RadGridView1_CellBeginEdit(object sender, GridViewCellCancelEventArgs e)
+        {
+            var key = this.radGridView1.CurrentRow.Cells[1].Value;
+            if (key != null)
+            {
+                this.keyTypeNo = key.ToString();
+            }
         }
 
         private string curRowStationName;
@@ -123,6 +151,7 @@ namespace RetrospectiveManager
         private void Btn_commit_Click(object sender, EventArgs e)
         {
             CommitMesService();
+            SelectServiceData("");
         }
 
         private DataTable InitDataSource()
@@ -134,35 +163,6 @@ namespace RetrospectiveManager
                 dataSource.Columns.Add(DATA_STATION_NAME);
             }
             return dataSource;
-        }
-
-        /// <summary>
-        /// 设置视图属性
-        /// </summary>
-        private void SetRadGridViewProperty()
-        {
-            radGridView1.EnableGrouping = false;
-            radGridView1.AllowDrop = true;
-            radGridView1.AllowRowReorder = true;
-            /////显示每行前面的标记
-            radGridView1.AddNewRowPosition = Telerik.WinControls.UI.SystemRowPosition.Bottom;
-            radGridView1.ShowRowHeaderColumn = true;
-            radGridView1.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            radGridView1.ReadOnly = false;
-            //gridView.ColumnChooserSortOrder = RadSortOrder.Ascending;
-            //dgv.AllowRowHeaderContextMenu = false;
-            SetPreferences();
-        }
-
-        private void SetPreferences()
-        {
-            this.radGridView1.MasterTemplate.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
-            this.radGridView1.ShowGroupPanel = false;
-            this.radGridView1.MasterTemplate.EnableGrouping = false;
-            this.radGridView1.EnableHotTracking = true;
-            //this.radRadioDataReader.ToggleState = Telerik.WinControls.Enumerations.ToggleState.On;
-            this.radGridView1.MasterTemplate.AllowAddNewRow = false;
-            this.radGridView1.MasterTemplate.AutoGenerateColumns = true;
         }
 
         /// <summary>
@@ -181,10 +181,11 @@ namespace RetrospectiveManager
                 {
                     DataRow dr = dataSource.NewRow();
                     dr[DATA_ORDER_NAME] = i + 1;
-                    dr[DATA_STATION_NAME] = dataTable.Rows[i][1].ToString();
+                    dr[DATA_STATION_NAME] = dataTable.Rows[i][0].ToString();
                     dataSource.Rows.Add(dr);
                 }
                 radGridView1.DataSource = dataSource;
+                this.radGridView1.Columns[0].ReadOnly = true;
             }
             else
             {
@@ -195,26 +196,21 @@ namespace RetrospectiveManager
 
         async private void CommitMesService()
         {
-            //将新增数据提交到服务
             try
             {
                 int row = radGridView1.RowCount;
                 string[] array = new string[row];
+                //新增行数据
                 for (int i = 0; i < row; i++)
                 {
                     var ID = radGridView1.Rows[i].Cells[0].Value.ToString().Trim();
                     var productName = radGridView1.Rows[i].Cells[1].Value.ToString().Trim();
                     array[i] = productName;
-                    //if (keyValuePairs.ContainsValue(productName))
-                    //{
-                    //    this.radGridView1.Rows[i].Cells[1].Style.ForeColor = Color.Red;
-                    //    this.radGridView1.Rows[i].Cells[1].BeginEdit();
-                    //    return;
-                    //}
-
-                    //this.radGridView1.Rows[i].Cells[0].Style.ForeColor = Color.Black;
-                    //this.radGridView1.Rows[i].Cells[1].Style.ForeColor = Color.Black;
-                    //keyValuePairs.Add(int.Parse(ID), productName);
+                }
+                //修改行数据
+                foreach (var val in this.modifyTypeNoTemp)
+                {
+                    await mesService.DeleteProductTypeNoAsync(val);
                 }
                 string res = await mesService.CommitProductTypeNoAsync(array);
                 if (res == "1")

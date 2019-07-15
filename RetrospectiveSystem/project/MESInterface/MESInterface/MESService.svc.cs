@@ -213,49 +213,22 @@ namespace MESInterface
         /// </summary>
         /// <param name="dctData"></param>
         /// <returns>成功返回1，失败返回0+空格+序号+键+空格+值</returns>
-        public string InsertStation(Dictionary<int, string> dctData)
+        public int InsertStation(List<Station> stationList)
         {
             LogHelper.Log.Info($"接口被调用-InsertProduce");
-            foreach (var item in dctData.Keys)
+            foreach (var station in stationList)
             {
-                string value = dctData[item];
-                //插入数据库
-                //插入SQL
-                if (IsExistStationID(item) && !IsExistStationName(value))
-                {
-                    //ID已存在
-                    //update
-                    LogHelper.Log.Info("ID is exist,name is not exist, InsertProduce Excute UpdateProduceDB...");
-                    UpdateStationDB(item, value, item.ToString(), "");
-                }
-                else if (!IsExistStationID(item) && IsExistStationName(value))
-                {
-                    //name exist
-                    LogHelper.Log.Info("ID is not exist ,name is exist,InsertProduce Excute UpdateProduceDB...");
-                    UpdateStationDB(item, value, "", value);
-                }
-                else if (IsExistStationID(item) && IsExistStationName(value))
-                {
-                    LogHelper.Log.Info("ID is exist,name is exist, InsertProduce Excute UpdateProduceDB...");
-                    UpdateStationDB(item, value, item.ToString(), value);
-                }
-                else
+                if (!IsExistStation(station.StationID,station.StationName))
                 {
                     //不存在，插入
-                    string insertSQL = "INSERT INTO [WT_SCL].[dbo].[Produce_Process] " +
-                    "([Station_Order],[Station_Name]) " +
-                    $"VALUES('{item}','{value}')";
+                    string insertSQL = $"INSERT INTO {DbTable.F_STATION_NAME}({DbTable.F_Station.STATION_ORDER}," +
+                        $"{DbTable.F_Station.STATION_NAME}) " +
+                    $"VALUES('{station.StationID}','{station.StationName}')";
 
-                    int res = SQLServer.ExecuteNonQuery(insertSQL);
-                    if (res < 1)
-                    {
-                        //插入失败
-                        LogHelper.Log.Info($"insert fail {insertSQL}");
-                        return "0" + $" {item} {dctData[item]}";
-                    }
+                    return SQLServer.ExecuteNonQuery(insertSQL);
                 }
             }
-            return "1";
+            return -1;
         }
 
         /// <summary>
@@ -278,23 +251,22 @@ namespace MESInterface
         }
 
         /// <summary>
-        /// 清除所有数据
-        /// </summary>
-        /// <returns></returns>
-        public int DeleteAllStation()
-        {
-            string deleteSQL = $"DELETE FROM {DbTable.F_STATION_NAME}";
-            return SQLServer.ExecuteNonQuery(deleteSQL);
-        }
-
-        /// <summary>
         /// 删除某条记录
         /// </summary>
         /// <param name="stationName"></param>
         /// <returns></returns>
-        public int DeleteStation(string stationName)
+        public int DeleteStation(string order, string stationName)
         {
-            string deleteSQL = $"DELETE FROM {DbTable.F_STATION_NAME} WHERE {DbTable.F_Station.STATION_NAME} = '{stationName}'";
+            string deleteSQL = "";
+            if (order == "" && stationName == "")
+            {
+                deleteSQL = $"DELETE FROM {DbTable.F_STATION_NAME} ";
+            }
+            else
+            {
+                deleteSQL = $"DELETE FROM {DbTable.F_STATION_NAME} " +
+                $"WHERE {DbTable.F_Station.STATION_NAME} = '{stationName}' AND {DbTable.F_Station.STATION_ORDER} = '{order}'";
+            }
             return SQLServer.ExecuteNonQuery(deleteSQL);
         }
 
@@ -303,9 +275,10 @@ namespace MESInterface
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        private bool IsExistStationID(int id)
+        private bool IsExistStation(int id,string station)
         {
-            string selectSQL = $"SELECT * FROM {DbTable.F_STATION_NAME} WHERE {DbTable.F_Station.STATION_ORDER} = '{id}'";
+            string selectSQL = $"SELECT * FROM {DbTable.F_STATION_NAME} WHERE {DbTable.F_Station.STATION_ORDER} = '{id}' AND " +
+                $"{DbTable.F_Station.STATION_NAME} = '{station}'";
             DataTable dt = SQLServer.ExecuteDataSet(selectSQL).Tables[0];
             if (dt.Rows.Count > 0)
             {
@@ -314,64 +287,6 @@ namespace MESInterface
             return false;
         }
 
-        /// <summary>
-        /// 产线站位名称是否为空
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        private bool IsExistStationName(string name)
-        {
-            string selectSQL = $"SELECT * FROM {DbTable.F_STATION_NAME} WHERE {DbTable.F_Station.STATION_NAME} = '{name}'";
-            DataTable dt = SQLServer.ExecuteDataSet(selectSQL).Tables[0];
-            if (dt.Rows.Count > 0)
-            {
-                return true;
-            }
-            return false;
-        }
-
-        /// <summary>
-        /// 更新产线数据表《接口函数》
-        /// </summary>
-        /// <param name="data">键值集合</param>
-        /// <returns></returns>
-        public string UpdateStation(Dictionary<int, string> data)
-        {
-            foreach (var item in data.Keys)
-            {
-                string v = data[item];
-
-                if (IsExistStationID(item))
-                {
-                    //更新
-                    if (!UpdateStationDB(item, v, item.ToString(), v))
-                    {
-                        return "0";
-                    }
-                }
-            }
-            return "1";
-        }
-
-        /// <summary>
-        /// 执行更新数据库产线站位表
-        /// </summary>
-        /// <param name="order"></param>
-        /// <param name="stationName"></param>
-        /// <returns></returns>
-        private bool UpdateStationDB(int order, string stationName, string oldOrder, string oldName)
-        {
-            string updateSQL = $"UPDATE {DbTable.F_STATION_NAME} SET {DbTable.F_Station.STATION_ORDER} = '{order}'," +
-                $"{DbTable.F_Station.STATION_NAME} = '{stationName}' " +
-                $"WHERE {DbTable.F_Station.STATION_NAME} = '{oldName}' OR {DbTable.F_Station.STATION_ORDER} = '{oldOrder}'";
-            int r = SQLServer.ExecuteNonQuery(updateSQL);
-            LogHelper.Log.Info($"update={updateSQL}");
-            if (r > 0)
-            {
-                return true;
-            }
-            return false;
-        }
         #endregion
 
         #region 型号信息接口
@@ -903,15 +818,21 @@ namespace MESInterface
             }
             else
             {
-                //insert
-                insertSQL = $"INSERT INTO {DbTable.F_OUT_CASE_PRODUCT_NAME}({DbTable.F_Out_Case_Product.PICTURE}) " +
-                $"VALUES(@ImageData)";
-                LogHelper.Log.Info($"CommitPackageProduct EXCute Insert={insertSQL}");
-                SqlParameter[] sqlParameters = new SqlParameter[1];
-                sqlParameters[0].ParameterName = "@ImageData";
-                sqlParameters[0].SqlDbType = SqlDbType.Binary;
-                sqlParameters[0].Value = packageProduct.Picture;
-                return SQLServer.ExecuteNonQuery(insertSQL,sqlParameters);
+                try
+                {
+                    SqlParameter[] sqlParameters = new SqlParameter[1];
+                    SqlParameter sqlParameter = new SqlParameter();
+                    sqlParameter.ParameterName = imageName;
+                    sqlParameter.SqlDbType = SqlDbType.Binary;
+                    sqlParameter.Value = packageProduct.Picture;
+                    sqlParameters[0] = sqlParameter;
+                    return SQLServer.ExecuteNonQuery(insertSQL, sqlParameters);
+                }
+                catch (Exception ex)
+                {
+                    LogHelper.Log.Error($"Err start ExecuteNonQuery={ex.Message}\r\n{ex.StackTrace}");
+                    return -1;
+                }
                 //return ExecuteSQL(insertSQL,packageProduct.Picture);
             }
         }
@@ -954,19 +875,37 @@ namespace MESInterface
             LogHelper.LogInfo($"UpdatePackageProduct={updateSQL}");
             return SQLServer.ExecuteNonQuery(updateSQL);
         }
+
+        public int DeletePackageProduct(PackageProduct packageProduct)
+        {
+            string deleteSQL = "";
+            if (packageProduct.SnOutter == "" && packageProduct.CaseCode == "")
+            {
+                deleteSQL = $"DELETE FROM {DbTable.F_OUT_CASE_PRODUCT_NAME} ";
+            }
+            else
+            {
+                deleteSQL = $"DELETE FROM {DbTable.F_OUT_CASE_PRODUCT_NAME} " +
+                $"WHERE {DbTable.F_Out_Case_Product.OUT_CASE_CODE} = '{packageProduct.CaseCode}' AND " +
+                $"{DbTable.F_Out_Case_Product.SN_OUTTER} = '{packageProduct.SnOutter}'";
+            }
+            return SQLServer.ExecuteNonQuery(deleteSQL);
+        }
         public DataSet SelectPackageProduct(PackageProduct packageProduct)
         {
             //箱子编码/追溯码查询
             string selectSQL = "";
             if (string.IsNullOrEmpty(packageProduct.CaseCode) && string.IsNullOrEmpty(packageProduct.SnOutter))
             {
-                selectSQL = $"SELECT * FROM {DbTable.F_OUT_CASE_PRODUCT_NAME}";
+                selectSQL = $"SELECT * FROM {DbTable.F_OUT_CASE_PRODUCT_NAME} " +
+                    $"WHERE {DbTable.F_Out_Case_Product.BINDING_STATE} = '{packageProduct.BindingState}'";
             }
             else
             {
                 selectSQL = $"SELECT * FROM {DbTable.F_OUT_CASE_PRODUCT_NAME} WHERE " +
-                    $"{DbTable.F_Out_Case_Product.OUT_CASE_CODE} = '{packageProduct.CaseCode}' or " +
-                    $"{DbTable.F_Out_Case_Product.SN_OUTTER} = '{packageProduct.SnOutter}'";
+                    $"{DbTable.F_Out_Case_Product.OUT_CASE_CODE} = '{packageProduct.CaseCode}' AND " +
+                    $"{DbTable.F_Out_Case_Product.SN_OUTTER} = '{packageProduct.SnOutter}' AND " +
+                    $"{DbTable.F_Out_Case_Product.BINDING_STATE} = '{packageProduct.BindingState}'";
             }
             return SQLServer.ExecuteDataSet(selectSQL);
         }

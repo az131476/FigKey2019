@@ -80,6 +80,67 @@ namespace RetrospectiveManager.MesService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Station", Namespace="http://schemas.datacontract.org/2004/07/MESInterface.Model")]
+    [System.SerializableAttribute()]
+    public partial class Station : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int StationIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string StationNameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int StationID {
+            get {
+                return this.StationIDField;
+            }
+            set {
+                if ((this.StationIDField.Equals(value) != true)) {
+                    this.StationIDField = value;
+                    this.RaisePropertyChanged("StationID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string StationName {
+            get {
+                return this.StationNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.StationNameField, value) != true)) {
+                    this.StationNameField = value;
+                    this.RaisePropertyChanged("StationName");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="MaterialMsg", Namespace="http://schemas.datacontract.org/2004/07/MESInterface.Model")]
     [System.SerializableAttribute()]
     public partial class MaterialMsg : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -306,16 +367,10 @@ namespace RetrospectiveManager.MesService {
         System.Threading.Tasks.Task<string> FirstCheckAsync(string snInner, string snOutter, string sTypeNumber, string sStationName);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/DeleteStation", ReplyAction="http://tempuri.org/IMesService/DeleteStationResponse")]
-        int DeleteStation(string stationName);
+        int DeleteStation(string order, string stationName);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/DeleteStation", ReplyAction="http://tempuri.org/IMesService/DeleteStationResponse")]
-        System.Threading.Tasks.Task<int> DeleteStationAsync(string stationName);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/DeleteAllStation", ReplyAction="http://tempuri.org/IMesService/DeleteAllStationResponse")]
-        int DeleteAllStation();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/DeleteAllStation", ReplyAction="http://tempuri.org/IMesService/DeleteAllStationResponse")]
-        System.Threading.Tasks.Task<int> DeleteAllStationAsync();
+        System.Threading.Tasks.Task<int> DeleteStationAsync(string order, string stationName);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectStation", ReplyAction="http://tempuri.org/IMesService/SelectStationResponse")]
         System.Data.DataSet SelectStation(string stationName, string stationOrder);
@@ -324,16 +379,10 @@ namespace RetrospectiveManager.MesService {
         System.Threading.Tasks.Task<System.Data.DataSet> SelectStationAsync(string stationName, string stationOrder);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/InsertStation", ReplyAction="http://tempuri.org/IMesService/InsertStationResponse")]
-        string InsertStation(System.Collections.Generic.Dictionary<int, string> dctData);
+        int InsertStation(RetrospectiveManager.MesService.Station[] stationList);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/InsertStation", ReplyAction="http://tempuri.org/IMesService/InsertStationResponse")]
-        System.Threading.Tasks.Task<string> InsertStationAsync(System.Collections.Generic.Dictionary<int, string> dctData);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/UpdateStation", ReplyAction="http://tempuri.org/IMesService/UpdateStationResponse")]
-        string UpdateStation(System.Collections.Generic.Dictionary<int, string> data);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/UpdateStation", ReplyAction="http://tempuri.org/IMesService/UpdateStationResponse")]
-        System.Threading.Tasks.Task<string> UpdateStationAsync(System.Collections.Generic.Dictionary<int, string> data);
+        System.Threading.Tasks.Task<int> InsertStationAsync(RetrospectiveManager.MesService.Station[] stationList);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/DeleteProductTypeNo", ReplyAction="http://tempuri.org/IMesService/DeleteProductTypeNoResponse")]
         int DeleteProductTypeNo(string productName);
@@ -484,6 +533,12 @@ namespace RetrospectiveManager.MesService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectPackageProduct", ReplyAction="http://tempuri.org/IMesService/SelectPackageProductResponse")]
         System.Threading.Tasks.Task<System.Data.DataSet> SelectPackageProductAsync(RetrospectiveManager.MesService.PackageProduct packageProduct);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/DeletePackageProduct", ReplyAction="http://tempuri.org/IMesService/DeletePackageProductResponse")]
+        int DeletePackageProduct(RetrospectiveManager.MesService.PackageProduct packageProduct);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/DeletePackageProduct", ReplyAction="http://tempuri.org/IMesService/DeletePackageProductResponse")]
+        System.Threading.Tasks.Task<int> DeletePackageProductAsync(RetrospectiveManager.MesService.PackageProduct packageProduct);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -606,20 +661,12 @@ namespace RetrospectiveManager.MesService {
             return base.Channel.FirstCheckAsync(snInner, snOutter, sTypeNumber, sStationName);
         }
         
-        public int DeleteStation(string stationName) {
-            return base.Channel.DeleteStation(stationName);
+        public int DeleteStation(string order, string stationName) {
+            return base.Channel.DeleteStation(order, stationName);
         }
         
-        public System.Threading.Tasks.Task<int> DeleteStationAsync(string stationName) {
-            return base.Channel.DeleteStationAsync(stationName);
-        }
-        
-        public int DeleteAllStation() {
-            return base.Channel.DeleteAllStation();
-        }
-        
-        public System.Threading.Tasks.Task<int> DeleteAllStationAsync() {
-            return base.Channel.DeleteAllStationAsync();
+        public System.Threading.Tasks.Task<int> DeleteStationAsync(string order, string stationName) {
+            return base.Channel.DeleteStationAsync(order, stationName);
         }
         
         public System.Data.DataSet SelectStation(string stationName, string stationOrder) {
@@ -630,20 +677,12 @@ namespace RetrospectiveManager.MesService {
             return base.Channel.SelectStationAsync(stationName, stationOrder);
         }
         
-        public string InsertStation(System.Collections.Generic.Dictionary<int, string> dctData) {
-            return base.Channel.InsertStation(dctData);
+        public int InsertStation(RetrospectiveManager.MesService.Station[] stationList) {
+            return base.Channel.InsertStation(stationList);
         }
         
-        public System.Threading.Tasks.Task<string> InsertStationAsync(System.Collections.Generic.Dictionary<int, string> dctData) {
-            return base.Channel.InsertStationAsync(dctData);
-        }
-        
-        public string UpdateStation(System.Collections.Generic.Dictionary<int, string> data) {
-            return base.Channel.UpdateStation(data);
-        }
-        
-        public System.Threading.Tasks.Task<string> UpdateStationAsync(System.Collections.Generic.Dictionary<int, string> data) {
-            return base.Channel.UpdateStationAsync(data);
+        public System.Threading.Tasks.Task<int> InsertStationAsync(RetrospectiveManager.MesService.Station[] stationList) {
+            return base.Channel.InsertStationAsync(stationList);
         }
         
         public int DeleteProductTypeNo(string productName) {
@@ -844,6 +883,14 @@ namespace RetrospectiveManager.MesService {
         
         public System.Threading.Tasks.Task<System.Data.DataSet> SelectPackageProductAsync(RetrospectiveManager.MesService.PackageProduct packageProduct) {
             return base.Channel.SelectPackageProductAsync(packageProduct);
+        }
+        
+        public int DeletePackageProduct(RetrospectiveManager.MesService.PackageProduct packageProduct) {
+            return base.Channel.DeletePackageProduct(packageProduct);
+        }
+        
+        public System.Threading.Tasks.Task<int> DeletePackageProductAsync(RetrospectiveManager.MesService.PackageProduct packageProduct) {
+            return base.Channel.DeletePackageProductAsync(packageProduct);
         }
     }
 }

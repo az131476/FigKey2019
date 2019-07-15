@@ -18,6 +18,9 @@ namespace RetrospectiveManager
         private MesService.MesServiceClient mesService;
         private const string DATA_ORDER_NAME = "序号";
         private const string DATA_STATION_NAME = "站位名称";
+        private string keyOrder;
+        private string keyStation;
+        private List<Station> stationListTemp;
         public Station()
         {
             InitializeComponent();
@@ -37,13 +40,19 @@ namespace RetrospectiveManager
             return dataSource;
         }
 
-        private void SetProduce_Load(object sender, EventArgs e)
+        private string KeyOrder { get; set; }
+
+        private string KeyStationName { get; set; }
+
+        async private void SetProduce_Load(object sender, EventArgs e)
         {
             mesService = new MesService.MesServiceClient();
+            await mesService.InitConnectStringAsync();
             DataSource();
             SetRadGridViewProperty();
             radGridView1.DataSource = dataSource;
-
+            stationListTemp = new List<Station>();
+            SelectData();
 
             btn_cancel.Click += Btn_cancel_Click;
             btn_select.Click += Btn_select_Click;
@@ -53,9 +62,41 @@ namespace RetrospectiveManager
 
             radGridView1.MouseDown += RadGridView1_MouseDown;
             radGridView1.ContextMenuOpening += RadGridView1_ContextMenuOpening;
+            radGridView1.CellBeginEdit += RadGridView1_CellBeginEdit;
+            radGridView1.CellEndEdit += RadGridView1_CellEndEdit;
+        }
+
+        private void RadGridView1_CellEndEdit(object sender, GridViewCellEventArgs e)
+        {
+            var order = this.radGridView1.CurrentRow.Cells[0].Value;
+            var name = this.radGridView1.CurrentRow.Cells[1].Value;
+            if (order == null)
+                return;
+            if (name == null)
+                return;
+            if (order.ToString() != keyOrder || name.ToString() != keyStation)
+            {
+                Station station = new Station();
+                station.keyOrder = order.ToString();
+                station.KeyStationName = name.ToString();
+                stationListTemp.Add(station);
+            }
+        }
+
+        private void RadGridView1_CellBeginEdit(object sender, GridViewCellCancelEventArgs e)
+        {
+            var order = this.radGridView1.CurrentRow.Cells[0].Value;
+            var name = this.radGridView1.CurrentRow.Cells[1].Value;
+            if (order == null)
+                return;
+            if (name == null)
+                return;
+            keyOrder = order.ToString();
+            keyStation = name.ToString();
         }
 
         private string curRowStationName;
+        private string curStationID;
         private void RadGridView1_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
@@ -63,6 +104,7 @@ namespace RetrospectiveManager
                 if (this.radGridView1.CurrentRow.Index < 0)
                     return;
                 curRowStationName = this.radGridView1.CurrentRow.Cells[1].Value.ToString().Trim();
+                curStationID = this.radGridView1.CurrentRow.Cells[0].Value.ToString().Trim();
             }
         }
 
@@ -87,7 +129,7 @@ namespace RetrospectiveManager
                         e.ContextMenu.Items[i].Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
                         break;
                     case "Cut":
-                        e.ContextMenu.Items[i].Click += SetCutProduce_Click;
+                        e.ContextMenu.Items[i].Click += DeleteStationRow_Click;
                         break;
                     case "Copy":
                         break;
@@ -98,18 +140,13 @@ namespace RetrospectiveManager
                     case "Clear Value":
                         break;
                     case "Delete Row":
-                        e.ContextMenu.Items[i].Click += SetDeleteProduce_Click; ;
+                        e.ContextMenu.Items[i].Click += DeleteStationRow_Click; ;
                         break;
                 }
             }
         }
 
-        private void SetDeleteProduce_Click(object sender, EventArgs e)
-        {
-            DeleteProduceData();
-        }
-
-        private void SetCutProduce_Click(object sender, EventArgs e)
+        private void DeleteStationRow_Click(object sender, EventArgs e)
         {
             DeleteProduceData();
         }
@@ -125,7 +162,7 @@ namespace RetrospectiveManager
             //cut 执行delete 服务数据
             if (MessageBox.Show("是否删除该行数据", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
             {
-                int del = await mesService.DeleteTypeStationAsync(curRowStationName);
+                int del = await mesService.DeleteStationAsync(curStationID,curRowStationName);
             }
             SelectData();
         }
@@ -135,7 +172,7 @@ namespace RetrospectiveManager
             //清除所有数据
             if (dataSource.Rows.Count == 0)
                 return;
-            DialogResult dialogResult = MessageBox.Show("是否删除数据库服务中得数据", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+            DialogResult dialogResult = MessageBox.Show("是否删除数据库服务中de数据", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
             if (dialogResult == DialogResult.OK)
             {
                 int del = await mesService.DeleteAllTypeStationAsync();
@@ -143,14 +180,6 @@ namespace RetrospectiveManager
                 SelectData();
             }
         }
-
-
-        /*
-* 其他事件处理
-* 1、移动到下一行时，自动增加序列号
-* 2、提交应用时，验证是否按顺序排列
-* 3、验证提交内容是否为空
-*/
 
         private void Btn_apply_Click(object sender, EventArgs e)
         {
@@ -165,36 +194,25 @@ namespace RetrospectiveManager
             try
             {
                 int row = radGridView1.RowCount;
-                Dictionary<int, string> keyValuePairs = new Dictionary<int, string>();
+                MesService.Station[] stationsArray = new MesService.Station[row];
                 for (int i = 0; i < row; i++)
                 {
+                    MesService.Station station = new MesService.Station();
                     var ID = radGridView1.Rows[i].Cells[0].Value.ToString().Trim();
                     var stationName = radGridView1.Rows[i].Cells[1].Value.ToString().Trim();
-                    if (!ExamineInputFormat.IsDecimal(ID))
-                    {
-                        MessageBox.Show("输入ID格式不正确！");
-                        return;
-                    }
-                    if (keyValuePairs.ContainsKey(int.Parse(ID)))
-                    {
-                        //已包含该ID
-                        this.radGridView1.Rows[i].Cells[0].Style.ForeColor = Color.Red;
-                        this.radGridView1.Rows[i].Cells[0].BeginEdit();
-                        return;
-                    }
-                    if (keyValuePairs.ContainsValue(stationName))
-                    {
-                        this.radGridView1.Rows[i].Cells[1].Style.ForeColor = Color.Red;
-                        this.radGridView1.Rows[i].Cells[1].BeginEdit();
-                        return;
-                    }
-
-                    this.radGridView1.Rows[i].Cells[0].Style.ForeColor = Color.Black;
-                    this.radGridView1.Rows[i].Cells[1].Style.ForeColor = Color.Black;
-                    keyValuePairs.Add(int.Parse(ID), stationName);
+                    station.StationID = int.Parse(ID);
+                    station.StationName = stationName;
+                    stationsArray[i] = station;
                 }
-                string res = "";//await mesService.CommitTypeStationAsync(keyValuePairs);
-                if (res == "1")
+                if (stationListTemp.Count > 0)
+                {
+                    foreach (var station in stationListTemp)
+                    {
+                        await mesService.DeleteStationAsync(station.keyOrder, station.KeyStationName);
+                    }
+                }
+                int res = await mesService.InsertStationAsync(stationsArray);
+                if (res == 1)
                 {
                     MessageBox.Show("更新成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }

@@ -17,7 +17,7 @@ namespace RetrospectiveManager.RadView
         private MesService.MesServiceClient serviceClient;
         private DataTable dataSource;
         private const string DATA_ORDER = "序号";
-        private const string DATA_MATERIAL = "物料名称";
+        private const string DATA_MATERIAL = "物料编码";
         private const string DATA_AMOUNT = "物料库存";
         private string keyMaterialCode;//记录修改前的编码
         private List<string> materialCodeTemp;//存储用户修改的物料编码
@@ -147,6 +147,7 @@ namespace RetrospectiveManager.RadView
         private void Btn_apply_Click(object sender, EventArgs e)
         {
             CommitMesService();
+            SelectMaterial();
         }
 
         private void Btn_clear_dgv_Click(object sender, EventArgs e)
@@ -158,7 +159,11 @@ namespace RetrospectiveManager.RadView
         async private void Btn_clear_server_data_Click(object sender, EventArgs e)
         {
             //清除所有数据库数据
-            await serviceClient.DeleteMaterialAsync("");
+            DialogResult dialogResult = MessageBox.Show("是否清除数据库数据","提示",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+            if (dialogResult == DialogResult.OK)
+            {
+                await serviceClient.DeleteMaterialAsync("");
+            }
         }
 
         private void Btn_select_Click(object sender, EventArgs e)

@@ -39,15 +39,12 @@ namespace MESInterface
 
         //站位信息
         [OperationContract]
-        int DeleteStation(string stationName);
-        [OperationContract]
-        int DeleteAllStation();
+        int DeleteStation(string order,string stationName);
+
         [OperationContract]
         DataSet SelectStation(string stationName, string stationOrder);
         [OperationContract]
-        string InsertStation(Dictionary<int, string> dctData);
-        [OperationContract]
-        string UpdateStation(Dictionary<int, string> data);
+        int InsertStation(List<Station> stationList);
 
         //产品型号
         [OperationContract]
@@ -126,6 +123,9 @@ namespace MESInterface
 
         [OperationContract]
         DataSet SelectPackageProduct(PackageProduct packageProduct);
+
+        [OperationContract]
+        int DeletePackageProduct(PackageProduct packageProduct);
     }
 
 

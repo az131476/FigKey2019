@@ -29,7 +29,7 @@ namespace RetrospectiveManager.RadView
 
         private void Cb_type_no_SelectedIndexChanged(object sender, EventArgs e)
         {
-            UpdateCheckItem(cb_type_no.SelectedItem.ToString());
+            UpdateCheckItem(cb_type_no.Text);
         }
 
         async private void Init()
@@ -40,13 +40,17 @@ namespace RetrospectiveManager.RadView
             ListViewCommon.InitListView(this.listView);
             //设置列
             this.listView.Columns.Add("物料编码", listView.Width - 5, HorizontalAlignment.Left);
+            InitControl();
+        }
 
+        async private void InitControl()
+        {
             //获取型号
             cb_type_no.Items.Clear();
             DataTable dt = (await serviceClient.SelectProductTypeNoAsync("")).Tables[0];
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                cb_type_no.Items.Add(dt.Rows[i][0]);
+                cb_type_no.Items.Add(dt.Rows[i][0].ToString());
             }
             cb_type_no.Items.Add("");
             cb_type_no.SelectedIndex = 0;
@@ -56,6 +60,7 @@ namespace RetrospectiveManager.RadView
             {
                 this.listView.Items.Add(dt.Rows[i][0].ToString());
             }
+            UpdateCheckItem(cb_type_no.Text);
         }
 
         private void Btn_cancel_Click(object sender, EventArgs e)
@@ -88,14 +93,11 @@ namespace RetrospectiveManager.RadView
             string[] array = new string[checkCount];
             foreach (ListViewItem item in this.listView.Items)
             {
-                for (int i = 0; i < item.SubItems.Count; i++)
+                if (item.Checked)
                 {
-                    if (item.Checked)
-                    {
-                        array[j] = item.Text;
-                    }
+                    array[j] = item.Text;
+                    j++;
                 }
-                j++;
             }
             keyValuePairs.Add(cb_type_no.Text.Trim(), array);
             string res = await serviceClient.CommitProductMaterialAsync(keyValuePairs);
@@ -110,6 +112,8 @@ namespace RetrospectiveManager.RadView
 
         async private void UpdateCheckItem(string typeNo)
         {
+            if (this.listView.Items.Count == 0)
+                return;
            DataTable dt = (await serviceClient.SelectProductMaterialAsync(typeNo)).Tables[0];
             if (dt.Rows.Count < 1 || string.IsNullOrEmpty(typeNo))
             {
@@ -119,17 +123,31 @@ namespace RetrospectiveManager.RadView
                 }
                 return;
             }
-            for (int i = 0; i < dt.Rows.Count; i++)
+
+            for (int i = 0; i < this.listView.Items.Count; i++)
             {
-                var v1 = dt.Rows[i][0].ToString();
-                foreach (ListViewItem listViewItem in this.listView.Items)
+                var val = this.listView.Items[i].Text;
+                if (IsExistMaterialCode(val, dt))
                 {
-                    if (v1.Equals(listViewItem.Text))
-                    {
-                        listViewItem.Checked = true;
-                    }
+                    this.listView.Items[i].Checked = true;
+                }
+                else
+                {
+                    this.listView.Items[i].Checked = false;
                 }
             }
+        }
+
+        private bool IsExistMaterialCode(string val,DataTable dt)
+        {
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                if (val.Equals(dt.Rows[i][0].ToString()))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

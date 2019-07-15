@@ -82,20 +82,9 @@
             this.radLabelElement1 = new Telerik.WinControls.UI.RadLabelElement();
             this.tool_status_user = new Telerik.WinControls.UI.RadLabelElement();
             this.radDock1 = new Telerik.WinControls.UI.Docking.RadDock();
-            this.documentWindow_testRes = new Telerik.WinControls.UI.Docking.DocumentWindow();
-            this.radPanel2 = new Telerik.WinControls.UI.RadPanel();
-            this.listView_TestRes = new Telerik.WinControls.UI.RadListView();
-            this.追溯码 = new Telerik.WinControls.UI.RadPanel();
-            this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
-            this.btn_search_lastTestRes = new Telerik.WinControls.UI.RadButton();
-            this.btn_search_record = new Telerik.WinControls.UI.RadButton();
-            this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
-            this.tb_sn = new System.Windows.Forms.TextBox();
-            this.toolTabStrip1 = new Telerik.WinControls.UI.Docking.ToolTabStrip();
             this.toolWindow_left = new Telerik.WinControls.UI.Docking.ToolWindow();
             this.radTreeView1 = new Telerik.WinControls.UI.RadTreeView();
+            this.toolTabStrip1 = new Telerik.WinControls.UI.Docking.ToolTabStrip();
             this.documentContainer2 = new Telerik.WinControls.UI.Docking.DocumentContainer();
             this.documentTabStrip1 = new Telerik.WinControls.UI.Docking.DocumentTabStrip();
             this.documentWindow_passRes = new Telerik.WinControls.UI.Docking.DocumentWindow();
@@ -106,35 +95,33 @@
             this.radButton1 = new Telerik.WinControls.UI.RadButton();
             this.radGridView1 = new Telerik.WinControls.UI.RadGridView();
             this.radTextBox1 = new Telerik.WinControls.UI.RadTextBox();
+            this.documentWindow_testRes = new Telerik.WinControls.UI.Docking.DocumentWindow();
+            this.radPanel2 = new Telerik.WinControls.UI.RadPanel();
+            this.listView_TestRes = new Telerik.WinControls.UI.RadListView();
+            this.追溯码 = new Telerik.WinControls.UI.RadPanel();
+            this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
+            this.cb_typeNo = new System.Windows.Forms.ComboBox();
+            this.cb_station = new System.Windows.Forms.ComboBox();
+            this.btn_search_lastTestRes = new Telerik.WinControls.UI.RadButton();
+            this.btn_search_record = new Telerik.WinControls.UI.RadButton();
+            this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
+            this.tb_sn = new System.Windows.Forms.TextBox();
             this.documentWindow_material_select = new Telerik.WinControls.UI.Docking.DocumentWindow();
             this.radGridView2 = new Telerik.WinControls.UI.RadGridView();
             this.radButton2 = new Telerik.WinControls.UI.RadButton();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.radMenu1 = new Telerik.WinControls.UI.RadMenu();
-            this.cb_station = new System.Windows.Forms.ComboBox();
-            this.cb_typeNo = new System.Windows.Forms.ComboBox();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radStatusStrip1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radDock1)).BeginInit();
             this.radDock1.SuspendLayout();
-            this.documentWindow_testRes.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanel2)).BeginInit();
-            this.radPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.listView_TestRes)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.追溯码)).BeginInit();
-            this.追溯码.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
-            this.radGroupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btn_search_lastTestRes)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btn_search_record)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip1)).BeginInit();
-            this.toolTabStrip1.SuspendLayout();
             this.toolWindow_left.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radTreeView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip1)).BeginInit();
+            this.toolTabStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.documentContainer2)).BeginInit();
             this.documentContainer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.documentTabStrip1)).BeginInit();
@@ -148,6 +135,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radTextBox1)).BeginInit();
+            this.documentWindow_testRes.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radPanel2)).BeginInit();
+            this.radPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.listView_TestRes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.追溯码)).BeginInit();
+            this.追溯码.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
+            this.radGroupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_search_lastTestRes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_search_record)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             this.documentWindow_material_select.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView2.MasterTemplate)).BeginInit();
@@ -243,6 +243,7 @@
             // 
             this.menu_set_station.Name = "menu_set_station";
             this.menu_set_station.Text = "配置产品站位";
+            this.menu_set_station.Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
             // 
             // menu_product_material
             // 
@@ -397,7 +398,7 @@
             // 
             // radDock1
             // 
-            this.radDock1.ActiveWindow = this.toolWindow_left;
+            this.radDock1.ActiveWindow = this.documentWindow_packageProduct;
             this.radDock1.CausesValidation = false;
             this.radDock1.Controls.Add(this.toolTabStrip1);
             this.radDock1.Controls.Add(this.documentContainer2);
@@ -414,111 +415,26 @@
             this.radDock1.TabIndex = 6;
             this.radDock1.TabStop = false;
             // 
-            // documentWindow_testRes
+            // toolWindow_left
             // 
-            this.documentWindow_testRes.Controls.Add(this.radPanel2);
-            this.documentWindow_testRes.Controls.Add(this.追溯码);
-            this.documentWindow_testRes.Font = new System.Drawing.Font("宋体", 9F);
-            this.documentWindow_testRes.Location = new System.Drawing.Point(6, 29);
-            this.documentWindow_testRes.Name = "documentWindow_testRes";
-            this.documentWindow_testRes.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.TabbedDocument;
-            this.documentWindow_testRes.Size = new System.Drawing.Size(1039, 582);
-            this.documentWindow_testRes.Text = "测试结果";
+            this.toolWindow_left.Caption = null;
+            this.toolWindow_left.Controls.Add(this.radTreeView1);
+            this.toolWindow_left.Font = new System.Drawing.Font("宋体", 9F);
+            this.toolWindow_left.Location = new System.Drawing.Point(1, 24);
+            this.toolWindow_left.Name = "toolWindow_left";
+            this.toolWindow_left.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.Docked;
+            this.toolWindow_left.Size = new System.Drawing.Size(254, 591);
+            this.toolWindow_left.Text = "产品资源管理器";
             // 
-            // radPanel2
+            // radTreeView1
             // 
-            this.radPanel2.Controls.Add(this.listView_TestRes);
-            this.radPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radPanel2.Location = new System.Drawing.Point(0, 68);
-            this.radPanel2.Name = "radPanel2";
-            this.radPanel2.Size = new System.Drawing.Size(1039, 514);
-            this.radPanel2.TabIndex = 12;
-            // 
-            // listView_TestRes
-            // 
-            this.listView_TestRes.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView_TestRes.Font = new System.Drawing.Font("新宋体", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listView_TestRes.Location = new System.Drawing.Point(0, 0);
-            this.listView_TestRes.Name = "listView_TestRes";
-            this.listView_TestRes.Size = new System.Drawing.Size(1039, 514);
-            this.listView_TestRes.TabIndex = 10;
-            // 
-            // 追溯码
-            // 
-            this.追溯码.Controls.Add(this.radGroupBox1);
-            this.追溯码.Dock = System.Windows.Forms.DockStyle.Top;
-            this.追溯码.Location = new System.Drawing.Point(0, 0);
-            this.追溯码.Name = "追溯码";
-            this.追溯码.Size = new System.Drawing.Size(1039, 68);
-            this.追溯码.TabIndex = 11;
-            // 
-            // radGroupBox1
-            // 
-            this.radGroupBox1.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this.radGroupBox1.Controls.Add(this.cb_typeNo);
-            this.radGroupBox1.Controls.Add(this.cb_station);
-            this.radGroupBox1.Controls.Add(this.btn_search_lastTestRes);
-            this.radGroupBox1.Controls.Add(this.btn_search_record);
-            this.radGroupBox1.Controls.Add(this.radLabel4);
-            this.radGroupBox1.Controls.Add(this.radLabel3);
-            this.radGroupBox1.Controls.Add(this.radLabel2);
-            this.radGroupBox1.Controls.Add(this.tb_sn);
-            this.radGroupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radGroupBox1.HeaderText = "查询条件";
-            this.radGroupBox1.Location = new System.Drawing.Point(0, 0);
-            this.radGroupBox1.Name = "radGroupBox1";
-            this.radGroupBox1.Size = new System.Drawing.Size(1039, 68);
-            this.radGroupBox1.TabIndex = 14;
-            this.radGroupBox1.Text = "查询条件";
-            // 
-            // btn_search_lastTestRes
-            // 
-            this.btn_search_lastTestRes.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_search_lastTestRes.Location = new System.Drawing.Point(648, 18);
-            this.btn_search_lastTestRes.Name = "btn_search_lastTestRes";
-            this.btn_search_lastTestRes.Size = new System.Drawing.Size(108, 22);
-            this.btn_search_lastTestRes.TabIndex = 8;
-            this.btn_search_lastTestRes.Text = "查询上一站位";
-            // 
-            // btn_search_record
-            // 
-            this.btn_search_record.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_search_record.Location = new System.Drawing.Point(792, 18);
-            this.btn_search_record.Name = "btn_search_record";
-            this.btn_search_record.Size = new System.Drawing.Size(108, 21);
-            this.btn_search_record.TabIndex = 12;
-            this.btn_search_record.Text = "查询历史记录";
-            // 
-            // radLabel4
-            // 
-            this.radLabel4.Location = new System.Drawing.Point(435, 24);
-            this.radLabel4.Name = "radLabel4";
-            this.radLabel4.Size = new System.Drawing.Size(42, 18);
-            this.radLabel4.TabIndex = 13;
-            this.radLabel4.Text = "站位名";
-            // 
-            // radLabel3
-            // 
-            this.radLabel3.Location = new System.Drawing.Point(248, 24);
-            this.radLabel3.Name = "radLabel3";
-            this.radLabel3.Size = new System.Drawing.Size(42, 18);
-            this.radLabel3.TabIndex = 10;
-            this.radLabel3.Text = "零件号";
-            // 
-            // radLabel2
-            // 
-            this.radLabel2.Location = new System.Drawing.Point(5, 25);
-            this.radLabel2.Name = "radLabel2";
-            this.radLabel2.Size = new System.Drawing.Size(42, 18);
-            this.radLabel2.TabIndex = 9;
-            this.radLabel2.Text = "追溯码";
-            // 
-            // tb_sn
-            // 
-            this.tb_sn.Location = new System.Drawing.Point(53, 23);
-            this.tb_sn.Name = "tb_sn";
-            this.tb_sn.Size = new System.Drawing.Size(180, 21);
-            this.tb_sn.TabIndex = 7;
+            this.radTreeView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radTreeView1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radTreeView1.Location = new System.Drawing.Point(0, 0);
+            this.radTreeView1.Name = "radTreeView1";
+            this.radTreeView1.Size = new System.Drawing.Size(254, 591);
+            this.radTreeView1.SpacingBetweenNodes = -1;
+            this.radTreeView1.TabIndex = 0;
             // 
             // toolTabStrip1
             // 
@@ -536,26 +452,6 @@
             this.toolTabStrip1.SizeInfo.SplitterCorrection = new System.Drawing.Size(56, 0);
             this.toolTabStrip1.TabIndex = 1;
             this.toolTabStrip1.TabStop = false;
-            // 
-            // toolWindow_left
-            // 
-            this.toolWindow_left.Caption = null;
-            this.toolWindow_left.Controls.Add(this.radTreeView1);
-            this.toolWindow_left.Font = new System.Drawing.Font("宋体", 9F);
-            this.toolWindow_left.Location = new System.Drawing.Point(1, 24);
-            this.toolWindow_left.Name = "toolWindow_left";
-            this.toolWindow_left.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.Docked;
-            this.toolWindow_left.Size = new System.Drawing.Size(254, 591);
-            this.toolWindow_left.Text = "产品资源管理器";
-            // 
-            // radTreeView1
-            // 
-            this.radTreeView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radTreeView1.Location = new System.Drawing.Point(0, 0);
-            this.radTreeView1.Name = "radTreeView1";
-            this.radTreeView1.Size = new System.Drawing.Size(254, 591);
-            this.radTreeView1.SpacingBetweenNodes = -1;
-            this.radTreeView1.TabIndex = 0;
             // 
             // documentContainer2
             // 
@@ -585,7 +481,7 @@
             // 
             // 
             this.documentTabStrip1.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.documentTabStrip1.SelectedIndex = 2;
+            this.documentTabStrip1.SelectedIndex = 1;
             this.documentTabStrip1.Size = new System.Drawing.Size(1051, 617);
             this.documentTabStrip1.TabIndex = 0;
             this.documentTabStrip1.TabStop = false;
@@ -690,25 +586,28 @@
             // 
             // radRadioButton2
             // 
-            this.radRadioButton2.Location = new System.Drawing.Point(77, 14);
+            this.radRadioButton2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radRadioButton2.Location = new System.Drawing.Point(95, 14);
             this.radRadioButton2.Name = "radRadioButton2";
-            this.radRadioButton2.Size = new System.Drawing.Size(79, 18);
+            this.radRadioButton2.Size = new System.Drawing.Size(91, 21);
             this.radRadioButton2.TabIndex = 5;
             this.radRadioButton2.Text = "产品追溯码";
             // 
             // radRadioButton1
             // 
+            this.radRadioButton1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radRadioButton1.Location = new System.Drawing.Point(3, 14);
             this.radRadioButton1.Name = "radRadioButton1";
-            this.radRadioButton1.Size = new System.Drawing.Size(68, 18);
+            this.radRadioButton1.Size = new System.Drawing.Size(77, 21);
             this.radRadioButton1.TabIndex = 4;
             this.radRadioButton1.Text = "箱子编码";
             // 
             // radButton1
             // 
-            this.radButton1.Location = new System.Drawing.Point(388, 14);
+            this.radButton1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radButton1.Location = new System.Drawing.Point(435, 13);
             this.radButton1.Name = "radButton1";
-            this.radButton1.Size = new System.Drawing.Size(72, 21);
+            this.radButton1.Size = new System.Drawing.Size(72, 24);
             this.radButton1.TabIndex = 3;
             this.radButton1.Text = "查询";
             // 
@@ -717,6 +616,7 @@
             this.radGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.radGridView1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radGridView1.Location = new System.Drawing.Point(0, 40);
             // 
             // 
@@ -728,10 +628,141 @@
             // 
             // radTextBox1
             // 
-            this.radTextBox1.Location = new System.Drawing.Point(180, 14);
+            this.radTextBox1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radTextBox1.Location = new System.Drawing.Point(211, 14);
             this.radTextBox1.Name = "radTextBox1";
-            this.radTextBox1.Size = new System.Drawing.Size(189, 20);
+            this.radTextBox1.Size = new System.Drawing.Size(189, 23);
             this.radTextBox1.TabIndex = 1;
+            // 
+            // documentWindow_testRes
+            // 
+            this.documentWindow_testRes.Controls.Add(this.radPanel2);
+            this.documentWindow_testRes.Controls.Add(this.追溯码);
+            this.documentWindow_testRes.Font = new System.Drawing.Font("宋体", 9F);
+            this.documentWindow_testRes.Location = new System.Drawing.Point(6, 29);
+            this.documentWindow_testRes.Name = "documentWindow_testRes";
+            this.documentWindow_testRes.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.TabbedDocument;
+            this.documentWindow_testRes.Size = new System.Drawing.Size(1039, 582);
+            this.documentWindow_testRes.Text = "测试结果";
+            // 
+            // radPanel2
+            // 
+            this.radPanel2.Controls.Add(this.listView_TestRes);
+            this.radPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radPanel2.Location = new System.Drawing.Point(0, 68);
+            this.radPanel2.Name = "radPanel2";
+            this.radPanel2.Size = new System.Drawing.Size(1039, 514);
+            this.radPanel2.TabIndex = 12;
+            // 
+            // listView_TestRes
+            // 
+            this.listView_TestRes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listView_TestRes.Font = new System.Drawing.Font("新宋体", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.listView_TestRes.Location = new System.Drawing.Point(0, 0);
+            this.listView_TestRes.Name = "listView_TestRes";
+            this.listView_TestRes.Size = new System.Drawing.Size(1039, 514);
+            this.listView_TestRes.TabIndex = 10;
+            // 
+            // 追溯码
+            // 
+            this.追溯码.Controls.Add(this.radGroupBox1);
+            this.追溯码.Dock = System.Windows.Forms.DockStyle.Top;
+            this.追溯码.Location = new System.Drawing.Point(0, 0);
+            this.追溯码.Name = "追溯码";
+            this.追溯码.Size = new System.Drawing.Size(1039, 68);
+            this.追溯码.TabIndex = 11;
+            // 
+            // radGroupBox1
+            // 
+            this.radGroupBox1.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this.radGroupBox1.BackColor = System.Drawing.Color.Transparent;
+            this.radGroupBox1.Controls.Add(this.cb_typeNo);
+            this.radGroupBox1.Controls.Add(this.cb_station);
+            this.radGroupBox1.Controls.Add(this.btn_search_lastTestRes);
+            this.radGroupBox1.Controls.Add(this.btn_search_record);
+            this.radGroupBox1.Controls.Add(this.radLabel4);
+            this.radGroupBox1.Controls.Add(this.radLabel3);
+            this.radGroupBox1.Controls.Add(this.radLabel2);
+            this.radGroupBox1.Controls.Add(this.tb_sn);
+            this.radGroupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radGroupBox1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radGroupBox1.HeaderText = "查询条件";
+            this.radGroupBox1.Location = new System.Drawing.Point(0, 0);
+            this.radGroupBox1.Name = "radGroupBox1";
+            this.radGroupBox1.Size = new System.Drawing.Size(1039, 68);
+            this.radGroupBox1.TabIndex = 14;
+            this.radGroupBox1.Text = "查询条件";
+            // 
+            // cb_typeNo
+            // 
+            this.cb_typeNo.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cb_typeNo.FormattingEnabled = true;
+            this.cb_typeNo.Location = new System.Drawing.Point(329, 25);
+            this.cb_typeNo.Name = "cb_typeNo";
+            this.cb_typeNo.Size = new System.Drawing.Size(119, 23);
+            this.cb_typeNo.TabIndex = 15;
+            // 
+            // cb_station
+            // 
+            this.cb_station.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cb_station.FormattingEnabled = true;
+            this.cb_station.Location = new System.Drawing.Point(549, 27);
+            this.cb_station.Name = "cb_station";
+            this.cb_station.Size = new System.Drawing.Size(127, 23);
+            this.cb_station.TabIndex = 14;
+            // 
+            // btn_search_lastTestRes
+            // 
+            this.btn_search_lastTestRes.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_search_lastTestRes.Location = new System.Drawing.Point(753, 24);
+            this.btn_search_lastTestRes.Name = "btn_search_lastTestRes";
+            this.btn_search_lastTestRes.Size = new System.Drawing.Size(108, 26);
+            this.btn_search_lastTestRes.TabIndex = 8;
+            this.btn_search_lastTestRes.Text = "查询上一站位";
+            // 
+            // btn_search_record
+            // 
+            this.btn_search_record.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_search_record.Location = new System.Drawing.Point(887, 24);
+            this.btn_search_record.Name = "btn_search_record";
+            this.btn_search_record.Size = new System.Drawing.Size(108, 26);
+            this.btn_search_record.TabIndex = 12;
+            this.btn_search_record.Text = "查询历史记录";
+            // 
+            // radLabel4
+            // 
+            this.radLabel4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel4.Location = new System.Drawing.Point(491, 27);
+            this.radLabel4.Name = "radLabel4";
+            this.radLabel4.Size = new System.Drawing.Size(49, 21);
+            this.radLabel4.TabIndex = 13;
+            this.radLabel4.Text = "站位名";
+            // 
+            // radLabel3
+            // 
+            this.radLabel3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel3.Location = new System.Drawing.Point(274, 27);
+            this.radLabel3.Name = "radLabel3";
+            this.radLabel3.Size = new System.Drawing.Size(49, 21);
+            this.radLabel3.TabIndex = 10;
+            this.radLabel3.Text = "零件号";
+            // 
+            // radLabel2
+            // 
+            this.radLabel2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel2.Location = new System.Drawing.Point(5, 25);
+            this.radLabel2.Name = "radLabel2";
+            this.radLabel2.Size = new System.Drawing.Size(49, 21);
+            this.radLabel2.TabIndex = 9;
+            this.radLabel2.Text = "追溯码";
+            // 
+            // tb_sn
+            // 
+            this.tb_sn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb_sn.Location = new System.Drawing.Point(62, 25);
+            this.tb_sn.Name = "tb_sn";
+            this.tb_sn.Size = new System.Drawing.Size(180, 25);
+            this.tb_sn.TabIndex = 7;
             // 
             // documentWindow_material_select
             // 
@@ -739,7 +770,7 @@
             this.documentWindow_material_select.Controls.Add(this.radButton2);
             this.documentWindow_material_select.Controls.Add(this.comboBox1);
             this.documentWindow_material_select.Controls.Add(this.radLabel1);
-            this.documentWindow_material_select.Font = new System.Drawing.Font("宋体", 9F);
+            this.documentWindow_material_select.Font = new System.Drawing.Font("宋体", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.documentWindow_material_select.Location = new System.Drawing.Point(6, 29);
             this.documentWindow_material_select.Name = "documentWindow_material_select";
             this.documentWindow_material_select.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.TabbedDocument;
@@ -751,6 +782,7 @@
             this.radGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.radGridView2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radGridView2.Location = new System.Drawing.Point(0, 48);
             // 
             // 
@@ -762,25 +794,27 @@
             // 
             // radButton2
             // 
-            this.radButton2.Location = new System.Drawing.Point(213, 22);
+            this.radButton2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radButton2.Location = new System.Drawing.Point(213, 20);
             this.radButton2.Name = "radButton2";
-            this.radButton2.Size = new System.Drawing.Size(110, 21);
+            this.radButton2.Size = new System.Drawing.Size(110, 23);
             this.radButton2.TabIndex = 3;
             this.radButton2.Text = "查询";
             // 
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(65, 22);
+            this.comboBox1.Location = new System.Drawing.Point(72, 21);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 20);
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
             this.comboBox1.TabIndex = 2;
             // 
             // radLabel1
             // 
-            this.radLabel1.Location = new System.Drawing.Point(3, 24);
+            this.radLabel1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel1.Location = new System.Drawing.Point(3, 20);
             this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(54, 18);
+            this.radLabel1.Size = new System.Drawing.Size(63, 21);
             this.radLabel1.TabIndex = 1;
             this.radLabel1.Text = "产品型号";
             // 
@@ -798,22 +832,6 @@
             this.radMenu1.Size = new System.Drawing.Size(1321, 23);
             this.radMenu1.TabIndex = 0;
             // 
-            // cb_station
-            // 
-            this.cb_station.FormattingEnabled = true;
-            this.cb_station.Location = new System.Drawing.Point(483, 20);
-            this.cb_station.Name = "cb_station";
-            this.cb_station.Size = new System.Drawing.Size(127, 20);
-            this.cb_station.TabIndex = 14;
-            // 
-            // cb_typeNo
-            // 
-            this.cb_typeNo.FormattingEnabled = true;
-            this.cb_typeNo.Location = new System.Drawing.Point(296, 23);
-            this.cb_typeNo.Name = "cb_typeNo";
-            this.cb_typeNo.Size = new System.Drawing.Size(119, 20);
-            this.cb_typeNo.TabIndex = 15;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -824,6 +842,7 @@
             this.Controls.Add(this.radStatusStrip1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.radMenu1);
+            this.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "MainForm";
             // 
             // 
@@ -836,24 +855,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.radStatusStrip1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radDock1)).EndInit();
             this.radDock1.ResumeLayout(false);
-            this.documentWindow_testRes.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radPanel2)).EndInit();
-            this.radPanel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.listView_TestRes)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.追溯码)).EndInit();
-            this.追溯码.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).EndInit();
-            this.radGroupBox1.ResumeLayout(false);
-            this.radGroupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btn_search_lastTestRes)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btn_search_record)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip1)).EndInit();
-            this.toolTabStrip1.ResumeLayout(false);
             this.toolWindow_left.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radTreeView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip1)).EndInit();
+            this.toolTabStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.documentContainer2)).EndInit();
             this.documentContainer2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.documentTabStrip1)).EndInit();
@@ -868,6 +873,20 @@
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radTextBox1)).EndInit();
+            this.documentWindow_testRes.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radPanel2)).EndInit();
+            this.radPanel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.listView_TestRes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.追溯码)).EndInit();
+            this.追溯码.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).EndInit();
+            this.radGroupBox1.ResumeLayout(false);
+            this.radGroupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_search_lastTestRes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_search_record)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             this.documentWindow_material_select.ResumeLayout(false);
             this.documentWindow_material_select.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView2.MasterTemplate)).EndInit();
