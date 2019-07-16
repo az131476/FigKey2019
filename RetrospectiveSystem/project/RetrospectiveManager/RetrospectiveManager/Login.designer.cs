@@ -30,6 +30,7 @@ namespace RetrospectiveManager
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             this.tbx_username = new System.Windows.Forms.RichTextBox();
             this.tbx_pwd = new System.Windows.Forms.RichTextBox();
             this.lbx_username = new Telerik.WinControls.UI.RadLabel();
@@ -42,6 +43,7 @@ namespace RetrospectiveManager
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.cob_userType = new System.Windows.Forms.ComboBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.figKeyLog1 = new RetrospectiveManager.FigKeyLog();
             ((System.ComponentModel.ISupportInitialize)(this.lbx_username)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lbx_pwd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cb_memberpwd)).BeginInit();
@@ -56,7 +58,7 @@ namespace RetrospectiveManager
             // tbx_username
             // 
             this.tbx_username.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbx_username.Location = new System.Drawing.Point(129, 225);
+            this.tbx_username.Location = new System.Drawing.Point(111, 188);
             this.tbx_username.Name = "tbx_username";
             this.tbx_username.Size = new System.Drawing.Size(269, 28);
             this.tbx_username.TabIndex = 0;
@@ -65,7 +67,7 @@ namespace RetrospectiveManager
             // tbx_pwd
             // 
             this.tbx_pwd.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbx_pwd.Location = new System.Drawing.Point(129, 281);
+            this.tbx_pwd.Location = new System.Drawing.Point(111, 244);
             this.tbx_pwd.Name = "tbx_pwd";
             this.tbx_pwd.Size = new System.Drawing.Size(269, 28);
             this.tbx_pwd.TabIndex = 1;
@@ -74,7 +76,7 @@ namespace RetrospectiveManager
             // lbx_username
             // 
             this.lbx_username.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbx_username.Location = new System.Drawing.Point(36, 225);
+            this.lbx_username.Location = new System.Drawing.Point(18, 188);
             this.lbx_username.Name = "lbx_username";
             this.lbx_username.Size = new System.Drawing.Size(56, 24);
             this.lbx_username.TabIndex = 2;
@@ -83,7 +85,7 @@ namespace RetrospectiveManager
             // lbx_pwd
             // 
             this.lbx_pwd.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbx_pwd.Location = new System.Drawing.Point(36, 285);
+            this.lbx_pwd.Location = new System.Drawing.Point(18, 248);
             this.lbx_pwd.Name = "lbx_pwd";
             this.lbx_pwd.Size = new System.Drawing.Size(40, 24);
             this.lbx_pwd.TabIndex = 3;
@@ -92,7 +94,7 @@ namespace RetrospectiveManager
             // cb_memberpwd
             // 
             this.cb_memberpwd.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cb_memberpwd.Location = new System.Drawing.Point(129, 333);
+            this.cb_memberpwd.Location = new System.Drawing.Point(111, 290);
             this.cb_memberpwd.Name = "cb_memberpwd";
             this.cb_memberpwd.Size = new System.Drawing.Size(77, 21);
             this.cb_memberpwd.TabIndex = 4;
@@ -101,7 +103,7 @@ namespace RetrospectiveManager
             // cb_autologin
             // 
             this.cb_autologin.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cb_autologin.Location = new System.Drawing.Point(212, 333);
+            this.cb_autologin.Location = new System.Drawing.Point(194, 290);
             this.cb_autologin.Name = "cb_autologin";
             this.cb_autologin.Size = new System.Drawing.Size(77, 21);
             this.cb_autologin.TabIndex = 5;
@@ -110,7 +112,7 @@ namespace RetrospectiveManager
             // lbx_ToFindPwd
             // 
             this.lbx_ToFindPwd.AutoSize = true;
-            this.lbx_ToFindPwd.Location = new System.Drawing.Point(313, 331);
+            this.lbx_ToFindPwd.Location = new System.Drawing.Point(295, 288);
             this.lbx_ToFindPwd.Name = "lbx_ToFindPwd";
             this.lbx_ToFindPwd.Size = new System.Drawing.Size(85, 21);
             this.lbx_ToFindPwd.TabIndex = 6;
@@ -119,7 +121,7 @@ namespace RetrospectiveManager
             // 
             // lbx_regist
             // 
-            this.lbx_regist.Location = new System.Drawing.Point(36, 400);
+            this.lbx_regist.Location = new System.Drawing.Point(4, 359);
             this.lbx_regist.Name = "lbx_regist";
             this.lbx_regist.Size = new System.Drawing.Size(54, 18);
             this.lbx_regist.TabIndex = 7;
@@ -129,7 +131,7 @@ namespace RetrospectiveManager
             // 
             this.btn_login.BackColor = System.Drawing.Color.DodgerBlue;
             this.btn_login.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_login.Location = new System.Drawing.Point(129, 382);
+            this.btn_login.Location = new System.Drawing.Point(111, 341);
             this.btn_login.Name = "btn_login";
             this.btn_login.Size = new System.Drawing.Size(269, 36);
             this.btn_login.TabIndex = 9;
@@ -139,7 +141,7 @@ namespace RetrospectiveManager
             // radLabel1
             // 
             this.radLabel1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel1.Location = new System.Drawing.Point(36, 164);
+            this.radLabel1.Location = new System.Drawing.Point(18, 127);
             this.radLabel1.Name = "radLabel1";
             this.radLabel1.Size = new System.Drawing.Size(72, 24);
             this.radLabel1.TabIndex = 11;
@@ -149,27 +151,37 @@ namespace RetrospectiveManager
             // 
             this.cob_userType.Font = new System.Drawing.Font("Segoe UI", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cob_userType.FormattingEnabled = true;
-            this.cob_userType.Location = new System.Drawing.Point(129, 164);
+            this.cob_userType.Location = new System.Drawing.Point(111, 127);
             this.cob_userType.Name = "cob_userType";
             this.cob_userType.Size = new System.Drawing.Size(269, 27);
             this.cob_userType.TabIndex = 12;
             // 
             // pictureBox1
             // 
+            this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pictureBox1.Image = global::RetrospectiveManager.Properties.Resources.figkeyLogo;
+            this.pictureBox1.ImageLocation = "";
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(463, 137);
+            this.pictureBox1.Size = new System.Drawing.Size(420, 105);
             this.pictureBox1.TabIndex = 13;
             this.pictureBox1.TabStop = false;
+            // 
+            // figKeyLog1
+            // 
+            this.figKeyLog1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.figKeyLog1.Location = new System.Drawing.Point(18, 29);
+            this.figKeyLog1.Name = "figKeyLog1";
+            this.figKeyLog1.Size = new System.Drawing.Size(395, 62);
+            this.figKeyLog1.TabIndex = 14;
             // 
             // Login
             // 
             this.AcceptButton = this.btn_login;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(463, 435);
+            this.ClientSize = new System.Drawing.Size(420, 389);
+            this.Controls.Add(this.figKeyLog1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.cob_userType);
             this.Controls.Add(this.radLabel1);
@@ -183,6 +195,7 @@ namespace RetrospectiveManager
             this.Controls.Add(this.tbx_pwd);
             this.Controls.Add(this.tbx_username);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Login";
             // 
             // 
@@ -201,7 +214,7 @@ namespace RetrospectiveManager
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
-            this.pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+
         }
 
         #endregion
@@ -218,5 +231,6 @@ namespace RetrospectiveManager
         private Telerik.WinControls.UI.RadLabel radLabel1;
         private System.Windows.Forms.ComboBox cob_userType;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private FigKeyLog figKeyLog1;
     }
 }

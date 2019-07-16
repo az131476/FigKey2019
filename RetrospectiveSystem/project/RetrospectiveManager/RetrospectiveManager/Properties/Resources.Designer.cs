@@ -63,6 +63,16 @@ namespace RetrospectiveManager.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap favicon {
+            get {
+                object obj = ResourceManager.GetObject("favicon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap figkeyLogo {
             get {
                 object obj = ResourceManager.GetObject("figkeyLogo", resourceCulture);
@@ -76,6 +86,36 @@ namespace RetrospectiveManager.Properties {
         internal static System.Drawing.Bitmap figkeyLogo1 {
             get {
                 object obj = ResourceManager.GetObject("figkeyLogo1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap movieLab_bg {
+            get {
+                object obj = ResourceManager.GetObject("movieLab_bg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap ThViewer_bg {
+            get {
+                object obj = ResourceManager.GetObject("ThViewer_bg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap vsb_bg {
+            get {
+                object obj = ResourceManager.GetObject("vsb_bg", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -9,6 +9,7 @@ namespace RetrospectiveManager
 {
     static class Program
     {
+        private static ApplicationContext applicationContext;
         /// <summary>
         /// 应用程序的主入口点。
         /// </summary>
@@ -17,11 +18,36 @@ namespace RetrospectiveManager
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Login login = new Login();
-            login.ShowDialog();
-            if (login.DialogResult == DialogResult.OK)
+
+            WelcomeForm welcomeForm = new WelcomeForm();
+            welcomeForm.Show();
+            applicationContext = new ApplicationContext();
+            applicationContext.Tag = welcomeForm;
+            Application.Idle += Application_Idle;
+            Application.Run(applicationContext);
+
+            //Login login = new Login();
+            //login.ShowDialog();
+            //if (login.DialogResult == DialogResult.OK)
+            //{
+            //    Application.Run(new MainForm());
+            //}
+        }
+
+        private static void Application_Idle(object sender, EventArgs e)
+        {
+            Application.Idle -= new EventHandler(Application_Idle);
+            if (applicationContext.MainForm == null)
             {
-                Application.Run(new MainForm());
+                MainForm mainForm = new MainForm();
+                applicationContext.MainForm = mainForm;
+                //初始化
+                mainForm.InitMainForm();
+
+                WelcomeForm welcomeForm = applicationContext.Tag as WelcomeForm;
+                welcomeForm.Close();
+
+                mainForm.Show();
             }
         }
     }

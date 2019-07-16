@@ -10,6 +10,7 @@ using CommonUtils.Logger;
 using System.Web;
 using System.Net;
 using System.IO;
+using System.Drawing.Imaging;
 
 namespace RetrospectiveManager
 {
@@ -24,7 +25,7 @@ namespace RetrospectiveManager
             InitializeComponent();
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
-            this.StartPosition = FormStartPosition.CenterScreen; 
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         /// 解决跨线程调用UI组件问题     
@@ -210,12 +211,6 @@ namespace RetrospectiveManager
             cob_userType.Items.Add(USER_ADMIN);
             cob_userType.Items.Add(USER_ORDINARY);
             cob_userType.SelectedIndex = (int)UserType.USER_ADMIN;
-
-
         }
-
-        //找回密码
-
-        //注册新账号
     }
 }

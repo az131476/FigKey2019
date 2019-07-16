@@ -1,6 +1,6 @@
 ﻿namespace MesClientTest
 {
-    partial class Form1
+    partial class TestInterface
     {
         /// <summary>
         /// 必需的设计器变量。
@@ -47,10 +47,12 @@
             this.tb_st_type = new System.Windows.Forms.TextBox();
             this.tb_st_sn = new System.Windows.Forms.TextBox();
             this.btn_commit = new System.Windows.Forms.Button();
+            this.radPanorama1 = new Telerik.WinControls.UI.RadPanorama();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
             this.radGroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).BeginInit();
             this.radGroupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radPanorama1)).BeginInit();
             this.SuspendLayout();
             // 
             // radGroupBox1
@@ -68,6 +70,7 @@
             this.radGroupBox1.Size = new System.Drawing.Size(664, 148);
             this.radGroupBox1.TabIndex = 0;
             this.radGroupBox1.Text = "firstCheck";
+            this.radGroupBox1.Click += new System.EventHandler(this.RadGroupBox1_Click);
             // 
             // label3
             // 
@@ -227,11 +230,19 @@
             this.btn_commit.UseVisualStyleBackColor = true;
             this.btn_commit.Click += new System.EventHandler(this.Btn_commit_Click);
             // 
+            // radPanorama1
+            // 
+            this.radPanorama1.Location = new System.Drawing.Point(698, 12);
+            this.radPanorama1.Name = "radPanorama1";
+            this.radPanorama1.Size = new System.Drawing.Size(404, 408);
+            this.radPanorama1.TabIndex = 6;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(737, 471);
+            this.ClientSize = new System.Drawing.Size(1114, 471);
+            this.Controls.Add(this.radPanorama1);
             this.Controls.Add(this.btn_commit);
             this.Controls.Add(this.radGroupBox2);
             this.Controls.Add(this.radGroupBox1);
@@ -244,6 +255,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).EndInit();
             this.radGroupBox2.ResumeLayout(false);
             this.radGroupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radPanorama1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -269,6 +281,7 @@
         private System.Windows.Forms.TextBox tb_st_type;
         private System.Windows.Forms.TextBox tb_st_sn;
         private System.Windows.Forms.Button btn_commit;
+        private Telerik.WinControls.UI.RadPanorama radPanorama1;
     }
 }
 

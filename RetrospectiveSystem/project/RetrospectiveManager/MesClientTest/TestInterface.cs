@@ -7,14 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Telerik.WinControls.UI.Docking;
 
 
 namespace MesClientTest
 {
-    public partial class Form1 : Form
+    public partial class TestInterface : Form
     {
         private MesService.MesServiceClient mesService;
-        public Form1()
+        public TestInterface()
         {
             InitializeComponent();
         }
@@ -26,6 +27,12 @@ namespace MesClientTest
 
         private void Btn_commit_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void RadGroupBox1_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }
