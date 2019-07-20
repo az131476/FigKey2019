@@ -37,7 +37,14 @@ namespace AnalysisAgreeMent
         private static MemorySegmentClass MemoryInformation;
         private static PropertyClass propertyInformation;
         private static IF_DATA_ASAP1B_CCP if_data_asap1b_ccp;
-        private static ProtocolLayer protocolLayer;
+        private static IF_DATA_ASAP1B_CCP.CCP_SEG cCP_SEG;
+        private static IF_DATA_ASAP1B_CCP.CCP_10MS cCP_10MS;
+        private static IF_DATA_ASAP1B_CCP.CCP_100MS cCP_100MS;
+        private static XcpOnCan xcpOnCan;
+        private static XcpOnCan.VehicleAppl xcpOnCanAppl;
+        private static XcpOnCan.VehicleApplRam xcpOnCanApplRam;
+        private static XcpOnCan.CalibrationLe xcpOnCanCalibrationLe;
+        private static XcpOnCan.CalibrationLeRam xcpOnCanCalibrationLeRam;
 
         private static List<MeasureMent> measureList = new List<MeasureMent>();
         private static List<Characteristic> characterList = new List<Characteristic>();
@@ -46,7 +53,7 @@ namespace AnalysisAgreeMent
         private static List<RecordLayoutClass> RecordList = new List<RecordLayoutClass>();
         private static List<MemorySegmentClass> MemoryList = new List<MemorySegmentClass>();
         private static List<PropertyClass> propertyList = new List<PropertyClass>();
-        private static List<IF_DATA_ASAP1B_CCP> asap1b_ccp_list = new List<IF_DATA_ASAP1B_CCP>();
+        //private static List<IF_DATA_ASAP1B_CCP> asap1b_ccp_list = new List<IF_DATA_ASAP1B_CCP>();
         #endregion
 
         #region 公有成员变量
@@ -65,7 +72,7 @@ namespace AnalysisAgreeMent
         /// <param name="A2lPath">a2l绝对路径</param>
         /// <param name="Protocol">0-CCP,1-XCP</param>
         /// <returns></returns>
-        public CodeCommand AnalyzeXcpFile(string A2lPath, int Protocol)
+        public CodeCommand AnalyzeXcpFile(string A2lPath)
         {
             try
             {
@@ -92,15 +99,19 @@ namespace AnalysisAgreeMent
                     {
                         signTemp = signTemp.TrimStart();
                     }
+                    if (signTemp.Contains(A2lContent.Xcp_On_Can.XCP_ON_CAN_BEGIN))
+                    {
+                        signTemp = signTemp.Trim();
+                    }
                     switch (signTemp)
                     {
                         case A2lContent.BeginmodCommon.BEGINMOD_COMMON:
                             //解析字节顺序
                             AnalysisModCommon();
                             break;
-                        case A2lContent.BeginXcpOnCan.BEGINXCP_ON_CAN:
-                            //AnalysisXcpOnCan(Protocol);
-                            break;
+                        //case A2lContent.BeginXcpOnCan.BEGINXCP_ON_CAN:
+                        //    //AnalysisXcpOnCan(Protocol);
+                        //    break;
                         case A2lContent.BeginMeasurement.BEGIN_MEASUREMENT:
                             //测量值
                             AnalysisMeasureMent();
@@ -122,9 +133,9 @@ namespace AnalysisAgreeMent
                             xcpData.AgreeMentType = AgreementType.CCP;
                             AnalysisIF_DATA_ASAP1B_CCP();
                             break;
-                        case "TRANSPORT_LAYER_INSTANCE":
+                        case A2lContent.Xcp_On_Can.XCP_ON_CAN_BEGIN:
                             xcpData.AgreeMentType = AgreementType.XCP;
-                            TRANSPORT_LAYER_INSTANCE();
+                            XCP_ON_CAN();
                             break;
 
                         default:
@@ -135,6 +146,8 @@ namespace AnalysisAgreeMent
                 xcpData.PropertyData = propertyList;
                 xcpData.MeasureData = measureList;
                 xcpData.MetholdData = MetholdList;
+                xcpData.XcpOnCanData = xcpOnCan;
+                xcpData.IF_DATA_ASAP1B_CCP_DATA = if_data_asap1b_ccp;
                 LogHelper.Log.Info("解析完成："+propertyList.Count+"  "+measureList.Count+"  "+MetholdList.Count);
                 #endregion
 
@@ -368,7 +381,7 @@ namespace AnalysisAgreeMent
                 {
                     string ecuDecString = readLineResult.ToLower().Replace("ecu_address", "").Trim();
                     string tem = ecuDecString.Replace("0x", "").Trim();
-                    measureMent.EcuAddress = Convert.ToInt64(tem, 16);
+                    measureMent.EcuAddress = ecuDecString;//Convert.ToInt64(tem, 16);
                 }
                 index++;
             }
@@ -939,8 +952,8 @@ namespace AnalysisAgreeMent
         /// </summary>
         private void AnalysisIF_DATA_ASAP1B_CCP()
         {
-            index = 0;
             if_data_asap1b_ccp = new IF_DATA_ASAP1B_CCP();
+            
             while (readLineResult.ToLower() != A2lContent.Begin_If_Data_Asap1b_ccp.END_IF_DATA_ASAP1B_CCP)
             {
                 readLineResult = A2lReader.ReadLine().Trim();
@@ -948,42 +961,261 @@ namespace AnalysisAgreeMent
                 {
                     break;
                 }
-                if (readLineResult.Contains("/* daq name"))
+                cCP_SEG = new IF_DATA_ASAP1B_CCP.CCP_SEG();
+                cCP_10MS = new IF_DATA_ASAP1B_CCP.CCP_10MS();
+                cCP_100MS = new IF_DATA_ASAP1B_CCP.CCP_100MS();
+                while (true)
                 {
-
+                    readLineResult = A2lReader.ReadLine().Trim();
+                    if (readLineResult.Contains("/end SOURCE"))
+                        break;
+                    if (readLineResult.Contains("daq name"))
+                    {
+                        readLineResult = readLineResult.Replace("/* dap name", "").Replace("*/", "").Replace('"', ' ').Trim();
+                        cCP_SEG.DAQ_NAME = readLineResult;
+                    }
+                    if (readLineResult.Contains("CAN_ID_FIXED"))
+                    {
+                        readLineResult = readLineResult.Replace("CAN_ID_FIXED", "").Trim();
+                        cCP_SEG.CAN_ID_FIXED = readLineResult;
+                    }
+                }
+                while (true)
+                {
+                    readLineResult = A2lReader.ReadLine().Trim();
+                    if (readLineResult.Contains("/end SOURCE"))
+                        break;
+                    if (readLineResult.Contains("daq name"))
+                    {
+                        readLineResult = readLineResult.Replace("/*", "").Replace("dap name","").Replace("*/", "").Replace('"', ' ').Trim();
+                        cCP_10MS.DAQ_NAME = readLineResult;
+                    }
+                    if (readLineResult.Contains("CAN_ID_FIXED"))
+                    {
+                        LogHelper.Log.Info($"10msatfer={readLineResult}");
+                        readLineResult = readLineResult.Replace("CAN_ID_FIXED", "").Trim();
+                        LogHelper.Log.Info($"10msatfer={readLineResult}");
+                        cCP_10MS.CAN_ID_FIXED = readLineResult;
+                    }
+                }
+                while (true)
+                {
+                    readLineResult = A2lReader.ReadLine().Trim();
+                    if (readLineResult.Contains("/end SOURCE"))
+                        break;
+                    if (readLineResult.Contains("daq name"))
+                    {
+                        readLineResult = readLineResult.Replace("/* dap name", "").Replace("*/", "").Replace('"', ' ').Trim();
+                        cCP_100MS.DAQ_NAME = readLineResult;
+                    }
+                    if (readLineResult.Contains("CAN_ID_FIXED"))
+                    {
+                        readLineResult = readLineResult.Replace("CAN_ID_FIXED", "").Trim();
+                        cCP_100MS.CAN_ID_FIXED = readLineResult;
+                    }
+                }
+                while (true)
+                {
+                    readLineResult = A2lReader.ReadLine().Trim();
+                    if (readLineResult.Contains("/end TP_BLOB"))
+                        break;
+                    if (readLineResult.Contains("CCP version"))
+                    {
+                        readLineResult = readLineResult.Replace("CCP version","").Replace("*/","").Replace("/*","").Trim();
+                        if_data_asap1b_ccp.CCP_VERSION = readLineResult;
+                    }
+                    if (readLineResult.Contains("Blob version"))
+                    {
+                        readLineResult = readLineResult.Replace("Blob version","").Replace("*/","").Replace("/*", "").Trim();
+                        if_data_asap1b_ccp.BLOB_VERSION = readLineResult;
+                    }
+                    if (readLineResult.Contains("CAN msg ID-send"))
+                    {
+                        readLineResult = readLineResult.Replace("CAN msg ID-send","").Replace("*/","").Replace("/*", "").Trim();
+                        if_data_asap1b_ccp.CAN_MSG_ID_SEND = readLineResult;
+                    }
+                    if (readLineResult.Contains("CAN msg ID-recv"))
+                    {
+                        readLineResult = readLineResult.Replace("CAN msg ID-recv", "").Replace("*/", "").Replace("/*", "").Trim();
+                        if_data_asap1b_ccp.CAN_MSG_ID_RECE = readLineResult;
+                    }
+                    if (readLineResult.Contains("station address"))
+                    {
+                        readLineResult = readLineResult.Replace("station address", "").Replace("*/", "").Replace("/*", "").Trim();
+                        if_data_asap1b_ccp.STATION_ADDRESS = readLineResult;
+                    }
+                    if (readLineResult.Contains("byte order"))
+                    {
+                        readLineResult = readLineResult.Replace("byte order", "").Replace("*/", "").Replace("/*", "").Trim();
+                        if_data_asap1b_ccp.BYTE_ORDER = readLineResult;
+                    }
+                    if (readLineResult.Contains("BAUDRATE"))
+                    {
+                        readLineResult = readLineResult.Replace("BAUDRATE","").Trim();
+                        readLineResult = readLineResult.Substring(0,readLineResult.IndexOf('/')).Replace("/*", "").Trim();
+                        if_data_asap1b_ccp.BAUDRATE = readLineResult;
+                    }
                 }
 
-
-                if (readLineResult.ToUpper().Contains("ECU_ADDRESS"))
-                {
-                    string ecuDecString = readLineResult.ToLower().Replace("ecu_address", "").Trim();
-                    string tem = ecuDecString.Replace("0x", "").Trim();
-                    measureMent.EcuAddress = Convert.ToInt64(tem, 16);
-                }
-                index++;
+                if_data_asap1b_ccp.CCP_SEG_DATA = cCP_SEG;
+                if_data_asap1b_ccp.CCP_10MS_DATA = cCP_10MS;
+                if_data_asap1b_ccp.CCP_100MS_DATA = cCP_100MS;
             }
-            measureList.Add(measureMent);
-            xcpData.AgreeMentType = AgreementType.CCP;
         }
 
         /// <summary>
         /// 读取TRANSPORT_LAYER_INSTANCE的所有类型的分类
         /// </summary>
-        private void TRANSPORT_LAYER_INSTANCE()
+        private void XCP_ON_CAN()
         {
-            protocolLayer = new ProtocolLayer();
-            List<string> protocolLayerList = new List<string>();
-            readLineResult = readLineResult.Replace("TRANSPORT_LAYER_INSTANCE", "").Trim().Replace('"',' ');
-            if(readLineResult.Contains("CAN"))
-                protocolLayerList.Add(readLineResult);
+            xcpOnCan = new XcpOnCan();
+            xcpOnCanAppl = new XcpOnCan.VehicleAppl();
+            xcpOnCanApplRam = new XcpOnCan.VehicleApplRam();
+            xcpOnCanCalibrationLe = new XcpOnCan.CalibrationLe();
+            xcpOnCanCalibrationLeRam = new XcpOnCan.CalibrationLeRam();
+
             while (true)
             {
                 readLineResult = A2lReader.ReadLine().Trim();
+                if (readLineResult.ToLower().Contains(A2lContent.Xcp_On_Can.XCP_ON_CAN_END))
+                    break;
+                if (readLineResult.Contains("XCP on CAN version"))
+                {
+                    readLineResult = readLineResult.Substring(0, readLineResult.IndexOf('/') + 1).Trim();
+                    xcpOnCanAppl.Version = readLineResult;
+                }
+                if (readLineResult.Contains("CAN_ID_MASTER"))
+                {
+                    readLineResult = readLineResult.Replace("CAN_ID_MASTER","").Trim();
+                    readLineResult = readLineResult.Substring(0,readLineResult.IndexOf('/')).Trim();
+                    xcpOnCanAppl.MasterID = readLineResult;
+                }
+                if (readLineResult.Contains("CAN_ID_SLAVE"))
+                {
+                    readLineResult = readLineResult.Replace("CAN_ID_SLAVE", "").Trim();
+                    readLineResult = readLineResult.Substring(0, readLineResult.IndexOf('/')).Trim();
+                    xcpOnCanAppl.SlaveID = readLineResult;
+                }
+                if (readLineResult.Contains("BAUDRATE"))
+                {
+                    readLineResult = readLineResult.Replace("BAUDRATE", "").Trim();
+                    readLineResult = readLineResult.Substring(0, readLineResult.IndexOf('/')).Trim();
+                    xcpOnCanAppl.Baudrate = readLineResult;
+                }
                 if (readLineResult.Contains("TRANSPORT_LAYER_INSTANCE"))
-                    readLineResult = readLineResult.Replace("TRANSPORT_LAYER_INSTANCE","").Trim().Replace('"',' ');
-                if (readLineResult.Contains("CAN"))
-                    protocolLayerList.Add(readLineResult);
+                {
+                    readLineResult = readLineResult.Replace("TRANSPORT_LAYER_INSTANCE","").Replace('"',' ').Trim();
+                    xcpOnCanAppl.CanName = readLineResult;
+                }
+
             }
+            while (true)
+            {
+                readLineResult = A2lReader.ReadLine().Trim();
+                if (readLineResult.ToLower().Contains(A2lContent.Xcp_On_Can.XCP_ON_CAN_END))
+                    break;
+                if (readLineResult.Contains("XCP on CAN version"))
+                {
+                    readLineResult = readLineResult.Substring(0, readLineResult.IndexOf('/') + 1).Trim();
+                    xcpOnCanApplRam.Version = readLineResult;
+                }
+                if (readLineResult.Contains("CAN_ID_MASTER"))
+                {
+                    readLineResult = readLineResult.Replace("CAN_ID_MASTER", "").Trim();
+                    readLineResult = readLineResult.Substring(0, readLineResult.IndexOf('/')).Trim();
+                    xcpOnCanApplRam.MasterID = readLineResult;
+                }
+                if (readLineResult.Contains("CAN_ID_SLAVE"))
+                {
+                    readLineResult = readLineResult.Replace("CAN_ID_SLAVE", "").Trim();
+                    readLineResult = readLineResult.Substring(0, readLineResult.IndexOf('/')).Trim();
+                    xcpOnCanApplRam.SlaveID = readLineResult;
+                }
+                if (readLineResult.Contains("BAUDRATE"))
+                {
+                    readLineResult = readLineResult.Replace("BAUDRATE", "").Trim();
+                    readLineResult = readLineResult.Substring(0, readLineResult.IndexOf('/')).Trim();
+                    xcpOnCanApplRam.Baudrate = readLineResult;
+                }
+                if (readLineResult.Contains("TRANSPORT_LAYER_INSTANCE"))
+                {
+                    readLineResult = readLineResult.Replace("TRANSPORT_LAYER_INSTANCE", "").Replace('"', ' ').Trim();
+                    xcpOnCanApplRam.CanName = readLineResult;
+                }
+            }
+            while (true)
+            {
+                readLineResult = A2lReader.ReadLine().Trim();
+                if (readLineResult.ToLower().Contains(A2lContent.Xcp_On_Can.XCP_ON_CAN_END))
+                    break;
+                if (readLineResult.Contains("XCP on CAN version"))
+                {
+                    readLineResult = readLineResult.Substring(0, readLineResult.IndexOf('/') + 1).Trim();
+                    xcpOnCanCalibrationLe.Version = readLineResult;
+                }
+                if (readLineResult.Contains("CAN_ID_MASTER"))
+                {
+                    readLineResult = readLineResult.Replace("CAN_ID_MASTER", "").Trim();
+                    readLineResult = readLineResult.Substring(0, readLineResult.IndexOf('/')).Trim();
+                    xcpOnCanCalibrationLe.MasterID = readLineResult;
+                }
+                if (readLineResult.Contains("CAN_ID_SLAVE"))
+                {
+                    readLineResult = readLineResult.Replace("CAN_ID_SLAVE", "").Trim();
+                    readLineResult = readLineResult.Substring(0, readLineResult.IndexOf('/')).Trim();
+                    xcpOnCanCalibrationLe.SlaveID = readLineResult;
+                }
+                if (readLineResult.Contains("BAUDRATE"))
+                {
+                    readLineResult = readLineResult.Replace("BAUDRATE", "").Trim();
+                    readLineResult = readLineResult.Substring(0, readLineResult.IndexOf('/')).Trim();
+                    xcpOnCanCalibrationLe.Baudrate = readLineResult;
+                }
+                if (readLineResult.Contains("TRANSPORT_LAYER_INSTANCE"))
+                {
+                    readLineResult = readLineResult.Replace("TRANSPORT_LAYER_INSTANCE", "").Replace('"', ' ').Trim();
+                    xcpOnCanCalibrationLe.CanName = readLineResult;
+                }
+            }
+            while (true)
+            {
+                readLineResult = A2lReader.ReadLine().Trim();
+                if (readLineResult.ToLower().Contains(A2lContent.Xcp_On_Can.XCP_ON_CAN_END))
+                    break;
+                if (readLineResult.Contains("XCP on CAN version"))
+                {
+                    readLineResult = readLineResult.Substring(0, readLineResult.IndexOf('/') + 1).Trim();
+                    xcpOnCanCalibrationLeRam.Version = readLineResult;
+                }
+                if (readLineResult.Contains("CAN_ID_MASTER"))
+                {
+                    readLineResult = readLineResult.Replace("CAN_ID_MASTER", "").Trim();
+                    readLineResult = readLineResult.Substring(0, readLineResult.IndexOf('/')).Trim();
+                    xcpOnCanCalibrationLeRam.MasterID = readLineResult;
+                }
+                if (readLineResult.Contains("CAN_ID_SLAVE"))
+                {
+                    readLineResult = readLineResult.Replace("CAN_ID_SLAVE", "").Trim();
+                    readLineResult = readLineResult.Substring(0, readLineResult.IndexOf('/')).Trim();
+                    xcpOnCanCalibrationLeRam.SlaveID = readLineResult;
+                }
+                if (readLineResult.Contains("BAUDRATE"))
+                {
+                    readLineResult = readLineResult.Replace("BAUDRATE", "").Trim();
+                    readLineResult = readLineResult.Substring(0, readLineResult.IndexOf('/')).Trim();
+                    xcpOnCanCalibrationLeRam.Baudrate = readLineResult;
+                }
+                if (readLineResult.Contains("TRANSPORT_LAYER_INSTANCE"))
+                {
+                    readLineResult = readLineResult.Replace("TRANSPORT_LAYER_INSTANCE", "").Replace('"', ' ').Trim();
+                    xcpOnCanCalibrationLeRam.CanName = readLineResult;
+                }
+            }
+
+            xcpOnCan.VehicleApplData = xcpOnCanAppl;
+            xcpOnCan.VehicleApplRamData = xcpOnCanApplRam;
+            xcpOnCan.CalibrationLeData = xcpOnCanCalibrationLe;
+            xcpOnCan.CalibrationLeRamData = xcpOnCanCalibrationLeRam;
         }
 
         #region 检查A2l是否是XCP类型，如果不是，则返回

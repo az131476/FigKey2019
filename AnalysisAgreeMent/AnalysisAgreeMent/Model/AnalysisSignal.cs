@@ -66,7 +66,7 @@ namespace AnalysisAgreeMent.Model
         /// <summary>
         /// A2l-ECU数据地址  Mornitor-的CANID/messageID
         /// </summary>
-        public long DataAddress { get; set; }
+        public string DataAddress { get; set; }
 
         /// <summary>
         /// 系数，a2l-表达式值计算转换后两位结果中的a

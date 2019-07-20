@@ -38,6 +38,8 @@ namespace FigKeyLoggerConfigurator.Model
         public List<int> LimitTimeList10ms { get; set; }
 
         public List<int> LimitTimeList100ms { get; set; }
+
+        public List<int> DbcCheckIndex { get; set; }
     }
 
     public enum TimeLimitType

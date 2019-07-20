@@ -71,7 +71,6 @@
             this.tb_filter_can2 = new Telerik.WinControls.UI.RadTextBox();
             this.btn_openFile_can2 = new Telerik.WinControls.UI.RadButton();
             this.btn_search_can2 = new Telerik.WinControls.UI.RadButton();
-            this.radGridView_can2 = new Telerik.WinControls.UI.RadGridView();
             this.navigator_can2 = new Telerik.WinControls.UI.RadBindingNavigator();
             this.radBindingNavigator2RowElement = new Telerik.WinControls.UI.CommandBarRowElement();
             this.radBindingNavigator2FirstStrip = new Telerik.WinControls.UI.CommandBarStripElement();
@@ -95,7 +94,6 @@
             this.documentContainer1 = new Telerik.WinControls.UI.Docking.DocumentContainer();
             this.documentTabStrip1 = new Telerik.WinControls.UI.Docking.DocumentTabStrip();
             this.documentWindow_can1 = new Telerik.WinControls.UI.Docking.DocumentWindow();
-            this.radGridView_can1 = new Telerik.WinControls.UI.RadGridView();
             this.radPanel2 = new Telerik.WinControls.UI.RadPanel();
             this.tb_filter_can1 = new Telerik.WinControls.UI.RadTextBox();
             this.btn_openFile_Can1 = new Telerik.WinControls.UI.RadButton();
@@ -132,6 +130,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.cb_baud_can1 = new System.Windows.Forms.ComboBox();
             this.radMenu1 = new Telerik.WinControls.UI.RadMenu();
+            this.radGridView_can2 = new Telerik.WinControls.UI.RadGridView();
+            this.radGridView_can1 = new Telerik.WinControls.UI.RadGridView();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radStatusStrip1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radDock1)).BeginInit();
@@ -142,8 +142,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.tb_filter_can2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_openFile_can2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_search_can2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGridView_can2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGridView_can2.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navigator_can2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip2)).BeginInit();
             this.toolTabStrip2.SuspendLayout();
@@ -154,8 +152,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.documentTabStrip1)).BeginInit();
             this.documentTabStrip1.SuspendLayout();
             this.documentWindow_can1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radGridView_can1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGridView_can1.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel2)).BeginInit();
             this.radPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tb_filter_can1)).BeginInit();
@@ -172,6 +168,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
             this.radGroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGridView_can2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGridView_can2.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGridView_can1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGridView_can1.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -395,7 +395,7 @@
             // 
             // radDock1
             // 
-            this.radDock1.ActiveWindow = this.documentWindow_hardWare;
+            this.radDock1.ActiveWindow = this.documentWindow_can1;
             this.radDock1.CausesValidation = false;
             this.radDock1.Controls.Add(this.toolTabStrip2);
             this.radDock1.Controls.Add(this.documentContainer1);
@@ -414,8 +414,8 @@
             // 
             // documentWindow_can2
             // 
-            this.documentWindow_can2.Controls.Add(this.radPanel3);
             this.documentWindow_can2.Controls.Add(this.radGridView_can2);
+            this.documentWindow_can2.Controls.Add(this.radPanel3);
             this.documentWindow_can2.Controls.Add(this.navigator_can2);
             this.documentWindow_can2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.documentWindow_can2.Location = new System.Drawing.Point(6, 29);
@@ -459,19 +459,6 @@
             this.btn_search_can2.Size = new System.Drawing.Size(54, 22);
             this.btn_search_can2.TabIndex = 5;
             this.btn_search_can2.Text = "搜索";
-            // 
-            // radGridView_can2
-            // 
-            this.radGridView_can2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radGridView_can2.Font = new System.Drawing.Font("Segoe UI", 12.25F);
-            this.radGridView_can2.Location = new System.Drawing.Point(0, 0);
-            // 
-            // 
-            // 
-            this.radGridView_can2.MasterTemplate.ViewDefinition = tableViewDefinition5;
-            this.radGridView_can2.Name = "radGridView_can2";
-            this.radGridView_can2.Size = new System.Drawing.Size(958, 621);
-            this.radGridView_can2.TabIndex = 9;
             // 
             // navigator_can2
             // 
@@ -667,7 +654,7 @@
             // 
             // 
             this.documentTabStrip1.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.documentTabStrip1.SelectedIndex = 2;
+            this.documentTabStrip1.SelectedIndex = 1;
             this.documentTabStrip1.Size = new System.Drawing.Size(970, 686);
             this.documentTabStrip1.TabIndex = 0;
             this.documentTabStrip1.TabStop = false;
@@ -683,19 +670,6 @@
             this.documentWindow_can1.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.TabbedDocument;
             this.documentWindow_can1.Size = new System.Drawing.Size(958, 651);
             this.documentWindow_can1.Text = "CAN1数据显示";
-            // 
-            // radGridView_can1
-            // 
-            this.radGridView_can1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radGridView_can1.Font = new System.Drawing.Font("Segoe UI", 12.25F);
-            this.radGridView_can1.Location = new System.Drawing.Point(0, 34);
-            // 
-            // 
-            // 
-            this.radGridView_can1.MasterTemplate.ViewDefinition = tableViewDefinition6;
-            this.radGridView_can1.Name = "radGridView_can1";
-            this.radGridView_can1.Size = new System.Drawing.Size(958, 587);
-            this.radGridView_can1.TabIndex = 2;
             // 
             // radPanel2
             // 
@@ -1018,6 +992,32 @@
             this.radMenu1.Size = new System.Drawing.Size(1233, 20);
             this.radMenu1.TabIndex = 0;
             // 
+            // radGridView_can2
+            // 
+            this.radGridView_can2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radGridView_can2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radGridView_can2.Location = new System.Drawing.Point(0, 34);
+            // 
+            // 
+            // 
+            this.radGridView_can2.MasterTemplate.ViewDefinition = tableViewDefinition5;
+            this.radGridView_can2.Name = "radGridView_can2";
+            this.radGridView_can2.Size = new System.Drawing.Size(958, 587);
+            this.radGridView_can2.TabIndex = 9;
+            // 
+            // radGridView_can1
+            // 
+            this.radGridView_can1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radGridView_can1.Font = new System.Drawing.Font("Segoe UI", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radGridView_can1.Location = new System.Drawing.Point(0, 34);
+            // 
+            // 
+            // 
+            this.radGridView_can1.MasterTemplate.ViewDefinition = tableViewDefinition6;
+            this.radGridView_can1.Name = "radGridView_can1";
+            this.radGridView_can1.Size = new System.Drawing.Size(958, 587);
+            this.radGridView_can1.TabIndex = 7;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1047,8 +1047,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.tb_filter_can2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_openFile_can2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_search_can2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGridView_can2.MasterTemplate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGridView_can2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.navigator_can2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip2)).EndInit();
             this.toolTabStrip2.ResumeLayout(false);
@@ -1060,8 +1058,6 @@
             this.documentTabStrip1.ResumeLayout(false);
             this.documentWindow_can1.ResumeLayout(false);
             this.documentWindow_can1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radGridView_can1.MasterTemplate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGridView_can1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel2)).EndInit();
             this.radPanel2.ResumeLayout(false);
             this.radPanel2.PerformLayout();
@@ -1082,6 +1078,10 @@
             this.radGroupBox1.ResumeLayout(false);
             this.radGroupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGridView_can2.MasterTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGridView_can2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGridView_can1.MasterTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGridView_can1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1126,7 +1126,6 @@
         private Telerik.WinControls.UI.CommandBarButton radBindingNavigator1AddNewItem;
         private Telerik.WinControls.UI.CommandBarSeparator commandBarSeparator5;
         private Telerik.WinControls.UI.CommandBarButton radBindingNavigator1DeleteItem;
-        private Telerik.WinControls.UI.RadGridView radGridView_can1;
         private Telerik.WinControls.UI.RadGroupBox radGroupBox2;
         private Telerik.WinControls.UI.RadGroupBox radGroupBox1;
         private Telerik.WinControls.UI.RadMenuItem radMenuItem3;
@@ -1161,7 +1160,6 @@
         private Telerik.WinControls.UI.Docking.DocumentWindow documentWindow_can2;
         private Telerik.WinControls.UI.RadPanel radPanel2;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
-        private Telerik.WinControls.UI.RadGridView radGridView_can2;
         private Telerik.WinControls.UI.RadBindingNavigator navigator_can2;
         private Telerik.WinControls.UI.CommandBarRowElement radBindingNavigator2RowElement;
         private Telerik.WinControls.UI.CommandBarStripElement radBindingNavigator2FirstStrip;
@@ -1190,5 +1188,7 @@
         private Telerik.WinControls.UI.RadTextBox tb_filter_can2;
         private Telerik.WinControls.UI.RadButton btn_openFile_can2;
         private Telerik.WinControls.UI.RadButton btn_search_can2;
+        private Telerik.WinControls.UI.RadGridView radGridView_can2;
+        private Telerik.WinControls.UI.RadGridView radGridView_can1;
     }
 }

@@ -15,10 +15,15 @@ namespace AnalysisAgreeMent.Analysis
         /// <summary>
         /// 合并a2l 与dbc数据，统一格式
         /// </summary>
-        public static AnalysisData UnionXcpDbc(FileType fileType, XcpData xcpData, DBCData dbcData)
+        public static AnalysisData UnionXcpDbc(FileType fileType, XcpData xcpData, DBCData dbcData,string baudRateDbc)
         {
             ////name + describle+unit+dataType+dataLen+IsMotorola+startIndex+dataBitLen+dataAddress+factor+offset
             AnalysisData analysisData = new AnalysisData();
+            if (fileType == FileType.A2L)
+            {
+                analysisData.AgreeMentXCP = xcpData.AgreeMentType;
+            }
+            analysisData.BaudRateDbc = baudRateDbc.Trim();
             try
             {
                 switch (fileType)

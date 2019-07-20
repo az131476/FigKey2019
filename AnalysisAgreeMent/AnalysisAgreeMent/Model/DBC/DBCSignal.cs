@@ -23,7 +23,7 @@ namespace AnalysisAgreeMent.Model.DBC
         /// <summary>
         /// 对应帧ID
         /// </summary>
-        public Int32 FrameID { get; set; }
+        public string FrameID { get; set; }
 
         /// <summary>
         /// 开始位置

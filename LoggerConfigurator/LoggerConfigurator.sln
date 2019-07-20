@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.489
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.156
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoggerConfigurator", "LoggerConfigurator\LoggerConfigurator.csproj", "{C5E1A633-AE1E-44B5-9380-F4302986654A}"
 EndProject
@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnalysisAgreeMent", "..\Ana
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BXHSerialPort", "..\BXHSerialPort\BXHSerialPort.csproj", "{E53141B4-83A2-40D8-B058-B014B5695CC8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonUtils", "..\..\..\CommonUtils\CommonLibrary\CommonUtils\CommonUtils\CommonUtils.csproj", "{EBFCA1B5-23F1-4F94-928A-DB1A7B98EED6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonUtils", "..\..\CommonLibrary\CommonUtils\CommonUtils\CommonUtils.csproj", "{EBFCA1B5-23F1-4F94-928A-DB1A7B98EED6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

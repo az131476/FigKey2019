@@ -67,11 +67,6 @@
     <Reference Include="CommonUtils">
       <HintPath>..\Lib\CommonUtils.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Data.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Printing.v17.2.Core, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Sparkline.v17.2.Core, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Utils.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraEditors.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
     </Reference>
@@ -101,15 +96,12 @@
     <Reference Include="TelerikCommon, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
-=======
     <Compile Include="Connected Services\MesService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Control\TreeViewControl.cs" />
->>>>>>> 492f626e2432b954475936a0574c223f6f62e5d3
     <Compile Include="DB\Config.cs" />
     <Compile Include="DB\Order.cs" />
     <Compile Include="DB\OrderItem.cs" />
@@ -214,8 +206,6 @@
     <EmbeddedResource Include="SetStationAdmin.resx">
       <DependentUpon>SetStationAdmin.cs</DependentUpon>
     </EmbeddedResource>
-<<<<<<< HEAD
-=======
     <EmbeddedResource Include="RadView\Material.resx">
       <DependentUpon>Material.cs</DependentUpon>
     </EmbeddedResource>
@@ -262,7 +252,6 @@
     <None Include="Connected Services\MesService\RetrospectiveManager.MesService.RegisterResult.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
->>>>>>> 492f626e2432b954475936a0574c223f6f62e5d3
     <None Include="packages.config" />
     <None Include="Properties\DataSources\System.Data.DataSet.datasource" />
     <None Include="Properties\Settings.settings">
@@ -280,6 +269,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Connected Services\MesService\MesService.disco" />
+    <None Include="Connected Services\MesService\configuration91.svcinfo" />
+    <None Include="Connected Services\MesService\configuration.svcinfo" />
+    <None Include="Connected Services\MesService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="新需求.txt" />
     <Content Include="需求.txt" />
     <Content Include="说明.txt" />
@@ -298,6 +294,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\MesService\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

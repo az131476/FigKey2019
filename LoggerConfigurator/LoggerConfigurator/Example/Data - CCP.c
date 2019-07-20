@@ -27,16 +27,6 @@ static XCPDataRecordType xcp100ms[] =
 	"vsfrk","Correction of the relative fuel mass by adjusting systems","",V_UINT,1,0,0,0,3489669841,0.0019531,0.7500000,
 	"z_flags_um","t.b.d.","",V_UINT,1,0,0,0,3489693986,1.0000000,0,
 };
-/*
-#define MASTER_ID_TYPE 1
-#define SLAVER_ID_TYPE 0
-#define DAQ10_ID_TYPE  2
-#define DAQ100_ID_TYPE 3
-#define DAQ10_TAB_TYPE 4
-#define DAQ100_TAB_TYPE 5
-#define MORNITOR_TAB_TYPE 6
-#define CCP_ECUADDR_TYPE 7
-*/
 ///begin TP_BLOB
       /* CCP version     */ //0x201
       /* Blob version    */ //0x204
@@ -56,14 +46,26 @@ static ExInfoType ExInfo[] =
 };
 static ExInfoType ExInfo1[] =
 {
-		SLAVER_ID_TYPE,0x6a9,0,//rxid
-		MASTER_ID_TYPE,0x6ab,0,//txid
-		DAQ100_ID_TYPE,0x6af,0,//rxdaqid
-		DAQ10_ID_TYPE,0x6ae,0,//rxdaqid
+		SLAVER_ID_TYPE,0x6a9,0,//rxid  
+		MASTER_ID_TYPE,0x6ab,0,//txid	
+		DAQ100_ID_TYPE,0x6af,0,//rxdaqid 
+		DAQ10_ID_TYPE,0x6ae,0,//rxdaqid  
 		DAQ100_TAB_TYPE,(uint32_t)xcp100ms,16,
 		DAQ10_TAB_TYPE,(uint32_t)xcp10ms,4,
-		CCP_ECUADDR_TYPE,0xAD01,0,//station address
+		CCP_ECUADDR_TYPE,0xAD01,0,//station address 
 };
+
+/*
+#define MASTER_ID_TYPE 1
+#define SLAVER_ID_TYPE 0
+#define DAQ10_ID_TYPE  2
+#define DAQ100_ID_TYPE 3
+#define DAQ10_TAB_TYPE 4
+#define DAQ100_TAB_TYPE 5
+#define MORNITOR_TAB_TYPE 6
+#define CCP_ECUADDR_TYPE 7
+*/
+
 //MasterID
 //SlaveID
 //DAQ100ID
