@@ -100,8 +100,17 @@ namespace AnalysisAgreeMent.Analysis
                                 signal.Name = dbcList[j].SignalName;
                                 signal.Describle = dbcmsgList[i].FrameName;
                                 signal.Unit = dbcList[j].Unit;
-                                signal.SaveDataType = SaveDataTypeEnum.V_INT;
-                                signal.SaveDataLen = dbcmsgList[i].MessageLen;
+                                if (dbcList[j].SymbolType == "+")
+                                {
+                                    signal.SaveDataType = SaveDataTypeEnum.V_UINT;
+
+                                } else if (dbcList[j].SymbolType == "-")
+                                {
+                                    signal.SaveDataType = SaveDataTypeEnum.V_INT;
+                                }
+                                //signal.SaveDataLen = dbcmsgList[i].MessageLen;
+                                //len = (bitLen+7)/len
+                                signal.SaveDataLen = (dbcList[j].BitLength + 7) / 8;
                                 signal.IsMotorola = (int)dbcList[j].ByteOrder;
                                 signal.StartIndex = dbcList[j].StartBitIndex;
                                 signal.DataBitLen = dbcList[j].BitLength;

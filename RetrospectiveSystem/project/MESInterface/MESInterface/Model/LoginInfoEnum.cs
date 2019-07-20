@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MESInterface.Molde
+namespace MESInterface.Model
 {
 
     public enum LoginResult

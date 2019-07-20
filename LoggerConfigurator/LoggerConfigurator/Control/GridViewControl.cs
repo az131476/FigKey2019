@@ -194,6 +194,7 @@ namespace FigKeyLoggerConfigurator.Control
                 checkCan2.FieldName = "checkCan";
                 checkCan2.HeaderText = "选择";
                 gridViewCan2.MasterTemplate.Columns.Add(checkCan2);
+                
                 //gridView.Columns[12].BestFit();
             }
         }

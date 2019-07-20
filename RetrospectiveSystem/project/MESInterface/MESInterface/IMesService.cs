@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
-using MESInterface.Molde;
+using MESInterface.Model;
 using System.Data;
 
 namespace MESInterface
@@ -14,15 +14,10 @@ namespace MESInterface
     [ServiceContract]
     public interface IMesService
     {
-
-        [OperationContract]
-        string GetData(int value);
-
-        [OperationContract]
-        CompositeType GetDataUsingDataContract(CompositeType composite);
-
         // TODO: 在此添加您的服务操作
-        
+        [OperationContract]
+        void InitConnectString();
+        //用户信息
         [OperationContract]
         LoginResult Login(string username, string password, LoginUser loginUser);
 
@@ -37,38 +32,34 @@ namespace MESInterface
 
         /// <returns></returns>
         [OperationContract]
-        string FirstCheck(string snInner,string snOutter, string sTypeNumber, string sStationName); 
+        string FirstCheck(string snInner,string snOutter, string sTypeNumber, string sStationName);
 
-         [OperationContract]
-        string InsertWIP(string sn, string sTypeNumber, string sStationName, string sTestResult, string sTime);
+        // [OperationContract]
+        //string InsertWIP(string sn, string sTypeNumber, string sStationName, string sTestResult, string sTime);
+
+        //站位信息
+        [OperationContract]
+        int DeleteStation(string order,string stationName);
 
         [OperationContract]
-        string InsertProduce(Dictionary<int, string> dctData);
+        DataSet SelectStation(string stationName, string stationOrder);
+        [OperationContract]
+        int InsertStation(List<Station> stationList);
+
+        //产品型号
+        [OperationContract]
+        int DeleteProductTypeNo(string productName);
 
         [OperationContract]
-        DataSet SelectProduce(string stationName,string stationOrder);
+        int DeleteAllProductTypeNo();
 
         [OperationContract]
-        string UpdateProduce(Dictionary<int, string> data);
+        DataSet SelectProductTypeNo(string productName);
 
         [OperationContract]
-        int DeleteProduce(string stationName);
+        string CommitProductTypeNo(List<string> list);
 
-        [OperationContract]
-        int DeleteAllProduce();
-
-        [OperationContract]
-        int DeleteProductType(string productName);
-
-        [OperationContract]
-        int DeleteAllProductType();
-
-        [OperationContract]
-        DataSet SelectProductType(string productName);
-
-        [OperationContract]
-        string CommitProductType(Dictionary<int, string> dctData);
-
+        //站位接口
         [OperationContract]
         int DeleteAllTypeStation();
 
@@ -81,11 +72,60 @@ namespace MESInterface
         [OperationContract]
         string CommitTypeStation(Dictionary<string, string[]> dctData);
 
+
+        //测试数据接口
         [OperationContract]
-        DataSet SelectProductDataOfSN(string sn, bool IsSnFuzzy);
+        string InsertTestResultData(string sn, string typeNo, string station, string dateTime, string result);
+        [OperationContract]
+        string SelectLastTestResult(string sn, string typeNo, string station);
+        [OperationContract]
+        DataSet SelectLastTestResultUpper(string sn, string typeNo, string station);
 
         [OperationContract]
-        DataSet SelectProductDataOfTypeNo(string typeNo);
+        DataSet SelectTestResultUpper(string sn, string typeNo, string station, bool IsSnFuzzy);
+
+        //物料信息接口
+        [OperationContract]
+        DataSet SelectMaterial();
+        [OperationContract]
+        string CommitMaterial(List<MaterialMsg> list);
+
+        [OperationContract]
+        int DeleteMaterial(string materialCode);
+
+        [OperationContract]
+        string CommitProductMaterial(Dictionary<string, List<string>> keyValuePairs);
+        [OperationContract]
+        DataSet SelectProductMaterial(string typeNo);
+
+        [OperationContract]
+        int DeleteProductMaterial(string typeNo, string materialCode);
+
+        //物料统计
+        [OperationContract]
+        string InsertMaterialStatistics(string snInner, string snOutter, string typeNo, string stationName, string materialCode, string amount);
+
+        [OperationContract]
+        DataSet SelectMaterialStatistics(string typeNo);
+
+        //外箱容量
+        [OperationContract]
+        int CommitOutCaseBoxStorage(string out_case_code, string amount);
+        [OperationContract]
+        DataSet SelectOutCaseBoxStorage(string caseCode);
+
+        //成品打包
+        [OperationContract]
+        int CommitPackageProduct(PackageProduct packageProduct);
+
+        [OperationContract]
+        int UpdatePackageProduct(PackageProduct packageProduct);
+
+        [OperationContract]
+        DataSet SelectPackageProduct(PackageProduct packageProduct);
+
+        [OperationContract]
+        int DeletePackageProduct(PackageProduct packageProduct);
     }
 
 

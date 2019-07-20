@@ -51,6 +51,7 @@ namespace FigKeyLoggerConfigurator.Control
 
         private static List<StringBuilder> allDbcGroupData;
         private static List<AnalysisSignal> acturalDBCList;
+        private static StringBuilder stringBuilderHead;
 
         private static int exInfoLen;
         #endregion
@@ -71,7 +72,7 @@ namespace FigKeyLoggerConfigurator.Control
         {
             CHANNEL_CLOSE = 0,
             CCP_OPEN = 1,
-            XCP_OPEN_2,
+            XCP_OPEN = 2,
             CAN_MONITOR =3
         }
         #endregion
@@ -81,13 +82,32 @@ namespace FigKeyLoggerConfigurator.Control
         /// 导出a2l与dbc文件到本地
         /// </summary>
         public static void ExportFileToLocal(string targetPath, RadGridView gridView1,RadGridView gridView2, 
-            GridViewData gridData, AnalysisData analysisData,XcpData dataCan1)
+            GridViewData gridData, AnalysisData analysisData,XcpData dataCan1,int sectCan)
         {
-            A2lDetailData(targetPath, gridView1, gridData);
-            DbcDetailData(targetPath, gridView2, gridData);
-            AddA2lDetailGroup(gridData, targetPath, analysisData,dataCan1);
-            AddDBCDetailGroup(targetPath);
-            AddCanChInfo(targetPath, dataCan1,analysisData);
+            stringBuilderHead = new StringBuilder();
+            stringBuilderHead.AppendLine($"#include\"datatype.h\"");
+            WriteData.WriteString(stringBuilderHead, targetPath);
+
+            if (sectCan == 1)
+            {
+                A2lDetailData(targetPath, gridView1, gridData);
+                AddA2lDetailGroup(gridData, targetPath, analysisData, dataCan1);
+                AddCanChInfo(targetPath, dataCan1, analysisData,1);
+            }
+            else if (sectCan == 2)
+            {
+                DbcDetailData(targetPath, gridView2, gridData);
+                AddDBCDetailGroup(targetPath);
+                AddCanChInfo(targetPath, dataCan1, analysisData,2);
+            }
+            else if (sectCan == 3)
+            {
+                A2lDetailData(targetPath, gridView1, gridData);
+                DbcDetailData(targetPath, gridView2, gridData);
+                AddA2lDetailGroup(gridData, targetPath, analysisData, dataCan1);
+                AddDBCDetailGroup(targetPath);
+                AddCanChInfo(targetPath, dataCan1, analysisData,3);
+            }
         }
 
         private static void A2lDetailData(string targetPath, RadGridView gridView, GridViewData listData)
@@ -279,7 +299,7 @@ namespace FigKeyLoggerConfigurator.Control
             {
                 var resdbcList = acturalDBCList.FindAll(dbc => dbc.DataAddress == frameIdList[i]);
                 string metholdName = DBC_DEATIL_METHOLD_NAME + "_" + frameIdList[i];
-                sbExInfo.AppendLine($"\t\t{(int)ExInfoType.MORNITOR_TAB_TYPE},{metholdName},{resdbcList.Count},");
+                sbExInfo.AppendLine($"\t\t{(int)ExInfoType.MORNITOR_TAB_TYPE},(uint32_t){metholdName},{resdbcList.Count},");
             }
             sbExInfo.AppendLine("};");
             WriteData.WriteString(sbExInfo, targPath);
@@ -293,35 +313,71 @@ namespace FigKeyLoggerConfigurator.Control
             }
         }
 
-        private static void AddCanChInfo(string targPath,XcpData xcpData, AnalysisData analysisData)
+        private static void AddCanChInfo(string targPath,XcpData xcpData, AnalysisData analysisData,int sectCan)
         {
             string infoHead = "CanChInfo INFO[2] = \r\n{";
             StringBuilder sb = new StringBuilder();
             sb.AppendLine(infoHead);
-            if (xcpData.AgreeMentType == AgreementType.CCP)
+            if (sectCan == 1)
             {
-                sb.AppendLine($"\t{(int)ExportProtocolType.CCP_OPEN},{xcpData.IF_DATA_ASAP1B_CCP_DATA.BAUDRATE},(uint32_t){EXINFO_FUN_NAME_CAN1},{exInfoLen}");
+                if (xcpData.AgreeMentType == AgreementType.CCP)
+                {
+                    sb.AppendLine($"\t{(int)ExportProtocolType.CCP_OPEN},{xcpData.IF_DATA_ASAP1B_CCP_DATA.BAUDRATE},(uint32_t){EXINFO_FUN_NAME_CAN1},{exInfoLen},");
+                }
+                else if (xcpData.AgreeMentType == AgreementType.XCP)
+                {
+                    if (xcpData.XcpOnCanData.CurrentSelectItem == xcpData.XcpOnCanData.VehicleApplData.CanName)
+                    {
+                        sb.AppendLine($"\t{(int)ExportProtocolType.XCP_OPEN},{xcpData.XcpOnCanData.VehicleApplData.Baudrate},(uint32_t){EXINFO_FUN_NAME_CAN1},{exInfoLen},");
+                    }
+                    else if (xcpData.XcpOnCanData.CurrentSelectItem == xcpData.XcpOnCanData.VehicleApplRamData.CanName)
+                    {
+                        sb.AppendLine($"\t{(int)ExportProtocolType.XCP_OPEN},{xcpData.XcpOnCanData.VehicleApplRamData.Baudrate},(uint32_t){EXINFO_FUN_NAME_CAN1},{exInfoLen},");
+                    }
+                    else if (xcpData.XcpOnCanData.CurrentSelectItem == xcpData.XcpOnCanData.CalibrationLeData.CanName)
+                    {
+                        sb.AppendLine($"\t{(int)ExportProtocolType.XCP_OPEN},{xcpData.XcpOnCanData.CalibrationLeData.Baudrate},(uint32_t){EXINFO_FUN_NAME_CAN1},{exInfoLen},");
+                    }
+                    else if (xcpData.XcpOnCanData.CurrentSelectItem == xcpData.XcpOnCanData.CalibrationLeRamData.CanName)
+                    {
+                        sb.AppendLine($"\t{(int)ExportProtocolType.XCP_OPEN},{xcpData.XcpOnCanData.CalibrationLeRamData.Baudrate},(uint32_t){EXINFO_FUN_NAME_CAN1},{exInfoLen},");
+                    }
+                }
+                sb.AppendLine($"\t{0},{0},{0},{0},");
             }
-            else if (xcpData.AgreeMentType == AgreementType.XCP)
+            else if (sectCan == 2)
             {
-                if (xcpData.XcpOnCanData.CurrentSelectItem == xcpData.XcpOnCanData.VehicleApplData.CanName)
-                {
-                    sb.AppendLine($"\t{(int)ExportProtocolType.CCP_OPEN},{xcpData.XcpOnCanData.VehicleApplData.Baudrate},(uint32_t){EXINFO_FUN_NAME_CAN1},{exInfoLen}");
-                }
-                else if (xcpData.XcpOnCanData.CurrentSelectItem == xcpData.XcpOnCanData.VehicleApplRamData.CanName)
-                {
-                    sb.AppendLine($"\t{(int)ExportProtocolType.CCP_OPEN},{xcpData.XcpOnCanData.VehicleApplRamData.Baudrate},(uint32_t){EXINFO_FUN_NAME_CAN1},{exInfoLen}");
-                }
-                else if (xcpData.XcpOnCanData.CurrentSelectItem == xcpData.XcpOnCanData.CalibrationLeData.CanName)
-                {
-                    sb.AppendLine($"\t{(int)ExportProtocolType.CCP_OPEN},{xcpData.XcpOnCanData.CalibrationLeData.Baudrate},(uint32_t){EXINFO_FUN_NAME_CAN1},{exInfoLen}");
-                }
-                else if (xcpData.XcpOnCanData.CurrentSelectItem == xcpData.XcpOnCanData.CalibrationLeRamData.CanName)
-                {
-                    sb.AppendLine($"\t{(int)ExportProtocolType.CCP_OPEN},{xcpData.XcpOnCanData.CalibrationLeRamData.Baudrate},(uint32_t){EXINFO_FUN_NAME_CAN1},{exInfoLen}");
-                }
+                sb.AppendLine($"\t{0},{0},{0},{0},");
+                sb.AppendLine($"\t{(int)ExportProtocolType.CAN_MONITOR},{analysisData.BaudRateDbc},(uint32_t){EXINFO_FUN_NAME_CAN2},{frameIdList.Count},");
             }
-            sb.AppendLine($"\t{(int)ExportProtocolType.CAN_MONITOR},{analysisData.BaudRateDbc},(uint32_t){EXINFO_FUN_NAME_CAN2},{frameIdList.Count}");
+            else if (sectCan == 3)
+            {
+                if (xcpData.AgreeMentType == AgreementType.CCP)
+                {
+                    sb.AppendLine($"\t{(int)ExportProtocolType.CCP_OPEN},{xcpData.IF_DATA_ASAP1B_CCP_DATA.BAUDRATE},(uint32_t){EXINFO_FUN_NAME_CAN1},{exInfoLen},");
+                }
+                else if (xcpData.AgreeMentType == AgreementType.XCP)
+                {
+                    if (xcpData.XcpOnCanData.CurrentSelectItem == xcpData.XcpOnCanData.VehicleApplData.CanName)
+                    {
+                        sb.AppendLine($"\t{(int)ExportProtocolType.XCP_OPEN},{xcpData.XcpOnCanData.VehicleApplData.Baudrate},(uint32_t){EXINFO_FUN_NAME_CAN1},{exInfoLen},");
+                    }
+                    else if (xcpData.XcpOnCanData.CurrentSelectItem == xcpData.XcpOnCanData.VehicleApplRamData.CanName)
+                    {
+                        sb.AppendLine($"\t{(int)ExportProtocolType.XCP_OPEN},{xcpData.XcpOnCanData.VehicleApplRamData.Baudrate},(uint32_t){EXINFO_FUN_NAME_CAN1},{exInfoLen},");
+                    }
+                    else if (xcpData.XcpOnCanData.CurrentSelectItem == xcpData.XcpOnCanData.CalibrationLeData.CanName)
+                    {
+                        sb.AppendLine($"\t{(int)ExportProtocolType.XCP_OPEN},{xcpData.XcpOnCanData.CalibrationLeData.Baudrate},(uint32_t){EXINFO_FUN_NAME_CAN1},{exInfoLen},");
+                    }
+                    else if (xcpData.XcpOnCanData.CurrentSelectItem == xcpData.XcpOnCanData.CalibrationLeRamData.CanName)
+                    {
+                        sb.AppendLine($"\t{(int)ExportProtocolType.XCP_OPEN},{xcpData.XcpOnCanData.CalibrationLeRamData.Baudrate},(uint32_t){EXINFO_FUN_NAME_CAN1},{exInfoLen},");
+                    }
+                }
+                sb.AppendLine($"\t{(int)ExportProtocolType.CAN_MONITOR},{analysisData.BaudRateDbc},(uint32_t){EXINFO_FUN_NAME_CAN2},{frameIdList.Count},");
+            }
+
             sb.AppendLine("};");
             WriteData.WriteString(sb, targPath);
         }
@@ -380,10 +436,10 @@ namespace FigKeyLoggerConfigurator.Control
         {
             if (listData.DbcCheckIndex.Count < 1)
                 return null;
-            AnalysisSignal analysisSignal = new AnalysisSignal();
             List<AnalysisSignal> analysisSignalList = new List<AnalysisSignal>();
             for (int i = 0; i < listData.DbcCheckIndex.Count; i++)
             {
+                AnalysisSignal analysisSignal = new AnalysisSignal();
                 analysisSignal.Name = gridView.Rows[listData.DbcCheckIndex[i]].Cells[1].Value.ToString();
                 analysisSignal.Describle = gridView.Rows[listData.DbcCheckIndex[i]].Cells[2].Value.ToString();
                 analysisSignal.Unit = gridView.Rows[listData.DbcCheckIndex[i]].Cells[3].Value.ToString();

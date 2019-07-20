@@ -439,6 +439,7 @@
   <ItemGroup>
     <Content Include="Example\Data - CCP.c" />
     <Content Include="Example\Data - XCP.c" />
+    <None Include="Resources\ThViewer-bg.png" />
     <Content Include="需求修改与增加20190702.txt" />
     <None Include="Connected Services\ServiceReference1\item.disco" />
     <None Include="Connected Services\ServiceReference1\configuration91.svcinfo" />

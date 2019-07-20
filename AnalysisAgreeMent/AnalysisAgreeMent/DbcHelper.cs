@@ -122,9 +122,9 @@ namespace AnalysisAgreeMent
             dbcSignal.BitLength = int.Parse(cacheResult.Substring(0, cacheResult.IndexOf('@')));
             cacheResult = cacheResult.Substring(cacheResult.IndexOf('@') + 1);
             int byteOrder = int.Parse(cacheResult.Substring(0, 1));
-            if (byteOrder == 0)
+            if (byteOrder == 1)
                 dbcSignal.ByteOrder = ByteOrder.BYTE_ORDER_MSB_LAST;
-            else if (byteOrder == 1)
+            else if (byteOrder == 0)
                 dbcSignal.ByteOrder = ByteOrder.BYTE_ORDER_MSB_FIRST;
             dbcSignal.SymbolType = cacheResult.Substring(1, 1);
             cacheResult = cacheResult.Substring(cacheResult.IndexOf('(') + 1);
