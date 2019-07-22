@@ -20,16 +20,14 @@ using Telerik.WinControls.Themes;
 
 namespace MesManager
 {
-    public partial class MainForm : Telerik.WinControls.UI.RadForm
+    public partial class MainForm : RadForm
     {
-        [DllImport("user32.dll")]
-        private static extern bool AnimateWindow(IntPtr hWnd,int dwTime,int dwFlags);
-
         private MesService.MesServiceClient serviceClient;
         public MainForm()
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
+            Telerik.WinControls.ThemeResolutionService.ApplicationThemeName = this.ThemeName;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -61,15 +59,16 @@ namespace MesManager
             this.radDock1.AddDocument(documentWindow_packageProduct);
             this.radDock1.AddDocument(documentWindow_passRes);
 
-            if (Login.GetUserType == Login.UserType.USER_ADMIN)
-            {
-                tool_status_user.Text = "管理员";
+            //if (Login.GetUserType == Login.UserType.USER_ADMIN)
+            //{
+            //    tool_status_user.Text = "管理员";
 
-            }
-            else if (Login.GetUserType == Login.UserType.USER_ORDINARY)
-            {
-                tool_status_user.Text = "普通用户";
-            }
+            //}
+            //else if (Login.GetUserType == Login.UserType.USER_ORDINARY)
+            //{
+            //    tool_status_user.Text = "普通用户";
+            //}
+            tool_status_user.Text = Login.GetUserName;
             ControlEvent();
         }
 
