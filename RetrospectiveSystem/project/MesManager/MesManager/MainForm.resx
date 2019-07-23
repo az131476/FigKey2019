@@ -2193,6 +2193,216 @@
   <data name="&gt;&gt;radMenu1.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="radGridViewPackage.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="radGridViewPackage.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9.75pt</value>
+  </data>
+  <data name="radGridViewPackage.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="radGridViewPackage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1039, 536</value>
+  </data>
+  <data name="radGridViewPackage.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;radGridViewPackage.Name" xml:space="preserve">
+    <value>radGridViewPackage</value>
+  </data>
+  <data name="&gt;&gt;radGridViewPackage.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadGridView, Telerik.WinControls.GridView, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radGridViewPackage.Parent" xml:space="preserve">
+    <value>radPanel5</value>
+  </data>
+  <data name="&gt;&gt;radGridViewPackage.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="radPanel5.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="radPanel5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 45</value>
+  </data>
+  <data name="radPanel5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1039, 536</value>
+  </data>
+  <data name="radPanel5.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;radPanel5.Name" xml:space="preserve">
+    <value>radPanel5</value>
+  </data>
+  <data name="&gt;&gt;radPanel5.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadPanel, Telerik.WinControls.UI, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radPanel5.Parent" xml:space="preserve">
+    <value>documentWindow_packageProduct</value>
+  </data>
+  <data name="&gt;&gt;radPanel5.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="rb_package_caseCode.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9.75pt</value>
+  </data>
+  <data name="rb_package_caseCode.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 12</value>
+  </data>
+  <data name="rb_package_caseCode.Size" type="System.Drawing.Size, System.Drawing">
+    <value>77, 21</value>
+  </data>
+  <data name="rb_package_caseCode.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="rb_package_caseCode.Text" xml:space="preserve">
+    <value>箱子编码</value>
+  </data>
+  <data name="&gt;&gt;rb_package_caseCode.Name" xml:space="preserve">
+    <value>rb_package_caseCode</value>
+  </data>
+  <data name="&gt;&gt;rb_package_caseCode.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadRadioButton, Telerik.WinControls.UI, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;rb_package_caseCode.Parent" xml:space="preserve">
+    <value>radPanel4</value>
+  </data>
+  <data name="&gt;&gt;rb_package_caseCode.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tb_input_packageMsg.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9.75pt</value>
+  </data>
+  <data name="tb_input_packageMsg.Location" type="System.Drawing.Point, System.Drawing">
+    <value>221, 12</value>
+  </data>
+  <data name="tb_input_packageMsg.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 23</value>
+  </data>
+  <data name="tb_input_packageMsg.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;tb_input_packageMsg.Name" xml:space="preserve">
+    <value>tb_input_packageMsg</value>
+  </data>
+  <data name="&gt;&gt;tb_input_packageMsg.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadTextBox, Telerik.WinControls.UI, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;tb_input_packageMsg.Parent" xml:space="preserve">
+    <value>radPanel4</value>
+  </data>
+  <data name="&gt;&gt;tb_input_packageMsg.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="rb_package_sn.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9.75pt</value>
+  </data>
+  <data name="rb_package_sn.Location" type="System.Drawing.Point, System.Drawing">
+    <value>105, 12</value>
+  </data>
+  <data name="rb_package_sn.Size" type="System.Drawing.Size, System.Drawing">
+    <value>91, 21</value>
+  </data>
+  <data name="rb_package_sn.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="rb_package_sn.Text" xml:space="preserve">
+    <value>产品追溯码</value>
+  </data>
+  <data name="&gt;&gt;rb_package_sn.Name" xml:space="preserve">
+    <value>rb_package_sn</value>
+  </data>
+  <data name="&gt;&gt;rb_package_sn.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadRadioButton, Telerik.WinControls.UI, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;rb_package_sn.Parent" xml:space="preserve">
+    <value>radPanel4</value>
+  </data>
+  <data name="&gt;&gt;rb_package_sn.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="btn_select_package.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left</value>
+  </data>
+  <data name="btn_select_package.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9.75pt</value>
+  </data>
+  <data name="btn_select_package.Location" type="System.Drawing.Point, System.Drawing">
+    <value>445, 11</value>
+  </data>
+  <data name="btn_select_package.Size" type="System.Drawing.Size, System.Drawing">
+    <value>72, 24</value>
+  </data>
+  <data name="btn_select_package.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="btn_select_package.Text" xml:space="preserve">
+    <value>查询</value>
+  </data>
+  <data name="&gt;&gt;btn_select_package.Name" xml:space="preserve">
+    <value>btn_select_package</value>
+  </data>
+  <data name="&gt;&gt;btn_select_package.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;btn_select_package.Parent" xml:space="preserve">
+    <value>radPanel4</value>
+  </data>
+  <data name="&gt;&gt;btn_select_package.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="radPanel4.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="radPanel4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="radPanel4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1039, 45</value>
+  </data>
+  <data name="radPanel4.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;radPanel4.Name" xml:space="preserve">
+    <value>radPanel4</value>
+  </data>
+  <data name="&gt;&gt;radPanel4.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadPanel, Telerik.WinControls.UI, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radPanel4.Parent" xml:space="preserve">
+    <value>documentWindow_packageProduct</value>
+  </data>
+  <data name="&gt;&gt;radPanel4.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="documentWindow_packageProduct.Font" type="System.Drawing.Font, System.Drawing">
+    <value>宋体, 9pt</value>
+  </data>
+  <data name="documentWindow_packageProduct.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 29</value>
+  </data>
+  <data name="documentWindow_packageProduct.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1039, 581</value>
+  </data>
+  <data name="documentWindow_packageProduct.Text" xml:space="preserve">
+    <value>打包产品</value>
+  </data>
+  <data name="&gt;&gt;documentWindow_packageProduct.Name" xml:space="preserve">
+    <value>documentWindow_packageProduct</value>
+  </data>
+  <data name="&gt;&gt;documentWindow_packageProduct.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.Docking.DocumentWindow, Telerik.WinControls.RadDock, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;documentWindow_packageProduct.Parent" xml:space="preserve">
+    <value>documentTabStrip1</value>
+  </data>
+  <data name="&gt;&gt;documentWindow_packageProduct.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="radDock1.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Stretch</value>
+  </data>
   <data name="radTreeView1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
@@ -2243,9 +2453,6 @@
   </data>
   <data name="&gt;&gt;toolWindow_left.ZOrder" xml:space="preserve">
     <value>0</value>
-  </data>
-  <data name="radDock1.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
-    <value>Stretch</value>
   </data>
   <data name="toolTabStrip1.Location" type="System.Drawing.Point, System.Drawing">
     <value>5, 5</value>
@@ -2315,213 +2522,6 @@
   </data>
   <data name="&gt;&gt;documentWindow_passRes.ZOrder" xml:space="preserve">
     <value>0</value>
-  </data>
-  <data name="radGridView1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="radGridView1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9.75pt</value>
-  </data>
-  <data name="radGridView1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="radGridView1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>540, 536</value>
-  </data>
-  <data name="radGridView1.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;radGridView1.Name" xml:space="preserve">
-    <value>radGridView1</value>
-  </data>
-  <data name="&gt;&gt;radGridView1.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadGridView, Telerik.WinControls.GridView, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
-  </data>
-  <data name="&gt;&gt;radGridView1.Parent" xml:space="preserve">
-    <value>radPanel5</value>
-  </data>
-  <data name="&gt;&gt;radGridView1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="radPanel5.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="radPanel5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 45</value>
-  </data>
-  <data name="radPanel5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>540, 536</value>
-  </data>
-  <data name="radPanel5.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;radPanel5.Name" xml:space="preserve">
-    <value>radPanel5</value>
-  </data>
-  <data name="&gt;&gt;radPanel5.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadPanel, Telerik.WinControls.UI, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
-  </data>
-  <data name="&gt;&gt;radPanel5.Parent" xml:space="preserve">
-    <value>documentWindow_packageProduct</value>
-  </data>
-  <data name="&gt;&gt;radPanel5.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="radRadioButton1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9.75pt</value>
-  </data>
-  <data name="radRadioButton1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 12</value>
-  </data>
-  <data name="radRadioButton1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 21</value>
-  </data>
-  <data name="radRadioButton1.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="radRadioButton1.Text" xml:space="preserve">
-    <value>箱子编码</value>
-  </data>
-  <data name="&gt;&gt;radRadioButton1.Name" xml:space="preserve">
-    <value>radRadioButton1</value>
-  </data>
-  <data name="&gt;&gt;radRadioButton1.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadRadioButton, Telerik.WinControls.UI, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
-  </data>
-  <data name="&gt;&gt;radRadioButton1.Parent" xml:space="preserve">
-    <value>radPanel4</value>
-  </data>
-  <data name="&gt;&gt;radRadioButton1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="radTextBox1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9.75pt</value>
-  </data>
-  <data name="radTextBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>221, 12</value>
-  </data>
-  <data name="radTextBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 23</value>
-  </data>
-  <data name="radTextBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;radTextBox1.Name" xml:space="preserve">
-    <value>radTextBox1</value>
-  </data>
-  <data name="&gt;&gt;radTextBox1.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadTextBox, Telerik.WinControls.UI, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
-  </data>
-  <data name="&gt;&gt;radTextBox1.Parent" xml:space="preserve">
-    <value>radPanel4</value>
-  </data>
-  <data name="&gt;&gt;radTextBox1.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="radRadioButton2.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9.75pt</value>
-  </data>
-  <data name="radRadioButton2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>105, 12</value>
-  </data>
-  <data name="radRadioButton2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>91, 21</value>
-  </data>
-  <data name="radRadioButton2.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="radRadioButton2.Text" xml:space="preserve">
-    <value>产品追溯码</value>
-  </data>
-  <data name="&gt;&gt;radRadioButton2.Name" xml:space="preserve">
-    <value>radRadioButton2</value>
-  </data>
-  <data name="&gt;&gt;radRadioButton2.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadRadioButton, Telerik.WinControls.UI, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
-  </data>
-  <data name="&gt;&gt;radRadioButton2.Parent" xml:space="preserve">
-    <value>radPanel4</value>
-  </data>
-  <data name="&gt;&gt;radRadioButton2.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="radButton1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left</value>
-  </data>
-  <data name="radButton1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9.75pt</value>
-  </data>
-  <data name="radButton1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>445, 11</value>
-  </data>
-  <data name="radButton1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>72, 24</value>
-  </data>
-  <data name="radButton1.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="radButton1.Text" xml:space="preserve">
-    <value>查询</value>
-  </data>
-  <data name="&gt;&gt;radButton1.Name" xml:space="preserve">
-    <value>radButton1</value>
-  </data>
-  <data name="&gt;&gt;radButton1.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
-  </data>
-  <data name="&gt;&gt;radButton1.Parent" xml:space="preserve">
-    <value>radPanel4</value>
-  </data>
-  <data name="&gt;&gt;radButton1.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="radPanel4.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="radPanel4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="radPanel4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>540, 45</value>
-  </data>
-  <data name="radPanel4.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;radPanel4.Name" xml:space="preserve">
-    <value>radPanel4</value>
-  </data>
-  <data name="&gt;&gt;radPanel4.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadPanel, Telerik.WinControls.UI, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
-  </data>
-  <data name="&gt;&gt;radPanel4.Parent" xml:space="preserve">
-    <value>documentWindow_packageProduct</value>
-  </data>
-  <data name="&gt;&gt;radPanel4.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="documentWindow_packageProduct.Font" type="System.Drawing.Font, System.Drawing">
-    <value>宋体, 9pt</value>
-  </data>
-  <data name="documentWindow_packageProduct.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 29</value>
-  </data>
-  <data name="documentWindow_packageProduct.Size" type="System.Drawing.Size, System.Drawing">
-    <value>540, 581</value>
-  </data>
-  <data name="documentWindow_packageProduct.Text" xml:space="preserve">
-    <value>打包产品</value>
-  </data>
-  <data name="&gt;&gt;documentWindow_packageProduct.Name" xml:space="preserve">
-    <value>documentWindow_packageProduct</value>
-  </data>
-  <data name="&gt;&gt;documentWindow_packageProduct.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.Docking.DocumentWindow, Telerik.WinControls.RadDock, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
-  </data>
-  <data name="&gt;&gt;documentWindow_packageProduct.Parent" xml:space="preserve">
-    <value>documentTabStrip1</value>
-  </data>
-  <data name="&gt;&gt;documentWindow_packageProduct.ZOrder" xml:space="preserve">
-    <value>1</value>
   </data>
   <data name="listView_TestRes.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -2835,31 +2835,31 @@
   <data name="&gt;&gt;documentWindow_testRes.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="radGridView2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+  <data name="radGridViewMaterial.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
-  <data name="radGridView2.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="radGridViewMaterial.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 9.75pt</value>
   </data>
-  <data name="radGridView2.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="radGridViewMaterial.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
-  <data name="radGridView2.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="radGridViewMaterial.Size" type="System.Drawing.Size, System.Drawing">
     <value>1039, 534</value>
   </data>
-  <data name="radGridView2.TabIndex" type="System.Int32, mscorlib">
+  <data name="radGridViewMaterial.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
   </data>
-  <data name="&gt;&gt;radGridView2.Name" xml:space="preserve">
-    <value>radGridView2</value>
+  <data name="&gt;&gt;radGridViewMaterial.Name" xml:space="preserve">
+    <value>radGridViewMaterial</value>
   </data>
-  <data name="&gt;&gt;radGridView2.Type" xml:space="preserve">
+  <data name="&gt;&gt;radGridViewMaterial.Type" xml:space="preserve">
     <value>Telerik.WinControls.UI.RadGridView, Telerik.WinControls.GridView, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
-  <data name="&gt;&gt;radGridView2.Parent" xml:space="preserve">
+  <data name="&gt;&gt;radGridViewMaterial.Parent" xml:space="preserve">
     <value>radPanel3</value>
   </data>
-  <data name="&gt;&gt;radGridView2.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;radGridViewMaterial.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="radPanel3.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
@@ -2913,55 +2913,55 @@
   <data name="&gt;&gt;radLabel1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="comboBox1.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="cb_material_typeNo.Location" type="System.Drawing.Point, System.Drawing">
     <value>87, 15</value>
   </data>
-  <data name="comboBox1.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="cb_material_typeNo.Size" type="System.Drawing.Size, System.Drawing">
     <value>121, 21</value>
   </data>
-  <data name="comboBox1.TabIndex" type="System.Int32, mscorlib">
+  <data name="cb_material_typeNo.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="&gt;&gt;comboBox1.Name" xml:space="preserve">
-    <value>comboBox1</value>
+  <data name="&gt;&gt;cb_material_typeNo.Name" xml:space="preserve">
+    <value>cb_material_typeNo</value>
   </data>
-  <data name="&gt;&gt;comboBox1.Type" xml:space="preserve">
+  <data name="&gt;&gt;cb_material_typeNo.Type" xml:space="preserve">
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;comboBox1.Parent" xml:space="preserve">
+  <data name="&gt;&gt;cb_material_typeNo.Parent" xml:space="preserve">
     <value>radPanel1</value>
   </data>
-  <data name="&gt;&gt;comboBox1.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;cb_material_typeNo.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="radButton2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+  <data name="btn_selectMaterial.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left</value>
   </data>
-  <data name="radButton2.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="btn_selectMaterial.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 9.75pt</value>
   </data>
-  <data name="radButton2.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="btn_selectMaterial.Location" type="System.Drawing.Point, System.Drawing">
     <value>228, 14</value>
   </data>
-  <data name="radButton2.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="btn_selectMaterial.Size" type="System.Drawing.Size, System.Drawing">
     <value>110, 23</value>
   </data>
-  <data name="radButton2.TabIndex" type="System.Int32, mscorlib">
+  <data name="btn_selectMaterial.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
-  <data name="radButton2.Text" xml:space="preserve">
+  <data name="btn_selectMaterial.Text" xml:space="preserve">
     <value>查询</value>
   </data>
-  <data name="&gt;&gt;radButton2.Name" xml:space="preserve">
-    <value>radButton2</value>
+  <data name="&gt;&gt;btn_selectMaterial.Name" xml:space="preserve">
+    <value>btn_selectMaterial</value>
   </data>
-  <data name="&gt;&gt;radButton2.Type" xml:space="preserve">
+  <data name="&gt;&gt;btn_selectMaterial.Type" xml:space="preserve">
     <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
-  <data name="&gt;&gt;radButton2.Parent" xml:space="preserve">
+  <data name="&gt;&gt;btn_selectMaterial.Parent" xml:space="preserve">
     <value>radPanel1</value>
   </data>
-  <data name="&gt;&gt;radButton2.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;btn_selectMaterial.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
   <data name="radPanel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">

@@ -37,7 +37,7 @@ namespace MesManager
             if (login.DialogResult != DialogResult.OK)
             {
                 //登录失败
-                Application.Exit();
+                this.Close();
             }
         }
 
@@ -55,9 +55,9 @@ namespace MesManager
             InitControl();
             this.radDock1.RemoveAllDocumentWindows();
             this.radDock1.AddDocument(documentWindow_testRes);
-            this.radDock1.AddDocument(documentWindow_material_select);
-            this.radDock1.AddDocument(documentWindow_packageProduct);
-            this.radDock1.AddDocument(documentWindow_passRes);
+            //this.radDock1.AddDocument(documentWindow_material_select);
+            //this.radDock1.AddDocument(documentWindow_packageProduct);
+            //this.radDock1.AddDocument(documentWindow_passRes);
 
             //if (Login.GetUserType == Login.UserType.USER_ADMIN)
             //{
@@ -90,6 +90,8 @@ namespace MesManager
             //button
             btn_search_record.Click += Btn_search_record_Click;
             btn_search_lastTestRes.Click += Btn_search_LastTestRes_Click;
+            btn_selectMaterial.Click += Btn_selectMaterial_Click;
+            btn_select_package.Click += Btn_select_package_Click;
 
             //style
             menu_vs2012dark.Click += Menu_vs2012dark_Click;
@@ -112,6 +114,29 @@ namespace MesManager
             menu_windows8.Click += Menu_windows8_Click;
         }
 
+        async private void Btn_select_package_Click(object sender, EventArgs e)
+        {
+            MesService.PackageProduct packageProduct = new MesService.PackageProduct();
+            if (rb_package_caseCode.CheckState == CheckState.Checked)
+            {
+                packageProduct.CaseCode = tb_input_packageMsg.Text.Trim();
+            }
+            else if (rb_package_sn.CheckState == CheckState.Checked)
+            {
+                packageProduct.SnOutter = tb_input_packageMsg.Text.Trim();
+            }
+            this.radGridViewPackage.DataSource = (await serviceClient.SelectPackageProductAsync(packageProduct)).Tables[0];
+        }
+
+        async private void Btn_selectMaterial_Click(object sender, EventArgs e)
+        {
+            //根据产品型号查询物料信息
+            var typeNo = cb_material_typeNo.Text.Trim();
+            DataTable dt = (await serviceClient.SelectProductMaterialAsync(typeNo)).Tables[0];
+            this.radGridViewMaterial.DataSource = dt;
+        }
+
+        #region UI style
         private void Menu_windows8_Click(object sender, EventArgs e)
         {
             Windows8Theme windows8Theme = new Windows8Theme();
@@ -219,7 +244,7 @@ namespace MesManager
             VisualStudio2012DarkTheme visualStudio2012DarkTheme = new VisualStudio2012DarkTheme();
             ThemeResolutionService.ApplicationThemeName = visualStudio2012DarkTheme.ThemeName;
         }
-
+        #endregion
         private void InitStyle()
         {
             SkinEngine skinEngine = new SkinEngine();
@@ -385,6 +410,7 @@ namespace MesManager
         {
             //type no 
             cb_typeNo.Items.Clear();
+            cb_material_typeNo.Items.Clear();
             cb_station.Items.Clear();
             try
             {
@@ -392,6 +418,7 @@ namespace MesManager
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
                     cb_typeNo.Items.Add(dt.Rows[i][0]);
+                    cb_material_typeNo.Items.Add(dt.Rows[i][0]);
                 }
                 cb_typeNo.Items.Add("");
                 //station
@@ -406,6 +433,8 @@ namespace MesManager
             {
                 LogHelper.Log.Error(ex.Message+"\r\n"+ex.StackTrace);
             }
+            DataGridViewCommon.SetRadGridViewProperty(this.radGridViewMaterial,false);
+            DataGridViewCommon.SetRadGridViewProperty(this.radGridViewPackage,false);
         }
 
         private void Menu_glass_Click(object sender, EventArgs e)
