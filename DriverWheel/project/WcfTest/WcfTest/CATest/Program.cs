@@ -16,6 +16,7 @@ namespace CATest
             CompositeType ct = new CompositeType();
             ct.BoolValue = true;
             ct.StringValue = "ddrsql";
+            
             Console.WriteLine(sc.GetDataUsingDataContract(ct).StringValue);
             Console.ReadLine();
         }

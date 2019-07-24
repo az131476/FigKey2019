@@ -36,7 +36,7 @@ namespace DriverAPITest
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         private const String host = "https://znys.market.alicloudapi.com";
@@ -85,12 +85,12 @@ namespace DriverAPITest
                 httpResponse = (HttpWebResponse)ex.Response;
             }
 
-            textBox1.Text += "statusCode:"+httpResponse.StatusCode+"\r\n";
-            textBox1.Text += "method:"+httpResponse.Method+"\r\n";
-            textBox1.Text += "header:"+httpResponse.Headers+"\r\n";
+            textBox1.Text += "statusCode:" + httpResponse.StatusCode + "\r\n";
+            textBox1.Text += "method:" + httpResponse.Method + "\r\n";
+            textBox1.Text += "header:" + httpResponse.Headers + "\r\n";
             Stream st = httpResponse.GetResponseStream();
             StreamReader reader = new StreamReader(st, Encoding.GetEncoding("utf-8"));
-            textBox1.Text += "content:"+reader.ReadToEnd();
+            textBox1.Text += "content:" + reader.ReadToEnd();
 
         }
 
@@ -119,24 +119,17 @@ namespace DriverAPITest
         {
             textBox1.Clear();
             //MaInterface();
-                        //https://zehusidentityserverwebintegration.azurewebsites.net/Account/Login?ReturnUrl=/connect/authorize/callback?response_type=token&client_id=SwaggerProduction&redirect_uri=https%3A%2F%2Fzehusdrivermanufacturer-integr.azurewebsites.net%2Foauth2-redirect.html&scope=ProductionApi&state=VHVlIEp1bCAyMyAyMDE5IDE0OjAwOjA5IEdNVCswODAwICjkuK3lm73moIflh4bml7bpl7Qp
-                        //https://zehusidentityserverwebintegration.azurewebsites.net/Account/Login?ReturnUrl=/connect/authorize/callback?response_type=token&client_id=SwaggerProduction&redirect_uri=https%3A%2F%2Fzehusdrivermanufacturer-integr.azurewebsites.net%2Foauth2-redirect.html&scope=ProductionApi&state=VHVlIEp1bCAyMyAyMDE5IDA5OjI5OjU4IEdNVCswODAwICjkuK3lm73
-            string url = "https://zehusdrivermanufacturer-integr.azurewebsites.net/authorize?response_type=code&scope=openid%20profile%20email&client_id=s6BhdRkqt3&state=af0ifjsldkj&redirect_uri=https%3A%2F%2Fclient.example.org%2Fcb HTTP/ 1.1";
-            string url_1 = "https://login.microsoftonline.com/contoso.onmicrosoft.com/oauth2/authorize?client_id=6731de76-14a6-49ae-97bc-6eba6914391e&response_type=id_token&redirect_uri=http%3A%2F%2Flocalhost%3a12345&response_mode=form_post&scope=openid&state=12345&nonce=7362CAEA-9CA5-4B43-9BA3-34D7C303EBA7";
-            this.webBrowser1.Navigate(url_1);
-            textBox1.Text += "browserUrl:"+ this.webBrowser1.Url+"\r\n";
-            HttpHelps httpHelps = new HttpHelps();
-            var resStr = httpHelps.GetHttpRequestStringByNUll_Get(url_1, Encoding.UTF8);
+            string url_login = "http://localhost:9000/auth/Login";
+            //http://localhost:9000/swagger/index.html?urls.primaryName=Authorize%20-%E3%80%90SwaggerAuthorize%E3%80%91
+            //http://localhost:9000/swagger/index.html?urls.primaryName=API01%20-%E3%80%90SwaggerAPI01%E3%80%91
+            Http http = new Http();
+            CommonUtils.API.HttpItem httpItem = new CommonUtils.API.HttpItem();
+            httpItem.URL = "http://localhost:9000/auth/Login";
+            httpItem.Method = "POST";
+            CommonUtils.API.HttpResult httpResult = http.GetHtml(httpItem);
 
-            textBox1.Text += "result:" + resStr+"\r\n";
-            this.webBrowser1.CanGoForwardChanged += WebBrowser1_CanGoForwardChanged;
-        }
-
-        private void WebBrowser1_CanGoForwardChanged(object sender, EventArgs e)
-        {
-            this.textBox1.Clear();
-            this.textBox1.Text += "webURL:"+this.webBrowser1.Url;
-
+            textBox1.Text += "status:" + httpResult.StatusCode+"\r\n";
+            textBox1.Text += "result:" + httpResult.Html + "\r\n";
         }
 
         private void Api1ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -144,60 +137,5 @@ namespace DriverAPITest
             TestAPI();
         }
     }
-    @Configuration
-@EnableWebMvc
-@EnableSwagger2
-public class SwaggerConfig
-    {
 
-        @Bean
-    public Docket platformApi()
-        {
-
-            return new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo()).forCodeGeneration(true)
-                    .select().apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
-                .apis(RequestHandlerSelectors.any())
-                .paths(regex("^.*(?<!error)$"))
-                .build()
-                .securitySchemes(securitySchemes())
-                .securityContexts(securityContexts());
-
-
-    }
-    private List<ApiKey> securitySchemes()
-    {
-        List<ApiKey> apiKeyList = new ArrayList();
-        apiKeyList.add(new ApiKey("x-auth-token", "x-auth-token", "header"));
-        return apiKeyList;
-    }
-
-    private List<SecurityContext> securityContexts()
-    {
-        List<SecurityContext> securityContexts = new ArrayList<>();
-        securityContexts.add(
-                SecurityContext.builder()
-                        .securityReferences(defaultAuth())
-                        .forPaths(PathSelectors.regex("^(?!auth).*$"))
-                        .build());
-        return securityContexts;
-    }
-
-    List<SecurityReference> defaultAuth()
-    {
-        AuthorizationScope authorizationScope = new AuthorizationScope("global", "accessEverything");
-        AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];
-        authorizationScopes[0] = authorizationScope;
-        List<SecurityReference> securityReferences = new ArrayList<>();
-        securityReferences.add(new SecurityReference("Authorization", authorizationScopes));
-        return securityReferences;
-    }
-    private ApiInfo apiInfo()
-    {
-        return new ApiInfoBuilder().title("starmark-API").description("©2018 Copyright. Powered By starmark.")
-                // .termsOfServiceUrl("")
-                .contact(new Contact("Starmark", "", "947618@163.com")).license("Apache License Version 2.0")
-                .licenseUrl("https://github.com/springfox/springfox/blob/master/LICENSE").version("2.0").build();
-    }
-
-}
 }

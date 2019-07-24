@@ -167,7 +167,6 @@
     <Compile Include="Models\App.cs" />
     <Compile Include="Models\ResultJson.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Startup1.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
