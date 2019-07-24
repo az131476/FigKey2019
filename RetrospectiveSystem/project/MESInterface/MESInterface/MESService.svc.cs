@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
-using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
 using MESInterface.Molde;
@@ -15,11 +14,19 @@ using MESInterface.MessageQueue.RemoteClient;
 using MESInterface.DB;
 using MESInterface.Model;
 using System.Data.SqlClient;
+using System.ServiceModel;
+using System.ServiceModel.Activation;
+using SwaggerWcf.Attributes;
+using System.ComponentModel;
+using System.Net;
 
 namespace MESInterface
 {
     // 注意: 使用“重构”菜单上的“重命名”命令，可以同时更改代码、svc 和配置文件中的类名“Service1”。
     // 注意: 为了启动 WCF 测试客户端以测试此服务，请在解决方案资源管理器中选择 Service1.svc 或 Service1.svc.cs，然后开始调试。
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerSession)]
+    [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
+    [SwaggerWcf("/MesService/")]
     public class MesService : IMesService
     {
         private string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ToString();
@@ -28,10 +35,20 @@ namespace MESInterface
         private Queue<string[]> selectDataQueue = new Queue<string[]>();
         private Queue<string[]> insertMaterialStatistics = new Queue<string[]>();
 
+        [SwaggerWcfResponse(HttpStatusCode.Created, "请求成功的描述")]
+        [SwaggerWcfResponse(HttpStatusCode.BadRequest,"请求失败 400",true)]
+        [SwaggerWcfResponse(HttpStatusCode.InternalServerError,"请求失败 500",true)]
+
+        [SwaggerWcfTag("MesService接口")]
+        public string GetData(string person)
+        {
+            return "this is return = "+person;
+        }
         private string GetDateTimeNow()
         {
             return DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
         }
+
         public void InitConnectString()
         {
             SQLServer.SqlConnectionString = connectionString;

@@ -93,9 +93,39 @@ namespace MesManager.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap GenericShareFolder_24x24 {
+            get {
+                object obj = ResourceManager.GetObject("GenericShareFolder_24x24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap movieLab_bg {
             get {
                 object obj = ResourceManager.GetObject("movieLab_bg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap t01ef4cc12bbcc9fb6e {
+            get {
+                object obj = ResourceManager.GetObject("t01ef4cc12bbcc9fb6e", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap t01ef4cc12bbcc9fb6e1 {
+            get {
+                object obj = ResourceManager.GetObject("t01ef4cc12bbcc9fb6e1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -116,6 +146,16 @@ namespace MesManager.Properties {
         internal static System.Drawing.Bitmap vsb_bg {
             get {
                 object obj = ResourceManager.GetObject("vsb_bg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap 背景_01 {
+            get {
+                object obj = ResourceManager.GetObject("背景-01", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

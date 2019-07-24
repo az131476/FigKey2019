@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfTest", "WcfTest\WcfTest.csproj", "{AABE6A52-AC46-4AEC-8517-5AEA9B090629}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CATest", "CATest\CATest.csproj", "{7CB4F86F-6E91-477C-A97B-2B2A9B2A09BA}"
+	ProjectSection(ProjectDependencies) = postProject
+		{AABE6A52-AC46-4AEC-8517-5AEA9B090629} = {AABE6A52-AC46-4AEC-8517-5AEA9B090629}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AABE6A52-AC46-4AEC-8517-5AEA9B090629}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AABE6A52-AC46-4AEC-8517-5AEA9B090629}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AABE6A52-AC46-4AEC-8517-5AEA9B090629}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AABE6A52-AC46-4AEC-8517-5AEA9B090629}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CB4F86F-6E91-477C-A97B-2B2A9B2A09BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CB4F86F-6E91-477C-A97B-2B2A9B2A09BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CB4F86F-6E91-477C-A97B-2B2A9B2A09BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CB4F86F-6E91-477C-A97B-2B2A9B2A09BA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

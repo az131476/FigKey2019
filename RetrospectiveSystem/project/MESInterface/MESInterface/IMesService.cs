@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
-using System.ServiceModel;
-using System.ServiceModel.Web;
 using System.Text;
 using MESInterface.Model;
 using System.Data;
+using SwaggerWcf.Attributes;
+using System.ServiceModel;
+using System.ServiceModel.Web;
 
 namespace MESInterface
 {
@@ -15,6 +16,17 @@ namespace MESInterface
     public interface IMesService
     {
         // TODO: 在此添加您的服务操作
+        [OperationContract]
+        [SwaggerWcfPath("swaggerwcfTitle", "swaggerwcfDescirble")]
+        [WebInvoke(
+        Method = "GET",
+        RequestFormat = WebMessageFormat.Json,
+        ResponseFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.Bare,
+        UriTemplate = "GetData?request={id}"
+        )]
+        string GetData(string person);
+
         [OperationContract]
         void InitConnectString();
         //用户信息

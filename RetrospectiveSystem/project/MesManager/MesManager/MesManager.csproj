@@ -47,6 +47,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="IrisSkin4">
       <HintPath>..\Lib\IrisSkin4.dll</HintPath>
@@ -369,6 +372,12 @@
     <Compile Include="RadView\ProductType.Designer.cs">
       <DependentUpon>ProductType.cs</DependentUpon>
     </Compile>
+    <Compile Include="RadView\Register.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RadView\Register.Designer.cs">
+      <DependentUpon>Register.cs</DependentUpon>
+    </Compile>
     <Compile Include="RadView\SetStation.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -440,6 +449,9 @@
     <EmbeddedResource Include="RadView\ProductType.resx">
       <DependentUpon>ProductType.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="RadView\Register.resx">
+      <DependentUpon>Register.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RadView\SetStation.resx">
       <DependentUpon>SetStation.cs</DependentUpon>
     </EmbeddedResource>
@@ -458,6 +470,39 @@
     <EmbeddedResource Include="WelcomeForm.resx">
       <DependentUpon>WelcomeForm.cs</DependentUpon>
     </EmbeddedResource>
+<<<<<<< HEAD
+=======
+    <None Include="app.manifest" />
+    <None Include="Connected Services\MesService\MesManager.MesService.GetUserInfoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\MesService\MesManager.MesService.LoginResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\MesService\MesManager.MesService.QueryResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\MesService\MesManager.MesService.RegisterResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\MesService\MesService.wsdl" />
+    <None Include="Connected Services\MesService\MesService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\MesService\MesService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\MesService\MesService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\MesService\MesService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\MesService\MesService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DB\WT_SCL.bak" />
+>>>>>>> a192a1a4d19917383157d8fbfc0b38b411301f9a
     <None Include="packages.config" />
     <None Include="Properties\DataSources\System.Data.DataSet.datasource" />
     <None Include="Properties\Settings.settings">
@@ -474,12 +519,34 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
+=======
+    <None Include="Connected Services\MesService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\MesService\configuration.svcinfo" />
+    <None Include="Connected Services\MesService\configuration91.svcinfo" />
+    <None Include="Connected Services\MesService\MesService.disco" />
+    <Content Include="DB\WT_SCL.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DB\WT_SCL_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>WT_SCL.mdf</DependentUpon>
+    </Content>
+>>>>>>> a192a1a4d19917383157d8fbfc0b38b411301f9a
     <None Include="Resources\vsb-bg.png" />
     <None Include="Resources\ThViewer-bg.png" />
     <None Include="Resources\movieLab-bg.png" />
     <None Include="Resources\figkeyLogo1.png" />
     <None Include="Resources\figkeyLogo.png" />
     <None Include="Resources\favicon.ico" />
+    <None Include="Resources\t01ef4cc12bbcc9fb6e.jpg" />
+    <None Include="Resources\背景-01.jpg" />
+    <None Include="Resources\GenericShareFolder_128x128.png" />
+    <None Include="Resources\GenericShareFolder_16x16.png" />
+    <None Include="Resources\GenericShareFolder_24x24.png" />
     <Content Include="新需求.txt" />
     <Content Include="说明.txt" />
     <Content Include="需求.txt" />
@@ -497,11 +564,28 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
+=======
+    <NativeReference Include="MyApplication.app, Version=1.0.0.0">
+      <Name>app.manifest</Name>
+      <HintPath>..\Lib\telerik\app.manifest</HintPath>
+    </NativeReference>
+  </ItemGroup>
+  <ItemGroup>
+>>>>>>> a192a1a4d19917383157d8fbfc0b38b411301f9a
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+<<<<<<< HEAD
     <ProjectReference Include="..\..\..\..\..\..\CommonUtils\CommonLibrary\CommonUtils\CommonUtils\CommonUtils.csproj">
+=======
+    <WCFMetadataStorage Include="Connected Services\MesService\" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\CommonLibrary\CommonUtils\CommonUtils\CommonUtils.csproj">
+>>>>>>> a192a1a4d19917383157d8fbfc0b38b411301f9a
       <Project>{ebfca1b5-23f1-4f94-928a-db1a7b98eed6}</Project>
       <Name>CommonUtils</Name>
     </ProjectReference>

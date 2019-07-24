@@ -5,7 +5,11 @@ VisualStudioVersion = 15.0.28307.489
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MesManager", "MesManager\MesManager.csproj", "{FF199236-D643-4121-A3ED-CF7AE76D1DDC}"
 EndProject
+<<<<<<< HEAD
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonUtils", "..\..\..\..\..\CommonUtils\CommonLibrary\CommonUtils\CommonUtils\CommonUtils.csproj", "{EBFCA1B5-23F1-4F94-928A-DB1A7B98EED6}"
+=======
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonUtils", "..\..\..\..\CommonLibrary\CommonUtils\CommonUtils\CommonUtils.csproj", "{EBFCA1B5-23F1-4F94-928A-DB1A7B98EED6}"
+>>>>>>> a192a1a4d19917383157d8fbfc0b38b411301f9a
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

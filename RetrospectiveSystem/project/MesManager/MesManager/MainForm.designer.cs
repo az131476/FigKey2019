@@ -29,23 +29,23 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            Telerik.WinControls.UI.CartesianArea cartesianArea2 = new Telerik.WinControls.UI.CartesianArea();
-            Telerik.WinControls.UI.CategoricalAxis categoricalAxis2 = new Telerik.WinControls.UI.CategoricalAxis();
-            Telerik.WinControls.UI.LinearAxis linearAxis2 = new Telerik.WinControls.UI.LinearAxis();
-            Telerik.WinControls.UI.BarSeries barSeries3 = new Telerik.WinControls.UI.BarSeries();
-            Telerik.Charting.CategoricalDataPoint categoricalDataPoint11 = new Telerik.Charting.CategoricalDataPoint();
-            Telerik.Charting.CategoricalDataPoint categoricalDataPoint12 = new Telerik.Charting.CategoricalDataPoint();
-            Telerik.Charting.CategoricalDataPoint categoricalDataPoint13 = new Telerik.Charting.CategoricalDataPoint();
-            Telerik.Charting.CategoricalDataPoint categoricalDataPoint14 = new Telerik.Charting.CategoricalDataPoint();
-            Telerik.Charting.CategoricalDataPoint categoricalDataPoint15 = new Telerik.Charting.CategoricalDataPoint();
-            Telerik.WinControls.UI.BarSeries barSeries4 = new Telerik.WinControls.UI.BarSeries();
-            Telerik.Charting.CategoricalDataPoint categoricalDataPoint16 = new Telerik.Charting.CategoricalDataPoint();
-            Telerik.Charting.CategoricalDataPoint categoricalDataPoint17 = new Telerik.Charting.CategoricalDataPoint();
-            Telerik.Charting.CategoricalDataPoint categoricalDataPoint18 = new Telerik.Charting.CategoricalDataPoint();
-            Telerik.Charting.CategoricalDataPoint categoricalDataPoint19 = new Telerik.Charting.CategoricalDataPoint();
-            Telerik.Charting.CategoricalDataPoint categoricalDataPoint20 = new Telerik.Charting.CategoricalDataPoint();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition7 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition8 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.CartesianArea cartesianArea1 = new Telerik.WinControls.UI.CartesianArea();
+            Telerik.WinControls.UI.CategoricalAxis categoricalAxis1 = new Telerik.WinControls.UI.CategoricalAxis();
+            Telerik.WinControls.UI.LinearAxis linearAxis1 = new Telerik.WinControls.UI.LinearAxis();
+            Telerik.WinControls.UI.BarSeries barSeries1 = new Telerik.WinControls.UI.BarSeries();
+            Telerik.Charting.CategoricalDataPoint categoricalDataPoint1 = new Telerik.Charting.CategoricalDataPoint();
+            Telerik.Charting.CategoricalDataPoint categoricalDataPoint2 = new Telerik.Charting.CategoricalDataPoint();
+            Telerik.Charting.CategoricalDataPoint categoricalDataPoint3 = new Telerik.Charting.CategoricalDataPoint();
+            Telerik.Charting.CategoricalDataPoint categoricalDataPoint4 = new Telerik.Charting.CategoricalDataPoint();
+            Telerik.Charting.CategoricalDataPoint categoricalDataPoint5 = new Telerik.Charting.CategoricalDataPoint();
+            Telerik.WinControls.UI.BarSeries barSeries2 = new Telerik.WinControls.UI.BarSeries();
+            Telerik.Charting.CategoricalDataPoint categoricalDataPoint6 = new Telerik.Charting.CategoricalDataPoint();
+            Telerik.Charting.CategoricalDataPoint categoricalDataPoint7 = new Telerik.Charting.CategoricalDataPoint();
+            Telerik.Charting.CategoricalDataPoint categoricalDataPoint8 = new Telerik.Charting.CategoricalDataPoint();
+            Telerik.Charting.CategoricalDataPoint categoricalDataPoint9 = new Telerik.Charting.CategoricalDataPoint();
+            Telerik.Charting.CategoricalDataPoint categoricalDataPoint10 = new Telerik.Charting.CategoricalDataPoint();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             this.radMenuItem1 = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItem3 = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItem4 = new Telerik.WinControls.UI.RadMenuItem();
@@ -81,41 +81,6 @@
             this.radStatusStrip1 = new Telerik.WinControls.UI.RadStatusStrip();
             this.radLabelElement1 = new Telerik.WinControls.UI.RadLabelElement();
             this.tool_status_user = new Telerik.WinControls.UI.RadLabelElement();
-            this.radDock1 = new Telerik.WinControls.UI.Docking.RadDock();
-            this.toolWindow_left = new Telerik.WinControls.UI.Docking.ToolWindow();
-            this.radTreeView1 = new Telerik.WinControls.UI.RadTreeView();
-            this.toolTabStrip1 = new Telerik.WinControls.UI.Docking.ToolTabStrip();
-            this.documentContainer2 = new Telerik.WinControls.UI.Docking.DocumentContainer();
-            this.documentTabStrip1 = new Telerik.WinControls.UI.Docking.DocumentTabStrip();
-            this.documentWindow_passRes = new Telerik.WinControls.UI.Docking.DocumentWindow();
-            this.radChartView1 = new Telerik.WinControls.UI.RadChartView();
-            this.documentWindow_packageProduct = new Telerik.WinControls.UI.Docking.DocumentWindow();
-            this.radPanel5 = new Telerik.WinControls.UI.RadPanel();
-            this.radGridView1 = new Telerik.WinControls.UI.RadGridView();
-            this.radPanel4 = new Telerik.WinControls.UI.RadPanel();
-            this.radRadioButton1 = new Telerik.WinControls.UI.RadRadioButton();
-            this.radTextBox1 = new Telerik.WinControls.UI.RadTextBox();
-            this.radRadioButton2 = new Telerik.WinControls.UI.RadRadioButton();
-            this.radButton1 = new Telerik.WinControls.UI.RadButton();
-            this.documentWindow_testRes = new Telerik.WinControls.UI.Docking.DocumentWindow();
-            this.radPanel2 = new Telerik.WinControls.UI.RadPanel();
-            this.listView_TestRes = new Telerik.WinControls.UI.RadListView();
-            this.追溯码 = new Telerik.WinControls.UI.RadPanel();
-            this.cb_typeNo = new System.Windows.Forms.ComboBox();
-            this.cb_station = new System.Windows.Forms.ComboBox();
-            this.btn_search_lastTestRes = new Telerik.WinControls.UI.RadButton();
-            this.btn_search_record = new Telerik.WinControls.UI.RadButton();
-            this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
-            this.tb_sn = new System.Windows.Forms.TextBox();
-            this.documentWindow_material_select = new Telerik.WinControls.UI.Docking.DocumentWindow();
-            this.radPanel3 = new Telerik.WinControls.UI.RadPanel();
-            this.radGridView2 = new Telerik.WinControls.UI.RadGridView();
-            this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
-            this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.radButton2 = new Telerik.WinControls.UI.RadButton();
             this.radMenuItem16 = new Telerik.WinControls.UI.RadMenuItem();
             this.menu_glass = new Telerik.WinControls.UI.RadMenuItem();
             this.menu_vs2012dark = new Telerik.WinControls.UI.RadMenuItem();
@@ -137,8 +102,44 @@
             this.menu_materialPink = new Telerik.WinControls.UI.RadMenuItem();
             this.menu_materialTeal = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenu1 = new Telerik.WinControls.UI.RadMenu();
+            this.radDock1 = new Telerik.WinControls.UI.Docking.RadDock();
+            this.toolWindow_left = new Telerik.WinControls.UI.Docking.ToolWindow();
+            this.radTreeView1 = new Telerik.WinControls.UI.RadTreeView();
+            this.toolTabStrip1 = new Telerik.WinControls.UI.Docking.ToolTabStrip();
+            this.documentContainer2 = new Telerik.WinControls.UI.Docking.DocumentContainer();
+            this.documentTabStrip1 = new Telerik.WinControls.UI.Docking.DocumentTabStrip();
+            this.documentWindow_passRes = new Telerik.WinControls.UI.Docking.DocumentWindow();
+            this.radChartView1 = new Telerik.WinControls.UI.RadChartView();
+            this.documentWindow_packageProduct = new Telerik.WinControls.UI.Docking.DocumentWindow();
+            this.radPanel5 = new Telerik.WinControls.UI.RadPanel();
+            this.radGridViewPackage = new Telerik.WinControls.UI.RadGridView();
+            this.radPanel4 = new Telerik.WinControls.UI.RadPanel();
+            this.rb_package_caseCode = new Telerik.WinControls.UI.RadRadioButton();
+            this.tb_input_packageMsg = new Telerik.WinControls.UI.RadTextBox();
+            this.rb_package_sn = new Telerik.WinControls.UI.RadRadioButton();
+            this.btn_select_package = new Telerik.WinControls.UI.RadButton();
+            this.documentWindow_testRes = new Telerik.WinControls.UI.Docking.DocumentWindow();
+            this.radPanel2 = new Telerik.WinControls.UI.RadPanel();
+            this.listView_TestRes = new Telerik.WinControls.UI.RadListView();
+            this.追溯码 = new Telerik.WinControls.UI.RadPanel();
+            this.cb_typeNo = new System.Windows.Forms.ComboBox();
+            this.cb_station = new System.Windows.Forms.ComboBox();
+            this.btn_search_lastTestRes = new Telerik.WinControls.UI.RadButton();
+            this.btn_search_record = new Telerik.WinControls.UI.RadButton();
+            this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
+            this.tb_sn = new System.Windows.Forms.TextBox();
+            this.documentWindow_material_select = new Telerik.WinControls.UI.Docking.DocumentWindow();
+            this.radPanel3 = new Telerik.WinControls.UI.RadPanel();
+            this.radGridViewMaterial = new Telerik.WinControls.UI.RadGridView();
+            this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
+            this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
+            this.cb_material_typeNo = new System.Windows.Forms.ComboBox();
+            this.btn_selectMaterial = new Telerik.WinControls.UI.RadButton();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radStatusStrip1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radDock1)).BeginInit();
             this.radDock1.SuspendLayout();
             this.toolWindow_left.SuspendLayout();
@@ -154,14 +155,14 @@
             this.documentWindow_packageProduct.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel5)).BeginInit();
             this.radPanel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGridViewPackage)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGridViewPackage.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel4)).BeginInit();
             this.radPanel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radRadioButton1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radRadioButton2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rb_package_caseCode)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tb_input_packageMsg)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rb_package_sn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_select_package)).BeginInit();
             this.documentWindow_testRes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel2)).BeginInit();
             this.radPanel2.SuspendLayout();
@@ -176,13 +177,12 @@
             this.documentWindow_material_select.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel3)).BeginInit();
             this.radPanel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radGridView2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGridView2.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGridViewMaterial)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGridViewMaterial.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
             this.radPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_selectMaterial)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -255,12 +255,15 @@
             // menu_productType
             // 
             resources.ApplyResources(this.menu_productType, "menu_productType");
+            this.menu_productType.DescriptionFont = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.menu_productType.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menu_productType.Name = "menu_productType";
             this.menu_productType.UseCompatibleTextRendering = false;
             // 
             // menu_material_msg
             // 
             resources.ApplyResources(this.menu_material_msg, "menu_material_msg");
+            this.menu_material_msg.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menu_material_msg.Name = "menu_material_msg";
             // 
             // menu_produce_config
@@ -271,17 +274,20 @@
             // menu_set_station
             // 
             resources.ApplyResources(this.menu_set_station, "menu_set_station");
+            this.menu_set_station.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menu_set_station.Name = "menu_set_station";
             this.menu_set_station.Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
             // 
             // menu_product_material
             // 
             resources.ApplyResources(this.menu_product_material, "menu_product_material");
+            this.menu_product_material.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menu_product_material.Name = "menu_product_material";
             // 
             // menu_product_binding
             // 
             resources.ApplyResources(this.menu_product_binding, "menu_product_binding");
+            this.menu_product_binding.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menu_product_binding.Name = "menu_product_binding";
             // 
             // toolStrip1
@@ -332,21 +338,27 @@
             // menu_select_testRes
             // 
             resources.ApplyResources(this.menu_select_testRes, "menu_select_testRes");
+            this.menu_select_testRes.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menu_select_testRes.Name = "menu_select_testRes";
             // 
             // menu_select_material
             // 
             resources.ApplyResources(this.menu_select_material, "menu_select_material");
+            this.menu_select_material.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menu_select_material.Name = "menu_select_material";
             // 
             // menu_select_packageProduct
             // 
             resources.ApplyResources(this.menu_select_packageProduct, "menu_select_packageProduct");
+            this.menu_select_packageProduct.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.menu_select_packageProduct.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menu_select_packageProduct.Name = "menu_select_packageProduct";
             // 
             // menu_select_passRate
             // 
             resources.ApplyResources(this.menu_select_passRate, "menu_select_passRate");
+            this.menu_select_passRate.BackColor = System.Drawing.Color.AliceBlue;
+            this.menu_select_passRate.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menu_select_passRate.Name = "menu_select_passRate";
             // 
             // radMenuItem13
@@ -388,6 +400,8 @@
             // 
             // radStatusStrip1
             // 
+            this.radStatusStrip1.BackColor = System.Drawing.Color.Transparent;
+            this.radStatusStrip1.ForeColor = System.Drawing.Color.Black;
             this.radStatusStrip1.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.radLabelElement1,
             this.tool_status_user});
@@ -407,338 +421,6 @@
             this.tool_status_user.Name = "tool_status_user";
             this.radStatusStrip1.SetSpring(this.tool_status_user, false);
             this.tool_status_user.TextWrap = true;
-            // 
-            // radDock1
-            // 
-            this.radDock1.ActiveWindow = this.toolWindow_left;
-            this.radDock1.CausesValidation = false;
-            this.radDock1.Controls.Add(this.toolTabStrip1);
-            this.radDock1.Controls.Add(this.documentContainer2);
-            resources.ApplyResources(this.radDock1, "radDock1");
-            this.radDock1.IsCleanUpTarget = true;
-            this.radDock1.MainDocumentContainer = this.documentContainer2;
-            this.radDock1.Name = "radDock1";
-            // 
-            // 
-            // 
-            this.radDock1.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.radDock1.TabStop = false;
-            // 
-            // toolWindow_left
-            // 
-            this.toolWindow_left.Caption = null;
-            this.toolWindow_left.Controls.Add(this.radTreeView1);
-            resources.ApplyResources(this.toolWindow_left, "toolWindow_left");
-            this.toolWindow_left.Name = "toolWindow_left";
-            this.toolWindow_left.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.Docked;
-            // 
-            // radTreeView1
-            // 
-            resources.ApplyResources(this.radTreeView1, "radTreeView1");
-            this.radTreeView1.Name = "radTreeView1";
-            this.radTreeView1.SpacingBetweenNodes = -1;
-            // 
-            // toolTabStrip1
-            // 
-            this.toolTabStrip1.BackColor = System.Drawing.Color.Transparent;
-            this.toolTabStrip1.CanUpdateChildIndex = true;
-            this.toolTabStrip1.Controls.Add(this.toolWindow_left);
-            resources.ApplyResources(this.toolTabStrip1, "toolTabStrip1");
-            this.toolTabStrip1.Name = "toolTabStrip1";
-            // 
-            // 
-            // 
-            this.toolTabStrip1.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.toolTabStrip1.SelectedIndex = 0;
-            this.toolTabStrip1.SizeInfo.AbsoluteSize = new System.Drawing.Size(256, 200);
-            this.toolTabStrip1.SizeInfo.SplitterCorrection = new System.Drawing.Size(56, 0);
-            this.toolTabStrip1.TabStop = false;
-            // 
-            // documentContainer2
-            // 
-            this.documentContainer2.CausesValidation = false;
-            this.documentContainer2.Controls.Add(this.documentTabStrip1);
-            this.documentContainer2.Name = "documentContainer2";
-            // 
-            // 
-            // 
-            this.documentContainer2.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.documentContainer2.SizeInfo.AbsoluteSize = new System.Drawing.Size(1051, 200);
-            this.documentContainer2.SizeInfo.SizeMode = Telerik.WinControls.UI.Docking.SplitPanelSizeMode.Fill;
-            this.documentContainer2.SizeInfo.SplitterCorrection = new System.Drawing.Size(-56, 0);
-            resources.ApplyResources(this.documentContainer2, "documentContainer2");
-            // 
-            // documentTabStrip1
-            // 
-            this.documentTabStrip1.CanUpdateChildIndex = true;
-            this.documentTabStrip1.CausesValidation = false;
-            this.documentTabStrip1.Controls.Add(this.documentWindow_passRes);
-            this.documentTabStrip1.Controls.Add(this.documentWindow_packageProduct);
-            this.documentTabStrip1.Controls.Add(this.documentWindow_testRes);
-            this.documentTabStrip1.Controls.Add(this.documentWindow_material_select);
-            resources.ApplyResources(this.documentTabStrip1, "documentTabStrip1");
-            this.documentTabStrip1.Name = "documentTabStrip1";
-            // 
-            // 
-            // 
-            this.documentTabStrip1.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.documentTabStrip1.SelectedIndex = 3;
-            this.documentTabStrip1.TabStop = false;
-            // 
-            // documentWindow_passRes
-            // 
-            this.documentWindow_passRes.BackColor = System.Drawing.Color.Transparent;
-            this.documentWindow_passRes.Controls.Add(this.radChartView1);
-            resources.ApplyResources(this.documentWindow_passRes, "documentWindow_passRes");
-            this.documentWindow_passRes.Name = "documentWindow_passRes";
-            this.documentWindow_passRes.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.TabbedDocument;
-            // 
-            // radChartView1
-            // 
-            this.radChartView1.AreaDesign = cartesianArea2;
-            categoricalAxis2.IsPrimary = true;
-            categoricalAxis2.LabelRotationAngle = 300D;
-            categoricalAxis2.Title = "";
-            linearAxis2.AxisType = Telerik.Charting.AxisType.Second;
-            linearAxis2.IsPrimary = true;
-            linearAxis2.LabelRotationAngle = 300D;
-            linearAxis2.MajorStep = 10D;
-            linearAxis2.TickOrigin = null;
-            linearAxis2.Title = "";
-            this.radChartView1.Axes.AddRange(new Telerik.WinControls.UI.Axis[] {
-            categoricalAxis2,
-            linearAxis2});
-            resources.ApplyResources(this.radChartView1, "radChartView1");
-            this.radChartView1.Name = "radChartView1";
-            categoricalDataPoint11.Category = "A";
-            categoricalDataPoint11.Label = 43D;
-            categoricalDataPoint11.Value = 43D;
-            categoricalDataPoint12.Category = "B";
-            categoricalDataPoint12.Label = 87D;
-            categoricalDataPoint12.Value = 87D;
-            categoricalDataPoint13.Category = "C";
-            categoricalDataPoint13.Label = 65D;
-            categoricalDataPoint13.Value = 65D;
-            categoricalDataPoint14.Category = "D";
-            categoricalDataPoint14.Label = 65D;
-            categoricalDataPoint14.Value = 65D;
-            categoricalDataPoint15.Category = "E";
-            categoricalDataPoint15.Label = 48D;
-            categoricalDataPoint15.Value = 48D;
-            barSeries3.DataPoints.AddRange(new Telerik.Charting.DataPoint[] {
-            categoricalDataPoint11,
-            categoricalDataPoint12,
-            categoricalDataPoint13,
-            categoricalDataPoint14,
-            categoricalDataPoint15});
-            barSeries3.HorizontalAxis = categoricalAxis2;
-            barSeries3.LabelMode = Telerik.WinControls.UI.BarLabelModes.Top;
-            barSeries3.VerticalAxis = linearAxis2;
-            categoricalDataPoint16.Category = "A";
-            categoricalDataPoint16.Label = 29D;
-            categoricalDataPoint16.Value = 29D;
-            categoricalDataPoint17.Category = "B";
-            categoricalDataPoint17.Label = 50D;
-            categoricalDataPoint17.Value = 50D;
-            categoricalDataPoint18.Category = "C";
-            categoricalDataPoint18.Label = 82D;
-            categoricalDataPoint18.Value = 82D;
-            categoricalDataPoint19.Category = "D";
-            categoricalDataPoint19.Label = 71D;
-            categoricalDataPoint19.Value = 71D;
-            categoricalDataPoint20.Category = "E";
-            categoricalDataPoint20.Label = 65D;
-            categoricalDataPoint20.Value = 65D;
-            barSeries4.DataPoints.AddRange(new Telerik.Charting.DataPoint[] {
-            categoricalDataPoint16,
-            categoricalDataPoint17,
-            categoricalDataPoint18,
-            categoricalDataPoint19,
-            categoricalDataPoint20});
-            barSeries4.HorizontalAxis = categoricalAxis2;
-            barSeries4.LabelMode = Telerik.WinControls.UI.BarLabelModes.Top;
-            barSeries4.LegendTitle = null;
-            barSeries4.VerticalAxis = linearAxis2;
-            this.radChartView1.Series.AddRange(new Telerik.WinControls.UI.ChartSeries[] {
-            barSeries3,
-            barSeries4});
-            this.radChartView1.ShowGrid = false;
-            // 
-            // documentWindow_packageProduct
-            // 
-            this.documentWindow_packageProduct.BackColor = System.Drawing.Color.Transparent;
-            this.documentWindow_packageProduct.Controls.Add(this.radPanel5);
-            this.documentWindow_packageProduct.Controls.Add(this.radPanel4);
-            resources.ApplyResources(this.documentWindow_packageProduct, "documentWindow_packageProduct");
-            this.documentWindow_packageProduct.Name = "documentWindow_packageProduct";
-            this.documentWindow_packageProduct.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.TabbedDocument;
-            // 
-            // radPanel5
-            // 
-            this.radPanel5.Controls.Add(this.radGridView1);
-            resources.ApplyResources(this.radPanel5, "radPanel5");
-            this.radPanel5.Name = "radPanel5";
-            // 
-            // radGridView1
-            // 
-            resources.ApplyResources(this.radGridView1, "radGridView1");
-            // 
-            // 
-            // 
-            this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition7;
-            this.radGridView1.Name = "radGridView1";
-            // 
-            // radPanel4
-            // 
-            this.radPanel4.Controls.Add(this.radRadioButton1);
-            this.radPanel4.Controls.Add(this.radTextBox1);
-            this.radPanel4.Controls.Add(this.radRadioButton2);
-            this.radPanel4.Controls.Add(this.radButton1);
-            resources.ApplyResources(this.radPanel4, "radPanel4");
-            this.radPanel4.Name = "radPanel4";
-            // 
-            // radRadioButton1
-            // 
-            resources.ApplyResources(this.radRadioButton1, "radRadioButton1");
-            this.radRadioButton1.Name = "radRadioButton1";
-            // 
-            // radTextBox1
-            // 
-            resources.ApplyResources(this.radTextBox1, "radTextBox1");
-            this.radTextBox1.Name = "radTextBox1";
-            // 
-            // radRadioButton2
-            // 
-            resources.ApplyResources(this.radRadioButton2, "radRadioButton2");
-            this.radRadioButton2.Name = "radRadioButton2";
-            // 
-            // radButton1
-            // 
-            resources.ApplyResources(this.radButton1, "radButton1");
-            this.radButton1.Name = "radButton1";
-            // 
-            // documentWindow_testRes
-            // 
-            this.documentWindow_testRes.BackColor = System.Drawing.Color.Transparent;
-            this.documentWindow_testRes.Controls.Add(this.radPanel2);
-            this.documentWindow_testRes.Controls.Add(this.追溯码);
-            resources.ApplyResources(this.documentWindow_testRes, "documentWindow_testRes");
-            this.documentWindow_testRes.Name = "documentWindow_testRes";
-            this.documentWindow_testRes.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.TabbedDocument;
-            // 
-            // radPanel2
-            // 
-            this.radPanel2.Controls.Add(this.listView_TestRes);
-            resources.ApplyResources(this.radPanel2, "radPanel2");
-            this.radPanel2.Name = "radPanel2";
-            // 
-            // listView_TestRes
-            // 
-            resources.ApplyResources(this.listView_TestRes, "listView_TestRes");
-            this.listView_TestRes.Name = "listView_TestRes";
-            // 
-            // 追溯码
-            // 
-            this.追溯码.Controls.Add(this.cb_typeNo);
-            this.追溯码.Controls.Add(this.cb_station);
-            this.追溯码.Controls.Add(this.btn_search_lastTestRes);
-            this.追溯码.Controls.Add(this.btn_search_record);
-            this.追溯码.Controls.Add(this.radLabel4);
-            this.追溯码.Controls.Add(this.radLabel3);
-            this.追溯码.Controls.Add(this.radLabel2);
-            this.追溯码.Controls.Add(this.tb_sn);
-            resources.ApplyResources(this.追溯码, "追溯码");
-            this.追溯码.Name = "追溯码";
-            // 
-            // cb_typeNo
-            // 
-            resources.ApplyResources(this.cb_typeNo, "cb_typeNo");
-            this.cb_typeNo.FormattingEnabled = true;
-            this.cb_typeNo.Name = "cb_typeNo";
-            // 
-            // cb_station
-            // 
-            resources.ApplyResources(this.cb_station, "cb_station");
-            this.cb_station.FormattingEnabled = true;
-            this.cb_station.Name = "cb_station";
-            // 
-            // btn_search_lastTestRes
-            // 
-            resources.ApplyResources(this.btn_search_lastTestRes, "btn_search_lastTestRes");
-            this.btn_search_lastTestRes.Name = "btn_search_lastTestRes";
-            // 
-            // btn_search_record
-            // 
-            resources.ApplyResources(this.btn_search_record, "btn_search_record");
-            this.btn_search_record.Name = "btn_search_record";
-            // 
-            // radLabel4
-            // 
-            resources.ApplyResources(this.radLabel4, "radLabel4");
-            this.radLabel4.Name = "radLabel4";
-            // 
-            // radLabel3
-            // 
-            resources.ApplyResources(this.radLabel3, "radLabel3");
-            this.radLabel3.Name = "radLabel3";
-            // 
-            // radLabel2
-            // 
-            resources.ApplyResources(this.radLabel2, "radLabel2");
-            this.radLabel2.Name = "radLabel2";
-            // 
-            // tb_sn
-            // 
-            resources.ApplyResources(this.tb_sn, "tb_sn");
-            this.tb_sn.Name = "tb_sn";
-            // 
-            // documentWindow_material_select
-            // 
-            this.documentWindow_material_select.BackColor = System.Drawing.Color.Transparent;
-            this.documentWindow_material_select.Controls.Add(this.radPanel3);
-            this.documentWindow_material_select.Controls.Add(this.radPanel1);
-            resources.ApplyResources(this.documentWindow_material_select, "documentWindow_material_select");
-            this.documentWindow_material_select.Name = "documentWindow_material_select";
-            this.documentWindow_material_select.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.TabbedDocument;
-            // 
-            // radPanel3
-            // 
-            this.radPanel3.Controls.Add(this.radGridView2);
-            resources.ApplyResources(this.radPanel3, "radPanel3");
-            this.radPanel3.Name = "radPanel3";
-            // 
-            // radGridView2
-            // 
-            resources.ApplyResources(this.radGridView2, "radGridView2");
-            // 
-            // 
-            // 
-            this.radGridView2.MasterTemplate.ViewDefinition = tableViewDefinition8;
-            this.radGridView2.Name = "radGridView2";
-            // 
-            // radPanel1
-            // 
-            this.radPanel1.Controls.Add(this.radLabel1);
-            this.radPanel1.Controls.Add(this.comboBox1);
-            this.radPanel1.Controls.Add(this.radButton2);
-            resources.ApplyResources(this.radPanel1, "radPanel1");
-            this.radPanel1.Name = "radPanel1";
-            // 
-            // radLabel1
-            // 
-            resources.ApplyResources(this.radLabel1, "radLabel1");
-            this.radLabel1.Name = "radLabel1";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            resources.ApplyResources(this.comboBox1, "comboBox1");
-            this.comboBox1.Name = "comboBox1";
-            // 
-            // radButton2
-            // 
-            resources.ApplyResources(this.radButton2, "radButton2");
-            this.radButton2.Name = "radButton2";
             // 
             // radMenuItem16
             // 
@@ -875,11 +557,352 @@
             this.radMenuItem13});
             this.radMenu1.Name = "radMenu1";
             // 
+            // radDock1
+            // 
+            this.radDock1.ActiveWindow = this.documentWindow_packageProduct;
+            resources.ApplyResources(this.radDock1, "radDock1");
+            this.radDock1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.radDock1.CausesValidation = false;
+            this.radDock1.Controls.Add(this.toolTabStrip1);
+            this.radDock1.Controls.Add(this.documentContainer2);
+            this.radDock1.IsCleanUpTarget = true;
+            this.radDock1.MainDocumentContainer = this.documentContainer2;
+            this.radDock1.Name = "radDock1";
+            // 
+            // 
+            // 
+            this.radDock1.RootElement.MinSize = new System.Drawing.Size(25, 25);
+            this.radDock1.TabStop = false;
+            this.radDock1.ThemeName = "ControlDefault";
+            // 
+            // toolWindow_left
+            // 
+            this.toolWindow_left.Caption = null;
+            this.toolWindow_left.Controls.Add(this.radTreeView1);
+            resources.ApplyResources(this.toolWindow_left, "toolWindow_left");
+            this.toolWindow_left.Name = "toolWindow_left";
+            this.toolWindow_left.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.Docked;
+            // 
+            // radTreeView1
+            // 
+            resources.ApplyResources(this.radTreeView1, "radTreeView1");
+            this.radTreeView1.Name = "radTreeView1";
+            this.radTreeView1.SpacingBetweenNodes = -1;
+            // 
+            // toolTabStrip1
+            // 
+            this.toolTabStrip1.BackColor = System.Drawing.Color.Transparent;
+            this.toolTabStrip1.CanUpdateChildIndex = true;
+            this.toolTabStrip1.Controls.Add(this.toolWindow_left);
+            resources.ApplyResources(this.toolTabStrip1, "toolTabStrip1");
+            this.toolTabStrip1.Name = "toolTabStrip1";
+            // 
+            // 
+            // 
+            this.toolTabStrip1.RootElement.MinSize = new System.Drawing.Size(25, 25);
+            this.toolTabStrip1.SelectedIndex = 0;
+            this.toolTabStrip1.SizeInfo.AbsoluteSize = new System.Drawing.Size(256, 200);
+            this.toolTabStrip1.SizeInfo.SplitterCorrection = new System.Drawing.Size(56, 0);
+            this.toolTabStrip1.TabStop = false;
+            this.toolTabStrip1.ThemeName = "ControlDefault";
+            // 
+            // documentContainer2
+            // 
+            this.documentContainer2.CausesValidation = false;
+            this.documentContainer2.Controls.Add(this.documentTabStrip1);
+            this.documentContainer2.Name = "documentContainer2";
+            // 
+            // 
+            // 
+            this.documentContainer2.RootElement.MinSize = new System.Drawing.Size(25, 25);
+            this.documentContainer2.SizeInfo.AbsoluteSize = new System.Drawing.Size(1051, 200);
+            this.documentContainer2.SizeInfo.SizeMode = Telerik.WinControls.UI.Docking.SplitPanelSizeMode.Fill;
+            this.documentContainer2.SizeInfo.SplitterCorrection = new System.Drawing.Size(-56, 0);
+            resources.ApplyResources(this.documentContainer2, "documentContainer2");
+            this.documentContainer2.ThemeName = "ControlDefault";
+            // 
+            // documentTabStrip1
+            // 
+            this.documentTabStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.documentTabStrip1.CanUpdateChildIndex = true;
+            this.documentTabStrip1.CausesValidation = false;
+            this.documentTabStrip1.Controls.Add(this.documentWindow_passRes);
+            this.documentTabStrip1.Controls.Add(this.documentWindow_packageProduct);
+            this.documentTabStrip1.Controls.Add(this.documentWindow_testRes);
+            this.documentTabStrip1.Controls.Add(this.documentWindow_material_select);
+            resources.ApplyResources(this.documentTabStrip1, "documentTabStrip1");
+            this.documentTabStrip1.Name = "documentTabStrip1";
+            // 
+            // 
+            // 
+            this.documentTabStrip1.RootElement.MinSize = new System.Drawing.Size(25, 25);
+            this.documentTabStrip1.SelectedIndex = 1;
+            this.documentTabStrip1.TabStop = false;
+            this.documentTabStrip1.ThemeName = "ControlDefault";
+            // 
+            // documentWindow_passRes
+            // 
+            this.documentWindow_passRes.BackColor = System.Drawing.Color.Transparent;
+            this.documentWindow_passRes.Controls.Add(this.radChartView1);
+            resources.ApplyResources(this.documentWindow_passRes, "documentWindow_passRes");
+            this.documentWindow_passRes.Name = "documentWindow_passRes";
+            this.documentWindow_passRes.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.TabbedDocument;
+            // 
+            // radChartView1
+            // 
+            this.radChartView1.AreaDesign = cartesianArea1;
+            categoricalAxis1.IsPrimary = true;
+            categoricalAxis1.LabelRotationAngle = 300D;
+            categoricalAxis1.Title = "";
+            linearAxis1.AxisType = Telerik.Charting.AxisType.Second;
+            linearAxis1.IsPrimary = true;
+            linearAxis1.LabelRotationAngle = 300D;
+            linearAxis1.MajorStep = 10D;
+            linearAxis1.TickOrigin = null;
+            linearAxis1.Title = "";
+            this.radChartView1.Axes.AddRange(new Telerik.WinControls.UI.Axis[] {
+            categoricalAxis1,
+            linearAxis1});
+            resources.ApplyResources(this.radChartView1, "radChartView1");
+            this.radChartView1.Name = "radChartView1";
+            categoricalDataPoint1.Category = "A";
+            categoricalDataPoint1.Label = 43D;
+            categoricalDataPoint1.Value = 43D;
+            categoricalDataPoint2.Category = "B";
+            categoricalDataPoint2.Label = 87D;
+            categoricalDataPoint2.Value = 87D;
+            categoricalDataPoint3.Category = "C";
+            categoricalDataPoint3.Label = 65D;
+            categoricalDataPoint3.Value = 65D;
+            categoricalDataPoint4.Category = "D";
+            categoricalDataPoint4.Label = 65D;
+            categoricalDataPoint4.Value = 65D;
+            categoricalDataPoint5.Category = "E";
+            categoricalDataPoint5.Label = 48D;
+            categoricalDataPoint5.Value = 48D;
+            barSeries1.DataPoints.AddRange(new Telerik.Charting.DataPoint[] {
+            categoricalDataPoint1,
+            categoricalDataPoint2,
+            categoricalDataPoint3,
+            categoricalDataPoint4,
+            categoricalDataPoint5});
+            barSeries1.HorizontalAxis = categoricalAxis1;
+            barSeries1.LabelMode = Telerik.WinControls.UI.BarLabelModes.Top;
+            barSeries1.VerticalAxis = linearAxis1;
+            categoricalDataPoint6.Category = "A";
+            categoricalDataPoint6.Label = 29D;
+            categoricalDataPoint6.Value = 29D;
+            categoricalDataPoint7.Category = "B";
+            categoricalDataPoint7.Label = 50D;
+            categoricalDataPoint7.Value = 50D;
+            categoricalDataPoint8.Category = "C";
+            categoricalDataPoint8.Label = 82D;
+            categoricalDataPoint8.Value = 82D;
+            categoricalDataPoint9.Category = "D";
+            categoricalDataPoint9.Label = 71D;
+            categoricalDataPoint9.Value = 71D;
+            categoricalDataPoint10.Category = "E";
+            categoricalDataPoint10.Label = 65D;
+            categoricalDataPoint10.Value = 65D;
+            barSeries2.DataPoints.AddRange(new Telerik.Charting.DataPoint[] {
+            categoricalDataPoint6,
+            categoricalDataPoint7,
+            categoricalDataPoint8,
+            categoricalDataPoint9,
+            categoricalDataPoint10});
+            barSeries2.HorizontalAxis = categoricalAxis1;
+            barSeries2.LabelMode = Telerik.WinControls.UI.BarLabelModes.Top;
+            barSeries2.LegendTitle = null;
+            barSeries2.VerticalAxis = linearAxis1;
+            this.radChartView1.Series.AddRange(new Telerik.WinControls.UI.ChartSeries[] {
+            barSeries1,
+            barSeries2});
+            this.radChartView1.ShowGrid = false;
+            // 
+            // documentWindow_packageProduct
+            // 
+            this.documentWindow_packageProduct.BackColor = System.Drawing.Color.Transparent;
+            this.documentWindow_packageProduct.Controls.Add(this.radPanel5);
+            this.documentWindow_packageProduct.Controls.Add(this.radPanel4);
+            resources.ApplyResources(this.documentWindow_packageProduct, "documentWindow_packageProduct");
+            this.documentWindow_packageProduct.Name = "documentWindow_packageProduct";
+            this.documentWindow_packageProduct.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.TabbedDocument;
+            // 
+            // radPanel5
+            // 
+            this.radPanel5.Controls.Add(this.radGridViewPackage);
+            resources.ApplyResources(this.radPanel5, "radPanel5");
+            this.radPanel5.Name = "radPanel5";
+            // 
+            // radGridViewPackage
+            // 
+            resources.ApplyResources(this.radGridViewPackage, "radGridViewPackage");
+            // 
+            // 
+            // 
+            this.radGridViewPackage.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.radGridViewPackage.Name = "radGridViewPackage";
+            // 
+            // radPanel4
+            // 
+            this.radPanel4.Controls.Add(this.rb_package_caseCode);
+            this.radPanel4.Controls.Add(this.tb_input_packageMsg);
+            this.radPanel4.Controls.Add(this.rb_package_sn);
+            this.radPanel4.Controls.Add(this.btn_select_package);
+            resources.ApplyResources(this.radPanel4, "radPanel4");
+            this.radPanel4.Name = "radPanel4";
+            // 
+            // rb_package_caseCode
+            // 
+            resources.ApplyResources(this.rb_package_caseCode, "rb_package_caseCode");
+            this.rb_package_caseCode.Name = "rb_package_caseCode";
+            // 
+            // tb_input_packageMsg
+            // 
+            resources.ApplyResources(this.tb_input_packageMsg, "tb_input_packageMsg");
+            this.tb_input_packageMsg.Name = "tb_input_packageMsg";
+            // 
+            // rb_package_sn
+            // 
+            resources.ApplyResources(this.rb_package_sn, "rb_package_sn");
+            this.rb_package_sn.Name = "rb_package_sn";
+            // 
+            // btn_select_package
+            // 
+            resources.ApplyResources(this.btn_select_package, "btn_select_package");
+            this.btn_select_package.Name = "btn_select_package";
+            // 
+            // documentWindow_testRes
+            // 
+            this.documentWindow_testRes.BackColor = System.Drawing.Color.Transparent;
+            this.documentWindow_testRes.Controls.Add(this.radPanel2);
+            this.documentWindow_testRes.Controls.Add(this.追溯码);
+            resources.ApplyResources(this.documentWindow_testRes, "documentWindow_testRes");
+            this.documentWindow_testRes.Name = "documentWindow_testRes";
+            this.documentWindow_testRes.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.TabbedDocument;
+            // 
+            // radPanel2
+            // 
+            this.radPanel2.Controls.Add(this.listView_TestRes);
+            resources.ApplyResources(this.radPanel2, "radPanel2");
+            this.radPanel2.Name = "radPanel2";
+            // 
+            // listView_TestRes
+            // 
+            resources.ApplyResources(this.listView_TestRes, "listView_TestRes");
+            this.listView_TestRes.Name = "listView_TestRes";
+            // 
+            // 追溯码
+            // 
+            this.追溯码.Controls.Add(this.cb_typeNo);
+            this.追溯码.Controls.Add(this.cb_station);
+            this.追溯码.Controls.Add(this.btn_search_lastTestRes);
+            this.追溯码.Controls.Add(this.btn_search_record);
+            this.追溯码.Controls.Add(this.radLabel4);
+            this.追溯码.Controls.Add(this.radLabel3);
+            this.追溯码.Controls.Add(this.radLabel2);
+            this.追溯码.Controls.Add(this.tb_sn);
+            resources.ApplyResources(this.追溯码, "追溯码");
+            this.追溯码.Name = "追溯码";
+            // 
+            // cb_typeNo
+            // 
+            resources.ApplyResources(this.cb_typeNo, "cb_typeNo");
+            this.cb_typeNo.FormattingEnabled = true;
+            this.cb_typeNo.Name = "cb_typeNo";
+            // 
+            // cb_station
+            // 
+            resources.ApplyResources(this.cb_station, "cb_station");
+            this.cb_station.FormattingEnabled = true;
+            this.cb_station.Name = "cb_station";
+            // 
+            // btn_search_lastTestRes
+            // 
+            resources.ApplyResources(this.btn_search_lastTestRes, "btn_search_lastTestRes");
+            this.btn_search_lastTestRes.Name = "btn_search_lastTestRes";
+            // 
+            // btn_search_record
+            // 
+            resources.ApplyResources(this.btn_search_record, "btn_search_record");
+            this.btn_search_record.Name = "btn_search_record";
+            // 
+            // radLabel4
+            // 
+            resources.ApplyResources(this.radLabel4, "radLabel4");
+            this.radLabel4.Name = "radLabel4";
+            // 
+            // radLabel3
+            // 
+            resources.ApplyResources(this.radLabel3, "radLabel3");
+            this.radLabel3.Name = "radLabel3";
+            // 
+            // radLabel2
+            // 
+            resources.ApplyResources(this.radLabel2, "radLabel2");
+            this.radLabel2.Name = "radLabel2";
+            // 
+            // tb_sn
+            // 
+            resources.ApplyResources(this.tb_sn, "tb_sn");
+            this.tb_sn.Name = "tb_sn";
+            // 
+            // documentWindow_material_select
+            // 
+            this.documentWindow_material_select.BackColor = System.Drawing.Color.Transparent;
+            this.documentWindow_material_select.Controls.Add(this.radPanel3);
+            this.documentWindow_material_select.Controls.Add(this.radPanel1);
+            resources.ApplyResources(this.documentWindow_material_select, "documentWindow_material_select");
+            this.documentWindow_material_select.Name = "documentWindow_material_select";
+            this.documentWindow_material_select.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.TabbedDocument;
+            // 
+            // radPanel3
+            // 
+            this.radPanel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.radPanel3.Controls.Add(this.radGridViewMaterial);
+            resources.ApplyResources(this.radPanel3, "radPanel3");
+            this.radPanel3.Name = "radPanel3";
+            // 
+            // radGridViewMaterial
+            // 
+            resources.ApplyResources(this.radGridViewMaterial, "radGridViewMaterial");
+            // 
+            // 
+            // 
+            this.radGridViewMaterial.MasterTemplate.ViewDefinition = tableViewDefinition2;
+            this.radGridViewMaterial.Name = "radGridViewMaterial";
+            // 
+            // radPanel1
+            // 
+            this.radPanel1.BackColor = System.Drawing.Color.Transparent;
+            this.radPanel1.Controls.Add(this.radLabel1);
+            this.radPanel1.Controls.Add(this.cb_material_typeNo);
+            this.radPanel1.Controls.Add(this.btn_selectMaterial);
+            resources.ApplyResources(this.radPanel1, "radPanel1");
+            this.radPanel1.Name = "radPanel1";
+            // 
+            // radLabel1
+            // 
+            resources.ApplyResources(this.radLabel1, "radLabel1");
+            this.radLabel1.Name = "radLabel1";
+            // 
+            // cb_material_typeNo
+            // 
+            this.cb_material_typeNo.FormattingEnabled = true;
+            resources.ApplyResources(this.cb_material_typeNo, "cb_material_typeNo");
+            this.cb_material_typeNo.Name = "cb_material_typeNo";
+            // 
+            // btn_selectMaterial
+            // 
+            resources.ApplyResources(this.btn_selectMaterial, "btn_selectMaterial");
+            this.btn_selectMaterial.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.btn_selectMaterial.Name = "btn_selectMaterial";
+            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.Controls.Add(this.radDock1);
             this.Controls.Add(this.radStatusStrip1);
             this.Controls.Add(this.toolStrip1);
@@ -894,6 +917,7 @@
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radStatusStrip1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radDock1)).EndInit();
             this.radDock1.ResumeLayout(false);
             this.toolWindow_left.ResumeLayout(false);
@@ -909,15 +933,15 @@
             this.documentWindow_packageProduct.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radPanel5)).EndInit();
             this.radPanel5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGridViewPackage.MasterTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGridViewPackage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel4)).EndInit();
             this.radPanel4.ResumeLayout(false);
             this.radPanel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radRadioButton1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radRadioButton2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rb_package_caseCode)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tb_input_packageMsg)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rb_package_sn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_select_package)).EndInit();
             this.documentWindow_testRes.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radPanel2)).EndInit();
             this.radPanel2.ResumeLayout(false);
@@ -933,14 +957,13 @@
             this.documentWindow_material_select.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radPanel3)).EndInit();
             this.radPanel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radGridView2.MasterTemplate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGridViewMaterial.MasterTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGridViewMaterial)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
             this.radPanel1.ResumeLayout(false);
             this.radPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_selectMaterial)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -970,14 +993,6 @@
         private Telerik.WinControls.UI.RadStatusStrip radStatusStrip1;
         private Telerik.WinControls.UI.RadLabelElement radLabelElement1;
         private Telerik.WinControls.UI.RadLabelElement tool_status_user;
-        private Telerik.WinControls.UI.Docking.RadDock radDock1;
-        private Telerik.WinControls.UI.Docking.DocumentWindow documentWindow_testRes;
-        private Telerik.WinControls.UI.RadPanel radPanel2;
-        private Telerik.WinControls.UI.RadListView listView_TestRes;
-        private Telerik.WinControls.UI.RadPanel 追溯码;
-        private Telerik.WinControls.UI.Docking.DocumentContainer documentContainer2;
-        private Telerik.WinControls.UI.Docking.DocumentTabStrip documentTabStrip1;
-        private Telerik.WinControls.UI.Docking.DocumentWindow documentWindow_material_select;
         private Telerik.WinControls.UI.RadMenuItem radMenuItem9;
         private Telerik.WinControls.UI.RadMenuItem radMenuItem10;
         private Telerik.WinControls.UI.RadMenuItem radMenuItem11;
@@ -987,37 +1002,10 @@
         private Telerik.WinControls.UI.RadMenuItem menu_product_binding;
         private Telerik.WinControls.UI.RadMenuItem radMenuItem19;
         private Telerik.WinControls.UI.RadMenuItem menu_manager;
-        private Telerik.WinControls.UI.Docking.ToolWindow toolWindow_left;
-        private Telerik.WinControls.UI.Docking.ToolTabStrip toolTabStrip1;
-        private Telerik.WinControls.UI.Docking.DocumentWindow documentWindow_packageProduct;
-        private Telerik.WinControls.UI.RadButton radButton1;
-        private Telerik.WinControls.UI.RadGridView radGridView1;
-        private Telerik.WinControls.UI.RadTextBox radTextBox1;
-        private Telerik.WinControls.UI.RadRadioButton radRadioButton2;
-        private Telerik.WinControls.UI.RadRadioButton radRadioButton1;
-        private Telerik.WinControls.UI.Docking.DocumentWindow documentWindow_passRes;
-        private Telerik.WinControls.UI.RadChartView radChartView1;
         private Telerik.WinControls.UI.RadMenuItem menu_material_msg;
-        private Telerik.WinControls.UI.RadTreeView radTreeView1;
         private Telerik.WinControls.UI.RadMenuItem menu_select_passRate;
         private Telerik.WinControls.UI.RadMenuItem menu_select_material;
         private Telerik.WinControls.UI.RadMenuItem menu_select_packageProduct;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private Telerik.WinControls.UI.RadLabel radLabel1;
-        private Telerik.WinControls.UI.RadGridView radGridView2;
-        private Telerik.WinControls.UI.RadButton radButton2;
-        private System.Windows.Forms.ComboBox cb_typeNo;
-        private System.Windows.Forms.ComboBox cb_station;
-        private Telerik.WinControls.UI.RadButton btn_search_lastTestRes;
-        private Telerik.WinControls.UI.RadButton btn_search_record;
-        private Telerik.WinControls.UI.RadLabel radLabel4;
-        private Telerik.WinControls.UI.RadLabel radLabel3;
-        private Telerik.WinControls.UI.RadLabel radLabel2;
-        private System.Windows.Forms.TextBox tb_sn;
-        private Telerik.WinControls.UI.RadPanel radPanel3;
-        private Telerik.WinControls.UI.RadPanel radPanel1;
-        private Telerik.WinControls.UI.RadPanel radPanel5;
-        private Telerik.WinControls.UI.RadPanel radPanel4;
         private Telerik.WinControls.UI.RadMenuItem radMenuItem16;
         private Telerik.WinControls.UI.RadMenuItem menu_glass;
         private Telerik.WinControls.UI.RadMenuItem menu_vs2012dark;
@@ -1039,5 +1027,40 @@
         private Telerik.WinControls.UI.RadMenuItem menu_materialBlue;
         private Telerik.WinControls.UI.RadMenuItem menu_materialPink;
         private Telerik.WinControls.UI.RadMenuItem menu_materialTeal;
+        private Telerik.WinControls.UI.Docking.RadDock radDock1;
+        private Telerik.WinControls.UI.Docking.ToolWindow toolWindow_left;
+        private Telerik.WinControls.UI.RadTreeView radTreeView1;
+        private Telerik.WinControls.UI.Docking.ToolTabStrip toolTabStrip1;
+        private Telerik.WinControls.UI.Docking.DocumentContainer documentContainer2;
+        private Telerik.WinControls.UI.Docking.DocumentTabStrip documentTabStrip1;
+        private Telerik.WinControls.UI.Docking.DocumentWindow documentWindow_passRes;
+        private Telerik.WinControls.UI.RadChartView radChartView1;
+        private Telerik.WinControls.UI.Docking.DocumentWindow documentWindow_packageProduct;
+        private Telerik.WinControls.UI.RadPanel radPanel5;
+        private Telerik.WinControls.UI.RadGridView radGridViewPackage;
+        private Telerik.WinControls.UI.RadPanel radPanel4;
+        private Telerik.WinControls.UI.RadRadioButton rb_package_caseCode;
+        private Telerik.WinControls.UI.RadTextBox tb_input_packageMsg;
+        private Telerik.WinControls.UI.RadRadioButton rb_package_sn;
+        private Telerik.WinControls.UI.RadButton btn_select_package;
+        private Telerik.WinControls.UI.Docking.DocumentWindow documentWindow_testRes;
+        private Telerik.WinControls.UI.RadPanel radPanel2;
+        private Telerik.WinControls.UI.RadListView listView_TestRes;
+        private Telerik.WinControls.UI.RadPanel 追溯码;
+        private System.Windows.Forms.ComboBox cb_typeNo;
+        private System.Windows.Forms.ComboBox cb_station;
+        private Telerik.WinControls.UI.RadButton btn_search_lastTestRes;
+        private Telerik.WinControls.UI.RadButton btn_search_record;
+        private Telerik.WinControls.UI.RadLabel radLabel4;
+        private Telerik.WinControls.UI.RadLabel radLabel3;
+        private Telerik.WinControls.UI.RadLabel radLabel2;
+        private System.Windows.Forms.TextBox tb_sn;
+        private Telerik.WinControls.UI.Docking.DocumentWindow documentWindow_material_select;
+        private Telerik.WinControls.UI.RadPanel radPanel3;
+        private Telerik.WinControls.UI.RadGridView radGridViewMaterial;
+        private Telerik.WinControls.UI.RadPanel radPanel1;
+        private Telerik.WinControls.UI.RadLabel radLabel1;
+        private System.Windows.Forms.ComboBox cb_material_typeNo;
+        private Telerik.WinControls.UI.RadButton btn_selectMaterial;
     }
 }
