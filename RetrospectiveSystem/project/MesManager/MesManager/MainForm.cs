@@ -17,6 +17,7 @@ using MesManager.RadView;
 using MesManager.Control;
 using Sunisoft.IrisSkin;
 using Telerik.WinControls.Themes;
+using System.Threading.Tasks;
 
 namespace MesManager
 {
@@ -45,8 +46,15 @@ namespace MesManager
 
         async private void InitServiceInstance()
         {
-            serviceClient = new MesService.MesServiceClient();
-            await serviceClient.InitConnectStringAsync();
+            try
+            {
+                serviceClient = new MesService.MesServiceClient();
+                await serviceClient.InitConnectStringAsync();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         public void InitMainForm()
@@ -71,6 +79,11 @@ namespace MesManager
                 tool_status_user.Text = "普通用户";
             }
             ControlEvent();
+        }
+
+        private void TaskScheduler_UnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs e)
+        {
+            MessageBox.Show("task Exception "+e.Exception);
         }
 
         private void ControlEvent()

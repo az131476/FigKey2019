@@ -99,6 +99,7 @@
     <Content Include="libman.json" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\CustomProfile1.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -108,7 +109,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\CommonLibrary\CommonUtils\CommonUtils\CommonUtils.csproj">
+    <ProjectReference Include="..\..\..\..\..\..\CommonUtils\CommonLibrary\CommonUtils\CommonUtils\CommonUtils.csproj">
       <Project>{ebfca1b5-23f1-4f94-928a-db1a7b98eed6}</Project>
       <Name>CommonUtils</Name>
     </ProjectReference>
