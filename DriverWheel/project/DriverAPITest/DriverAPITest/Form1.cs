@@ -122,10 +122,16 @@ namespace DriverAPITest
             string url_login = "http://localhost:9000/auth/Login";
             //http://localhost:9000/swagger/index.html?urls.primaryName=Authorize%20-%E3%80%90SwaggerAuthorize%E3%80%91
             //http://localhost:9000/swagger/index.html?urls.primaryName=API01%20-%E3%80%90SwaggerAPI01%E3%80%91
+            //http://localhost:9000/auth/Login" -H "accept: text/plain" 
+            //-H "Content-Type: application/json-patch+json" -d "{ \"UserName\": \"gsw\", \"Password\": \"111111\"}
             Http http = new Http();
             CommonUtils.API.HttpItem httpItem = new CommonUtils.API.HttpItem();
             httpItem.URL = "http://localhost:9000/auth/Login";
             httpItem.Method = "POST";
+            httpItem.Accept = "text/html, application/xhtml+xml, */*";
+            httpItem.ContentType = "text/html";
+            //httpItem.ProxyUserName = "gsw";
+            //httpItem.ProxyPwd = "111111";
             CommonUtils.API.HttpResult httpResult = http.GetHtml(httpItem);
 
             textBox1.Text += "status:" + httpResult.StatusCode+"\r\n";
