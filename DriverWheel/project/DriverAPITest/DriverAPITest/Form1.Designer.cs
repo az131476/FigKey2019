@@ -32,17 +32,16 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.api1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.api2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBox1
             // 
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBox1.Location = new System.Drawing.Point(0, 25);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(328, 653);
+            this.textBox1.Size = new System.Drawing.Size(1253, 653);
             this.textBox1.TabIndex = 0;
             // 
             // menuStrip1
@@ -70,21 +69,11 @@
             this.api2ToolStripMenuItem.Text = "api2";
             this.api2ToolStripMenuItem.Click += new System.EventHandler(this.Api2ToolStripMenuItem_Click);
             // 
-            // webBrowser1
-            // 
-            this.webBrowser1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.webBrowser1.Location = new System.Drawing.Point(328, 25);
-            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
-            this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(925, 653);
-            this.webBrowser1.TabIndex = 2;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1253, 678);
-            this.Controls.Add(this.webBrowser1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -104,7 +93,6 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem api1ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem api2ToolStripMenuItem;
-        private System.Windows.Forms.WebBrowser webBrowser1;
     }
 }
 
