@@ -75,7 +75,8 @@ namespace DriverAPITest
             //HttpSwaggerInterfaceTest();
             //HttpSwaggerInterfaceSD();
             //GetAuthonToken();
-            SendRequest1();
+            //SendRequest1();
+            textBox1.Text = WcfToken.GetAccessToken().ToString();
         }
 
         public string PostFunc(string apiUrl, string token, string param)

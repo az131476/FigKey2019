@@ -1,0 +1,39 @@
+9
+
+dir
+0
+http://devdefined-tools.googlecode.com/svn/trunk/projects/oauth/OAuth.Channel/Implementation
+http://devdefined-tools.googlecode.com/svn
+add
+
+
+
+
+
+
+
+svn:special svn:externals svn:needs-lock
+
+InMemoryTokenStore.cs
+file
+
+
+
+add
+
+b63729aabdc8d1b4f1fc57b7ff5c519f
+
+
+
+has-props
+has-prop-mods
+
+
+
+
+
+
+copied
+http://devdefined-tools.googlecode.com/svn/trunk/projects/oauth/ExampleProviderSite/Implementation/InMemoryTokenStore.cs
+63
+

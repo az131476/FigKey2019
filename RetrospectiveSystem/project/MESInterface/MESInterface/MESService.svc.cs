@@ -35,14 +35,14 @@ namespace MESInterface
         private Queue<string[]> selectDataQueue = new Queue<string[]>();
         private Queue<string[]> insertMaterialStatistics = new Queue<string[]>();
 
-        [SwaggerWcfResponse(HttpStatusCode.Created, "请求成功的描述")]
-        [SwaggerWcfResponse(HttpStatusCode.BadRequest,"请求失败 400",true)]
-        [SwaggerWcfResponse(HttpStatusCode.InternalServerError,"请求失败 500",true)]
-
-        [SwaggerWcfTag("MesService接口")]
-        public string GetData(string person)
+        [SwaggerWcfTag("MesService 服务")]
+        [SwaggerWcfResponse(HttpStatusCode.Created, "Book created, value in the response body with id updated")]
+        [SwaggerWcfResponse(HttpStatusCode.BadRequest, "Bad request", true)]
+        [SwaggerWcfResponse(HttpStatusCode.InternalServerError,
+            "Internal error (can be forced using ERROR_500 as book title)", true)]
+        public string GetData(int value)
         {
-            return "this is return = "+person;
+            return string.Format("You entered: {0}", value);
         }
         private string GetDateTimeNow()
         {

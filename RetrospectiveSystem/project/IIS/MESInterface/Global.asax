@@ -1,1 +1,1 @@
-﻿<%@ Application Codebehind="Global.asax.cs" Inherits="WcfTest.Global" Language="C#" %>
+﻿<%@ Application Codebehind="Global.asax.cs" Inherits="MESInterface.Global" Language="C#" %>

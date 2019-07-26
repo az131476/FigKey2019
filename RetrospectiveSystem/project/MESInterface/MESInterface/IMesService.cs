@@ -17,15 +17,11 @@ namespace MESInterface
     {
         // TODO: 在此添加您的服务操作
         [OperationContract]
-        [SwaggerWcfPath("swaggerwcfTitle", "swaggerwcfDescirble")]
-        [WebInvoke(
-        Method = "GET",
-        RequestFormat = WebMessageFormat.Json,
-        ResponseFormat = WebMessageFormat.Json,
-        BodyStyle = WebMessageBodyStyle.Bare,
-        UriTemplate = "GetData?request={id}"
-        )]
-        string GetData(string person);
+        [SwaggerWcfPath("标题GetData", "方法详细说明")]
+        [WebInvoke(Method = "GET", UriTemplate = "GetData?value={value}",
+            BodyStyle = WebMessageBodyStyle.Bare,
+            RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
+        string GetData(int value);
 
         [OperationContract]
         void InitConnectString();
