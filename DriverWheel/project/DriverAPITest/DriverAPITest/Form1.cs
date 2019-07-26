@@ -65,7 +65,8 @@ namespace DriverAPITest
         private void Api2ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //MaInterface();
-            MaInterfaceSD();
+            //MaInterfaceSD();
+            SendRequest2();
         }
 
 
@@ -73,7 +74,8 @@ namespace DriverAPITest
         {
             //HttpSwaggerInterfaceTest();
             //HttpSwaggerInterfaceSD();
-            GetAuthonToken();
+            //GetAuthonToken();
+            SendRequest1();
         }
 
         public string PostFunc(string apiUrl, string token, string param)
@@ -139,6 +141,7 @@ namespace DriverAPITest
             //wReq.Headers = "Authorization:bearer Token";
 
             string postData = "{\"UserName\":\"gsw\",\"Password\":\"111111\"}";
+            //postData = "UserName=gsw&Password=111111";
             //postData = "{\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZ3N3IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiYWRtaW4iLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL2V4cGlyYXRpb24iOiIyMDE5LzgvMjggMTU6NDk6NDgiLCJuYmYiOjE1NjM5Nzg1ODgsImV4cCI6MTU2Njk3ODU4OCwiaXNzIjoiZ3N3IiwiYXVkIjoiZXZlcnlvbmUifQ.HQdW7N_XTWXfaT-Zj7LzPqRJEMypmS49-i61ymjkz0Q\"}";
             byte[] data = Encoding.Default.GetBytes(postData);
             wReq.ContentLength = data.Length;
@@ -296,16 +299,13 @@ namespace DriverAPITest
             //host += "&Username=SelcomGroupUser@grr.la&Password=%7LD2GPfNjv8";
             //GET server.example.com/authorize?response_type=token&client_id=s6BhdRkqt3&state=xyz&redirect_uri=https%3A%2F%2Fclient%2Eexample%2Ecom%2Fcb HTTP/1.1
             //获取到token
-            //host = "https://zehusdrivermanufacturer-integr.azurewebsites.net/oauth2-redirect.html#access_token=eyJhbGciOiJSUzI1NiIsImtpZCI6Ijg4RUMwRjUzRUIyODczMTM1NzlCMTM2ODc5QjREQkYxODFGNzJCQTIiLCJ0eXAiOiJKV1QiLCJ4NXQiOiJpT3dQVS1zb2N4TlhteE5vZWJUYjhZSDNLNkkifQ.eyJuYmYiOjE1NjQwMzU5ODYsImV4cCI6MTU2NDAzOTU4NiwiaXNzIjoiaHR0cHM6Ly96ZWh1c2lkZW50aXR5c2VydmVyd2ViaW50ZWdyYXRpb24uYXp1cmV3ZWJzaXRlcy5uZXQiLCJhdWQiOlsiaHR0cHM6Ly96ZWh1c2lkZW50aXR5c2VydmVyd2ViaW50ZWdyYXRpb24uYXp1cmV3ZWJzaXRlcy5uZXQvcmVzb3VyY2VzIiwiUHJvZHVjdGlvbkFwaSJdLCJjbGllbnRfaWQiOiJTd2FnZ2VyUHJvZHVjdGlvbiIsInN1YiI6IjE1ZmNmMjY5LWUzNmEtNDQxZC1iMzNkLTMxY2ZhNzc0NTgwOSIsImF1dGhfdGltZSI6MTU2NDAzNTk4NSwiaWRwIjoibG9jYWwiLCJyb2xlIjoiQjJDVXNlciIsInNjb3BlIjpbIlByb2R1Y3Rpb25BcGkiXSwiYW1yIjpbInB3ZCJdfQ.B_H5ljHQFZKv2fntaIeMIv-tmXSWUb81EmBOOuZ_MZnxy5BJ8TwOTFgOWGx3t9Ks1REyPMtYWGzy6en0IiIvpv7mAuDDps529aFS29m8lrt1ijhpntpS6T4hjdLrl48yPf8EtRGxHP44wBTElxTXkPokEi57gUVTGVzJcmujg-s4pUT08Ctt8V7nPWi7JmhcCXx9KldmJSjYSLpeWC22FH8-9-P2crn832yl7lBtxNTO5z1AkMTQSZ5EdgmKUAr_8scUoXHVhD8gQbeNdMDTAqiQroXybOnBG7LC-zW1Ky_wgjpjF_-VitWUlnPvbFvCXG8-0L23fChrtOWLtHnTZw&token_type=Bearer&expires_in=3600&scope=ProductionApi&state=VGh1IEp1bCAyNSAyMDE5IDEyOjI4OjA3IEdNVCswODAwICjkuK3lm73moIflh4bml7bpl7Qp";
-                  host = "https://zehusidentityserverwebintegration.azurewebsites.net/connect/authorize?response_type=token&client_id=SwaggerProduction&redirect_uri=https://zehusdrivermanufacturer-integr.azurewebsites.net/oauth2-redirect.html&scope=ProductionApi&state=VGh1IEp1bCAyNSAyMDE5IDE0OjQ0OjU4IEdNVCswODAwICjkuK3lm73moIflh4bml7bpl7Qp";
-                  //https://zehusdrivermanufacturer-integr.azurewebsites.net/api/v1/Drivers?page=1&rows=2
-            host = "https://zehusidentityserverwebintegration.azurewebsites.net/connect/authorize?response_type=token&client_id=SwaggerProduction&redirect_uri=https://zehusdrivermanufacturer-integr.azurewebsites.net/oauth2-redirect.html&scope=ProductionApi";
-            host = "https://zehusdrivermanufacturer-integr.azurewebsites.net/connect/authorize?response_type=token&client_id=SwaggerProduction&redirect_uri=https://zehusdrivermanufacturer-integr.azurewebsites.net/oauth2-redirect.html&scope=ProductionApi";
-            host = "https://zehusidentityserverwebintegration.azurewebsites.net/connect/authorize?response_type=token&client_id=SwaggerProduction&redirect_uri=https://zehusdrivermanufacturer-integr.azurewebsites.net/oauth2-redirect.html&scope=ProductionApi&state=VGh1IEp1bCAyNSAyMDE5IDE4OjIwOjIzIEdNVCswODAwICjkuK3lm73moIflh4bml7bpl7Qp";
+            //登录页面前的请求URL   GET
+            host = "https://zehusidentityserverwebintegration.azurewebsites.net/connect/authorize";
+            host = "https://zehusidentityserverwebintegration.azurewebsites.net/Account/Login?ReturnUrl=/connect/authorize/callback";
             string method = "POST";
-            
-            string bodys = "{\"__RequestVerificationToken\":\"CfDJ8O9ONuNhZLFIrUdyA65YKLBctInBsPQCy4Dt37gcu5qsiZFAdzlePYVjx-JLwhhrWI0VtjVLlgWBHfe0qPsR0GU71fXaQo6-LIqKRjX0FSdWkbRgXO_qI0hIrE70cNIsq_CwqWHNx19YlyOSTHL-Xy0\",\"button\":\"login\",\"Password\":\"%7LD2GPfNjv8\",\"ReturnUrl\":\"/connect/authorize/callback?response_type=token&client_id=SwaggerProduction&redirect_uri=https%3A%2F%2Fzehusdrivermanufacturer-integr.azurewebsites.net%2Foauth2-redirect.html&scope=ProductionApi&state=VGh1IEp1bCAyNSAyMDE5IDE4OjM0OjMzIEdNVCswODAwICjkuK3lm73moIflh4bml7bpl7Qp\",\"Username\":\"SelcomGroupUser@grr.la\"}";
-            //String querys = postData;//"content=%E6%84%9F%E5%86%92%E4%BA%86%E6%80%8E%E4%B9%88%E5%8A%9E&product=znys&uuid=1234567890";
+
+            string query = "response_type=token&client_id=SwaggerProduction&redirect_uri=https%3A%2F%2Fzehusdrivermanufacturer-integr.azurewebsites.net%2Foauth2-redirect.html&scope=ProductionApi&state=RnJpIEp1bCAyNiAyMDE5IDEwOjI3OjA1IEdNVCswODAwICjkuK3lm73moIflh4bml7bpl7Qp";
+
             String url = host;
             HttpWebRequest httpRequest = null;
             HttpWebResponse httpResponse = null;
@@ -328,7 +328,7 @@ namespace DriverAPITest
             //httpRequest.Headers.Add("{ \"Username\": SelcomGroupUser@grr.la, \"Password\": \"%7LD2GPfNjv8\"}");
             //httpRequest.Headers.Add("Username", "SelcomGroupUser@grr.la");
             //httpRequest.Headers.Add("Password", "%7LD2GPfNjv8");
-            byte[] data = Encoding.Default.GetBytes(bodys);
+            byte[] data = Encoding.UTF8.GetBytes(query);
             using (Stream stream = httpRequest.GetRequestStream())
             {
                 stream.Write(data, 0, data.Length);
@@ -348,7 +348,114 @@ namespace DriverAPITest
             Stream st = httpResponse.GetResponseStream();
             StreamReader reader = new StreamReader(st, Encoding.GetEncoding("utf-8"));
             textBox1.Text += "content:" + reader.ReadToEnd();
+        }
+        public void SendRequest1()
+        {
+            string postUrl = "https://zehusidentityserverwebintegration.azurewebsites.net/connect/authorize";
+            postUrl += "?response_type=token&client_id=SwaggerProduction&redirect_uri=https%3A%2F%2Fzehusdrivermanufacturer-integr.azurewebsites.net%2Foauth2-redirect.html&scope=ProductionApi&state=RnJpIEp1bCAyNiAyMDE5IDEyOjE3OjIwIEdNVCswODAwICjkuK3lm73moIflh4bml7bpl7Qp";
+            //postUrl += "connect/authorize/callback?response_type=token&client_id=SwaggerProduction&redirect_uri=https%3A%2F%2Fzehusdrivermanufacturer-integr.azurewebsites.net%2Foauth2-redirect.html&scope=ProductionApi&state=RnJpIEp1bCAyNiAyMDE5IDEyOjE3OjIwIEdNVCswODAwICjkuK3lm73moIflh4bml7bpl7Qp";
+            //postUrl += "/callback?response_type=token&client_id=SwaggerProduction&redirect_uri=https://zehusdrivermanufacturer-integr.azurewebsites.net/oauth2-redirect.html&scope=ProductionApi&state=RnJpIEp1bCAyNiAyMDE5IDEyOjE3OjIwIEdNVCswODAwICjkuK3lm73moIflh4bml7bpl7Qp";
+            ///connect/authorize?response_type=token&client_id=SwaggerProduction&redirect_uri=https%3A%2F%2Fzehusdrivermanufacturer-integr.azurewebsites.net%2Foauth2-redirect.html&scope=ProductionApi&state=RnJpIEp1bCAyNiAyMDE5IDE0OjE2OjA4IEdNVCswODAwICjkuK3lm73moIflh4bml7bpl7Qp
+            //设置请求参数
+            //Account/Login?ReturnUrl=/connect/authorize/callback?response_type=token&client_id=SwaggerProduction&redirect_uri=https%3A%2F%2Fzehusdrivermanufacturer-integr.azurewebsites.net%2Foauth2-redirect.html&scope=ProductionApi&state=RnJpIEp1bCAyNiAyMDE5IDEwOjI3OjA1IEdNVCswODAwICjkuK3lm73moIflh4bml7bpl7Qp
 
+            //query = "postPram=grant_type=authorization_code&code=4934712103f0b229f2657a44efd9c2d91dc628893d6bbafb5&client_id=201068656&client_secret=48a86626da1be965a3e5d1ef05e95a67&redirect_uri=oob";
+            string query = "response_type=token&client_id=SwaggerProduction&redirect_uri=https%3A%2F%2Fzehusdrivermanufacturer-integr.azurewebsites.net%2Foauth2-redirect.html&scope=ProductionApi&state=RnJpIEp1bCAyNiAyMDE5IDEwOjI3OjA1IEdNVCswODAwICjkuK3lm73moIflh4bml7bpl7Qp";
+            //query = "\"response_type\":\"token\",\"client_id\":\"SwaggerProduction\",\"redirect_uri\":\"https%3A%2F%2Fzehusdrivermanufacturer-integr.azurewebsites.net%2Foauth2-redirect.html\",\"scope\":\"ProductionApi\",\"state\":\"RnJpIEp1bCAyNiAyMDE5IDEwOjI3OjA1IEdNVCswODAwICjkuK3lm73moIflh4bml7bpl7Qp\"";
+
+            //query = "ReturnUrl=/connect/authorize/callback?response_type=token&client_id=SwaggerProduction&redirect_uri=https://zehusdrivermanufacturer-integr.azurewebsites.net/oauth2-redirect.html&scope=ProductionApi&state=RnJpIEp1bCAyNiAyMDE5IDEyOjE3OjIwIEdNVCswODAwICjkuK3lm73moIflh4bml7bpl7Qp&Username=SelcomGroupUser@grr.la&Password=%7LD2GPfNjv8&button=login&__RequestVerificationToken=CfDJ8O9ONuNhZLFIrUdyA65YKLCKSWxHeyEDNqwyvglWPb12PrpRKdXKAH6dh66DfDedDEGrjvJ6xVjyEIazE6WU_YtWTFpWD9KeCMC5ChT9zABiS2y-OWTmxEKPXbzarNZrQwNLSKkLDJges5sgkQWtIk8";
+              query = "ReturnUrl=/connect/authorize/callback?response_type=token&client_id=SwaggerProduction&redirect_uri=https%3A%2F%2Fzehusdrivermanufacturer-integr.azurewebsites.net%2Foauth2-redirect.html&scope=ProductionApi&state=RnJpIEp1bCAyNiAyMDE5IDEyOjE3OjIwIEdNVCswODAwICjkuK3lm73moIflh4bml7bpl7Qp&Username=SelcomGroupUser@grr.la&Password=%7LD2GPfNjv8&button=login&__RequestVerificationToken=CfDJ8O9ONuNhZLFIrUdyA65YKLCKSWxHeyEDNqwyvglWPb12PrpRKdXKAH6dh66DfDedDEGrjvJ6xVjyEIazE6WU_YtWTFpWD9KeCMC5ChT9zABiS2y-OWTmxEKPXbzarNZrQwNLSKkLDJges5sgkQWtIk8";
+            SetCertificatePolicy();
+            HttpWebRequest wReq = (HttpWebRequest)WebRequest.Create(postUrl);
+            wReq.Method = "GET";
+            //wReq.ContentType = "application/json"; 
+            wReq.ContentType = "application/x-www-form-urlencoded";
+            //wReq.ContentType = "text/plain";
+            //wReq.ContentType = "application/json";
+            //wReq.Accept = "text/plain";
+            //wReq.ContentType = "multipart/form-data";
+            //wReq.Headers = "Authorization:bearer Token";
+
+            //string postData = "{\"UserName\":\"gsw\",\"Password\":\"111111\"}";
+            //postData = "{\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZ3N3IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiYWRtaW4iLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL2V4cGlyYXRpb24iOiIyMDE5LzgvMjggMTU6NDk6NDgiLCJuYmYiOjE1NjM5Nzg1ODgsImV4cCI6MTU2Njk3ODU4OCwiaXNzIjoiZ3N3IiwiYXVkIjoiZXZlcnlvbmUifQ.HQdW7N_XTWXfaT-Zj7LzPqRJEMypmS49-i61ymjkz0Q\"}";
+
+            //byte[] data = Encoding.UTF8.GetBytes(query);
+            //wReq.ContentLength = data.Length;
+            //Stream reqStream = wReq.GetRequestStream();
+            //reqStream.Write(data, 0, data.Length);
+            //reqStream.Close();
+
+            using (StreamReader sr = new StreamReader(wReq.GetResponse().GetResponseStream(),Encoding.Default))
+            {
+                string result = sr.ReadToEnd();
+                textBox1.Text += wReq.RequestUri + "\r\n";
+                textBox1.Text += result + "\r\n";
+            }
+        }
+
+        public void SendRequest2()
+        {
+            string postUrl = "https://zehusidentityserverwebintegration.azurewebsites.net/connect/authorize";
+            //postUrl += "?response_type=token&client_id=SwaggerProduction&redirect_uri=https%3A%2F%2Fzehusdrivermanufacturer-integr.azurewebsites.net%2Foauth2-redirect.html&scope=ProductionApi&state=RnJpIEp1bCAyNiAyMDE5IDEyOjE3OjIwIEdNVCswODAwICjkuK3lm73moIflh4bml7bpl7Qp";
+              postUrl += "?response_type=token&client_id=SwaggerProduction&redirect_uri=https%3A%2F%2Fzehusdrivermanufacturer-integr.azurewebsites.net%2Foauth2-redirect.html&scope=ProductionApi&state=RnJpIEp1bCAyNiAyMDE5IDE0OjMwOjQxIEdNVCswODAwICjkuK3lm73moIflh4bml7bpl7Qp";
+            //postUrl += "connect/authorize/callback?response_type=token&client_id=SwaggerProduction&redirect_uri=https%3A%2F%2Fzehusdrivermanufacturer-integr.azurewebsites.net%2Foauth2-redirect.html&scope=ProductionApi&state=RnJpIEp1bCAyNiAyMDE5IDEyOjE3OjIwIEdNVCswODAwICjkuK3lm73moIflh4bml7bpl7Qp";
+            //postUrl += "/callback?response_type=token&client_id=SwaggerProduction&redirect_uri=https://zehusdrivermanufacturer-integr.azurewebsites.net/oauth2-redirect.html&scope=ProductionApi&state=RnJpIEp1bCAyNiAyMDE5IDEyOjE3OjIwIEdNVCswODAwICjkuK3lm73moIflh4bml7bpl7Qp";
+            ///connect/authorize?response_type=token&client_id=SwaggerProduction&redirect_uri=https%3A%2F%2Fzehusdrivermanufacturer-integr.azurewebsites.net%2Foauth2-redirect.html&scope=ProductionApi&state=RnJpIEp1bCAyNiAyMDE5IDE0OjE2OjA4IEdNVCswODAwICjkuK3lm73moIflh4bml7bpl7Qp
+            //设置请求参数
+            //Account/Login?ReturnUrl=/connect/authorize/callback?response_type=token&client_id=SwaggerProduction&redirect_uri=https%3A%2F%2Fzehusdrivermanufacturer-integr.azurewebsites.net%2Foauth2-redirect.html&scope=ProductionApi&state=RnJpIEp1bCAyNiAyMDE5IDEwOjI3OjA1IEdNVCswODAwICjkuK3lm73moIflh4bml7bpl7Qp
+
+            //query = "postPram=grant_type=authorization_code&code=4934712103f0b229f2657a44efd9c2d91dc628893d6bbafb5&client_id=201068656&client_secret=48a86626da1be965a3e5d1ef05e95a67&redirect_uri=oob";
+            string query = "response_type=token&client_id=SwaggerProduction&redirect_uri=https%3A%2F%2Fzehusdrivermanufacturer-integr.azurewebsites.net%2Foauth2-redirect.html&scope=ProductionApi&state=RnJpIEp1bCAyNiAyMDE5IDEwOjI3OjA1IEdNVCswODAwICjkuK3lm73moIflh4bml7bpl7Qp";
+            //query = "\"response_type\":\"token\",\"client_id\":\"SwaggerProduction\",\"redirect_uri\":\"https%3A%2F%2Fzehusdrivermanufacturer-integr.azurewebsites.net%2Foauth2-redirect.html\",\"scope\":\"ProductionApi\",\"state\":\"RnJpIEp1bCAyNiAyMDE5IDEwOjI3OjA1IEdNVCswODAwICjkuK3lm73moIflh4bml7bpl7Qp\"";
+
+            //query = "ReturnUrl=/connect/authorize/callback?response_type=token&client_id=SwaggerProduction&redirect_uri=https://zehusdrivermanufacturer-integr.azurewebsites.net/oauth2-redirect.html&scope=ProductionApi&state=RnJpIEp1bCAyNiAyMDE5IDEyOjE3OjIwIEdNVCswODAwICjkuK3lm73moIflh4bml7bpl7Qp&Username=SelcomGroupUser@grr.la&Password=%7LD2GPfNjv8&button=login&__RequestVerificationToken=CfDJ8O9ONuNhZLFIrUdyA65YKLCKSWxHeyEDNqwyvglWPb12PrpRKdXKAH6dh66DfDedDEGrjvJ6xVjyEIazE6WU_YtWTFpWD9KeCMC5ChT9zABiS2y-OWTmxEKPXbzarNZrQwNLSKkLDJges5sgkQWtIk8";
+            query = "ReturnUrl=/connect/authorize/callback?response_type=token&client_id=SwaggerProduction&redirect_uri=https%3A%2F%2Fzehusdrivermanufacturer-integr.azurewebsites.net%2Foauth2-redirect.html&scope=ProductionApi&state=RnJpIEp1bCAyNiAyMDE5IDEyOjE3OjIwIEdNVCswODAwICjkuK3lm73moIflh4bml7bpl7Qp&Username=SelcomGroupUser@grr.la&Password=%7LD2GPfNjv8&button=login&__RequestVerificationToken=CfDJ8O9ONuNhZLFIrUdyA65YKLCKSWxHeyEDNqwyvglWPb12PrpRKdXKAH6dh66DfDedDEGrjvJ6xVjyEIazE6WU_YtWTFpWD9KeCMC5ChT9zABiS2y-OWTmxEKPXbzarNZrQwNLSKkLDJges5sgkQWtIk8";
+            SetCertificatePolicy();
+            HttpWebRequest wReq = (HttpWebRequest)WebRequest.Create(postUrl);
+            wReq.Method = "GET";
+            //wReq.ContentType = "application/json"; 
+            wReq.ContentType = "application/x-www-form-urlencoded";
+            //wReq.ContentType = "text/plain";
+            //wReq.ContentType = "application/json";
+            //wReq.Accept = "text/plain";
+            //wReq.ContentType = "multipart/form-data";
+            //wReq.Headers = "Authorization:bearer Token";
+
+            //string postData = "{\"UserName\":\"gsw\",\"Password\":\"111111\"}";
+            //postData = "{\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZ3N3IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiYWRtaW4iLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL2V4cGlyYXRpb24iOiIyMDE5LzgvMjggMTU6NDk6NDgiLCJuYmYiOjE1NjM5Nzg1ODgsImV4cCI6MTU2Njk3ODU4OCwiaXNzIjoiZ3N3IiwiYXVkIjoiZXZlcnlvbmUifQ.HQdW7N_XTWXfaT-Zj7LzPqRJEMypmS49-i61ymjkz0Q\"}";
+
+            //byte[] data = Encoding.UTF8.GetBytes(query);
+            //wReq.ContentLength = data.Length;
+            //Stream reqStream = wReq.GetRequestStream();
+            //reqStream.Write(data, 0, data.Length);
+            //reqStream.Close();
+
+            using (StreamReader sr = new StreamReader(wReq.GetResponse().GetResponseStream(), Encoding.Default))
+            {
+                string result = sr.ReadToEnd();
+                textBox1.Text += wReq.RequestUri + "\r\n";
+                textBox1.Text += result + "\r\n";
+            }
+        }
+        /// <summary>
+        /// Sets the cert policy.
+        /// </summary>
+        public static void SetCertificatePolicy()
+        {
+            ServicePointManager.ServerCertificateValidationCallback
+                       += RemoteCertificateValidate;
+        }
+
+        /// <summary>
+        /// Remotes the certificate validate.
+        /// </summary>
+        private static bool RemoteCertificateValidate(
+           object sender, X509Certificate cert,
+            X509Chain chain, SslPolicyErrors error)
+        {
+            // trust any certificate!!!
+            System.Console.WriteLine("Warning, trust any certificate");
+            return true;
         }
     }
 }
