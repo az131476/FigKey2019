@@ -28,8 +28,8 @@ namespace MESInterface
 
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddTokenJwtAuthorize();
-            //services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddTokenJwtAuthorize();
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
 
@@ -39,7 +39,7 @@ namespace MESInterface
             {
                 //app.UseDeveloperExceptionPage();
             }
-            //app.UseMvc();
+            app.UseMvc();
         }
     }
 }

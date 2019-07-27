@@ -1,57 +1,42 @@
-﻿using System;
+﻿using SwaggerWcf.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Runtime.Serialization;
+using System.ServiceModel;
+using System.ServiceModel.Activation;
 using System.ServiceModel.Web;
 using System.Text;
-using MESInterface.Molde;
 using System.Data;
 using CommonUtils.DB;
 using CommonUtils.Logger;
 using System.Configuration;
 using System.Collections;
-using MESInterface.MessageQueue.RemoteClient;
-using MESInterface.DB;
-using MESInterface.Model;
+using MesAPI.MessageQueue.RemoteClient;
+using MesAPI.DB;
+using MesAPI.Model;
 using System.Data.SqlClient;
-using System.ServiceModel;
-using System.ServiceModel.Activation;
-using SwaggerWcf.Attributes;
-using System.ComponentModel;
-using System.Net;
 
-namespace MESInterface
+namespace MesAPI
 {
     // 注意: 使用“重构”菜单上的“重命名”命令，可以同时更改代码、svc 和配置文件中的类名“Service1”。
     // 注意: 为了启动 WCF 测试客户端以测试此服务，请在解决方案资源管理器中选择 Service1.svc 或 Service1.svc.cs，然后开始调试。
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerSession)]
     [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
-    [SwaggerWcf("/MesService/")]
+    [SwaggerWcf("/MesService")]
     public class MesService : IMesService
     {
-        private string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ToString();
         private Queue<string[]> fcQueue = new Queue<string[]>();
         private Queue<string[]> insertDataQueue = new Queue<string[]>();
         private Queue<string[]> selectDataQueue = new Queue<string[]>();
         private Queue<string[]> insertMaterialStatistics = new Queue<string[]>();
 
-        [SwaggerWcfTag("MesService 服务")]
-        [SwaggerWcfResponse(HttpStatusCode.Created, "Book created, value in the response body with id updated")]
-        [SwaggerWcfResponse(HttpStatusCode.BadRequest, "Bad request", true)]
-        [SwaggerWcfResponse(HttpStatusCode.InternalServerError,"Internal error (can be forced using ERROR_500 as book title)", true)]
-        public string GetData(int value)
-        {
-            return string.Format("You entered: {0}", value);
-        }
         private string GetDateTimeNow()
         {
             return DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
         }
 
-        public void InitConnectString()
-        {
-            SQLServer.SqlConnectionString = connectionString;
-        }
         #region 用户信息接口
 
         #region 用户登录
@@ -61,7 +46,7 @@ namespace MESInterface
         /// <param name="username">用户名/手机号/邮箱</param>
         /// <param name="password">密码</param>
         /// <returns></returns>
-        public LoginResult Login(string username, string password, LoginUser loginUser)
+        public LoginResult Login(string username, string password)
         {
             //暂未处理用户角色
             try
@@ -234,7 +219,7 @@ namespace MESInterface
             LogHelper.Log.Info($"接口被调用-InsertProduce");
             foreach (var station in stationList)
             {
-                if (!IsExistStation(station.StationID,station.StationName))
+                if (!IsExistStation(station.StationID, station.StationName))
                 {
                     //不存在，插入
                     string insertSQL = $"INSERT INTO {DbTable.F_STATION_NAME}({DbTable.F_Station.STATION_ORDER}," +
@@ -291,7 +276,7 @@ namespace MESInterface
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        private bool IsExistStation(int id,string station)
+        private bool IsExistStation(int id, string station)
         {
             string selectSQL = $"SELECT * FROM {DbTable.F_STATION_NAME} WHERE {DbTable.F_Station.STATION_ORDER} = '{id}' AND " +
                 $"{DbTable.F_Station.STATION_NAME} = '{station}'";
@@ -388,6 +373,10 @@ namespace MESInterface
         #endregion
 
         #region 测试结果数据接口
+        [SwaggerWcfTag("MesServcie 服务")]
+        [SwaggerWcfResponse(HttpStatusCode.Created, "Book created, value in the response body with id updated")]
+        [SwaggerWcfResponse(HttpStatusCode.BadRequest, "Bad request", true)]
+        [SwaggerWcfResponse(HttpStatusCode.InternalServerError, "Internal error (can be forced using ERROR_500 as book title)", true)]
         /// <summary>
         /// 测试端插入测试结果
         /// </summary>
@@ -401,10 +390,13 @@ namespace MESInterface
         {
             string[] array = new string[] { sn, typeNo, station, dateTime, result };
             insertDataQueue.Enqueue(array);
-            SQLServer.SqlConnectionString = connectionString;
             return TestResult.InsertTestResult(insertDataQueue);
         }
 
+        [SwaggerWcfTag("MesServcie 服务")]
+        [SwaggerWcfResponse(HttpStatusCode.Created, "Book created, value in the response body with id updated")]
+        [SwaggerWcfResponse(HttpStatusCode.BadRequest, "Bad request", true)]
+        [SwaggerWcfResponse(HttpStatusCode.InternalServerError, "Internal error (can be forced using ERROR_500 as book title)", true)]
         /// <summary>
         /// 测试端查询上一站位的最后一条记录
         /// </summary>
@@ -416,7 +408,6 @@ namespace MESInterface
         {
             string[] array = new string[] { sn, typeNo, station };
             selectDataQueue.Enqueue(array);
-            SQLServer.SqlConnectionString = connectionString;
             return TestResult.SelectTestResult(selectDataQueue);
         }
 
@@ -428,7 +419,7 @@ namespace MESInterface
         /// <param name="station">站位名，可为空</param>
         /// <param name="IsSnFuzzy">true-模糊查询，false-非模糊查询</param>
         /// <returns></returns>
-        public DataSet SelectTestResultUpper(string sn,string typeNo,string station, bool IsSnFuzzy)
+        public DataSet SelectTestResultUpper(string sn, string typeNo, string station, bool IsSnFuzzy)
         {
             //查询时返回
             string selectSQL = "";
@@ -463,7 +454,6 @@ namespace MESInterface
                 }
             }
             LogHelper.Log.Info(selectSQL);
-            SQLServer.SqlConnectionString = connectionString;
             return SQLServer.ExecuteDataSet(selectSQL);
         }
 
@@ -474,10 +464,9 @@ namespace MESInterface
         /// <param name="typeNo"></param>
         /// <param name="station"></param>
         /// <returns></returns>
-        public DataSet SelectLastTestResultUpper(string sn,string typeNo,string station)
+        public DataSet SelectLastTestResultUpper(string sn, string typeNo, string station)
         {
             //根据型号与站位，查询其上一站位
-            SQLServer.SqlConnectionString = connectionString;
             LogHelper.Log.Info("上位机查询测试结果,传入站位为" + station);
             string selectOrderSQL = $"SELECT {DbTable.F_Product_Station.STATION_ORDER} FROM {DbTable.F_PRODUCT_STATION_NAME} " +
                 $"WHERE {DbTable.F_Product_Station.STATION_NAME} = '{station}'";
@@ -565,7 +554,7 @@ namespace MESInterface
             LogHelper.Log.Info($"UpdateMaterial={updateSQL}");
             return SQLServer.ExecuteNonQuery(updateSQL);
         }
-        
+
         #endregion
 
         #region 产品物料配置
@@ -636,6 +625,7 @@ namespace MESInterface
         #endregion
 
         #region 物料统计表
+        [SwaggerWcfTag("MesServcie 服务")]
         /// <summary>
         /// 测试端传入装配消耗物料计数
         /// </summary>
@@ -850,26 +840,6 @@ namespace MESInterface
                     return -1;
                 }
                 //return ExecuteSQL(insertSQL,packageProduct.Picture);
-            }
-        }
-
-        private int ExecuteSQL(string comText, byte[] byteImage)
-        {
-            try
-            {
-                SqlConnection sqlConnection = new SqlConnection(connectionString);
-                sqlConnection.Open();
-                SqlCommand sqlCommand = new SqlCommand(comText, sqlConnection);
-                sqlCommand.Parameters.Add("@ImageData", SqlDbType.Binary);
-                sqlCommand.Parameters["@ImageData"].Value = byteImage;
-                int r = sqlCommand.ExecuteNonQuery();
-                sqlConnection.Close();
-                return r;
-            }
-            catch (SqlException ex)
-            {
-                LogHelper.Log.Error(ex.Message+"\r\n"+ex.StackTrace);
-                return -1;
             }
         }
         private bool IsExistPackageProduct(string caseCode, string snOutter)
