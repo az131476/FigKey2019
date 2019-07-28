@@ -47,7 +47,6 @@ namespace MesManager
         async private void SetProduce_Load(object sender, EventArgs e)
         {
             mesService = new MesService.MesServiceClient();
-            await mesService.InitConnectStringAsync();
             DataSource();
             SetRadGridViewProperty();
             radGridView1.DataSource = dataSource;

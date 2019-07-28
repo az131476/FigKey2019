@@ -18,7 +18,7 @@ namespace MesAPI
     {
         //用户信息
         [OperationContract]
-        LoginResult Login(string username, string password);
+        LoginResult Login(string username, string password, LoginUser loginUser);
 
         [OperationContract]
         QueryResult GetUserInfo(string userName, out DataSet dataSet);

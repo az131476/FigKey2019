@@ -93,7 +93,6 @@ namespace MesManager
             try
             {
                 mesService = new MesService.MesServiceClient();
-                await mesService.InitConnectStringAsync();
             }
             catch (Exception ex)
             {

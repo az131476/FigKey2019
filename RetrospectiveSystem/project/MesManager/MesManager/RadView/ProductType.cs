@@ -32,7 +32,6 @@ namespace MesManager
         private void ProductType_Load(object sender, EventArgs e)
         {
             mesService = new MesService.MesServiceClient();
-            mesService.InitConnectString();
             modifyTypeNoTemp = new List<string>();
             InitDataSource();
             DataGridViewCommon.SetRadGridViewProperty(this.radGridView1,true);

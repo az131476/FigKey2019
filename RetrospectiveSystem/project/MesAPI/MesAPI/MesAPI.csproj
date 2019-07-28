@@ -297,6 +297,7 @@
     <Content Include="Global.asax" />
     <Content Include="MesService.svc" />
     <Content Include="Web.config" />
+    <Content Include="接口说明.txt" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DB\DbTable.cs" />

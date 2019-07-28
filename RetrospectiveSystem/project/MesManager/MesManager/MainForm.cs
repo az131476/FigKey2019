@@ -47,7 +47,6 @@ namespace MesManager
             try
             {
                 serviceClient = new MesService.MesServiceClient();
-                await serviceClient.InitConnectStringAsync();
             }
             catch (Exception ex)
             {

@@ -51,6 +51,20 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DevExpress.Charts.v17.2.Core, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Data.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Printing.v17.2.Core, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Utils.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Utils.v17.2.UI, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraBars.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraCharts.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraCharts.v17.2.Wizard, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraGrid.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraLayout.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraNavBar.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraTreeList.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraVerticalGrid.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="IrisSkin4">
       <HintPath>..\Lib\IrisSkin4.dll</HintPath>
     </Reference>
@@ -315,6 +329,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Connected Services\MesService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Control\DataGridViewCommon.cs" />
     <Compile Include="Control\ListViewCommon.cs" />
     <Compile Include="Control\TreeViewControl.cs" />
@@ -353,6 +372,12 @@
     </Compile>
     <Compile Include="RadView\MaterialOutBox.Designer.cs">
       <DependentUpon>MaterialOutBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RadView\MESMainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RadView\MESMainForm.Designer.cs">
+      <DependentUpon>MESMainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="RadView\PackageProduct.cs">
       <SubType>Form</SubType>
@@ -440,6 +465,9 @@
     <EmbeddedResource Include="RadView\MaterialOutBox.resx">
       <DependentUpon>MaterialOutBox.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="RadView\MESMainForm.resx">
+      <DependentUpon>MESMainForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RadView\PackageProduct.resx">
       <DependentUpon>PackageProduct.cs</DependentUpon>
     </EmbeddedResource>
@@ -516,13 +544,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Connected Services\MesService\MesService.disco" />
+    <None Include="Connected Services\MesService\configuration91.svcinfo" />
+    <None Include="Connected Services\MesService\configuration.svcinfo" />
     <None Include="Connected Services\MesService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Connected Services\MesService\configuration.svcinfo" />
-    <None Include="Connected Services\MesService\configuration91.svcinfo" />
-    <None Include="Connected Services\MesService\MesService.disco" />
     <Content Include="DB\WT_SCL.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -541,6 +569,7 @@
     <None Include="Resources\GenericShareFolder_128x128.png" />
     <None Include="Resources\GenericShareFolder_16x16.png" />
     <None Include="Resources\GenericShareFolder_24x24.png" />
+    <Content Include="MES修改设计.txt" />
     <Content Include="新需求.txt" />
     <Content Include="说明.txt" />
     <Content Include="需求.txt" />
@@ -566,14 +595,12 @@
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\MesService\" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\..\CommonLibrary\CommonUtils\CommonUtils\CommonUtils.csproj">
-      <Project>{ebfca1b5-23f1-4f94-928a-db1a7b98eed6}</Project>
+      <Project>{f028916d-2588-4aad-b429-1dd004e1d561}</Project>
       <Name>CommonUtils</Name>
     </ProjectReference>
   </ItemGroup>

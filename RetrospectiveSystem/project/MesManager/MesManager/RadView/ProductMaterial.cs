@@ -35,7 +35,6 @@ namespace MesManager.RadView
         async private void Init()
         {
             serviceClient = new MesService.MesServiceClient();
-            await serviceClient.InitConnectStringAsync();
 
             ListViewCommon.InitListView(this.listView);
             //设置列

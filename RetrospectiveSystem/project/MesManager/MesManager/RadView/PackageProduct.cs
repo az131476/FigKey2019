@@ -89,7 +89,6 @@ namespace MesManager.RadView
         async private void Init()
         {
             serviceClient = new MesService.MesServiceClient();
-            await serviceClient.InitConnectStringAsync();
             packageProduct = new MesService.PackageProduct();
             InitCaseCodeList();
             //获取型号

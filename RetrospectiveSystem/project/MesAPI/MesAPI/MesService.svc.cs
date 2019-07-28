@@ -46,7 +46,7 @@ namespace MesAPI
         /// <param name="username">用户名/手机号/邮箱</param>
         /// <param name="password">密码</param>
         /// <returns></returns>
-        public LoginResult Login(string username, string password)
+        public LoginResult Login(string username, string password,LoginUser loginUser)
         {
             //暂未处理用户角色
             try

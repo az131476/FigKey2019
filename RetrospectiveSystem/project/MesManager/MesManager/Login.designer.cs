@@ -40,11 +40,13 @@ namespace MesManager
             this.label1 = new System.Windows.Forms.Label();
             this.tbx_pwd = new System.Windows.Forms.TextBox();
             this.tbx_username = new System.Windows.Forms.TextBox();
+            this.radTitleBar1 = new Telerik.WinControls.UI.RadTitleBar();
             ((System.ComponentModel.ISupportInitialize)(this.lbx_username)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lbx_pwd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cb_memberpwd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lbx_regist)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_login)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radTitleBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -145,6 +147,18 @@ namespace MesManager
             this.tbx_username.Size = new System.Drawing.Size(227, 29);
             this.tbx_username.TabIndex = 12;
             // 
+            // radTitleBar1
+            // 
+            this.radTitleBar1.BackColor = System.Drawing.Color.Transparent;
+            this.radTitleBar1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.radTitleBar1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radTitleBar1.Location = new System.Drawing.Point(0, 0);
+            this.radTitleBar1.Name = "radTitleBar1";
+            this.radTitleBar1.Size = new System.Drawing.Size(439, 23);
+            this.radTitleBar1.TabIndex = 13;
+            this.radTitleBar1.TabStop = false;
+            this.radTitleBar1.Text = "登录";
+            // 
             // Login
             // 
             this.AcceptButton = this.btn_login;
@@ -153,8 +167,9 @@ namespace MesManager
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.BackgroundImage = global::MesManager.Properties.Resources.背景_01;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(431, 354);
+            this.ClientSize = new System.Drawing.Size(439, 384);
             this.ControlBox = false;
+            this.Controls.Add(this.radTitleBar1);
             this.Controls.Add(this.tbx_username);
             this.Controls.Add(this.tbx_pwd);
             this.Controls.Add(this.label1);
@@ -180,6 +195,7 @@ namespace MesManager
             ((System.ComponentModel.ISupportInitialize)(this.cb_memberpwd)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lbx_regist)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_login)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radTitleBar1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -196,5 +212,6 @@ namespace MesManager
         private Label label1;
         private TextBox tbx_pwd;
         private TextBox tbx_username;
+        private Telerik.WinControls.UI.RadTitleBar radTitleBar1;
     }
 }

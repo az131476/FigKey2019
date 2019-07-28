@@ -24,7 +24,6 @@ namespace MesManager.RadView
         private void Register_Load(object sender, EventArgs e)
         {
             serviceClient = new MesService.MesServiceClient();
-            serviceClient.InitConnectString();
             tb_pwd.PasswordChar = '*';
         }
 
