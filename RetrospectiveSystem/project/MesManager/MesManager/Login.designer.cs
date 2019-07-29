@@ -39,14 +39,12 @@ namespace MesManager
             this.btn_login = new Telerik.WinControls.UI.RadButton();
             this.label1 = new System.Windows.Forms.Label();
             this.tbx_pwd = new System.Windows.Forms.TextBox();
-            this.tbx_username = new System.Windows.Forms.TextBox();
-            this.radTitleBar1 = new Telerik.WinControls.UI.RadTitleBar();
+            this.tbx_username = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.lbx_username)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lbx_pwd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cb_memberpwd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lbx_regist)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_login)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radTitleBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,7 +52,7 @@ namespace MesManager
             // 
             this.lbx_username.BackColor = System.Drawing.Color.Transparent;
             this.lbx_username.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbx_username.Location = new System.Drawing.Point(36, 108);
+            this.lbx_username.Location = new System.Drawing.Point(36, 114);
             this.lbx_username.Name = "lbx_username";
             this.lbx_username.Size = new System.Drawing.Size(56, 24);
             this.lbx_username.TabIndex = 2;
@@ -142,22 +140,11 @@ namespace MesManager
             // tbx_username
             // 
             this.tbx_username.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbx_username.Location = new System.Drawing.Point(107, 111);
+            this.tbx_username.FormattingEnabled = true;
+            this.tbx_username.Location = new System.Drawing.Point(107, 112);
             this.tbx_username.Name = "tbx_username";
-            this.tbx_username.Size = new System.Drawing.Size(227, 29);
-            this.tbx_username.TabIndex = 12;
-            // 
-            // radTitleBar1
-            // 
-            this.radTitleBar1.BackColor = System.Drawing.Color.Transparent;
-            this.radTitleBar1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.radTitleBar1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radTitleBar1.Location = new System.Drawing.Point(0, 0);
-            this.radTitleBar1.Name = "radTitleBar1";
-            this.radTitleBar1.Size = new System.Drawing.Size(439, 23);
-            this.radTitleBar1.TabIndex = 13;
-            this.radTitleBar1.TabStop = false;
-            this.radTitleBar1.Text = "登录";
+            this.tbx_username.Size = new System.Drawing.Size(225, 29);
+            this.tbx_username.TabIndex = 13;
             // 
             // Login
             // 
@@ -167,9 +154,8 @@ namespace MesManager
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.BackgroundImage = global::MesManager.Properties.Resources.背景_01;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(439, 384);
+            this.ClientSize = new System.Drawing.Size(455, 444);
             this.ControlBox = false;
-            this.Controls.Add(this.radTitleBar1);
             this.Controls.Add(this.tbx_username);
             this.Controls.Add(this.tbx_pwd);
             this.Controls.Add(this.label1);
@@ -195,7 +181,6 @@ namespace MesManager
             ((System.ComponentModel.ISupportInitialize)(this.cb_memberpwd)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lbx_regist)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_login)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radTitleBar1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -211,7 +196,6 @@ namespace MesManager
         private Telerik.WinControls.UI.RadButton btn_login;
         private Label label1;
         private TextBox tbx_pwd;
-        private TextBox tbx_username;
-        private Telerik.WinControls.UI.RadTitleBar radTitleBar1;
+        private ComboBox tbx_username;
     }
 }

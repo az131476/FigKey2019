@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.radGroupBox_type = new Telerik.WinControls.UI.RadGroupBox();
             this.listView = new System.Windows.Forms.ListView();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
@@ -35,12 +36,21 @@
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.btn_commit = new Telerik.WinControls.UI.RadButton();
             this.btn_cancel = new Telerik.WinControls.UI.RadButton();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.新增ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.radGridView1 = new Telerik.WinControls.UI.RadGridView();
+            this.删除ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.提交ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.刷新ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox_type)).BeginInit();
             this.radGroupBox_type.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_commit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_cancel)).BeginInit();
+            this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,9 +62,9 @@
             this.radGroupBox_type.Controls.Add(this.cb_type_no);
             this.radGroupBox_type.Controls.Add(this.radLabel2);
             this.radGroupBox_type.HeaderText = "配置产品物料";
-            this.radGroupBox_type.Location = new System.Drawing.Point(12, 12);
+            this.radGroupBox_type.Location = new System.Drawing.Point(12, 328);
             this.radGroupBox_type.Name = "radGroupBox_type";
-            this.radGroupBox_type.Size = new System.Drawing.Size(329, 449);
+            this.radGroupBox_type.Size = new System.Drawing.Size(956, 132);
             this.radGroupBox_type.TabIndex = 7;
             this.radGroupBox_type.Text = "配置产品物料";
             // 
@@ -108,20 +118,73 @@
             this.btn_cancel.Text = "取消";
             this.btn_cancel.Click += new System.EventHandler(this.Btn_cancel_Click);
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.BackColor = System.Drawing.Color.Transparent;
+            this.menuStrip1.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.新增ToolStripMenuItem,
+            this.删除ToolStripMenuItem,
+            this.提交ToolStripMenuItem,
+            this.刷新ToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1088, 29);
+            this.menuStrip1.TabIndex = 10;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // 新增ToolStripMenuItem
+            // 
+            this.新增ToolStripMenuItem.Name = "新增ToolStripMenuItem";
+            this.新增ToolStripMenuItem.Size = new System.Drawing.Size(54, 25);
+            this.新增ToolStripMenuItem.Text = "新增";
+            // 
+            // radGridView1
+            // 
+            this.radGridView1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.radGridView1.Location = new System.Drawing.Point(0, 29);
+            // 
+            // 
+            // 
+            this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.radGridView1.Name = "radGridView1";
+            this.radGridView1.Size = new System.Drawing.Size(1088, 293);
+            this.radGridView1.TabIndex = 11;
+            // 
+            // 删除ToolStripMenuItem
+            // 
+            this.删除ToolStripMenuItem.Name = "删除ToolStripMenuItem";
+            this.删除ToolStripMenuItem.Size = new System.Drawing.Size(54, 25);
+            this.删除ToolStripMenuItem.Text = "删除";
+            // 
+            // 提交ToolStripMenuItem
+            // 
+            this.提交ToolStripMenuItem.Name = "提交ToolStripMenuItem";
+            this.提交ToolStripMenuItem.Size = new System.Drawing.Size(54, 25);
+            this.提交ToolStripMenuItem.Text = "提交";
+            // 
+            // 刷新ToolStripMenuItem
+            // 
+            this.刷新ToolStripMenuItem.Name = "刷新ToolStripMenuItem";
+            this.刷新ToolStripMenuItem.Size = new System.Drawing.Size(54, 25);
+            this.刷新ToolStripMenuItem.Text = "刷新";
+            // 
             // ProductMaterial
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(360, 528);
+            this.ClientSize = new System.Drawing.Size(1088, 528);
+            this.Controls.Add(this.radGridView1);
             this.Controls.Add(this.btn_cancel);
             this.Controls.Add(this.btn_commit);
             this.Controls.Add(this.radGroupBox_type);
+            this.Controls.Add(this.menuStrip1);
             this.Name = "ProductMaterial";
             // 
             // 
             // 
             this.RootElement.ApplyShapeToControl = true;
-            this.Text = "产品物料";
+            this.Text = "物料绑定";
             this.Load += new System.EventHandler(this.ProductMaterial_Load);
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox_type)).EndInit();
             this.radGroupBox_type.ResumeLayout(false);
@@ -130,8 +193,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_commit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_cancel)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -144,5 +212,11 @@
         private Telerik.WinControls.UI.RadLabel radLabel2;
         private Telerik.WinControls.UI.RadButton btn_commit;
         private Telerik.WinControls.UI.RadButton btn_cancel;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem 新增ToolStripMenuItem;
+        private Telerik.WinControls.UI.RadGridView radGridView1;
+        private System.Windows.Forms.ToolStripMenuItem 删除ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 提交ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 刷新ToolStripMenuItem;
     }
 }
