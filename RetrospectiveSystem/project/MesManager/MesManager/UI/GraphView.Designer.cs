@@ -28,43 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            Telerik.WinControls.UI.CartesianArea cartesianArea1 = new Telerik.WinControls.UI.CartesianArea();
+            this.radChartView1 = new Telerik.WinControls.UI.RadChartView();
+            ((System.ComponentModel.ISupportInitialize)(this.radChartView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
-            // chart1
+            // radChartView1
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(12, 63);
-            this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(1140, 576);
-            this.chart1.TabIndex = 0;
-            this.chart1.Text = "chart1";
+            this.radChartView1.AreaDesign = cartesianArea1;
+            this.radChartView1.Location = new System.Drawing.Point(236, 123);
+            this.radChartView1.Name = "radChartView1";
+            this.radChartView1.ShowGrid = false;
+            this.radChartView1.Size = new System.Drawing.Size(480, 320);
+            this.radChartView1.TabIndex = 0;
             // 
             // GraphView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1164, 660);
-            this.Controls.Add(this.chart1);
+            this.Controls.Add(this.radChartView1);
             this.Name = "GraphView";
             // 
             // 
             // 
             this.RootElement.ApplyShapeToControl = true;
             this.Text = "GraphView";
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radChartView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -72,6 +63,6 @@
 
         #endregion
 
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private Telerik.WinControls.UI.RadChartView radChartView1;
     }
 }

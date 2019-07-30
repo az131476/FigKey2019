@@ -177,6 +177,12 @@
   <wsdl:message name="IMesService_SelectMaterialStatistics_OutputMessage">
     <wsdl:part name="parameters" element="tns:SelectMaterialStatisticsResponse" />
   </wsdl:message>
+  <wsdl:message name="IMesService_SelectMaterialMsg_InputMessage">
+    <wsdl:part name="parameters" element="tns:SelectMaterialMsg" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_SelectMaterialMsg_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SelectMaterialMsgResponse" />
+  </wsdl:message>
   <wsdl:message name="IMesService_CommitOutCaseBoxStorage_InputMessage">
     <wsdl:part name="parameters" element="tns:CommitOutCaseBoxStorage" />
   </wsdl:message>
@@ -325,6 +331,10 @@
     <wsdl:operation name="SelectMaterialStatistics">
       <wsdl:input wsaw:Action="http://tempuri.org/IMesService/SelectMaterialStatistics" message="tns:IMesService_SelectMaterialStatistics_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMesService/SelectMaterialStatisticsResponse" message="tns:IMesService_SelectMaterialStatistics_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectMaterialMsg">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/SelectMaterialMsg" message="tns:IMesService_SelectMaterialMsg_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/SelectMaterialMsgResponse" message="tns:IMesService_SelectMaterialMsg_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="CommitOutCaseBoxStorage">
       <wsdl:input wsaw:Action="http://tempuri.org/IMesService/CommitOutCaseBoxStorage" message="tns:IMesService_CommitOutCaseBoxStorage_InputMessage" />
@@ -598,6 +608,15 @@
     </wsdl:operation>
     <wsdl:operation name="SelectMaterialStatistics">
       <soap:operation soapAction="http://tempuri.org/IMesService/SelectMaterialStatistics" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectMaterialMsg">
+      <soap:operation soapAction="http://tempuri.org/IMesService/SelectMaterialMsg" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

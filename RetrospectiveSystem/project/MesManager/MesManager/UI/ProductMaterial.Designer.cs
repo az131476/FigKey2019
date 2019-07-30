@@ -28,6 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewComboBoxColumn gridViewComboBoxColumn1 = new Telerik.WinControls.UI.GridViewComboBoxColumn();
+            Telerik.WinControls.UI.GridViewComboBoxColumn gridViewComboBoxColumn2 = new Telerik.WinControls.UI.GridViewComboBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.radGroupBox_type = new Telerik.WinControls.UI.RadGroupBox();
             this.listView = new System.Windows.Forms.ListView();
@@ -37,11 +41,11 @@
             this.btn_commit = new Telerik.WinControls.UI.RadButton();
             this.btn_cancel = new Telerik.WinControls.UI.RadButton();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.新增ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_add = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_del = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_update = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_refresh = new System.Windows.Forms.ToolStripMenuItem();
             this.radGridView1 = new Telerik.WinControls.UI.RadGridView();
-            this.删除ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.提交ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.刷新ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox_type)).BeginInit();
             this.radGroupBox_type.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
@@ -70,9 +74,9 @@
             // 
             // listView
             // 
-            this.listView.Location = new System.Drawing.Point(65, 102);
+            this.listView.Location = new System.Drawing.Point(389, 36);
             this.listView.Name = "listView";
-            this.listView.Size = new System.Drawing.Size(245, 335);
+            this.listView.Size = new System.Drawing.Size(245, 75);
             this.listView.TabIndex = 6;
             this.listView.UseCompatibleStateImageBehavior = false;
             // 
@@ -123,51 +127,75 @@
             this.menuStrip1.BackColor = System.Drawing.Color.Transparent;
             this.menuStrip1.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.新增ToolStripMenuItem,
-            this.删除ToolStripMenuItem,
-            this.提交ToolStripMenuItem,
-            this.刷新ToolStripMenuItem});
+            this.menu_add,
+            this.menu_del,
+            this.menu_update,
+            this.menu_refresh});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1088, 29);
             this.menuStrip1.TabIndex = 10;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // 新增ToolStripMenuItem
+            // menu_add
             // 
-            this.新增ToolStripMenuItem.Name = "新增ToolStripMenuItem";
-            this.新增ToolStripMenuItem.Size = new System.Drawing.Size(54, 25);
-            this.新增ToolStripMenuItem.Text = "新增";
+            this.menu_add.Name = "menu_add";
+            this.menu_add.Size = new System.Drawing.Size(54, 25);
+            this.menu_add.Text = "新增";
+            this.menu_add.Click += new System.EventHandler(this.Menu_add_Click);
+            // 
+            // menu_del
+            // 
+            this.menu_del.Name = "menu_del";
+            this.menu_del.Size = new System.Drawing.Size(54, 25);
+            this.menu_del.Text = "删除";
+            // 
+            // menu_update
+            // 
+            this.menu_update.Name = "menu_update";
+            this.menu_update.Size = new System.Drawing.Size(54, 25);
+            this.menu_update.Text = "更新";
+            // 
+            // menu_refresh
+            // 
+            this.menu_refresh.Name = "menu_refresh";
+            this.menu_refresh.Size = new System.Drawing.Size(54, 25);
+            this.menu_refresh.Text = "刷新";
             // 
             // radGridView1
             // 
+            this.radGridView1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
+            this.radGridView1.Cursor = System.Windows.Forms.Cursors.Default;
             this.radGridView1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.radGridView1.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.radGridView1.ForeColor = System.Drawing.Color.Black;
+            this.radGridView1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.radGridView1.Location = new System.Drawing.Point(0, 29);
             // 
             // 
             // 
+            gridViewTextBoxColumn1.EnableExpressionEditor = false;
+            gridViewTextBoxColumn1.HeaderText = "序号";
+            gridViewTextBoxColumn1.Name = "rdvc_order";
+            gridViewComboBoxColumn1.EnableExpressionEditor = false;
+            gridViewComboBoxColumn1.HeaderText = "产品型号";
+            gridViewComboBoxColumn1.Name = "rdvc_typeNo";
+            gridViewComboBoxColumn2.EnableExpressionEditor = false;
+            gridViewComboBoxColumn2.HeaderText = "物料编码";
+            gridViewComboBoxColumn2.Name = "rdvc_materialCode";
+            gridViewTextBoxColumn2.EnableExpressionEditor = false;
+            gridViewTextBoxColumn2.HeaderText = "描述";
+            gridViewTextBoxColumn2.Name = "rdvc_describle";
+            this.radGridView1.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
+            gridViewTextBoxColumn1,
+            gridViewComboBoxColumn1,
+            gridViewComboBoxColumn2,
+            gridViewTextBoxColumn2});
             this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.radGridView1.Name = "radGridView1";
+            this.radGridView1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.radGridView1.Size = new System.Drawing.Size(1088, 293);
             this.radGridView1.TabIndex = 11;
-            // 
-            // 删除ToolStripMenuItem
-            // 
-            this.删除ToolStripMenuItem.Name = "删除ToolStripMenuItem";
-            this.删除ToolStripMenuItem.Size = new System.Drawing.Size(54, 25);
-            this.删除ToolStripMenuItem.Text = "删除";
-            // 
-            // 提交ToolStripMenuItem
-            // 
-            this.提交ToolStripMenuItem.Name = "提交ToolStripMenuItem";
-            this.提交ToolStripMenuItem.Size = new System.Drawing.Size(54, 25);
-            this.提交ToolStripMenuItem.Text = "提交";
-            // 
-            // 刷新ToolStripMenuItem
-            // 
-            this.刷新ToolStripMenuItem.Name = "刷新ToolStripMenuItem";
-            this.刷新ToolStripMenuItem.Size = new System.Drawing.Size(54, 25);
-            this.刷新ToolStripMenuItem.Text = "刷新";
             // 
             // ProductMaterial
             // 
@@ -213,10 +241,10 @@
         private Telerik.WinControls.UI.RadButton btn_commit;
         private Telerik.WinControls.UI.RadButton btn_cancel;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem 新增ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menu_add;
         private Telerik.WinControls.UI.RadGridView radGridView1;
-        private System.Windows.Forms.ToolStripMenuItem 删除ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 提交ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 刷新ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menu_del;
+        private System.Windows.Forms.ToolStripMenuItem menu_update;
+        private System.Windows.Forms.ToolStripMenuItem menu_refresh;
     }
 }

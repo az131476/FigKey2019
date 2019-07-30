@@ -425,18 +425,18 @@ namespace MesAPI
             string selectSQL = "";
             if (string.IsNullOrEmpty(sn) && string.IsNullOrEmpty(typeNo) && string.IsNullOrEmpty(station))
             {
-                selectSQL = $"SELECT {DbTable.F_Test_Result.SN},{DbTable.F_Test_Result.TYPE_NO}," +
-                $"{DbTable.F_Test_Result.STATION_NAME},{DbTable.F_Test_Result.TEST_RESULT}," +
-                $"{DbTable.F_Test_Result.UPDATE_DATE},{DbTable.F_Test_Result.REMARK} " +
+                selectSQL = $"SELECT {DbTable.F_Test_Result.SN} AS 产品追溯码,{DbTable.F_Test_Result.TYPE_NO} AS 产品型号," +
+                $"{DbTable.F_Test_Result.STATION_NAME} AS 站位名称,{DbTable.F_Test_Result.TEST_RESULT} AS 测试结果," +
+                $"{DbTable.F_Test_Result.UPDATE_DATE} AS 更新日期,{DbTable.F_Test_Result.REMARK} AS 备注 " +
                 $"FROM {DbTable.F_TEST_RESULT_NAME}";
             }
             else
             {
                 if (IsSnFuzzy)
                 {
-                    selectSQL = $"SELECT {DbTable.F_Test_Result.SN},{DbTable.F_Test_Result.TYPE_NO}," +
-                    $"{DbTable.F_Test_Result.STATION_NAME},{DbTable.F_Test_Result.TEST_RESULT}," +
-                    $"{DbTable.F_Test_Result.UPDATE_DATE},{DbTable.F_Test_Result.REMARK} " +
+                    selectSQL = $"SELECT {DbTable.F_Test_Result.SN} 产品追溯码,{DbTable.F_Test_Result.TYPE_NO} 产品型号," +
+                    $"{DbTable.F_Test_Result.STATION_NAME} 站位名称,{DbTable.F_Test_Result.TEST_RESULT} 测试结果," +
+                    $"{DbTable.F_Test_Result.UPDATE_DATE} 更新日期,{DbTable.F_Test_Result.REMARK} 备注 " +
                     $"FROM {DbTable.F_TEST_RESULT_NAME} " +
                     $"WHERE {DbTable.F_Test_Result.SN} like '%{sn}%' OR " +
                     $"{DbTable.F_Test_Result.TYPE_NO} like '%{typeNo}%' OR " +
@@ -444,9 +444,9 @@ namespace MesAPI
                 }
                 else
                 {
-                    selectSQL = $"SELECT {DbTable.F_Test_Result.SN},{DbTable.F_Test_Result.TYPE_NO}," +
-                    $"{DbTable.F_Test_Result.STATION_NAME},{DbTable.F_Test_Result.TEST_RESULT}," +
-                    $"{DbTable.F_Test_Result.UPDATE_DATE},{DbTable.F_Test_Result.REMARK} " +
+                    selectSQL = $"SELECT {DbTable.F_Test_Result.SN} 产品追溯码,{DbTable.F_Test_Result.TYPE_NO} 产品型号," +
+                    $"{DbTable.F_Test_Result.STATION_NAME} 站位名称,{DbTable.F_Test_Result.TEST_RESULT} 测试结果," +
+                    $"{DbTable.F_Test_Result.UPDATE_DATE} 更新日期,{DbTable.F_Test_Result.REMARK} 备注 " +
                     $"FROM {DbTable.F_TEST_RESULT_NAME} " +
                     $"WHERE {DbTable.F_Test_Result.SN} = '{sn}' OR " +
                     $"{DbTable.F_Test_Result.TYPE_NO} = '{typeNo}' OR " +
@@ -594,10 +594,16 @@ namespace MesAPI
         {
             string selectSQL = "";
             if (!string.IsNullOrEmpty(typeNo))
-                selectSQL = $"SELECT {DbTable.F_PRODUCT_MATERIAL.MATERIAL_CODE} FROM {DbTable.F_PRODUCT_MATERIAL_NAME} " +
-                $"WHERE {DbTable.F_PRODUCT_MATERIAL.TYPE_NO} = '{typeNo}'";
+                selectSQL = $"SELECT {DbTable.F_PRODUCT_MATERIAL.ID}," +
+                    $"{DbTable.F_PRODUCT_MATERIAL.TYPE_NO},{DbTable.F_PRODUCT_MATERIAL.MATERIAL_CODE}," +
+                    $"{DbTable.F_PRODUCT_MATERIAL.Describle} " +
+                    $"FROM {DbTable.F_PRODUCT_MATERIAL_NAME} " +
+                    $"WHERE {DbTable.F_PRODUCT_MATERIAL.TYPE_NO} = '{typeNo}'";
             else
-                selectSQL = $"SELECT * FROM {DbTable.F_PRODUCT_MATERIAL_NAME} ";
+                selectSQL = $"SELECT {DbTable.F_PRODUCT_MATERIAL.ID}," +
+                    $"{DbTable.F_PRODUCT_MATERIAL.TYPE_NO},{DbTable.F_PRODUCT_MATERIAL.MATERIAL_CODE}," +
+                    $"{DbTable.F_PRODUCT_MATERIAL.Describle} "+
+                    $"FROM {DbTable.F_PRODUCT_MATERIAL_NAME} ";
             return SQLServer.ExecuteDataSet(selectSQL);
         }
         private bool IsExistProductMaterial(string typeNo, string materialCode)
@@ -644,6 +650,7 @@ namespace MesAPI
         }
         public DataSet SelectMaterialStatistics(string typeNo)
         {
+            //按型号与物料查
             string selectSQL = "";
             if (!string.IsNullOrEmpty(typeNo))
             {
@@ -659,6 +666,45 @@ namespace MesAPI
             {
                 selectSQL = $"SELECT * FROM {DbTable.F_MATERIAL_STATISTICS_NAME}";
             }
+            return SQLServer.ExecuteDataSet(selectSQL);
+        }
+        #endregion
+
+        #region 物料综合查询
+        public DataSet SelectMaterialMsg(MaterialMsg materialMsg, bool IsSelectAll)
+        {
+            string selectSQL = "";
+            if (IsSelectAll)
+            {
+                selectSQL = "SELECT a.material_code 物料编码,a.amount 物料总数,b.type_no 产品型号,b.update_date 绑定日期 " +
+                    "FROM [WT_SCL].[dbo].[f_material] a,[WT_SCL].[dbo].[f_product_material] b " +
+                    $"WHERE a.material_code = b.material_code ";
+            }
+            else
+            {
+                if (materialMsg.MaterialCode == "" && materialMsg.Sn_Inner == "" && materialMsg.Sn_Outter == "" && materialMsg.TypeNo == "" && materialMsg.StationName == "")
+                {
+                    selectSQL = "SELECT a.material_code 物料编码,a.amount 物料总数,b.sn_inner 内壳码," +
+                    "b.sn_outter 外壳码,b.type_no 产品型号, b.station_name 站位名称, b.material_amount 消耗数量," +
+                    "(a.amount - b.material_amount) 剩余数量,b.update_date 更新日期 " +
+                    "FROM[WT_SCL].[dbo].[f_material] a,[WT_SCL].[dbo].f_material_statistics b " +
+                    $"WHERE a.material_code = b.material_code ";
+                }
+                else
+                {
+                    selectSQL = "SELECT a.material_code 物料编码,a.amount 物料总数,b.sn_inner 内壳码," +
+                    "b.sn_outter 外壳码,b.type_no 产品型号, b.station_name 站位名称, b.material_amount 消耗数量," +
+                    "(a.amount - b.material_amount) 剩余数量,b.update_date 更新日期 " +
+                    "FROM[WT_SCL].[dbo].[f_material] a,[WT_SCL].[dbo].f_material_statistics b " +
+                    $"WHERE a.material_code = b.material_code AND " +
+                    $"{DbTable.F_Material.MATERIAL_CODE} = '{materialMsg.MaterialCode}' OR " +
+                    $"{DbTable.F_Material_Statistics.SN_INNER} = '{materialMsg.Sn_Inner}' OR " +
+                    $"{DbTable.F_Material_Statistics.SN_OUTTER} = '{materialMsg.Sn_Outter}' OR " +
+                    $"{DbTable.F_Material_Statistics.TYPE_NO} = '{materialMsg.TypeNo}' OR " +
+                    $"{DbTable.F_Material_Statistics.STATION_NAME} = '{materialMsg.StationName}'";
+                }
+            }
+            LogHelper.Log.Info(selectSQL);
             return SQLServer.ExecuteDataSet(selectSQL);
         }
         #endregion
@@ -879,18 +925,23 @@ namespace MesAPI
         }
         public DataSet SelectPackageProduct(PackageProduct packageProduct)
         {
-            //箱子编码/追溯码查询
+            //箱子编码/追溯码查询/产品型号
             string selectSQL = "";
-            if (string.IsNullOrEmpty(packageProduct.CaseCode) && string.IsNullOrEmpty(packageProduct.SnOutter))
+            if (string.IsNullOrEmpty(packageProduct.CaseCode) && string.IsNullOrEmpty(packageProduct.SnOutter) && string.IsNullOrEmpty(packageProduct.TypeNo))
             {
-                selectSQL = $"SELECT * FROM {DbTable.F_OUT_CASE_PRODUCT_NAME} " +
+                //查询所有已绑定记录
+                selectSQL = $"SELECT OUT_CASE_CODE 包装箱编码,SN_OUTTER 产品追溯码," +
+                    $"TYPE_NO 产品型号,BINDING_STATE 绑定状态,BINDING_DATE 绑定日期 FROM {DbTable.F_OUT_CASE_PRODUCT_NAME} " +
                     $"WHERE {DbTable.F_Out_Case_Product.BINDING_STATE} = '{packageProduct.BindingState}'";
             }
             else
             {
-                selectSQL = $"SELECT * FROM {DbTable.F_OUT_CASE_PRODUCT_NAME} WHERE " +
-                    $"{DbTable.F_Out_Case_Product.OUT_CASE_CODE} = '{packageProduct.CaseCode}' AND " +
-                    $"{DbTable.F_Out_Case_Product.SN_OUTTER} = '{packageProduct.SnOutter}' AND " +
+                selectSQL = $"SELECT OUT_CASE_CODE 包装箱编码,SN_OUTTER 产品追溯码," +
+                    $"TYPE_NO 产品型号,BINDING_STATE 绑定状态,BINDING_DATE 绑定日期 " +
+                    $"FROM {DbTable.F_OUT_CASE_PRODUCT_NAME} WHERE " +
+                    $"{DbTable.F_Out_Case_Product.OUT_CASE_CODE} = '{packageProduct.CaseCode}' OR " +
+                    $"{DbTable.F_Out_Case_Product.SN_OUTTER} = '{packageProduct.SnOutter}' OR " +
+                    $"{DbTable.F_Out_Case_Product.TYPE_NO} = '{packageProduct.TypeNo}'" +
                     $"{DbTable.F_Out_Case_Product.BINDING_STATE} = '{packageProduct.BindingState}'";
             }
             return SQLServer.ExecuteDataSet(selectSQL);

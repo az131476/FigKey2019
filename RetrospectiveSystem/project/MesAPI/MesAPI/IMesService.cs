@@ -47,13 +47,13 @@ namespace MesAPI
 
         //产品型号
         [OperationContract]
-        int DeleteProductTypeNo(string productName);
+        int DeleteProductTypeNo(string typeNo);
 
         [OperationContract]
         int DeleteAllProductTypeNo();
 
         [OperationContract]
-        DataSet SelectProductTypeNo(string productName);
+        DataSet SelectProductTypeNo(string typeNo);
 
         [OperationContract]
         string CommitProductTypeNo(List<string> list);
@@ -115,6 +115,9 @@ namespace MesAPI
 
         [OperationContract]
         DataSet SelectMaterialStatistics(string typeNo);
+
+        [OperationContract]
+        DataSet SelectMaterialMsg(MaterialMsg materialMsg, bool IsSelectAll);
 
         //外箱容量
         [OperationContract]

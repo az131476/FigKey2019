@@ -11,6 +11,7 @@ using MesManager.Control;
 
 namespace MesManager.RadView
 {
+    //物料绑定信息：序号+物料编码（可选）+ 产品型号（可选）+ 工站名称（可选）+描述
     public partial class ProductMaterial : RadForm
     {
         MesService.MesServiceClient serviceClient;
@@ -32,14 +33,53 @@ namespace MesManager.RadView
             UpdateCheckItem(cb_type_no.Text);
         }
 
-        async private void Init()
+        private void Init()
         {
             serviceClient = new MesService.MesServiceClient();
-
+            DataGridViewCommon.SetRadGridViewProperty(this.radGridView1,true);
+            this.radGridView1.DataSource = null;
             ListViewCommon.InitListView(this.listView);
             //设置列
             this.listView.Columns.Add("物料编码", listView.Width - 5, HorizontalAlignment.Left);
             InitControl();
+            BindingDataSource();
+        }
+        public enum DataGridViewColumnName
+        {
+            rdvc_order,
+            rdvc_materialCode,
+            rdvc_typeNo,
+            rdvc_station,
+            rdvc_describle
+        }
+        async private void BindingDataSource()
+        {
+            GridViewTextBoxColumn order = this.radGridView1.Columns[DataGridViewColumnName.rdvc_order.ToString()] as GridViewTextBoxColumn;
+            GridViewComboBoxColumn materialCode = this.radGridView1.Columns[DataGridViewColumnName.rdvc_materialCode.ToString()] as GridViewComboBoxColumn;
+            GridViewComboBoxColumn productTypeNo = this.radGridView1.Columns[DataGridViewColumnName.rdvc_typeNo.ToString()] as GridViewComboBoxColumn;
+            GridViewTextBoxColumn describle = this.radGridView1.Columns[DataGridViewColumnName.rdvc_describle.ToString()] as GridViewTextBoxColumn;
+
+            DataTable materialCodeDt = (await serviceClient.SelectMaterialAsync()).Tables[0];//0
+            DataTable typeNoDt = (await serviceClient.SelectProductTypeNoAsync("")).Tables[0];//1
+
+            List<string> materialListTemp = new List<string>();
+            List<string> typeNoListTemp = new List<string>();
+
+            this.radGridView1.BeginEdit();
+
+            for (int i = 0; i < materialCodeDt.Rows.Count; i++)
+            {
+                materialListTemp.Add(materialCodeDt.Rows[i][0].ToString());
+            }
+            for (int i = 0; i < typeNoDt.Rows.Count; i++)
+            {
+                typeNoListTemp.Add(typeNoDt.Rows[i][0].ToString());
+            }
+            materialCode.DataSource = materialListTemp;
+            productTypeNo.DataSource = typeNoListTemp;
+            DataTable dt = (await serviceClient.SelectProductMaterialAsync("")).Tables[0];
+            this.radGridView1.DataSource = dt;
+            this.radGridView1.EndEdit();
         }
 
         async private void InitControl()
@@ -147,6 +187,11 @@ namespace MesManager.RadView
                 }
             }
             return false;
+        }
+
+        private void Menu_add_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

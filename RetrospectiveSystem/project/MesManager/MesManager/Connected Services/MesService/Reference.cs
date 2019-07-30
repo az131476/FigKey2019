@@ -154,6 +154,18 @@ namespace MesManager.MesService {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string MaterialCodeField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string Sn_InnerField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string Sn_OutterField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string StationNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TypeNoField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -186,6 +198,58 @@ namespace MesManager.MesService {
                 if ((object.ReferenceEquals(this.MaterialCodeField, value) != true)) {
                     this.MaterialCodeField = value;
                     this.RaisePropertyChanged("MaterialCode");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Sn_Inner {
+            get {
+                return this.Sn_InnerField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.Sn_InnerField, value) != true)) {
+                    this.Sn_InnerField = value;
+                    this.RaisePropertyChanged("Sn_Inner");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Sn_Outter {
+            get {
+                return this.Sn_OutterField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.Sn_OutterField, value) != true)) {
+                    this.Sn_OutterField = value;
+                    this.RaisePropertyChanged("Sn_Outter");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string StationName {
+            get {
+                return this.StationNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.StationNameField, value) != true)) {
+                    this.StationNameField = value;
+                    this.RaisePropertyChanged("StationName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string TypeNo {
+            get {
+                return this.TypeNoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TypeNoField, value) != true)) {
+                    this.TypeNoField = value;
+                    this.RaisePropertyChanged("TypeNo");
                 }
             }
         }
@@ -379,10 +443,10 @@ namespace MesManager.MesService {
         System.Threading.Tasks.Task<int> InsertStationAsync(MesManager.MesService.Station[] stationList);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/DeleteProductTypeNo", ReplyAction="http://tempuri.org/IMesService/DeleteProductTypeNoResponse")]
-        int DeleteProductTypeNo(string productName);
+        int DeleteProductTypeNo(string typeNo);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/DeleteProductTypeNo", ReplyAction="http://tempuri.org/IMesService/DeleteProductTypeNoResponse")]
-        System.Threading.Tasks.Task<int> DeleteProductTypeNoAsync(string productName);
+        System.Threading.Tasks.Task<int> DeleteProductTypeNoAsync(string typeNo);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/DeleteAllProductTypeNo", ReplyAction="http://tempuri.org/IMesService/DeleteAllProductTypeNoResponse")]
         int DeleteAllProductTypeNo();
@@ -391,10 +455,10 @@ namespace MesManager.MesService {
         System.Threading.Tasks.Task<int> DeleteAllProductTypeNoAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectProductTypeNo", ReplyAction="http://tempuri.org/IMesService/SelectProductTypeNoResponse")]
-        System.Data.DataSet SelectProductTypeNo(string productName);
+        System.Data.DataSet SelectProductTypeNo(string typeNo);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectProductTypeNo", ReplyAction="http://tempuri.org/IMesService/SelectProductTypeNoResponse")]
-        System.Threading.Tasks.Task<System.Data.DataSet> SelectProductTypeNoAsync(string productName);
+        System.Threading.Tasks.Task<System.Data.DataSet> SelectProductTypeNoAsync(string typeNo);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/CommitProductTypeNo", ReplyAction="http://tempuri.org/IMesService/CommitProductTypeNoResponse")]
         string CommitProductTypeNo(string[] list);
@@ -497,6 +561,12 @@ namespace MesManager.MesService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectMaterialStatistics", ReplyAction="http://tempuri.org/IMesService/SelectMaterialStatisticsResponse")]
         System.Threading.Tasks.Task<System.Data.DataSet> SelectMaterialStatisticsAsync(string typeNo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectMaterialMsg", ReplyAction="http://tempuri.org/IMesService/SelectMaterialMsgResponse")]
+        System.Data.DataSet SelectMaterialMsg(MesManager.MesService.MaterialMsg materialMsg, bool IsSelectAll);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectMaterialMsg", ReplyAction="http://tempuri.org/IMesService/SelectMaterialMsgResponse")]
+        System.Threading.Tasks.Task<System.Data.DataSet> SelectMaterialMsgAsync(MesManager.MesService.MaterialMsg materialMsg, bool IsSelectAll);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/CommitOutCaseBoxStorage", ReplyAction="http://tempuri.org/IMesService/CommitOutCaseBoxStorageResponse")]
         int CommitOutCaseBoxStorage(string out_case_code, string amount);
@@ -671,12 +741,12 @@ namespace MesManager.MesService {
             return base.Channel.InsertStationAsync(stationList);
         }
         
-        public int DeleteProductTypeNo(string productName) {
-            return base.Channel.DeleteProductTypeNo(productName);
+        public int DeleteProductTypeNo(string typeNo) {
+            return base.Channel.DeleteProductTypeNo(typeNo);
         }
         
-        public System.Threading.Tasks.Task<int> DeleteProductTypeNoAsync(string productName) {
-            return base.Channel.DeleteProductTypeNoAsync(productName);
+        public System.Threading.Tasks.Task<int> DeleteProductTypeNoAsync(string typeNo) {
+            return base.Channel.DeleteProductTypeNoAsync(typeNo);
         }
         
         public int DeleteAllProductTypeNo() {
@@ -687,12 +757,12 @@ namespace MesManager.MesService {
             return base.Channel.DeleteAllProductTypeNoAsync();
         }
         
-        public System.Data.DataSet SelectProductTypeNo(string productName) {
-            return base.Channel.SelectProductTypeNo(productName);
+        public System.Data.DataSet SelectProductTypeNo(string typeNo) {
+            return base.Channel.SelectProductTypeNo(typeNo);
         }
         
-        public System.Threading.Tasks.Task<System.Data.DataSet> SelectProductTypeNoAsync(string productName) {
-            return base.Channel.SelectProductTypeNoAsync(productName);
+        public System.Threading.Tasks.Task<System.Data.DataSet> SelectProductTypeNoAsync(string typeNo) {
+            return base.Channel.SelectProductTypeNoAsync(typeNo);
         }
         
         public string CommitProductTypeNo(string[] list) {
@@ -829,6 +899,14 @@ namespace MesManager.MesService {
         
         public System.Threading.Tasks.Task<System.Data.DataSet> SelectMaterialStatisticsAsync(string typeNo) {
             return base.Channel.SelectMaterialStatisticsAsync(typeNo);
+        }
+        
+        public System.Data.DataSet SelectMaterialMsg(MesManager.MesService.MaterialMsg materialMsg, bool IsSelectAll) {
+            return base.Channel.SelectMaterialMsg(materialMsg, IsSelectAll);
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> SelectMaterialMsgAsync(MesManager.MesService.MaterialMsg materialMsg, bool IsSelectAll) {
+            return base.Channel.SelectMaterialMsgAsync(materialMsg, IsSelectAll);
         }
         
         public int CommitOutCaseBoxStorage(string out_case_code, string amount) {

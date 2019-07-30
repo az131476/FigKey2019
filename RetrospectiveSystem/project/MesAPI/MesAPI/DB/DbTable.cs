@@ -69,8 +69,11 @@ namespace MesAPI.DB
 
         public class F_PRODUCT_MATERIAL
         {
+            public const string ID = "[id]";
             public const string TYPE_NO = "[type_no]";
             public const string MATERIAL_CODE = "[material_code]";
+            public const string Describle = "[describle]";
+            public const string UpdateDate = "[update_date]";
         }
 
 

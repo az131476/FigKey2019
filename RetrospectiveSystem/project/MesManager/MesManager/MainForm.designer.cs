@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             Telerik.WinControls.UI.CartesianArea cartesianArea1 = new Telerik.WinControls.UI.CartesianArea();
             Telerik.WinControls.UI.CategoricalAxis categoricalAxis1 = new Telerik.WinControls.UI.CategoricalAxis();
             Telerik.WinControls.UI.LinearAxis linearAxis1 = new Telerik.WinControls.UI.LinearAxis();
@@ -45,6 +44,7 @@
             Telerik.Charting.CategoricalDataPoint categoricalDataPoint8 = new Telerik.Charting.CategoricalDataPoint();
             Telerik.Charting.CategoricalDataPoint categoricalDataPoint9 = new Telerik.Charting.CategoricalDataPoint();
             Telerik.Charting.CategoricalDataPoint categoricalDataPoint10 = new Telerik.Charting.CategoricalDataPoint();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             this.radMenuItem1 = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItem3 = new Telerik.WinControls.UI.RadMenuItem();
@@ -103,6 +103,13 @@
             this.menu_materialTeal = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenu1 = new Telerik.WinControls.UI.RadMenu();
             this.radDock1 = new Telerik.WinControls.UI.Docking.RadDock();
+            this.toolWindow_left = new Telerik.WinControls.UI.Docking.ToolWindow();
+            this.radTreeView1 = new Telerik.WinControls.UI.RadTreeView();
+            this.toolTabStrip1 = new Telerik.WinControls.UI.Docking.ToolTabStrip();
+            this.documentContainer2 = new Telerik.WinControls.UI.Docking.DocumentContainer();
+            this.documentTabStrip1 = new Telerik.WinControls.UI.Docking.DocumentTabStrip();
+            this.documentWindow_passRes = new Telerik.WinControls.UI.Docking.DocumentWindow();
+            this.radChartView1 = new Telerik.WinControls.UI.RadChartView();
             this.documentWindow_packageProduct = new Telerik.WinControls.UI.Docking.DocumentWindow();
             this.radPanel5 = new Telerik.WinControls.UI.RadPanel();
             this.radGridViewPackage = new Telerik.WinControls.UI.RadGridView();
@@ -111,13 +118,6 @@
             this.tb_input_packageMsg = new Telerik.WinControls.UI.RadTextBox();
             this.rb_package_sn = new Telerik.WinControls.UI.RadRadioButton();
             this.btn_select_package = new Telerik.WinControls.UI.RadButton();
-            this.toolTabStrip1 = new Telerik.WinControls.UI.Docking.ToolTabStrip();
-            this.toolWindow_left = new Telerik.WinControls.UI.Docking.ToolWindow();
-            this.radTreeView1 = new Telerik.WinControls.UI.RadTreeView();
-            this.documentContainer2 = new Telerik.WinControls.UI.Docking.DocumentContainer();
-            this.documentTabStrip1 = new Telerik.WinControls.UI.Docking.DocumentTabStrip();
-            this.documentWindow_passRes = new Telerik.WinControls.UI.Docking.DocumentWindow();
-            this.radChartView1 = new Telerik.WinControls.UI.RadChartView();
             this.documentWindow_testRes = new Telerik.WinControls.UI.Docking.DocumentWindow();
             this.radPanel2 = new Telerik.WinControls.UI.RadPanel();
             this.listView_TestRes = new Telerik.WinControls.UI.RadListView();
@@ -142,6 +142,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radDock1)).BeginInit();
             this.radDock1.SuspendLayout();
+            this.toolWindow_left.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radTreeView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip1)).BeginInit();
+            this.toolTabStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.documentContainer2)).BeginInit();
+            this.documentContainer2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.documentTabStrip1)).BeginInit();
+            this.documentTabStrip1.SuspendLayout();
+            this.documentWindow_passRes.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radChartView1)).BeginInit();
             this.documentWindow_packageProduct.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel5)).BeginInit();
             this.radPanel5.SuspendLayout();
@@ -153,16 +163,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.tb_input_packageMsg)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rb_package_sn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_select_package)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip1)).BeginInit();
-            this.toolTabStrip1.SuspendLayout();
-            this.toolWindow_left.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radTreeView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.documentContainer2)).BeginInit();
-            this.documentContainer2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.documentTabStrip1)).BeginInit();
-            this.documentTabStrip1.SuspendLayout();
-            this.documentWindow_passRes.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radChartView1)).BeginInit();
             this.documentWindow_testRes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel2)).BeginInit();
             this.radPanel2.SuspendLayout();
@@ -559,7 +559,7 @@
             // 
             // radDock1
             // 
-            this.radDock1.ActiveWindow = this.toolWindow_left;
+            this.radDock1.ActiveWindow = this.documentWindow_testRes;
             resources.ApplyResources(this.radDock1, "radDock1");
             this.radDock1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.radDock1.CausesValidation = false;
@@ -575,58 +575,19 @@
             this.radDock1.TabStop = false;
             this.radDock1.ThemeName = "ControlDefault";
             // 
-            // documentWindow_packageProduct
+            // toolWindow_left
             // 
-            this.documentWindow_packageProduct.BackColor = System.Drawing.Color.Transparent;
-            this.documentWindow_packageProduct.Controls.Add(this.radPanel5);
-            this.documentWindow_packageProduct.Controls.Add(this.radPanel4);
-            resources.ApplyResources(this.documentWindow_packageProduct, "documentWindow_packageProduct");
-            this.documentWindow_packageProduct.Name = "documentWindow_packageProduct";
-            this.documentWindow_packageProduct.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.TabbedDocument;
+            this.toolWindow_left.Caption = null;
+            this.toolWindow_left.Controls.Add(this.radTreeView1);
+            resources.ApplyResources(this.toolWindow_left, "toolWindow_left");
+            this.toolWindow_left.Name = "toolWindow_left";
+            this.toolWindow_left.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.Docked;
             // 
-            // radPanel5
+            // radTreeView1
             // 
-            this.radPanel5.Controls.Add(this.radGridViewPackage);
-            resources.ApplyResources(this.radPanel5, "radPanel5");
-            this.radPanel5.Name = "radPanel5";
-            // 
-            // radGridViewPackage
-            // 
-            resources.ApplyResources(this.radGridViewPackage, "radGridViewPackage");
-            // 
-            // 
-            // 
-            this.radGridViewPackage.MasterTemplate.ViewDefinition = tableViewDefinition1;
-            this.radGridViewPackage.Name = "radGridViewPackage";
-            // 
-            // radPanel4
-            // 
-            this.radPanel4.Controls.Add(this.rb_package_caseCode);
-            this.radPanel4.Controls.Add(this.tb_input_packageMsg);
-            this.radPanel4.Controls.Add(this.rb_package_sn);
-            this.radPanel4.Controls.Add(this.btn_select_package);
-            resources.ApplyResources(this.radPanel4, "radPanel4");
-            this.radPanel4.Name = "radPanel4";
-            // 
-            // rb_package_caseCode
-            // 
-            resources.ApplyResources(this.rb_package_caseCode, "rb_package_caseCode");
-            this.rb_package_caseCode.Name = "rb_package_caseCode";
-            // 
-            // tb_input_packageMsg
-            // 
-            resources.ApplyResources(this.tb_input_packageMsg, "tb_input_packageMsg");
-            this.tb_input_packageMsg.Name = "tb_input_packageMsg";
-            // 
-            // rb_package_sn
-            // 
-            resources.ApplyResources(this.rb_package_sn, "rb_package_sn");
-            this.rb_package_sn.Name = "rb_package_sn";
-            // 
-            // btn_select_package
-            // 
-            resources.ApplyResources(this.btn_select_package, "btn_select_package");
-            this.btn_select_package.Name = "btn_select_package";
+            resources.ApplyResources(this.radTreeView1, "radTreeView1");
+            this.radTreeView1.Name = "radTreeView1";
+            this.radTreeView1.SpacingBetweenNodes = -1;
             // 
             // toolTabStrip1
             // 
@@ -644,20 +605,6 @@
             this.toolTabStrip1.SizeInfo.SplitterCorrection = new System.Drawing.Size(56, 0);
             this.toolTabStrip1.TabStop = false;
             this.toolTabStrip1.ThemeName = "ControlDefault";
-            // 
-            // toolWindow_left
-            // 
-            this.toolWindow_left.Caption = null;
-            this.toolWindow_left.Controls.Add(this.radTreeView1);
-            resources.ApplyResources(this.toolWindow_left, "toolWindow_left");
-            this.toolWindow_left.Name = "toolWindow_left";
-            this.toolWindow_left.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.Docked;
-            // 
-            // radTreeView1
-            // 
-            resources.ApplyResources(this.radTreeView1, "radTreeView1");
-            this.radTreeView1.Name = "radTreeView1";
-            this.radTreeView1.SpacingBetweenNodes = -1;
             // 
             // documentContainer2
             // 
@@ -689,7 +636,7 @@
             // 
             // 
             this.documentTabStrip1.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.documentTabStrip1.SelectedIndex = 1;
+            this.documentTabStrip1.SelectedIndex = 2;
             this.documentTabStrip1.TabStop = false;
             this.documentTabStrip1.ThemeName = "ControlDefault";
             // 
@@ -771,6 +718,59 @@
             barSeries1,
             barSeries2});
             this.radChartView1.ShowGrid = false;
+            // 
+            // documentWindow_packageProduct
+            // 
+            this.documentWindow_packageProduct.BackColor = System.Drawing.Color.Transparent;
+            this.documentWindow_packageProduct.Controls.Add(this.radPanel5);
+            this.documentWindow_packageProduct.Controls.Add(this.radPanel4);
+            resources.ApplyResources(this.documentWindow_packageProduct, "documentWindow_packageProduct");
+            this.documentWindow_packageProduct.Name = "documentWindow_packageProduct";
+            this.documentWindow_packageProduct.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.TabbedDocument;
+            // 
+            // radPanel5
+            // 
+            this.radPanel5.Controls.Add(this.radGridViewPackage);
+            resources.ApplyResources(this.radPanel5, "radPanel5");
+            this.radPanel5.Name = "radPanel5";
+            // 
+            // radGridViewPackage
+            // 
+            resources.ApplyResources(this.radGridViewPackage, "radGridViewPackage");
+            // 
+            // 
+            // 
+            this.radGridViewPackage.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.radGridViewPackage.Name = "radGridViewPackage";
+            // 
+            // radPanel4
+            // 
+            this.radPanel4.Controls.Add(this.rb_package_caseCode);
+            this.radPanel4.Controls.Add(this.tb_input_packageMsg);
+            this.radPanel4.Controls.Add(this.rb_package_sn);
+            this.radPanel4.Controls.Add(this.btn_select_package);
+            resources.ApplyResources(this.radPanel4, "radPanel4");
+            this.radPanel4.Name = "radPanel4";
+            // 
+            // rb_package_caseCode
+            // 
+            resources.ApplyResources(this.rb_package_caseCode, "rb_package_caseCode");
+            this.rb_package_caseCode.Name = "rb_package_caseCode";
+            // 
+            // tb_input_packageMsg
+            // 
+            resources.ApplyResources(this.tb_input_packageMsg, "tb_input_packageMsg");
+            this.tb_input_packageMsg.Name = "tb_input_packageMsg";
+            // 
+            // rb_package_sn
+            // 
+            resources.ApplyResources(this.rb_package_sn, "rb_package_sn");
+            this.rb_package_sn.Name = "rb_package_sn";
+            // 
+            // btn_select_package
+            // 
+            resources.ApplyResources(this.btn_select_package, "btn_select_package");
+            this.btn_select_package.Name = "btn_select_package";
             // 
             // documentWindow_testRes
             // 
@@ -920,6 +920,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radDock1)).EndInit();
             this.radDock1.ResumeLayout(false);
+            this.toolWindow_left.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radTreeView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip1)).EndInit();
+            this.toolTabStrip1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.documentContainer2)).EndInit();
+            this.documentContainer2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.documentTabStrip1)).EndInit();
+            this.documentTabStrip1.ResumeLayout(false);
+            this.documentWindow_passRes.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radChartView1)).EndInit();
             this.documentWindow_packageProduct.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radPanel5)).EndInit();
             this.radPanel5.ResumeLayout(false);
@@ -932,16 +942,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.tb_input_packageMsg)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rb_package_sn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_select_package)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip1)).EndInit();
-            this.toolTabStrip1.ResumeLayout(false);
-            this.toolWindow_left.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radTreeView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.documentContainer2)).EndInit();
-            this.documentContainer2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.documentTabStrip1)).EndInit();
-            this.documentTabStrip1.ResumeLayout(false);
-            this.documentWindow_passRes.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radChartView1)).EndInit();
             this.documentWindow_testRes.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radPanel2)).EndInit();
             this.radPanel2.ResumeLayout(false);
