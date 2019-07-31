@@ -40,11 +40,14 @@ namespace MesManager
             this.label1 = new System.Windows.Forms.Label();
             this.tbx_pwd = new System.Windows.Forms.TextBox();
             this.tbx_username = new System.Windows.Forms.ComboBox();
+            this.radPanorama1 = new Telerik.WinControls.UI.RadPanorama();
             ((System.ComponentModel.ISupportInitialize)(this.lbx_username)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lbx_pwd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cb_memberpwd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lbx_regist)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_login)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radPanorama1)).BeginInit();
+            this.radPanorama1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,7 +55,7 @@ namespace MesManager
             // 
             this.lbx_username.BackColor = System.Drawing.Color.Transparent;
             this.lbx_username.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbx_username.Location = new System.Drawing.Point(36, 114);
+            this.lbx_username.Location = new System.Drawing.Point(66, 181);
             this.lbx_username.Name = "lbx_username";
             this.lbx_username.Size = new System.Drawing.Size(56, 24);
             this.lbx_username.TabIndex = 2;
@@ -62,7 +65,7 @@ namespace MesManager
             // 
             this.lbx_pwd.BackColor = System.Drawing.Color.Transparent;
             this.lbx_pwd.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbx_pwd.Location = new System.Drawing.Point(36, 165);
+            this.lbx_pwd.Location = new System.Drawing.Point(66, 232);
             this.lbx_pwd.Name = "lbx_pwd";
             this.lbx_pwd.Size = new System.Drawing.Size(53, 24);
             this.lbx_pwd.TabIndex = 3;
@@ -72,7 +75,7 @@ namespace MesManager
             // 
             this.cb_memberpwd.BackColor = System.Drawing.Color.Transparent;
             this.cb_memberpwd.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cb_memberpwd.Location = new System.Drawing.Point(107, 218);
+            this.cb_memberpwd.Location = new System.Drawing.Point(137, 274);
             this.cb_memberpwd.Name = "cb_memberpwd";
             this.cb_memberpwd.Size = new System.Drawing.Size(77, 21);
             this.cb_memberpwd.TabIndex = 4;
@@ -82,7 +85,7 @@ namespace MesManager
             // 
             this.lbx_ToFindPwd.AutoSize = true;
             this.lbx_ToFindPwd.BackColor = System.Drawing.Color.Transparent;
-            this.lbx_ToFindPwd.Location = new System.Drawing.Point(249, 216);
+            this.lbx_ToFindPwd.Location = new System.Drawing.Point(279, 274);
             this.lbx_ToFindPwd.Name = "lbx_ToFindPwd";
             this.lbx_ToFindPwd.Size = new System.Drawing.Size(85, 21);
             this.lbx_ToFindPwd.TabIndex = 6;
@@ -92,7 +95,7 @@ namespace MesManager
             // lbx_regist
             // 
             this.lbx_regist.BackColor = System.Drawing.Color.Transparent;
-            this.lbx_regist.Location = new System.Drawing.Point(12, 292);
+            this.lbx_regist.Location = new System.Drawing.Point(42, 359);
             this.lbx_regist.Name = "lbx_regist";
             this.lbx_regist.Size = new System.Drawing.Size(54, 18);
             this.lbx_regist.TabIndex = 7;
@@ -103,7 +106,7 @@ namespace MesManager
             // 
             this.btn_login.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(240)))), ((int)(((byte)(113)))));
             this.btn_login.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_login.Location = new System.Drawing.Point(107, 272);
+            this.btn_login.Location = new System.Drawing.Point(137, 339);
             this.btn_login.Name = "btn_login";
             // 
             // 
@@ -121,17 +124,17 @@ namespace MesManager
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(81, 28);
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(108, 85);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(251, 28);
+            this.label1.Size = new System.Drawing.Size(274, 30);
             this.label1.TabIndex = 10;
             this.label1.Text = "万通智控产线追溯MES系统";
             // 
             // tbx_pwd
             // 
             this.tbx_pwd.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbx_pwd.Location = new System.Drawing.Point(107, 165);
+            this.tbx_pwd.Location = new System.Drawing.Point(137, 232);
             this.tbx_pwd.Name = "tbx_pwd";
             this.tbx_pwd.PasswordChar = '*';
             this.tbx_pwd.Size = new System.Drawing.Size(227, 29);
@@ -141,10 +144,32 @@ namespace MesManager
             // 
             this.tbx_username.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbx_username.FormattingEnabled = true;
-            this.tbx_username.Location = new System.Drawing.Point(107, 112);
+            this.tbx_username.Location = new System.Drawing.Point(137, 179);
             this.tbx_username.Name = "tbx_username";
             this.tbx_username.Size = new System.Drawing.Size(225, 29);
             this.tbx_username.TabIndex = 13;
+            // 
+            // radPanorama1
+            // 
+            this.radPanorama1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.radPanorama1.BackgroundImage = global::MesManager.Properties.Resources.背景_01;
+            this.radPanorama1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.radPanorama1.Controls.Add(this.lbx_username);
+            this.radPanorama1.Controls.Add(this.tbx_username);
+            this.radPanorama1.Controls.Add(this.lbx_pwd);
+            this.radPanorama1.Controls.Add(this.tbx_pwd);
+            this.radPanorama1.Controls.Add(this.cb_memberpwd);
+            this.radPanorama1.Controls.Add(this.label1);
+            this.radPanorama1.Controls.Add(this.lbx_ToFindPwd);
+            this.radPanorama1.Controls.Add(this.btn_login);
+            this.radPanorama1.Controls.Add(this.lbx_regist);
+            this.radPanorama1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radPanorama1.Location = new System.Drawing.Point(0, 0);
+            this.radPanorama1.Name = "radPanorama1";
+            this.radPanorama1.Size = new System.Drawing.Size(475, 480);
+            this.radPanorama1.TabIndex = 14;
+            ((Telerik.WinControls.UI.RadScrollBarElement)(this.radPanorama1.GetChildAt(0).GetChildAt(0))).BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(204)))), ((int)(((byte)(255)))));
+            ((Telerik.WinControls.UI.RadScrollBarElement)(this.radPanorama1.GetChildAt(0).GetChildAt(0))).Visibility = Telerik.WinControls.ElementVisibility.Hidden;
             // 
             // Login
             // 
@@ -154,17 +179,9 @@ namespace MesManager
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.BackgroundImage = global::MesManager.Properties.Resources.背景_01;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(455, 444);
+            this.ClientSize = new System.Drawing.Size(475, 480);
             this.ControlBox = false;
-            this.Controls.Add(this.tbx_username);
-            this.Controls.Add(this.tbx_pwd);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.btn_login);
-            this.Controls.Add(this.lbx_regist);
-            this.Controls.Add(this.lbx_ToFindPwd);
-            this.Controls.Add(this.cb_memberpwd);
-            this.Controls.Add(this.lbx_pwd);
-            this.Controls.Add(this.lbx_username);
+            this.Controls.Add(this.radPanorama1);
             this.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -181,9 +198,11 @@ namespace MesManager
             ((System.ComponentModel.ISupportInitialize)(this.cb_memberpwd)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lbx_regist)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_login)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radPanorama1)).EndInit();
+            this.radPanorama1.ResumeLayout(false);
+            this.radPanorama1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -197,5 +216,6 @@ namespace MesManager
         private Label label1;
         private TextBox tbx_pwd;
         private ComboBox tbx_username;
+        private Telerik.WinControls.UI.RadPanorama radPanorama1;
     }
 }

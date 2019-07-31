@@ -107,7 +107,6 @@
   <xs:element name="DeleteStation">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="order" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="stationName" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
@@ -143,6 +142,18 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteAllStation">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteAllStationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DeleteAllStationResult" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -432,6 +443,18 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="DeleteMaterialResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteAllMaterial">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteAllMaterialResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DeleteAllMaterialResult" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

@@ -161,7 +161,7 @@ namespace MesManager
             //cut 执行delete 服务数据
             if (MessageBox.Show("是否删除该行数据", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
             {
-                int del = await mesService.DeleteStationAsync(curStationID,curRowStationName);
+                int del = await mesService.DeleteStationAsync(curRowStationName);
             }
             SelectData();
         }
@@ -207,7 +207,7 @@ namespace MesManager
                 {
                     foreach (var station in stationListTemp)
                     {
-                        await mesService.DeleteStationAsync(station.keyOrder, station.KeyStationName);
+                        await mesService.DeleteStationAsync(station.KeyStationName);
                     }
                 }
                 int res = await mesService.InsertStationAsync(stationsArray);

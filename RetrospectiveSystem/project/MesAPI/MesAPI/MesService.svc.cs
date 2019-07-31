@@ -136,7 +136,7 @@ namespace MesAPI
         {
             try
             {
-                string sqlString = "SELECT * " +
+                string sqlString = $"SELECT {DbTable.F_User.USER_NAME} " +
                             "FROM [WT_SCL].[dbo].[f_user] ";
                 return SQLServer.ExecuteDataSet(sqlString);
             }
@@ -219,17 +219,18 @@ namespace MesAPI
             LogHelper.Log.Info($"接口被调用-InsertProduce");
             foreach (var station in stationList)
             {
-                if (!IsExistStation(station.StationID, station.StationName))
+                if (!IsExistStation(station))
                 {
                     //不存在，插入
                     string insertSQL = $"INSERT INTO {DbTable.F_STATION_NAME}({DbTable.F_Station.STATION_ORDER}," +
                         $"{DbTable.F_Station.STATION_NAME}) " +
                     $"VALUES('{station.StationID}','{station.StationName}')";
-
-                    return SQLServer.ExecuteNonQuery(insertSQL);
+                    LogHelper.Log.Info(insertSQL);
+                    if (SQLServer.ExecuteNonQuery(insertSQL) < 1)
+                        return 0;
                 }
             }
-            return -1;
+            return 1;
         }
 
         /// <summary>
@@ -256,18 +257,20 @@ namespace MesAPI
         /// </summary>
         /// <param name="stationName"></param>
         /// <returns></returns>
-        public int DeleteStation(string order, string stationName)
+        public int DeleteStation(string stationName)
         {
-            string deleteSQL = "";
-            if (order == "" && stationName == "")
-            {
-                deleteSQL = $"DELETE FROM {DbTable.F_STATION_NAME} ";
-            }
-            else
-            {
-                deleteSQL = $"DELETE FROM {DbTable.F_STATION_NAME} " +
-                $"WHERE {DbTable.F_Station.STATION_NAME} = '{stationName}' AND {DbTable.F_Station.STATION_ORDER} = '{order}'";
-            }
+            string deleteSQL = $"DELETE FROM {DbTable.F_STATION_NAME} " +
+                $"WHERE {DbTable.F_Station.STATION_NAME} = '{stationName}'";
+            return SQLServer.ExecuteNonQuery(deleteSQL);
+        }
+
+        /// <summary>
+        /// 删除所有站位记录
+        /// </summary>
+        /// <returns></returns>
+        public int DeleteAllStation()
+        {
+            string deleteSQL = $"DELETE FROM {DbTable.F_STATION_NAME} ";
             return SQLServer.ExecuteNonQuery(deleteSQL);
         }
 
@@ -276,10 +279,10 @@ namespace MesAPI
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        private bool IsExistStation(int id, string station)
+        private bool IsExistStation(Station station)
         {
-            string selectSQL = $"SELECT * FROM {DbTable.F_STATION_NAME} WHERE {DbTable.F_Station.STATION_ORDER} = '{id}' AND " +
-                $"{DbTable.F_Station.STATION_NAME} = '{station}'";
+            string selectSQL = $"SELECT * FROM {DbTable.F_STATION_NAME} WHERE " +
+                $"{DbTable.F_Station.STATION_NAME} = '{station.StationName}'";
             DataTable dt = SQLServer.ExecuteDataSet(selectSQL).Tables[0];
             if (dt.Rows.Count > 0)
             {
@@ -512,18 +515,13 @@ namespace MesAPI
         }
         public int DeleteMaterial(string materialCode)
         {
-            string deleteSQL = "";
-            if (string.IsNullOrEmpty(materialCode))
-            {
-                //delete all data
-                deleteSQL = $"DELETE FROM {DbTable.F_MATERIAL_NAME}";
-            }
-            else
-            {
-                //delete one row
-                deleteSQL = $"DELETE FROM {DbTable.F_MATERIAL_NAME} " +
+            string deleteSQL = $"DELETE FROM {DbTable.F_MATERIAL_NAME} " +
                 $"WHERE {DbTable.F_Material.MATERIAL_CODE} = '{materialCode}'";
-            }
+            return SQLServer.ExecuteNonQuery(deleteSQL);
+        }
+        public int DeleteAllMaterial()
+        {
+            string deleteSQL = $"DELETE FROM {DbTable.F_MATERIAL_NAME}";
             return SQLServer.ExecuteNonQuery(deleteSQL);
         }
         public DataSet SelectMaterial()

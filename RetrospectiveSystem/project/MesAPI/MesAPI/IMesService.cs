@@ -38,10 +38,14 @@ namespace MesAPI
 
         //站位信息
         [OperationContract]
-        int DeleteStation(string order, string stationName);
+        int DeleteStation(string stationName);
 
         [OperationContract]
         DataSet SelectStation(string stationName, string stationOrder);
+
+        [OperationContract]
+        int DeleteAllStation();
+
         [OperationContract]
         int InsertStation(List<Station> stationList);
 
@@ -96,6 +100,9 @@ namespace MesAPI
 
         [OperationContract]
         int DeleteMaterial(string materialCode);
+
+        [OperationContract]
+        int DeleteAllMaterial();
 
         [OperationContract]
         string CommitProductMaterial(Dictionary<string, List<string>> keyValuePairs);

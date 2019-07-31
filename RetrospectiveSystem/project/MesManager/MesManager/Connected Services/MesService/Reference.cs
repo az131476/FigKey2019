@@ -425,16 +425,22 @@ namespace MesManager.MesService {
         System.Threading.Tasks.Task<string> FirstCheckAsync(string snInner, string snOutter, string sTypeNumber, string sStationName);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/DeleteStation", ReplyAction="http://tempuri.org/IMesService/DeleteStationResponse")]
-        int DeleteStation(string order, string stationName);
+        int DeleteStation(string stationName);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/DeleteStation", ReplyAction="http://tempuri.org/IMesService/DeleteStationResponse")]
-        System.Threading.Tasks.Task<int> DeleteStationAsync(string order, string stationName);
+        System.Threading.Tasks.Task<int> DeleteStationAsync(string stationName);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectStation", ReplyAction="http://tempuri.org/IMesService/SelectStationResponse")]
         System.Data.DataSet SelectStation(string stationName, string stationOrder);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectStation", ReplyAction="http://tempuri.org/IMesService/SelectStationResponse")]
         System.Threading.Tasks.Task<System.Data.DataSet> SelectStationAsync(string stationName, string stationOrder);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/DeleteAllStation", ReplyAction="http://tempuri.org/IMesService/DeleteAllStationResponse")]
+        int DeleteAllStation();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/DeleteAllStation", ReplyAction="http://tempuri.org/IMesService/DeleteAllStationResponse")]
+        System.Threading.Tasks.Task<int> DeleteAllStationAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/InsertStation", ReplyAction="http://tempuri.org/IMesService/InsertStationResponse")]
         int InsertStation(MesManager.MesService.Station[] stationList);
@@ -531,6 +537,12 @@ namespace MesManager.MesService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/DeleteMaterial", ReplyAction="http://tempuri.org/IMesService/DeleteMaterialResponse")]
         System.Threading.Tasks.Task<int> DeleteMaterialAsync(string materialCode);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/DeleteAllMaterial", ReplyAction="http://tempuri.org/IMesService/DeleteAllMaterialResponse")]
+        int DeleteAllMaterial();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/DeleteAllMaterial", ReplyAction="http://tempuri.org/IMesService/DeleteAllMaterialResponse")]
+        System.Threading.Tasks.Task<int> DeleteAllMaterialAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/CommitProductMaterial", ReplyAction="http://tempuri.org/IMesService/CommitProductMaterialResponse")]
         string CommitProductMaterial(System.Collections.Generic.Dictionary<string, string[]> keyValuePairs);
@@ -717,12 +729,12 @@ namespace MesManager.MesService {
             return base.Channel.FirstCheckAsync(snInner, snOutter, sTypeNumber, sStationName);
         }
         
-        public int DeleteStation(string order, string stationName) {
-            return base.Channel.DeleteStation(order, stationName);
+        public int DeleteStation(string stationName) {
+            return base.Channel.DeleteStation(stationName);
         }
         
-        public System.Threading.Tasks.Task<int> DeleteStationAsync(string order, string stationName) {
-            return base.Channel.DeleteStationAsync(order, stationName);
+        public System.Threading.Tasks.Task<int> DeleteStationAsync(string stationName) {
+            return base.Channel.DeleteStationAsync(stationName);
         }
         
         public System.Data.DataSet SelectStation(string stationName, string stationOrder) {
@@ -731,6 +743,14 @@ namespace MesManager.MesService {
         
         public System.Threading.Tasks.Task<System.Data.DataSet> SelectStationAsync(string stationName, string stationOrder) {
             return base.Channel.SelectStationAsync(stationName, stationOrder);
+        }
+        
+        public int DeleteAllStation() {
+            return base.Channel.DeleteAllStation();
+        }
+        
+        public System.Threading.Tasks.Task<int> DeleteAllStationAsync() {
+            return base.Channel.DeleteAllStationAsync();
         }
         
         public int InsertStation(MesManager.MesService.Station[] stationList) {
@@ -859,6 +879,14 @@ namespace MesManager.MesService {
         
         public System.Threading.Tasks.Task<int> DeleteMaterialAsync(string materialCode) {
             return base.Channel.DeleteMaterialAsync(materialCode);
+        }
+        
+        public int DeleteAllMaterial() {
+            return base.Channel.DeleteAllMaterial();
+        }
+        
+        public System.Threading.Tasks.Task<int> DeleteAllMaterialAsync() {
+            return base.Channel.DeleteAllMaterialAsync();
         }
         
         public string CommitProductMaterial(System.Collections.Generic.Dictionary<string, string[]> keyValuePairs) {

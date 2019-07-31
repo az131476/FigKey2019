@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewComboBoxColumn gridViewComboBoxColumn1 = new Telerik.WinControls.UI.GridViewComboBoxColumn();
-            Telerik.WinControls.UI.GridViewComboBoxColumn gridViewComboBoxColumn2 = new Telerik.WinControls.UI.GridViewComboBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn9 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewComboBoxColumn gridViewComboBoxColumn9 = new Telerik.WinControls.UI.GridViewComboBoxColumn();
+            Telerik.WinControls.UI.GridViewComboBoxColumn gridViewComboBoxColumn10 = new Telerik.WinControls.UI.GridViewComboBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn10 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition5 = new Telerik.WinControls.UI.TableViewDefinition();
             this.radGroupBox_type = new Telerik.WinControls.UI.RadGroupBox();
             this.listView = new System.Windows.Forms.ListView();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
@@ -82,6 +82,7 @@
             // 
             // radLabel1
             // 
+            this.radLabel1.ForeColor = System.Drawing.Color.White;
             this.radLabel1.Location = new System.Drawing.Point(5, 38);
             this.radLabel1.Name = "radLabel1";
             this.radLabel1.Size = new System.Drawing.Size(54, 18);
@@ -98,6 +99,7 @@
             // 
             // radLabel2
             // 
+            this.radLabel2.ForeColor = System.Drawing.Color.White;
             this.radLabel2.Location = new System.Drawing.Point(5, 78);
             this.radLabel2.Name = "radLabel2";
             this.radLabel2.Size = new System.Drawing.Size(54, 18);
@@ -139,6 +141,7 @@
             // 
             // menu_add
             // 
+            this.menu_add.ForeColor = System.Drawing.Color.White;
             this.menu_add.Name = "menu_add";
             this.menu_add.Size = new System.Drawing.Size(54, 25);
             this.menu_add.Text = "新增";
@@ -146,18 +149,21 @@
             // 
             // menu_del
             // 
+            this.menu_del.ForeColor = System.Drawing.Color.White;
             this.menu_del.Name = "menu_del";
             this.menu_del.Size = new System.Drawing.Size(54, 25);
             this.menu_del.Text = "删除";
             // 
             // menu_update
             // 
+            this.menu_update.ForeColor = System.Drawing.Color.White;
             this.menu_update.Name = "menu_update";
             this.menu_update.Size = new System.Drawing.Size(54, 25);
             this.menu_update.Text = "更新";
             // 
             // menu_refresh
             // 
+            this.menu_refresh.ForeColor = System.Drawing.Color.White;
             this.menu_refresh.Name = "menu_refresh";
             this.menu_refresh.Size = new System.Drawing.Size(54, 25);
             this.menu_refresh.Text = "刷新";
@@ -174,24 +180,24 @@
             // 
             // 
             // 
-            gridViewTextBoxColumn1.EnableExpressionEditor = false;
-            gridViewTextBoxColumn1.HeaderText = "序号";
-            gridViewTextBoxColumn1.Name = "rdvc_order";
-            gridViewComboBoxColumn1.EnableExpressionEditor = false;
-            gridViewComboBoxColumn1.HeaderText = "产品型号";
-            gridViewComboBoxColumn1.Name = "rdvc_typeNo";
-            gridViewComboBoxColumn2.EnableExpressionEditor = false;
-            gridViewComboBoxColumn2.HeaderText = "物料编码";
-            gridViewComboBoxColumn2.Name = "rdvc_materialCode";
-            gridViewTextBoxColumn2.EnableExpressionEditor = false;
-            gridViewTextBoxColumn2.HeaderText = "描述";
-            gridViewTextBoxColumn2.Name = "rdvc_describle";
+            gridViewTextBoxColumn9.EnableExpressionEditor = false;
+            gridViewTextBoxColumn9.HeaderText = "序号";
+            gridViewTextBoxColumn9.Name = "rdvc_order";
+            gridViewComboBoxColumn9.EnableExpressionEditor = false;
+            gridViewComboBoxColumn9.HeaderText = "产品型号";
+            gridViewComboBoxColumn9.Name = "rdvc_typeNo";
+            gridViewComboBoxColumn10.EnableExpressionEditor = false;
+            gridViewComboBoxColumn10.HeaderText = "物料编码";
+            gridViewComboBoxColumn10.Name = "rdvc_materialCode";
+            gridViewTextBoxColumn10.EnableExpressionEditor = false;
+            gridViewTextBoxColumn10.HeaderText = "描述";
+            gridViewTextBoxColumn10.Name = "rdvc_describle";
             this.radGridView1.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn1,
-            gridViewComboBoxColumn1,
-            gridViewComboBoxColumn2,
-            gridViewTextBoxColumn2});
-            this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            gridViewTextBoxColumn9,
+            gridViewComboBoxColumn9,
+            gridViewComboBoxColumn10,
+            gridViewTextBoxColumn10});
+            this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition5;
             this.radGridView1.Name = "radGridView1";
             this.radGridView1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.radGridView1.Size = new System.Drawing.Size(1088, 293);
@@ -201,6 +207,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Navy;
             this.ClientSize = new System.Drawing.Size(1088, 528);
             this.Controls.Add(this.radGridView1);
             this.Controls.Add(this.btn_cancel);

@@ -235,6 +235,7 @@ namespace MesManager
 
         async private void Init()
         {
+            mesService = new MesService.MesServiceClient();
             //设置单行
             //tbx_username.Multiline = false;
             tbx_pwd.Multiline = false;
@@ -293,9 +294,9 @@ namespace MesManager
         private void PrepareTitleBar()
         {
             titleBar = new RadTitleBarElement();
-            titleBar.Text = "万通智控产线追溯MES系统";
+            titleBar.Text = "登录";
             titleBar.ForeColor = Color.White;
-            titleBar.Font = new Font("Segoe UI Light", 21.75F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(204)));
+            titleBar.Font = new Font("Segoe UI Light", 12F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(204)));
             titleBar.FillPrimitive.Visibility = ElementVisibility.Hidden;
             titleBar.MaxSize = new Size(0, 50);
             titleBar.Children[1].Visibility = ElementVisibility.Hidden;
@@ -317,6 +318,8 @@ namespace MesManager
             titleBar.Close += new TitleBarSystemEventHandler(titleBar_Close);
             titleBar.Minimize += new TitleBarSystemEventHandler(titleBar_Minimize);
             titleBar.MaximizeRestore += new TitleBarSystemEventHandler(titleBar_MaximizeRestore);
+            this.radPanorama1.PanoramaElement.PanGesture += new PanGestureEventHandler(radTilePanel1_PanGesture);
+            this.radPanorama1.PanoramaElement.Children.Add(titleBar);
         }
 
         void radTilePanel1_PanGesture(object sender, PanGestureEventArgs e)

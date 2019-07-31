@@ -28,110 +28,174 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition4 = new Telerik.WinControls.UI.TableViewDefinition();
-            this.radGridView1 = new Telerik.WinControls.UI.RadGridView();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BasicConfig));
+            this.cb_cfgType = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.radMenuItem1 = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItem2 = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItem3 = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItem4 = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItem5 = new Telerik.WinControls.UI.RadMenuItem();
+            this.menu_refresh = new Telerik.WinControls.UI.RadMenuItem();
+            this.radGridView1 = new Telerik.WinControls.UI.RadGridView();
+            this.menu_grid = new Telerik.WinControls.UI.RadMenuItem();
+            this.menu_clear_db = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenu1 = new Telerik.WinControls.UI.RadMenu();
+            this.radMenuItem3 = new Telerik.WinControls.UI.RadMenuItem();
+            this.menu_commit = new Telerik.WinControls.UI.RadMenuItem();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tool_status = new System.Windows.Forms.ToolStripStatusLabel();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).BeginInit();
+            this.statusStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
-            // radGridView1
+            // cb_cfgType
             // 
-            this.radGridView1.Location = new System.Drawing.Point(12, 82);
-            // 
-            // 
-            // 
-            this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition4;
-            this.radGridView1.Name = "radGridView1";
-            this.radGridView1.Size = new System.Drawing.Size(951, 462);
-            this.radGridView1.TabIndex = 0;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(90, 39);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(183, 28);
-            this.comboBox1.TabIndex = 7;
+            this.cb_cfgType.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cb_cfgType.FormattingEnabled = true;
+            this.cb_cfgType.Location = new System.Drawing.Point(90, 39);
+            this.cb_cfgType.Name = "cb_cfgType";
+            this.cb_cfgType.Size = new System.Drawing.Size(183, 28);
+            this.cb_cfgType.TabIndex = 7;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 44);
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(11, 42);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(73, 20);
             this.label1.TabIndex = 8;
             this.label1.Text = "配置类型";
             // 
-            // radMenuItem1
+            // menu_refresh
             // 
-            this.radMenuItem1.Name = "radMenuItem1";
-            this.radMenuItem1.Text = "新增";
+            this.menu_refresh.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.menu_refresh.Image = global::MesManager.Properties.Resources.update;
+            this.menu_refresh.Name = "menu_refresh";
+            this.menu_refresh.Text = "刷新";
             // 
-            // radMenuItem2
+            // radGridView1
             // 
-            this.radMenuItem2.Name = "radMenuItem2";
-            this.radMenuItem2.Text = "修改";
+            this.radGridView1.Location = new System.Drawing.Point(12, 91);
+            // 
+            // 
+            // 
+            this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition2;
+            this.radGridView1.Name = "radGridView1";
+            this.radGridView1.Size = new System.Drawing.Size(548, 621);
+            this.radGridView1.TabIndex = 0;
+            // 
+            // menu_grid
+            // 
+            this.menu_grid.ForeColor = System.Drawing.Color.White;
+            this.menu_grid.Image = global::MesManager.Properties.Resources.ClearGrid;
+            this.menu_grid.Name = "menu_grid";
+            this.menu_grid.Text = "清空显示";
+            // 
+            // menu_clear_db
+            // 
+            this.menu_clear_db.ForeColor = System.Drawing.Color.White;
+            this.menu_clear_db.Image = global::MesManager.Properties.Resources.DeleteDataSource_16x16;
+            this.menu_clear_db.Name = "menu_clear_db";
+            this.menu_clear_db.Text = "清空数据";
+            // 
+            // radMenu1
+            // 
+            this.radMenu1.BackColor = System.Drawing.Color.Transparent;
+            this.radMenu1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radMenu1.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.radMenuItem3,
+            this.menu_commit,
+            this.menu_refresh,
+            this.menu_grid,
+            this.menu_clear_db});
+            this.radMenu1.Location = new System.Drawing.Point(0, 0);
+            this.radMenu1.Name = "radMenu1";
+            this.radMenu1.Size = new System.Drawing.Size(572, 36);
+            this.radMenu1.TabIndex = 9;
             // 
             // radMenuItem3
             // 
+            this.radMenuItem3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.radMenuItem3.Image = ((System.Drawing.Image)(resources.GetObject("radMenuItem3.Image")));
             this.radMenuItem3.Name = "radMenuItem3";
             this.radMenuItem3.Text = "删除";
             // 
-            // radMenuItem4
+            // menu_commit
             // 
-            this.radMenuItem4.Name = "radMenuItem4";
-            this.radMenuItem4.Text = "提交";
+            this.menu_commit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.menu_commit.Image = global::MesManager.Properties.Resources.upload_for_cloud;
+            this.menu_commit.Name = "menu_commit";
+            this.menu_commit.Text = "修改";
+            this.menu_commit.Click += new System.EventHandler(this.Menu_commit_Click);
             // 
-            // radMenuItem5
+            // statusStrip1
             // 
-            this.radMenuItem5.Name = "radMenuItem5";
-            this.radMenuItem5.Text = "刷新";
+            this.statusStrip1.BackColor = System.Drawing.Color.Transparent;
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1,
+            this.toolStripStatusLabel2,
+            this.toolStripStatusLabel3,
+            this.tool_status});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 715);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(572, 22);
+            this.statusStrip1.TabIndex = 10;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(68, 17);
+            this.toolStripStatusLabel1.Text = "当前用户：";
+            // 
+            // toolStripStatusLabel2
+            // 
+            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(44, 17);
+            this.toolStripStatusLabel2.Text = "admin";
+            // 
+            // toolStripStatusLabel3
+            // 
+            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
+            this.toolStripStatusLabel3.Size = new System.Drawing.Size(44, 17);
+            this.toolStripStatusLabel3.Text = "状态：";
+            // 
+            // tool_status
+            // 
+            this.tool_status.Name = "tool_status";
+            this.tool_status.Size = new System.Drawing.Size(68, 17);
+            this.tool_status.Text = "更新数据成";
             // 
             // BasicConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(975, 569);
-            // 
-            // radMenu1
-            // 
-            this.radMenu1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radMenu1.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.radMenuItem1,
-            this.radMenuItem2,
-            this.radMenuItem3,
-            this.radMenuItem4,
-            this.radMenuItem5});
-            this.radMenu1.Location = new System.Drawing.Point(0, 0);
-            this.radMenu1.Name = "radMenu1";
-            this.radMenu1.Size = new System.Drawing.Size(975, 26);
-            this.radMenu1.TabIndex = 9;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.ClientSize = new System.Drawing.Size(572, 737);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.radMenu1);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.radGridView1);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.cb_cfgType);
             this.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "BasicConfig";
             // 
             // 
             // 
             this.RootElement.ApplyShapeToControl = true;
             this.Text = "基础配置";
+            this.Load += new System.EventHandler(this.BasicConfig_Load);
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).EndInit();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -139,15 +203,19 @@
         }
 
         #endregion
-
-        private Telerik.WinControls.UI.RadGridView radGridView1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cb_cfgType;
         private System.Windows.Forms.Label label1;
-        private Telerik.WinControls.UI.RadMenuItem radMenuItem1;
-        private Telerik.WinControls.UI.RadMenuItem radMenuItem2;
         private Telerik.WinControls.UI.RadMenuItem radMenuItem3;
-        private Telerik.WinControls.UI.RadMenuItem radMenuItem4;
-        private Telerik.WinControls.UI.RadMenuItem radMenuItem5;
+        private Telerik.WinControls.UI.RadMenuItem menu_commit;
+        private Telerik.WinControls.UI.RadMenuItem menu_refresh;
+        private Telerik.WinControls.UI.RadGridView radGridView1;
+        private Telerik.WinControls.UI.RadMenuItem menu_grid;
+        private Telerik.WinControls.UI.RadMenuItem menu_clear_db;
         private Telerik.WinControls.UI.RadMenu radMenu1;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
+        private System.Windows.Forms.ToolStripStatusLabel tool_status;
     }
 }

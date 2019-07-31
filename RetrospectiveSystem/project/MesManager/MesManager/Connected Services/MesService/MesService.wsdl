@@ -51,6 +51,12 @@
   <wsdl:message name="IMesService_SelectStation_OutputMessage">
     <wsdl:part name="parameters" element="tns:SelectStationResponse" />
   </wsdl:message>
+  <wsdl:message name="IMesService_DeleteAllStation_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAllStation" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_DeleteAllStation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAllStationResponse" />
+  </wsdl:message>
   <wsdl:message name="IMesService_InsertStation_InputMessage">
     <wsdl:part name="parameters" element="tns:InsertStation" />
   </wsdl:message>
@@ -146,6 +152,12 @@
   </wsdl:message>
   <wsdl:message name="IMesService_DeleteMaterial_OutputMessage">
     <wsdl:part name="parameters" element="tns:DeleteMaterialResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_DeleteAllMaterial_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAllMaterial" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_DeleteAllMaterial_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAllMaterialResponse" />
   </wsdl:message>
   <wsdl:message name="IMesService_CommitProductMaterial_InputMessage">
     <wsdl:part name="parameters" element="tns:CommitProductMaterial" />
@@ -248,6 +260,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IMesService/SelectStation" message="tns:IMesService_SelectStation_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMesService/SelectStationResponse" message="tns:IMesService_SelectStation_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="DeleteAllStation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/DeleteAllStation" message="tns:IMesService_DeleteAllStation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/DeleteAllStationResponse" message="tns:IMesService_DeleteAllStation_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="InsertStation">
       <wsdl:input wsaw:Action="http://tempuri.org/IMesService/InsertStation" message="tns:IMesService_InsertStation_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMesService/InsertStationResponse" message="tns:IMesService_InsertStation_OutputMessage" />
@@ -311,6 +327,10 @@
     <wsdl:operation name="DeleteMaterial">
       <wsdl:input wsaw:Action="http://tempuri.org/IMesService/DeleteMaterial" message="tns:IMesService_DeleteMaterial_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMesService/DeleteMaterialResponse" message="tns:IMesService_DeleteMaterial_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAllMaterial">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/DeleteAllMaterial" message="tns:IMesService_DeleteAllMaterial_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/DeleteAllMaterialResponse" message="tns:IMesService_DeleteAllMaterial_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="CommitProductMaterial">
       <wsdl:input wsaw:Action="http://tempuri.org/IMesService/CommitProductMaterial" message="tns:IMesService_CommitProductMaterial_InputMessage" />
@@ -419,6 +439,15 @@
     </wsdl:operation>
     <wsdl:operation name="SelectStation">
       <soap:operation soapAction="http://tempuri.org/IMesService/SelectStation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAllStation">
+      <soap:operation soapAction="http://tempuri.org/IMesService/DeleteAllStation" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -563,6 +592,15 @@
     </wsdl:operation>
     <wsdl:operation name="DeleteMaterial">
       <soap:operation soapAction="http://tempuri.org/IMesService/DeleteMaterial" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAllMaterial">
+      <soap:operation soapAction="http://tempuri.org/IMesService/DeleteAllMaterial" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
