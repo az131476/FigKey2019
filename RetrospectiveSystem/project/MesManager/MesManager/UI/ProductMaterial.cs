@@ -36,14 +36,37 @@ namespace MesManager.RadView
         private void Init()
         {
             serviceClient = new MesService.MesServiceClient();
-            DataGridViewCommon.SetRadGridViewProperty(this.radGridView1,true);
+            DataGridViewCommon.SetRadGridViewProperty(this.radGridView1, true);
             this.radGridView1.DataSource = null;
             ListViewCommon.InitListView(this.listView);
             //设置列
             this.listView.Columns.Add("物料编码", listView.Width - 5, HorizontalAlignment.Left);
             InitControl();
-            BindingDataSource();
+            //BindingDataSource();
+            Test();
         }
+        private void Test()
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("TextBoxColumn");
+            for (int i = 0; i < 5; i++)
+            {
+                DataRow dr = dt.NewRow();
+                dr["TextBoxColumn"] = i+"testdata";
+                dt.Rows.Add(dr);
+            }
+            DataGridViewTextBoxColumn col1 = new DataGridViewTextBoxColumn();
+            col1.Name = "Name";
+            col1.HeaderText = "姓名" ;
+            dgview.Columns.Add(col1);
+
+            DataGridViewRow row = new DataGridViewRow();
+            row.CreateCells(this.dgview);
+            row.SetValues("vale");
+            dgview.Rows.Add(row);
+            //this.dgview.Columns["TextBoxColumn"].DataPropertyName = dt.Columns["TextBoxColumn"].ToString();
+        }
+
         public enum DataGridViewColumnName
         {
             rdvc_order,
@@ -54,10 +77,11 @@ namespace MesManager.RadView
         }
         async private void BindingDataSource()
         {
-            GridViewTextBoxColumn order = this.radGridView1.Columns[DataGridViewColumnName.rdvc_order.ToString()] as GridViewTextBoxColumn;
+            GridViewTextBoxColumn order = this.radGridView1.Columns["rdvc_order"] as GridViewTextBoxColumn;
             GridViewComboBoxColumn materialCode = this.radGridView1.Columns[DataGridViewColumnName.rdvc_materialCode.ToString()] as GridViewComboBoxColumn;
             GridViewComboBoxColumn productTypeNo = this.radGridView1.Columns[DataGridViewColumnName.rdvc_typeNo.ToString()] as GridViewComboBoxColumn;
             GridViewTextBoxColumn describle = this.radGridView1.Columns[DataGridViewColumnName.rdvc_describle.ToString()] as GridViewTextBoxColumn;
+            
 
             DataTable materialCodeDt = (await serviceClient.SelectMaterialAsync()).Tables[0];//0
             DataTable typeNoDt = (await serviceClient.SelectProductTypeNoAsync("")).Tables[0];//1
@@ -70,15 +94,26 @@ namespace MesManager.RadView
             for (int i = 0; i < materialCodeDt.Rows.Count; i++)
             {
                 materialListTemp.Add(materialCodeDt.Rows[i][0].ToString());
+                this.dgv_materialcode.Items.Add(materialCodeDt.Rows[i][0].ToString());
             }
             for (int i = 0; i < typeNoDt.Rows.Count; i++)
             {
                 typeNoListTemp.Add(typeNoDt.Rows[i][0].ToString());
+                this.dgv_typeno.Items.Add(typeNoDt.Rows[i][0].ToString());
             }
             materialCode.DataSource = materialListTemp;
             productTypeNo.DataSource = typeNoListTemp;
+
             DataTable dt = (await serviceClient.SelectProductMaterialAsync("")).Tables[0];
-            this.radGridView1.DataSource = dt;
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                this.radGridView1.Rows[i].Cells["rdvc_order"].Value = i + 1;
+                this.radGridView1.Rows[i].Cells[1].Value = dt.Rows[i][1].ToString();
+                this.radGridView1.Rows[i].Cells[2].Value = dt.Rows[i][0].ToString();
+                this.radGridView1.Rows[i].Cells[3].Value = dt.Rows[i][2].ToString();
+                
+                //this.radGridView1.Columns[""].GetValueSource();
+            }
             this.radGridView1.EndEdit();
         }
 

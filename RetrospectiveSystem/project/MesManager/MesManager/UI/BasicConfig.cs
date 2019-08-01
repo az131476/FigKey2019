@@ -60,6 +60,7 @@ namespace MesManager.UI
             cb_cfgType.Items.Add("产品型号");
             cb_cfgType.Items.Add("物料信息");
             cb_cfgType.SelectedIndex = 0;
+            menu_del.Enabled = false;
             RefreshData();
         }
 
@@ -91,13 +92,39 @@ namespace MesManager.UI
             menu_refresh.Click += Menu_refresh_Click;
             menu_grid.Click += Menu_grid_Click;
             menu_clear_db.Click += Menu_clear_db_Click;
+            menu_del.Click += Menu_del_Click;
             cb_cfgType.SelectedIndexChanged += Cb_cfgType_SelectedIndexChanged;
             this.radGridView1.CellBeginEdit += RadGridView1_CellBeginEdit;
             this.radGridView1.CellEndEdit += RadGridView1_CellEndEdit;
         }
 
+        async private void Menu_del_Click(object sender, EventArgs e)
+        {
+            //删除当前行
+            if (cb_cfgType.SelectedIndex == 1)
+            {
+                if (MessageBox.Show("确认要删除当前行记录？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
+                {
+                    var typeNo = this.radGridView1.CurrentRow.Cells[1].Value.ToString();
+                    int row = await serviceClient.DeleteProductTypeNoAsync(typeNo);
+                    tool_status.Text = "【型号】删除1行记录 【删除】完成";
+                }
+            }
+            else if (cb_cfgType.SelectedIndex == 2)
+            {
+                if (MessageBox.Show("确认要删除当前行记录？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
+                {
+                    var materialCode = this.radGridView1.CurrentRow.Cells[1].Value.ToString();
+                    int row = await serviceClient.DeleteMaterialAsync(materialCode);
+                    tool_status.Text = "【物料】删除1行记录 【删除】完成";
+                }
+            }
+        }
+
         async private void Menu_clear_db_Click(object sender, EventArgs e)
         {
+            if (MessageBox.Show("确定要清空服务所有数据？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.Cancel)
+                return;
             if (cb_cfgType.SelectedIndex == 0)
             {
                 //站位
@@ -116,6 +143,7 @@ namespace MesManager.UI
                 int row = await serviceClient.DeleteAllMaterialAsync();
                 tool_status.Text = $"【物料】删除服务数据【{row}】条  【清空数据】完成";
             }
+            RefreshData();
         }
 
         private void Menu_grid_Click(object sender, EventArgs e)
@@ -191,14 +219,21 @@ namespace MesManager.UI
         {
             if (cb_cfgType.SelectedIndex == 0)
             {
+                //站位
+                //不能删除，只能修改
+                menu_del.Enabled = false;
                 SelectStationData();
             }
             else if (cb_cfgType.SelectedIndex == 1)
             {
+                //型号
+                menu_del.Enabled = true;
                 SelectProductTypeData();
             }
             else if (cb_cfgType.SelectedIndex == 2)
             {
+                //物料
+                menu_del.Enabled = true;
                 SelectMaterial();
             }
         }
@@ -266,8 +301,9 @@ namespace MesManager.UI
                     dr[DATA_ORDER] = dataTable.Rows[i][0].ToString();
                     dr[DATA_STATION_NAME] = dataTable.Rows[i][1].ToString();
                     stationData.Rows.Add(dr);
+                    this.radGridView1.Rows[i].Cells[0].Value = dataTable.Rows[i][0].ToString();
                 }
-                radGridView1.DataSource = stationData;
+                //radGridView1.DataSource = stationData;
             }
             else
             {
@@ -431,6 +467,8 @@ namespace MesManager.UI
                 LogHelper.Log.Error(ex.Message + "\r\n" + ex.StackTrace);
             }
         }
+
+        
 
         #endregion
     }

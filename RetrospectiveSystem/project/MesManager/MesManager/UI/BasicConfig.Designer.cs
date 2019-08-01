@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BasicConfig));
             this.cb_cfgType = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -37,7 +37,7 @@
             this.menu_grid = new Telerik.WinControls.UI.RadMenuItem();
             this.menu_clear_db = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenu1 = new Telerik.WinControls.UI.RadMenu();
-            this.radMenuItem3 = new Telerik.WinControls.UI.RadMenuItem();
+            this.menu_del = new Telerik.WinControls.UI.RadMenuItem();
             this.menu_commit = new Telerik.WinControls.UI.RadMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -83,7 +83,7 @@
             // 
             // 
             // 
-            this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition2;
+            this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.radGridView1.Name = "radGridView1";
             this.radGridView1.Size = new System.Drawing.Size(548, 621);
             this.radGridView1.TabIndex = 0;
@@ -107,7 +107,7 @@
             this.radMenu1.BackColor = System.Drawing.Color.Transparent;
             this.radMenu1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radMenu1.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.radMenuItem3,
+            this.menu_del,
             this.menu_commit,
             this.menu_refresh,
             this.menu_grid,
@@ -117,12 +117,12 @@
             this.radMenu1.Size = new System.Drawing.Size(572, 36);
             this.radMenu1.TabIndex = 9;
             // 
-            // radMenuItem3
+            // menu_del
             // 
-            this.radMenuItem3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.radMenuItem3.Image = ((System.Drawing.Image)(resources.GetObject("radMenuItem3.Image")));
-            this.radMenuItem3.Name = "radMenuItem3";
-            this.radMenuItem3.Text = "删除";
+            this.menu_del.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.menu_del.Image = ((System.Drawing.Image)(resources.GetObject("menu_del.Image")));
+            this.menu_del.Name = "menu_del";
+            this.menu_del.Text = "删除";
             // 
             // menu_commit
             // 
@@ -205,7 +205,7 @@
         #endregion
         private System.Windows.Forms.ComboBox cb_cfgType;
         private System.Windows.Forms.Label label1;
-        private Telerik.WinControls.UI.RadMenuItem radMenuItem3;
+        private Telerik.WinControls.UI.RadMenuItem menu_del;
         private Telerik.WinControls.UI.RadMenuItem menu_commit;
         private Telerik.WinControls.UI.RadMenuItem menu_refresh;
         private Telerik.WinControls.UI.RadGridView radGridView1;

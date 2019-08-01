@@ -28,11 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn9 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewComboBoxColumn gridViewComboBoxColumn9 = new Telerik.WinControls.UI.GridViewComboBoxColumn();
-            Telerik.WinControls.UI.GridViewComboBoxColumn gridViewComboBoxColumn10 = new Telerik.WinControls.UI.GridViewComboBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn10 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition5 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewComboBoxColumn gridViewComboBoxColumn3 = new Telerik.WinControls.UI.GridViewComboBoxColumn();
+            Telerik.WinControls.UI.GridViewComboBoxColumn gridViewComboBoxColumn4 = new Telerik.WinControls.UI.GridViewComboBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.radGroupBox_type = new Telerik.WinControls.UI.RadGroupBox();
             this.listView = new System.Windows.Forms.ListView();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
@@ -46,6 +48,11 @@
             this.menu_update = new System.Windows.Forms.ToolStripMenuItem();
             this.menu_refresh = new System.Windows.Forms.ToolStripMenuItem();
             this.radGridView1 = new Telerik.WinControls.UI.RadGridView();
+            this.dgview = new System.Windows.Forms.DataGridView();
+            this.dgv_order = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgv_typeno = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.dgv_materialcode = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.dgv_describle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox_type)).BeginInit();
             this.radGroupBox_type.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
@@ -55,12 +62,14 @@
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgview)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
             // radGroupBox_type
             // 
             this.radGroupBox_type.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this.radGroupBox_type.BackColor = System.Drawing.Color.Transparent;
             this.radGroupBox_type.Controls.Add(this.listView);
             this.radGroupBox_type.Controls.Add(this.radLabel1);
             this.radGroupBox_type.Controls.Add(this.cb_type_no);
@@ -68,7 +77,7 @@
             this.radGroupBox_type.HeaderText = "配置产品物料";
             this.radGroupBox_type.Location = new System.Drawing.Point(12, 328);
             this.radGroupBox_type.Name = "radGroupBox_type";
-            this.radGroupBox_type.Size = new System.Drawing.Size(956, 132);
+            this.radGroupBox_type.Size = new System.Drawing.Size(1002, 132);
             this.radGroupBox_type.TabIndex = 7;
             this.radGroupBox_type.Text = "配置产品物料";
             // 
@@ -180,35 +189,85 @@
             // 
             // 
             // 
-            gridViewTextBoxColumn9.EnableExpressionEditor = false;
-            gridViewTextBoxColumn9.HeaderText = "序号";
-            gridViewTextBoxColumn9.Name = "rdvc_order";
-            gridViewComboBoxColumn9.EnableExpressionEditor = false;
-            gridViewComboBoxColumn9.HeaderText = "产品型号";
-            gridViewComboBoxColumn9.Name = "rdvc_typeNo";
-            gridViewComboBoxColumn10.EnableExpressionEditor = false;
-            gridViewComboBoxColumn10.HeaderText = "物料编码";
-            gridViewComboBoxColumn10.Name = "rdvc_materialCode";
-            gridViewTextBoxColumn10.EnableExpressionEditor = false;
-            gridViewTextBoxColumn10.HeaderText = "描述";
-            gridViewTextBoxColumn10.Name = "rdvc_describle";
+            gridViewTextBoxColumn3.EnableExpressionEditor = false;
+            gridViewTextBoxColumn3.HeaderText = "序号";
+            gridViewTextBoxColumn3.Name = "rdvc_order";
+            gridViewComboBoxColumn3.EnableExpressionEditor = false;
+            gridViewComboBoxColumn3.HeaderText = "产品型号";
+            gridViewComboBoxColumn3.Name = "rdvc_typeNo";
+            gridViewComboBoxColumn4.EnableExpressionEditor = false;
+            gridViewComboBoxColumn4.HeaderText = "物料编码";
+            gridViewComboBoxColumn4.Name = "rdvc_materialCode";
+            gridViewTextBoxColumn4.EnableExpressionEditor = false;
+            gridViewTextBoxColumn4.HeaderText = "描述";
+            gridViewTextBoxColumn4.Name = "rdvc_describle";
             this.radGridView1.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn9,
-            gridViewComboBoxColumn9,
-            gridViewComboBoxColumn10,
-            gridViewTextBoxColumn10});
-            this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition5;
+            gridViewTextBoxColumn3,
+            gridViewComboBoxColumn3,
+            gridViewComboBoxColumn4,
+            gridViewTextBoxColumn4});
+            this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition2;
             this.radGridView1.Name = "radGridView1";
             this.radGridView1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.radGridView1.Size = new System.Drawing.Size(1088, 293);
+            this.radGridView1.Size = new System.Drawing.Size(1088, 138);
             this.radGridView1.TabIndex = 11;
+            // 
+            // dgview
+            // 
+            this.dgview.BackgroundColor = System.Drawing.Color.White;
+            this.dgview.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgview.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgv_order,
+            this.dgv_typeno,
+            this.dgv_materialcode,
+            this.dgv_describle});
+            this.dgview.Location = new System.Drawing.Point(0, 173);
+            this.dgview.Name = "dgview";
+            this.dgview.RowTemplate.Height = 23;
+            this.dgview.Size = new System.Drawing.Size(1088, 149);
+            this.dgview.TabIndex = 12;
+            // 
+            // dgv_order
+            // 
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
+            this.dgv_order.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dgv_order.HeaderText = "序号";
+            this.dgv_order.Name = "dgv_order";
+            // 
+            // dgv_typeno
+            // 
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
+            this.dgv_typeno.DefaultCellStyle = dataGridViewCellStyle4;
+            this.dgv_typeno.HeaderText = "产品型号";
+            this.dgv_typeno.Name = "dgv_typeno";
+            // 
+            // dgv_materialcode
+            // 
+            this.dgv_materialcode.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
+            this.dgv_materialcode.DisplayStyleForCurrentCellOnly = true;
+            this.dgv_materialcode.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.dgv_materialcode.HeaderText = "物料编码";
+            this.dgv_materialcode.Name = "dgv_materialcode";
+            // 
+            // dgv_describle
+            // 
+            this.dgv_describle.HeaderText = "描述";
+            this.dgv_describle.Name = "dgv_describle";
             // 
             // ProductMaterial
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Navy;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(1088, 528);
+            this.Controls.Add(this.dgview);
             this.Controls.Add(this.radGridView1);
             this.Controls.Add(this.btn_cancel);
             this.Controls.Add(this.btn_commit);
@@ -232,6 +291,7 @@
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgview)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -253,5 +313,10 @@
         private System.Windows.Forms.ToolStripMenuItem menu_del;
         private System.Windows.Forms.ToolStripMenuItem menu_update;
         private System.Windows.Forms.ToolStripMenuItem menu_refresh;
+        private System.Windows.Forms.DataGridView dgview;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgv_order;
+        private System.Windows.Forms.DataGridViewComboBoxColumn dgv_typeno;
+        private System.Windows.Forms.DataGridViewComboBoxColumn dgv_materialcode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgv_describle;
     }
 }

@@ -592,13 +592,13 @@ namespace MesAPI
         {
             string selectSQL = "";
             if (!string.IsNullOrEmpty(typeNo))
-                selectSQL = $"SELECT {DbTable.F_PRODUCT_MATERIAL.ID}," +
+                selectSQL = $"SELECT " +
                     $"{DbTable.F_PRODUCT_MATERIAL.TYPE_NO},{DbTable.F_PRODUCT_MATERIAL.MATERIAL_CODE}," +
                     $"{DbTable.F_PRODUCT_MATERIAL.Describle} " +
                     $"FROM {DbTable.F_PRODUCT_MATERIAL_NAME} " +
                     $"WHERE {DbTable.F_PRODUCT_MATERIAL.TYPE_NO} = '{typeNo}'";
             else
-                selectSQL = $"SELECT {DbTable.F_PRODUCT_MATERIAL.ID}," +
+                selectSQL = $"SELECT " +
                     $"{DbTable.F_PRODUCT_MATERIAL.TYPE_NO},{DbTable.F_PRODUCT_MATERIAL.MATERIAL_CODE}," +
                     $"{DbTable.F_PRODUCT_MATERIAL.Describle} "+
                     $"FROM {DbTable.F_PRODUCT_MATERIAL_NAME} ";
@@ -851,6 +851,7 @@ namespace MesAPI
         #endregion
 
         #region 成品打包接口
+        [SwaggerWcfTag("MesServcie 服务")]
         public int CommitPackageProduct(PackageProduct packageProduct)
         {
             string imageName = "@imageData";
@@ -906,6 +907,7 @@ namespace MesAPI
             return SQLServer.ExecuteNonQuery(updateSQL);
         }
 
+        [SwaggerWcfTag("MesServcie 服务")]
         public int DeletePackageProduct(PackageProduct packageProduct)
         {
             string deleteSQL = "";
@@ -921,6 +923,8 @@ namespace MesAPI
             }
             return SQLServer.ExecuteNonQuery(deleteSQL);
         }
+
+        [SwaggerWcfTag("MesServcie 服务")]
         public DataSet SelectPackageProduct(PackageProduct packageProduct)
         {
             //箱子编码/追溯码查询/产品型号
