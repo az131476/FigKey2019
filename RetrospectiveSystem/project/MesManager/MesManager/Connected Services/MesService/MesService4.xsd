@@ -65,6 +65,21 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="MaterialMsg" nillable="true" type="tns:MaterialMsg" />
+  <xs:complexType name="ArrayOfProductMaterial">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ProductMaterial" nillable="true" type="tns:ProductMaterial" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfProductMaterial" nillable="true" type="tns:ArrayOfProductMaterial" />
+  <xs:complexType name="ProductMaterial">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Describle" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MaterialCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TypeNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Update_Date" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProductMaterial" nillable="true" type="tns:ProductMaterial" />
   <xs:complexType name="PackageProduct">
     <xs:sequence>
       <xs:element minOccurs="0" name="BindingDate" nillable="true" type="xs:string" />

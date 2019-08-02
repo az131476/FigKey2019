@@ -144,7 +144,9 @@ namespace MesManager
         {
             //根据产品型号查询物料信息
             var typeNo = cb_material_typeNo.Text.Trim();
-            DataTable dt = (await serviceClient.SelectProductMaterialAsync(typeNo)).Tables[0];
+            MesService.ProductMaterial productMaterial = new MesService.ProductMaterial();
+            productMaterial.TypeNo = typeNo;
+            DataTable dt = (await serviceClient.SelectProductMaterialAsync(productMaterial)).Tables[0];
             this.radGridViewMaterial.DataSource = dt;
         }
 

@@ -4,16 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BE87A25A-1FB2-47F3-99C9-30A04E1E8366}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AnalysisAgreeMent</RootNamespace>
-    <AssemblyName>AnalysisAgreeMent</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <ProjectGuid>{0B1D503A-671F-492E-861A-7EA3404EC497}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>WindowsServiceDB</RootNamespace>
+    <AssemblyName>WindowsServiceDB</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -21,58 +22,59 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CommonUtils, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="CommonUtils">
       <HintPath>..\Lib\CommonUtils.dll</HintPath>
     </Reference>
     <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
-      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+      <HintPath>..\packages\log4net.2.0.8\lib\net40-full\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
+    <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Analysis\AnalysisDataSet.cs" />
-    <Compile Include="Analysis\TypeConvert.cs" />
-    <Compile Include="DbcHelper.cs" />
-    <Compile Include="Model\AnalysisData.cs" />
-    <Compile Include="Model\AnalysisSignal.cs" />
-    <Compile Include="Model\DataTypeEnum.cs" />
-    <Compile Include="Model\DBC\DBCData.cs" />
-    <Compile Include="Model\DBC\DBCMessage.cs" />
-    <Compile Include="Model\DBC\DbcResultEnum.cs" />
-    <Compile Include="Model\DBC\DBCSignal.cs" />
-    <Compile Include="Model\XCP\A2lContent.cs" />
-    <Compile Include="Model\XCP\AnalysisCodeCmd.cs" />
-    <Compile Include="Model\XCP\Characteristic.cs" />
-    <Compile Include="Model\XCP\CompuMethod.cs" />
-    <Compile Include="Model\XCP\IF_DATA_ASAP1B_CCP.cs" />
-    <Compile Include="Model\XCP\MeasureMent.cs" />
-    <Compile Include="Model\XCP\MemorySegmentClass.cs" />
-    <Compile Include="Model\XCP\PropertyClass.cs" />
-    <Compile Include="Model\XCP\XcpOnCan.cs" />
-    <Compile Include="Model\XCP\RecordLayoutClass.cs" />
-    <Compile Include="Model\XCP\TableClass.cs" />
-    <Compile Include="Model\XCP\XcpData.cs" />
-    <Compile Include="Model\XCP\XcpFormat.cs" />
+    <Compile Include="MySqlHelper.cs" />
+    <Compile Include="ProjectInstaller.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ProjectInstaller.Designer.cs">
+      <DependentUpon>ProjectInstaller.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Service1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Service1.Designer.cs">
+      <DependentUpon>Service1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="XcpHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ProjectInstaller.resx">
+      <DependentUpon>ProjectInstaller.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

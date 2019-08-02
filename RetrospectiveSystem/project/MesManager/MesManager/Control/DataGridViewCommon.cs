@@ -27,6 +27,7 @@ namespace MesManager.Control
             radGridView.EnableHotTracking = true;
             radGridView.MasterTemplate.SelectLastAddedRow = false;
             //radRadioDataReader.ToggleState = Telerik.WinControls.Enumerations.ToggleState.On;
+            //this.radGridView1.CurrentRow = this.radGridView1.Rows[0];//设置某行为当前行
         }
     }
 }

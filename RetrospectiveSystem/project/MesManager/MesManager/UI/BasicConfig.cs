@@ -93,9 +93,16 @@ namespace MesManager.UI
             menu_grid.Click += Menu_grid_Click;
             menu_clear_db.Click += Menu_clear_db_Click;
             menu_del.Click += Menu_del_Click;
+            menu_add.Click += Menu_add_Click;
+
             cb_cfgType.SelectedIndexChanged += Cb_cfgType_SelectedIndexChanged;
             this.radGridView1.CellBeginEdit += RadGridView1_CellBeginEdit;
             this.radGridView1.CellEndEdit += RadGridView1_CellEndEdit;
+        }
+
+        private void Menu_add_Click(object sender, EventArgs e)
+        {
+            this.radGridView1.Rows.Add();
         }
 
         async private void Menu_del_Click(object sender, EventArgs e)
@@ -301,9 +308,9 @@ namespace MesManager.UI
                     dr[DATA_ORDER] = dataTable.Rows[i][0].ToString();
                     dr[DATA_STATION_NAME] = dataTable.Rows[i][1].ToString();
                     stationData.Rows.Add(dr);
-                    this.radGridView1.Rows[i].Cells[0].Value = dataTable.Rows[i][0].ToString();
+                    //this.radGridView1.Rows[i].Cells[0].Value = dataTable.Rows[i][0].ToString();
                 }
-                //radGridView1.DataSource = stationData;
+                radGridView1.DataSource = stationData;
             }
             else
             {

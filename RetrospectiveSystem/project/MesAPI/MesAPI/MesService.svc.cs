@@ -555,76 +555,77 @@ namespace MesAPI
 
         #endregion
 
-        #region 产品物料配置
-        public string CommitProductMaterial(Dictionary<string, List<string>> keyValuePairs)
+        #region 产品物料绑定
+        public int CommitProductMaterial(List<ProductMaterial> pmList)
         {
-            foreach (KeyValuePair<string, List<string>> kv in keyValuePairs)
+            foreach (var material in pmList)
             {
-                string deleteSQL = $"DELETE FROM {DbTable.F_PRODUCT_MATERIAL_NAME} WHERE {DbTable.F_PRODUCT_MATERIAL.TYPE_NO} = '{kv.Key}'";
-                SQLServer.ExecuteNonQuery(deleteSQL);
-                foreach (var v in kv.Value)
+                if (IsExistMaterial(material))
                 {
-                    if (!IsExistProductMaterial(kv.Key, v))
-                    {
-                        //insert
-                        if (InsertProductMaterial(kv.Key, v) < 1)
-                            return "I0";//插入失败
-                    }
-                    else
-                    {
-                        // not update
-                        //if (UpdateProductMaterial(kv.Key, v) < 1)
-                        //    return "G0";//更新失败
-                    }
+                    //更新
+                    string updateSQL = $"UPDATE {DbTable.F_PRODUCT_MATERIAL_NAME} SET " +
+                        $"{DbTable.F_PRODUCT_MATERIAL.Describle} = '{material.Describle}' " +
+                        $"WHERE {DbTable.F_PRODUCT_MATERIAL.TYPE_NO} = '{material.TypeNo}' AND " +
+                        $"{DbTable.F_PRODUCT_MATERIAL.MATERIAL_CODE} = '{material.MaterialCode}'";
+                    LogHelper.Log.Info(updateSQL);
+                    if (SQLServer.ExecuteNonQuery(updateSQL) < 1)
+                        return 0;
+                }
+                else
+                {
+                    //insert
+                    if (InsertProductMaterial(material) < 1)
+                        return 0;
                 }
             }
-            return "1";
+            return 1;
         }
-
-        public int DeleteProductMaterial(string typeNo, string materialCode)
+        public int DeleteProductMaterial(ProductMaterial material)
         {
+            if (material.MaterialCode == "" || material.TypeNo == "")
+                return 0;
             string deleteSQL = $"DELETE FROM {DbTable.F_PRODUCT_MATERIAL_NAME} " +
-                $"WHERE {DbTable.F_PRODUCT_MATERIAL.TYPE_NO} = '{typeNo}' AND " +
-                $"{DbTable.F_PRODUCT_MATERIAL.MATERIAL_CODE} = '{materialCode}'";
+                $"WHERE {DbTable.F_PRODUCT_MATERIAL.TYPE_NO} = '{material.TypeNo}' AND " +
+                $"{DbTable.F_PRODUCT_MATERIAL.MATERIAL_CODE} = '{material.MaterialCode}'";
             return SQLServer.ExecuteNonQuery(deleteSQL);
         }
-        public DataSet SelectProductMaterial(string typeNo)
+        public DataSet SelectProductMaterial(ProductMaterial material)
         {
             string selectSQL = "";
-            if (!string.IsNullOrEmpty(typeNo))
+            if (string.IsNullOrEmpty(material.TypeNo) && string.IsNullOrEmpty(material.MaterialCode))
+            {
                 selectSQL = $"SELECT " +
-                    $"{DbTable.F_PRODUCT_MATERIAL.TYPE_NO},{DbTable.F_PRODUCT_MATERIAL.MATERIAL_CODE}," +
-                    $"{DbTable.F_PRODUCT_MATERIAL.Describle} " +
-                    $"FROM {DbTable.F_PRODUCT_MATERIAL_NAME} " +
-                    $"WHERE {DbTable.F_PRODUCT_MATERIAL.TYPE_NO} = '{typeNo}'";
+                   $"{DbTable.F_PRODUCT_MATERIAL.TYPE_NO},{DbTable.F_PRODUCT_MATERIAL.MATERIAL_CODE}," +
+                   $"{DbTable.F_PRODUCT_MATERIAL.Describle} " +
+                   $"FROM {DbTable.F_PRODUCT_MATERIAL_NAME} ORDER BY {DbTable.F_PRODUCT_MATERIAL.UpdateDate} ASC";
+            }
             else
                 selectSQL = $"SELECT " +
                     $"{DbTable.F_PRODUCT_MATERIAL.TYPE_NO},{DbTable.F_PRODUCT_MATERIAL.MATERIAL_CODE}," +
-                    $"{DbTable.F_PRODUCT_MATERIAL.Describle} "+
-                    $"FROM {DbTable.F_PRODUCT_MATERIAL_NAME} ";
+                    $"{DbTable.F_PRODUCT_MATERIAL.Describle} " +
+                    $"FROM {DbTable.F_PRODUCT_MATERIAL_NAME} "+
+                    $"WHERE {DbTable.F_PRODUCT_MATERIAL.TYPE_NO} = '{material.TypeNo}' OR " +
+                    $"{DbTable.F_PRODUCT_MATERIAL.MATERIAL_CODE} = '{material.MaterialCode}' " +
+                    $"ORDER BY {DbTable.F_PRODUCT_MATERIAL.UpdateDate} ASC";
             return SQLServer.ExecuteDataSet(selectSQL);
         }
-        private bool IsExistProductMaterial(string typeNo, string materialCode)
+        private bool IsExistMaterial(ProductMaterial material)
         {
             string selectSQL = $"SELECT * FROM {DbTable.F_PRODUCT_MATERIAL_NAME} " +
-                $"WHERE {DbTable.F_PRODUCT_MATERIAL.MATERIAL_CODE} = '{materialCode}' AND " +
-                $"{DbTable.F_PRODUCT_MATERIAL.TYPE_NO} = '{typeNo}'";
+                $"WHERE {DbTable.F_PRODUCT_MATERIAL.MATERIAL_CODE} = '{material.MaterialCode}' AND " +
+                $"{DbTable.F_PRODUCT_MATERIAL.TYPE_NO} = '{material.TypeNo}'";
             DataTable dt = SQLServer.ExecuteDataSet(selectSQL).Tables[0];
             if (dt.Rows.Count > 0)
                 return true;
             else
                 return false;
         }
-        private int InsertProductMaterial(string typeNo, string materialCode)
+        private int InsertProductMaterial(ProductMaterial material)
         {
             string insertSQL = $"INSERT INTO {DbTable.F_PRODUCT_MATERIAL_NAME}({DbTable.F_PRODUCT_MATERIAL.TYPE_NO},{DbTable.F_PRODUCT_MATERIAL.MATERIAL_CODE}) " +
-                $"VALUES('{typeNo}','{materialCode}')";
+                $"VALUES('{material.TypeNo}','{material.MaterialCode}')";
+            LogHelper.Log.Info(insertSQL);
             return SQLServer.ExecuteNonQuery(insertSQL);
-        }
-        private int UpdateProductMaterial(string typeNo, string materialCode)
-        {
-            string updateSQL = $"UPDATE {DbTable.F_PRODUCT_MATERIAL_NAME} SET {DbTable.F_PRODUCT_MATERIAL.MATERIAL_CODE} = '{materialCode}'";
-            return SQLServer.ExecuteNonQuery(updateSQL);
         }
         #endregion
 

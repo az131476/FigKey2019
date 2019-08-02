@@ -105,12 +105,12 @@ namespace MesAPI
         int DeleteAllMaterial();
 
         [OperationContract]
-        string CommitProductMaterial(Dictionary<string, List<string>> keyValuePairs);
+        int CommitProductMaterial(List<ProductMaterial> pmList);
         [OperationContract]
-        DataSet SelectProductMaterial(string typeNo);
+        DataSet SelectProductMaterial(ProductMaterial material);
 
         [OperationContract]
-        int DeleteProductMaterial(string typeNo, string materialCode);
+        int DeleteProductMaterial(ProductMaterial material);
 
         //物料统计
         [OperationContract]
