@@ -28,40 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
-            // 
-            // radLabel1
-            // 
-            this.radLabel1.Location = new System.Drawing.Point(32, 58);
-            this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(54, 18);
-            this.radLabel1.TabIndex = 0;
-            this.radLabel1.Text = "站位名称";
             // 
             // CheckStation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.MediumSlateBlue;
             this.ClientSize = new System.Drawing.Size(1119, 688);
-            this.Controls.Add(this.radLabel1);
             this.Name = "CheckStation";
             // 
             // 
             // 
             this.RootElement.ApplyShapeToControl = true;
             this.Text = "检验过站";
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private Telerik.WinControls.UI.RadLabel radLabel1;
     }
 }

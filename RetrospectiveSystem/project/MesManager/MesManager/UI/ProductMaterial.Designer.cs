@@ -35,12 +35,12 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.radMenu1 = new Telerik.WinControls.UI.RadMenu();
+            this.menu_add_row = new Telerik.WinControls.UI.RadMenuItem();
             this.menu_delete = new Telerik.WinControls.UI.RadMenuItem();
             this.menu_update = new Telerik.WinControls.UI.RadMenuItem();
-            this.menu_refresh = new Telerik.WinControls.UI.RadMenuItem();
             this.menu_grid = new Telerik.WinControls.UI.RadMenuItem();
             this.menu_clear_db = new Telerik.WinControls.UI.RadMenuItem();
-            this.menu_add_row = new Telerik.WinControls.UI.RadMenuItem();
+            this.menu_refresh = new Telerik.WinControls.UI.RadMenuItem();
             this.radGridView1 = new Telerik.WinControls.UI.RadGridView();
             ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).BeginInit();
@@ -65,6 +65,13 @@
             this.radMenu1.Size = new System.Drawing.Size(1088, 36);
             this.radMenu1.TabIndex = 12;
             // 
+            // menu_add_row
+            // 
+            this.menu_add_row.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.menu_add_row.Image = global::MesManager.Properties.Resources.bullet_add;
+            this.menu_add_row.Name = "menu_add_row";
+            this.menu_add_row.Text = "新增";
+            // 
             // menu_delete
             // 
             this.menu_delete.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
@@ -82,14 +89,6 @@
             this.menu_update.Text = "更新";
             this.menu_update.UseCompatibleTextRendering = false;
             // 
-            // menu_refresh
-            // 
-            this.menu_refresh.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.menu_refresh.Image = global::MesManager.Properties.Resources.update;
-            this.menu_refresh.Name = "menu_refresh";
-            this.menu_refresh.Text = "刷新";
-            this.menu_refresh.UseCompatibleTextRendering = false;
-            // 
             // menu_grid
             // 
             this.menu_grid.ForeColor = System.Drawing.Color.White;
@@ -106,12 +105,13 @@
             this.menu_clear_db.Text = "清空数据";
             this.menu_clear_db.UseCompatibleTextRendering = false;
             // 
-            // menu_add_row
+            // menu_refresh
             // 
-            this.menu_add_row.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.menu_add_row.Image = global::MesManager.Properties.Resources.bullet_add;
-            this.menu_add_row.Name = "menu_add_row";
-            this.menu_add_row.Text = "新增";
+            this.menu_refresh.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.menu_refresh.Image = global::MesManager.Properties.Resources.update;
+            this.menu_refresh.Name = "menu_refresh";
+            this.menu_refresh.Text = "刷新";
+            this.menu_refresh.UseCompatibleTextRendering = false;
             // 
             // radGridView1
             // 
@@ -152,7 +152,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.BackColor = System.Drawing.Color.MediumSlateBlue;
             this.ClientSize = new System.Drawing.Size(1088, 722);
             this.Controls.Add(this.radGridView1);
             this.Controls.Add(this.radMenu1);

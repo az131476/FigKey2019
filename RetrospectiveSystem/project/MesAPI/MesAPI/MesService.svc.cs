@@ -587,6 +587,7 @@ namespace MesAPI
             string deleteSQL = $"DELETE FROM {DbTable.F_PRODUCT_MATERIAL_NAME} " +
                 $"WHERE {DbTable.F_PRODUCT_MATERIAL.TYPE_NO} = '{material.TypeNo}' AND " +
                 $"{DbTable.F_PRODUCT_MATERIAL.MATERIAL_CODE} = '{material.MaterialCode}'";
+            LogHelper.Log.Info(deleteSQL);
             return SQLServer.ExecuteNonQuery(deleteSQL);
         }
         public DataSet SelectProductMaterial(ProductMaterial material)

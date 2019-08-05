@@ -9,6 +9,7 @@ using System.Text;
 using System.Configuration;
 using System.Threading.Tasks;
 using CommonUtils.Logger;
+using System.Threading;
 
 
 namespace WindowsServiceDB
@@ -29,13 +30,17 @@ namespace WindowsServiceDB
                 var deleteSQL = ConfigurationManager.ConnectionStrings["deleteSQL"].ToString();
                 Task task = new Task(() =>
                 {
-                    int row = MySqlHelper.ExecuteNonQuery(connectionString, CommandType.Text, deleteSQL);
+                    while (true)
+                    {
+                        int row = MySqlHelper.ExecuteNonQuery(connectionString, CommandType.Text, deleteSQL);
+                        Thread.Sleep(50);
+                    }
                 });
                 task.Start();
             }
             catch (Exception ex)
             {
-                LogHelper.Log.Error(ex.Message);
+                LogHelper.Log.Error("异常："+ex.Message+"\r\n"+ex.StackTrace);
             }
         }
 

@@ -97,8 +97,8 @@ namespace MesManager.RadView
         private void MainReportData_Click(object sender, EventArgs e)
         {
             //报表中心/追溯中心
-            ReportCenter reportCenter = new ReportCenter();
-            reportCenter.ShowDialog();
+            SNCenter sNCenter = new SNCenter();
+            sNCenter.ShowDialog();
         }
 
         private void MainRepairCenter_Click(object sender, EventArgs e)

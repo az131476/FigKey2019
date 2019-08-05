@@ -57,7 +57,7 @@
             this.radPanorama1.PanelImageSize = new System.Drawing.Size(1024, 768);
             this.radPanorama1.RowsCount = 2;
             this.radPanorama1.ShowGroups = true;
-            this.radPanorama1.Size = new System.Drawing.Size(1216, 779);
+            this.radPanorama1.Size = new System.Drawing.Size(1224, 809);
             this.radPanorama1.TabIndex = 1;
             ((Telerik.WinControls.UI.RadPanoramaElement)(this.radPanorama1.GetChildAt(0))).BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(23)))), ((int)(((byte)(117)))));
             // 
@@ -157,7 +157,7 @@
             this.mainGraphView.Name = "mainGraphView";
             this.mainGraphView.Padding = new System.Windows.Forms.Padding(15, 15, 0, 10);
             this.mainGraphView.Row = 1;
-            this.mainGraphView.Text = "<html>看板中心 <br>";
+            this.mainGraphView.Text = "<html>报表查询 <br>";
             this.mainGraphView.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.mainGraphView.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this.mainGraphView.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
@@ -275,7 +275,7 @@
             this.mainReportData.Name = "mainReportData";
             this.mainReportData.Padding = new System.Windows.Forms.Padding(15, 15, 0, 10);
             this.mainReportData.Row = 1;
-            this.mainReportData.Text = "<html>追溯中心 <br>";
+            this.mainReportData.Text = "<html>追溯管理 <br>";
             this.mainReportData.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.mainReportData.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this.mainReportData.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
@@ -286,7 +286,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1216, 779);
+            this.ClientSize = new System.Drawing.Size(1224, 809);
             this.Controls.Add(this.radPanorama1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

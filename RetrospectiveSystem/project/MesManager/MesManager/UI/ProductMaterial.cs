@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
 using MesManager.Control;
+using CommonUtils.Logger;
 
 namespace MesManager.RadView
 {
@@ -15,6 +16,10 @@ namespace MesManager.RadView
     public partial class ProductMaterial : RadForm
     {
         MesService.MesServiceClient serviceClient;
+        private string keyMaterialCode;
+        private string keyTypeNo;
+
+        List<ProductMaterial> pmListTemp;
         private int editRowIndex;
         public ProductMaterial()
         {
@@ -32,6 +37,7 @@ namespace MesManager.RadView
         private void Init()
         {
             serviceClient = new MesService.MesServiceClient();
+            pmListTemp = new List<ProductMaterial>();
             DataGridViewCommon.SetRadGridViewProperty(this.radGridView1, true);
             this.radGridView1.DataSource = null;
             BindingDataSource();
@@ -47,6 +53,37 @@ namespace MesManager.RadView
             menu_grid.Click += Menu_grid_Click;
 
             this.radGridView1.ContextMenuOpening += RadGridView1_ContextMenuOpening;
+            this.radGridView1.CellBeginEdit += RadGridView1_CellBeginEdit;
+            this.radGridView1.CellEndEdit += RadGridView1_CellEndEdit;
+        }
+
+        private void RadGridView1_CellEndEdit(object sender, GridViewCellEventArgs e)
+        {
+            //结束编辑，记录下value;与编辑前比较，值改变则执行修改
+            string curMaterialCode = "";
+            string curTypeNo = "";
+            if (this.radGridView1.CurrentRow.Cells[1].Value != null)
+                curTypeNo = this.radGridView1.CurrentRow.Cells[1].Value.ToString();
+            if (this.radGridView1.CurrentRow.Cells[2].Value != null)
+                curMaterialCode = this.radGridView1.CurrentRow.Cells[2].Value.ToString();
+
+            if (curMaterialCode != keyMaterialCode || curTypeNo != keyTypeNo)
+            {
+                ProductMaterial productMaterial = new ProductMaterial();
+                productMaterial.keyMaterialCode = keyMaterialCode;
+
+                productMaterial.keyTypeNo = keyTypeNo;
+                pmListTemp.Add(productMaterial);
+            }
+        }
+
+        private void RadGridView1_CellBeginEdit(object sender, GridViewCellCancelEventArgs e)
+        {
+            //开始编辑，记录下value
+            if (this.radGridView1.CurrentRow.Cells[1].Value != null)
+                keyTypeNo = this.radGridView1.CurrentRow.Cells[1].Value.ToString();
+            if (this.radGridView1.CurrentRow.Cells[2].Value != null)
+                keyMaterialCode = this.radGridView1.CurrentRow.Cells[2].Value.ToString();
         }
 
         private void RadGridView1_ContextMenuOpening(object sender, ContextMenuOpeningEventArgs e)
@@ -162,6 +199,9 @@ namespace MesManager.RadView
             productTypeNo.DataSource = typeNoListTemp;
             SelectData();
             this.radGridView1.EndEdit();
+            //设置第一列不可编辑
+            this.radGridView1.Columns[0].ReadOnly = true;
+            this.pmListTemp.Clear();
         }
 
         async private void UpdateData()
@@ -184,6 +224,15 @@ namespace MesManager.RadView
                     productMaterialList[row] = productMaterial;
                 row++;
             }
+            //delete修改数据
+            foreach (var item in pmListTemp)
+            {
+                MesService.ProductMaterial productMaterial = new MesService.ProductMaterial();
+                productMaterial.MaterialCode = item.keyMaterialCode;
+                productMaterial.TypeNo = item.keyTypeNo;
+                int del = await serviceClient.DeleteProductMaterialAsync(productMaterial);
+            }
+            pmListTemp.Clear();
             int res = await serviceClient.CommitProductMaterialAsync(productMaterialList);
             if (res == 1)
             {

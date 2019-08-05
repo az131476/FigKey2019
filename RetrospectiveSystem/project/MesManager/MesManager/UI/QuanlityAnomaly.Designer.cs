@@ -28,45 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.radPanorama1 = new Telerik.WinControls.UI.RadPanorama();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanorama1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
-            // 
-            // radPanorama1
-            // 
-            this.radPanorama1.AutoArrangeNewTiles = false;
-            this.radPanorama1.BackColor = System.Drawing.Color.White;
-            this.radPanorama1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radPanorama1.Location = new System.Drawing.Point(0, 0);
-            this.radPanorama1.Name = "radPanorama1";
-            this.radPanorama1.PanelImageSize = new System.Drawing.Size(1024, 768);
-            this.radPanorama1.RowsCount = 2;
-            this.radPanorama1.ShowGroups = true;
-            this.radPanorama1.Size = new System.Drawing.Size(1123, 701);
-            this.radPanorama1.TabIndex = 2;
-            ((Telerik.WinControls.UI.RadPanoramaElement)(this.radPanorama1.GetChildAt(0))).BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(23)))), ((int)(((byte)(117)))));
             // 
             // QuanlityAnomaly
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.MediumSlateBlue;
             this.ClientSize = new System.Drawing.Size(1123, 701);
-            this.Controls.Add(this.radPanorama1);
             this.Name = "QuanlityAnomaly";
             // 
             // 
             // 
             this.RootElement.ApplyShapeToControl = true;
             this.Text = "品质异常管理";
-            ((System.ComponentModel.ISupportInitialize)(this.radPanorama1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private Telerik.WinControls.UI.RadPanorama radPanorama1;
     }
 }

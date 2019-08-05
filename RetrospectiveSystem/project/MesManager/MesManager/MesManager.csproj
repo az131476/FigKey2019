@@ -69,6 +69,7 @@
       <HintPath>..\Lib\DB\SqlSugar.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
@@ -230,6 +231,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\telerik\VisualStyleBuilder.Design.dll</HintPath>
     </Reference>
+    <Reference Include="ZedGraph, Version=5.1.7.430, Culture=neutral, PublicKeyToken=02a83cbd123fcd60, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZedGraph.5.1.7\lib\net35-Client\ZedGraph.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Connected Services\MesService\Reference.cs">
@@ -372,11 +376,11 @@
     <Compile Include="UI\RepairCenter.Designer.cs">
       <DependentUpon>RepairCenter.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\ReportCenter.cs">
+    <Compile Include="UI\SNCenter.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\ReportCenter.Designer.cs">
-      <DependentUpon>ReportCenter.cs</DependentUpon>
+    <Compile Include="UI\SNCenter.Designer.cs">
+      <DependentUpon>SNCenter.cs</DependentUpon>
     </Compile>
     <Compile Include="WelcomeForm.cs">
       <SubType>Form</SubType>
@@ -464,8 +468,8 @@
     <EmbeddedResource Include="UI\RepairCenter.resx">
       <DependentUpon>RepairCenter.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\ReportCenter.resx">
-      <DependentUpon>ReportCenter.cs</DependentUpon>
+    <EmbeddedResource Include="UI\SNCenter.resx">
+      <DependentUpon>SNCenter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WelcomeForm.cs.resx">
       <DependentUpon>WelcomeForm.cs</DependentUpon>
@@ -544,6 +548,7 @@
     <None Include="Resources\GenericShareFolder_128x128.png" />
     <None Include="Resources\GenericShareFolder_16x16.png" />
     <None Include="Resources\GenericShareFolder_24x24.png" />
+    <Content Include="License-LGPL.txt" />
     <Content Include="MES修改设计.txt" />
     <None Include="Resources\bullet_delete.png" />
     <None Include="Resources\update.png" />
