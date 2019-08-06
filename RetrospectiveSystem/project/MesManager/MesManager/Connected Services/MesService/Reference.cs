@@ -14,7 +14,7 @@ namespace MesManager.MesService {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="LoginUser", Namespace="http://schemas.datacontract.org/2004/07/MesAPI.Model")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="LoginUser", Namespace="http://schemas.datacontract.org/2004/07/MESWebService.Model")]
     public enum LoginUser : int {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
@@ -28,7 +28,7 @@ namespace MesManager.MesService {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="LoginResult", Namespace="http://schemas.datacontract.org/2004/07/MesAPI.Model")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="LoginResult", Namespace="http://schemas.datacontract.org/2004/07/MESWebService.Model")]
     public enum LoginResult : int {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
@@ -48,7 +48,7 @@ namespace MesManager.MesService {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="QueryResult", Namespace="http://schemas.datacontract.org/2004/07/MesAPI.Model")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="QueryResult", Namespace="http://schemas.datacontract.org/2004/07/MESWebService.Model")]
     public enum QueryResult : int {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
@@ -62,7 +62,7 @@ namespace MesManager.MesService {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="RegisterResult", Namespace="http://schemas.datacontract.org/2004/07/MesAPI.Model")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="RegisterResult", Namespace="http://schemas.datacontract.org/2004/07/MESWebService.Model")]
     public enum RegisterResult : int {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
@@ -80,7 +80,7 @@ namespace MesManager.MesService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Station", Namespace="http://schemas.datacontract.org/2004/07/MesAPI.Model")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Station", Namespace="http://schemas.datacontract.org/2004/07/MESWebService.Model")]
     [System.SerializableAttribute()]
     public partial class Station : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -141,7 +141,7 @@ namespace MesManager.MesService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="MaterialMsg", Namespace="http://schemas.datacontract.org/2004/07/MesAPI.Model")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="MaterialMsg", Namespace="http://schemas.datacontract.org/2004/07/MESWebService.Model")]
     [System.SerializableAttribute()]
     public partial class MaterialMsg : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -266,7 +266,7 @@ namespace MesManager.MesService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ProductMaterial", Namespace="http://schemas.datacontract.org/2004/07/MesAPI.Model")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ProductMaterial", Namespace="http://schemas.datacontract.org/2004/07/MESWebService.Model")]
     [System.SerializableAttribute()]
     public partial class ProductMaterial : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -359,7 +359,7 @@ namespace MesManager.MesService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="PackageProduct", Namespace="http://schemas.datacontract.org/2004/07/MesAPI.Model")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PackageProduct", Namespace="http://schemas.datacontract.org/2004/07/MESWebService.Model")]
     [System.SerializableAttribute()]
     public partial class PackageProduct : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -377,6 +377,9 @@ namespace MesManager.MesService {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private byte[] PictureField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string RemarkField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string SnOutterField;
@@ -442,6 +445,19 @@ namespace MesManager.MesService {
                 if ((object.ReferenceEquals(this.PictureField, value) != true)) {
                     this.PictureField = value;
                     this.RaisePropertyChanged("Picture");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Remark {
+            get {
+                return this.RemarkField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RemarkField, value) != true)) {
+                    this.RemarkField = value;
+                    this.RaisePropertyChanged("Remark");
                 }
             }
         }
@@ -686,16 +702,34 @@ namespace MesManager.MesService {
         System.Threading.Tasks.Task<System.Data.DataSet> SelectOutCaseBoxStorageAsync(string caseCode);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/CommitPackageProduct", ReplyAction="http://tempuri.org/IMesService/CommitPackageProductResponse")]
-        int CommitPackageProduct(MesManager.MesService.PackageProduct packageProduct);
+        int CommitPackageProduct(MesManager.MesService.PackageProduct[] packageProductList);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/CommitPackageProduct", ReplyAction="http://tempuri.org/IMesService/CommitPackageProductResponse")]
-        System.Threading.Tasks.Task<int> CommitPackageProductAsync(MesManager.MesService.PackageProduct packageProduct);
+        System.Threading.Tasks.Task<int> CommitPackageProductAsync(MesManager.MesService.PackageProduct[] packageProductList);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/UpdatePackageProduct", ReplyAction="http://tempuri.org/IMesService/UpdatePackageProductResponse")]
         int UpdatePackageProduct(MesManager.MesService.PackageProduct packageProduct);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/UpdatePackageProduct", ReplyAction="http://tempuri.org/IMesService/UpdatePackageProductResponse")]
         System.Threading.Tasks.Task<int> UpdatePackageProductAsync(MesManager.MesService.PackageProduct packageProduct);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectProductBindingState", ReplyAction="http://tempuri.org/IMesService/SelectProductBindingStateResponse")]
+        System.Data.DataSet SelectProductBindingState(string sn);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectProductBindingState", ReplyAction="http://tempuri.org/IMesService/SelectProductBindingStateResponse")]
+        System.Threading.Tasks.Task<System.Data.DataSet> SelectProductBindingStateAsync(string sn);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectProductBindingCount", ReplyAction="http://tempuri.org/IMesService/SelectProductBindingCountResponse")]
+        System.Data.DataSet SelectProductBindingCount(string casecode, string bindingState);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectProductBindingCount", ReplyAction="http://tempuri.org/IMesService/SelectProductBindingCountResponse")]
+        System.Threading.Tasks.Task<System.Data.DataSet> SelectProductBindingCountAsync(string casecode, string bindingState);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/DeleteProductBindingData", ReplyAction="http://tempuri.org/IMesService/DeleteProductBindingDataResponse")]
+        int DeleteProductBindingData(string casecode);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/DeleteProductBindingData", ReplyAction="http://tempuri.org/IMesService/DeleteProductBindingDataResponse")]
+        System.Threading.Tasks.Task<int> DeleteProductBindingDataAsync(string casecode);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectPackageProduct", ReplyAction="http://tempuri.org/IMesService/SelectPackageProductResponse")]
         System.Data.DataSet SelectPackageProduct(MesManager.MesService.PackageProduct packageProduct);
@@ -1046,12 +1080,12 @@ namespace MesManager.MesService {
             return base.Channel.SelectOutCaseBoxStorageAsync(caseCode);
         }
         
-        public int CommitPackageProduct(MesManager.MesService.PackageProduct packageProduct) {
-            return base.Channel.CommitPackageProduct(packageProduct);
+        public int CommitPackageProduct(MesManager.MesService.PackageProduct[] packageProductList) {
+            return base.Channel.CommitPackageProduct(packageProductList);
         }
         
-        public System.Threading.Tasks.Task<int> CommitPackageProductAsync(MesManager.MesService.PackageProduct packageProduct) {
-            return base.Channel.CommitPackageProductAsync(packageProduct);
+        public System.Threading.Tasks.Task<int> CommitPackageProductAsync(MesManager.MesService.PackageProduct[] packageProductList) {
+            return base.Channel.CommitPackageProductAsync(packageProductList);
         }
         
         public int UpdatePackageProduct(MesManager.MesService.PackageProduct packageProduct) {
@@ -1060,6 +1094,30 @@ namespace MesManager.MesService {
         
         public System.Threading.Tasks.Task<int> UpdatePackageProductAsync(MesManager.MesService.PackageProduct packageProduct) {
             return base.Channel.UpdatePackageProductAsync(packageProduct);
+        }
+        
+        public System.Data.DataSet SelectProductBindingState(string sn) {
+            return base.Channel.SelectProductBindingState(sn);
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> SelectProductBindingStateAsync(string sn) {
+            return base.Channel.SelectProductBindingStateAsync(sn);
+        }
+        
+        public System.Data.DataSet SelectProductBindingCount(string casecode, string bindingState) {
+            return base.Channel.SelectProductBindingCount(casecode, bindingState);
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> SelectProductBindingCountAsync(string casecode, string bindingState) {
+            return base.Channel.SelectProductBindingCountAsync(casecode, bindingState);
+        }
+        
+        public int DeleteProductBindingData(string casecode) {
+            return base.Channel.DeleteProductBindingData(casecode);
+        }
+        
+        public System.Threading.Tasks.Task<int> DeleteProductBindingDataAsync(string casecode) {
+            return base.Channel.DeleteProductBindingDataAsync(casecode);
         }
         
         public System.Data.DataSet SelectPackageProduct(MesManager.MesService.PackageProduct packageProduct) {

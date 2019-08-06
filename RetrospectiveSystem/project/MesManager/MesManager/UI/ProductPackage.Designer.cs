@@ -29,21 +29,21 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProductPackage));
-            Telerik.WinControls.UI.GridViewImageColumn gridViewImageColumn1 = new Telerik.WinControls.UI.GridViewImageColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewImageColumn gridViewImageColumn2 = new Telerik.WinControls.UI.GridViewImageColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             this.label1 = new System.Windows.Forms.Label();
             this.tb_sn = new System.Windows.Forms.TextBox();
-            this.tb_materialCode = new System.Windows.Forms.TextBox();
+            this.tb_caseCode = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.menu_delete = new Telerik.WinControls.UI.RadMenuItem();
             this.menu_update = new Telerik.WinControls.UI.RadMenuItem();
             this.menu_grid = new Telerik.WinControls.UI.RadMenuItem();
             this.menu_clear_db = new Telerik.WinControls.UI.RadMenuItem();
-            this.menu_refresh = new Telerik.WinControls.UI.RadMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.tool_materialCode = new System.Windows.Forms.ToolStripStatusLabel();
@@ -53,6 +53,7 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.radGridView1 = new Telerik.WinControls.UI.RadGridView();
             this.radMenu1 = new Telerik.WinControls.UI.RadMenu();
+            this.menu_add = new Telerik.WinControls.UI.RadMenuItem();
             this.statusStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -79,13 +80,13 @@
             this.tb_sn.Size = new System.Drawing.Size(366, 25);
             this.tb_sn.TabIndex = 2;
             // 
-            // tb_materialCode
+            // tb_caseCode
             // 
-            this.tb_materialCode.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_materialCode.Location = new System.Drawing.Point(544, 10);
-            this.tb_materialCode.Name = "tb_materialCode";
-            this.tb_materialCode.Size = new System.Drawing.Size(366, 25);
-            this.tb_materialCode.TabIndex = 12;
+            this.tb_caseCode.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb_caseCode.Location = new System.Drawing.Point(544, 10);
+            this.tb_caseCode.Name = "tb_caseCode";
+            this.tb_caseCode.Size = new System.Drawing.Size(366, 25);
+            this.tb_caseCode.TabIndex = 12;
             // 
             // label10
             // 
@@ -139,14 +140,6 @@
             this.menu_clear_db.Text = "清空数据";
             this.menu_clear_db.UseCompatibleTextRendering = false;
             // 
-            // menu_refresh
-            // 
-            this.menu_refresh.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.menu_refresh.Image = global::MesManager.Properties.Resources.update;
-            this.menu_refresh.Name = "menu_refresh";
-            this.menu_refresh.Text = "刷新";
-            this.menu_refresh.UseCompatibleTextRendering = false;
-            // 
             // statusStrip1
             // 
             this.statusStrip1.BackColor = System.Drawing.Color.Transparent;
@@ -170,8 +163,7 @@
             // tool_materialCode
             // 
             this.tool_materialCode.Name = "tool_materialCode";
-            this.tool_materialCode.Size = new System.Drawing.Size(43, 17);
-            this.tool_materialCode.Text = "00001";
+            this.tool_materialCode.Size = new System.Drawing.Size(0, 17);
             // 
             // toolStripStatusLabel5
             // 
@@ -182,15 +174,14 @@
             // tool_curNumber
             // 
             this.tool_curNumber.Name = "tool_curNumber";
-            this.tool_curNumber.Size = new System.Drawing.Size(22, 17);
-            this.tool_curNumber.Text = "90";
+            this.tool_curNumber.Size = new System.Drawing.Size(0, 17);
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.tb_sn);
             this.panel1.Controls.Add(this.label10);
-            this.panel1.Controls.Add(this.tb_materialCode);
+            this.panel1.Controls.Add(this.tb_caseCode);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 36);
@@ -214,31 +205,35 @@
             this.radGridView1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.radGridView1.Cursor = System.Windows.Forms.Cursors.Default;
             this.radGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radGridView1.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.radGridView1.Font = new System.Drawing.Font("Segoe UI", 11.25F);
             this.radGridView1.ForeColor = System.Drawing.Color.Black;
             this.radGridView1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.radGridView1.Location = new System.Drawing.Point(3, 18);
             // 
             // 
             // 
-            gridViewImageColumn1.EnableExpressionEditor = false;
-            gridViewImageColumn1.HeaderText = "删除";
-            gridViewImageColumn1.Name = "dgv_delete";
-            gridViewTextBoxColumn1.EnableExpressionEditor = false;
-            gridViewTextBoxColumn1.HeaderText = "序号";
-            gridViewTextBoxColumn1.Name = "dgv_order";
-            gridViewTextBoxColumn2.EnableExpressionEditor = false;
-            gridViewTextBoxColumn2.HeaderText = "产品SN";
-            gridViewTextBoxColumn2.Name = "dgv_sn";
-            gridViewTextBoxColumn3.EnableExpressionEditor = false;
-            gridViewTextBoxColumn3.HeaderText = "备注";
-            gridViewTextBoxColumn3.Name = "dgv_remark";
+            gridViewImageColumn2.EnableExpressionEditor = false;
+            gridViewImageColumn2.HeaderText = "删除";
+            gridViewImageColumn2.Name = "dgv_delete";
+            gridViewTextBoxColumn5.EnableExpressionEditor = false;
+            gridViewTextBoxColumn5.HeaderText = "序号";
+            gridViewTextBoxColumn5.Name = "dgv_order";
+            gridViewTextBoxColumn6.EnableExpressionEditor = false;
+            gridViewTextBoxColumn6.HeaderText = "产品SN";
+            gridViewTextBoxColumn6.Name = "dgv_sn";
+            gridViewTextBoxColumn7.EnableExpressionEditor = false;
+            gridViewTextBoxColumn7.HeaderText = "绑定状态";
+            gridViewTextBoxColumn7.Name = "dgv_binding_state";
+            gridViewTextBoxColumn8.EnableExpressionEditor = false;
+            gridViewTextBoxColumn8.HeaderText = "备注";
+            gridViewTextBoxColumn8.Name = "dgv_remark";
             this.radGridView1.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewImageColumn1,
-            gridViewTextBoxColumn1,
-            gridViewTextBoxColumn2,
-            gridViewTextBoxColumn3});
-            this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            gridViewImageColumn2,
+            gridViewTextBoxColumn5,
+            gridViewTextBoxColumn6,
+            gridViewTextBoxColumn7,
+            gridViewTextBoxColumn8});
+            this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition2;
             this.radGridView1.Name = "radGridView1";
             this.radGridView1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.radGridView1.Size = new System.Drawing.Size(930, 565);
@@ -249,16 +244,23 @@
             this.radMenu1.BackColor = System.Drawing.Color.Transparent;
             this.radMenu1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radMenu1.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.menu_add,
             this.menu_delete,
             this.menu_update,
             this.menu_grid,
-            this.menu_clear_db,
-            this.menu_refresh});
+            this.menu_clear_db});
             this.radMenu1.Location = new System.Drawing.Point(0, 0);
             this.radMenu1.Name = "radMenu1";
             this.radMenu1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.radMenu1.Size = new System.Drawing.Size(936, 36);
             this.radMenu1.TabIndex = 14;
+            // 
+            // menu_add
+            // 
+            this.menu_add.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.menu_add.Image = global::MesManager.Properties.Resources.bullet_add;
+            this.menu_add.Name = "menu_add";
+            this.menu_add.Text = "添加";
             // 
             // ProductPackage
             // 
@@ -294,14 +296,13 @@
         #endregion
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tb_sn;
-        private System.Windows.Forms.TextBox tb_materialCode;
+        private System.Windows.Forms.TextBox tb_caseCode;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label2;
         private Telerik.WinControls.UI.RadMenuItem menu_delete;
         private Telerik.WinControls.UI.RadMenuItem menu_update;
         private Telerik.WinControls.UI.RadMenuItem menu_grid;
         private Telerik.WinControls.UI.RadMenuItem menu_clear_db;
-        private Telerik.WinControls.UI.RadMenuItem menu_refresh;
         private Telerik.WinControls.UI.RadMenu radMenu1;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
@@ -311,5 +312,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.GroupBox groupBox2;
         private Telerik.WinControls.UI.RadGridView radGridView1;
+        private Telerik.WinControls.UI.RadMenuItem menu_add;
     }
 }

@@ -181,6 +181,7 @@
             // radGridViewSn
             // 
             this.radGridViewSn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radGridViewSn.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radGridViewSn.Location = new System.Drawing.Point(0, 55);
             // 
             // 
@@ -256,6 +257,7 @@
             // radGridViewPackage
             // 
             this.radGridViewPackage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radGridViewPackage.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radGridViewPackage.Location = new System.Drawing.Point(0, 55);
             // 
             // 
@@ -327,6 +329,7 @@
             // radGridViewMaterial
             // 
             this.radGridViewMaterial.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radGridViewMaterial.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radGridViewMaterial.Location = new System.Drawing.Point(0, 55);
             // 
             // 
@@ -422,6 +425,7 @@
             // radGridView4
             // 
             this.radGridView4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radGridView4.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radGridView4.Location = new System.Drawing.Point(0, 55);
             // 
             // 

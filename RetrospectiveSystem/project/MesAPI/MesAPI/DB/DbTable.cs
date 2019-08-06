@@ -101,6 +101,7 @@ namespace MesAPI.DB
             public const string PICTURE = "[picture]";
             public const string BINDING_STATE = "[binding_state]";
             public const string BINDING_DATE = "[binding_date]";
+            public const string REMARK = "[remark]";
         }
 
         public class F_Pass_Rate_Statistics

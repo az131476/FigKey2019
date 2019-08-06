@@ -163,6 +163,7 @@ namespace MesManager.RadView
                 return;
             }
             //提交箱子容量
+            MesService.PackageProduct[] packageProducts = new MesService.PackageProduct[10];
             await serviceClient.CommitOutCaseBoxStorageAsync(caseCode,caseAmount);
             packageProduct.CaseCode = caseCode;
             packageProduct.SnOutter = sn;
@@ -170,7 +171,7 @@ namespace MesManager.RadView
             packageProduct.BindingState = 1;
             packageProduct.BindingDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             packageProduct.Picture = UpLoadImage.ProductImage;
-            int x = await serviceClient.CommitPackageProductAsync(packageProduct);
+            int x = await serviceClient.CommitPackageProductAsync(packageProducts);
             //绑定完成后，添加到显示列表
             UpLoadImage.ProductImage = null;
             if (x < 1)

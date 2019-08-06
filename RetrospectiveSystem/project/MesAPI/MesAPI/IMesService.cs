@@ -137,13 +137,21 @@ namespace MesAPI
         [SwaggerWcfPath("CommitPackageProduct", "产品绑定到箱子")]
         [WebInvoke(Method = "GET", UriTemplate = "CommitPackageProduct",
             BodyStyle = WebMessageBodyStyle.Bare, RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
-        int CommitPackageProduct(PackageProduct packageProduct);
+        int CommitPackageProduct(List<PackageProduct> packageProductList);
 
         [OperationContract]
         [SwaggerWcfPath("UpdatePackageProduct", "成品抽检时数据更新（解除绑定）")]
         [WebInvoke(Method = "GET", UriTemplate = "UpdatePackageProduct",
             BodyStyle = WebMessageBodyStyle.Bare, RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
         int UpdatePackageProduct(PackageProduct packageProduct);
+        [OperationContract]
+        DataSet SelectProductBindingState(string sn);
+
+        [OperationContract]
+        DataSet SelectProductBindingCount(string casecode, string bindingState);
+
+        [OperationContract]
+        int DeleteProductBindingData(string casecode);
 
         [OperationContract]
         DataSet SelectPackageProduct(PackageProduct packageProduct);

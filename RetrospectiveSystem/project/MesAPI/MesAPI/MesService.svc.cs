@@ -854,40 +854,45 @@ namespace MesAPI
 
         #region 成品打包接口
         [SwaggerWcfTag("MesServcie 服务")]
-        public int CommitPackageProduct(PackageProduct packageProduct)
+        public int CommitPackageProduct(List<PackageProduct> packageProductList)
         {
             string imageName = "@imageData";
-            string insertSQL = $"INSERT INTO {DbTable.F_OUT_CASE_PRODUCT_NAME}({DbTable.F_Out_Case_Product.OUT_CASE_CODE}," +
+            for(int i = 0;i< packageProductList.Count;i++)
+            {
+                string insertSQL = $"INSERT INTO {DbTable.F_OUT_CASE_PRODUCT_NAME}({DbTable.F_Out_Case_Product.OUT_CASE_CODE}," +
                 $"{DbTable.F_Out_Case_Product.SN_OUTTER},{DbTable.F_Out_Case_Product.TYPE_NO}," +
                 $"{DbTable.F_Out_Case_Product.PICTURE},{DbTable.F_Out_Case_Product.BINDING_STATE}," +
-                $"{DbTable.F_Out_Case_Product.BINDING_DATE}) " +
-                $"VALUES('{packageProduct.CaseCode}','{packageProduct.SnOutter}','{packageProduct.TypeNo}',{imageName}," +
-                $"'{packageProduct.BindingState}','{packageProduct.BindingDate}')";
-            LogHelper.Log.Info($"CommitPackageProduct Init Insert={insertSQL}");
-            if (IsExistPackageProduct(packageProduct.CaseCode, packageProduct.SnOutter))
-            {
-                //update
-                return UpdatePackageProduct(packageProduct);
-            }
-            else
-            {
-                try
+                $"{DbTable.F_Out_Case_Product.BINDING_DATE},{DbTable.F_Out_Case_Product.REMARK}) " +
+                $"VALUES('{packageProductList[i].CaseCode}','{packageProductList[i].SnOutter}','{packageProductList[i].TypeNo}',{imageName}," +
+                $"'{packageProductList[i].BindingState}','{packageProductList[i].BindingDate}','{packageProductList[i].Remark}')";
+
+                LogHelper.Log.Info($"CommitPackageProduct Init Insert={insertSQL}");
+                if (IsExistPackageProduct(packageProductList[i].CaseCode, packageProductList[i].SnOutter))
                 {
-                    SqlParameter[] sqlParameters = new SqlParameter[1];
-                    SqlParameter sqlParameter = new SqlParameter();
-                    sqlParameter.ParameterName = imageName;
-                    sqlParameter.SqlDbType = SqlDbType.Binary;
-                    sqlParameter.Value = packageProduct.Picture;
-                    sqlParameters[0] = sqlParameter;
-                    return SQLServer.ExecuteNonQuery(insertSQL, sqlParameters);
+                    //update
+                    UpdatePackageProduct(packageProductList[i]);
                 }
-                catch (Exception ex)
+                else
                 {
-                    LogHelper.Log.Error($"Err start ExecuteNonQuery={ex.Message}\r\n{ex.StackTrace}");
-                    return -1;
+                    try
+                    {
+                        SqlParameter[] sqlParameters = new SqlParameter[1];
+                        SqlParameter sqlParameter = new SqlParameter();
+                        sqlParameter.ParameterName = imageName;
+                        sqlParameter.SqlDbType = SqlDbType.Binary;
+                        sqlParameter.Value = packageProductList[i].Picture;
+                        sqlParameters[0] = sqlParameter;
+                        SQLServer.ExecuteNonQuery(insertSQL, sqlParameters);
+                    }
+                    catch (Exception ex)
+                    {
+                        LogHelper.Log.Error($"Err start ExecuteNonQuery={ex.Message}\r\n{ex.StackTrace}");
+                        return -1;
+                    }
+                    //return ExecuteSQL(insertSQL,packageProduct.Picture);
                 }
-                //return ExecuteSQL(insertSQL,packageProduct.Picture);
             }
+            return 1;
         }
         private bool IsExistPackageProduct(string caseCode, string snOutter)
         {
@@ -943,12 +948,46 @@ namespace MesAPI
                 selectSQL = $"SELECT OUT_CASE_CODE 包装箱编码,SN_OUTTER 产品追溯码," +
                     $"TYPE_NO 产品型号,BINDING_STATE 绑定状态,BINDING_DATE 绑定日期 " +
                     $"FROM {DbTable.F_OUT_CASE_PRODUCT_NAME} WHERE " +
-                    $"{DbTable.F_Out_Case_Product.OUT_CASE_CODE} = '{packageProduct.CaseCode}' OR " +
-                    $"{DbTable.F_Out_Case_Product.SN_OUTTER} = '{packageProduct.SnOutter}' OR " +
-                    $"{DbTable.F_Out_Case_Product.TYPE_NO} = '{packageProduct.TypeNo}'" +
+                    $"{DbTable.F_Out_Case_Product.OUT_CASE_CODE} = '{packageProduct.CaseCode}' AND " +
+                    $"{DbTable.F_Out_Case_Product.SN_OUTTER} = '{packageProduct.SnOutter}' OR "+
                     $"{DbTable.F_Out_Case_Product.BINDING_STATE} = '{packageProduct.BindingState}'";
             }
             return SQLServer.ExecuteDataSet(selectSQL);
+        }
+
+        public DataSet SelectProductBindingState(string sn)
+        {
+            //箱子编码/追溯码查询/产品型号
+            string selectSQL = $"SELECT BINDING_STATE 绑定状态 " +
+                    $"FROM {DbTable.F_OUT_CASE_PRODUCT_NAME} WHERE " +
+                    $"{DbTable.F_Out_Case_Product.SN_OUTTER} = '{sn}'";
+            return SQLServer.ExecuteDataSet(selectSQL);
+        }
+
+        /// <summary>
+        /// 由箱子编码查询，该箱子已装数量；已绑定/绑定后解绑
+        /// </summary>
+        /// <param name="casecode"></param>
+        /// <param name="bindingState"></param>
+        /// <returns></returns>
+        public DataSet SelectProductBindingCount(string casecode,string bindingState)
+        {
+            string selectSQL = $"SELECT {DbTable.F_Out_Case_Product.OUT_CASE_CODE},{DbTable.F_Out_Case_Product.SN_OUTTER} " +
+                $"FROM {DbTable.F_OUT_CASE_PRODUCT_NAME} " +
+                $"WHERE {DbTable.F_Out_Case_Product.OUT_CASE_CODE} = '{casecode}' AND {DbTable.F_Out_Case_Product.BINDING_STATE} = '{bindingState}'";
+            return SQLServer.ExecuteDataSet(selectSQL);
+        }
+
+        /// <summary>
+        /// 由箱子编码删除所有绑定记录
+        /// </summary>
+        /// <param name="casecode"></param>
+        /// <returns></returns>
+        public int DeleteProductBindingData(string casecode)
+        {
+            string deleteSQL = $"DELETE FROM {DbTable.F_OUT_CASE_PRODUCT_NAME} WHERE " +
+                $"{DbTable.F_Out_Case_Product.OUT_CASE_CODE} = '{casecode}'";
+            return SQLServer.ExecuteNonQuery(deleteSQL);
         }
         #endregion
 

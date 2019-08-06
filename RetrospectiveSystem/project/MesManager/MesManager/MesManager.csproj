@@ -241,9 +241,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Control\ComGraph.cs" />
     <Compile Include="Control\DataGridViewCommon.cs" />
     <Compile Include="Control\ListViewCommon.cs" />
     <Compile Include="Control\TreeViewControl.cs" />
+    <Compile Include="Control\ZedGraph.cs" />
     <Compile Include="DB\Config.cs" />
     <Compile Include="DB\Order.cs" />
     <Compile Include="DB\OrderItem.cs" />
@@ -583,13 +585,13 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Connected Services\MesService\" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\..\..\..\CommonLibrary\CommonUtils\CommonUtils\CommonUtils.csproj">
       <Project>{f028916d-2588-4aad-b429-1dd004e1d561}</Project>
       <Name>CommonUtils</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\MesService\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

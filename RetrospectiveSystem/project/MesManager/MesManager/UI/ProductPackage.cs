@@ -51,11 +51,46 @@ namespace MesManager.UI
             this.tb_sn.TextChanged += Tb_sn_TextChanged;
             this.radGridView1.CellClick += RadGridView1_CellClick;
             this.menu_update.Click += Menu_update_Click;
+            this.menu_delete.Click += Menu_delete_Click;
+            this.menu_grid.Click += Menu_grid_Click;
+            this.menu_add.Click += Menu_add_Click;
+            this.menu_clear_db.Click += Menu_clear_db_Click;
+        }
+
+        private void Menu_add_Click(object sender, EventArgs e)
+        {
+            AddBindingData();
+        }
+
+        async private void Menu_clear_db_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(this.tb_caseCode.Text))
+                return;
+            if (MessageBox.Show($"确定清除箱子编码为{this.tb_caseCode.Text}的所有绑定记录？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+            {
+                int del = await serviceClient.DeleteProductBindingDataAsync(this.tb_caseCode.Text.Trim());
+                if (del > 0)
+                    MessageBox.Show($"已清除{del}条绑定数据！","提示",MessageBoxButtons.OK,MessageBoxIcon.Information);
+            }
+        }
+
+
+        private void Menu_grid_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < this.radGridView1.Rows.Count; i++)
+            {
+                this.radGridView1.Rows[i].Delete();
+            }
+        }
+
+        private void Menu_delete_Click(object sender, EventArgs e)
+        {
+            this.radGridView1.CurrentRow.Delete();
         }
 
         private void Menu_update_Click(object sender, EventArgs e)
         {
-            
+            UpdateData();
         }
 
         private void RadGridView1_CellClick(object sender, GridViewCellEventArgs e)
@@ -82,14 +117,96 @@ namespace MesManager.UI
         /// </summary>
         private void AddBindingData()
         {
-            //查询信息：序号+SN+型号+绑定状态
+            //查询信息：序号+SN+型号+绑定状态+备注
+            if (IsExistSn())
+                return;
             this.radGridView1.Rows.AddNew();
             int startIndex = this.radGridView1.Rows.Count - 1;
             this.radGridView1.Rows[startIndex].Cells[0].Value = Resources.bullet_delete;
             this.radGridView1.Rows[startIndex].Cells[1].Value = startIndex + 1;
             this.radGridView1.Rows[startIndex].Cells[2].Value = tb_sn.Text.Trim();
-            this.tool_curNumber.Text = this.radGridView1.Rows.Count.ToString();
-            this.tool_materialCode.Text = tb_materialCode.Text;
+            var bindingRes = SelectBindingState();
+            this.radGridView1.Rows[startIndex].Cells[3].Value = bindingRes;
+            if (bindingRes == "已绑定")
+                this.radGridView1.Rows[startIndex].Cells[3].Style.ForeColor = Color.Red;
+            this.tb_sn.Clear();
+        }
+
+        private bool IsExistSn()
+        {
+            if (this.radGridView1.Rows.Count < 1)
+                return false;
+            foreach (var rowInfo in this.radGridView1.Rows)
+            {
+                var sn = rowInfo.Cells[2].Value.ToString();
+                if (tb_sn.Text.Trim().Equals(sn))
+                    return true;
+            }
+            return false;
+        }
+
+        private string SelectBindingState()
+        {
+            var sn = tb_sn.Text.Trim();
+            if (sn == "")
+                return "";
+            var ds = serviceClient.SelectProductBindingState(sn).Tables[0];
+            if (ds.Rows.Count < 1)
+                return "未绑定";
+            var state = ds.Rows[0][0].ToString();
+            if (state == "0")
+                return "未绑定";
+            else if (state == "1")
+            {
+                return "已绑定";
+            }
+            else
+                return "";
+        }
+
+        async private void UpdateData()
+        {
+            MesService.PackageProduct[] packageProducts = new MesService.PackageProduct[this.radGridView1.Rows.Count];
+            int index = 0;
+            if (this.radGridView1.Rows.Count < 1)
+                return;
+            var caseCode = this.tb_caseCode.Text.Trim();
+            if (string.IsNullOrEmpty(caseCode))
+            {
+                MessageBox.Show("箱子编码不能为空！","提示",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                return;
+            }
+            foreach (var rowInfo in this.radGridView1.Rows)
+            {
+                var productSN = rowInfo.Cells[2].Value.ToString();
+                var bindingState = rowInfo.Cells[3].Value.ToString();
+                var remark = "";
+                if (rowInfo.Cells[4].Value != null)
+                    remark = rowInfo.Cells[4].Value.ToString();
+
+                MesService.PackageProduct packageProduct = new MesService.PackageProduct();
+                packageProduct.CaseCode = caseCode;
+                packageProduct.SnOutter = productSN;
+                packageProduct.BindingState = 1;
+                packageProduct.BindingDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                packageProduct.Remark = remark;
+                packageProducts[index] = packageProduct;
+                index++;
+            }
+            var res = await serviceClient.CommitPackageProductAsync(packageProducts);
+            if (res == 1)
+            {
+                for (int i = 0; i < this.radGridView1.Rows.Count; i++)
+                {
+                    this.radGridView1.Rows[i].Delete();
+                }
+                var dt = (await serviceClient.SelectProductBindingCountAsync(this.tb_caseCode.Text.Trim(),"1")).Tables[0];
+                this.tool_curNumber.Text = dt.Rows.Count.ToString();
+                this.tool_materialCode.Text = tb_caseCode.Text;
+                MessageBox.Show("更新成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+                MessageBox.Show("更新失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
     }
 }

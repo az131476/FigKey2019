@@ -18,5 +18,7 @@ namespace MesAPI.Model
         public int BindingState { get; set; }
 
         public string BindingDate { get; set; }
+
+        public string Remark { get; set; }
     }
 }

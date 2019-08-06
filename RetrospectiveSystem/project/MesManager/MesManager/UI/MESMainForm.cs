@@ -28,14 +28,14 @@ namespace MesManager.RadView
         private void EventHandlers()
         {
             this.mainBasicInfo.Click += MainBasicInfo_Click;
-            this.mainCheckStation.Click += MainCheckStation_Click;
+            //this.mainCheckStation.Click += MainCheckStation_Click;
             this.mainGraphView.Click += MainGraphView_Click;
             this.mainMaterialManager.Click += MainMaterialManager_Click;
-            this.mainProduceManager.Click += MainProduceManager_Click;
-            this.mainProductCheck.Click += MainProductCheck_Click;
+            //this.mainProduceManager.Click += MainProduceManager_Click;
+            //this.mainProductCheck.Click += MainProductCheck_Click;
             this.mainProductPackage.Click += MainProductPackage_Click;
             this.mainQuanlityAnomaly.Click += MainQuanlityAnomaly_Click;
-            this.mainRepairCenter.Click += MainRepairCenter_Click;
+            //this.mainRepairCenter.Click += MainRepairCenter_Click;
             this.mainReportData.Click += MainReportData_Click;
         }
 
@@ -175,12 +175,13 @@ namespace MesManager.RadView
             {
                 this.WindowState = FormWindowState.Maximized;
 
-                this.toolsGroup.Margin = new System.Windows.Forms.Padding(left / 4, top / 4, right / 4, 0);
+                this.toolsGroup.Margin = new System.Windows.Forms.Padding(left / 3, top / 4, right / 4, 0);
             }
             else
             {
                 this.WindowState = FormWindowState.Normal;
-                this.toolsGroup.Margin = new System.Windows.Forms.Padding(200, 130, 200, 0);
+                //this.toolsGroup.Margin = new System.Windows.Forms.Padding(200, 130, 200, 0);
+                this.toolsGroup.Margin = new System.Windows.Forms.Padding(300, 150, 200, 0);
             }
         }
 

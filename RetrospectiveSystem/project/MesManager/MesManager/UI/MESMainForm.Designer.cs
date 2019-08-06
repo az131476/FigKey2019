@@ -32,14 +32,10 @@
             this.radPanorama1 = new Telerik.WinControls.UI.RadPanorama();
             this.toolsGroup = new Telerik.WinControls.UI.TileGroupElement();
             this.mainBasicInfo = new Telerik.WinControls.UI.RadTileElement();
-            this.mainProduceManager = new Telerik.WinControls.UI.RadTileElement();
-            this.mainCheckStation = new Telerik.WinControls.UI.RadTileElement();
-            this.mainGraphView = new Telerik.WinControls.UI.RadTileElement();
             this.mainMaterialManager = new Telerik.WinControls.UI.RadTileElement();
-            this.mainProductCheck = new Telerik.WinControls.UI.RadTileElement();
+            this.mainGraphView = new Telerik.WinControls.UI.RadTileElement();
             this.mainProductPackage = new Telerik.WinControls.UI.RadTileElement();
             this.mainQuanlityAnomaly = new Telerik.WinControls.UI.RadTileElement();
-            this.mainRepairCenter = new Telerik.WinControls.UI.RadTileElement();
             this.mainReportData = new Telerik.WinControls.UI.RadTileElement();
             ((System.ComponentModel.ISupportInitialize)(this.radPanorama1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
@@ -57,7 +53,7 @@
             this.radPanorama1.PanelImageSize = new System.Drawing.Size(1024, 768);
             this.radPanorama1.RowsCount = 2;
             this.radPanorama1.ShowGroups = true;
-            this.radPanorama1.Size = new System.Drawing.Size(1224, 809);
+            this.radPanorama1.Size = new System.Drawing.Size(1232, 839);
             this.radPanorama1.TabIndex = 1;
             ((Telerik.WinControls.UI.RadPanoramaElement)(this.radPanorama1.GetChildAt(0))).BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(23)))), ((int)(((byte)(117)))));
             // 
@@ -71,16 +67,12 @@
             this.toolsGroup.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(172)))), ((int)(((byte)(255)))));
             this.toolsGroup.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.mainBasicInfo,
-            this.mainProduceManager,
-            this.mainCheckStation,
-            this.mainGraphView,
             this.mainMaterialManager,
-            this.mainProductCheck,
+            this.mainGraphView,
             this.mainProductPackage,
             this.mainQuanlityAnomaly,
-            this.mainRepairCenter,
             this.mainReportData});
-            this.toolsGroup.Margin = new System.Windows.Forms.Padding(200, 130, 200, 0);
+            this.toolsGroup.Margin = new System.Windows.Forms.Padding(300, 150, 200, 0);
             this.toolsGroup.Name = "toolsGroup";
             this.toolsGroup.RowsCount = 2;
             this.toolsGroup.Text = "主功能";
@@ -106,43 +98,24 @@
             this.mainBasicInfo.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
             this.mainBasicInfo.UseCompatibleTextRendering = false;
             // 
-            // mainProduceManager
+            // mainMaterialManager
             // 
-            this.mainProduceManager.AccessibleDescription = "mainProduceManager";
-            this.mainProduceManager.AccessibleName = "mainProduceManager";
-            this.mainProduceManager.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(33)))));
-            this.mainProduceManager.CellPadding = new System.Windows.Forms.Padding(5);
-            this.mainProduceManager.Column = 1;
-            this.mainProduceManager.DisabledTextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            this.mainProduceManager.DrawBorder = true;
-            this.mainProduceManager.ImageAlignment = System.Drawing.ContentAlignment.BottomLeft;
-            this.mainProduceManager.ImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.mainProduceManager.Name = "mainProduceManager";
-            this.mainProduceManager.Padding = new System.Windows.Forms.Padding(15, 15, 0, 10);
-            this.mainProduceManager.Text = "<html>生产管理 <br>";
-            this.mainProduceManager.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.mainProduceManager.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-            this.mainProduceManager.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            this.mainProduceManager.UseCompatibleTextRendering = false;
-            // 
-            // mainCheckStation
-            // 
-            this.mainCheckStation.AccessibleDescription = "mainCheckStation";
-            this.mainCheckStation.AccessibleName = "mainCheckStation";
-            this.mainCheckStation.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(33)))));
-            this.mainCheckStation.CellPadding = new System.Windows.Forms.Padding(5);
-            this.mainCheckStation.Column = 3;
-            this.mainCheckStation.DisabledTextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            this.mainCheckStation.DrawBorder = true;
-            this.mainCheckStation.ImageAlignment = System.Drawing.ContentAlignment.BottomLeft;
-            this.mainCheckStation.ImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.mainCheckStation.Name = "mainCheckStation";
-            this.mainCheckStation.Padding = new System.Windows.Forms.Padding(15, 15, 0, 10);
-            this.mainCheckStation.Text = "<html>检验过站 <br>";
-            this.mainCheckStation.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.mainCheckStation.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-            this.mainCheckStation.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            this.mainCheckStation.UseCompatibleTextRendering = false;
+            this.mainMaterialManager.AccessibleDescription = "mainMaterialManager";
+            this.mainMaterialManager.AccessibleName = "mainMaterialManager";
+            this.mainMaterialManager.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(33)))));
+            this.mainMaterialManager.CellPadding = new System.Windows.Forms.Padding(5);
+            this.mainMaterialManager.Column = 1;
+            this.mainMaterialManager.DisabledTextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            this.mainMaterialManager.DrawBorder = true;
+            this.mainMaterialManager.ImageAlignment = System.Drawing.ContentAlignment.BottomLeft;
+            this.mainMaterialManager.ImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.mainMaterialManager.Name = "mainMaterialManager";
+            this.mainMaterialManager.Padding = new System.Windows.Forms.Padding(15, 15, 0, 10);
+            this.mainMaterialManager.Text = "<html>物料绑定 <br>";
+            this.mainMaterialManager.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.mainMaterialManager.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.mainMaterialManager.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            this.mainMaterialManager.UseCompatibleTextRendering = false;
             // 
             // mainGraphView
             // 
@@ -163,52 +136,13 @@
             this.mainGraphView.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
             this.mainGraphView.UseCompatibleTextRendering = false;
             // 
-            // mainMaterialManager
-            // 
-            this.mainMaterialManager.AccessibleDescription = "mainMaterialManager";
-            this.mainMaterialManager.AccessibleName = "mainMaterialManager";
-            this.mainMaterialManager.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(33)))));
-            this.mainMaterialManager.CellPadding = new System.Windows.Forms.Padding(5);
-            this.mainMaterialManager.Column = 2;
-            this.mainMaterialManager.DisabledTextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            this.mainMaterialManager.DrawBorder = true;
-            this.mainMaterialManager.ImageAlignment = System.Drawing.ContentAlignment.BottomLeft;
-            this.mainMaterialManager.ImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.mainMaterialManager.Name = "mainMaterialManager";
-            this.mainMaterialManager.Padding = new System.Windows.Forms.Padding(15, 15, 0, 10);
-            this.mainMaterialManager.Text = "<html>物料绑定 <br>";
-            this.mainMaterialManager.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.mainMaterialManager.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-            this.mainMaterialManager.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            this.mainMaterialManager.UseCompatibleTextRendering = false;
-            // 
-            // mainProductCheck
-            // 
-            this.mainProductCheck.AccessibleDescription = "mainProductCheck";
-            this.mainProductCheck.AccessibleName = "mainProductCheck";
-            this.mainProductCheck.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(33)))));
-            this.mainProductCheck.CellPadding = new System.Windows.Forms.Padding(5);
-            this.mainProductCheck.Column = 2;
-            this.mainProductCheck.DisabledTextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            this.mainProductCheck.DrawBorder = true;
-            this.mainProductCheck.ImageAlignment = System.Drawing.ContentAlignment.BottomLeft;
-            this.mainProductCheck.ImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.mainProductCheck.Name = "mainProductCheck";
-            this.mainProductCheck.Padding = new System.Windows.Forms.Padding(15, 15, 0, 10);
-            this.mainProductCheck.Row = 1;
-            this.mainProductCheck.Text = "<html>成品抽检 <br>";
-            this.mainProductCheck.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.mainProductCheck.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-            this.mainProductCheck.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            this.mainProductCheck.UseCompatibleTextRendering = false;
-            // 
             // mainProductPackage
             // 
             this.mainProductPackage.AccessibleDescription = "mainProductPackage";
             this.mainProductPackage.AccessibleName = "mainProductPackage";
             this.mainProductPackage.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(33)))));
             this.mainProductPackage.CellPadding = new System.Windows.Forms.Padding(5);
-            this.mainProductPackage.Column = 4;
+            this.mainProductPackage.Column = 2;
             this.mainProductPackage.DisabledTextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
             this.mainProductPackage.DrawBorder = true;
             this.mainProductPackage.ImageAlignment = System.Drawing.ContentAlignment.BottomLeft;
@@ -227,7 +161,7 @@
             this.mainQuanlityAnomaly.AccessibleName = "mainQuanlityAnomaly";
             this.mainQuanlityAnomaly.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(33)))));
             this.mainQuanlityAnomaly.CellPadding = new System.Windows.Forms.Padding(5);
-            this.mainQuanlityAnomaly.Column = 3;
+            this.mainQuanlityAnomaly.Column = 2;
             this.mainQuanlityAnomaly.DisabledTextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
             this.mainQuanlityAnomaly.DrawBorder = true;
             this.mainQuanlityAnomaly.ImageAlignment = System.Drawing.ContentAlignment.BottomLeft;
@@ -240,26 +174,6 @@
             this.mainQuanlityAnomaly.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this.mainQuanlityAnomaly.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
             this.mainQuanlityAnomaly.UseCompatibleTextRendering = false;
-            // 
-            // mainRepairCenter
-            // 
-            this.mainRepairCenter.AccessibleDescription = "mainRepairCenter";
-            this.mainRepairCenter.AccessibleName = "mainRepairCenter";
-            this.mainRepairCenter.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(33)))));
-            this.mainRepairCenter.CellPadding = new System.Windows.Forms.Padding(5);
-            this.mainRepairCenter.Column = 4;
-            this.mainRepairCenter.DisabledTextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            this.mainRepairCenter.DrawBorder = true;
-            this.mainRepairCenter.ImageAlignment = System.Drawing.ContentAlignment.BottomLeft;
-            this.mainRepairCenter.ImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.mainRepairCenter.Name = "mainRepairCenter";
-            this.mainRepairCenter.Padding = new System.Windows.Forms.Padding(15, 15, 0, 10);
-            this.mainRepairCenter.Row = 1;
-            this.mainRepairCenter.Text = "<html>维修中心 <br>";
-            this.mainRepairCenter.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.mainRepairCenter.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-            this.mainRepairCenter.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            this.mainRepairCenter.UseCompatibleTextRendering = false;
             // 
             // mainReportData
             // 
@@ -286,7 +200,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1224, 809);
+            this.ClientSize = new System.Drawing.Size(1100, 839);
             this.Controls.Add(this.radPanorama1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -308,15 +222,11 @@
         private Telerik.WinControls.UI.RadPanorama radPanorama1;
         private Telerik.WinControls.UI.TileGroupElement toolsGroup;
         private Telerik.WinControls.UI.RadTileElement mainBasicInfo;//基础信息
-        private Telerik.WinControls.UI.RadTileElement mainProduceManager;//生产管理
         private Telerik.WinControls.UI.RadTileElement mainMaterialManager;//物料管理
-        private Telerik.WinControls.UI.RadTileElement mainCheckStation;//检验过站
         private Telerik.WinControls.UI.RadTileElement mainProductPackage;//成品装箱
 
         private Telerik.WinControls.UI.RadTileElement mainGraphView;//看板中心
         private Telerik.WinControls.UI.RadTileElement mainReportData;//报表中心
-        private Telerik.WinControls.UI.RadTileElement mainProductCheck;//成品抽检
         private Telerik.WinControls.UI.RadTileElement mainQuanlityAnomaly;//品质异常管理
-        private Telerik.WinControls.UI.RadTileElement mainRepairCenter;//维修中心
     }
 }
