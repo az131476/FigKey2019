@@ -10,6 +10,7 @@ using System.Configuration;
 using System.Threading.Tasks;
 using CommonUtils.Logger;
 using System.Threading;
+using MySql.Data.MySqlClient;
 
 
 namespace WindowsServiceDB
@@ -27,13 +28,25 @@ namespace WindowsServiceDB
             try
             {
                 var connectionString = ConfigurationManager.ConnectionStrings["sqlconstring"].ToString();
-                var deleteSQL = ConfigurationManager.ConnectionStrings["deleteSQL"].ToString();
+                var selectSQL = ConfigurationManager.ConnectionStrings["selectPrescNo"].ToString();
                 Task task = new Task(() =>
                 {
                     while (true)
                     {
-                        int row = MySqlHelper.ExecuteNonQuery(connectionString, CommandType.Text, deleteSQL);
-                        Thread.Sleep(50);
+                        int index = 0;
+                        MySqlDataReader mySqlDataReader = MySqlHelper.ExecuteReader(connectionString,CommandType.Text,selectSQL);
+                        while (mySqlDataReader.Read())
+                        {
+                            var prescNo = mySqlDataReader["PrescriptionNo"].ToString();
+                            //执行删除
+                            var deletePrescList = $"delete from prescriptionlist where PrescriptionNo='{prescNo}'";
+                            var deletePrescDetail = $"delete from prescriptiondetail where PrescriptionNo = '{prescNo}'";
+                            MySqlHelper.ExecuteNonQuery(connectionString,CommandType.Text,deletePrescList);
+                            MySqlHelper.ExecuteNonQuery(connectionString,CommandType.Text,deletePrescDetail);
+                            index++;
+                        }
+                        //int row = MySqlHelper.ExecuteNonQuery(connectionString, CommandType.Text, selectSQL);
+
                     }
                 });
                 task.Start();
