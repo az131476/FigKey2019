@@ -33,7 +33,6 @@ namespace MesManager.RadView
         async private void Material_Load(object sender, EventArgs e)
         {
             serviceClient = new MesService.MesServiceClient();
-            await serviceClient.InitConnectStringAsync();
             DataGridViewCommon.SetRadGridViewProperty(this.radGridView1,true);
             materialCodeTemp = new List<string>();
             rlbx_explain.Text = "在新行添加物料名称、物料库存，右键行头可删除行数据";

@@ -66,11 +66,7 @@
     <Compile Include="Model\XCP\MeasureMent.cs" />
     <Compile Include="Model\XCP\MemorySegmentClass.cs" />
     <Compile Include="Model\XCP\PropertyClass.cs" />
-<<<<<<< HEAD
-    <Compile Include="Model\XCP\ProtocolLayer.cs" />
-=======
     <Compile Include="Model\XCP\XcpOnCan.cs" />
->>>>>>> 7cef94449c46e31fd9e6b634d1cbd185cfc11bc5
     <Compile Include="Model\XCP\RecordLayoutClass.cs" />
     <Compile Include="Model\XCP\TableClass.cs" />
     <Compile Include="Model\XCP\XcpData.cs" />

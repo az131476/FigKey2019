@@ -18,6 +18,8 @@ namespace MesManager
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new MESMainForm());
+            return;
             WelcomeForm welcomeForm = new WelcomeForm();
             welcomeForm.Show();
             applicationContext = new ApplicationContext();

@@ -18,7 +18,7 @@ namespace MesAPI
     {
         //用户信息
         [OperationContract]
-        LoginResult Login(string username, string password);
+        LoginResult Login(string username, string password, LoginUser loginUser);
 
         [OperationContract]
         QueryResult GetUserInfo(string userName, out DataSet dataSet);
@@ -38,22 +38,26 @@ namespace MesAPI
 
         //站位信息
         [OperationContract]
-        int DeleteStation(string order, string stationName);
+        int DeleteStation(string stationName);
 
         [OperationContract]
         DataSet SelectStation(string stationName, string stationOrder);
+
+        [OperationContract]
+        int DeleteAllStation();
+
         [OperationContract]
         int InsertStation(List<Station> stationList);
 
         //产品型号
         [OperationContract]
-        int DeleteProductTypeNo(string productName);
+        int DeleteProductTypeNo(string typeNo);
 
         [OperationContract]
         int DeleteAllProductTypeNo();
 
         [OperationContract]
-        DataSet SelectProductTypeNo(string productName);
+        DataSet SelectProductTypeNo(string typeNo);
 
         [OperationContract]
         string CommitProductTypeNo(List<string> list);
@@ -98,12 +102,15 @@ namespace MesAPI
         int DeleteMaterial(string materialCode);
 
         [OperationContract]
-        string CommitProductMaterial(Dictionary<string, List<string>> keyValuePairs);
-        [OperationContract]
-        DataSet SelectProductMaterial(string typeNo);
+        int DeleteAllMaterial();
 
         [OperationContract]
-        int DeleteProductMaterial(string typeNo, string materialCode);
+        int CommitProductMaterial(List<ProductMaterial> pmList);
+        [OperationContract]
+        DataSet SelectProductMaterial(ProductMaterial material);
+
+        [OperationContract]
+        int DeleteProductMaterial(ProductMaterial material);
 
         //物料统计
         [OperationContract]
@@ -116,6 +123,9 @@ namespace MesAPI
         [OperationContract]
         DataSet SelectMaterialStatistics(string typeNo);
 
+        [OperationContract]
+        DataSet SelectMaterialMsg(MaterialMsg materialMsg, bool IsSelectAll);
+
         //外箱容量
         [OperationContract]
         int CommitOutCaseBoxStorage(string out_case_code, string amount);
@@ -124,10 +134,24 @@ namespace MesAPI
 
         //成品打包
         [OperationContract]
-        int CommitPackageProduct(PackageProduct packageProduct);
+        [SwaggerWcfPath("CommitPackageProduct", "产品绑定到箱子")]
+        [WebInvoke(Method = "GET", UriTemplate = "CommitPackageProduct",
+            BodyStyle = WebMessageBodyStyle.Bare, RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
+        int CommitPackageProduct(List<PackageProduct> packageProductList);
 
         [OperationContract]
+        [SwaggerWcfPath("UpdatePackageProduct", "成品抽检时数据更新（解除绑定）")]
+        [WebInvoke(Method = "GET", UriTemplate = "UpdatePackageProduct",
+            BodyStyle = WebMessageBodyStyle.Bare, RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
         int UpdatePackageProduct(PackageProduct packageProduct);
+        [OperationContract]
+        DataSet SelectProductBindingState(string sn);
+
+        [OperationContract]
+        DataSet SelectProductBindingCount(string casecode, string bindingState);
+
+        [OperationContract]
+        int DeleteProductBindingData(string casecode);
 
         [OperationContract]
         DataSet SelectPackageProduct(PackageProduct packageProduct);

@@ -69,8 +69,11 @@ namespace MesAPI.DB
 
         public class F_PRODUCT_MATERIAL
         {
+            public const string ID = "[id]";
             public const string TYPE_NO = "[type_no]";
             public const string MATERIAL_CODE = "[material_code]";
+            public const string Describle = "[describle]";
+            public const string UpdateDate = "[update_date]";
         }
 
 
@@ -98,6 +101,7 @@ namespace MesAPI.DB
             public const string PICTURE = "[picture]";
             public const string BINDING_STATE = "[binding_state]";
             public const string BINDING_DATE = "[binding_date]";
+            public const string REMARK = "[remark]";
         }
 
         public class F_Pass_Rate_Statistics

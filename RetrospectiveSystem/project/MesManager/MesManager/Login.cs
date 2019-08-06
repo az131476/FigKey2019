@@ -14,11 +14,13 @@ using System.IO;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
 using MesManager.RadView;
+using Telerik.WinControls.UI;
 
 namespace MesManager
 {
-    public partial class Login : Telerik.WinControls.UI.RadForm
+    public partial class Login : RadForm
     {
+        private RadTitleBarElement titleBar;
         private const string USER_ADMIN = "管理员";
         private const string USER_ORDINARY = "普通用户";
         private const string INI_CONFIG_NAME = "userConfig.ini";
@@ -28,6 +30,7 @@ namespace MesManager
         private const string INI_CONFIG_REMBER = "remberpwd";
         private string configPath;
         private MesService.MesServiceClient mesService;
+        private bool isFormMoving = false;
         public static UserType GetUserType { get; set; }
         public static string GetUserName { get; set; }
 
@@ -36,6 +39,7 @@ namespace MesManager
         public Login()
         {
             InitializeComponent();
+            PrepareTitleBar();
             this.MaximizeBox = false;
             this.StartPosition = FormStartPosition.CenterScreen;
             this.FormBorderStyle = FormBorderStyle.None;
@@ -93,7 +97,6 @@ namespace MesManager
             try
             {
                 mesService = new MesService.MesServiceClient();
-                await mesService.InitConnectStringAsync();
             }
             catch (Exception ex)
             {
@@ -230,16 +233,19 @@ namespace MesManager
             return true;
         }
 
-        private void Init()
+        async private void Init()
         {
+            mesService = new MesService.MesServiceClient();
             //设置单行
-            tbx_username.Multiline = false;
+            //tbx_username.Multiline = false;
             tbx_pwd.Multiline = false;
-
-            //cob_userType.Items.Clear();
-            //cob_userType.Items.Add(USER_ADMIN);
-            //cob_userType.Items.Add(USER_ORDINARY);
-            //cob_userType.SelectedIndex = (int)UserType.USER_ADMIN;
+            tbx_username.Items.Clear();
+            DataTable dt = (await mesService.GetAllUserInfoAsync()).Tables[0];
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                tbx_username.Items.Add(dt.Rows[i][0].ToString());
+            }
+            tbx_username.Text = "Admin";
             configPath = AppDomain.CurrentDomain.BaseDirectory+INI_CONFIG_NAME;
             ReadLastCfg();
         }
@@ -284,5 +290,86 @@ namespace MesManager
             Register register = new Register();
             register.ShowDialog();
         }
+
+        private void PrepareTitleBar()
+        {
+            titleBar = new RadTitleBarElement();
+            titleBar.Text = "登录";
+            titleBar.ForeColor = Color.White;
+            titleBar.Font = new Font("Segoe UI Light", 12F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(204)));
+            titleBar.FillPrimitive.Visibility = ElementVisibility.Hidden;
+            titleBar.MaxSize = new Size(0, 50);
+            titleBar.Children[1].Visibility = ElementVisibility.Hidden;
+
+            titleBar.CloseButton.Parent.PositionOffset = new SizeF(0, 10);//与top距离
+            titleBar.CloseButton.MinSize = new Size(50, 20);
+            titleBar.CloseButton.ButtonFillElement.Visibility = ElementVisibility.Collapsed;
+
+            titleBar.MinimizeButton.MinSize = new Size(50, 50);
+            titleBar.MinimizeButton.ButtonFillElement.Visibility = ElementVisibility.Collapsed;
+
+            titleBar.MaximizeButton.MinSize = new Size(50, 50);
+            titleBar.MaximizeButton.ButtonFillElement.Visibility = ElementVisibility.Collapsed;
+
+            titleBar.CloseButton.SetValue(RadFormElement.IsFormActiveProperty, true);
+            titleBar.MinimizeButton.SetValue(RadFormElement.IsFormActiveProperty, true);
+            titleBar.MaximizeButton.SetValue(RadFormElement.IsFormActiveProperty, true);
+
+            titleBar.Close += new TitleBarSystemEventHandler(titleBar_Close);
+            titleBar.Minimize += new TitleBarSystemEventHandler(titleBar_Minimize);
+            titleBar.MaximizeRestore += new TitleBarSystemEventHandler(titleBar_MaximizeRestore);
+            this.radPanorama1.PanoramaElement.PanGesture += new PanGestureEventHandler(radTilePanel1_PanGesture);
+            this.radPanorama1.PanoramaElement.Children.Add(titleBar);
+        }
+
+        void radTilePanel1_PanGesture(object sender, PanGestureEventArgs e)
+        {
+            if (e.IsBegin && this.titleBar.ControlBoundingRectangle.Contains(e.Location))
+            {
+                isFormMoving = true;
+            }
+
+            if (isFormMoving)
+            {
+                this.Location = new Point(this.Location.X + e.Offset.Width, this.Location.Y + e.Offset.Height);
+            }
+            else
+            {
+                e.Handled = false;
+            }
+
+            if (e.IsEnd)
+            {
+                isFormMoving = false;
+            }
+        }
+
+        #region Event Handlers
+        void titleBar_MaximizeRestore(object sender, EventArgs args)
+        {
+            int left = Screen.PrimaryScreen.Bounds.Width;
+            int top = Screen.PrimaryScreen.Bounds.Height;
+            int right = Screen.PrimaryScreen.Bounds.Width;
+            if (this.WindowState != FormWindowState.Maximized)
+            {
+                this.WindowState = FormWindowState.Maximized;
+            }
+            else
+            {
+                this.WindowState = FormWindowState.Normal;
+            }
+        }
+
+        void titleBar_Minimize(object sender, EventArgs args)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        void titleBar_Close(object sender, EventArgs args)
+        {
+            Application.Exit();
+        }
+
+        #endregion
     }
 }

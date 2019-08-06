@@ -14,5 +14,17 @@ namespace MesAPI.Model
 
         [Description("物料数量")]
         public int MaterialAmount { get; set; }
+
+        [Description("内壳码")]
+        public string Sn_Inner { get; set; }
+
+        [Description("外壳码")]
+        public string Sn_Outter { get; set; }
+
+        [Description("产品型号")]
+        public string TypeNo { get; set; }
+
+        [Description("站位名称")]
+        public string StationName { get; set; }
     }
 }

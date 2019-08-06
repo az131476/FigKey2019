@@ -46,7 +46,7 @@ namespace MesAPI
         /// <param name="username">用户名/手机号/邮箱</param>
         /// <param name="password">密码</param>
         /// <returns></returns>
-        public LoginResult Login(string username, string password)
+        public LoginResult Login(string username, string password,LoginUser loginUser)
         {
             //暂未处理用户角色
             try
@@ -136,7 +136,7 @@ namespace MesAPI
         {
             try
             {
-                string sqlString = "SELECT * " +
+                string sqlString = $"SELECT {DbTable.F_User.USER_NAME} " +
                             "FROM [WT_SCL].[dbo].[f_user] ";
                 return SQLServer.ExecuteDataSet(sqlString);
             }
@@ -219,17 +219,18 @@ namespace MesAPI
             LogHelper.Log.Info($"接口被调用-InsertProduce");
             foreach (var station in stationList)
             {
-                if (!IsExistStation(station.StationID, station.StationName))
+                if (!IsExistStation(station))
                 {
                     //不存在，插入
                     string insertSQL = $"INSERT INTO {DbTable.F_STATION_NAME}({DbTable.F_Station.STATION_ORDER}," +
                         $"{DbTable.F_Station.STATION_NAME}) " +
                     $"VALUES('{station.StationID}','{station.StationName}')";
-
-                    return SQLServer.ExecuteNonQuery(insertSQL);
+                    LogHelper.Log.Info(insertSQL);
+                    if (SQLServer.ExecuteNonQuery(insertSQL) < 1)
+                        return 0;
                 }
             }
-            return -1;
+            return 1;
         }
 
         /// <summary>
@@ -256,18 +257,20 @@ namespace MesAPI
         /// </summary>
         /// <param name="stationName"></param>
         /// <returns></returns>
-        public int DeleteStation(string order, string stationName)
+        public int DeleteStation(string stationName)
         {
-            string deleteSQL = "";
-            if (order == "" && stationName == "")
-            {
-                deleteSQL = $"DELETE FROM {DbTable.F_STATION_NAME} ";
-            }
-            else
-            {
-                deleteSQL = $"DELETE FROM {DbTable.F_STATION_NAME} " +
-                $"WHERE {DbTable.F_Station.STATION_NAME} = '{stationName}' AND {DbTable.F_Station.STATION_ORDER} = '{order}'";
-            }
+            string deleteSQL = $"DELETE FROM {DbTable.F_STATION_NAME} " +
+                $"WHERE {DbTable.F_Station.STATION_NAME} = '{stationName}'";
+            return SQLServer.ExecuteNonQuery(deleteSQL);
+        }
+
+        /// <summary>
+        /// 删除所有站位记录
+        /// </summary>
+        /// <returns></returns>
+        public int DeleteAllStation()
+        {
+            string deleteSQL = $"DELETE FROM {DbTable.F_STATION_NAME} ";
             return SQLServer.ExecuteNonQuery(deleteSQL);
         }
 
@@ -276,10 +279,10 @@ namespace MesAPI
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        private bool IsExistStation(int id, string station)
+        private bool IsExistStation(Station station)
         {
-            string selectSQL = $"SELECT * FROM {DbTable.F_STATION_NAME} WHERE {DbTable.F_Station.STATION_ORDER} = '{id}' AND " +
-                $"{DbTable.F_Station.STATION_NAME} = '{station}'";
+            string selectSQL = $"SELECT * FROM {DbTable.F_STATION_NAME} WHERE " +
+                $"{DbTable.F_Station.STATION_NAME} = '{station.StationName}'";
             DataTable dt = SQLServer.ExecuteDataSet(selectSQL).Tables[0];
             if (dt.Rows.Count > 0)
             {
@@ -425,18 +428,18 @@ namespace MesAPI
             string selectSQL = "";
             if (string.IsNullOrEmpty(sn) && string.IsNullOrEmpty(typeNo) && string.IsNullOrEmpty(station))
             {
-                selectSQL = $"SELECT {DbTable.F_Test_Result.SN},{DbTable.F_Test_Result.TYPE_NO}," +
-                $"{DbTable.F_Test_Result.STATION_NAME},{DbTable.F_Test_Result.TEST_RESULT}," +
-                $"{DbTable.F_Test_Result.UPDATE_DATE},{DbTable.F_Test_Result.REMARK} " +
+                selectSQL = $"SELECT {DbTable.F_Test_Result.SN} AS 产品追溯码,{DbTable.F_Test_Result.TYPE_NO} AS 产品型号," +
+                $"{DbTable.F_Test_Result.STATION_NAME} AS 站位名称,{DbTable.F_Test_Result.TEST_RESULT} AS 测试结果," +
+                $"{DbTable.F_Test_Result.UPDATE_DATE} AS 更新日期,{DbTable.F_Test_Result.REMARK} AS 备注 " +
                 $"FROM {DbTable.F_TEST_RESULT_NAME}";
             }
             else
             {
                 if (IsSnFuzzy)
                 {
-                    selectSQL = $"SELECT {DbTable.F_Test_Result.SN},{DbTable.F_Test_Result.TYPE_NO}," +
-                    $"{DbTable.F_Test_Result.STATION_NAME},{DbTable.F_Test_Result.TEST_RESULT}," +
-                    $"{DbTable.F_Test_Result.UPDATE_DATE},{DbTable.F_Test_Result.REMARK} " +
+                    selectSQL = $"SELECT {DbTable.F_Test_Result.SN} 产品追溯码,{DbTable.F_Test_Result.TYPE_NO} 产品型号," +
+                    $"{DbTable.F_Test_Result.STATION_NAME} 站位名称,{DbTable.F_Test_Result.TEST_RESULT} 测试结果," +
+                    $"{DbTable.F_Test_Result.UPDATE_DATE} 更新日期,{DbTable.F_Test_Result.REMARK} 备注 " +
                     $"FROM {DbTable.F_TEST_RESULT_NAME} " +
                     $"WHERE {DbTable.F_Test_Result.SN} like '%{sn}%' OR " +
                     $"{DbTable.F_Test_Result.TYPE_NO} like '%{typeNo}%' OR " +
@@ -444,9 +447,9 @@ namespace MesAPI
                 }
                 else
                 {
-                    selectSQL = $"SELECT {DbTable.F_Test_Result.SN},{DbTable.F_Test_Result.TYPE_NO}," +
-                    $"{DbTable.F_Test_Result.STATION_NAME},{DbTable.F_Test_Result.TEST_RESULT}," +
-                    $"{DbTable.F_Test_Result.UPDATE_DATE},{DbTable.F_Test_Result.REMARK} " +
+                    selectSQL = $"SELECT {DbTable.F_Test_Result.SN} 产品追溯码,{DbTable.F_Test_Result.TYPE_NO} 产品型号," +
+                    $"{DbTable.F_Test_Result.STATION_NAME} 站位名称,{DbTable.F_Test_Result.TEST_RESULT} 测试结果," +
+                    $"{DbTable.F_Test_Result.UPDATE_DATE} 更新日期,{DbTable.F_Test_Result.REMARK} 备注 " +
                     $"FROM {DbTable.F_TEST_RESULT_NAME} " +
                     $"WHERE {DbTable.F_Test_Result.SN} = '{sn}' OR " +
                     $"{DbTable.F_Test_Result.TYPE_NO} = '{typeNo}' OR " +
@@ -512,18 +515,13 @@ namespace MesAPI
         }
         public int DeleteMaterial(string materialCode)
         {
-            string deleteSQL = "";
-            if (string.IsNullOrEmpty(materialCode))
-            {
-                //delete all data
-                deleteSQL = $"DELETE FROM {DbTable.F_MATERIAL_NAME}";
-            }
-            else
-            {
-                //delete one row
-                deleteSQL = $"DELETE FROM {DbTable.F_MATERIAL_NAME} " +
+            string deleteSQL = $"DELETE FROM {DbTable.F_MATERIAL_NAME} " +
                 $"WHERE {DbTable.F_Material.MATERIAL_CODE} = '{materialCode}'";
-            }
+            return SQLServer.ExecuteNonQuery(deleteSQL);
+        }
+        public int DeleteAllMaterial()
+        {
+            string deleteSQL = $"DELETE FROM {DbTable.F_MATERIAL_NAME}";
             return SQLServer.ExecuteNonQuery(deleteSQL);
         }
         public DataSet SelectMaterial()
@@ -557,70 +555,78 @@ namespace MesAPI
 
         #endregion
 
-        #region 产品物料配置
-        public string CommitProductMaterial(Dictionary<string, List<string>> keyValuePairs)
+        #region 产品物料绑定
+        public int CommitProductMaterial(List<ProductMaterial> pmList)
         {
-            foreach (KeyValuePair<string, List<string>> kv in keyValuePairs)
+            foreach (var material in pmList)
             {
-                string deleteSQL = $"DELETE FROM {DbTable.F_PRODUCT_MATERIAL_NAME} WHERE {DbTable.F_PRODUCT_MATERIAL.TYPE_NO} = '{kv.Key}'";
-                SQLServer.ExecuteNonQuery(deleteSQL);
-                foreach (var v in kv.Value)
+                if (IsExistMaterial(material))
                 {
-                    if (!IsExistProductMaterial(kv.Key, v))
-                    {
-                        //insert
-                        if (InsertProductMaterial(kv.Key, v) < 1)
-                            return "I0";//插入失败
-                    }
-                    else
-                    {
-                        // not update
-                        //if (UpdateProductMaterial(kv.Key, v) < 1)
-                        //    return "G0";//更新失败
-                    }
+                    //更新
+                    string updateSQL = $"UPDATE {DbTable.F_PRODUCT_MATERIAL_NAME} SET " +
+                        $"{DbTable.F_PRODUCT_MATERIAL.Describle} = '{material.Describle}' " +
+                        $"WHERE {DbTable.F_PRODUCT_MATERIAL.TYPE_NO} = '{material.TypeNo}' AND " +
+                        $"{DbTable.F_PRODUCT_MATERIAL.MATERIAL_CODE} = '{material.MaterialCode}'";
+                    LogHelper.Log.Info(updateSQL);
+                    if (SQLServer.ExecuteNonQuery(updateSQL) < 1)
+                        return 0;
+                }
+                else
+                {
+                    //insert
+                    if (InsertProductMaterial(material) < 1)
+                        return 0;
                 }
             }
-            return "1";
+            return 1;
         }
-
-        public int DeleteProductMaterial(string typeNo, string materialCode)
+        public int DeleteProductMaterial(ProductMaterial material)
         {
+            if (material.MaterialCode == "" || material.TypeNo == "")
+                return 0;
             string deleteSQL = $"DELETE FROM {DbTable.F_PRODUCT_MATERIAL_NAME} " +
-                $"WHERE {DbTable.F_PRODUCT_MATERIAL.TYPE_NO} = '{typeNo}' AND " +
-                $"{DbTable.F_PRODUCT_MATERIAL.MATERIAL_CODE} = '{materialCode}'";
+                $"WHERE {DbTable.F_PRODUCT_MATERIAL.TYPE_NO} = '{material.TypeNo}' AND " +
+                $"{DbTable.F_PRODUCT_MATERIAL.MATERIAL_CODE} = '{material.MaterialCode}'";
+            LogHelper.Log.Info(deleteSQL);
             return SQLServer.ExecuteNonQuery(deleteSQL);
         }
-        public DataSet SelectProductMaterial(string typeNo)
+        public DataSet SelectProductMaterial(ProductMaterial material)
         {
             string selectSQL = "";
-            if (!string.IsNullOrEmpty(typeNo))
-                selectSQL = $"SELECT {DbTable.F_PRODUCT_MATERIAL.MATERIAL_CODE} FROM {DbTable.F_PRODUCT_MATERIAL_NAME} " +
-                $"WHERE {DbTable.F_PRODUCT_MATERIAL.TYPE_NO} = '{typeNo}'";
+            if (string.IsNullOrEmpty(material.TypeNo) && string.IsNullOrEmpty(material.MaterialCode))
+            {
+                selectSQL = $"SELECT " +
+                   $"{DbTable.F_PRODUCT_MATERIAL.TYPE_NO},{DbTable.F_PRODUCT_MATERIAL.MATERIAL_CODE}," +
+                   $"{DbTable.F_PRODUCT_MATERIAL.Describle} " +
+                   $"FROM {DbTable.F_PRODUCT_MATERIAL_NAME} ORDER BY {DbTable.F_PRODUCT_MATERIAL.UpdateDate} ASC";
+            }
             else
-                selectSQL = $"SELECT * FROM {DbTable.F_PRODUCT_MATERIAL_NAME} ";
+                selectSQL = $"SELECT " +
+                    $"{DbTable.F_PRODUCT_MATERIAL.TYPE_NO},{DbTable.F_PRODUCT_MATERIAL.MATERIAL_CODE}," +
+                    $"{DbTable.F_PRODUCT_MATERIAL.Describle} " +
+                    $"FROM {DbTable.F_PRODUCT_MATERIAL_NAME} "+
+                    $"WHERE {DbTable.F_PRODUCT_MATERIAL.TYPE_NO} = '{material.TypeNo}' OR " +
+                    $"{DbTable.F_PRODUCT_MATERIAL.MATERIAL_CODE} = '{material.MaterialCode}' " +
+                    $"ORDER BY {DbTable.F_PRODUCT_MATERIAL.UpdateDate} ASC";
             return SQLServer.ExecuteDataSet(selectSQL);
         }
-        private bool IsExistProductMaterial(string typeNo, string materialCode)
+        private bool IsExistMaterial(ProductMaterial material)
         {
             string selectSQL = $"SELECT * FROM {DbTable.F_PRODUCT_MATERIAL_NAME} " +
-                $"WHERE {DbTable.F_PRODUCT_MATERIAL.MATERIAL_CODE} = '{materialCode}' AND " +
-                $"{DbTable.F_PRODUCT_MATERIAL.TYPE_NO} = '{typeNo}'";
+                $"WHERE {DbTable.F_PRODUCT_MATERIAL.MATERIAL_CODE} = '{material.MaterialCode}' AND " +
+                $"{DbTable.F_PRODUCT_MATERIAL.TYPE_NO} = '{material.TypeNo}'";
             DataTable dt = SQLServer.ExecuteDataSet(selectSQL).Tables[0];
             if (dt.Rows.Count > 0)
                 return true;
             else
                 return false;
         }
-        private int InsertProductMaterial(string typeNo, string materialCode)
+        private int InsertProductMaterial(ProductMaterial material)
         {
             string insertSQL = $"INSERT INTO {DbTable.F_PRODUCT_MATERIAL_NAME}({DbTable.F_PRODUCT_MATERIAL.TYPE_NO},{DbTable.F_PRODUCT_MATERIAL.MATERIAL_CODE}) " +
-                $"VALUES('{typeNo}','{materialCode}')";
+                $"VALUES('{material.TypeNo}','{material.MaterialCode}')";
+            LogHelper.Log.Info(insertSQL);
             return SQLServer.ExecuteNonQuery(insertSQL);
-        }
-        private int UpdateProductMaterial(string typeNo, string materialCode)
-        {
-            string updateSQL = $"UPDATE {DbTable.F_PRODUCT_MATERIAL_NAME} SET {DbTable.F_PRODUCT_MATERIAL.MATERIAL_CODE} = '{materialCode}'";
-            return SQLServer.ExecuteNonQuery(updateSQL);
         }
         #endregion
 
@@ -644,6 +650,7 @@ namespace MesAPI
         }
         public DataSet SelectMaterialStatistics(string typeNo)
         {
+            //按型号与物料查
             string selectSQL = "";
             if (!string.IsNullOrEmpty(typeNo))
             {
@@ -659,6 +666,45 @@ namespace MesAPI
             {
                 selectSQL = $"SELECT * FROM {DbTable.F_MATERIAL_STATISTICS_NAME}";
             }
+            return SQLServer.ExecuteDataSet(selectSQL);
+        }
+        #endregion
+
+        #region 物料综合查询
+        public DataSet SelectMaterialMsg(MaterialMsg materialMsg, bool IsSelectAll)
+        {
+            string selectSQL = "";
+            if (IsSelectAll)
+            {
+                selectSQL = "SELECT a.material_code 物料编码,a.amount 物料总数,b.type_no 产品型号,b.update_date 绑定日期 " +
+                    "FROM [WT_SCL].[dbo].[f_material] a,[WT_SCL].[dbo].[f_product_material] b " +
+                    $"WHERE a.material_code = b.material_code ";
+            }
+            else
+            {
+                if (materialMsg.MaterialCode == "" && materialMsg.Sn_Inner == "" && materialMsg.Sn_Outter == "" && materialMsg.TypeNo == "" && materialMsg.StationName == "")
+                {
+                    selectSQL = "SELECT a.material_code 物料编码,a.amount 物料总数,b.sn_inner 内壳码," +
+                    "b.sn_outter 外壳码,b.type_no 产品型号, b.station_name 站位名称, b.material_amount 消耗数量," +
+                    "(a.amount - b.material_amount) 剩余数量,b.update_date 更新日期 " +
+                    "FROM[WT_SCL].[dbo].[f_material] a,[WT_SCL].[dbo].f_material_statistics b " +
+                    $"WHERE a.material_code = b.material_code ";
+                }
+                else
+                {
+                    selectSQL = "SELECT a.material_code 物料编码,a.amount 物料总数,b.sn_inner 内壳码," +
+                    "b.sn_outter 外壳码,b.type_no 产品型号, b.station_name 站位名称, b.material_amount 消耗数量," +
+                    "(a.amount - b.material_amount) 剩余数量,b.update_date 更新日期 " +
+                    "FROM[WT_SCL].[dbo].[f_material] a,[WT_SCL].[dbo].f_material_statistics b " +
+                    $"WHERE a.material_code = b.material_code AND " +
+                    $"{DbTable.F_Material.MATERIAL_CODE} = '{materialMsg.MaterialCode}' OR " +
+                    $"{DbTable.F_Material_Statistics.SN_INNER} = '{materialMsg.Sn_Inner}' OR " +
+                    $"{DbTable.F_Material_Statistics.SN_OUTTER} = '{materialMsg.Sn_Outter}' OR " +
+                    $"{DbTable.F_Material_Statistics.TYPE_NO} = '{materialMsg.TypeNo}' OR " +
+                    $"{DbTable.F_Material_Statistics.STATION_NAME} = '{materialMsg.StationName}'";
+                }
+            }
+            LogHelper.Log.Info(selectSQL);
             return SQLServer.ExecuteDataSet(selectSQL);
         }
         #endregion
@@ -807,40 +853,46 @@ namespace MesAPI
         #endregion
 
         #region 成品打包接口
-        public int CommitPackageProduct(PackageProduct packageProduct)
+        [SwaggerWcfTag("MesServcie 服务")]
+        public int CommitPackageProduct(List<PackageProduct> packageProductList)
         {
             string imageName = "@imageData";
-            string insertSQL = $"INSERT INTO {DbTable.F_OUT_CASE_PRODUCT_NAME}({DbTable.F_Out_Case_Product.OUT_CASE_CODE}," +
+            for(int i = 0;i< packageProductList.Count;i++)
+            {
+                string insertSQL = $"INSERT INTO {DbTable.F_OUT_CASE_PRODUCT_NAME}({DbTable.F_Out_Case_Product.OUT_CASE_CODE}," +
                 $"{DbTable.F_Out_Case_Product.SN_OUTTER},{DbTable.F_Out_Case_Product.TYPE_NO}," +
                 $"{DbTable.F_Out_Case_Product.PICTURE},{DbTable.F_Out_Case_Product.BINDING_STATE}," +
-                $"{DbTable.F_Out_Case_Product.BINDING_DATE}) " +
-                $"VALUES('{packageProduct.CaseCode}','{packageProduct.SnOutter}','{packageProduct.TypeNo}',{imageName}," +
-                $"'{packageProduct.BindingState}','{packageProduct.BindingDate}')";
-            LogHelper.Log.Info($"CommitPackageProduct Init Insert={insertSQL}");
-            if (IsExistPackageProduct(packageProduct.CaseCode, packageProduct.SnOutter))
-            {
-                //update
-                return UpdatePackageProduct(packageProduct);
-            }
-            else
-            {
-                try
+                $"{DbTable.F_Out_Case_Product.BINDING_DATE},{DbTable.F_Out_Case_Product.REMARK}) " +
+                $"VALUES('{packageProductList[i].CaseCode}','{packageProductList[i].SnOutter}','{packageProductList[i].TypeNo}',{imageName}," +
+                $"'{packageProductList[i].BindingState}','{packageProductList[i].BindingDate}','{packageProductList[i].Remark}')";
+
+                LogHelper.Log.Info($"CommitPackageProduct Init Insert={insertSQL}");
+                if (IsExistPackageProduct(packageProductList[i].CaseCode, packageProductList[i].SnOutter))
                 {
-                    SqlParameter[] sqlParameters = new SqlParameter[1];
-                    SqlParameter sqlParameter = new SqlParameter();
-                    sqlParameter.ParameterName = imageName;
-                    sqlParameter.SqlDbType = SqlDbType.Binary;
-                    sqlParameter.Value = packageProduct.Picture;
-                    sqlParameters[0] = sqlParameter;
-                    return SQLServer.ExecuteNonQuery(insertSQL, sqlParameters);
+                    //update
+                    UpdatePackageProduct(packageProductList[i]);
                 }
-                catch (Exception ex)
+                else
                 {
-                    LogHelper.Log.Error($"Err start ExecuteNonQuery={ex.Message}\r\n{ex.StackTrace}");
-                    return -1;
+                    try
+                    {
+                        SqlParameter[] sqlParameters = new SqlParameter[1];
+                        SqlParameter sqlParameter = new SqlParameter();
+                        sqlParameter.ParameterName = imageName;
+                        sqlParameter.SqlDbType = SqlDbType.Binary;
+                        sqlParameter.Value = packageProductList[i].Picture;
+                        sqlParameters[0] = sqlParameter;
+                        SQLServer.ExecuteNonQuery(insertSQL, sqlParameters);
+                    }
+                    catch (Exception ex)
+                    {
+                        LogHelper.Log.Error($"Err start ExecuteNonQuery={ex.Message}\r\n{ex.StackTrace}");
+                        return -1;
+                    }
+                    //return ExecuteSQL(insertSQL,packageProduct.Picture);
                 }
-                //return ExecuteSQL(insertSQL,packageProduct.Picture);
             }
+            return 1;
         }
         private bool IsExistPackageProduct(string caseCode, string snOutter)
         {
@@ -862,6 +914,7 @@ namespace MesAPI
             return SQLServer.ExecuteNonQuery(updateSQL);
         }
 
+        [SwaggerWcfTag("MesServcie 服务")]
         public int DeletePackageProduct(PackageProduct packageProduct)
         {
             string deleteSQL = "";
@@ -877,23 +930,64 @@ namespace MesAPI
             }
             return SQLServer.ExecuteNonQuery(deleteSQL);
         }
+
+        [SwaggerWcfTag("MesServcie 服务")]
         public DataSet SelectPackageProduct(PackageProduct packageProduct)
         {
-            //箱子编码/追溯码查询
+            //箱子编码/追溯码查询/产品型号
             string selectSQL = "";
-            if (string.IsNullOrEmpty(packageProduct.CaseCode) && string.IsNullOrEmpty(packageProduct.SnOutter))
+            if (string.IsNullOrEmpty(packageProduct.CaseCode) && string.IsNullOrEmpty(packageProduct.SnOutter) && string.IsNullOrEmpty(packageProduct.TypeNo))
             {
-                selectSQL = $"SELECT * FROM {DbTable.F_OUT_CASE_PRODUCT_NAME} " +
+                //查询所有已绑定记录
+                selectSQL = $"SELECT OUT_CASE_CODE 包装箱编码,SN_OUTTER 产品追溯码," +
+                    $"TYPE_NO 产品型号,BINDING_STATE 绑定状态,BINDING_DATE 绑定日期 FROM {DbTable.F_OUT_CASE_PRODUCT_NAME} " +
                     $"WHERE {DbTable.F_Out_Case_Product.BINDING_STATE} = '{packageProduct.BindingState}'";
             }
             else
             {
-                selectSQL = $"SELECT * FROM {DbTable.F_OUT_CASE_PRODUCT_NAME} WHERE " +
+                selectSQL = $"SELECT OUT_CASE_CODE 包装箱编码,SN_OUTTER 产品追溯码," +
+                    $"TYPE_NO 产品型号,BINDING_STATE 绑定状态,BINDING_DATE 绑定日期 " +
+                    $"FROM {DbTable.F_OUT_CASE_PRODUCT_NAME} WHERE " +
                     $"{DbTable.F_Out_Case_Product.OUT_CASE_CODE} = '{packageProduct.CaseCode}' AND " +
-                    $"{DbTable.F_Out_Case_Product.SN_OUTTER} = '{packageProduct.SnOutter}' AND " +
+                    $"{DbTable.F_Out_Case_Product.SN_OUTTER} = '{packageProduct.SnOutter}' OR "+
                     $"{DbTable.F_Out_Case_Product.BINDING_STATE} = '{packageProduct.BindingState}'";
             }
             return SQLServer.ExecuteDataSet(selectSQL);
+        }
+
+        public DataSet SelectProductBindingState(string sn)
+        {
+            //箱子编码/追溯码查询/产品型号
+            string selectSQL = $"SELECT BINDING_STATE 绑定状态 " +
+                    $"FROM {DbTable.F_OUT_CASE_PRODUCT_NAME} WHERE " +
+                    $"{DbTable.F_Out_Case_Product.SN_OUTTER} = '{sn}'";
+            return SQLServer.ExecuteDataSet(selectSQL);
+        }
+
+        /// <summary>
+        /// 由箱子编码查询，该箱子已装数量；已绑定/绑定后解绑
+        /// </summary>
+        /// <param name="casecode"></param>
+        /// <param name="bindingState"></param>
+        /// <returns></returns>
+        public DataSet SelectProductBindingCount(string casecode,string bindingState)
+        {
+            string selectSQL = $"SELECT {DbTable.F_Out_Case_Product.OUT_CASE_CODE},{DbTable.F_Out_Case_Product.SN_OUTTER} " +
+                $"FROM {DbTable.F_OUT_CASE_PRODUCT_NAME} " +
+                $"WHERE {DbTable.F_Out_Case_Product.OUT_CASE_CODE} = '{casecode}' AND {DbTable.F_Out_Case_Product.BINDING_STATE} = '{bindingState}'";
+            return SQLServer.ExecuteDataSet(selectSQL);
+        }
+
+        /// <summary>
+        /// 由箱子编码删除所有绑定记录
+        /// </summary>
+        /// <param name="casecode"></param>
+        /// <returns></returns>
+        public int DeleteProductBindingData(string casecode)
+        {
+            string deleteSQL = $"DELETE FROM {DbTable.F_OUT_CASE_PRODUCT_NAME} WHERE " +
+                $"{DbTable.F_Out_Case_Product.OUT_CASE_CODE} = '{casecode}'";
+            return SQLServer.ExecuteNonQuery(deleteSQL);
         }
         #endregion
 
