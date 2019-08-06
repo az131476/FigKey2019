@@ -470,8 +470,6 @@
     <EmbeddedResource Include="WelcomeForm.resx">
       <DependentUpon>WelcomeForm.cs</DependentUpon>
     </EmbeddedResource>
-<<<<<<< HEAD
-=======
     <None Include="app.manifest" />
     <None Include="Connected Services\MesService\MesManager.MesService.GetUserInfoResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -502,7 +500,6 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="DB\WT_SCL.bak" />
->>>>>>> a192a1a4d19917383157d8fbfc0b38b411301f9a
     <None Include="packages.config" />
     <None Include="Properties\DataSources\System.Data.DataSet.datasource" />
     <None Include="Properties\Settings.settings">
@@ -519,8 +516,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
-=======
     <None Include="Connected Services\MesService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -535,7 +530,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>WT_SCL.mdf</DependentUpon>
     </Content>
->>>>>>> a192a1a4d19917383157d8fbfc0b38b411301f9a
     <None Include="Resources\vsb-bg.png" />
     <None Include="Resources\ThViewer-bg.png" />
     <None Include="Resources\movieLab-bg.png" />
@@ -564,28 +558,21 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
-=======
     <NativeReference Include="MyApplication.app, Version=1.0.0.0">
       <Name>app.manifest</Name>
       <HintPath>..\Lib\telerik\app.manifest</HintPath>
     </NativeReference>
   </ItemGroup>
   <ItemGroup>
->>>>>>> a192a1a4d19917383157d8fbfc0b38b411301f9a
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-<<<<<<< HEAD
-    <ProjectReference Include="..\..\..\..\..\..\CommonUtils\CommonLibrary\CommonUtils\CommonUtils\CommonUtils.csproj">
-=======
     <WCFMetadataStorage Include="Connected Services\MesService\" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\..\CommonLibrary\CommonUtils\CommonUtils\CommonUtils.csproj">
->>>>>>> a192a1a4d19917383157d8fbfc0b38b411301f9a
       <Project>{ebfca1b5-23f1-4f94-928a-db1a7b98eed6}</Project>
       <Name>CommonUtils</Name>
     </ProjectReference>

@@ -1,0 +1,15 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="OAuthConsumerSample.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="RequestTokenUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://localhost:1897/Handlers/RequestToken.ashx</Value>
+    </Setting>
+    <Setting Name="UserAuthorizationUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://localhost:1897/Pages/UserAuthorize.aspx</Value>
+    </Setting>
+    <Setting Name="AccessTokenUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://localhost:1897/Handlers/AccessToken.ashx</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

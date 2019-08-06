@@ -1,13 +1,12 @@
-﻿using System;
+﻿using SwaggerWcf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel.Activation;
 using System.Web;
+using System.Web.Routing;
 using System.Web.Security;
 using System.Web.SessionState;
-using System.ServiceModel.Activation;
-using SwaggerWcf;
-using System.Web.Routing;
-
 namespace MESInterface
 {
     public class Global : System.Web.HttpApplication
@@ -16,7 +15,7 @@ namespace MESInterface
         protected void Application_Start(object sender, EventArgs e)
         {
             RouteTable.Routes.Add(new ServiceRoute("MesService", new WebServiceHostFactory(), typeof(MesService)));
-            RouteTable.Routes.Add(new ServiceRoute("Swagger", new WebServiceHostFactory(), typeof(SwaggerWcfEndpoint)));
+            RouteTable.Routes.Add(new ServiceRoute("api-docs", new WebServiceHostFactory(), typeof(SwaggerWcfEndpoint)));
         }
 
         protected void Session_Start(object sender, EventArgs e)

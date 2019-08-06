@@ -26,7 +26,7 @@ namespace WcfTest
         [WebInvoke(Method = "POST", UriTemplate = "GetDataT?value={value}",
             BodyStyle = WebMessageBodyStyle.WrappedRequest,
             RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
-        string GetDataT(CompositeType composite,int value);
+        string GetDataT(Interface1 composite,int value);
 
         [OperationContract]
         string GetDataA(CompositeType composite);
@@ -54,7 +54,6 @@ namespace WcfTest
 
         // TODO: 在此添加您的服务操作
     }
-
 
     // 使用下面示例中说明的数据约定将复合类型添加到服务操作。
     [DataContract]

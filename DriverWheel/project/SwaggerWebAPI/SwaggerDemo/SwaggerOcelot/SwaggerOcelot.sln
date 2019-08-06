@@ -1,9 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+<<<<<<< HEAD
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.489
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SwaggerOcelot", "SwaggerOcelot.csproj", "{B8A74873-BF8D-493B-84A0-89C79B1678D2}"
+=======
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.202
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SwaggerOcelot", "SwaggerOcelot.csproj", "{72EC0D42-86AC-4A01-A14C-A1D884B32D4E}"
+>>>>>>> 76f2d237bc43e3688394d3abb3d4862938acc36c
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +18,26 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+<<<<<<< HEAD
 		{B8A74873-BF8D-493B-84A0-89C79B1678D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B8A74873-BF8D-493B-84A0-89C79B1678D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B8A74873-BF8D-493B-84A0-89C79B1678D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B8A74873-BF8D-493B-84A0-89C79B1678D2}.Release|Any CPU.Build.0 = Release|Any CPU
+=======
+		{72EC0D42-86AC-4A01-A14C-A1D884B32D4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72EC0D42-86AC-4A01-A14C-A1D884B32D4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72EC0D42-86AC-4A01-A14C-A1D884B32D4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72EC0D42-86AC-4A01-A14C-A1D884B32D4E}.Release|Any CPU.Build.0 = Release|Any CPU
+>>>>>>> 76f2d237bc43e3688394d3abb3d4862938acc36c
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
+<<<<<<< HEAD
 		SolutionGuid = {C439180B-DCD3-4E41-9925-653791C55AB0}
+=======
+		SolutionGuid = {DDF55C42-D9D5-4090-9162-CC701DD5178A}
+>>>>>>> 76f2d237bc43e3688394d3abb3d4862938acc36c
 	EndGlobalSection
 EndGlobal

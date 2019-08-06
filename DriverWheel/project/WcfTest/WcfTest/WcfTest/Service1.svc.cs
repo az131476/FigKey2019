@@ -29,7 +29,7 @@ namespace WcfTest
         }
 
         [SwaggerWcfTag("Service1 服务")]
-        public string GetDataT(CompositeType composite, int value)
+        public string GetDataT(Interface1 composite, int value)
         {
             return string.Format("You entered: {0}", value);
         }

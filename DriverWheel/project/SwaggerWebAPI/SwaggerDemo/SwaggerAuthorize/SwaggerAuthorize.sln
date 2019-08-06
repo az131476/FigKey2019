@@ -1,9 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+<<<<<<< HEAD
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.489
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SwaggerAuthorize", "SwaggerAuthorize.csproj", "{6A71BFA2-9BF0-4896-AF16-B6AACA72D70C}"
+=======
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.202
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SwaggerAuthorize", "SwaggerAuthorize.csproj", "{983197ED-AB9F-4D60-A959-A5EFC4778D7B}"
+>>>>>>> 76f2d237bc43e3688394d3abb3d4862938acc36c
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +18,26 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+<<<<<<< HEAD
 		{6A71BFA2-9BF0-4896-AF16-B6AACA72D70C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6A71BFA2-9BF0-4896-AF16-B6AACA72D70C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6A71BFA2-9BF0-4896-AF16-B6AACA72D70C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6A71BFA2-9BF0-4896-AF16-B6AACA72D70C}.Release|Any CPU.Build.0 = Release|Any CPU
+=======
+		{983197ED-AB9F-4D60-A959-A5EFC4778D7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{983197ED-AB9F-4D60-A959-A5EFC4778D7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{983197ED-AB9F-4D60-A959-A5EFC4778D7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{983197ED-AB9F-4D60-A959-A5EFC4778D7B}.Release|Any CPU.Build.0 = Release|Any CPU
+>>>>>>> 76f2d237bc43e3688394d3abb3d4862938acc36c
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
+<<<<<<< HEAD
 		SolutionGuid = {907C876F-2714-4E13-B6CA-DC3E604629F5}
+=======
+		SolutionGuid = {76CEE437-E054-4CF4-AAB0-CF1D75B86C55}
+>>>>>>> 76f2d237bc43e3688394d3abb3d4862938acc36c
 	EndGlobalSection
 EndGlobal
