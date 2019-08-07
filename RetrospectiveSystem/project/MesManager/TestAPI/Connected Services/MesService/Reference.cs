@@ -9,150 +9,7 @@
 //------------------------------------------------------------------------------
 
 namespace TestAPI.MesService {
-    using System.Runtime.Serialization;
-    using System;
     
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="PackageProduct", Namespace="http://schemas.datacontract.org/2004/07/MESWebService.Model")]
-    [System.SerializableAttribute()]
-    public partial class PackageProduct : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string BindingDateField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int BindingStateField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CaseCodeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private byte[] PictureField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string RemarkField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string SnOutterField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string TypeNoField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string BindingDate {
-            get {
-                return this.BindingDateField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.BindingDateField, value) != true)) {
-                    this.BindingDateField = value;
-                    this.RaisePropertyChanged("BindingDate");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int BindingState {
-            get {
-                return this.BindingStateField;
-            }
-            set {
-                if ((this.BindingStateField.Equals(value) != true)) {
-                    this.BindingStateField = value;
-                    this.RaisePropertyChanged("BindingState");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string CaseCode {
-            get {
-                return this.CaseCodeField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CaseCodeField, value) != true)) {
-                    this.CaseCodeField = value;
-                    this.RaisePropertyChanged("CaseCode");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public byte[] Picture {
-            get {
-                return this.PictureField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.PictureField, value) != true)) {
-                    this.PictureField = value;
-                    this.RaisePropertyChanged("Picture");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Remark {
-            get {
-                return this.RemarkField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.RemarkField, value) != true)) {
-                    this.RemarkField = value;
-                    this.RaisePropertyChanged("Remark");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string SnOutter {
-            get {
-                return this.SnOutterField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.SnOutterField, value) != true)) {
-                    this.SnOutterField = value;
-                    this.RaisePropertyChanged("SnOutter");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string TypeNo {
-            get {
-                return this.TypeNoField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.TypeNoField, value) != true)) {
-                    this.TypeNoField = value;
-                    this.RaisePropertyChanged("TypeNo");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="MesService.IMesService")]
@@ -165,22 +22,22 @@ namespace TestAPI.MesService {
         System.Threading.Tasks.Task<string> InsertTestResultDataAsync(string sn, string typeNo, string station, string dateTime, string result);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectLastTestResult", ReplyAction="http://tempuri.org/IMesService/SelectLastTestResultResponse")]
-        string SelectLastTestResult(string sn, string typeNo, string station);
+        string[] SelectLastTestResult(string sn, string typeNo, string station);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectLastTestResult", ReplyAction="http://tempuri.org/IMesService/SelectLastTestResultResponse")]
-        System.Threading.Tasks.Task<string> SelectLastTestResultAsync(string sn, string typeNo, string station);
+        System.Threading.Tasks.Task<string[]> SelectLastTestResultAsync(string sn, string typeNo, string station);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/InsertMaterialStatistics", ReplyAction="http://tempuri.org/IMesService/InsertMaterialStatisticsResponse")]
-        string InsertMaterialStatistics(string snInner, string snOutter, string typeNo, string stationName, string materialCode, string amount);
+        string InsertMaterialStatistics(string snInner, string snOutter, string typeNo, string stationName, string materialCode, int amount);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/InsertMaterialStatistics", ReplyAction="http://tempuri.org/IMesService/InsertMaterialStatisticsResponse")]
-        System.Threading.Tasks.Task<string> InsertMaterialStatisticsAsync(string snInner, string snOutter, string typeNo, string stationName, string materialCode, string amount);
+        System.Threading.Tasks.Task<string> InsertMaterialStatisticsAsync(string snInner, string snOutter, string typeNo, string stationName, string materialCode, int amount);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/UpdatePackageProduct", ReplyAction="http://tempuri.org/IMesService/UpdatePackageProductResponse")]
-        int UpdatePackageProduct(TestAPI.MesService.PackageProduct packageProduct);
+        string UpdatePackageProduct(string outCaseCode, string snOutter, string bindingState);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/UpdatePackageProduct", ReplyAction="http://tempuri.org/IMesService/UpdatePackageProductResponse")]
-        System.Threading.Tasks.Task<int> UpdatePackageProductAsync(TestAPI.MesService.PackageProduct packageProduct);
+        System.Threading.Tasks.Task<string> UpdatePackageProductAsync(string outCaseCode, string snOutter, string bindingState);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -218,28 +75,28 @@ namespace TestAPI.MesService {
             return base.Channel.InsertTestResultDataAsync(sn, typeNo, station, dateTime, result);
         }
         
-        public string SelectLastTestResult(string sn, string typeNo, string station) {
+        public string[] SelectLastTestResult(string sn, string typeNo, string station) {
             return base.Channel.SelectLastTestResult(sn, typeNo, station);
         }
         
-        public System.Threading.Tasks.Task<string> SelectLastTestResultAsync(string sn, string typeNo, string station) {
+        public System.Threading.Tasks.Task<string[]> SelectLastTestResultAsync(string sn, string typeNo, string station) {
             return base.Channel.SelectLastTestResultAsync(sn, typeNo, station);
         }
         
-        public string InsertMaterialStatistics(string snInner, string snOutter, string typeNo, string stationName, string materialCode, string amount) {
+        public string InsertMaterialStatistics(string snInner, string snOutter, string typeNo, string stationName, string materialCode, int amount) {
             return base.Channel.InsertMaterialStatistics(snInner, snOutter, typeNo, stationName, materialCode, amount);
         }
         
-        public System.Threading.Tasks.Task<string> InsertMaterialStatisticsAsync(string snInner, string snOutter, string typeNo, string stationName, string materialCode, string amount) {
+        public System.Threading.Tasks.Task<string> InsertMaterialStatisticsAsync(string snInner, string snOutter, string typeNo, string stationName, string materialCode, int amount) {
             return base.Channel.InsertMaterialStatisticsAsync(snInner, snOutter, typeNo, stationName, materialCode, amount);
         }
         
-        public int UpdatePackageProduct(TestAPI.MesService.PackageProduct packageProduct) {
-            return base.Channel.UpdatePackageProduct(packageProduct);
+        public string UpdatePackageProduct(string outCaseCode, string snOutter, string bindingState) {
+            return base.Channel.UpdatePackageProduct(outCaseCode, snOutter, bindingState);
         }
         
-        public System.Threading.Tasks.Task<int> UpdatePackageProductAsync(TestAPI.MesService.PackageProduct packageProduct) {
-            return base.Channel.UpdatePackageProductAsync(packageProduct);
+        public System.Threading.Tasks.Task<string> UpdatePackageProductAsync(string outCaseCode, string snOutter, string bindingState) {
+            return base.Channel.UpdatePackageProductAsync(outCaseCode, snOutter, bindingState);
         }
     }
 }

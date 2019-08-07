@@ -44,9 +44,15 @@ namespace TestAPI
             textBox1.Text = "";
             var sn = "sn_001";
             var typeno = "type_no_0001";
-            var station = "station_name_002";
+            var station = "station_name_001";
 
-            textBox1.Text = await serviceClient.SelectLastTestResultAsync(sn,typeno,station);
+            string[] array = await serviceClient.SelectLastTestResultAsync(sn,typeno,station);
+        }
+
+        async private void Button3_Click(object sender, EventArgs e)
+        {
+            var res = await serviceClient.UpdatePackageProductAsync("20190806code","0003","0");
+            textBox1.Text = res.ToString();
         }
     }
 }

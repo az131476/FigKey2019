@@ -5,6 +5,7 @@ using System.Web;
 using CommonUtils.DB;
 using CommonUtils.Logger;
 using MESWebService.DB;
+using System;
 
 namespace MESWebService.MessageQueue.RemoteClient
 {
@@ -23,14 +24,22 @@ namespace MESWebService.MessageQueue.RemoteClient
                 $"{DbTable.F_Test_Result.TEST_RESULT},{DbTable.F_Test_Result.UPDATE_DATE},{DbTable.F_Test_Result.REMARK}) " +
                 $"VALUES('{sn}','{typeNo}','{station}','{result}','{dateTime}','测试结果')";
             LogHelper.Log.Info(insertSQL);
-            int row = SQLServer.ExecuteNonQuery(insertSQL);
-            if (row > 0)
+            try
             {
-                return "1";
+                int row = SQLServer.ExecuteNonQuery(insertSQL);
+                if (row > 0)
+                {
+                    return "OK";
+                }
+                else
+                {
+                    return "FAIL";
+                }
             }
-            else
+            catch (Exception ex)
             {
-                return "0";
+                LogHelper.Log.Error(ex.Message);
+                return "ERROR";
             }
         }
 
