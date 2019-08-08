@@ -350,7 +350,11 @@ namespace LoggerConfigurator
                     return;
                 }
             }
-            string path = FileSelect.SaveAs("(*.c)|*.c");
+            string sourcePath = AppDomain.CurrentDomain.BaseDirectory + @"编译器\";
+            if (!Directory.Exists(sourcePath))
+                sourcePath = AppDomain.CurrentDomain.BaseDirectory;
+            //string path = FileSelect.SaveAs("(*.c)|*.c",sourcePath);
+            string path = sourcePath + "data.c";
             if (string.IsNullOrEmpty(path))
             {
                 return;
@@ -363,7 +367,15 @@ namespace LoggerConfigurator
             {
                 sectCan = 3;
             }
-            ExportFile.ExportFileToLocal(path, radGridView_can1, radGridView_can2, gridViewData, analysisData,xcpdataCan1,sectCan);
+            var executeResult = ExportFile.ExportFileToLocal(path, sourcePath, radGridView_can1, radGridView_can2, gridViewData, analysisData,xcpdataCan1,sectCan);
+            if (executeResult)
+            {
+                MessageBox.Show("已成功生成DLL！","提示",MessageBoxButtons.OK,MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("生成DLL失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
         #endregion
 

@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CommonUtils.tool;
+
 
 namespace TestAPI
 {
@@ -44,7 +46,7 @@ namespace TestAPI
             textBox1.Text = "";
             var sn = "sn_001";
             var typeno = "type_no_0001";
-            var station = "station_name_001";
+            var station = "station_name_002";
 
             string[] array = await serviceClient.SelectLastTestResultAsync(sn,typeno,station);
         }
@@ -53,6 +55,12 @@ namespace TestAPI
         {
             var res = await serviceClient.UpdatePackageProductAsync("20190806code","0003","0");
             textBox1.Text = res.ToString();
+        }
+
+        private void Button4_Click(object sender, EventArgs e)
+        {
+            string path = @"D:\work\project\FigKey\LoggerConfigurator\LoggerConfigurator\bin\Debug\编译器";
+            textBox1.Text = Execute.ExecuteApply(path, "xcpmake.bat").ToString();
         }
     }
 }

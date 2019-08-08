@@ -10,6 +10,7 @@ using Telerik.WinControls.UI;
 using FigKeyLoggerConfigurator.Model;
 using CommonUtils.FileHelper;
 using CommonUtils.Logger;
+using CommonUtils.tool;
 using AnalysisAgreeMent.Model;
 using AnalysisAgreeMent.Model.DBC;
 using AnalysisAgreeMent.Analysis;
@@ -81,10 +82,11 @@ namespace FigKeyLoggerConfigurator.Control
         /// <summary>
         /// 导出a2l与dbc文件到本地
         /// </summary>
-        public static void ExportFileToLocal(string targetPath, RadGridView gridView1,RadGridView gridView2, 
+        public static bool ExportFileToLocal(string targetPath,string excutepath, RadGridView gridView1,RadGridView gridView2, 
             GridViewData gridData, AnalysisData analysisData,XcpData dataCan1,int sectCan)
         {
             stringBuilderHead = new StringBuilder();
+            File.Delete(targetPath);
             stringBuilderHead.AppendLine($"#include\"datatype.h\"");
             WriteData.WriteString(stringBuilderHead, targetPath);
 
@@ -108,6 +110,11 @@ namespace FigKeyLoggerConfigurator.Control
                 AddDBCDetailGroup(targetPath);
                 AddCanChInfo(targetPath, dataCan1, analysisData,3);
             }
+            //导出完成后执行.bat
+            var batName = "xcpmake.bat";
+            if (!File.Exists(excutepath + batName))
+                return false;
+            return Execute.ExecuteApply(excutepath, batName);
         }
 
         private static void A2lDetailData(string targetPath, RadGridView gridView, GridViewData listData)
@@ -416,8 +423,18 @@ namespace FigKeyLoggerConfigurator.Control
                     //数据格式：
                     //名称+描述+单位+数据类型+数据长度+字节顺序+截取开始地址(dbc有用)+
                     //截取长度+数据地址(a2l-ecu地址，monitor-canid)+系数+偏移量
+                    var describle = gridView.Rows[list[i]].Cells[2].Value.ToString().Replace('"',' ').Trim();
+                    if (describle.Length >= 12)
+                    {
+                        describle = describle.Substring(0, 12);
+                        describle = "\"" + describle + "\"";
+                    }
+                    else
+                    {
+                        describle = "\"" + describle + "\"";
+                    }
                     builder.Append("\t" + '"'+gridView.Rows[list[i]].Cells[1].Value.ToString() +'"'+ "," +
-                                   gridView.Rows[list[i]].Cells[2].Value.ToString() + "," +
+                                   describle + "," +//描述
                                    gridView.Rows[list[i]].Cells[3].Value.ToString() + "," +
                                    gridView.Rows[list[i]].Cells[4].Value.ToString() + "," +
                                    gridView.Rows[list[i]].Cells[5].Value.ToString() + "," +
@@ -441,7 +458,14 @@ namespace FigKeyLoggerConfigurator.Control
             {
                 AnalysisSignal analysisSignal = new AnalysisSignal();
                 analysisSignal.Name = gridView.Rows[listData.DbcCheckIndex[i]].Cells[1].Value.ToString();
-                analysisSignal.Describle = gridView.Rows[listData.DbcCheckIndex[i]].Cells[2].Value.ToString();
+                var describle = gridView.Rows[listData.DbcCheckIndex[i]].Cells[2].Value.ToString().Replace('"',' ').Trim();
+                if (describle.Length >= 12)
+                {
+                    describle = describle.Substring(0, 12);
+                    //describle = "\"" + describle + "\"";
+                }
+
+                analysisSignal.Describle = describle;
                 analysisSignal.Unit = gridView.Rows[listData.DbcCheckIndex[i]].Cells[3].Value.ToString();
                 analysisSignal.SaveDataType = (SaveDataTypeEnum)Enum.Parse(typeof(SaveDataTypeEnum),gridView.Rows[listData.DbcCheckIndex[i]].Cells[4].Value.ToString());
                 analysisSignal.SaveDataLen = int.Parse(gridView.Rows[listData.DbcCheckIndex[i]].Cells[5].Value.ToString());
