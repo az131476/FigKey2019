@@ -7,17 +7,19 @@ namespace MesAPI.DB
 {
     public class DbTable
     {
-        public const string F_USER_NAME                 = "[WT_SCL].[dbo].[f_user]";
-        public const string F_STATION_NAME              = "[WT_SCL].[dbo].[f_station]";
-        public const string F_TEST_RESULT_NAME          = "[WT_SCL].[dbo].[f_test_result_data]";
-        public const string F_PRODUCT_STATION_NAME      = "[WT_SCL].[dbo].[f_product_station]";
-        public const string F_PRODUCT_TYPE_NO_NAME      = "[WT_SCL].[dbo].[f_product_typeNo]";
-        public const string F_PRODUCT_MATERIAL_NAME     = "[WT_SCL].[dbo].[f_product_material]";
-        public const string F_MATERIAL_NAME             = "[WT_SCL].[dbo].[f_material]";
-        public const string F_MATERIAL_STATISTICS_NAME  = "[WT_SCL].[dbo].[f_material_statistics]";
-        public const string F_OUT_CASE_STORAGE_NAME     = "[WT_SCL].[dbo].[f_out_case_storage]";
-        public const string F_OUT_CASE_PRODUCT_NAME     = "[WT_SCL].[dbo].[f_out_case_product]";
+        public const string F_USER_NAME = "[WT_SCL].[dbo].[f_user]";
+        public const string F_TECHNOLOGICAL_PROCESS_NAME = "[WT_SCL].[dbo].[f_technological_process]";
+        public const string F_TEST_RESULT_NAME = "[WT_SCL].[dbo].[f_test_result_data]";
+        public const string F_PRODUCT_STATION_NAME = "[WT_SCL].[dbo].[f_product_station]";
+        public const string F_PRODUCT_TYPE_NO_NAME = "[WT_SCL].[dbo].[f_product_typeNo]";
+        public const string F_PRODUCT_MATERIAL_NAME = "[WT_SCL].[dbo].[f_product_material]";
+        public const string F_MATERIAL_NAME = "[WT_SCL].[dbo].[f_material]";
+        public const string F_MATERIAL_STATISTICS_NAME = "[WT_SCL].[dbo].[f_material_statistics]";
+        public const string F_OUT_CASE_STORAGE_NAME = "[WT_SCL].[dbo].[f_out_case_storage]";
+        public const string F_OUT_CASE_PRODUCT_NAME = "[WT_SCL].[dbo].[f_out_case_product]";
         public const string F_PASS_RATE_STATISTICS_NAME = "[WT_SCL].[dbo].[f_pass_rate_statistics]";
+        public const string F_TEST_PROGRAME_VERSION_NAME = "[WT_SCL].[dbo].[f_test_programe_version]";
+        public const string F_TEST_LIMIT_CONFIG_NAME = "[WT_SCL].[dbo].[f_test_limit_config]";
 
         public class F_User
         {
@@ -31,10 +33,13 @@ namespace MesAPI.DB
             public const string ROLE_NAME = "[role_name]";
         }
 
-        public class F_Station
+        public class F_TECHNOLOGICAL_PROCESS
         {
+            public const string PROCESS_NAME = "[process_name]";
             public const string STATION_ORDER = "[station_order]";
             public const string STATION_NAME = "[station_name]";
+            public const string UPDATE_DATE = "[update_date]";
+            public const string USER_NAME = "[username]";
         }
 
         public class F_Product_Station
@@ -53,6 +58,8 @@ namespace MesAPI.DB
             public const string CREATE_DATE = "[create_date]";
             public const string UPDATE_DATE = "[update_date]";
             public const string REMARK = "[remark]";
+            public const string TEAM_LEADER = "team_leader";
+            public const string ADMIN = "[admin]";
         }
 
         public class F_TypeNo
@@ -76,7 +83,6 @@ namespace MesAPI.DB
             public const string UpdateDate = "[update_date]";
         }
 
-
         public class F_Material_Statistics
         {
             public const string SN_INNER = "[sn_inner]";
@@ -85,6 +91,7 @@ namespace MesAPI.DB
             public const string STATION_NAME = "[station_name]";
             public const string MATERIAL_CODE = "[material_code]";
             public const string MATERIAL_AMOUNT = "[material_amount]";
+            public const string UPDATE_DATE = "[update_date]";
         }
 
         public class F_Out_Case_Storage
@@ -113,6 +120,27 @@ namespace MesAPI.DB
             public const string AMOUNT = "[amount]";
             public const string STORAGE_CAPACITY = "[storage_capacity]";
             public const string UPDATE_DATE = "[update_date]";
+        }
+
+        public class F_TEST_PROGRAME_VERSION
+        {
+            public const string TYPE_NO = "[type_no]";
+            public const string STATION_NAME = "[station_name]";
+            public const string PROGRAME_NAME = "[programe_name]";
+            public const string PROGRAME_VERSION = "[programe_version]";
+            public const string TEAM_LEADER = "[team_leader]";
+            public const string ADMIN = "[admin]";
+            public const string UPDATE_DATE = "[update_date]";
+        }
+
+        public class F_TEST_LIMIT_CONFIG
+        {
+            public const string STATION_NAME = "station_name";
+            public const string TYPE_NO = "type_no";
+            public const string LIMIT_VALUE = "limit_value";
+            public const string TEAM_LEADER = "team_leader";
+            public const string ADMIN = "admin";
+            public const string UPDATE_DATE = "update_date";
         }
     }
 }

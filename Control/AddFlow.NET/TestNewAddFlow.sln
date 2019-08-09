@@ -1,0 +1,28 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.202
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lassalle.AddFlow", "AddFlow\Lassalle.AddFlow.csproj", "{77EE6C7E-8A20-43DD-8955-AE84C489A1D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsApplication1", "WindowsApplication1\WindowsApplication1.csproj", "{9138E6E4-6FD4-43A4-8365-431B318EE71D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{77EE6C7E-8A20-43DD-8955-AE84C489A1D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77EE6C7E-8A20-43DD-8955-AE84C489A1D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9138E6E4-6FD4-43A4-8365-431B318EE71D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9138E6E4-6FD4-43A4-8365-431B318EE71D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9138E6E4-6FD4-43A4-8365-431B318EE71D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9138E6E4-6FD4-43A4-8365-431B318EE71D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {ED57B230-1FB8-422D-BCC8-0D65BB425EC8}
+	EndGlobalSection
+EndGlobal

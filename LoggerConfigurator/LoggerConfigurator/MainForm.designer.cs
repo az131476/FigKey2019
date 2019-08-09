@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             this.radMenuItem1 = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItem3 = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItem4 = new Telerik.WinControls.UI.RadMenuItem();
@@ -66,29 +66,20 @@
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.radStatusStrip1 = new Telerik.WinControls.UI.RadStatusStrip();
             this.radDock1 = new Telerik.WinControls.UI.Docking.RadDock();
-            this.documentWindow_can1 = new Telerik.WinControls.UI.Docking.DocumentWindow();
-            this.radGridView_can1 = new Telerik.WinControls.UI.RadGridView();
-            this.radPanel2 = new Telerik.WinControls.UI.RadPanel();
-            this.tb_filter_can1 = new Telerik.WinControls.UI.RadTextBox();
-            this.btn_openFile_Can1 = new Telerik.WinControls.UI.RadButton();
-            this.btn_search_can1 = new Telerik.WinControls.UI.RadButton();
-            this.navigator_can1 = new Telerik.WinControls.UI.RadBindingNavigator();
-            this.radBindingNavigator1RowElement = new Telerik.WinControls.UI.CommandBarRowElement();
-            this.radBindingNavigator1FirstStrip = new Telerik.WinControls.UI.CommandBarStripElement();
-            this.radBindingNavigator1MoveFirstItem = new Telerik.WinControls.UI.CommandBarButton();
-            this.commandBarSeparator1 = new Telerik.WinControls.UI.CommandBarSeparator();
-            this.radBindingNavigator1MovePreviousItem = new Telerik.WinControls.UI.CommandBarButton();
-            this.commandBarSeparator2 = new Telerik.WinControls.UI.CommandBarSeparator();
-            this.radBindingNavigator1PositionItem = new Telerik.WinControls.UI.CommandBarTextBox();
-            this.radBindingNavigator1CountItem = new Telerik.WinControls.UI.CommandBarLabel();
-            this.commandBarSeparator3 = new Telerik.WinControls.UI.CommandBarSeparator();
-            this.radBindingNavigator1MoveNextItem = new Telerik.WinControls.UI.CommandBarButton();
-            this.commandBarSeparator4 = new Telerik.WinControls.UI.CommandBarSeparator();
-            this.radBindingNavigator1MoveLastItem = new Telerik.WinControls.UI.CommandBarButton();
-            this.radBindingNavigator1SecondStrip = new Telerik.WinControls.UI.CommandBarStripElement();
-            this.radBindingNavigator1AddNewItem = new Telerik.WinControls.UI.CommandBarButton();
-            this.commandBarSeparator5 = new Telerik.WinControls.UI.CommandBarSeparator();
-            this.radBindingNavigator1DeleteItem = new Telerik.WinControls.UI.CommandBarButton();
+            this.documentWindow_hardWare = new Telerik.WinControls.UI.Docking.DocumentWindow();
+            this.radGroupBox3 = new Telerik.WinControls.UI.RadGroupBox();
+            this.cb_protocol_can2 = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.cb_baud_can2 = new System.Windows.Forms.ComboBox();
+            this.btn_save_can_cfg = new Telerik.WinControls.UI.RadButton();
+            this.radGroupBox2 = new Telerik.WinControls.UI.RadGroupBox();
+            this.lbx_protocol_remark = new Telerik.WinControls.UI.RadLabel();
+            this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
+            this.cb_protocol_can1 = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cb_baud_can1 = new System.Windows.Forms.ComboBox();
             this.toolTabStrip2 = new Telerik.WinControls.UI.Docking.ToolTabStrip();
             this.toolWindow_left = new Telerik.WinControls.UI.Docking.ToolWindow();
             this.rTreeViewList = new Telerik.WinControls.UI.RadTreeView();
@@ -117,34 +108,43 @@
             this.radBindingNavigator2AddNewItem = new Telerik.WinControls.UI.CommandBarButton();
             this.commandBarSeparator10 = new Telerik.WinControls.UI.CommandBarSeparator();
             this.radBindingNavigator2DeleteItem = new Telerik.WinControls.UI.CommandBarButton();
-            this.documentWindow_hardWare = new Telerik.WinControls.UI.Docking.DocumentWindow();
-            this.radGroupBox3 = new Telerik.WinControls.UI.RadGroupBox();
-            this.cb_protocol_can2 = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.cb_baud_can2 = new System.Windows.Forms.ComboBox();
-            this.btn_save_can_cfg = new Telerik.WinControls.UI.RadButton();
-            this.radGroupBox2 = new Telerik.WinControls.UI.RadGroupBox();
-            this.lbx_protocol_remark = new Telerik.WinControls.UI.RadLabel();
-            this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
-            this.cb_protocol_can1 = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.cb_baud_can1 = new System.Windows.Forms.ComboBox();
+            this.documentWindow_can1 = new Telerik.WinControls.UI.Docking.DocumentWindow();
+            this.radGridView_can1 = new Telerik.WinControls.UI.RadGridView();
+            this.radPanel2 = new Telerik.WinControls.UI.RadPanel();
+            this.tb_filter_can1 = new Telerik.WinControls.UI.RadTextBox();
+            this.btn_openFile_Can1 = new Telerik.WinControls.UI.RadButton();
+            this.btn_search_can1 = new Telerik.WinControls.UI.RadButton();
+            this.navigator_can1 = new Telerik.WinControls.UI.RadBindingNavigator();
+            this.radBindingNavigator1RowElement = new Telerik.WinControls.UI.CommandBarRowElement();
+            this.radBindingNavigator1FirstStrip = new Telerik.WinControls.UI.CommandBarStripElement();
+            this.radBindingNavigator1MoveFirstItem = new Telerik.WinControls.UI.CommandBarButton();
+            this.commandBarSeparator1 = new Telerik.WinControls.UI.CommandBarSeparator();
+            this.radBindingNavigator1MovePreviousItem = new Telerik.WinControls.UI.CommandBarButton();
+            this.commandBarSeparator2 = new Telerik.WinControls.UI.CommandBarSeparator();
+            this.radBindingNavigator1PositionItem = new Telerik.WinControls.UI.CommandBarTextBox();
+            this.radBindingNavigator1CountItem = new Telerik.WinControls.UI.CommandBarLabel();
+            this.commandBarSeparator3 = new Telerik.WinControls.UI.CommandBarSeparator();
+            this.radBindingNavigator1MoveNextItem = new Telerik.WinControls.UI.CommandBarButton();
+            this.commandBarSeparator4 = new Telerik.WinControls.UI.CommandBarSeparator();
+            this.radBindingNavigator1MoveLastItem = new Telerik.WinControls.UI.CommandBarButton();
+            this.radBindingNavigator1SecondStrip = new Telerik.WinControls.UI.CommandBarStripElement();
+            this.radBindingNavigator1AddNewItem = new Telerik.WinControls.UI.CommandBarButton();
+            this.commandBarSeparator5 = new Telerik.WinControls.UI.CommandBarSeparator();
+            this.radBindingNavigator1DeleteItem = new Telerik.WinControls.UI.CommandBarButton();
             this.radMenu1 = new Telerik.WinControls.UI.RadMenu();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radStatusStrip1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radDock1)).BeginInit();
             this.radDock1.SuspendLayout();
-            this.documentWindow_can1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radGridView_can1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGridView_can1.MasterTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanel2)).BeginInit();
-            this.radPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tb_filter_can1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btn_openFile_Can1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btn_search_can1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.navigator_can1)).BeginInit();
+            this.documentWindow_hardWare.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox3)).BeginInit();
+            this.radGroupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_save_can_cfg)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).BeginInit();
+            this.radGroupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lbx_protocol_remark)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
+            this.radGroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip2)).BeginInit();
             this.toolTabStrip2.SuspendLayout();
             this.toolWindow_left.SuspendLayout();
@@ -162,15 +162,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.btn_openFile_can2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_search_can2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navigator_can2)).BeginInit();
-            this.documentWindow_hardWare.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox3)).BeginInit();
-            this.radGroupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btn_save_can_cfg)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).BeginInit();
-            this.radGroupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lbx_protocol_remark)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
-            this.radGroupBox1.SuspendLayout();
+            this.documentWindow_can1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radGridView_can1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGridView_can1.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radPanel2)).BeginInit();
+            this.radPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tb_filter_can1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_openFile_Can1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_search_can1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.navigator_can1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
@@ -395,7 +395,7 @@
             // 
             // radDock1
             // 
-            this.radDock1.ActiveWindow = this.documentWindow_hardWare;
+            this.radDock1.ActiveWindow = this.toolWindow_left;
             this.radDock1.CausesValidation = false;
             this.radDock1.Controls.Add(this.toolTabStrip2);
             this.radDock1.Controls.Add(this.documentContainer1);
@@ -412,197 +412,145 @@
             this.radDock1.TabIndex = 3;
             this.radDock1.TabStop = false;
             // 
-            // documentWindow_can1
+            // documentWindow_hardWare
             // 
-            this.documentWindow_can1.Controls.Add(this.radGridView_can1);
-            this.documentWindow_can1.Controls.Add(this.radPanel2);
-            this.documentWindow_can1.Controls.Add(this.navigator_can1);
-            this.documentWindow_can1.Font = new System.Drawing.Font("宋体", 9F);
-            this.documentWindow_can1.Location = new System.Drawing.Point(6, 29);
-            this.documentWindow_can1.Name = "documentWindow_can1";
-            this.documentWindow_can1.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.TabbedDocument;
-            this.documentWindow_can1.Size = new System.Drawing.Size(958, 651);
-            this.documentWindow_can1.Text = "CAN1数据显示";
+            this.documentWindow_hardWare.Controls.Add(this.radGroupBox3);
+            this.documentWindow_hardWare.Controls.Add(this.btn_save_can_cfg);
+            this.documentWindow_hardWare.Controls.Add(this.radGroupBox2);
+            this.documentWindow_hardWare.Controls.Add(this.radGroupBox1);
+            this.documentWindow_hardWare.Font = new System.Drawing.Font("宋体", 9F);
+            this.documentWindow_hardWare.Location = new System.Drawing.Point(6, 29);
+            this.documentWindow_hardWare.Name = "documentWindow_hardWare";
+            this.documentWindow_hardWare.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.TabbedDocument;
+            this.documentWindow_hardWare.Size = new System.Drawing.Size(958, 651);
+            this.documentWindow_hardWare.Text = "硬件配置";
             // 
-            // radGridView_can1
+            // radGroupBox3
             // 
-            this.radGridView_can1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radGridView_can1.Font = new System.Drawing.Font("Segoe UI", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radGridView_can1.Location = new System.Drawing.Point(0, 34);
+            this.radGroupBox3.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this.radGroupBox3.Controls.Add(this.cb_protocol_can2);
+            this.radGroupBox3.Controls.Add(this.label3);
+            this.radGroupBox3.Controls.Add(this.label4);
+            this.radGroupBox3.Controls.Add(this.cb_baud_can2);
+            this.radGroupBox3.HeaderText = "CAN2";
+            this.radGroupBox3.Location = new System.Drawing.Point(3, 195);
+            this.radGroupBox3.Name = "radGroupBox3";
+            this.radGroupBox3.Size = new System.Drawing.Size(421, 137);
+            this.radGroupBox3.TabIndex = 7;
+            this.radGroupBox3.Text = "CAN2";
             // 
+            // cb_protocol_can2
             // 
+            this.cb_protocol_can2.Font = new System.Drawing.Font("宋体", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cb_protocol_can2.FormattingEnabled = true;
+            this.cb_protocol_can2.Location = new System.Drawing.Point(75, 75);
+            this.cb_protocol_can2.Name = "cb_protocol_can2";
+            this.cb_protocol_can2.Size = new System.Drawing.Size(135, 21);
+            this.cb_protocol_can2.TabIndex = 3;
             // 
-            this.radGridView_can1.MasterTemplate.ViewDefinition = tableViewDefinition2;
-            this.radGridView_can1.Name = "radGridView_can1";
-            this.radGridView_can1.Size = new System.Drawing.Size(958, 587);
-            this.radGridView_can1.TabIndex = 7;
+            // label3
             // 
-            // radPanel2
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(23, 38);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(46, 13);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "波特率";
             // 
-            this.radPanel2.Controls.Add(this.tb_filter_can1);
-            this.radPanel2.Controls.Add(this.btn_openFile_Can1);
-            this.radPanel2.Controls.Add(this.btn_search_can1);
-            this.radPanel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.radPanel2.Location = new System.Drawing.Point(0, 0);
-            this.radPanel2.Name = "radPanel2";
-            this.radPanel2.Size = new System.Drawing.Size(958, 34);
-            this.radPanel2.TabIndex = 6;
+            // label4
             // 
-            // tb_filter_can1
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(23, 83);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(33, 13);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "协议";
             // 
-            this.tb_filter_can1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.tb_filter_can1.Location = new System.Drawing.Point(624, 9);
-            this.tb_filter_can1.Name = "tb_filter_can1";
-            this.tb_filter_can1.Size = new System.Drawing.Size(267, 20);
-            this.tb_filter_can1.TabIndex = 4;
+            // cb_baud_can2
             // 
-            // btn_openFile_Can1
+            this.cb_baud_can2.Font = new System.Drawing.Font("宋体", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cb_baud_can2.FormattingEnabled = true;
+            this.cb_baud_can2.Location = new System.Drawing.Point(75, 35);
+            this.cb_baud_can2.Name = "cb_baud_can2";
+            this.cb_baud_can2.Size = new System.Drawing.Size(135, 21);
+            this.cb_baud_can2.TabIndex = 0;
             // 
-            this.btn_openFile_Can1.Location = new System.Drawing.Point(3, 7);
-            this.btn_openFile_Can1.Name = "btn_openFile_Can1";
-            this.btn_openFile_Can1.Size = new System.Drawing.Size(55, 22);
-            this.btn_openFile_Can1.TabIndex = 2;
-            this.btn_openFile_Can1.Text = "打开";
+            // btn_save_can_cfg
             // 
-            // btn_search_can1
+            this.btn_save_can_cfg.Location = new System.Drawing.Point(314, 493);
+            this.btn_save_can_cfg.Name = "btn_save_can_cfg";
+            this.btn_save_can_cfg.Size = new System.Drawing.Size(110, 24);
+            this.btn_save_can_cfg.TabIndex = 6;
+            this.btn_save_can_cfg.Text = "保存";
             // 
-            this.btn_search_can1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_search_can1.Location = new System.Drawing.Point(897, 7);
-            this.btn_search_can1.Name = "btn_search_can1";
-            this.btn_search_can1.Size = new System.Drawing.Size(54, 22);
-            this.btn_search_can1.TabIndex = 1;
-            this.btn_search_can1.Text = "搜索";
+            // radGroupBox2
             // 
-            // navigator_can1
+            this.radGroupBox2.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this.radGroupBox2.Controls.Add(this.lbx_protocol_remark);
+            this.radGroupBox2.HeaderText = "说明";
+            this.radGroupBox2.Location = new System.Drawing.Point(3, 362);
+            this.radGroupBox2.Name = "radGroupBox2";
+            this.radGroupBox2.Size = new System.Drawing.Size(421, 93);
+            this.radGroupBox2.TabIndex = 5;
+            this.radGroupBox2.Text = "说明";
             // 
-            this.navigator_can1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.navigator_can1.Location = new System.Drawing.Point(0, 621);
-            this.navigator_can1.Name = "navigator_can1";
-            this.navigator_can1.Rows.AddRange(new Telerik.WinControls.UI.CommandBarRowElement[] {
-            this.radBindingNavigator1RowElement});
-            this.navigator_can1.Size = new System.Drawing.Size(958, 30);
-            this.navigator_can1.TabIndex = 3;
+            // lbx_protocol_remark
             // 
-            // radBindingNavigator1RowElement
+            this.lbx_protocol_remark.Location = new System.Drawing.Point(14, 42);
+            this.lbx_protocol_remark.Name = "lbx_protocol_remark";
+            this.lbx_protocol_remark.Size = new System.Drawing.Size(107, 18);
+            this.lbx_protocol_remark.TabIndex = 0;
+            this.lbx_protocol_remark.Text = "lbx_protocol_remark";
             // 
-            this.radBindingNavigator1RowElement.MinSize = new System.Drawing.Size(25, 25);
-            this.radBindingNavigator1RowElement.Name = "radBindingNavigator1RowElement";
-            this.radBindingNavigator1RowElement.Strips.AddRange(new Telerik.WinControls.UI.CommandBarStripElement[] {
-            this.radBindingNavigator1FirstStrip,
-            this.radBindingNavigator1SecondStrip});
+            // radGroupBox1
             // 
-            // radBindingNavigator1FirstStrip
+            this.radGroupBox1.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this.radGroupBox1.Controls.Add(this.cb_protocol_can1);
+            this.radGroupBox1.Controls.Add(this.label1);
+            this.radGroupBox1.Controls.Add(this.label2);
+            this.radGroupBox1.Controls.Add(this.cb_baud_can1);
+            this.radGroupBox1.HeaderText = "CAN1";
+            this.radGroupBox1.Location = new System.Drawing.Point(3, 28);
+            this.radGroupBox1.Name = "radGroupBox1";
+            this.radGroupBox1.Size = new System.Drawing.Size(421, 137);
+            this.radGroupBox1.TabIndex = 4;
+            this.radGroupBox1.Text = "CAN1";
             // 
-            this.radBindingNavigator1FirstStrip.DisplayName = "radBindingNavigator1FirstStrip";
-            this.radBindingNavigator1FirstStrip.EnableDragging = false;
+            // cb_protocol_can1
             // 
+            this.cb_protocol_can1.Font = new System.Drawing.Font("宋体", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cb_protocol_can1.FormattingEnabled = true;
+            this.cb_protocol_can1.Location = new System.Drawing.Point(75, 75);
+            this.cb_protocol_can1.Name = "cb_protocol_can1";
+            this.cb_protocol_can1.Size = new System.Drawing.Size(135, 21);
+            this.cb_protocol_can1.TabIndex = 3;
             // 
+            // label1
             // 
-            this.radBindingNavigator1FirstStrip.Grip.Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
-            this.radBindingNavigator1FirstStrip.Items.AddRange(new Telerik.WinControls.UI.RadCommandBarBaseItem[] {
-            this.radBindingNavigator1MoveFirstItem,
-            this.commandBarSeparator1,
-            this.radBindingNavigator1MovePreviousItem,
-            this.commandBarSeparator2,
-            this.radBindingNavigator1PositionItem,
-            this.radBindingNavigator1CountItem,
-            this.commandBarSeparator3,
-            this.radBindingNavigator1MoveNextItem,
-            this.commandBarSeparator4,
-            this.radBindingNavigator1MoveLastItem});
-            this.radBindingNavigator1FirstStrip.MinSize = new System.Drawing.Size(0, 0);
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(23, 38);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(46, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "波特率";
             // 
+            // label2
             // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(23, 83);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(33, 13);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "协议";
             // 
-            this.radBindingNavigator1FirstStrip.OverflowButton.Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
-            ((Telerik.WinControls.UI.RadCommandBarGrip)(this.radBindingNavigator1FirstStrip.GetChildAt(0))).Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
-            ((Telerik.WinControls.UI.RadCommandBarOverflowButton)(this.radBindingNavigator1FirstStrip.GetChildAt(2))).Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
+            // cb_baud_can1
             // 
-            // radBindingNavigator1MoveFirstItem
-            // 
-            this.radBindingNavigator1MoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("radBindingNavigator1MoveFirstItem.Image")));
-            this.radBindingNavigator1MoveFirstItem.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.radBindingNavigator1MoveFirstItem.Name = "radBindingNavigator1MoveFirstItem";
-            // 
-            // commandBarSeparator1
-            // 
-            this.commandBarSeparator1.Name = "commandBarSeparator1";
-            this.commandBarSeparator1.VisibleInOverflowMenu = false;
-            // 
-            // radBindingNavigator1MovePreviousItem
-            // 
-            this.radBindingNavigator1MovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("radBindingNavigator1MovePreviousItem.Image")));
-            this.radBindingNavigator1MovePreviousItem.Name = "radBindingNavigator1MovePreviousItem";
-            // 
-            // commandBarSeparator2
-            // 
-            this.commandBarSeparator2.Name = "commandBarSeparator2";
-            this.commandBarSeparator2.VisibleInOverflowMenu = false;
-            // 
-            // radBindingNavigator1PositionItem
-            // 
-            this.radBindingNavigator1PositionItem.Name = "radBindingNavigator1PositionItem";
-            // 
-            // radBindingNavigator1CountItem
-            // 
-            this.radBindingNavigator1CountItem.Name = "radBindingNavigator1CountItem";
-            this.radBindingNavigator1CountItem.Text = "of {0}";
-            // 
-            // commandBarSeparator3
-            // 
-            this.commandBarSeparator3.Name = "commandBarSeparator3";
-            this.commandBarSeparator3.VisibleInOverflowMenu = false;
-            // 
-            // radBindingNavigator1MoveNextItem
-            // 
-            this.radBindingNavigator1MoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("radBindingNavigator1MoveNextItem.Image")));
-            this.radBindingNavigator1MoveNextItem.Name = "radBindingNavigator1MoveNextItem";
-            // 
-            // commandBarSeparator4
-            // 
-            this.commandBarSeparator4.Name = "commandBarSeparator4";
-            this.commandBarSeparator4.VisibleInOverflowMenu = false;
-            // 
-            // radBindingNavigator1MoveLastItem
-            // 
-            this.radBindingNavigator1MoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("radBindingNavigator1MoveLastItem.Image")));
-            this.radBindingNavigator1MoveLastItem.Name = "radBindingNavigator1MoveLastItem";
-            // 
-            // radBindingNavigator1SecondStrip
-            // 
-            this.radBindingNavigator1SecondStrip.DisplayName = "radBindingNavigator1SecondStrip";
-            this.radBindingNavigator1SecondStrip.EnableDragging = false;
-            // 
-            // 
-            // 
-            this.radBindingNavigator1SecondStrip.Grip.Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
-            this.radBindingNavigator1SecondStrip.Items.AddRange(new Telerik.WinControls.UI.RadCommandBarBaseItem[] {
-            this.radBindingNavigator1AddNewItem,
-            this.commandBarSeparator5,
-            this.radBindingNavigator1DeleteItem});
-            this.radBindingNavigator1SecondStrip.MinSize = new System.Drawing.Size(0, 0);
-            // 
-            // 
-            // 
-            this.radBindingNavigator1SecondStrip.OverflowButton.Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
-            ((Telerik.WinControls.UI.RadCommandBarGrip)(this.radBindingNavigator1SecondStrip.GetChildAt(0))).Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
-            ((Telerik.WinControls.UI.RadCommandBarOverflowButton)(this.radBindingNavigator1SecondStrip.GetChildAt(2))).Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
-            // 
-            // radBindingNavigator1AddNewItem
-            // 
-            this.radBindingNavigator1AddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("radBindingNavigator1AddNewItem.Image")));
-            this.radBindingNavigator1AddNewItem.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.radBindingNavigator1AddNewItem.Name = "radBindingNavigator1AddNewItem";
-            // 
-            // commandBarSeparator5
-            // 
-            this.commandBarSeparator5.Name = "commandBarSeparator5";
-            this.commandBarSeparator5.VisibleInOverflowMenu = false;
-            // 
-            // radBindingNavigator1DeleteItem
-            // 
-            this.radBindingNavigator1DeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("radBindingNavigator1DeleteItem.Image")));
-            this.radBindingNavigator1DeleteItem.Name = "radBindingNavigator1DeleteItem";
+            this.cb_baud_can1.Font = new System.Drawing.Font("宋体", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cb_baud_can1.FormattingEnabled = true;
+            this.cb_baud_can1.Location = new System.Drawing.Point(75, 35);
+            this.cb_baud_can1.Name = "cb_baud_can1";
+            this.cb_baud_can1.Size = new System.Drawing.Size(135, 21);
+            this.cb_baud_can1.TabIndex = 0;
             // 
             // toolTabStrip2
             // 
@@ -864,145 +812,197 @@
             this.radBindingNavigator2DeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("radBindingNavigator2DeleteItem.Image")));
             this.radBindingNavigator2DeleteItem.Name = "radBindingNavigator2DeleteItem";
             // 
-            // documentWindow_hardWare
+            // documentWindow_can1
             // 
-            this.documentWindow_hardWare.Controls.Add(this.radGroupBox3);
-            this.documentWindow_hardWare.Controls.Add(this.btn_save_can_cfg);
-            this.documentWindow_hardWare.Controls.Add(this.radGroupBox2);
-            this.documentWindow_hardWare.Controls.Add(this.radGroupBox1);
-            this.documentWindow_hardWare.Font = new System.Drawing.Font("宋体", 9F);
-            this.documentWindow_hardWare.Location = new System.Drawing.Point(6, 29);
-            this.documentWindow_hardWare.Name = "documentWindow_hardWare";
-            this.documentWindow_hardWare.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.TabbedDocument;
-            this.documentWindow_hardWare.Size = new System.Drawing.Size(958, 651);
-            this.documentWindow_hardWare.Text = "硬件配置";
+            this.documentWindow_can1.Controls.Add(this.radGridView_can1);
+            this.documentWindow_can1.Controls.Add(this.radPanel2);
+            this.documentWindow_can1.Controls.Add(this.navigator_can1);
+            this.documentWindow_can1.Font = new System.Drawing.Font("宋体", 9F);
+            this.documentWindow_can1.Location = new System.Drawing.Point(6, 29);
+            this.documentWindow_can1.Name = "documentWindow_can1";
+            this.documentWindow_can1.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.TabbedDocument;
+            this.documentWindow_can1.Size = new System.Drawing.Size(958, 651);
+            this.documentWindow_can1.Text = "CAN1数据显示";
             // 
-            // radGroupBox3
+            // radGridView_can1
             // 
-            this.radGroupBox3.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this.radGroupBox3.Controls.Add(this.cb_protocol_can2);
-            this.radGroupBox3.Controls.Add(this.label3);
-            this.radGroupBox3.Controls.Add(this.label4);
-            this.radGroupBox3.Controls.Add(this.cb_baud_can2);
-            this.radGroupBox3.HeaderText = "CAN2";
-            this.radGroupBox3.Location = new System.Drawing.Point(3, 195);
-            this.radGroupBox3.Name = "radGroupBox3";
-            this.radGroupBox3.Size = new System.Drawing.Size(421, 137);
-            this.radGroupBox3.TabIndex = 7;
-            this.radGroupBox3.Text = "CAN2";
+            this.radGridView_can1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radGridView_can1.Font = new System.Drawing.Font("Segoe UI", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radGridView_can1.Location = new System.Drawing.Point(0, 34);
             // 
-            // cb_protocol_can2
             // 
-            this.cb_protocol_can2.Font = new System.Drawing.Font("宋体", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cb_protocol_can2.FormattingEnabled = true;
-            this.cb_protocol_can2.Location = new System.Drawing.Point(75, 75);
-            this.cb_protocol_can2.Name = "cb_protocol_can2";
-            this.cb_protocol_can2.Size = new System.Drawing.Size(135, 21);
-            this.cb_protocol_can2.TabIndex = 3;
             // 
-            // label3
+            this.radGridView_can1.MasterTemplate.ViewDefinition = tableViewDefinition2;
+            this.radGridView_can1.Name = "radGridView_can1";
+            this.radGridView_can1.Size = new System.Drawing.Size(958, 617);
+            this.radGridView_can1.TabIndex = 7;
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(23, 38);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(46, 13);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "波特率";
+            // radPanel2
             // 
-            // label4
+            this.radPanel2.Controls.Add(this.tb_filter_can1);
+            this.radPanel2.Controls.Add(this.btn_openFile_Can1);
+            this.radPanel2.Controls.Add(this.btn_search_can1);
+            this.radPanel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.radPanel2.Location = new System.Drawing.Point(0, 0);
+            this.radPanel2.Name = "radPanel2";
+            this.radPanel2.Size = new System.Drawing.Size(958, 34);
+            this.radPanel2.TabIndex = 6;
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(23, 83);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(33, 13);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "协议";
+            // tb_filter_can1
             // 
-            // cb_baud_can2
+            this.tb_filter_can1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.tb_filter_can1.Location = new System.Drawing.Point(624, 9);
+            this.tb_filter_can1.Name = "tb_filter_can1";
+            this.tb_filter_can1.Size = new System.Drawing.Size(267, 20);
+            this.tb_filter_can1.TabIndex = 4;
             // 
-            this.cb_baud_can2.Font = new System.Drawing.Font("宋体", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cb_baud_can2.FormattingEnabled = true;
-            this.cb_baud_can2.Location = new System.Drawing.Point(75, 35);
-            this.cb_baud_can2.Name = "cb_baud_can2";
-            this.cb_baud_can2.Size = new System.Drawing.Size(135, 21);
-            this.cb_baud_can2.TabIndex = 0;
+            // btn_openFile_Can1
             // 
-            // btn_save_can_cfg
+            this.btn_openFile_Can1.Location = new System.Drawing.Point(3, 7);
+            this.btn_openFile_Can1.Name = "btn_openFile_Can1";
+            this.btn_openFile_Can1.Size = new System.Drawing.Size(55, 22);
+            this.btn_openFile_Can1.TabIndex = 2;
+            this.btn_openFile_Can1.Text = "打开";
             // 
-            this.btn_save_can_cfg.Location = new System.Drawing.Point(314, 493);
-            this.btn_save_can_cfg.Name = "btn_save_can_cfg";
-            this.btn_save_can_cfg.Size = new System.Drawing.Size(110, 24);
-            this.btn_save_can_cfg.TabIndex = 6;
-            this.btn_save_can_cfg.Text = "保存";
+            // btn_search_can1
             // 
-            // radGroupBox2
+            this.btn_search_can1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_search_can1.Location = new System.Drawing.Point(897, 7);
+            this.btn_search_can1.Name = "btn_search_can1";
+            this.btn_search_can1.Size = new System.Drawing.Size(54, 22);
+            this.btn_search_can1.TabIndex = 1;
+            this.btn_search_can1.Text = "搜索";
             // 
-            this.radGroupBox2.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this.radGroupBox2.Controls.Add(this.lbx_protocol_remark);
-            this.radGroupBox2.HeaderText = "说明";
-            this.radGroupBox2.Location = new System.Drawing.Point(3, 362);
-            this.radGroupBox2.Name = "radGroupBox2";
-            this.radGroupBox2.Size = new System.Drawing.Size(421, 93);
-            this.radGroupBox2.TabIndex = 5;
-            this.radGroupBox2.Text = "说明";
+            // navigator_can1
             // 
-            // lbx_protocol_remark
+            this.navigator_can1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.navigator_can1.Location = new System.Drawing.Point(0, 651);
+            this.navigator_can1.Name = "navigator_can1";
+            this.navigator_can1.Rows.AddRange(new Telerik.WinControls.UI.CommandBarRowElement[] {
+            this.radBindingNavigator1RowElement});
+            this.navigator_can1.Size = new System.Drawing.Size(958, 0);
+            this.navigator_can1.TabIndex = 3;
             // 
-            this.lbx_protocol_remark.Location = new System.Drawing.Point(14, 42);
-            this.lbx_protocol_remark.Name = "lbx_protocol_remark";
-            this.lbx_protocol_remark.Size = new System.Drawing.Size(107, 18);
-            this.lbx_protocol_remark.TabIndex = 0;
-            this.lbx_protocol_remark.Text = "lbx_protocol_remark";
+            // radBindingNavigator1RowElement
             // 
-            // radGroupBox1
+            this.radBindingNavigator1RowElement.MinSize = new System.Drawing.Size(25, 25);
+            this.radBindingNavigator1RowElement.Name = "radBindingNavigator1RowElement";
+            this.radBindingNavigator1RowElement.Strips.AddRange(new Telerik.WinControls.UI.CommandBarStripElement[] {
+            this.radBindingNavigator1FirstStrip,
+            this.radBindingNavigator1SecondStrip});
             // 
-            this.radGroupBox1.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this.radGroupBox1.Controls.Add(this.cb_protocol_can1);
-            this.radGroupBox1.Controls.Add(this.label1);
-            this.radGroupBox1.Controls.Add(this.label2);
-            this.radGroupBox1.Controls.Add(this.cb_baud_can1);
-            this.radGroupBox1.HeaderText = "CAN1";
-            this.radGroupBox1.Location = new System.Drawing.Point(3, 28);
-            this.radGroupBox1.Name = "radGroupBox1";
-            this.radGroupBox1.Size = new System.Drawing.Size(421, 137);
-            this.radGroupBox1.TabIndex = 4;
-            this.radGroupBox1.Text = "CAN1";
+            // radBindingNavigator1FirstStrip
             // 
-            // cb_protocol_can1
+            this.radBindingNavigator1FirstStrip.DisplayName = "radBindingNavigator1FirstStrip";
+            this.radBindingNavigator1FirstStrip.EnableDragging = false;
             // 
-            this.cb_protocol_can1.Font = new System.Drawing.Font("宋体", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cb_protocol_can1.FormattingEnabled = true;
-            this.cb_protocol_can1.Location = new System.Drawing.Point(75, 75);
-            this.cb_protocol_can1.Name = "cb_protocol_can1";
-            this.cb_protocol_can1.Size = new System.Drawing.Size(135, 21);
-            this.cb_protocol_can1.TabIndex = 3;
             // 
-            // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(23, 38);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "波特率";
+            this.radBindingNavigator1FirstStrip.Grip.Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
+            this.radBindingNavigator1FirstStrip.Items.AddRange(new Telerik.WinControls.UI.RadCommandBarBaseItem[] {
+            this.radBindingNavigator1MoveFirstItem,
+            this.commandBarSeparator1,
+            this.radBindingNavigator1MovePreviousItem,
+            this.commandBarSeparator2,
+            this.radBindingNavigator1PositionItem,
+            this.radBindingNavigator1CountItem,
+            this.commandBarSeparator3,
+            this.radBindingNavigator1MoveNextItem,
+            this.commandBarSeparator4,
+            this.radBindingNavigator1MoveLastItem});
+            this.radBindingNavigator1FirstStrip.MinSize = new System.Drawing.Size(0, 0);
             // 
-            // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(23, 83);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(33, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "协议";
             // 
-            // cb_baud_can1
+            this.radBindingNavigator1FirstStrip.OverflowButton.Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
+            ((Telerik.WinControls.UI.RadCommandBarGrip)(this.radBindingNavigator1FirstStrip.GetChildAt(0))).Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
+            ((Telerik.WinControls.UI.RadCommandBarOverflowButton)(this.radBindingNavigator1FirstStrip.GetChildAt(2))).Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
             // 
-            this.cb_baud_can1.Font = new System.Drawing.Font("宋体", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cb_baud_can1.FormattingEnabled = true;
-            this.cb_baud_can1.Location = new System.Drawing.Point(75, 35);
-            this.cb_baud_can1.Name = "cb_baud_can1";
-            this.cb_baud_can1.Size = new System.Drawing.Size(135, 21);
-            this.cb_baud_can1.TabIndex = 0;
+            // radBindingNavigator1MoveFirstItem
+            // 
+            this.radBindingNavigator1MoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("radBindingNavigator1MoveFirstItem.Image")));
+            this.radBindingNavigator1MoveFirstItem.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.radBindingNavigator1MoveFirstItem.Name = "radBindingNavigator1MoveFirstItem";
+            // 
+            // commandBarSeparator1
+            // 
+            this.commandBarSeparator1.Name = "commandBarSeparator1";
+            this.commandBarSeparator1.VisibleInOverflowMenu = false;
+            // 
+            // radBindingNavigator1MovePreviousItem
+            // 
+            this.radBindingNavigator1MovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("radBindingNavigator1MovePreviousItem.Image")));
+            this.radBindingNavigator1MovePreviousItem.Name = "radBindingNavigator1MovePreviousItem";
+            // 
+            // commandBarSeparator2
+            // 
+            this.commandBarSeparator2.Name = "commandBarSeparator2";
+            this.commandBarSeparator2.VisibleInOverflowMenu = false;
+            // 
+            // radBindingNavigator1PositionItem
+            // 
+            this.radBindingNavigator1PositionItem.Name = "radBindingNavigator1PositionItem";
+            // 
+            // radBindingNavigator1CountItem
+            // 
+            this.radBindingNavigator1CountItem.Name = "radBindingNavigator1CountItem";
+            this.radBindingNavigator1CountItem.Text = "of {0}";
+            // 
+            // commandBarSeparator3
+            // 
+            this.commandBarSeparator3.Name = "commandBarSeparator3";
+            this.commandBarSeparator3.VisibleInOverflowMenu = false;
+            // 
+            // radBindingNavigator1MoveNextItem
+            // 
+            this.radBindingNavigator1MoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("radBindingNavigator1MoveNextItem.Image")));
+            this.radBindingNavigator1MoveNextItem.Name = "radBindingNavigator1MoveNextItem";
+            // 
+            // commandBarSeparator4
+            // 
+            this.commandBarSeparator4.Name = "commandBarSeparator4";
+            this.commandBarSeparator4.VisibleInOverflowMenu = false;
+            // 
+            // radBindingNavigator1MoveLastItem
+            // 
+            this.radBindingNavigator1MoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("radBindingNavigator1MoveLastItem.Image")));
+            this.radBindingNavigator1MoveLastItem.Name = "radBindingNavigator1MoveLastItem";
+            // 
+            // radBindingNavigator1SecondStrip
+            // 
+            this.radBindingNavigator1SecondStrip.DisplayName = "radBindingNavigator1SecondStrip";
+            this.radBindingNavigator1SecondStrip.EnableDragging = false;
+            // 
+            // 
+            // 
+            this.radBindingNavigator1SecondStrip.Grip.Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
+            this.radBindingNavigator1SecondStrip.Items.AddRange(new Telerik.WinControls.UI.RadCommandBarBaseItem[] {
+            this.radBindingNavigator1AddNewItem,
+            this.commandBarSeparator5,
+            this.radBindingNavigator1DeleteItem});
+            this.radBindingNavigator1SecondStrip.MinSize = new System.Drawing.Size(0, 0);
+            // 
+            // 
+            // 
+            this.radBindingNavigator1SecondStrip.OverflowButton.Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
+            ((Telerik.WinControls.UI.RadCommandBarGrip)(this.radBindingNavigator1SecondStrip.GetChildAt(0))).Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
+            ((Telerik.WinControls.UI.RadCommandBarOverflowButton)(this.radBindingNavigator1SecondStrip.GetChildAt(2))).Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
+            // 
+            // radBindingNavigator1AddNewItem
+            // 
+            this.radBindingNavigator1AddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("radBindingNavigator1AddNewItem.Image")));
+            this.radBindingNavigator1AddNewItem.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.radBindingNavigator1AddNewItem.Name = "radBindingNavigator1AddNewItem";
+            // 
+            // commandBarSeparator5
+            // 
+            this.commandBarSeparator5.Name = "commandBarSeparator5";
+            this.commandBarSeparator5.VisibleInOverflowMenu = false;
+            // 
+            // radBindingNavigator1DeleteItem
+            // 
+            this.radBindingNavigator1DeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("radBindingNavigator1DeleteItem.Image")));
+            this.radBindingNavigator1DeleteItem.Name = "radBindingNavigator1DeleteItem";
             // 
             // radMenu1
             // 
@@ -1027,29 +1027,31 @@
             this.Controls.Add(this.radStatusStrip1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.radMenu1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             // 
             // 
             // 
             this.RootElement.ApplyShapeToControl = true;
-            this.Text = "RadForm1";
+            this.Text = "LoggerConfigurator";
             this.Load += new System.EventHandler(this.RadForm1_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radStatusStrip1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radDock1)).EndInit();
             this.radDock1.ResumeLayout(false);
-            this.documentWindow_can1.ResumeLayout(false);
-            this.documentWindow_can1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radGridView_can1.MasterTemplate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGridView_can1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanel2)).EndInit();
-            this.radPanel2.ResumeLayout(false);
-            this.radPanel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tb_filter_can1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btn_openFile_Can1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btn_search_can1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.navigator_can1)).EndInit();
+            this.documentWindow_hardWare.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox3)).EndInit();
+            this.radGroupBox3.ResumeLayout(false);
+            this.radGroupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_save_can_cfg)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).EndInit();
+            this.radGroupBox2.ResumeLayout(false);
+            this.radGroupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lbx_protocol_remark)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).EndInit();
+            this.radGroupBox1.ResumeLayout(false);
+            this.radGroupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip2)).EndInit();
             this.toolTabStrip2.ResumeLayout(false);
             this.toolWindow_left.ResumeLayout(false);
@@ -1069,18 +1071,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.btn_openFile_can2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_search_can2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.navigator_can2)).EndInit();
-            this.documentWindow_hardWare.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox3)).EndInit();
-            this.radGroupBox3.ResumeLayout(false);
-            this.radGroupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btn_save_can_cfg)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).EndInit();
-            this.radGroupBox2.ResumeLayout(false);
-            this.radGroupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lbx_protocol_remark)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).EndInit();
-            this.radGroupBox1.ResumeLayout(false);
-            this.radGroupBox1.PerformLayout();
+            this.documentWindow_can1.ResumeLayout(false);
+            this.documentWindow_can1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radGridView_can1.MasterTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGridView_can1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radPanel2)).EndInit();
+            this.radPanel2.ResumeLayout(false);
+            this.radPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tb_filter_can1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_openFile_Can1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_search_can1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.navigator_can1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);

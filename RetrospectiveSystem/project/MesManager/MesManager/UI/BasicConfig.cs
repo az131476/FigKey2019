@@ -56,9 +56,9 @@ namespace MesManager.UI
             this.radGridView1.AllowRowHeaderContextMenu = false;
             DataSource();
             cb_cfgType.Items.Clear();
-            cb_cfgType.Items.Add("站位信息");
-            cb_cfgType.Items.Add("产品型号");
-            cb_cfgType.Items.Add("物料信息");
+            cb_cfgType.Items.Add("工艺配置");
+            cb_cfgType.Items.Add("型号配置");
+            cb_cfgType.Items.Add("物料配置");
             cb_cfgType.SelectedIndex = 0;
             menu_del.Enabled = false;
             RefreshData();
@@ -102,7 +102,7 @@ namespace MesManager.UI
 
         private void Menu_add_Click(object sender, EventArgs e)
         {
-            this.radGridView1.Rows.Add();
+            this.radGridView1.Rows.NewRow();
         }
 
         async private void Menu_del_Click(object sender, EventArgs e)

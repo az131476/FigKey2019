@@ -48,7 +48,6 @@ namespace AnalysisAgreeMent.Analysis
                             return null;
                         }
                         analysisData.AnalysisiXcpDataList = new List<AnalysisSignal>();
-                        LogHelper.Log.Info(" start :"+measureList.Count+"  "+metholdList.Count);
                         for (int i = 0; i < measureList.Count; i++)
                         {
                             AnalysisSignal analysisSignal = new AnalysisSignal();

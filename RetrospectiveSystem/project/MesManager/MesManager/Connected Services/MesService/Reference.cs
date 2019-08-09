@@ -14,7 +14,7 @@ namespace MesManager.MesService {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="LoginUser", Namespace="http://schemas.datacontract.org/2004/07/MESWebService.Model")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="LoginUser", Namespace="http://schemas.datacontract.org/2004/07/MesAPI.Model")]
     public enum LoginUser : int {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
@@ -28,7 +28,7 @@ namespace MesManager.MesService {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="LoginResult", Namespace="http://schemas.datacontract.org/2004/07/MESWebService.Model")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="LoginResult", Namespace="http://schemas.datacontract.org/2004/07/MesAPI.Model")]
     public enum LoginResult : int {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
@@ -48,7 +48,7 @@ namespace MesManager.MesService {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="QueryResult", Namespace="http://schemas.datacontract.org/2004/07/MESWebService.Model")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="QueryResult", Namespace="http://schemas.datacontract.org/2004/07/MesAPI.Model")]
     public enum QueryResult : int {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
@@ -62,7 +62,7 @@ namespace MesManager.MesService {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="RegisterResult", Namespace="http://schemas.datacontract.org/2004/07/MESWebService.Model")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="RegisterResult", Namespace="http://schemas.datacontract.org/2004/07/MesAPI.Model")]
     public enum RegisterResult : int {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
@@ -80,7 +80,7 @@ namespace MesManager.MesService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Station", Namespace="http://schemas.datacontract.org/2004/07/MESWebService.Model")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Station", Namespace="http://schemas.datacontract.org/2004/07/MesAPI.Model")]
     [System.SerializableAttribute()]
     public partial class Station : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -141,7 +141,7 @@ namespace MesManager.MesService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="MaterialMsg", Namespace="http://schemas.datacontract.org/2004/07/MESWebService.Model")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="MaterialMsg", Namespace="http://schemas.datacontract.org/2004/07/MesAPI.Model")]
     [System.SerializableAttribute()]
     public partial class MaterialMsg : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -266,7 +266,7 @@ namespace MesManager.MesService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ProductMaterial", Namespace="http://schemas.datacontract.org/2004/07/MESWebService.Model")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ProductMaterial", Namespace="http://schemas.datacontract.org/2004/07/MesAPI.Model")]
     [System.SerializableAttribute()]
     public partial class ProductMaterial : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -359,7 +359,7 @@ namespace MesManager.MesService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="PackageProduct", Namespace="http://schemas.datacontract.org/2004/07/MESWebService.Model")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PackageProduct", Namespace="http://schemas.datacontract.org/2004/07/MesAPI.Model")]
     [System.SerializableAttribute()]
     public partial class PackageProduct : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         

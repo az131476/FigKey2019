@@ -8,6 +8,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CommonUtils.tool;
+using Lassalle;
+using Lassalle.DlgFlow;
+using Lassalle.Flow;
+using Lassalle.GraphAlgo;
+using Lassalle.PrnFlow;
+using Lassalle.XMLFlow;
 
 
 namespace TestAPI
@@ -15,6 +21,7 @@ namespace TestAPI
     public partial class Form1 : Form
     {
         private MesService.MesServiceClient serviceClient;
+        private AddFlow addFlow1;
         public Form1()
         {
             InitializeComponent();
@@ -39,6 +46,8 @@ namespace TestAPI
             tb_result.Text = "PASS";
             tb_date.Text = "2019-01-09 12:12:00";
             serviceClient = new MesService.MesServiceClient();
+
+            
         }
 
         async private void Button2_Click(object sender, EventArgs e)
@@ -62,5 +71,8 @@ namespace TestAPI
             string path = @"D:\work\project\FigKey\LoggerConfigurator\LoggerConfigurator\bin\Debug\编译器";
             textBox1.Text = Execute.ExecuteApply(path, "xcpmake.bat").ToString();
         }
+
+
+
     }
 }

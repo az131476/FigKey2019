@@ -33,6 +33,59 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DevExpress.Charts.v17.2.Core, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Data.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Printing.v17.2.Core, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Utils.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Utils.v17.2.UI, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraBars.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraCharts.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraCharts.v17.2.Wizard, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraGrid.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraLayout.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraNavBar.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraTreeList.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraVerticalGrid.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="GDIDrawFlow">
+      <HintPath>..\Lib\GDIDrawFlow.dll</HintPath>
+    </Reference>
+    <Reference Include="Lassalle.DlgFlow">
+      <HintPath>..\Lib\v2.1.0.7 CRACK\Lassalle.DlgFlow.dll</HintPath>
+    </Reference>
+    <Reference Include="Lassalle.Flow">
+      <HintPath>..\Lib\v2.1.0.7 CRACK\Lassalle.Flow.dll</HintPath>
+    </Reference>
+    <Reference Include="Lassalle.Flow.Layout.Hierarchic">
+      <HintPath>..\Lib\v2.1.0.7 CRACK\Lassalle.Flow.Layout.Hierarchic.dll</HintPath>
+    </Reference>
+    <Reference Include="Lassalle.Flow.Layout.Orthogonal">
+      <HintPath>..\Lib\v2.1.0.7 CRACK\Lassalle.Flow.Layout.Orthogonal.dll</HintPath>
+    </Reference>
+    <Reference Include="Lassalle.Flow.Layout.SP">
+      <HintPath>..\Lib\v2.1.0.7 CRACK\Lassalle.Flow.Layout.SP.dll</HintPath>
+    </Reference>
+    <Reference Include="Lassalle.Flow.Layout.Symmetric">
+      <HintPath>..\Lib\v2.1.0.7 CRACK\Lassalle.Flow.Layout.Symmetric.dll</HintPath>
+    </Reference>
+    <Reference Include="Lassalle.Flow.Layout.Tree">
+      <HintPath>..\Lib\v2.1.0.7 CRACK\Lassalle.Flow.Layout.Tree.dll</HintPath>
+    </Reference>
+    <Reference Include="Lassalle.Flow.Router">
+      <HintPath>..\Lib\v2.1.0.7 CRACK\Lassalle.Flow.Router.dll</HintPath>
+    </Reference>
+    <Reference Include="Lassalle.Flow.SVG">
+      <HintPath>..\Lib\v2.1.0.7 CRACK\Lassalle.Flow.SVG.dll</HintPath>
+    </Reference>
+    <Reference Include="Lassalle.GraphAlgo">
+      <HintPath>..\Lib\v2.1.0.7 CRACK\Lassalle.GraphAlgo.dll</HintPath>
+    </Reference>
+    <Reference Include="Lassalle.PrnFlow">
+      <HintPath>..\Lib\v2.1.0.7 CRACK\Lassalle.PrnFlow.dll</HintPath>
+    </Reference>
+    <Reference Include="Lassalle.XMLFlow">
+      <HintPath>..\Lib\v2.1.0.7 CRACK\Lassalle.XMLFlow.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
@@ -59,10 +112,19 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form2.Designer.cs">
+      <DependentUpon>Form2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form2.resx">
+      <DependentUpon>Form2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

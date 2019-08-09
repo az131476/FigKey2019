@@ -1521,6 +1521,7 @@ namespace AnalysisAgreeMent
             MetholdList.Clear();
             TableList.Clear();
             MemoryList.Clear();
+            propertyList.Clear();
             //propertyInformation.baudrate = 0;
             ////PropertyInformation.byteOrder = "";
             //propertyInformation.eventChannel_10 = 0;

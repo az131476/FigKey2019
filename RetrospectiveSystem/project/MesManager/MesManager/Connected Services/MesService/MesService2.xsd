@@ -1,763 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://192.168.0.175:8087/MesService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/MESWebService.Model" />
-  <xs:import schemaLocation="http://192.168.0.175:8087/MesService.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
-  <xs:element name="Login">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/MESWebService.Model" minOccurs="0" name="loginUser" type="q1:LoginUser" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="LoginResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/MESWebService.Model" minOccurs="0" name="LoginResult" type="q2:LoginResult" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetUserInfo">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="userName" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetUserInfoResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/MESWebService.Model" minOccurs="0" name="GetUserInfoResult" type="q3:QueryResult" />
-        <xs:element minOccurs="0" name="dataSet" nillable="true">
-          <xs:complexType>
-            <xs:annotation>
-              <xs:appinfo>
-                <ActualType Name="DataSet" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
-              </xs:appinfo>
-            </xs:annotation>
-            <xs:sequence>
-              <xs:element ref="xs:schema" />
-              <xs:any />
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetAllUserInfo">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetAllUserInfoResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="GetAllUserInfoResult" nillable="true">
-          <xs:complexType>
-            <xs:annotation>
-              <xs:appinfo>
-                <ActualType Name="DataSet" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
-              </xs:appinfo>
-            </xs:annotation>
-            <xs:sequence>
-              <xs:element ref="xs:schema" />
-              <xs:any />
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="Register">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="pwd" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="phone" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="email" nillable="true" type="xs:string" />
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/MESWebService.Model" minOccurs="0" name="loginUser" type="q4:LoginUser" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="RegisterResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/MESWebService.Model" minOccurs="0" name="RegisterResult" type="q5:RegisterResult" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="FirstCheck">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="snInner" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="snOutter" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="sTypeNumber" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="sStationName" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="FirstCheckResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="FirstCheckResult" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="DeleteStation">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="stationName" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="DeleteStationResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="DeleteStationResult" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SelectStation">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="stationName" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="stationOrder" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SelectStationResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="SelectStationResult" nillable="true">
-          <xs:complexType>
-            <xs:annotation>
-              <xs:appinfo>
-                <ActualType Name="DataSet" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
-              </xs:appinfo>
-            </xs:annotation>
-            <xs:sequence>
-              <xs:element ref="xs:schema" />
-              <xs:any />
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="DeleteAllStation">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="DeleteAllStationResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="DeleteAllStationResult" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="InsertStation">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/MESWebService.Model" minOccurs="0" name="stationList" nillable="true" type="q6:ArrayOfStation" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="InsertStationResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="InsertStationResult" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="DeleteProductTypeNo">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="typeNo" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="DeleteProductTypeNoResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="DeleteProductTypeNoResult" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="DeleteAllProductTypeNo">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="DeleteAllProductTypeNoResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="DeleteAllProductTypeNoResult" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SelectProductTypeNo">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="typeNo" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SelectProductTypeNoResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="SelectProductTypeNoResult" nillable="true">
-          <xs:complexType>
-            <xs:annotation>
-              <xs:appinfo>
-                <ActualType Name="DataSet" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
-              </xs:appinfo>
-            </xs:annotation>
-            <xs:sequence>
-              <xs:element ref="xs:schema" />
-              <xs:any />
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="CommitProductTypeNo">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="list" nillable="true" type="q7:ArrayOfstring" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="CommitProductTypeNoResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="CommitProductTypeNoResult" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="DeleteAllTypeStation">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="DeleteAllTypeStationResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="DeleteAllTypeStationResult" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="DeleteTypeStation">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="typeNumber" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="DeleteTypeStationResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="DeleteTypeStationResult" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SelectTypeStation">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="typeNumber" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SelectTypeStationResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="SelectTypeStationResult" nillable="true">
-          <xs:complexType>
-            <xs:annotation>
-              <xs:appinfo>
-                <ActualType Name="DataSet" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
-              </xs:appinfo>
-            </xs:annotation>
-            <xs:sequence>
-              <xs:element ref="xs:schema" />
-              <xs:any />
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="CommitTypeStation">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="dctData" nillable="true" type="q8:ArrayOfKeyValueOfstringArrayOfstringty7Ep6D1" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="CommitTypeStationResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="CommitTypeStationResult" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="InsertTestResultData">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="sn" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="typeNo" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="station" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="dateTime" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="result" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="InsertTestResultDataResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="InsertTestResultDataResult" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SelectLastTestResult">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="sn" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="typeNo" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="station" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SelectLastTestResultResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="SelectLastTestResultResult" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SelectLastTestResultUpper">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="sn" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="typeNo" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="station" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SelectLastTestResultUpperResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="SelectLastTestResultUpperResult" nillable="true">
-          <xs:complexType>
-            <xs:annotation>
-              <xs:appinfo>
-                <ActualType Name="DataSet" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
-              </xs:appinfo>
-            </xs:annotation>
-            <xs:sequence>
-              <xs:element ref="xs:schema" />
-              <xs:any />
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SelectTestResultUpper">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="sn" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="typeNo" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="station" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="IsSnFuzzy" type="xs:boolean" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SelectTestResultUpperResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="SelectTestResultUpperResult" nillable="true">
-          <xs:complexType>
-            <xs:annotation>
-              <xs:appinfo>
-                <ActualType Name="DataSet" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
-              </xs:appinfo>
-            </xs:annotation>
-            <xs:sequence>
-              <xs:element ref="xs:schema" />
-              <xs:any />
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SelectMaterial">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SelectMaterialResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="SelectMaterialResult" nillable="true">
-          <xs:complexType>
-            <xs:annotation>
-              <xs:appinfo>
-                <ActualType Name="DataSet" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
-              </xs:appinfo>
-            </xs:annotation>
-            <xs:sequence>
-              <xs:element ref="xs:schema" />
-              <xs:any />
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="CommitMaterial">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/MESWebService.Model" minOccurs="0" name="list" nillable="true" type="q9:ArrayOfMaterialMsg" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="CommitMaterialResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="CommitMaterialResult" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="DeleteMaterial">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="materialCode" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="DeleteMaterialResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="DeleteMaterialResult" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="DeleteAllMaterial">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="DeleteAllMaterialResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="DeleteAllMaterialResult" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="CommitProductMaterial">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/MESWebService.Model" minOccurs="0" name="pmList" nillable="true" type="q10:ArrayOfProductMaterial" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="CommitProductMaterialResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="CommitProductMaterialResult" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SelectProductMaterial">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/MESWebService.Model" minOccurs="0" name="material" nillable="true" type="q11:ProductMaterial" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SelectProductMaterialResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="SelectProductMaterialResult" nillable="true">
-          <xs:complexType>
-            <xs:annotation>
-              <xs:appinfo>
-                <ActualType Name="DataSet" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
-              </xs:appinfo>
-            </xs:annotation>
-            <xs:sequence>
-              <xs:element ref="xs:schema" />
-              <xs:any />
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="DeleteProductMaterial">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/MESWebService.Model" minOccurs="0" name="material" nillable="true" type="q12:ProductMaterial" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="DeleteProductMaterialResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="DeleteProductMaterialResult" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="InsertMaterialStatistics">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="snInner" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="snOutter" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="typeNo" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="stationName" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="materialCode" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="amount" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="InsertMaterialStatisticsResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="InsertMaterialStatisticsResult" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SelectMaterialStatistics">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="typeNo" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SelectMaterialStatisticsResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="SelectMaterialStatisticsResult" nillable="true">
-          <xs:complexType>
-            <xs:annotation>
-              <xs:appinfo>
-                <ActualType Name="DataSet" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
-              </xs:appinfo>
-            </xs:annotation>
-            <xs:sequence>
-              <xs:element ref="xs:schema" />
-              <xs:any />
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SelectMaterialMsg">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/MESWebService.Model" minOccurs="0" name="materialMsg" nillable="true" type="q13:MaterialMsg" />
-        <xs:element minOccurs="0" name="IsSelectAll" type="xs:boolean" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SelectMaterialMsgResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="SelectMaterialMsgResult" nillable="true">
-          <xs:complexType>
-            <xs:annotation>
-              <xs:appinfo>
-                <ActualType Name="DataSet" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
-              </xs:appinfo>
-            </xs:annotation>
-            <xs:sequence>
-              <xs:element ref="xs:schema" />
-              <xs:any />
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="CommitOutCaseBoxStorage">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="out_case_code" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="amount" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="CommitOutCaseBoxStorageResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="CommitOutCaseBoxStorageResult" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SelectOutCaseBoxStorage">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="caseCode" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SelectOutCaseBoxStorageResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="SelectOutCaseBoxStorageResult" nillable="true">
-          <xs:complexType>
-            <xs:annotation>
-              <xs:appinfo>
-                <ActualType Name="DataSet" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
-              </xs:appinfo>
-            </xs:annotation>
-            <xs:sequence>
-              <xs:element ref="xs:schema" />
-              <xs:any />
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="CommitPackageProduct">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/MESWebService.Model" minOccurs="0" name="packageProductList" nillable="true" type="q14:ArrayOfPackageProduct" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="CommitPackageProductResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="CommitPackageProductResult" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="UpdatePackageProduct">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/MESWebService.Model" minOccurs="0" name="packageProduct" nillable="true" type="q15:PackageProduct" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="UpdatePackageProductResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="UpdatePackageProductResult" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SelectProductBindingState">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="sn" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SelectProductBindingStateResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="SelectProductBindingStateResult" nillable="true">
-          <xs:complexType>
-            <xs:annotation>
-              <xs:appinfo>
-                <ActualType Name="DataSet" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
-              </xs:appinfo>
-            </xs:annotation>
-            <xs:sequence>
-              <xs:element ref="xs:schema" />
-              <xs:any />
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SelectProductBindingCount">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="casecode" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="bindingState" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SelectProductBindingCountResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="SelectProductBindingCountResult" nillable="true">
-          <xs:complexType>
-            <xs:annotation>
-              <xs:appinfo>
-                <ActualType Name="DataSet" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
-              </xs:appinfo>
-            </xs:annotation>
-            <xs:sequence>
-              <xs:element ref="xs:schema" />
-              <xs:any />
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="DeleteProductBindingData">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="casecode" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="DeleteProductBindingDataResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="DeleteProductBindingDataResult" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SelectPackageProduct">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/MESWebService.Model" minOccurs="0" name="packageProduct" nillable="true" type="q16:PackageProduct" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SelectPackageProductResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="SelectPackageProductResult" nillable="true">
-          <xs:complexType>
-            <xs:annotation>
-              <xs:appinfo>
-                <ActualType Name="DataSet" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
-              </xs:appinfo>
-            </xs:annotation>
-            <xs:sequence>
-              <xs:element ref="xs:schema" />
-              <xs:any />
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="DeletePackageProduct">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/MESWebService.Model" minOccurs="0" name="packageProduct" nillable="true" type="q17:PackageProduct" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="DeletePackageProductResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="DeletePackageProductResult" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/MesAPI.Model" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/MesAPI.Model" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="LoginUser">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ORDINARY_USER" />
+      <xs:enumeration value="ADMIN_USER" />
+      <xs:enumeration value="TOURIST_USER" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="LoginUser" nillable="true" type="tns:LoginUser" />
+  <xs:simpleType name="LoginResult">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="USER_NAME_ERR" />
+      <xs:enumeration value="USER_PWD_ERR" />
+      <xs:enumeration value="USER_NAME_PWD_ERR" />
+      <xs:enumeration value="FAIL_EXCEP" />
+      <xs:enumeration value="SUCCESS" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="LoginResult" nillable="true" type="tns:LoginResult" />
+  <xs:simpleType name="QueryResult">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="EXIST_DATA" />
+      <xs:enumeration value="NONE_DATE" />
+      <xs:enumeration value="EXCEPT_ERR" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="QueryResult" nillable="true" type="tns:QueryResult" />
+  <xs:simpleType name="RegisterResult">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="REGISTER_SUCCESS" />
+      <xs:enumeration value="REGISTER_EXIST_USER" />
+      <xs:enumeration value="REGISTER_FAIL_SQL" />
+      <xs:enumeration value="REGISTER_ERR" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="RegisterResult" nillable="true" type="tns:RegisterResult" />
+  <xs:complexType name="ArrayOfStation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Station" nillable="true" type="tns:Station" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfStation" nillable="true" type="tns:ArrayOfStation" />
+  <xs:complexType name="Station">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="StationID" type="xs:int" />
+      <xs:element minOccurs="0" name="StationName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Station" nillable="true" type="tns:Station" />
+  <xs:complexType name="ArrayOfMaterialMsg">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MaterialMsg" nillable="true" type="tns:MaterialMsg" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMaterialMsg" nillable="true" type="tns:ArrayOfMaterialMsg" />
+  <xs:complexType name="MaterialMsg">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="MaterialAmount" type="xs:int" />
+      <xs:element minOccurs="0" name="MaterialCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Sn_Inner" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Sn_Outter" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StationName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TypeNo" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MaterialMsg" nillable="true" type="tns:MaterialMsg" />
+  <xs:complexType name="ArrayOfProductMaterial">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ProductMaterial" nillable="true" type="tns:ProductMaterial" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfProductMaterial" nillable="true" type="tns:ArrayOfProductMaterial" />
+  <xs:complexType name="ProductMaterial">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Describle" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MaterialCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TypeNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Update_Date" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProductMaterial" nillable="true" type="tns:ProductMaterial" />
+  <xs:complexType name="ArrayOfPackageProduct">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PackageProduct" nillable="true" type="tns:PackageProduct" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPackageProduct" nillable="true" type="tns:ArrayOfPackageProduct" />
+  <xs:complexType name="PackageProduct">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BindingDate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BindingState" type="xs:int" />
+      <xs:element minOccurs="0" name="CaseCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Picture" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="Remark" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SnOutter" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TypeNo" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PackageProduct" nillable="true" type="tns:PackageProduct" />
 </xs:schema>

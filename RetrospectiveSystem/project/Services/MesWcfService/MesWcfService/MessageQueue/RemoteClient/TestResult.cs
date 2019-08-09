@@ -14,24 +14,27 @@ namespace MesWcfService.MessageQueue.RemoteClient
         public static string InsertTestResult(Queue<string[]> queue)
         {
             string[] array = queue.Dequeue();
-            string sn = array[0];
-            string typeNo = array[1];
-            string station = array[2];
-            string dateTime = array[3];
-            string result = array[4];
+            var sn = array[0];
+            var typeNo = array[1];
+            var station = array[2];
+            var result = array[3];
+            var teamLeader = array[4];
+            var admin = array[5];
+
             string insertSQL = $"INSERT INTO {DbTable.F_TEST_RESULT_NAME}({DbTable.F_Test_Result.SN}," +
                 $"{DbTable.F_Test_Result.TYPE_NO},{DbTable.F_Test_Result.STATION_NAME}," +
-                $"{DbTable.F_Test_Result.TEST_RESULT},{DbTable.F_Test_Result.UPDATE_DATE},{DbTable.F_Test_Result.REMARK}) " +
-                $"VALUES('{sn}','{typeNo}','{station}','{result}','{dateTime}','测试结果')";
+                $"{DbTable.F_Test_Result.TEST_RESULT},{DbTable.F_Test_Result.REMARK}," +
+                $"{DbTable.F_Test_Result.TEAM_LEADER},{DbTable.F_Test_Result.ADMIN}) " +
+                $"VALUES('{sn}','{typeNo}','{station}','{result}','测试结果','{teamLeader}','{admin}')";
 
             LogHelper.Log.Info(insertSQL);
             try
             {
                 int row = 0;
-                if (!IsExistTestResult(typeNo,station,dateTime,result))
-                {
+                //if (!IsExistTestResult(typeNo,station,dateTime,result))
+                //{
                     row = SQLServer.ExecuteNonQuery(insertSQL);
-                }
+                //}
                 if (row > 0)
                 {
                     return "OK";

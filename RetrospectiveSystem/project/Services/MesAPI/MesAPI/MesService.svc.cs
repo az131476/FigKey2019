@@ -216,15 +216,17 @@ namespace MesAPI
         /// <returns>成功返回1，失败返回0+空格+序号+键+空格+值</returns>
         public int InsertStation(List<Station> stationList)
         {
-            LogHelper.Log.Info($"接口被调用-InsertProduce");
             foreach (var station in stationList)
             {
                 if (!IsExistStation(station))
                 {
                     //不存在，插入
-                    string insertSQL = $"INSERT INTO {DbTable.F_STATION_NAME}({DbTable.F_Station.STATION_ORDER}," +
-                        $"{DbTable.F_Station.STATION_NAME}) " +
-                    $"VALUES('{station.StationID}','{station.StationName}')";
+                    string insertSQL = $"INSERT INTO {DbTable.F_TECHNOLOGICAL_PROCESS_NAME}(" +
+                        $"{DbTable.F_TECHNOLOGICAL_PROCESS.PROCESS_NAME}," +
+                        $"{DbTable.F_TECHNOLOGICAL_PROCESS.STATION_ORDER}," +
+                        $"{DbTable.F_TECHNOLOGICAL_PROCESS.STATION_NAME}," +
+                        $"{DbTable.F_TECHNOLOGICAL_PROCESS.USER_NAME}) " +
+                    $"VALUES('{station.ProcessName}','{station.StationID}','{station.StationName}','{station.UserName}')";
                     LogHelper.Log.Info(insertSQL);
                     if (SQLServer.ExecuteNonQuery(insertSQL) < 1)
                         return 0;
@@ -234,21 +236,16 @@ namespace MesAPI
         }
 
         /// <summary>
-        /// 查询当前产线的站位流程
+        /// 查询当前某工艺的站位记录
         /// </summary>
         /// <returns></returns>
-        public DataSet SelectStation(string stationName, string stationOrder)
+        public DataSet SelectStation(Station station)
         {
-            string selectSQL = "";
-            if (string.IsNullOrEmpty(stationName) && string.IsNullOrEmpty(stationOrder))
-            {
-                selectSQL = $"SELECT * FROM {DbTable.F_STATION_NAME} ORDER BY {DbTable.F_Station.STATION_ORDER}";
-            }
-            else
-            {
-                selectSQL = $"SELECT * FROM {DbTable.F_STATION_NAME} WHERE {DbTable.F_Station.STATION_NAME} = '{stationName}' OR " +
-                    $"{DbTable.F_Station.STATION_ORDER} ORDER BY {DbTable.F_Station.STATION_ORDER}";
-            }
+            string selectSQL = selectSQL = $"SELECT * FROM {DbTable.F_TECHNOLOGICAL_PROCESS_NAME} " +
+                $"WHERE {DbTable.F_TECHNOLOGICAL_PROCESS.PROCESS_NAME} = '{station.ProcessName}' AND " +
+                    $"{DbTable.F_TECHNOLOGICAL_PROCESS.STATION_NAME} = '{station.StationName}' AND " +
+                    $"{DbTable.F_TECHNOLOGICAL_PROCESS.STATION_ORDER} = '{station.StationID}'" +
+                    $"ORDER BY {DbTable.F_TECHNOLOGICAL_PROCESS.STATION_ORDER}";
             return SQLServer.ExecuteDataSet(selectSQL);
         }
 
@@ -257,10 +254,11 @@ namespace MesAPI
         /// </summary>
         /// <param name="stationName"></param>
         /// <returns></returns>
-        public int DeleteStation(string stationName)
+        public int DeleteStation(string processName ,string stationName)
         {
-            string deleteSQL = $"DELETE FROM {DbTable.F_STATION_NAME} " +
-                $"WHERE {DbTable.F_Station.STATION_NAME} = '{stationName}'";
+            string deleteSQL = $"DELETE FROM {DbTable.F_TECHNOLOGICAL_PROCESS_NAME} " +
+                $"WHERE {DbTable.F_TECHNOLOGICAL_PROCESS.PROCESS_NAME} = '{processName}' AND " +
+                $"{DbTable.F_TECHNOLOGICAL_PROCESS.STATION_NAME} = '{stationName}'";
             return SQLServer.ExecuteNonQuery(deleteSQL);
         }
 
@@ -270,7 +268,7 @@ namespace MesAPI
         /// <returns></returns>
         public int DeleteAllStation()
         {
-            string deleteSQL = $"DELETE FROM {DbTable.F_STATION_NAME} ";
+            string deleteSQL = $"DELETE FROM {DbTable.F_TECHNOLOGICAL_PROCESS_NAME} ";
             return SQLServer.ExecuteNonQuery(deleteSQL);
         }
 
@@ -281,8 +279,10 @@ namespace MesAPI
         /// <returns></returns>
         private bool IsExistStation(Station station)
         {
-            string selectSQL = $"SELECT * FROM {DbTable.F_STATION_NAME} WHERE " +
-                $"{DbTable.F_Station.STATION_NAME} = '{station.StationName}'";
+            string selectSQL = $"SELECT * FROM {DbTable.F_TECHNOLOGICAL_PROCESS_NAME} WHERE " +
+                $"{DbTable.F_TECHNOLOGICAL_PROCESS.PROCESS_NAME} = '{station.ProcessName}' AND " +
+                $"{DbTable.F_TECHNOLOGICAL_PROCESS.STATION_NAME} = '{station.StationName}' AND " +
+                $"{DbTable.F_TECHNOLOGICAL_PROCESS.STATION_ORDER} = '{station.StationID}'";
             DataTable dt = SQLServer.ExecuteDataSet(selectSQL).Tables[0];
             if (dt.Rows.Count > 0)
             {
