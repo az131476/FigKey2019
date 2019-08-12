@@ -6,6 +6,7 @@ using CommonUtils.DB;
 using CommonUtils.Logger;
 using MesWcfService.DB;
 using System;
+using MesWcfService;
 
 namespace MesWcfService.MessageQueue.RemoteClient
 {
@@ -20,12 +21,15 @@ namespace MesWcfService.MessageQueue.RemoteClient
             var result = array[3];
             var teamLeader = array[4];
             var admin = array[5];
+            var processName = new MesService().SelectCurrentTProcess();
 
             string insertSQL = $"INSERT INTO {DbTable.F_TEST_RESULT_NAME}({DbTable.F_Test_Result.SN}," +
                 $"{DbTable.F_Test_Result.TYPE_NO},{DbTable.F_Test_Result.STATION_NAME}," +
                 $"{DbTable.F_Test_Result.TEST_RESULT},{DbTable.F_Test_Result.REMARK}," +
-                $"{DbTable.F_Test_Result.TEAM_LEADER},{DbTable.F_Test_Result.ADMIN}) " +
-                $"VALUES('{sn}','{typeNo}','{station}','{result}','测试结果','{teamLeader}','{admin}')";
+                $"{DbTable.F_Test_Result.TEAM_LEADER},{DbTable.F_Test_Result.ADMIN}," +
+                $"{DbTable.F_Test_Result.PROCESS_NAME},{DbTable.F_Test_Result.UPDATE_DATE}) " +
+                $"VALUES('{sn}','{typeNo}','{station}','{result}','测试结果'," +
+                $"'{teamLeader}','{admin}','{processName}','{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}')";
 
             LogHelper.Log.Info(insertSQL);
             try
@@ -71,12 +75,16 @@ namespace MesWcfService.MessageQueue.RemoteClient
             {
                 string[] array = queue.Dequeue();
                 string sn = array[0];
-                string typeNo = array[1];
-                string station = array[2];
+                string station = array[1];
                 LogHelper.Log.Info("测试端查询测试结果,站位为" + station);
-                //根据型号与站位，查询其上一站位
-                string selectOrderSQL = $"SELECT {DbTable.F_Product_Station.STATION_ORDER} FROM {DbTable.F_PRODUCT_STATION_NAME} " +
-                    $"WHERE {DbTable.F_Product_Station.STATION_NAME} = '{station}'";
+                //根据当前工艺与站位，查询其上一站位
+                //查询当前工艺流程
+                MesService mesService = new MesService();
+                var processName = mesService.SelectCurrentTProcess();
+                string selectOrderSQL = $"SELECT {DbTable.F_TECHNOLOGICAL_PROCESS.PROCESS_NAME} " +
+                    $"FROM {DbTable.F_TECHNOLOGICAL_PROCESS_NAME} " +
+                    $"WHERE {DbTable.F_TECHNOLOGICAL_PROCESS.STATION_NAME} = '{station}' AND " +
+                    $"{DbTable.F_TECHNOLOGICAL_PROCESS.PROCESS_NAME} = '{processName}'";
                 LogHelper.Log.Info(selectOrderSQL);
                 DataTable dt = SQLServer.ExecuteDataSet(selectOrderSQL).Tables[0];
                 if (dt.Rows.Count < 1)
@@ -86,8 +94,9 @@ namespace MesWcfService.MessageQueue.RemoteClient
                     return queryResult;
                 }
                 int lastOrder = int.Parse(dt.Rows[0][0].ToString()) - 1;
-                selectOrderSQL = $"SELECT {DbTable.F_Product_Station.STATION_NAME} FROM {DbTable.F_PRODUCT_STATION_NAME} " +
-                    $"WHERE {DbTable.F_Product_Station.STATION_ORDER} = '{lastOrder}'";
+                selectOrderSQL = $"SELECT {DbTable.F_TECHNOLOGICAL_PROCESS.STATION_NAME} FROM {DbTable.F_TECHNOLOGICAL_PROCESS_NAME} " +
+                    $"WHERE {DbTable.F_TECHNOLOGICAL_PROCESS.STATION_ORDER} = '{lastOrder}' AND " +
+                    $"{DbTable.F_TECHNOLOGICAL_PROCESS.PROCESS_NAME} = '{processName}'";
                 dt = SQLServer.ExecuteDataSet(selectOrderSQL).Tables[0];
                 if (dt.Rows.Count < 1)
                 {
@@ -103,7 +112,6 @@ namespace MesWcfService.MessageQueue.RemoteClient
                     $"{DbTable.F_TEST_RESULT_NAME} " +
                     $"WHERE " +
                     $"{DbTable.F_Test_Result.SN} = '{sn}' AND " +
-                    $"{DbTable.F_Test_Result.TYPE_NO} = '{typeNo}' AND " +
                     $"{DbTable.F_Test_Result.STATION_NAME} = '{station}' " +
                     $"ORDER BY " +
                     $"{DbTable.F_Test_Result.UPDATE_DATE} " +
@@ -121,9 +129,8 @@ namespace MesWcfService.MessageQueue.RemoteClient
                 //返回上一个站位的最后一条记录
                 queryResult = new string[4];
                 queryResult[0] = sn;
-                queryResult[1] = typeNo;
-                queryResult[2] = station;
-                queryResult[3] = testRes;
+                queryResult[1] = station;
+                queryResult[2] = testRes;
                 return queryResult;
             }
             catch (Exception ex)

@@ -30,60 +30,67 @@ namespace MesWcfService
         #region 【接口】UpdateTestResultData 更新测试数据
         [OperationContract]
         [SwaggerWcfPath("UpdateTestResultData", "更新测试数据")]
-        [WebInvoke(Method = "GET", UriTemplate = "InsertTestResultData?sn={sn}&typeNO={typeNo}&station={station}&dateTime={dateTime}&result={result}",
+        [WebInvoke(Method = "GET", UriTemplate = "UpdateTestResultData?sn={sn}&typeNO={typeNo}&station={station}&result={result}&teamLeader={teamLeader}&admin={admin}",
             BodyStyle = WebMessageBodyStyle.Bare, RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
-        string UpdateTestResultData([SwaggerWcfParameter(Description = "追溯码")]string sn, 
-            [SwaggerWcfParameter(Description = "产品型号")]string typeNo, 
-            [SwaggerWcfParameter(Description = "站位名称")]string station,  
-            [SwaggerWcfParameter(Description = "测试结果，PASS/FAIL")]string result,
+        string UpdateTestResultData([SwaggerWcfParameter(Description = "追溯码*")]string sn, 
+            [SwaggerWcfParameter(Description = "产品型号*")]string typeNo, 
+            [SwaggerWcfParameter(Description = "站位名称*")]string station,  
+            [SwaggerWcfParameter(Description = "测试结果*，PASS/FAIL")]string result,
             [SwaggerWcfParameter(Description = "班组长")]string teamLeader,
             [SwaggerWcfParameter(Description = "管理员")]string admin);
         #endregion
 
         #region 【接口】SelectLastTestResult 查询上一站位最新记录
         [OperationContract]
-        [SwaggerWcfPath("SelectLastTestResult", "查询上一站位最新记录;测试结果：【成功】返回数组,len = 4;array[0] = sn;array[1] = typeNo;array[2] = station;array[3] = testRes;")]
-        [WebInvoke(Method = "GET", UriTemplate = "SelectLastTestResult?sn={sn}&typeNo={typeNo}&station={station}",
+        [SwaggerWcfPath("SelectLastTestResult", "查询上一站位最新记录;测试结果：【成功】返回数组,len = 4;array[0] = sn;array[1] = station;array[2] = testRes;")]
+        [WebInvoke(Method = "GET", UriTemplate = "SelectLastTestResult?sn={sn}&station={station}",
             BodyStyle = WebMessageBodyStyle.Bare, RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json),Description]
-        string[] SelectLastTestResult([SwaggerWcfParameter(Description = "追溯码")]string sn, 
-            [SwaggerWcfParameter(Description = "产品型号")]string typeNo, 
-            [SwaggerWcfParameter(Description = "站位名称")]string station,
-            [SwaggerWcfParameter(Description = "班组长")]string teamLeader,
-            [SwaggerWcfParameter(Description = "管理员")]string admin);
+        string[] SelectLastTestResult([SwaggerWcfParameter(Description = "追溯码*")]string sn, 
+            [SwaggerWcfParameter(Description = "站位名称*")]string station);
         #endregion
 
         #region【接口】UpdateMaterialStatistics 更新物料计数
         [OperationContract]
         [SwaggerWcfPath("UpdateMaterialStatistics", "更新物料计数")]
-        [WebInvoke(Method = "GET", UriTemplate = "InsertMaterialStatistics?snInner={snInner}&snOutter={snOutter}&typeNo={typeNo}&stationName={stationName}&materialCode={materialCode}&amount={amount}",
+        [WebInvoke(Method = "GET", UriTemplate = "UpdateMaterialStatistics?snInner={snInner}&snOutter={snOutter}&typeNo={typeNo}" +
+            "&stationName={stationName}&materialCode={materialCode}&amount={amount}&teamLeader={teamLeader}&admin={admin}",
             BodyStyle = WebMessageBodyStyle.Bare, RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
-        string UpdateMaterialStatistics([SwaggerWcfParameter(Description = "追溯码(内壳)")]string snInner, 
-            [SwaggerWcfParameter(Description = "追溯码(外壳)")]string snOutter, 
-            [SwaggerWcfParameter(Description = "产品型号")]string typeNo, 
-            [SwaggerWcfParameter(Description = "站位名称")]string stationName,
-            [SwaggerWcfParameter(Description = "物料编码")]string materialCode, 
-            [SwaggerWcfParameter(Description = "物料数量(使用数量)")]int amount);
+        string UpdateMaterialStatistics([SwaggerWcfParameter(Description = "追溯码(内壳)*")]string snInner, 
+            [SwaggerWcfParameter(Description = "追溯码(外壳)*")]string snOutter, 
+            [SwaggerWcfParameter(Description = "产品型号*")]string typeNo, 
+            [SwaggerWcfParameter(Description = "站位名称*")]string stationName,
+            [SwaggerWcfParameter(Description = "物料编码*")]string materialCode, 
+            [SwaggerWcfParameter(Description = "物料数量(使用数量)*")]int amount,
+            [SwaggerWcfParameter(Description = "班组长")]string teamLeader,
+            [SwaggerWcfParameter(Description = "管理员")]string admin);
         #endregion
 
-        #region【接口】UpdatePackageProduct 成品抽检时数据更新
+        #region【接口】UpdatePackageProductBindingMsg 【打包/抽检】添加绑定信息/更新绑定信息                
         [OperationContract]
-        [SwaggerWcfPath("UpdatePackageProduct", "成品抽检时数据更新（解除绑定）")]
-        [WebInvoke(Method = "GET", UriTemplate = "UpdatePackageProduct?outCaseCode={outCaseCode}&snOutter={snOutter}&bindingState={bindingState}",
+        [SwaggerWcfPath("UpdatePackageProductBindingMsg", "成品抽检时数据更新（解除绑定）")]
+        [WebInvoke(Method = "GET", UriTemplate = "UpdatePackageProductBindingMsg?outCaseCode={outCaseCode}&snOutter={snOutter}" +
+            "&typeNo={typeNo}&stationName={stationName}&bindingState={bindingState}&remark={remark}&teamLeader={teamLeader}&admin={admin}",
             BodyStyle = WebMessageBodyStyle.Bare, RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
-        string UpdatePackageProduct([SwaggerWcfParameter(Description = "箱子编码")]string outCaseCode, 
-            [SwaggerWcfParameter(Description = "追溯码")]string snOutter, 
-            [SwaggerWcfParameter(Description = "是否解除绑定,0-解除绑定,1-重新绑定")]string bindingState);
+        string UpdatePackageProductBindingMsg([SwaggerWcfParameter(Description = "箱子编码*")]string outCaseCode, 
+            [SwaggerWcfParameter(Description = "追溯码*")]string snOutter, 
+            [SwaggerWcfParameter(Description = "产品型号*")]string typeNo,
+            [SwaggerWcfParameter(Description = "工序名称*")]string stationName,
+            [SwaggerWcfParameter(Description = "绑定或解绑,0-解除绑定,1-添加绑定*")]string bindingState,
+            [SwaggerWcfParameter(Description = "备注(解绑时要写明原因)")]string remark,
+            [SwaggerWcfParameter(Description = "班组长")]string teamLeader,
+            [SwaggerWcfParameter(Description = "管理员")]string admin);
         #endregion
 
         #region 【接口】 UpdateProgrameVersion 更新测试程序版本号
         [OperationContract]
         [SwaggerWcfPath("UpdateProgrameVersion", "更新测试程序版本号")]
         [WebInvoke(Method = "GET",UriTemplate = "UpdateProgrameVersion?typeNo={typeNo}&stationName={stationName}" +
-            "&programeName={programeName}&programeVersion={programeVersion}&teamLeader={teamLeader}&admin={admin}")]
-        string UpdateProgrameVersion([SwaggerWcfParameter(Description = "产品型号")]string typeNo,
-            [SwaggerWcfParameter(Description = "工站名称")]string stationName,
-            [SwaggerWcfParameter(Description = "程序名称")]string programeName,
-            [SwaggerWcfParameter(Description = "程序版本")]string programeVersion,
+            "&programeName={programeName}&programeVersion={programeVersion}&teamLeader={teamLeader}&admin={admin}",
+            BodyStyle = WebMessageBodyStyle.Bare,ResponseFormat = WebMessageFormat.Json,RequestFormat = WebMessageFormat.Json)]
+        string UpdateProgrameVersion([SwaggerWcfParameter(Description = "产品型号*")]string typeNo,
+            [SwaggerWcfParameter(Description = "工站名称*")]string stationName,
+            [SwaggerWcfParameter(Description = "程序名称*")]string programeName,
+            [SwaggerWcfParameter(Description = "程序版本*")]string programeVersion,
             [SwaggerWcfParameter(Description = "班组长")]string teamLeader,
             [SwaggerWcfParameter(Description = "管理员")]string admin);
         #endregion
@@ -92,12 +99,53 @@ namespace MesWcfService
         [OperationContract]
         [SwaggerWcfPath("UpdateProgrameVersion", "更新测试程序版本号")]
         [WebInvoke(Method = "GET", UriTemplate = "UpdateLimitConfig?stationName={stationName}&typeNo={typeNo}&" +
-            "limitValue={limitValue}&teamLeader={teamLeader}&admin={admin}")]
-        string UpdateLimitConfig([SwaggerWcfParameter(Description = "工站名称")]string stationName,
-            [SwaggerWcfParameter(Description = "产品型号")]string typeNo,
-            [SwaggerWcfParameter(Description = "limit值")]string limitValue,
+            "limitValue={limitValue}&teamLeader={teamLeader}&admin={admin}",
+            BodyStyle = WebMessageBodyStyle.Bare,RequestFormat = WebMessageFormat.Json,ResponseFormat = WebMessageFormat.Json)]
+        string UpdateLimitConfig([SwaggerWcfParameter(Description = "工站名称*")]string stationName,
+            [SwaggerWcfParameter(Description = "产品型号*")]string typeNo,
+            [SwaggerWcfParameter(Description = "limit值*")]string limitValue,
             [SwaggerWcfParameter(Description = "班组长")]string teamLeader,
             [SwaggerWcfParameter(Description = "管理员")]string admin);
+        #endregion
+
+        #region 【接口】 SelectCurrentTProcess 查询当前工艺流程
+        [OperationContract]
+        [SwaggerWcfPath("SelectCurrentTProcess", "查询当前工艺流程")]
+        [WebInvoke(Method = "GET", UriTemplate = "SelectCurrentTProcess",BodyStyle = WebMessageBodyStyle.Bare,
+            RequestFormat = WebMessageFormat.Json,ResponseFormat = WebMessageFormat.Json)]
+        string SelectCurrentTProcess();
+        #endregion
+
+        #region 【接口】 SelectAllTProcess 查询所有工艺流程
+        [OperationContract]
+        [SwaggerWcfPath("SelectAllTProcess", "查询所有工艺流程")]
+        [WebInvoke(Method = "GET", UriTemplate = "SelectAllTProcess", BodyStyle = WebMessageBodyStyle.Bare,
+            RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
+        string[] SelectAllTProcess();
+        #endregion
+
+        #region 【接口】 SelectStationList 查询所有工序列表
+        [OperationContract]
+        [SwaggerWcfPath("SelectStationList", "查询所有工艺流程")]
+        [WebInvoke(Method = "GET", UriTemplate = "SelectStationList?processName={processName}", BodyStyle = WebMessageBodyStyle.Bare,
+            RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
+        string[] SelectStationList([SwaggerWcfParameter(Description = "工序名称")]string processName);
+        #endregion
+
+        #region 【接口】 SelectTypeNoList 查询所有产品型号
+        [OperationContract]
+        [SwaggerWcfPath("SelectTypeNoList", "查询所有产品型号")]
+        [WebInvoke(Method = "GET", UriTemplate = "SelectTypeNoList", BodyStyle = WebMessageBodyStyle.Bare,
+            RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
+        string[] SelectTypeNoList();
+        #endregion
+
+        #region 【接口】 SelectMaterialList 查询所有物料
+        [OperationContract]
+        [SwaggerWcfPath("SelectMaterialList", "产线所有物料/根据产品型号查询")]
+        [WebInvoke(Method = "GET", UriTemplate = "SelectMaterialList?productTypeNo={productTypeNo}", BodyStyle = WebMessageBodyStyle.Bare,
+            RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
+        string[] SelectMaterialList([SwaggerWcfParameter(Description = "产品型号")]string productTypeNo);
         #endregion
     }
 

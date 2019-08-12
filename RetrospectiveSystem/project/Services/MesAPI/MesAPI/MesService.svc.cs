@@ -1038,5 +1038,16 @@ namespace MesAPI
 
         #region 产品设站接口
         #endregion
+
+        #region 添加绑定时更新物料库存
+        public int UpdateMaterialStock(string typeNo, string materialCode,string stock)
+        {
+            var updateSQL = $"UPDATE {DbTable.F_PRODUCT_MATERIAL_NAME} SET " +
+                $"{DbTable.F_PRODUCT_MATERIAL.STOCK} = '{stock}' WHERE " +
+                $"{DbTable.F_PRODUCT_MATERIAL.TYPE_NO} = '{typeNo}' AND " +
+                $"{DbTable.F_PRODUCT_MATERIAL.MATERIAL_CODE} = '{stock}'";
+            return SQLServer.ExecuteNonQuery(updateSQL);
+        }
+        #endregion
     }
 }

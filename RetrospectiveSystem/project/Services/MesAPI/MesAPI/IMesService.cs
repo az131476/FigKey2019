@@ -158,5 +158,13 @@ namespace MesAPI
 
         [OperationContract]
         int DeletePackageProduct(PackageProduct packageProduct);
+
+        #region 【接口】 更新物料库存
+        [OperationContract]
+        [SwaggerWcfPath("UpdateMaterialStock", "更新物料库存")]
+        [WebInvoke(Method = "GET", UriTemplate = "UpdateMaterialStock&typeNo={typeNo}&materialCode={materialCode}",
+            BodyStyle = WebMessageBodyStyle.Bare, RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
+        int UpdateMaterialStock(string typeNo,string materialCode,string stock);
+        #endregion
     }
 }

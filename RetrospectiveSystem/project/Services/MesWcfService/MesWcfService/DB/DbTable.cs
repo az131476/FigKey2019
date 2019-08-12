@@ -10,7 +10,6 @@ namespace MesWcfService.DB
         public const string F_USER_NAME                     = "[WT_SCL].[dbo].[f_user]";
         public const string F_TECHNOLOGICAL_PROCESS_NAME    = "[WT_SCL].[dbo].[f_technological_process]";
         public const string F_TEST_RESULT_NAME              = "[WT_SCL].[dbo].[f_test_result_data]";
-        public const string F_PRODUCT_STATION_NAME          = "[WT_SCL].[dbo].[f_product_station]";
         public const string F_PRODUCT_TYPE_NO_NAME          = "[WT_SCL].[dbo].[f_product_typeNo]";
         public const string F_PRODUCT_MATERIAL_NAME         = "[WT_SCL].[dbo].[f_product_material]";
         public const string F_MATERIAL_NAME                 = "[WT_SCL].[dbo].[f_material]";
@@ -40,17 +39,12 @@ namespace MesWcfService.DB
             public const string STATION_NAME    = "[station_name]";
             public const string UPDATE_DATE     = "[update_date]";
             public const string USER_NAME       = "[username]";
-        }
-
-        public class F_Product_Station
-        {
-            public const string TYPE_NO         = "[type_no]";
-            public const string STATION_ORDER   = "[station_order]";
-            public const string STATION_NAME    = "[station_name]";
+            public const string PSTATE           = "[pstate]";
         }
 
         public class F_Test_Result
         {
+            public const string PROCESS_NAME    = "[process_name]";
             public const string SN              = "[sn]";
             public const string TYPE_NO         = "[type_no]";
             public const string STATION_NAME    = "[station_name]";
@@ -62,10 +56,10 @@ namespace MesWcfService.DB
             public const string ADMIN           = "[admin]";
         }
 
-        public class F_TypeNo
+        public class F_PRODUCT_TYPE_NO
         {
-            public const string ID      = "[id]";
             public const string TYPE_NO = "[type_no]";
+            public const string USER_NAME = "[username]";
         }
 
         public class F_Material
@@ -76,11 +70,13 @@ namespace MesWcfService.DB
 
         public class F_PRODUCT_MATERIAL
         {
-            public const string ID              = "[id]";
             public const string TYPE_NO         = "[type_no]";
             public const string MATERIAL_CODE   = "[material_code]";
+            public const string STOCK           = "[stock]";
+            public const string AMOUNTED        = "[amounted]";
             public const string Describle       = "[describle]";
             public const string UpdateDate      = "[update_date]";
+            public const string USERNAME        = "[username]";
         }
 
         public class F_Material_Statistics
@@ -92,12 +88,21 @@ namespace MesWcfService.DB
             public const string MATERIAL_CODE   = "[material_code]";
             public const string MATERIAL_AMOUNT = "[material_amount]";
             public const string UPDATE_DATE     = "[update_date]";
+            public const string TEAM_LEADER     = "[team_leader]";
+            public const string ADMIN           = "[admin]";
         }
 
         public class F_Out_Case_Storage
         {
+            public const string TYPE_NO             = "[type_no]";
             public const string OUT_CASE_CODE       = "[out_case_code]";
             public const string STORAGE_CAPACITY    = "[storage_capacity]";
+            public const string AMOUNTED            = "[amounted]";
+            public const string USER_NAME           = "username";
+            public const string TEAM_LEADER         = "[team_leader]";
+            public const string ADMIN               = "[admin]";
+            public const string UPDATE_DATE_U       = "update_date_u";
+            public const string UPDATE_DATE_T       = "update_date_t";
         }
 
         public class F_Out_Case_Product
@@ -105,10 +110,14 @@ namespace MesWcfService.DB
             public const string OUT_CASE_CODE       = "[out_case_code]";
             public const string SN_OUTTER           = "[sn_outter]";
             public const string TYPE_NO             = "[type_no]";
+            public const string STATION_NAME        = "station_name";
             public const string PICTURE             = "[picture]";
             public const string BINDING_STATE       = "[binding_state]";
             public const string BINDING_DATE        = "[binding_date]";
             public const string REMARK              = "[remark]";
+            public const string TEAM_LEADER         = "[team_leader]";
+            public const string ADMIN               = "[admin]";
+            public const string UPDATE_DATE         = "[update_date]";
         }
 
         public class F_Pass_Rate_Statistics
