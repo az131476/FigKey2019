@@ -436,7 +436,7 @@ namespace MesManager
                 }
                 cb_typeNo.Items.Add("");
                 //station
-                dt = (await serviceClient.SelectStationAsync("", "")).Tables[0];
+                dt = null;//(await serviceClient.SelectStationAsync("", "")).Tables[0];
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
                     cb_station.Items.Add(dt.Rows[i][1]);

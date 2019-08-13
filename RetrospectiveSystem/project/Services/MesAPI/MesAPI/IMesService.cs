@@ -29,25 +29,24 @@ namespace MesAPI
         [OperationContract]
         RegisterResult Register(string username, string pwd, string phone, string email, LoginUser loginUser);
 
-        /// <returns></returns>
-        [OperationContract]
-        string FirstCheck(string snInner, string snOutter, string sTypeNumber, string sStationName);
-
-        // [OperationContract]
-        //string InsertWIP(string sn, string sTypeNumber, string sStationName, string sTestResult, string sTime);
-
         //站位信息
         [OperationContract]
-        int DeleteStation(string stationName);
+        int DeleteStation(string processName, string stationName);
 
         [OperationContract]
-        DataSet SelectStation(string stationName, string stationOrder);
+        DataSet SelectStationList(string processName);
 
         [OperationContract]
-        int DeleteAllStation();
+        DataSet SelectProcessList();
+
+        [OperationContract]
+        int DeleteAllStation(string processName);
 
         [OperationContract]
         int InsertStation(List<Station> stationList);
+
+        [OperationContract]
+        int SetCurrentProcess(string processName, int state);
 
         //产品型号
         [OperationContract]
@@ -75,17 +74,7 @@ namespace MesAPI
         [OperationContract]
         string CommitTypeStation(Dictionary<string, string[]> dctData);
 
-        //测试数据接口
-        [OperationContract]
-        [SwaggerWcfPath("InsertTestResultData", "传入相关参数，插入测试数据")]
-        [WebInvoke(Method = "GET", UriTemplate = "InsertTestResultData?sn={sn}&typeNO={typeNo}&station={station}&dateTime={dateTime}&result={result}", 
-            BodyStyle = WebMessageBodyStyle.Bare, RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
-        string InsertTestResultData(string sn, string typeNo, string station, string dateTime, string result);
-        [OperationContract]
-        [SwaggerWcfPath("SelectLastTestResult", "查询上一站位最新记录")]
-        [WebInvoke(Method = "GET", UriTemplate = "SelectLastTestResult?sn={sn}&typeNo={typeNo}&station={station}", 
-            BodyStyle = WebMessageBodyStyle.Bare, RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
-        string SelectLastTestResult(string sn, string typeNo, string station);
+       //测试数据
         [OperationContract]
         DataSet SelectLastTestResultUpper(string sn, string typeNo, string station);
 
@@ -128,43 +117,27 @@ namespace MesAPI
 
         //外箱容量
         [OperationContract]
-        int CommitOutCaseBoxStorage(string out_case_code, string amount);
+        int CommitProductContinairCapacity(string productTypeNo, string amount);
         [OperationContract]
-        DataSet SelectOutCaseBoxStorage(string caseCode);
-
-        //成品打包
-        [OperationContract]
-        [SwaggerWcfPath("CommitPackageProduct", "产品绑定到箱子")]
-        [WebInvoke(Method = "GET", UriTemplate = "CommitPackageProduct",
-            BodyStyle = WebMessageBodyStyle.Bare, RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
-        int CommitPackageProduct(List<PackageProduct> packageProductList);
-
-        [OperationContract]
-        [SwaggerWcfPath("UpdatePackageProduct", "成品抽检时数据更新（解除绑定）")]
-        [WebInvoke(Method = "GET", UriTemplate = "UpdatePackageProduct",
-            BodyStyle = WebMessageBodyStyle.Bare, RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
-        int UpdatePackageProduct(PackageProduct packageProduct);
+        DataSet SelectProductContinairCapacity(string productTypeNo);
+        
         [OperationContract]
         DataSet SelectProductBindingState(string sn);
 
+        #region 【接口】查询已绑定数据
         [OperationContract]
-        DataSet SelectProductBindingCount(string casecode, string bindingState);
-
-        [OperationContract]
-        int DeleteProductBindingData(string casecode);
-
-        [OperationContract]
-        DataSet SelectPackageProduct(PackageProduct packageProduct);
-
-        [OperationContract]
-        int DeletePackageProduct(PackageProduct packageProduct);
-
-        #region 【接口】 更新物料库存
-        [OperationContract]
-        [SwaggerWcfPath("UpdateMaterialStock", "更新物料库存")]
-        [WebInvoke(Method = "GET", UriTemplate = "UpdateMaterialStock&typeNo={typeNo}&materialCode={materialCode}",
+        [SwaggerWcfPath("SelectProductBindingCount", "查询打包产品记录")]
+        [WebInvoke(Method = "GET", UriTemplate = "SelectProductBindingCount&casecode={casecode}&bindingState={bindingState}",
             BodyStyle = WebMessageBodyStyle.Bare, RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
-        int UpdateMaterialStock(string typeNo,string materialCode,string stock);
+        DataSet SelectProductBindingRecord(string casecode, string bindingState);
+        #endregion
+
+        #region 【接口】SelectPackageProduct 查询打包产品记录
+        [OperationContract]
+        [SwaggerWcfPath("SelectPackageProduct", "查询打包产品记录")]
+        [WebInvoke(Method = "POST", UriTemplate = "SelectPackageProduct",
+            BodyStyle = WebMessageBodyStyle.WrappedRequest, RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
+        DataSet SelectPackageProduct(PackageProduct packageProduct);
         #endregion
     }
 }

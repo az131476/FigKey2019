@@ -16,7 +16,7 @@ namespace MesWcfService.MessageQueue.RemoteClient
         {
             return DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
         }
-        public static string InsertMaterialStatistics(Queue<string[]> queue)
+        public static string UpdateMaterialStatistics(Queue<string[]> queue)
         {
             //更新装配物料数量前，check物料是否使用完：
             //用完提示，未用完继续添加
@@ -39,8 +39,9 @@ namespace MesWcfService.MessageQueue.RemoteClient
                     $"{DbTable.F_Material_Statistics.TEAM_LEADER},{DbTable.F_Material_Statistics.ADMIN}) " +
                     $"VALUES('{sn_inner}','{sn_outter}','{type_no}','{station_name}','{material_code}'," +
                     $"'{material_amount}','{GetDateTime()}','{teamLeader}','{admin}')";
-                LogHelper.Log.Info(insertSQL);
                 int row = 0;
+                if (!IsContinue(type_no, material_code))
+                    return "NONE";
                 if (!IsExistMaterialData(array))
                 {
                     row = SQLServer.ExecuteNonQuery(insertSQL);
@@ -63,6 +64,27 @@ namespace MesWcfService.MessageQueue.RemoteClient
             }
         }
 
+        //使用完了不能继续，还有剩余数量时可以继续更新
+        private static bool IsContinue(string typeNo,string materialCode)
+        {
+            var selectSQL = $"SELECT {DbTable.F_PRODUCT_MATERIAL.STOCK},{DbTable.F_PRODUCT_MATERIAL.AMOUNTED} FROM " +
+                $"{DbTable.F_PRODUCT_MATERIAL_NAME} WHERE " +
+                $"{DbTable.F_PRODUCT_MATERIAL.TYPE_NO} = '{typeNo}' AND " +
+                $"{DbTable.F_PRODUCT_MATERIAL.MATERIAL_CODE} = '{materialCode}'";
+            var dt = SQLServer.ExecuteDataSet(selectSQL).Tables[0];
+            if (dt.Rows.Count > 0)
+            {
+                var stock = int.Parse(dt.Rows[0][0].ToString());
+                var amounted = int.Parse(dt.Rows[0][1].ToString());
+                if (amounted >= stock)
+                {
+                    return false;//已使用完
+                }
+            }
+            return true;
+        }
+
+
         private static bool IsExistMaterialData(string[] array)
         {
             string sn_inner = array[0];
@@ -74,16 +96,10 @@ namespace MesWcfService.MessageQueue.RemoteClient
             string teamLeader = array[6];
             string admin = array[7];
             var selectSQL = $"SELECT * FROM {DbTable.F_MATERIAL_STATISTICS_NAME} WHERE " +
-                $"{DbTable.F_Material_Statistics.TYPE_NO} = '{type_no}' AND " +
-                $"{DbTable.F_Material_Statistics.MATERIAL_CODE} = '{material_amount}' AND " +
-                $"{DbTable.F_Material_Statistics.UPDATE_DATE} = '{GetDateTime()}' AND " +
-                $"{DbTable.F_Material_Statistics.TEAM_LEADER} = '{teamLeader}' AND " +
-                $"{DbTable.F_Material_Statistics.ADMIN} = '{admin}' " +
-                $"WHERE " +
                 $"{DbTable.F_Material_Statistics.SN_INNER} = '{sn_inner}' AND " +
                 $"{DbTable.F_Material_Statistics.SN_OUTTER} = '{sn_outter}' AND " +
-                $"{DbTable.F_Material_Statistics.STATION_NAME} = {station_name} AND " +
-                $"{DbTable.F_Material_Statistics.MATERIAL_CODE} = {material_code}";
+                $"{DbTable.F_Material_Statistics.STATION_NAME} = '{station_name}' AND " +
+                $"{DbTable.F_Material_Statistics.MATERIAL_CODE} = '{material_code}'";
             var dt = SQLServer.ExecuteDataSet(selectSQL).Tables[0];
             if (dt.Rows.Count > 0)
                 return true;

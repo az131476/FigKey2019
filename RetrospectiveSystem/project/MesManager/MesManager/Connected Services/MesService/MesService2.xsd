@@ -43,8 +43,10 @@
   <xs:element name="ArrayOfStation" nillable="true" type="tns:ArrayOfStation" />
   <xs:complexType name="Station">
     <xs:sequence>
+      <xs:element minOccurs="0" name="ProcessName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="StationID" type="xs:int" />
       <xs:element minOccurs="0" name="StationName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Station" nillable="true" type="tns:Station" />
@@ -75,17 +77,12 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="Describle" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="MaterialCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Stock" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="TypeNo" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Update_Date" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ProductMaterial" nillable="true" type="tns:ProductMaterial" />
-  <xs:complexType name="ArrayOfPackageProduct">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="PackageProduct" nillable="true" type="tns:PackageProduct" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfPackageProduct" nillable="true" type="tns:ArrayOfPackageProduct" />
   <xs:complexType name="PackageProduct">
     <xs:sequence>
       <xs:element minOccurs="0" name="BindingDate" nillable="true" type="xs:string" />

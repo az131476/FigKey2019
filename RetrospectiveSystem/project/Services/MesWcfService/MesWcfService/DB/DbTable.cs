@@ -14,7 +14,7 @@ namespace MesWcfService.DB
         public const string F_PRODUCT_MATERIAL_NAME         = "[WT_SCL].[dbo].[f_product_material]";
         public const string F_MATERIAL_NAME                 = "[WT_SCL].[dbo].[f_material]";
         public const string F_MATERIAL_STATISTICS_NAME      = "[WT_SCL].[dbo].[f_material_statistics]";
-        public const string F_OUT_CASE_STORAGE_NAME         = "[WT_SCL].[dbo].[f_out_case_storage]";
+        public const string F_OUT_CASE_STORAGE_NAME         = "[WT_SCL].[dbo].[f_product_package_storage]";
         public const string F_OUT_CASE_PRODUCT_NAME         = "[WT_SCL].[dbo].[f_out_case_product]";
         public const string F_PASS_RATE_STATISTICS_NAME     = "[WT_SCL].[dbo].[f_pass_rate_statistics]";
         public const string F_TEST_PROGRAME_VERSION_NAME    = "[WT_SCL].[dbo].[f_test_programe_version]";
@@ -144,12 +144,12 @@ namespace MesWcfService.DB
 
         public class F_TEST_LIMIT_CONFIG
         {
-            public const string STATION_NAME    = "station_name";
-            public const string TYPE_NO         = "type_no";
-            public const string LIMIT_VALUE     = "limit_value";
-            public const string TEAM_LEADER     = "team_leader";
-            public const string ADMIN           = "admin";
-            public const string UPDATE_DATE     = "update_date";
+            public const string STATION_NAME    = "[station_name]";
+            public const string TYPE_NO         = "[type_no]";
+            public const string LIMIT_VALUE     = "[limit_value]";
+            public const string TEAM_LEADER     = "[team_leader]";
+            public const string ADMIN           = "[admin]";
+            public const string UPDATE_DATE     = "[update_date]";
         }
     }
 }

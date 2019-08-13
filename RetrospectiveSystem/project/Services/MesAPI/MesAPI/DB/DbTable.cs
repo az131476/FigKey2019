@@ -40,6 +40,7 @@ namespace MesAPI.DB
             public const string STATION_NAME = "[station_name]";
             public const string UPDATE_DATE = "[update_date]";
             public const string USER_NAME = "[username]";
+            public const string PROCESS_STATE = "[pstate]";
         }
 
         public class F_Product_Station
@@ -98,8 +99,10 @@ namespace MesAPI.DB
 
         public class F_Out_Case_Storage
         {
-            public const string OUT_CASE_CODE = "[out_case_code]";
+            public const string PRODUCT_TYPE_NO = "[type_no]";
+            public const string USER_NAME = "[username]";
             public const string STORAGE_CAPACITY = "[storage_capacity]";
+            public const string UPDATE_DATE_U = "update_date_u";
         }
 
         public class F_Out_Case_Product

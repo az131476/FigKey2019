@@ -2,29 +2,27 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
-using System.ServiceProcess;
 using System.Text;
-using System.Configuration;
 using System.Threading.Tasks;
-using CommonUtils.Logger;
-using System.Threading;
+using System.Windows.Forms;
+using System.Configuration;
 using MySql.Data.MySqlClient;
+using CommonUtils.Logger;
+using System.Data;
 
-
-namespace WindowsServiceDB
+namespace TestAPI
 {
-    public partial class Service1 : ServiceBase
+    public partial class Form3 : Form
     {
-        public Service1()
+        public Form3()
         {
             InitializeComponent();
         }
 
-        protected override void OnStart(string[] args)
+        private void Form3_Load(object sender, EventArgs e)
         {
-            LogHelper.Log.Info("服务启动...");
             try
             {
                 var connectionString = ConfigurationManager.ConnectionStrings["sqlconstring"].ToString();
@@ -34,17 +32,17 @@ namespace WindowsServiceDB
                     while (true)
                     {
                         int index = 0;
-                        LogHelper.Log.Info("开始执行...");
-                        MySqlDataReader mySqlDataReader = MySqlHelper.ExecuteReader(connectionString,CommandType.Text,selectSQL);
+                        //LogHelper.Log.Info("开始执行...");
+                        MySqlDataReader mySqlDataReader = MySqlHelper.ExecuteReader(connectionString, CommandType.Text, selectSQL);
                         while (mySqlDataReader.Read())
                         {
                             var prescNo = mySqlDataReader["PrescriptionNo"].ToString();
-                            LogHelper.Log.Info("prescNo:" + prescNo);
+                            //LogHelper.Log.Info("prescNo:" + prescNo);
                             //执行删除
                             var deletePrescList = $"delete from prescriptionlist where PrescriptionNo='{prescNo}'";
                             var deletePrescDetail = $"delete from prescriptiondetail where PrescriptionNo = '{prescNo}'";
-                            MySqlHelper.ExecuteNonQuery(connectionString,CommandType.Text,deletePrescList);
-                            MySqlHelper.ExecuteNonQuery(connectionString,CommandType.Text,deletePrescDetail);
+                            MySqlHelper.ExecuteNonQuery(connectionString, CommandType.Text, deletePrescList);
+                            MySqlHelper.ExecuteNonQuery(connectionString, CommandType.Text, deletePrescDetail);
                             index++;
                         }
                         //int row = MySqlHelper.ExecuteNonQuery(connectionString, CommandType.Text, selectSQL);
@@ -55,13 +53,8 @@ namespace WindowsServiceDB
             }
             catch (Exception ex)
             {
-                LogHelper.Log.Error("异常："+ex.Message+"\r\n"+ex.StackTrace);
+                //LogHelper.Log.Error("异常：" + ex.Message + "\r\n" + ex.StackTrace);
             }
-        }
-
-        protected override void OnStop()
-        {
-            LogHelper.Log.Info("服务停止...");
         }
     }
 }

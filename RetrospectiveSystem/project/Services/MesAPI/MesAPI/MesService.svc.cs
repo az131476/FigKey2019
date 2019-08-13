@@ -239,13 +239,22 @@ namespace MesAPI
         /// 查询当前某工艺的站位记录
         /// </summary>
         /// <returns></returns>
-        public DataSet SelectStation(Station station)
+        public DataSet SelectStationList(string processName)
         {
-            string selectSQL = selectSQL = $"SELECT * FROM {DbTable.F_TECHNOLOGICAL_PROCESS_NAME} " +
-                $"WHERE {DbTable.F_TECHNOLOGICAL_PROCESS.PROCESS_NAME} = '{station.ProcessName}' AND " +
-                    $"{DbTable.F_TECHNOLOGICAL_PROCESS.STATION_NAME} = '{station.StationName}' AND " +
-                    $"{DbTable.F_TECHNOLOGICAL_PROCESS.STATION_ORDER} = '{station.StationID}'" +
+            string selectSQL = $"SELECT {DbTable.F_TECHNOLOGICAL_PROCESS.STATION_ORDER}," +
+                $"{DbTable.F_TECHNOLOGICAL_PROCESS.STATION_NAME}," +
+                $"{DbTable.F_TECHNOLOGICAL_PROCESS.USER_NAME}," +
+                $"{DbTable.F_TECHNOLOGICAL_PROCESS.UPDATE_DATE} " +
+                $"FROM {DbTable.F_TECHNOLOGICAL_PROCESS_NAME} " +
+                $"WHERE {DbTable.F_TECHNOLOGICAL_PROCESS.PROCESS_NAME} = '{processName}' "+
                     $"ORDER BY {DbTable.F_TECHNOLOGICAL_PROCESS.STATION_ORDER}";
+            return SQLServer.ExecuteDataSet(selectSQL);
+        }
+
+        public DataSet SelectProcessList()
+        {
+            var selectSQL = $"SELECT DISTINCT {DbTable.F_TECHNOLOGICAL_PROCESS.PROCESS_NAME} " +
+                $"FROM {DbTable.F_TECHNOLOGICAL_PROCESS_NAME}";
             return SQLServer.ExecuteDataSet(selectSQL);
         }
 
@@ -266,9 +275,12 @@ namespace MesAPI
         /// 删除所有站位记录
         /// </summary>
         /// <returns></returns>
-        public int DeleteAllStation()
+        public int DeleteAllStation(string processName)
         {
-            string deleteSQL = $"DELETE FROM {DbTable.F_TECHNOLOGICAL_PROCESS_NAME} ";
+            if (string.IsNullOrEmpty(processName))
+                return 0;
+            string deleteSQL = $"DELETE FROM {DbTable.F_TECHNOLOGICAL_PROCESS_NAME} WHERE " +
+                $"{DbTable.F_TECHNOLOGICAL_PROCESS.PROCESS_NAME} = '{processName}'";
             return SQLServer.ExecuteNonQuery(deleteSQL);
         }
 
@@ -289,6 +301,14 @@ namespace MesAPI
                 return true;
             }
             return false;
+        }
+
+        public int SetCurrentProcess(string processName,int state)
+        {
+            var updateSQL = $"UPDATE {DbTable.F_TECHNOLOGICAL_PROCESS_NAME} SET " +
+                $"{DbTable.F_TECHNOLOGICAL_PROCESS.PROCESS_STATE} = '{state}' WHERE " +
+                $"{DbTable.F_TECHNOLOGICAL_PROCESS.PROCESS_NAME} = '{processName}'";
+            return SQLServer.ExecuteNonQuery(updateSQL);
         }
 
         #endregion
@@ -576,6 +596,7 @@ namespace MesAPI
                     //insert
                     if (InsertProductMaterial(material) < 1)
                         return 0;
+                    UpdateMaterialStock(material.TypeNo,material.MaterialCode,material.Stock);
                 }
             }
             return 1;
@@ -628,6 +649,17 @@ namespace MesAPI
             LogHelper.Log.Info(insertSQL);
             return SQLServer.ExecuteNonQuery(insertSQL);
         }
+
+        #region 添加绑定时更新物料库存
+        private int UpdateMaterialStock(string typeNo, string materialCode, string stock)
+        {
+            var updateSQL = $"UPDATE {DbTable.F_PRODUCT_MATERIAL_NAME} SET " +
+                $"{DbTable.F_PRODUCT_MATERIAL.STOCK} = '{stock}' WHERE " +
+                $"{DbTable.F_PRODUCT_MATERIAL.TYPE_NO} = '{typeNo}' AND " +
+                $"{DbTable.F_PRODUCT_MATERIAL.MATERIAL_CODE} = '{stock}'";
+            return SQLServer.ExecuteNonQuery(updateSQL);
+        }
+        #endregion
         #endregion
 
         #region 物料统计表
@@ -852,7 +884,7 @@ namespace MesAPI
         }
         #endregion
 
-        #region 成品打包接口
+        #region 成品打包绑定
         [SwaggerWcfTag("MesServcie 服务")]
         public int CommitPackageProduct(List<PackageProduct> packageProductList)
         {
@@ -904,6 +936,9 @@ namespace MesAPI
                 return true;
             return false;
         }
+        #endregion
+
+        #region 更新打包产品
         public int UpdatePackageProduct(PackageProduct packageProduct)
         {
             string updateSQL = $"UPDATE {DbTable.F_OUT_CASE_PRODUCT_NAME} SET " +
@@ -913,7 +948,9 @@ namespace MesAPI
             LogHelper.LogInfo($"UpdatePackageProduct={updateSQL}");
             return SQLServer.ExecuteNonQuery(updateSQL);
         }
+        #endregion
 
+        #region 删除打包产品
         [SwaggerWcfTag("MesServcie 服务")]
         public int DeletePackageProduct(PackageProduct packageProduct)
         {
@@ -930,7 +967,9 @@ namespace MesAPI
             }
             return SQLServer.ExecuteNonQuery(deleteSQL);
         }
+        #endregion
 
+        #region 查询打包产品
         [SwaggerWcfTag("MesServcie 服务")]
         public DataSet SelectPackageProduct(PackageProduct packageProduct)
         {
@@ -954,7 +993,9 @@ namespace MesAPI
             }
             return SQLServer.ExecuteDataSet(selectSQL);
         }
+        #endregion
 
+        #region 查询绑定状态
         public DataSet SelectProductBindingState(string sn)
         {
             //箱子编码/追溯码查询/产品型号
@@ -963,21 +1004,26 @@ namespace MesAPI
                     $"{DbTable.F_Out_Case_Product.SN_OUTTER} = '{sn}'";
             return SQLServer.ExecuteDataSet(selectSQL);
         }
+        #endregion
 
+        #region 查询绑定数量
         /// <summary>
         /// 由箱子编码查询，该箱子已装数量；已绑定/绑定后解绑
         /// </summary>
         /// <param name="casecode"></param>
         /// <param name="bindingState"></param>
         /// <returns></returns>
-        public DataSet SelectProductBindingCount(string casecode,string bindingState)
+        public DataSet SelectProductBindingRecord(string casecode,string bindingState)
         {
             string selectSQL = $"SELECT {DbTable.F_Out_Case_Product.OUT_CASE_CODE},{DbTable.F_Out_Case_Product.SN_OUTTER} " +
                 $"FROM {DbTable.F_OUT_CASE_PRODUCT_NAME} " +
-                $"WHERE {DbTable.F_Out_Case_Product.OUT_CASE_CODE} = '{casecode}' AND {DbTable.F_Out_Case_Product.BINDING_STATE} = '{bindingState}'";
+                $"WHERE {DbTable.F_Out_Case_Product.OUT_CASE_CODE} = '{casecode}' AND " +
+                $"{DbTable.F_Out_Case_Product.BINDING_STATE} = '{bindingState}'";
             return SQLServer.ExecuteDataSet(selectSQL);
         }
+        #endregion
 
+        #region 删除绑定记录
         /// <summary>
         /// 由箱子编码删除所有绑定记录
         /// </summary>
@@ -992,14 +1038,16 @@ namespace MesAPI
         #endregion
 
         #region 外箱容量接口
-        public int CommitOutCaseBoxStorage(string out_case_code, string amount)
+        public int CommitProductContinairCapacity(string productTypeNo, string amount)
         {
-            string insertSQL = $"INSERT INTO {DbTable.F_OUT_CASE_STORAGE_NAME}({DbTable.F_Out_Case_Storage.OUT_CASE_CODE},{DbTable.F_Out_Case_Storage.STORAGE_CAPACITY}) " +
-                $"VALUES('{out_case_code}','{amount}')";
-            if (IsExistOutCaseBoxStorage(out_case_code))
+            string insertSQL = $"INSERT INTO {DbTable.F_OUT_CASE_STORAGE_NAME}(" +
+                $"{DbTable.F_Out_Case_Storage.PRODUCT_TYPE_NO}," +
+                $"{DbTable.F_Out_Case_Storage.STORAGE_CAPACITY}) " +
+                $"VALUES('{productTypeNo}','{amount}')";
+            if (IsExistOutCaseBoxStorage(productTypeNo))
             {
                 //update
-                return UpdateOutCaseBoxStorage(out_case_code, amount);
+                return UpdateProductContinairCapacity(productTypeNo, amount);
             }
             else
             {
@@ -1007,28 +1055,37 @@ namespace MesAPI
                 return SQLServer.ExecuteNonQuery(insertSQL);
             }
         }
-        public int UpdateOutCaseBoxStorage(string out_case_code, string amount)
+        public int UpdateProductContinairCapacity(string productTypeNo, string amount)
         {
             string updateSQL = $"UPDATE {DbTable.F_OUT_CASE_STORAGE_NAME} SET {DbTable.F_Out_Case_Storage.STORAGE_CAPACITY} = '{amount}' " +
-                $"WHERE {DbTable.F_Out_Case_Storage.OUT_CASE_CODE} = '{out_case_code}'";
+                $"WHERE {DbTable.F_Out_Case_Storage.PRODUCT_TYPE_NO} = '{productTypeNo}'";
             return SQLServer.ExecuteNonQuery(updateSQL);
         }
-        public DataSet SelectOutCaseBoxStorage(string caseCode)
+        public DataSet SelectProductContinairCapacity(string caseCode)
         {
             string selectSQL = "";
             if (string.IsNullOrEmpty(caseCode))
             {
-                selectSQL = $"SELECT * FROM {DbTable.F_OUT_CASE_STORAGE_NAME}";
+                selectSQL = $"SELECT {DbTable.F_Out_Case_Storage.PRODUCT_TYPE_NO}," +
+                    $"{DbTable.F_Out_Case_Storage.STORAGE_CAPACITY}," +
+                    $"{DbTable.F_Out_Case_Storage.USER_NAME}," +
+                    $"{DbTable.F_Out_Case_Storage.UPDATE_DATE_U} " +
+                    $"FROM {DbTable.F_OUT_CASE_STORAGE_NAME}";
             }
             else
             {
-                selectSQL = $"SELECT * FROM {DbTable.F_OUT_CASE_STORAGE_NAME} WHERE {DbTable.F_Out_Case_Storage.OUT_CASE_CODE} = '{caseCode}'";
+                selectSQL = $"SELECT {DbTable.F_Out_Case_Storage.PRODUCT_TYPE_NO}," +
+                    $"{DbTable.F_Out_Case_Storage.STORAGE_CAPACITY}," +
+                    $"{DbTable.F_Out_Case_Storage.USER_NAME}," +
+                    $"{DbTable.F_Out_Case_Storage.UPDATE_DATE_U} " +
+                    $"FROM {DbTable.F_OUT_CASE_STORAGE_NAME} " +
+                    $"WHERE {DbTable.F_Out_Case_Storage.PRODUCT_TYPE_NO} = '{caseCode}'";
             }
             return SQLServer.ExecuteDataSet(selectSQL);
         }
-        private bool IsExistOutCaseBoxStorage(string out_case_code)
+        private bool IsExistOutCaseBoxStorage(string productTypeNo)
         {
-            string selectSQL = $"SELECT * FROM {DbTable.F_OUT_CASE_STORAGE_NAME} WHERE {DbTable.F_Out_Case_Storage.OUT_CASE_CODE} = '{out_case_code}'";
+            string selectSQL = $"SELECT * FROM {DbTable.F_OUT_CASE_STORAGE_NAME} WHERE {DbTable.F_Out_Case_Storage.PRODUCT_TYPE_NO} = '{productTypeNo}'";
             DataTable dt = SQLServer.ExecuteDataSet(selectSQL).Tables[0];
             if (dt.Rows.Count > 0)
                 return true;
@@ -1037,17 +1094,6 @@ namespace MesAPI
         #endregion
 
         #region 产品设站接口
-        #endregion
-
-        #region 添加绑定时更新物料库存
-        public int UpdateMaterialStock(string typeNo, string materialCode,string stock)
-        {
-            var updateSQL = $"UPDATE {DbTable.F_PRODUCT_MATERIAL_NAME} SET " +
-                $"{DbTable.F_PRODUCT_MATERIAL.STOCK} = '{stock}' WHERE " +
-                $"{DbTable.F_PRODUCT_MATERIAL.TYPE_NO} = '{typeNo}' AND " +
-                $"{DbTable.F_PRODUCT_MATERIAL.MATERIAL_CODE} = '{stock}'";
-            return SQLServer.ExecuteNonQuery(updateSQL);
-        }
         #endregion
     }
 }

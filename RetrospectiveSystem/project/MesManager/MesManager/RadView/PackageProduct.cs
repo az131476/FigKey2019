@@ -76,7 +76,7 @@ namespace MesManager.RadView
             //由箱子编码查询箱子容量，更新
             if (string.IsNullOrEmpty(caseCode))
                 return;
-            DataTable dt = (await serviceClient.SelectOutCaseBoxStorageAsync(caseCode)).Tables[0];
+            DataTable dt = (await serviceClient.SelectProductContinairCapacityAsync(caseCode)).Tables[0];
             if (dt.Rows.Count > 0)
             {
                 for (int i = 0; i < dt.Rows.Count; i++)
@@ -105,7 +105,7 @@ namespace MesManager.RadView
 
         async private void InitCaseCodeList()
         {
-            DataTable dt = (await serviceClient.SelectOutCaseBoxStorageAsync("")).Tables[0];
+            DataTable dt = (await serviceClient.SelectProductContinairCapacityAsync("")).Tables[0];
             cb_caseCode.Items.Clear();
             if (dt.Rows.Count > 0)
             {
@@ -164,14 +164,14 @@ namespace MesManager.RadView
             }
             //提交箱子容量
             MesService.PackageProduct[] packageProducts = new MesService.PackageProduct[10];
-            await serviceClient.CommitOutCaseBoxStorageAsync(caseCode,caseAmount);
+            await serviceClient.CommitProductContinairCapacityAsync(caseCode,caseAmount);
             packageProduct.CaseCode = caseCode;
             packageProduct.SnOutter = sn;
             packageProduct.TypeNo = typeNo;
             packageProduct.BindingState = 1;
             packageProduct.BindingDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             packageProduct.Picture = UpLoadImage.ProductImage;
-            int x = await serviceClient.CommitPackageProductAsync(packageProducts);
+            int x = 0;//await serviceClient.CommitPackageProductAsync(packageProducts);
             //绑定完成后，添加到显示列表
             UpLoadImage.ProductImage = null;
             if (x < 1)
@@ -194,7 +194,7 @@ namespace MesManager.RadView
             packageProduct.CaseCode = casecode;
             packageProduct.SnOutter = sncode;
             packageProduct.BindingState = 0;
-            await serviceClient.UpdatePackageProductAsync(packageProduct);
+            //await serviceClient.UpdatePackageProductAsync(packageProduct);
             //更新查询结果,查询所有已绑定的数据
             packageProduct.BindingState = 1;
             packageProduct.CaseCode = "";
@@ -253,7 +253,7 @@ namespace MesManager.RadView
             var sncode = this.radGridView1.CurrentRow.Cells[1].Value.ToString();
             packageProduct.CaseCode = casecode;
             packageProduct.SnOutter = sncode;
-            await serviceClient.DeletePackageProductAsync(packageProduct);
+            //await serviceClient.DeletePackageProductAsync(packageProduct);
             //更新查询
             packageProduct.BindingState = 1;
             packageProduct.CaseCode = "";
@@ -273,7 +273,7 @@ namespace MesManager.RadView
             //清空数据库
             packageProduct.CaseCode = "";
             packageProduct.SnOutter = "";
-            await serviceClient.DeletePackageProductAsync(packageProduct);
+            //await serviceClient.DeletePackageProductAsync(packageProduct);
             //更新查询
             packageProduct.BindingState = 1;
             packageProduct.CaseCode = "";

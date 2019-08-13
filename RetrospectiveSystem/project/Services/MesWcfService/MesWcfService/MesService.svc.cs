@@ -78,6 +78,7 @@ namespace MesWcfService
         /// 测试端传入装配消耗物料计数
         /// </summary>
         [SwaggerWcfResponse("OK","插入数据成功")]
+        [SwaggerWcfResponse("NONE","物料已使用完")]
         [SwaggerWcfResponse("FAIL","插入数据失败")]
         [SwaggerWcfResponse("ERR_NOT_DECIMAL", "数量数据类型不为整型")]
         [SwaggerWcfResponse("ERROR", "异常错误")]
@@ -88,7 +89,7 @@ namespace MesWcfService
                 return "ERR_NOT_DECIMAL";
             string[] array = new string[] { snInner, snOutter, typeNo, stationName, materialCode, amount+"",teamLeader,admin};
             insertMaterialStatistics.Enqueue(array);
-            return MaterialStatistics.InsertMaterialStatistics(insertMaterialStatistics);
+            return MaterialStatistics.UpdateMaterialStatistics(insertMaterialStatistics);
         }
 
         #endregion
@@ -205,7 +206,7 @@ namespace MesWcfService
                 string[] array = new string[dt.Rows.Count];
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    array[i] = dt.Rows[0][0].ToString();
+                    array[i] = dt.Rows[i][0].ToString();
                 }
                 return array;
             }
@@ -226,7 +227,7 @@ namespace MesWcfService
                 string[] array = new string[dt.Rows.Count];
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    array[i] = dt.Rows[0][0].ToString();
+                    array[i] = dt.Rows[i][0].ToString();
                 }
                 return array;
             }

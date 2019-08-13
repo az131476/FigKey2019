@@ -33,7 +33,7 @@ namespace MesAPI.MessageQueue.RemoteClient
             string sStationName = array[3];
             MesService mesService = new MesService();
 
-            DataTable dataSet = mesService.SelectStation(sStationName, "").Tables[0];
+            DataTable dataSet = mesService.SelectStationList(sStationName).Tables[0];
             var station = dataSet.Rows[0][1].ToString().Trim();
             var order = int.Parse(dataSet.Rows[0][0].ToString().Trim());
             if (sStationName == station)

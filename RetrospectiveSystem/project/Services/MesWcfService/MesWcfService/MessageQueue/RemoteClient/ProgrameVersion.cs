@@ -27,12 +27,19 @@ namespace MesWcfService.MessageQueue.RemoteClient
                     $"{DbTable.F_TEST_PROGRAME_VERSION.STATION_NAME}," +
                     $"{DbTable.F_TEST_PROGRAME_VERSION.PROGRAME_NAME}," +
                     $"{DbTable.F_TEST_PROGRAME_VERSION.PROGRAME_VERSION}," +
-                    $"{DbTable.F_TEST_PROGRAME_VERSION.TEAM_LEADER})";
+                    $"{DbTable.F_TEST_PROGRAME_VERSION.TEAM_LEADER}," +
+                    $"{DbTable.F_TEST_PROGRAME_VERSION.ADMIN}," +
+                    $"{DbTable.F_TEST_PROGRAME_VERSION.UPDATE_DATE}) VALUES(" +
+                    $"'{typeNo}','{stationName}','{programeName}','{programeVersion}'," +
+                    $"'{teamLeader}','{admin}','{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}')";
                 var res = SQLServer.ExecuteNonQuery(insertSQL);
                 if (res > 0)
                     return "OK";
                 else
+                {
+                    LogHelper.Log.Info(insertSQL);
                     return "FAIL";
+                }
             }
             catch (Exception ex)
             {

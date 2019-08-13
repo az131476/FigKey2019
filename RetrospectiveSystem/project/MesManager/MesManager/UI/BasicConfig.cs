@@ -18,21 +18,22 @@ namespace MesManager.UI
     public partial class BasicConfig : RadForm
     {
         private MesService.MesServiceClient serviceClient;
-        private DataTable typeNoData,stationData,materialData;
+        private MesServiceTest.MesServiceClient serviceClientTest;
+        private DataTable typeNoData,materialData;
         private List<string> modifyTypeNoTemp;
         private List<string> materialCodeTemp;//存储用户修改的物料编码
-        private List<string> stationListTemp;
         private string keyTypeNo;
         private string keyMaterialCode;//记录修改前的编码
         private string keyStation;
         private string curMaterialCode;//记录鼠标右键选中行编码
-        private string curRowStationName;
         private string curRowTypeNo;
         private const string DATA_ORDER = "序号";
-        private const string DATA_MATERIAL = "物料编码";
-        private const string DATA_AMOUNT = "物料库存";
+        private const string DATA_MATERIAL_CODE = "物料编码";
+        private const string DATA_MATERIAL_NAME = "物料名称";
         private const string DATA_TYPENO_NAME = "型号名称";
-        private const string DATA_STATION_NAME = "站位名称";
+        private const string DATA_CONTAINER_CAPACITY = "容器容量";
+        private const string DATA_USER_NAME = "用户名";
+        private const string DATA_UPDATE_DATE = "更新日期";
 
         public BasicConfig()
         {
@@ -49,14 +50,13 @@ namespace MesManager.UI
         private void Init()
         {
             serviceClient = new MesService.MesServiceClient();
+            serviceClientTest = new MesServiceTest.MesServiceClient();
             modifyTypeNoTemp = new List<string>();
             materialCodeTemp = new List<string>();
-            stationListTemp = new List<string>();
             DataGridViewCommon.SetRadGridViewProperty(this.radGridView1,true);
             this.radGridView1.AllowRowHeaderContextMenu = false;
             DataSource();
             cb_cfgType.Items.Clear();
-            cb_cfgType.Items.Add("工艺配置");
             cb_cfgType.Items.Add("型号配置");
             cb_cfgType.Items.Add("物料配置");
             cb_cfgType.SelectedIndex = 0;
@@ -70,20 +70,19 @@ namespace MesManager.UI
             {
                 materialData = new DataTable();
                 materialData.Columns.Add(DATA_ORDER);
-                materialData.Columns.Add(DATA_MATERIAL);
-                materialData.Columns.Add(DATA_AMOUNT);
-            }
-            if (stationData == null)
-            {
-                stationData = new DataTable();
-                stationData.Columns.Add(DATA_ORDER);
-                stationData.Columns.Add(DATA_STATION_NAME);
+                materialData.Columns.Add(DATA_MATERIAL_CODE);
+                materialData.Columns.Add(DATA_MATERIAL_NAME);
+                materialData.Columns.Add(DATA_USER_NAME);
+                materialData.Columns.Add(DATA_UPDATE_DATE);
             }
             if (typeNoData == null)
             {
                 typeNoData = new DataTable();
                 typeNoData.Columns.Add(DATA_ORDER);
                 typeNoData.Columns.Add(DATA_TYPENO_NAME);
+                typeNoData.Columns.Add(DATA_CONTAINER_CAPACITY);
+                typeNoData.Columns.Add(DATA_USER_NAME);
+                typeNoData.Columns.Add(DATA_UPDATE_DATE);
             }
         }
 
@@ -134,17 +133,11 @@ namespace MesManager.UI
                 return;
             if (cb_cfgType.SelectedIndex == 0)
             {
-                //站位
-                int row = await serviceClient.DeleteAllStationAsync();
-                tool_status.Text = $"【站位】删除服务数据【{row}】条  【清空数据】完成";
-            }
-            else if (cb_cfgType.SelectedIndex == 1)
-            {
                 //型号
                 int row = await serviceClient.DeleteAllProductTypeNoAsync();
                 tool_status.Text = $"【型号】删除服务数据【{row}】条  【清空数据】完成";
             }
-            else if (cb_cfgType.SelectedIndex == 2)
+            else if (cb_cfgType.SelectedIndex == 1)
             {
                 //物料
                 int row = await serviceClient.DeleteAllMaterialAsync();
@@ -165,19 +158,12 @@ namespace MesManager.UI
                 return;
             if (cb_cfgType.SelectedIndex == 0)
             {
-                if (keyStation != key.ToString())
-                {
-                    stationListTemp.Add(keyStation);
-                }
-            }
-            else if (cb_cfgType.SelectedIndex == 1)
-            {
                 if (keyTypeNo != key.ToString())
                 {
                     modifyTypeNoTemp.Add(keyTypeNo);
                 }
             }
-            else if (cb_cfgType.SelectedIndex == 2)
+            else if (cb_cfgType.SelectedIndex == 1)
             {
                 if (keyMaterialCode != key.ToString())
                 {
@@ -226,18 +212,11 @@ namespace MesManager.UI
         {
             if (cb_cfgType.SelectedIndex == 0)
             {
-                //站位
-                //不能删除，只能修改
-                menu_del.Enabled = false;
-                SelectStationData();
-            }
-            else if (cb_cfgType.SelectedIndex == 1)
-            {
                 //型号
                 menu_del.Enabled = true;
                 SelectProductTypeData();
             }
-            else if (cb_cfgType.SelectedIndex == 2)
+            else if (cb_cfgType.SelectedIndex == 1)
             {
                 //物料
                 menu_del.Enabled = true;
@@ -249,13 +228,9 @@ namespace MesManager.UI
         {
             if (cb_cfgType.SelectedIndex == 0)
             {
-                CommitStationMesService();
-            }
-            else if (cb_cfgType.SelectedIndex == 1)
-            {
                 CommitTypeNoMesService();
             }
-            else if (cb_cfgType.SelectedIndex == 2)
+            else if (cb_cfgType.SelectedIndex == 1)
             {
                 CommitMaterialMesService();
             }
@@ -267,7 +242,7 @@ namespace MesManager.UI
         {
             //调用查询接口
             radGridView1.DataSource = null;
-            DataSet dataSet = await serviceClient.SelectProductTypeNoAsync("");
+            DataSet dataSet = await serviceClient.SelectProductContinairCapacityAsync("");
             DataTable dataTable = dataSet.Tables[0];
             typeNoData.Clear();
             if (dataTable.Rows.Count > 0)
@@ -278,6 +253,9 @@ namespace MesManager.UI
                     DataRow dr = typeNoData.NewRow();
                     dr[DATA_ORDER] = i + 1;
                     dr[DATA_TYPENO_NAME] = dataTable.Rows[i][0].ToString();
+                    dr[DATA_CONTAINER_CAPACITY] = dataTable.Rows[i][1].ToString();
+                    dr[DATA_USER_NAME] = dataTable.Rows[i][2].ToString();
+                    dr[DATA_UPDATE_DATE] = dataTable.Rows[i][3].ToString();
                     typeNoData.Rows.Add(dr);
                 }
                 radGridView1.DataSource = typeNoData;
@@ -287,35 +265,6 @@ namespace MesManager.UI
             {
                 typeNoData.Clear();
                 radGridView1.DataSource = typeNoData;
-            }
-            DataGridViewCommon.SetRadGridViewProperty(this.radGridView1, true);
-            this.radGridView1.Columns[0].ReadOnly = true;
-        }
-
-        async private void SelectStationData()
-        {
-            //调用查询接口
-            radGridView1.DataSource = null;
-            DataSet dataSet = await serviceClient.SelectStationAsync("", "");
-            DataTable dataTable = dataSet.Tables[0];
-            stationData.Clear();
-            if (dataTable.Rows.Count > 0)
-            {
-                //显示数据
-                for (int i = 0; i < dataTable.Rows.Count; i++)
-                {
-                    DataRow dr = stationData.NewRow();
-                    dr[DATA_ORDER] = dataTable.Rows[i][0].ToString();
-                    dr[DATA_STATION_NAME] = dataTable.Rows[i][1].ToString();
-                    stationData.Rows.Add(dr);
-                    //this.radGridView1.Rows[i].Cells[0].Value = dataTable.Rows[i][0].ToString();
-                }
-                radGridView1.DataSource = stationData;
-            }
-            else
-            {
-                stationData.Clear();
-                radGridView1.DataSource = stationData;
             }
             DataGridViewCommon.SetRadGridViewProperty(this.radGridView1, true);
             this.radGridView1.Columns[0].ReadOnly = true;
@@ -335,8 +284,8 @@ namespace MesManager.UI
                 {
                     DataRow dr = materialData.NewRow();
                     dr[DATA_ORDER] = i + 1;
-                    dr[DATA_MATERIAL] = dataTable.Rows[i][0].ToString();
-                    dr[DATA_AMOUNT] = dataTable.Rows[i][1].ToString();
+                    dr[DATA_MATERIAL_CODE] = dataTable.Rows[i][0].ToString();
+                    dr[DATA_MATERIAL_NAME] = dataTable.Rows[i][1].ToString();
                     materialData.Rows.Add(dr);
                 }
                 radGridView1.DataSource = materialData;
@@ -432,51 +381,6 @@ namespace MesManager.UI
                 LogHelper.Log.Error(ex.Message + "\r\n" + ex.StackTrace);
             }
         }
-
-        async private void CommitStationMesService()
-        {
-            //将新增数据提交到服务
-            try
-            {
-                int row = radGridView1.RowCount;
-                MesService.Station[] stationsArray = new MesService.Station[row];
-                for (int i = 0; i < row; i++)
-                {
-                    MesService.Station station = new MesService.Station();
-                    var ID = radGridView1.Rows[i].Cells[0].Value.ToString().Trim();
-                    var stationName = radGridView1.Rows[i].Cells[1].Value.ToString().Trim();
-                    if (!string.IsNullOrEmpty(stationName))
-                    {
-                        station.StationID = int.Parse(ID);
-                        station.StationName = stationName;
-                        stationsArray[i] = station;
-                    }
-                }
-                if (stationListTemp.Count > 0)
-                {
-                    foreach (var station in stationListTemp)
-                    {
-                        await serviceClient.DeleteStationAsync(station);
-                    }
-                }
-                int res = await serviceClient.InsertStationAsync(stationsArray);
-                if (res == 1)
-                {
-                    MessageBox.Show("更新成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    MessageBox.Show($"更新失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            catch (Exception ex)
-            {
-                LogHelper.Log.Error(ex.Message + "\r\n" + ex.StackTrace);
-            }
-        }
-
-        
-
         #endregion
     }
 }

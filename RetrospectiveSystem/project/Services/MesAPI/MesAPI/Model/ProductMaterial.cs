@@ -11,6 +11,8 @@ namespace MesAPI.Model
 
         public string MaterialCode { get; set; }
 
+        public string Stock { get; set; }
+
         public string Describle { get; set; }
 
         public string Update_Date { get; set; }

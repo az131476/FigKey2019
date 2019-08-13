@@ -25,12 +25,17 @@ namespace MesWcfService.MessageQueue.RemoteClient
                     $"{DbTable.F_TEST_LIMIT_CONFIG.TYPE_NO}," +
                     $"{DbTable.F_TEST_LIMIT_CONFIG.LIMIT_VALUE}," +
                     $"{DbTable.F_TEST_LIMIT_CONFIG.TEAM_LEADER}," +
-                    $"{DbTable.F_TEST_LIMIT_CONFIG.ADMIN})";
+                    $"{DbTable.F_TEST_LIMIT_CONFIG.ADMIN}," +
+                    $"{DbTable.F_TEST_LIMIT_CONFIG.UPDATE_DATE}) VALUES(" +
+                    $"'{stationName}','{typeNo}','{limitValue}','{teamLeader}','{admin}','{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}')";
                 var res = SQLServer.ExecuteNonQuery(insertSQL);
                 if (res > 0)
                     return "OK";
                 else
+                {
+                    LogHelper.Log.Info(insertSQL);
                     return "FAIL";
+                }
             }
             catch (Exception ex)
             {

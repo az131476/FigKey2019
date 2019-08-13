@@ -34,7 +34,7 @@
             this.mainBasicInfo = new Telerik.WinControls.UI.RadTileElement();
             this.mainMaterialManager = new Telerik.WinControls.UI.RadTileElement();
             this.mainGraphView = new Telerik.WinControls.UI.RadTileElement();
-            this.mainProductPackage = new Telerik.WinControls.UI.RadTileElement();
+            this.mainProcess = new Telerik.WinControls.UI.RadTileElement();
             this.mainQuanlityAnomaly = new Telerik.WinControls.UI.RadTileElement();
             this.mainReportData = new Telerik.WinControls.UI.RadTileElement();
             ((System.ComponentModel.ISupportInitialize)(this.radPanorama1)).BeginInit();
@@ -53,7 +53,7 @@
             this.radPanorama1.PanelImageSize = new System.Drawing.Size(1024, 768);
             this.radPanorama1.RowsCount = 2;
             this.radPanorama1.ShowGroups = true;
-            this.radPanorama1.Size = new System.Drawing.Size(1232, 839);
+            this.radPanorama1.Size = new System.Drawing.Size(1108, 869);
             this.radPanorama1.TabIndex = 1;
             ((Telerik.WinControls.UI.RadPanoramaElement)(this.radPanorama1.GetChildAt(0))).BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(23)))), ((int)(((byte)(117)))));
             // 
@@ -69,7 +69,7 @@
             this.mainBasicInfo,
             this.mainMaterialManager,
             this.mainGraphView,
-            this.mainProductPackage,
+            this.mainProcess,
             this.mainQuanlityAnomaly,
             this.mainReportData});
             this.toolsGroup.Margin = new System.Windows.Forms.Padding(300, 150, 200, 0);
@@ -136,24 +136,24 @@
             this.mainGraphView.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
             this.mainGraphView.UseCompatibleTextRendering = false;
             // 
-            // mainProductPackage
+            // mainProcess
             // 
-            this.mainProductPackage.AccessibleDescription = "mainProductPackage";
-            this.mainProductPackage.AccessibleName = "mainProductPackage";
-            this.mainProductPackage.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(33)))));
-            this.mainProductPackage.CellPadding = new System.Windows.Forms.Padding(5);
-            this.mainProductPackage.Column = 2;
-            this.mainProductPackage.DisabledTextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            this.mainProductPackage.DrawBorder = true;
-            this.mainProductPackage.ImageAlignment = System.Drawing.ContentAlignment.BottomLeft;
-            this.mainProductPackage.ImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.mainProductPackage.Name = "mainProductPackage";
-            this.mainProductPackage.Padding = new System.Windows.Forms.Padding(15, 15, 0, 10);
-            this.mainProductPackage.Text = "<html>成品装箱 <br>";
-            this.mainProductPackage.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.mainProductPackage.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-            this.mainProductPackage.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            this.mainProductPackage.UseCompatibleTextRendering = false;
+            this.mainProcess.AccessibleDescription = "mainProductPackage";
+            this.mainProcess.AccessibleName = "mainProductPackage";
+            this.mainProcess.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(33)))));
+            this.mainProcess.CellPadding = new System.Windows.Forms.Padding(5);
+            this.mainProcess.Column = 2;
+            this.mainProcess.DisabledTextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            this.mainProcess.DrawBorder = true;
+            this.mainProcess.ImageAlignment = System.Drawing.ContentAlignment.BottomLeft;
+            this.mainProcess.ImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.mainProcess.Name = "mainProcess";
+            this.mainProcess.Padding = new System.Windows.Forms.Padding(15, 15, 0, 10);
+            this.mainProcess.Text = "<html>工艺流程 <br>";
+            this.mainProcess.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.mainProcess.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.mainProcess.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            this.mainProcess.UseCompatibleTextRendering = false;
             // 
             // mainQuanlityAnomaly
             // 
@@ -200,7 +200,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1100, 839);
+            this.ClientSize = new System.Drawing.Size(1108, 869);
             this.Controls.Add(this.radPanorama1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -223,7 +223,7 @@
         private Telerik.WinControls.UI.TileGroupElement toolsGroup;
         private Telerik.WinControls.UI.RadTileElement mainBasicInfo;//基础信息
         private Telerik.WinControls.UI.RadTileElement mainMaterialManager;//物料管理
-        private Telerik.WinControls.UI.RadTileElement mainProductPackage;//成品装箱
+        private Telerik.WinControls.UI.RadTileElement mainProcess;//成品装箱
 
         private Telerik.WinControls.UI.RadTileElement mainGraphView;//看板中心
         private Telerik.WinControls.UI.RadTileElement mainReportData;//报表中心

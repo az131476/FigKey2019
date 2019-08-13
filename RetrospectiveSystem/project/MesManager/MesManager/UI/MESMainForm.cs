@@ -33,7 +33,7 @@ namespace MesManager.RadView
             this.mainMaterialManager.Click += MainMaterialManager_Click;
             //this.mainProduceManager.Click += MainProduceManager_Click;
             //this.mainProductCheck.Click += MainProductCheck_Click;
-            this.mainProductPackage.Click += MainProductPackage_Click;
+            this.mainProcess.Click += MainProcess_Click;
             this.mainQuanlityAnomaly.Click += MainQuanlityAnomaly_Click;
             //this.mainRepairCenter.Click += MainRepairCenter_Click;
             this.mainReportData.Click += MainReportData_Click;
@@ -115,11 +115,14 @@ namespace MesManager.RadView
             quanlityAnomaly.ShowDialog();
         }
 
-        private void MainProductPackage_Click(object sender, EventArgs e)
+        private void MainProcess_Click(object sender, EventArgs e)
         {
             //成品装箱
-            ProductPackage productPackage = new ProductPackage();
-            productPackage.ShowDialog();
+            //ProductPackage productPackage = new ProductPackage();
+            //productPackage.ShowDialog();
+            //工艺流程
+            TProcess process = new TProcess();
+            process.ShowDialog();
         }
 
         private void MainProductCheck_Click(object sender, EventArgs e)

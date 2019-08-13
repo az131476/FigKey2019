@@ -68,7 +68,7 @@ namespace MesManager.UI
                 return;
             if (MessageBox.Show($"确定清除箱子编码为{this.tb_caseCode.Text}的所有绑定记录？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
             {
-                int del = await serviceClient.DeleteProductBindingDataAsync(this.tb_caseCode.Text.Trim());
+                int del = 0;//await serviceClient.DeleteProductBindingDataAsync(this.tb_caseCode.Text.Trim());
                 if (del > 0)
                     MessageBox.Show($"已清除{del}条绑定数据！","提示",MessageBoxButtons.OK,MessageBoxIcon.Information);
             }
@@ -193,15 +193,15 @@ namespace MesManager.UI
                 packageProducts[index] = packageProduct;
                 index++;
             }
-            var res = await serviceClient.CommitPackageProductAsync(packageProducts);
+            var res = 0;// await serviceClient.CommitPackageProductAsync(packageProducts);
             if (res == 1)
             {
                 for (int i = 0; i < this.radGridView1.Rows.Count; i++)
                 {
                     this.radGridView1.Rows[i].Delete();
                 }
-                var dt = (await serviceClient.SelectProductBindingCountAsync(this.tb_caseCode.Text.Trim(),"1")).Tables[0];
-                this.tool_curNumber.Text = dt.Rows.Count.ToString();
+                var dt = 0;// (await serviceClient.SelectProductBindingCountAsync(this.tb_caseCode.Text.Trim(),"1")).Tables[0];
+                this.tool_curNumber.Text = "";// dt.Rows.Count.ToString();
                 this.tool_materialCode.Text = tb_caseCode.Text;
                 MessageBox.Show("更新成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }

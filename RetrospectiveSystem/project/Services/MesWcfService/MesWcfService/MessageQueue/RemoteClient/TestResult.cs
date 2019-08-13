@@ -81,7 +81,7 @@ namespace MesWcfService.MessageQueue.RemoteClient
                 //查询当前工艺流程
                 MesService mesService = new MesService();
                 var processName = mesService.SelectCurrentTProcess();
-                string selectOrderSQL = $"SELECT {DbTable.F_TECHNOLOGICAL_PROCESS.PROCESS_NAME} " +
+                string selectOrderSQL = $"SELECT {DbTable.F_TECHNOLOGICAL_PROCESS.STATION_ORDER} " +
                     $"FROM {DbTable.F_TECHNOLOGICAL_PROCESS_NAME} " +
                     $"WHERE {DbTable.F_TECHNOLOGICAL_PROCESS.STATION_NAME} = '{station}' AND " +
                     $"{DbTable.F_TECHNOLOGICAL_PROCESS.PROCESS_NAME} = '{processName}'";
@@ -127,7 +127,7 @@ namespace MesWcfService.MessageQueue.RemoteClient
                 }
                 string testRes = dt.Rows[0][0].ToString();
                 //返回上一个站位的最后一条记录
-                queryResult = new string[4];
+                queryResult = new string[3];
                 queryResult[0] = sn;
                 queryResult[1] = station;
                 queryResult[2] = testRes;

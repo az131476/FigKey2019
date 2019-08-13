@@ -43,7 +43,7 @@ namespace MesWcfService.MessageQueue.RemoteClient
                     $"{DbTable.F_Out_Case_Product.ADMIN}," +
                     $"{DbTable.F_Out_Case_Product.BINDING_DATE}) VALUES(" +
                     $"'{outCaseCode}','{snOutter}','{typeNo}','{stationName}'," +
-                    $"'{bindingState}','{remark}',{teamdLeader},'{admin}','{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}')";
+                    $"'{bindingState}','{remark}','{teamdLeader}','{admin}','{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}')";
 
                 string updateSQL = $"UPDATE {DbTable.F_OUT_CASE_PRODUCT_NAME} SET " +
                 $"{DbTable.F_Out_Case_Product.TYPE_NO} = '{typeNo}'," +
@@ -110,6 +110,7 @@ namespace MesWcfService.MessageQueue.RemoteClient
                 $"FROM {DbTable.F_OUT_CASE_PRODUCT_NAME} WHERE " +
                 $"{DbTable.F_Out_Case_Product.OUT_CASE_CODE} = '{caseCode}' AND " +
                 $"{DbTable.F_Out_Case_Product.SN_OUTTER} = '{snOutter}'";
+            LogHelper.Log.Info(selectSQL);
             var dt = SQLServer.ExecuteDataSet(selectSQL).Tables[0];
             UPackageProduct uPackageProduct = new UPackageProduct();
             if (dt.Rows.Count > 0)
@@ -133,6 +134,7 @@ namespace MesWcfService.MessageQueue.RemoteClient
                     $"{DbTable.F_Out_Case_Storage.AMOUNTED} " +
                     $"FROM {DbTable.F_OUT_CASE_STORAGE_NAME} WHERE " +
                     $"{DbTable.F_Out_Case_Storage.TYPE_NO} = '{typeNo}'";
+            LogHelper.Log.Info(selectSQL);
             var dt = SQLServer.ExecuteDataSet(selectSQL).Tables[0];
             var storage = int.Parse(dt.Rows[0][0].ToString());
             var amounted = int.Parse(dt.Rows[0][1].ToString());
@@ -150,7 +152,7 @@ namespace MesWcfService.MessageQueue.RemoteClient
                 value = 1;
             var updateSQL = $"UPDATE {DbTable.F_OUT_CASE_STORAGE_NAME} SET " +
                 $"{DbTable.F_Out_Case_Storage.AMOUNTED} += {value} WHERE " +
-                $"{typeNo}";
+                $"{DbTable.F_Out_Case_Storage.TYPE_NO} = '{typeNo}'";
             SQLServer.ExecuteNonQuery(updateSQL);
         }
     }

@@ -46,7 +46,7 @@ namespace MesWcfService
         [WebInvoke(Method = "GET", UriTemplate = "SelectLastTestResult?sn={sn}&station={station}",
             BodyStyle = WebMessageBodyStyle.Bare, RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json),Description]
         string[] SelectLastTestResult([SwaggerWcfParameter(Description = "追溯码*")]string sn, 
-            [SwaggerWcfParameter(Description = "站位名称*")]string station);
+            [SwaggerWcfParameter(Description = "当前站位名称*")]string station);
         #endregion
 
         #region【接口】UpdateMaterialStatistics 更新物料计数
@@ -67,7 +67,7 @@ namespace MesWcfService
 
         #region【接口】UpdatePackageProductBindingMsg 【打包/抽检】添加绑定信息/更新绑定信息                
         [OperationContract]
-        [SwaggerWcfPath("UpdatePackageProductBindingMsg", "成品抽检时数据更新（解除绑定）")]
+        [SwaggerWcfPath("UpdatePackageProductBindingMsg", "成品打包/成品抽检-更新数据/绑定/解绑")]
         [WebInvoke(Method = "GET", UriTemplate = "UpdatePackageProductBindingMsg?outCaseCode={outCaseCode}&snOutter={snOutter}" +
             "&typeNo={typeNo}&stationName={stationName}&bindingState={bindingState}&remark={remark}&teamLeader={teamLeader}&admin={admin}",
             BodyStyle = WebMessageBodyStyle.Bare, RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]

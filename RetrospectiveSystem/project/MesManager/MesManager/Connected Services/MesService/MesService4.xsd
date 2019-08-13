@@ -87,26 +87,10 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="FirstCheck">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="snInner" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="snOutter" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="sTypeNumber" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="sStationName" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="FirstCheckResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="FirstCheckResult" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
   <xs:element name="DeleteStation">
     <xs:complexType>
       <xs:sequence>
+        <xs:element minOccurs="0" name="processName" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="stationName" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
@@ -118,18 +102,41 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="SelectStation">
+  <xs:element name="SelectStationList">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="stationName" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="stationOrder" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="processName" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="SelectStationResponse">
+  <xs:element name="SelectStationListResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="SelectStationResult" nillable="true">
+        <xs:element minOccurs="0" name="SelectStationListResult" nillable="true">
+          <xs:complexType>
+            <xs:annotation>
+              <xs:appinfo>
+                <ActualType Name="DataSet" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+              </xs:appinfo>
+            </xs:annotation>
+            <xs:sequence>
+              <xs:element ref="xs:schema" />
+              <xs:any />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SelectProcessList">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SelectProcessListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SelectProcessListResult" nillable="true">
           <xs:complexType>
             <xs:annotation>
               <xs:appinfo>
@@ -147,7 +154,9 @@
   </xs:element>
   <xs:element name="DeleteAllStation">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element minOccurs="0" name="processName" nillable="true" type="xs:string" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="DeleteAllStationResponse">
@@ -168,6 +177,21 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="InsertStationResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetCurrentProcess">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="processName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="state" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetCurrentProcessResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SetCurrentProcessResult" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -300,40 +324,6 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="CommitTypeStationResult" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="InsertTestResultData">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="sn" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="typeNo" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="station" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="dateTime" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="result" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="InsertTestResultDataResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="InsertTestResultDataResult" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SelectLastTestResult">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="sn" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="typeNo" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="station" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SelectLastTestResultResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="SelectLastTestResultResult" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -584,32 +574,32 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="CommitOutCaseBoxStorage">
+  <xs:element name="CommitProductContinairCapacity">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="out_case_code" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="productTypeNo" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="amount" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="CommitOutCaseBoxStorageResponse">
+  <xs:element name="CommitProductContinairCapacityResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="CommitOutCaseBoxStorageResult" type="xs:int" />
+        <xs:element minOccurs="0" name="CommitProductContinairCapacityResult" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="SelectOutCaseBoxStorage">
+  <xs:element name="SelectProductContinairCapacity">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="caseCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="productTypeNo" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="SelectOutCaseBoxStorageResponse">
+  <xs:element name="SelectProductContinairCapacityResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="SelectOutCaseBoxStorageResult" nillable="true">
+        <xs:element minOccurs="0" name="SelectProductContinairCapacityResult" nillable="true">
           <xs:complexType>
             <xs:annotation>
               <xs:appinfo>
@@ -622,34 +612,6 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="CommitPackageProduct">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/MesAPI.Model" minOccurs="0" name="packageProductList" nillable="true" type="q14:ArrayOfPackageProduct" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="CommitPackageProductResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="CommitPackageProductResult" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="UpdatePackageProduct">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/MesAPI.Model" minOccurs="0" name="packageProduct" nillable="true" type="q15:PackageProduct" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="UpdatePackageProductResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="UpdatePackageProductResult" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -679,7 +641,7 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="SelectProductBindingCount">
+  <xs:element name="SelectProductBindingRecord">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="casecode" nillable="true" type="xs:string" />
@@ -687,10 +649,10 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="SelectProductBindingCountResponse">
+  <xs:element name="SelectProductBindingRecordResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="SelectProductBindingCountResult" nillable="true">
+        <xs:element minOccurs="0" name="SelectProductBindingRecordResult" nillable="true">
           <xs:complexType>
             <xs:annotation>
               <xs:appinfo>
@@ -706,24 +668,10 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="DeleteProductBindingData">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="casecode" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="DeleteProductBindingDataResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="DeleteProductBindingDataResult" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
   <xs:element name="SelectPackageProduct">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/MesAPI.Model" minOccurs="0" name="packageProduct" nillable="true" type="q16:PackageProduct" />
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/MesAPI.Model" minOccurs="0" name="packageProduct" nillable="true" type="q14:PackageProduct" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -743,20 +691,6 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="DeletePackageProduct">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/MesAPI.Model" minOccurs="0" name="packageProduct" nillable="true" type="q17:PackageProduct" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="DeletePackageProductResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="DeletePackageProductResult" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

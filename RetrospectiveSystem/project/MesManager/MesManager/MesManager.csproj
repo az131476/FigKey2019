@@ -236,6 +236,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Connected Services\MesServiceTest\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Connected Services\MesService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -384,6 +389,12 @@
     <Compile Include="UI\SNCenter.Designer.cs">
       <DependentUpon>SNCenter.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\TProcess.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\TProcess.Designer.cs">
+      <DependentUpon>TProcess.cs</DependentUpon>
+    </Compile>
     <Compile Include="WelcomeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -473,6 +484,9 @@
     <EmbeddedResource Include="UI\SNCenter.resx">
       <DependentUpon>SNCenter.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\TProcess.resx">
+      <DependentUpon>TProcess.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WelcomeForm.cs.resx">
       <DependentUpon>WelcomeForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -480,6 +494,16 @@
       <DependentUpon>WelcomeForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.manifest" />
+    <None Include="Connected Services\MesServiceTest\MesService.wsdl" />
+    <None Include="Connected Services\MesServiceTest\MesService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\MesServiceTest\MesService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\MesServiceTest\MesService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\MesService\MesManager.MesService.GetUserInfoResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -529,6 +553,13 @@
     <None Include="Connected Services\MesService\configuration91.svcinfo" />
     <None Include="Connected Services\MesService\configuration.svcinfo" />
     <None Include="Connected Services\MesService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\MesServiceTest\MesService.disco" />
+    <None Include="Connected Services\MesServiceTest\configuration91.svcinfo" />
+    <None Include="Connected Services\MesServiceTest\configuration.svcinfo" />
+    <None Include="Connected Services\MesServiceTest\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -591,6 +622,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\MesServiceTest\" />
     <WCFMetadataStorage Include="Connected Services\MesService\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
