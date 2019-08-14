@@ -195,72 +195,6 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="DeleteProductTypeNo">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="typeNo" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="DeleteProductTypeNoResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="DeleteProductTypeNoResult" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="DeleteAllProductTypeNo">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="DeleteAllProductTypeNoResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="DeleteAllProductTypeNoResult" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SelectProductTypeNo">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="typeNo" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SelectProductTypeNoResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="SelectProductTypeNoResult" nillable="true">
-          <xs:complexType>
-            <xs:annotation>
-              <xs:appinfo>
-                <ActualType Name="DataSet" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
-              </xs:appinfo>
-            </xs:annotation>
-            <xs:sequence>
-              <xs:element ref="xs:schema" />
-              <xs:any />
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="CommitProductTypeNo">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="list" nillable="true" type="q7:ArrayOfstring" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="CommitProductTypeNoResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="CommitProductTypeNoResult" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
   <xs:element name="DeleteAllTypeStation">
     <xs:complexType>
       <xs:sequence />
@@ -316,7 +250,7 @@
   <xs:element name="CommitTypeStation">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="dctData" nillable="true" type="q8:ArrayOfKeyValueOfstringArrayOfstringty7Ep6D1" />
+        <xs:element xmlns:q7="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="dctData" nillable="true" type="q7:ArrayOfKeyValueOfstringArrayOfstringty7Ep6D1" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -411,7 +345,7 @@
   <xs:element name="CommitMaterial">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/MesAPI.Model" minOccurs="0" name="list" nillable="true" type="q9:ArrayOfMaterialMsg" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/MesAPI.Model" minOccurs="0" name="list" nillable="true" type="q8:ArrayOfMaterialMsg" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -451,7 +385,7 @@
   <xs:element name="CommitProductMaterial">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/MesAPI.Model" minOccurs="0" name="pmList" nillable="true" type="q10:ArrayOfProductMaterial" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/MesAPI.Model" minOccurs="0" name="pmList" nillable="true" type="q9:ArrayOfProductMaterial" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -465,7 +399,7 @@
   <xs:element name="SelectProductMaterial">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/MesAPI.Model" minOccurs="0" name="material" nillable="true" type="q11:ProductMaterial" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/MesAPI.Model" minOccurs="0" name="material" nillable="true" type="q10:ProductMaterial" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -491,7 +425,7 @@
   <xs:element name="DeleteProductMaterial">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/MesAPI.Model" minOccurs="0" name="material" nillable="true" type="q12:ProductMaterial" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/MesAPI.Model" minOccurs="0" name="material" nillable="true" type="q11:ProductMaterial" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -550,7 +484,7 @@
   <xs:element name="SelectMaterialMsg">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/MesAPI.Model" minOccurs="0" name="materialMsg" nillable="true" type="q13:MaterialMsg" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/MesAPI.Model" minOccurs="0" name="materialMsg" nillable="true" type="q12:MaterialMsg" />
         <xs:element minOccurs="0" name="IsSelectAll" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
@@ -671,7 +605,7 @@
   <xs:element name="SelectPackageProduct">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/MesAPI.Model" minOccurs="0" name="packageProduct" nillable="true" type="q14:PackageProduct" />
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/MesAPI.Model" minOccurs="0" name="packageProduct" nillable="true" type="q13:PackageProduct" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

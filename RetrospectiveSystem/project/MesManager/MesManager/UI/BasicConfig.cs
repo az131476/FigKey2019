@@ -148,7 +148,10 @@ namespace MesManager.UI
 
         private void Menu_grid_Click(object sender, EventArgs e)
         {
-            this.radGridView1.DataSource = null;
+            for (int i = this.radGridView1.Rows.Count - 1; i >= 0; i--)
+            {
+                this.radGridView1.Rows[i].Delete();
+            }
         }
 
         private void RadGridView1_CellEndEdit(object sender, GridViewCellEventArgs e)

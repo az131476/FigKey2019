@@ -48,19 +48,6 @@ namespace MesAPI
         [OperationContract]
         int SetCurrentProcess(string processName, int state);
 
-        //产品型号
-        [OperationContract]
-        int DeleteProductTypeNo(string typeNo);
-
-        [OperationContract]
-        int DeleteAllProductTypeNo();
-
-        [OperationContract]
-        DataSet SelectProductTypeNo(string typeNo);
-
-        [OperationContract]
-        string CommitProductTypeNo(List<string> list);
-
         //站位接口
         [OperationContract]
         int DeleteAllTypeStation();

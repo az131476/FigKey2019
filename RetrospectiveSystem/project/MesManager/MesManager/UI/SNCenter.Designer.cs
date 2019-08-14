@@ -488,7 +488,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.MediumSlateBlue;
+            this.BackColor = System.Drawing.Color.MediumBlue;
             this.ClientSize = new System.Drawing.Size(1264, 663);
             this.Controls.Add(this.panel_quanlity);
             this.Controls.Add(this.panel_material);
@@ -500,7 +500,7 @@
             // 
             // 
             this.RootElement.ApplyShapeToControl = true;
-            this.Text = "SNCenter";
+            this.Text = "追溯管理";
             this.Load += new System.EventHandler(this.SNCenter_Load);
             ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).EndInit();
             this.panel_sn.ResumeLayout(false);

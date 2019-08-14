@@ -41,18 +41,18 @@
             this.lbx_process = new System.Windows.Forms.Label();
             this.cb_processItem = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btn_setprocess = new Telerik.WinControls.UI.RadButton();
             this.cb_curprocess = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.radGridView1 = new Telerik.WinControls.UI.RadGridView();
-            this.btn_setprocess = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).BeginInit();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_setprocess)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btn_setprocess)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -164,6 +164,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "工艺设置";
             // 
+            // btn_setprocess
+            // 
+            this.btn_setprocess.Location = new System.Drawing.Point(417, 30);
+            this.btn_setprocess.Name = "btn_setprocess";
+            this.btn_setprocess.Size = new System.Drawing.Size(63, 28);
+            this.btn_setprocess.TabIndex = 12;
+            this.btn_setprocess.Text = "应用";
+            this.btn_setprocess.Click += new System.EventHandler(this.Btn_setprocess_Click);
+            // 
             // cb_curprocess
             // 
             this.cb_curprocess.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -204,20 +213,11 @@
             this.radGridView1.Size = new System.Drawing.Size(792, 514);
             this.radGridView1.TabIndex = 0;
             // 
-            // btn_setprocess
-            // 
-            this.btn_setprocess.Location = new System.Drawing.Point(417, 30);
-            this.btn_setprocess.Name = "btn_setprocess";
-            this.btn_setprocess.Size = new System.Drawing.Size(63, 28);
-            this.btn_setprocess.TabIndex = 12;
-            this.btn_setprocess.Text = "应用";
-            this.btn_setprocess.Click += new System.EventHandler(this.Btn_setprocess_Click);
-            // 
             // TProcess
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.BackColor = System.Drawing.Color.MediumBlue;
             this.ClientSize = new System.Drawing.Size(792, 688);
             this.Controls.Add(this.radGridView1);
             this.Controls.Add(this.panel2);
@@ -235,10 +235,10 @@
             this.panel1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_setprocess)).EndInit();
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btn_setprocess)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

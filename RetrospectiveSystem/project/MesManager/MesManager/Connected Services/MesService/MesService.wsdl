@@ -69,30 +69,6 @@
   <wsdl:message name="IMesService_SetCurrentProcess_OutputMessage">
     <wsdl:part name="parameters" element="tns:SetCurrentProcessResponse" />
   </wsdl:message>
-  <wsdl:message name="IMesService_DeleteProductTypeNo_InputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteProductTypeNo" />
-  </wsdl:message>
-  <wsdl:message name="IMesService_DeleteProductTypeNo_OutputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteProductTypeNoResponse" />
-  </wsdl:message>
-  <wsdl:message name="IMesService_DeleteAllProductTypeNo_InputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteAllProductTypeNo" />
-  </wsdl:message>
-  <wsdl:message name="IMesService_DeleteAllProductTypeNo_OutputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteAllProductTypeNoResponse" />
-  </wsdl:message>
-  <wsdl:message name="IMesService_SelectProductTypeNo_InputMessage">
-    <wsdl:part name="parameters" element="tns:SelectProductTypeNo" />
-  </wsdl:message>
-  <wsdl:message name="IMesService_SelectProductTypeNo_OutputMessage">
-    <wsdl:part name="parameters" element="tns:SelectProductTypeNoResponse" />
-  </wsdl:message>
-  <wsdl:message name="IMesService_CommitProductTypeNo_InputMessage">
-    <wsdl:part name="parameters" element="tns:CommitProductTypeNo" />
-  </wsdl:message>
-  <wsdl:message name="IMesService_CommitProductTypeNo_OutputMessage">
-    <wsdl:part name="parameters" element="tns:CommitProductTypeNoResponse" />
-  </wsdl:message>
   <wsdl:message name="IMesService_DeleteAllTypeStation_InputMessage">
     <wsdl:part name="parameters" element="tns:DeleteAllTypeStation" />
   </wsdl:message>
@@ -259,22 +235,6 @@
     <wsdl:operation name="SetCurrentProcess">
       <wsdl:input wsaw:Action="http://tempuri.org/IMesService/SetCurrentProcess" message="tns:IMesService_SetCurrentProcess_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMesService/SetCurrentProcessResponse" message="tns:IMesService_SetCurrentProcess_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="DeleteProductTypeNo">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/DeleteProductTypeNo" message="tns:IMesService_DeleteProductTypeNo_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/DeleteProductTypeNoResponse" message="tns:IMesService_DeleteProductTypeNo_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="DeleteAllProductTypeNo">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/DeleteAllProductTypeNo" message="tns:IMesService_DeleteAllProductTypeNo_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/DeleteAllProductTypeNoResponse" message="tns:IMesService_DeleteAllProductTypeNo_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="SelectProductTypeNo">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/SelectProductTypeNo" message="tns:IMesService_SelectProductTypeNo_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/SelectProductTypeNoResponse" message="tns:IMesService_SelectProductTypeNo_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="CommitProductTypeNo">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/CommitProductTypeNo" message="tns:IMesService_CommitProductTypeNo_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/CommitProductTypeNoResponse" message="tns:IMesService_CommitProductTypeNo_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="DeleteAllTypeStation">
       <wsdl:input wsaw:Action="http://tempuri.org/IMesService/DeleteAllTypeStation" message="tns:IMesService_DeleteAllTypeStation_InputMessage" />
@@ -446,42 +406,6 @@
     </wsdl:operation>
     <wsdl:operation name="SetCurrentProcess">
       <soap:operation soapAction="http://tempuri.org/IMesService/SetCurrentProcess" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="DeleteProductTypeNo">
-      <soap:operation soapAction="http://tempuri.org/IMesService/DeleteProductTypeNo" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="DeleteAllProductTypeNo">
-      <soap:operation soapAction="http://tempuri.org/IMesService/DeleteAllProductTypeNo" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="SelectProductTypeNo">
-      <soap:operation soapAction="http://tempuri.org/IMesService/SelectProductTypeNo" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="CommitProductTypeNo">
-      <soap:operation soapAction="http://tempuri.org/IMesService/CommitProductTypeNo" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

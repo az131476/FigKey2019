@@ -47,7 +47,13 @@ namespace MesManager.UI
             DataSource();
             menu_del.Enabled = false;
             UpdateProcesList();
+            RefreshCurrentProcess();
             SelectStationList(this.cb_processItem.Text.Trim());
+        }
+
+        async private void RefreshCurrentProcess()
+        {
+            this.cb_curprocess.Text = await serviceClientTest.SelectCurrentTProcessAsync();
         }
 
         private void DataSource()
@@ -106,7 +112,10 @@ namespace MesManager.UI
 
         private void Menu_grid_Click(object sender, EventArgs e)
         {
-            this.radGridView1.DataSource = null;
+            for (int i = this.radGridView1.Rows.Count - 1; i >= 0; i--)
+            {
+                this.radGridView1.Rows[i].Delete();
+            }
         }
 
         private void RadGridView1_CellEndEdit(object sender, GridViewCellEventArgs e)
@@ -193,7 +202,6 @@ namespace MesManager.UI
                 }
             }
             this.cb_curprocess.Text = await serviceClientTest.SelectCurrentTProcessAsync();
-            this.cb_processItem.Text = this.cb_curprocess.Text;
         }
 
         async private void CommitStationMesService()
@@ -252,7 +260,7 @@ namespace MesManager.UI
                 MessageBox.Show(this.cb_curprocess.Text+"不存在，请重新选择！","提示",MessageBoxButtons.OK,MessageBoxIcon.Warning);
                 return;
             }
-            foreach (var process in this.cb_curprocess.Items)
+            foreach (string process in this.cb_curprocess.Items)
             {
                 if (process.ToString() == this.cb_curprocess.Text)
                 {
@@ -260,7 +268,6 @@ namespace MesManager.UI
                     int upt = await serviceClient.SetCurrentProcessAsync(this.cb_curprocess.Text.Trim(),1);
                     if (upt > 0)
                     {
-                        UpdateProcesList();
                         MessageBox.Show("设置成功！","提示",MessageBoxButtons.OK,MessageBoxIcon.Information);
                     }
                 }
@@ -269,6 +276,8 @@ namespace MesManager.UI
                     await serviceClient.SetCurrentProcessAsync(process.ToString(), 0);
                 }
             }
+
+            UpdateProcesList();
         }
     }
 }

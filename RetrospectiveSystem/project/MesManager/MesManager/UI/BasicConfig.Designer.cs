@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BasicConfig));
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.cb_cfgType = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -43,13 +43,13 @@
             this.customShape1 = new Telerik.WinControls.OldShapeEditor.CustomShape();
             this.panel1 = new System.Windows.Forms.Panel();
             this.radMenu1 = new Telerik.WinControls.UI.RadMenu();
-            this.radGridView1 = new Telerik.WinControls.UI.RadGridView();
             this.menu_add = new Telerik.WinControls.UI.RadMenuItem();
             this.menu_del = new Telerik.WinControls.UI.RadMenuItem();
             this.menu_commit = new Telerik.WinControls.UI.RadMenuItem();
             this.menu_refresh = new Telerik.WinControls.UI.RadMenuItem();
             this.menu_grid = new Telerik.WinControls.UI.RadMenuItem();
             this.menu_clear_db = new Telerik.WinControls.UI.RadMenuItem();
+            this.radGridView1 = new Telerik.WinControls.UI.RadGridView();
             this.statusStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).BeginInit();
@@ -137,7 +137,7 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.cb_cfgType);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 34);
+            this.panel1.Location = new System.Drawing.Point(0, 36);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(663, 65);
             this.panel1.TabIndex = 11;
@@ -155,21 +155,8 @@
             this.menu_clear_db});
             this.radMenu1.Location = new System.Drawing.Point(0, 0);
             this.radMenu1.Name = "radMenu1";
-            this.radMenu1.Size = new System.Drawing.Size(663, 34);
+            this.radMenu1.Size = new System.Drawing.Size(663, 36);
             this.radMenu1.TabIndex = 9;
-            // 
-            // radGridView1
-            // 
-            this.radGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radGridView1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radGridView1.Location = new System.Drawing.Point(0, 99);
-            // 
-            // 
-            // 
-            this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition1;
-            this.radGridView1.Name = "radGridView1";
-            this.radGridView1.Size = new System.Drawing.Size(663, 616);
-            this.radGridView1.TabIndex = 14;
             // 
             // menu_add
             // 
@@ -215,11 +202,24 @@
             this.menu_clear_db.Name = "menu_clear_db";
             this.menu_clear_db.Text = "清空数据";
             // 
+            // radGridView1
+            // 
+            this.radGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radGridView1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radGridView1.Location = new System.Drawing.Point(0, 101);
+            // 
+            // 
+            // 
+            this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.radGridView1.Name = "radGridView1";
+            this.radGridView1.Size = new System.Drawing.Size(663, 614);
+            this.radGridView1.TabIndex = 14;
+            // 
             // BasicConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.MediumSlateBlue;
+            this.BackColor = System.Drawing.Color.MediumBlue;
             this.ClientSize = new System.Drawing.Size(663, 737);
             this.Controls.Add(this.radGridView1);
             this.Controls.Add(this.panel1);

@@ -207,7 +207,7 @@ namespace MesAPI
 
         #endregion
 
-        #region 站位信息接口
+        #region 工艺流程
 
         /// <summary>
         /// 配置产线包含哪些站位，按顺序插入
@@ -311,88 +311,6 @@ namespace MesAPI
             return SQLServer.ExecuteNonQuery(updateSQL);
         }
 
-        #endregion
-
-        #region 型号信息接口
-
-        public string CommitProductTypeNo(List<string> list)
-        {
-            LogHelper.Log.Info($"接口被调用-InsertProductType");
-            foreach (var item in list)
-            {
-                if (!IsExistProductType(item))
-                {
-                    //insert
-                    if (InsertProductType(item) < 1)
-                        return "0";
-                }
-            }
-            return "1";
-        }
-
-        private int InsertProductType(string typeNo)
-        {
-            string insertSQL = $"INSERT INTO {DbTable.F_PRODUCT_TYPE_NO_NAME}({DbTable.F_TypeNo.TYPE_NO}) " +
-                $"VALUES('{typeNo}')";
-            return SQLServer.ExecuteNonQuery(insertSQL);
-        }
-
-        /// <summary>
-        /// 产品型号是否为空
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        private bool IsExistProductType(string typeNo)
-        {
-            string selectSQL = $"SELECT * FROM {DbTable.F_PRODUCT_TYPE_NO_NAME} WHERE {DbTable.F_TypeNo.TYPE_NO} = '{typeNo}'";
-            DataTable dt = SQLServer.ExecuteDataSet(selectSQL).Tables[0];
-            if (dt.Rows.Count > 0)
-            {
-                return true;
-            }
-            return false;
-        }
-
-        /// <summary>
-        /// 查询当前产线的站位流程
-        /// </summary>
-        /// <returns></returns>
-        public DataSet SelectProductTypeNo(string typeNo)
-        {
-            string selectSQL = "";
-            if (string.IsNullOrEmpty(typeNo.Trim()))
-            {
-                selectSQL = $"SELECT {DbTable.F_TypeNo.TYPE_NO} FROM {DbTable.F_PRODUCT_TYPE_NO_NAME} ";
-            }
-            else
-            {
-                selectSQL = $"SELECT {DbTable.F_TypeNo.TYPE_NO} FROM {DbTable.F_PRODUCT_TYPE_NO_NAME} WHERE {DbTable.F_TypeNo.TYPE_NO} like '%{typeNo}%'";
-            }
-
-            LogHelper.Log.Info($"SelectProductType={selectSQL}");
-            return SQLServer.ExecuteDataSet(selectSQL);
-        }
-
-        /// <summary>
-        /// 清除所有数据
-        /// </summary>
-        /// <returns></returns>
-        public int DeleteAllProductTypeNo()
-        {
-            string deleteSQL = $"DELETE FROM {DbTable.F_PRODUCT_TYPE_NO_NAME}";
-            return SQLServer.ExecuteNonQuery(deleteSQL);
-        }
-
-        /// <summary>
-        /// 删除某条记录
-        /// </summary>
-        /// <param name="stationName"></param>
-        /// <returns></returns>
-        public int DeleteProductTypeNo(string typeNo)
-        {
-            string deleteSQL = $"DELETE FROM {DbTable.F_PRODUCT_TYPE_NO_NAME} WHERE {DbTable.F_TypeNo.TYPE_NO} = '{typeNo}'";
-            return SQLServer.ExecuteNonQuery(deleteSQL);
-        }
         #endregion
 
         #region 测试结果数据接口
@@ -1037,7 +955,7 @@ namespace MesAPI
         }
         #endregion
 
-        #region 外箱容量接口
+        #region 产品/容器容量
         public int CommitProductContinairCapacity(string productTypeNo, string amount)
         {
             string insertSQL = $"INSERT INTO {DbTable.F_OUT_CASE_STORAGE_NAME}(" +
@@ -1061,10 +979,10 @@ namespace MesAPI
                 $"WHERE {DbTable.F_Out_Case_Storage.PRODUCT_TYPE_NO} = '{productTypeNo}'";
             return SQLServer.ExecuteNonQuery(updateSQL);
         }
-        public DataSet SelectProductContinairCapacity(string caseCode)
+        public DataSet SelectProductContinairCapacity(string productTypeNo)
         {
             string selectSQL = "";
-            if (string.IsNullOrEmpty(caseCode))
+            if (string.IsNullOrEmpty(productTypeNo))
             {
                 selectSQL = $"SELECT {DbTable.F_Out_Case_Storage.PRODUCT_TYPE_NO}," +
                     $"{DbTable.F_Out_Case_Storage.STORAGE_CAPACITY}," +
@@ -1079,7 +997,7 @@ namespace MesAPI
                     $"{DbTable.F_Out_Case_Storage.USER_NAME}," +
                     $"{DbTable.F_Out_Case_Storage.UPDATE_DATE_U} " +
                     $"FROM {DbTable.F_OUT_CASE_STORAGE_NAME} " +
-                    $"WHERE {DbTable.F_Out_Case_Storage.PRODUCT_TYPE_NO} = '{caseCode}'";
+                    $"WHERE {DbTable.F_Out_Case_Storage.PRODUCT_TYPE_NO} = '{productTypeNo}'";
             }
             return SQLServer.ExecuteDataSet(selectSQL);
         }

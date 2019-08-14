@@ -36,12 +36,12 @@
             this.menu_productCheck = new Telerik.WinControls.UI.RadMenuItem();
             this.menu_quanlity = new Telerik.WinControls.UI.RadMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.zedGraphControl1 = new ZedGraph.ZedGraphControl();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.radMenu1 = new Telerik.WinControls.UI.RadMenu();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
             // menu_sn_result
@@ -94,14 +94,6 @@
             this.panel1.Size = new System.Drawing.Size(1164, 494);
             this.panel1.TabIndex = 15;
             // 
-            // panel2
-            // 
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 530);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1164, 130);
-            this.panel2.TabIndex = 16;
-            // 
             // zedGraphControl1
             // 
             this.zedGraphControl1.Location = new System.Drawing.Point(24, 28);
@@ -117,12 +109,13 @@
             this.zedGraphControl1.TabIndex = 0;
             this.zedGraphControl1.UseExtendedPrintDialog = true;
             // 
-            // GraphView
+            // panel2
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.MediumSlateBlue;
-            this.ClientSize = new System.Drawing.Size(1164, 660);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(0, 530);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1164, 130);
+            this.panel2.TabIndex = 16;
             // 
             // radMenu1
             // 
@@ -139,6 +132,13 @@
             this.radMenu1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.radMenu1.Size = new System.Drawing.Size(1164, 36);
             this.radMenu1.TabIndex = 14;
+            // 
+            // GraphView
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.MediumBlue;
+            this.ClientSize = new System.Drawing.Size(1164, 660);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.radMenu1);

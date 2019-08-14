@@ -54,7 +54,7 @@ namespace MesWcfService.MessageQueue.RemoteClient
                 $"{DbTable.F_Out_Case_Product.UPDATE_DATE} = '{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}' " +
                 $"WHERE {DbTable.F_Out_Case_Product.OUT_CASE_CODE} = '{outCaseCode}' AND " +
                 $"{DbTable.F_Out_Case_Product.SN_OUTTER} = '{snOutter}' ";
-                LogHelper.Log.Info($"UpdatePackageProduct={updateSQL}");
+
                 int res = 0;
                 var upackageProduct = IsExist(outCaseCode, snOutter);
                 if (upackageProduct.IsRecordExist)
@@ -79,6 +79,8 @@ namespace MesWcfService.MessageQueue.RemoteClient
                 {
                     //insert
                     //未满，继续
+                    if (!IsTypeNoExist(typeNo))
+                        return "ERROR_NOT_TYPENO";
                     if (IsContinue(typeNo))
                     {
                         res = SQLServer.ExecuteNonQuery(insertSQL);
@@ -128,6 +130,22 @@ namespace MesWcfService.MessageQueue.RemoteClient
         }
 
         //是否可以继续更新数据，未装满时可以继续，装满时不能继续，提示装满
+        private static bool IsTypeNoExist(string typeNo)
+        {
+            var selectSQL = $"SELECT {DbTable.F_Out_Case_Storage.STORAGE_CAPACITY}," +
+                    $"{DbTable.F_Out_Case_Storage.AMOUNTED} " +
+                    $"FROM {DbTable.F_OUT_CASE_STORAGE_NAME} WHERE " +
+                    $"{DbTable.F_Out_Case_Storage.TYPE_NO} = '{typeNo}'";
+            LogHelper.Log.Info(selectSQL);
+            var dt = SQLServer.ExecuteDataSet(selectSQL).Tables[0];
+            if (dt.Rows.Count < 1)
+            {
+                //型号不存在
+                return false;
+            }
+            return true;
+        }
+
         private static bool IsContinue(string typeNo)
         {
             var selectSQL = $"SELECT {DbTable.F_Out_Case_Storage.STORAGE_CAPACITY}," +
@@ -136,10 +154,13 @@ namespace MesWcfService.MessageQueue.RemoteClient
                     $"{DbTable.F_Out_Case_Storage.TYPE_NO} = '{typeNo}'";
             LogHelper.Log.Info(selectSQL);
             var dt = SQLServer.ExecuteDataSet(selectSQL).Tables[0];
-            var storage = int.Parse(dt.Rows[0][0].ToString());
-            var amounted = int.Parse(dt.Rows[0][1].ToString());
-            if (amounted >= storage)
-                return false;
+            if (dt.Rows.Count > 0)
+            {
+                var storage = int.Parse(dt.Rows[0][0].ToString());
+                var amounted = int.Parse(dt.Rows[0][1].ToString());
+                if (amounted >= storage)
+                    return false;
+            }
             return true;
         }
 

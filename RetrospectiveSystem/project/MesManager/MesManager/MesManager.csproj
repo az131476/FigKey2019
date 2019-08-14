@@ -389,11 +389,29 @@
     <Compile Include="UI\SNCenter.Designer.cs">
       <DependentUpon>SNCenter.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\StatisticalAnalysis.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\StatisticalAnalysis.Designer.cs">
+      <DependentUpon>StatisticalAnalysis.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\TestStand.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\TestStand.Designer.cs">
+      <DependentUpon>TestStand.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\TProcess.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UI\TProcess.Designer.cs">
       <DependentUpon>TProcess.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\UserManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\UserManager.Designer.cs">
+      <DependentUpon>UserManager.cs</DependentUpon>
     </Compile>
     <Compile Include="WelcomeForm.cs">
       <SubType>Form</SubType>
@@ -484,8 +502,17 @@
     <EmbeddedResource Include="UI\SNCenter.resx">
       <DependentUpon>SNCenter.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\StatisticalAnalysis.resx">
+      <DependentUpon>StatisticalAnalysis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\TestStand.resx">
+      <DependentUpon>TestStand.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\TProcess.resx">
       <DependentUpon>TProcess.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UserManager.resx">
+      <DependentUpon>UserManager.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WelcomeForm.cs.resx">
       <DependentUpon>WelcomeForm.cs</DependentUpon>
@@ -589,6 +616,8 @@
     <None Include="Resources\DeleteDataSource_16x16.png" />
     <None Include="Resources\ClearGrid.png" />
     <None Include="Resources\bullet_add.png" />
+    <None Include="Resources\万通公司LOG.png" />
+    <None Include="Resources\万通公司LOG426x90.png" />
     <Content Include="完善.txt" />
     <Content Include="新需求.txt" />
     <Content Include="说明.txt" />

@@ -180,7 +180,7 @@ namespace MesManager.RadView
             GridViewTextBoxColumn describle = this.radGridView1.Columns[DataGridViewColumnName.rdvc_describle.ToString()] as GridViewTextBoxColumn;
 
             DataTable materialCodeDt = (await serviceClient.SelectMaterialAsync()).Tables[0];//0
-            DataTable typeNoDt = (await serviceClient.SelectProductTypeNoAsync("")).Tables[0];//1
+            DataTable typeNoDt = (await serviceClient.SelectProductContinairCapacityAsync("")).Tables[0];//1
 
             List<string> materialListTemp = new List<string>();
             List<string> typeNoListTemp = new List<string>();

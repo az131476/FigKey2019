@@ -7,19 +7,19 @@ namespace MesAPI.DB
 {
     public class DbTable
     {
-        public const string F_USER_NAME = "[WT_SCL].[dbo].[f_user]";
-        public const string F_TECHNOLOGICAL_PROCESS_NAME = "[WT_SCL].[dbo].[f_technological_process]";
-        public const string F_TEST_RESULT_NAME = "[WT_SCL].[dbo].[f_test_result_data]";
-        public const string F_PRODUCT_STATION_NAME = "[WT_SCL].[dbo].[f_product_station]";
-        public const string F_PRODUCT_TYPE_NO_NAME = "[WT_SCL].[dbo].[f_product_typeNo]";
-        public const string F_PRODUCT_MATERIAL_NAME = "[WT_SCL].[dbo].[f_product_material]";
-        public const string F_MATERIAL_NAME = "[WT_SCL].[dbo].[f_material]";
-        public const string F_MATERIAL_STATISTICS_NAME = "[WT_SCL].[dbo].[f_material_statistics]";
-        public const string F_OUT_CASE_STORAGE_NAME = "[WT_SCL].[dbo].[f_out_case_storage]";
-        public const string F_OUT_CASE_PRODUCT_NAME = "[WT_SCL].[dbo].[f_out_case_product]";
-        public const string F_PASS_RATE_STATISTICS_NAME = "[WT_SCL].[dbo].[f_pass_rate_statistics]";
-        public const string F_TEST_PROGRAME_VERSION_NAME = "[WT_SCL].[dbo].[f_test_programe_version]";
-        public const string F_TEST_LIMIT_CONFIG_NAME = "[WT_SCL].[dbo].[f_test_limit_config]";
+        public const string F_USER_NAME                         = "[WT_SCL].[dbo].[f_user]";
+        public const string F_TECHNOLOGICAL_PROCESS_NAME        = "[WT_SCL].[dbo].[f_technological_process]";
+        public const string F_TEST_RESULT_NAME                  = "[WT_SCL].[dbo].[f_test_result_data]";
+        public const string F_PRODUCT_STATION_NAME              = "[WT_SCL].[dbo].[f_product_station]";
+        //public const string F_PRODUCT_TYPE_NO_NAME = "[WT_SCL].[dbo].[f_product_typeNo]";
+        public const string F_PRODUCT_MATERIAL_NAME             = "[WT_SCL].[dbo].[f_product_material]";
+        public const string F_MATERIAL_NAME                     = "[WT_SCL].[dbo].[f_material]";
+        public const string F_MATERIAL_STATISTICS_NAME          = "[WT_SCL].[dbo].[f_material_statistics]";
+        public const string F_OUT_CASE_STORAGE_NAME             = "[WT_SCL].[dbo].[f_product_package_storage]";
+        public const string F_OUT_CASE_PRODUCT_NAME             = "[WT_SCL].[dbo].[f_out_case_product]";
+        public const string F_PASS_RATE_STATISTICS_NAME         = "[WT_SCL].[dbo].[f_pass_rate_statistics]";
+        public const string F_TEST_PROGRAME_VERSION_NAME        = "[WT_SCL].[dbo].[f_test_programe_version]";
+        public const string F_TEST_LIMIT_CONFIG_NAME            = "[WT_SCL].[dbo].[f_test_limit_config]";
 
         public class F_User
         {

@@ -34,22 +34,28 @@
             this.radRadioButton2 = new Telerik.WinControls.UI.RadRadioButton();
             this.radRadioButton3 = new Telerik.WinControls.UI.RadRadioButton();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
+            this.btn_rateCal = new Telerik.WinControls.UI.RadButton();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.radDateTimePicker1 = new Telerik.WinControls.UI.RadDateTimePicker();
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.radLabel9 = new Telerik.WinControls.UI.RadLabel();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.radButton1 = new Telerik.WinControls.UI.RadButton();
             this.radButton2 = new Telerik.WinControls.UI.RadButton();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.radDateTimePicker2 = new Telerik.WinControls.UI.RadDateTimePicker();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.textBox9 = new System.Windows.Forms.TextBox();
             this.radLabel10 = new Telerik.WinControls.UI.RadLabel();
             this.textBox10 = new System.Windows.Forms.TextBox();
@@ -61,28 +67,25 @@
             this.radLabel16 = new Telerik.WinControls.UI.RadLabel();
             this.textBox16 = new System.Windows.Forms.TextBox();
             this.radLabel17 = new Telerik.WinControls.UI.RadLabel();
-            this.radDateTimePicker1 = new Telerik.WinControls.UI.RadDateTimePicker();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.radDateTimePicker2 = new Telerik.WinControls.UI.RadDateTimePicker();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.btn_rateCal = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radRadioButton1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radRadioButton2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radRadioButton3)).BeginInit();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_rateCal)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radDateTimePicker1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton2)).BeginInit();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radDateTimePicker2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).BeginInit();
@@ -90,9 +93,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.label_lct)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel16)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel17)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radDateTimePicker1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radDateTimePicker2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btn_rateCal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -160,74 +160,47 @@
             this.panel1.Size = new System.Drawing.Size(562, 482);
             this.panel1.TabIndex = 5;
             // 
-            // textBox2
+            // btn_rateCal
             // 
-            this.textBox2.Location = new System.Drawing.Point(84, 58);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(191, 21);
-            this.textBox2.TabIndex = 4;
+            this.btn_rateCal.Location = new System.Drawing.Point(294, 104);
+            this.btn_rateCal.Name = "btn_rateCal";
+            this.btn_rateCal.Size = new System.Drawing.Size(39, 23);
+            this.btn_rateCal.TabIndex = 19;
+            this.btn_rateCal.Text = "计算";
             // 
-            // radLabel3
+            // comboBox3
             // 
-            this.radLabel3.Location = new System.Drawing.Point(15, 61);
-            this.radLabel3.Name = "radLabel3";
-            this.radLabel3.Size = new System.Drawing.Size(54, 18);
-            this.radLabel3.TabIndex = 3;
-            this.radLabel3.Text = "总库存数";
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Location = new System.Drawing.Point(84, 13);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(191, 20);
+            this.comboBox3.TabIndex = 18;
             // 
-            // textBox3
+            // radDateTimePicker1
             // 
-            this.textBox3.Location = new System.Drawing.Point(363, 61);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(191, 21);
-            this.textBox3.TabIndex = 6;
+            this.radDateTimePicker1.Location = new System.Drawing.Point(363, 14);
+            this.radDateTimePicker1.Name = "radDateTimePicker1";
+            this.radDateTimePicker1.Size = new System.Drawing.Size(191, 20);
+            this.radDateTimePicker1.TabIndex = 17;
+            this.radDateTimePicker1.TabStop = false;
+            this.radDateTimePicker1.Text = "2019-08-06";
+            this.radDateTimePicker1.Value = new System.DateTime(2019, 8, 6, 11, 2, 22, 418);
             // 
-            // radLabel4
+            // textBox8
             // 
-            this.radLabel4.Location = new System.Drawing.Point(294, 61);
-            this.radLabel4.Name = "radLabel4";
-            this.radLabel4.Size = new System.Drawing.Size(54, 18);
-            this.radLabel4.TabIndex = 5;
-            this.radLabel4.Text = "不良数量";
+            this.textBox8.Location = new System.Drawing.Point(84, 390);
+            this.textBox8.Multiline = true;
+            this.textBox8.Name = "textBox8";
+            this.textBox8.Size = new System.Drawing.Size(461, 79);
+            this.textBox8.TabIndex = 16;
             // 
-            // radLabel5
+            // radLabel9
             // 
-            this.radLabel5.Location = new System.Drawing.Point(294, 15);
-            this.radLabel5.Name = "radLabel5";
-            this.radLabel5.Size = new System.Drawing.Size(54, 18);
-            this.radLabel5.TabIndex = 7;
-            this.radLabel5.Text = "发生日期";
-            // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(84, 154);
-            this.textBox5.Multiline = true;
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(461, 119);
-            this.textBox5.TabIndex = 10;
-            // 
-            // radLabel6
-            // 
-            this.radLabel6.Location = new System.Drawing.Point(15, 156);
-            this.radLabel6.Name = "radLabel6";
-            this.radLabel6.Size = new System.Drawing.Size(54, 18);
-            this.radLabel6.TabIndex = 9;
-            this.radLabel6.Text = "异常描述";
-            // 
-            // textBox6
-            // 
-            this.textBox6.Location = new System.Drawing.Point(84, 104);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(191, 21);
-            this.textBox6.TabIndex = 12;
-            // 
-            // radLabel7
-            // 
-            this.radLabel7.Location = new System.Drawing.Point(27, 104);
-            this.radLabel7.Name = "radLabel7";
-            this.radLabel7.Size = new System.Drawing.Size(42, 18);
-            this.radLabel7.TabIndex = 11;
-            this.radLabel7.Text = "不良率";
+            this.radLabel9.Location = new System.Drawing.Point(15, 390);
+            this.radLabel9.Name = "radLabel9";
+            this.radLabel9.Size = new System.Drawing.Size(54, 18);
+            this.radLabel9.TabIndex = 15;
+            this.radLabel9.Text = "改善方案";
             // 
             // textBox7
             // 
@@ -245,21 +218,74 @@
             this.radLabel8.TabIndex = 13;
             this.radLabel8.Text = "异常分析";
             // 
-            // textBox8
+            // textBox6
             // 
-            this.textBox8.Location = new System.Drawing.Point(84, 390);
-            this.textBox8.Multiline = true;
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(461, 79);
-            this.textBox8.TabIndex = 16;
+            this.textBox6.Location = new System.Drawing.Point(84, 104);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(191, 21);
+            this.textBox6.TabIndex = 12;
             // 
-            // radLabel9
+            // radLabel7
             // 
-            this.radLabel9.Location = new System.Drawing.Point(15, 390);
-            this.radLabel9.Name = "radLabel9";
-            this.radLabel9.Size = new System.Drawing.Size(54, 18);
-            this.radLabel9.TabIndex = 15;
-            this.radLabel9.Text = "改善方案";
+            this.radLabel7.Location = new System.Drawing.Point(27, 104);
+            this.radLabel7.Name = "radLabel7";
+            this.radLabel7.Size = new System.Drawing.Size(42, 18);
+            this.radLabel7.TabIndex = 11;
+            this.radLabel7.Text = "不良率";
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(84, 154);
+            this.textBox5.Multiline = true;
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(461, 119);
+            this.textBox5.TabIndex = 10;
+            // 
+            // radLabel6
+            // 
+            this.radLabel6.Location = new System.Drawing.Point(15, 156);
+            this.radLabel6.Name = "radLabel6";
+            this.radLabel6.Size = new System.Drawing.Size(54, 18);
+            this.radLabel6.TabIndex = 9;
+            this.radLabel6.Text = "异常描述";
+            // 
+            // radLabel5
+            // 
+            this.radLabel5.Location = new System.Drawing.Point(294, 15);
+            this.radLabel5.Name = "radLabel5";
+            this.radLabel5.Size = new System.Drawing.Size(54, 18);
+            this.radLabel5.TabIndex = 7;
+            this.radLabel5.Text = "发生日期";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(363, 61);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(191, 21);
+            this.textBox3.TabIndex = 6;
+            // 
+            // radLabel4
+            // 
+            this.radLabel4.Location = new System.Drawing.Point(294, 61);
+            this.radLabel4.Name = "radLabel4";
+            this.radLabel4.Size = new System.Drawing.Size(54, 18);
+            this.radLabel4.TabIndex = 5;
+            this.radLabel4.Text = "不良数量";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(84, 58);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(191, 21);
+            this.textBox2.TabIndex = 4;
+            // 
+            // radLabel3
+            // 
+            this.radLabel3.Location = new System.Drawing.Point(15, 61);
+            this.radLabel3.Name = "radLabel3";
+            this.radLabel3.Size = new System.Drawing.Size(54, 18);
+            this.radLabel3.TabIndex = 3;
+            this.radLabel3.Text = "总库存数";
             // 
             // radButton1
             // 
@@ -297,6 +323,32 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(562, 482);
             this.panel2.TabIndex = 8;
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(363, 73);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(191, 20);
+            this.comboBox2.TabIndex = 19;
+            // 
+            // radDateTimePicker2
+            // 
+            this.radDateTimePicker2.Location = new System.Drawing.Point(363, 15);
+            this.radDateTimePicker2.Name = "radDateTimePicker2";
+            this.radDateTimePicker2.Size = new System.Drawing.Size(191, 20);
+            this.radDateTimePicker2.TabIndex = 18;
+            this.radDateTimePicker2.TabStop = false;
+            this.radDateTimePicker2.Text = "2019-08-06";
+            this.radDateTimePicker2.Value = new System.DateTime(2019, 8, 6, 11, 2, 22, 418);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(84, 70);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(191, 20);
+            this.comboBox1.TabIndex = 17;
             // 
             // textBox9
             // 
@@ -385,63 +437,11 @@
             this.radLabel17.TabIndex = 1;
             this.radLabel17.Text = "产品SN";
             // 
-            // radDateTimePicker1
-            // 
-            this.radDateTimePicker1.Location = new System.Drawing.Point(363, 14);
-            this.radDateTimePicker1.Name = "radDateTimePicker1";
-            this.radDateTimePicker1.Size = new System.Drawing.Size(191, 20);
-            this.radDateTimePicker1.TabIndex = 17;
-            this.radDateTimePicker1.TabStop = false;
-            this.radDateTimePicker1.Text = "2019-08-06";
-            this.radDateTimePicker1.Value = new System.DateTime(2019, 8, 6, 11, 2, 22, 418);
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(84, 70);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(191, 20);
-            this.comboBox1.TabIndex = 17;
-            // 
-            // radDateTimePicker2
-            // 
-            this.radDateTimePicker2.Location = new System.Drawing.Point(363, 15);
-            this.radDateTimePicker2.Name = "radDateTimePicker2";
-            this.radDateTimePicker2.Size = new System.Drawing.Size(191, 20);
-            this.radDateTimePicker2.TabIndex = 18;
-            this.radDateTimePicker2.TabStop = false;
-            this.radDateTimePicker2.Text = "2019-08-06";
-            this.radDateTimePicker2.Value = new System.DateTime(2019, 8, 6, 11, 2, 22, 418);
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(363, 73);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(191, 20);
-            this.comboBox2.TabIndex = 19;
-            // 
-            // comboBox3
-            // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(84, 13);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(191, 20);
-            this.comboBox3.TabIndex = 18;
-            // 
-            // btn_rateCal
-            // 
-            this.btn_rateCal.Location = new System.Drawing.Point(294, 104);
-            this.btn_rateCal.Name = "btn_rateCal";
-            this.btn_rateCal.Size = new System.Drawing.Size(39, 23);
-            this.btn_rateCal.TabIndex = 19;
-            this.btn_rateCal.Text = "计算";
-            // 
             // QuanlityAnomaly
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.MediumSlateBlue;
+            this.BackColor = System.Drawing.Color.MediumBlue;
             this.ClientSize = new System.Drawing.Size(1166, 623);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.radButton2);
@@ -464,17 +464,20 @@
             ((System.ComponentModel.ISupportInitialize)(this.radRadioButton3)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_rateCal)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radDateTimePicker1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton2)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radDateTimePicker2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).EndInit();
@@ -482,9 +485,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.label_lct)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel16)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel17)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radDateTimePicker1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radDateTimePicker2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btn_rateCal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

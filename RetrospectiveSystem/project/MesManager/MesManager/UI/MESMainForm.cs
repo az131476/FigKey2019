@@ -15,14 +15,26 @@ namespace MesManager.RadView
     {
         private RadTitleBarElement titleBar;
         private bool isFormMoving = false;
+        public static bool IsLogin;
         public MESMainForm()
         {
             InitializeComponent();
-            PrepareTitleBar();
+            //int left = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width;
+            //int top = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height;
+            //int right = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width;
+            //this.toolsGroup.Margin = new System.Windows.Forms.Padding(left / 3, top / 4, right / 4, 0);
+            //this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
         }
         private void MESMainForm_Load(object sender, EventArgs e)
         {
+            
+        }
+
+        public void InitMain()
+        {
+            PrepareTitleBar();
             EventHandlers();
+            System.Threading.Thread.Sleep(1000);
         }
 
         private void EventHandlers()
@@ -37,6 +49,10 @@ namespace MesManager.RadView
             this.mainQuanlityAnomaly.Click += MainQuanlityAnomaly_Click;
             //this.mainRepairCenter.Click += MainRepairCenter_Click;
             this.mainReportData.Click += MainReportData_Click;
+            this.mainTestStandData.Click += MainTestStandData_Click;
+            this.mainStatisticalAnalysis.Click += MainStatisticalAnalysis_Click;
+            this.btn_user_manger.Click += Btn_user_manger_Click;
+            this.btn_user_login.Click += Btn_user_login_Click;
         }
 
         private void PrepareTitleBar()
@@ -93,7 +109,44 @@ namespace MesManager.RadView
         }
 
         #region Event Handlers
+        private void Btn_user_login_Click(object sender, EventArgs e)
+        {
+            OpenLogin();
+        }
 
+        private void OpenLogin()
+        {
+            Login login = new Login();
+            login.ShowDialog();
+            if (login.DialogResult != DialogResult.OK)
+            {
+                //登录失败
+                //this.Close();
+                IsLogin = false;
+            }
+            else if (login.DialogResult == DialogResult.OK)
+            {
+                IsLogin = true;
+            }
+        }
+
+        private void Btn_user_manger_Click(object sender, EventArgs e)
+        {
+            UserManager userManager = new UserManager();
+            userManager.ShowDialog();
+        }
+
+        private void MainStatisticalAnalysis_Click(object sender, EventArgs e)
+        {
+            StatisticalAnalysis statisticalAnalysis = new StatisticalAnalysis();
+            statisticalAnalysis.ShowDialog();
+        }
+
+        private void MainTestStandData_Click(object sender, EventArgs e)
+        {
+            TestStand testStand = new TestStand();
+            testStand.ShowDialog();
+        }
         private void MainReportData_Click(object sender, EventArgs e)
         {
             //报表中心/追溯中心
@@ -121,6 +174,8 @@ namespace MesManager.RadView
             //ProductPackage productPackage = new ProductPackage();
             //productPackage.ShowDialog();
             //工艺流程
+            if(!IsLoginAuthon())
+                return;
             TProcess process = new TProcess();
             process.ShowDialog();
         }
@@ -165,8 +220,24 @@ namespace MesManager.RadView
             //基础信息/基础配置
             //配置所有基本的信息界面
             //如配置型号/配置产线/配置物料信息等
+            if(!IsLoginAuthon())
+                return;
             BasicConfig basicConfig = new BasicConfig();
             basicConfig.ShowDialog();
+        }
+
+        private bool IsLoginAuthon()
+        {
+            if (!IsLogin)
+            {
+                if (MessageBox.Show("请先登录！立即打开登录？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
+                {
+                    //打开登录
+                    OpenLogin();
+                }
+                return false;
+            }
+            return true;
         }
 
         void titleBar_MaximizeRestore(object sender, EventArgs args)
@@ -177,14 +248,15 @@ namespace MesManager.RadView
             if (this.WindowState != FormWindowState.Maximized)
             {
                 this.WindowState = FormWindowState.Maximized;
-
                 this.toolsGroup.Margin = new System.Windows.Forms.Padding(left / 3, top / 4, right / 4, 0);
+                this.StartPosition = FormStartPosition.CenterScreen;
             }
             else
             {
                 this.WindowState = FormWindowState.Normal;
                 //this.toolsGroup.Margin = new System.Windows.Forms.Padding(200, 130, 200, 0);
                 this.toolsGroup.Margin = new System.Windows.Forms.Padding(300, 150, 200, 0);
+                this.StartPosition = FormStartPosition.CenterScreen;
             }
         }
 

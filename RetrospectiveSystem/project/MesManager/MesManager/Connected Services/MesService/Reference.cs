@@ -611,30 +611,6 @@ namespace MesManager.MesService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SetCurrentProcess", ReplyAction="http://tempuri.org/IMesService/SetCurrentProcessResponse")]
         System.Threading.Tasks.Task<int> SetCurrentProcessAsync(string processName, int state);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/DeleteProductTypeNo", ReplyAction="http://tempuri.org/IMesService/DeleteProductTypeNoResponse")]
-        int DeleteProductTypeNo(string typeNo);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/DeleteProductTypeNo", ReplyAction="http://tempuri.org/IMesService/DeleteProductTypeNoResponse")]
-        System.Threading.Tasks.Task<int> DeleteProductTypeNoAsync(string typeNo);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/DeleteAllProductTypeNo", ReplyAction="http://tempuri.org/IMesService/DeleteAllProductTypeNoResponse")]
-        int DeleteAllProductTypeNo();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/DeleteAllProductTypeNo", ReplyAction="http://tempuri.org/IMesService/DeleteAllProductTypeNoResponse")]
-        System.Threading.Tasks.Task<int> DeleteAllProductTypeNoAsync();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectProductTypeNo", ReplyAction="http://tempuri.org/IMesService/SelectProductTypeNoResponse")]
-        System.Data.DataSet SelectProductTypeNo(string typeNo);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectProductTypeNo", ReplyAction="http://tempuri.org/IMesService/SelectProductTypeNoResponse")]
-        System.Threading.Tasks.Task<System.Data.DataSet> SelectProductTypeNoAsync(string typeNo);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/CommitProductTypeNo", ReplyAction="http://tempuri.org/IMesService/CommitProductTypeNoResponse")]
-        string CommitProductTypeNo(string[] list);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/CommitProductTypeNo", ReplyAction="http://tempuri.org/IMesService/CommitProductTypeNoResponse")]
-        System.Threading.Tasks.Task<string> CommitProductTypeNoAsync(string[] list);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/DeleteAllTypeStation", ReplyAction="http://tempuri.org/IMesService/DeleteAllTypeStationResponse")]
         int DeleteAllTypeStation();
         
@@ -912,38 +888,6 @@ namespace MesManager.MesService {
         
         public System.Threading.Tasks.Task<int> SetCurrentProcessAsync(string processName, int state) {
             return base.Channel.SetCurrentProcessAsync(processName, state);
-        }
-        
-        public int DeleteProductTypeNo(string typeNo) {
-            return base.Channel.DeleteProductTypeNo(typeNo);
-        }
-        
-        public System.Threading.Tasks.Task<int> DeleteProductTypeNoAsync(string typeNo) {
-            return base.Channel.DeleteProductTypeNoAsync(typeNo);
-        }
-        
-        public int DeleteAllProductTypeNo() {
-            return base.Channel.DeleteAllProductTypeNo();
-        }
-        
-        public System.Threading.Tasks.Task<int> DeleteAllProductTypeNoAsync() {
-            return base.Channel.DeleteAllProductTypeNoAsync();
-        }
-        
-        public System.Data.DataSet SelectProductTypeNo(string typeNo) {
-            return base.Channel.SelectProductTypeNo(typeNo);
-        }
-        
-        public System.Threading.Tasks.Task<System.Data.DataSet> SelectProductTypeNoAsync(string typeNo) {
-            return base.Channel.SelectProductTypeNoAsync(typeNo);
-        }
-        
-        public string CommitProductTypeNo(string[] list) {
-            return base.Channel.CommitProductTypeNo(list);
-        }
-        
-        public System.Threading.Tasks.Task<string> CommitProductTypeNoAsync(string[] list) {
-            return base.Channel.CommitProductTypeNoAsync(list);
         }
         
         public int DeleteAllTypeStation() {

@@ -213,6 +213,26 @@ namespace MesManager.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap 万通公司LOG {
+            get {
+                object obj = ResourceManager.GetObject("万通公司LOG", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap 万通公司LOG426x90 {
+            get {
+                object obj = ResourceManager.GetObject("万通公司LOG426x90", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap 背景_01 {
             get {
                 object obj = ResourceManager.GetObject("背景-01", resourceCulture);

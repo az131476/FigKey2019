@@ -36,8 +36,15 @@
             this.mainGraphView = new Telerik.WinControls.UI.RadTileElement();
             this.mainProcess = new Telerik.WinControls.UI.RadTileElement();
             this.mainQuanlityAnomaly = new Telerik.WinControls.UI.RadTileElement();
+            this.mainStatisticalAnalysis = new Telerik.WinControls.UI.RadTileElement();
+            this.mainTestStandData = new Telerik.WinControls.UI.RadTileElement();
             this.mainReportData = new Telerik.WinControls.UI.RadTileElement();
+            this.btn_user_login = new Telerik.WinControls.UI.RadButton();
+            this.btn_user_manger = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.radPanorama1)).BeginInit();
+            this.radPanorama1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_user_login)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_user_manger)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -45,6 +52,8 @@
             // 
             this.radPanorama1.AutoArrangeNewTiles = false;
             this.radPanorama1.BackColor = System.Drawing.Color.White;
+            this.radPanorama1.Controls.Add(this.btn_user_manger);
+            this.radPanorama1.Controls.Add(this.btn_user_login);
             this.radPanorama1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radPanorama1.Groups.AddRange(new Telerik.WinControls.RadItem[] {
             this.toolsGroup});
@@ -53,7 +62,7 @@
             this.radPanorama1.PanelImageSize = new System.Drawing.Size(1024, 768);
             this.radPanorama1.RowsCount = 2;
             this.radPanorama1.ShowGroups = true;
-            this.radPanorama1.Size = new System.Drawing.Size(1108, 869);
+            this.radPanorama1.Size = new System.Drawing.Size(1124, 929);
             this.radPanorama1.TabIndex = 1;
             ((Telerik.WinControls.UI.RadPanoramaElement)(this.radPanorama1.GetChildAt(0))).BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(23)))), ((int)(((byte)(117)))));
             // 
@@ -71,7 +80,9 @@
             this.mainGraphView,
             this.mainProcess,
             this.mainQuanlityAnomaly,
-            this.mainReportData});
+            this.mainReportData,
+            this.mainStatisticalAnalysis,
+            this.mainTestStandData});
             this.toolsGroup.Margin = new System.Windows.Forms.Padding(300, 150, 200, 0);
             this.toolsGroup.Name = "toolsGroup";
             this.toolsGroup.RowsCount = 2;
@@ -104,14 +115,14 @@
             this.mainMaterialManager.AccessibleName = "mainMaterialManager";
             this.mainMaterialManager.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(33)))));
             this.mainMaterialManager.CellPadding = new System.Windows.Forms.Padding(5);
-            this.mainMaterialManager.Column = 1;
+            this.mainMaterialManager.Column = 2;
             this.mainMaterialManager.DisabledTextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
             this.mainMaterialManager.DrawBorder = true;
             this.mainMaterialManager.ImageAlignment = System.Drawing.ContentAlignment.BottomLeft;
             this.mainMaterialManager.ImageLayout = System.Windows.Forms.ImageLayout.None;
             this.mainMaterialManager.Name = "mainMaterialManager";
             this.mainMaterialManager.Padding = new System.Windows.Forms.Padding(15, 15, 0, 10);
-            this.mainMaterialManager.Text = "<html>物料绑定 <br>";
+            this.mainMaterialManager.Text = "<html>物料管理 <br>";
             this.mainMaterialManager.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.mainMaterialManager.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this.mainMaterialManager.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
@@ -142,7 +153,7 @@
             this.mainProcess.AccessibleName = "mainProductPackage";
             this.mainProcess.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(33)))));
             this.mainProcess.CellPadding = new System.Windows.Forms.Padding(5);
-            this.mainProcess.Column = 2;
+            this.mainProcess.Column = 1;
             this.mainProcess.DisabledTextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
             this.mainProcess.DrawBorder = true;
             this.mainProcess.ImageAlignment = System.Drawing.ContentAlignment.BottomLeft;
@@ -181,26 +192,88 @@
             this.mainReportData.AccessibleName = "mainReportData";
             this.mainReportData.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(33)))));
             this.mainReportData.CellPadding = new System.Windows.Forms.Padding(5);
-            this.mainReportData.Column = 1;
+            this.mainReportData.Column = 3;
             this.mainReportData.DisabledTextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
             this.mainReportData.DrawBorder = true;
             this.mainReportData.ImageAlignment = System.Drawing.ContentAlignment.BottomLeft;
             this.mainReportData.ImageLayout = System.Windows.Forms.ImageLayout.None;
             this.mainReportData.Name = "mainReportData";
             this.mainReportData.Padding = new System.Windows.Forms.Padding(15, 15, 0, 10);
-            this.mainReportData.Row = 1;
+            this.mainReportData.Row = 0;
             this.mainReportData.Text = "<html>追溯管理 <br>";
             this.mainReportData.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.mainReportData.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this.mainReportData.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
             this.mainReportData.UseCompatibleTextRendering = false;
             // 
+            // mainStatisticalAnalysis
+            // 
+            this.mainStatisticalAnalysis.AccessibleDescription = "mainStatisticalAnalysis";
+            this.mainStatisticalAnalysis.AccessibleName = "mainStatisticalAnalysis";
+            this.mainStatisticalAnalysis.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(126)))), ((int)(((byte)(216)))));
+            this.mainStatisticalAnalysis.CellPadding = new System.Windows.Forms.Padding(5);
+            this.mainStatisticalAnalysis.Column = 1;
+            this.mainStatisticalAnalysis.DisabledTextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            this.mainStatisticalAnalysis.DrawBorder = true;
+            this.mainStatisticalAnalysis.ImageAlignment = System.Drawing.ContentAlignment.BottomLeft;
+            this.mainStatisticalAnalysis.ImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.mainStatisticalAnalysis.Name = "mainStatisticalAnalysis";
+            this.mainStatisticalAnalysis.Padding = new System.Windows.Forms.Padding(15, 15, 0, 10);
+            this.mainStatisticalAnalysis.Row = 1;
+            this.mainStatisticalAnalysis.Text = "<html>统计分析 <br>";
+            this.mainStatisticalAnalysis.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.mainStatisticalAnalysis.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.mainStatisticalAnalysis.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            this.mainStatisticalAnalysis.UseCompatibleTextRendering = false;
+            // 
+            // mainTestStandData
+            // 
+            this.mainTestStandData.AccessibleDescription = "mainTestStandData";
+            this.mainTestStandData.AccessibleName = "mainTestStandData";
+            this.mainTestStandData.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(126)))), ((int)(((byte)(216)))));
+            this.mainTestStandData.CellPadding = new System.Windows.Forms.Padding(5);
+            this.mainTestStandData.Column = 3;
+            this.mainTestStandData.DisabledTextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            this.mainTestStandData.DrawBorder = true;
+            this.mainTestStandData.ImageAlignment = System.Drawing.ContentAlignment.BottomLeft;
+            this.mainTestStandData.ImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.mainTestStandData.Name = "mainTestStandData";
+            this.mainTestStandData.Padding = new System.Windows.Forms.Padding(15, 15, 0, 10);
+            this.mainTestStandData.Row = 1;
+            this.mainTestStandData.Text = "<html>测试台数据 <br>";
+            this.mainTestStandData.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.mainTestStandData.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.mainTestStandData.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            this.mainTestStandData.UseCompatibleTextRendering = false;
+            // 
+            // btn_user_login
+            // 
+            this.btn_user_login.BackColor = System.Drawing.Color.Navy;
+            this.btn_user_login.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_user_login.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btn_user_login.Location = new System.Drawing.Point(12, 795);
+            this.btn_user_login.Name = "btn_user_login";
+            this.btn_user_login.Size = new System.Drawing.Size(120, 48);
+            this.btn_user_login.TabIndex = 1;
+            this.btn_user_login.Text = "用户登录";
+            // 
+            // btn_user_manger
+            // 
+            this.btn_user_manger.BackColor = System.Drawing.Color.Navy;
+            this.btn_user_manger.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_user_manger.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btn_user_manger.Location = new System.Drawing.Point(12, 712);
+            this.btn_user_manger.Name = "btn_user_manger";
+            this.btn_user_manger.Size = new System.Drawing.Size(120, 48);
+            this.btn_user_manger.TabIndex = 2;
+            this.btn_user_manger.Text = "用户管理";
+            // 
             // MESMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1108, 869);
+            this.ClientSize = new System.Drawing.Size(1124, 929);
             this.Controls.Add(this.radPanorama1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -212,6 +285,9 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.MESMainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.radPanorama1)).EndInit();
+            this.radPanorama1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.btn_user_login)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_user_manger)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -228,5 +304,9 @@
         private Telerik.WinControls.UI.RadTileElement mainGraphView;//看板中心
         private Telerik.WinControls.UI.RadTileElement mainReportData;//报表中心
         private Telerik.WinControls.UI.RadTileElement mainQuanlityAnomaly;//品质异常管理
+        private Telerik.WinControls.UI.RadTileElement mainStatisticalAnalysis;//统计分析
+        private Telerik.WinControls.UI.RadTileElement mainTestStandData;//测试台数据
+        private Telerik.WinControls.UI.RadButton btn_user_login;
+        private Telerik.WinControls.UI.RadButton btn_user_manger;
     }
 }

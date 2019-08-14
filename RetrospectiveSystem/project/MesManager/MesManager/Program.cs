@@ -18,8 +18,8 @@ namespace MesManager
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MESMainForm());
-            return;
+            //Application.Run(new MESMainForm());
+            //return;
             WelcomeForm welcomeForm = new WelcomeForm();
             welcomeForm.Show();
             applicationContext = new ApplicationContext();
@@ -33,10 +33,10 @@ namespace MesManager
             Application.Idle -= new EventHandler(Application_Idle);
             if (applicationContext.MainForm == null)
             {
-                MainForm mainForm = new MainForm();
+                MESMainForm mainForm = new MESMainForm();
                 applicationContext.MainForm = mainForm;
                 //初始化
-                mainForm.InitMainForm();
+                mainForm.InitMain();
 
                 WelcomeForm welcomeForm = applicationContext.Tag as WelcomeForm;
                 welcomeForm.Close();

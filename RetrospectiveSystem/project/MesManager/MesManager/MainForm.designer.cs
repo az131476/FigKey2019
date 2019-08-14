@@ -103,21 +103,9 @@
             this.menu_materialTeal = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenu1 = new Telerik.WinControls.UI.RadMenu();
             this.radDock1 = new Telerik.WinControls.UI.Docking.RadDock();
-            this.documentWindow_testRes = new Telerik.WinControls.UI.Docking.DocumentWindow();
-            this.radPanel2 = new Telerik.WinControls.UI.RadPanel();
-            this.listView_TestRes = new Telerik.WinControls.UI.RadListView();
-            this.追溯码 = new Telerik.WinControls.UI.RadPanel();
-            this.cb_typeNo = new System.Windows.Forms.ComboBox();
-            this.cb_station = new System.Windows.Forms.ComboBox();
-            this.btn_search_lastTestRes = new Telerik.WinControls.UI.RadButton();
-            this.btn_search_record = new Telerik.WinControls.UI.RadButton();
-            this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
-            this.tb_sn = new System.Windows.Forms.TextBox();
-            this.toolTabStrip1 = new Telerik.WinControls.UI.Docking.ToolTabStrip();
             this.toolWindow_left = new Telerik.WinControls.UI.Docking.ToolWindow();
             this.radTreeView1 = new Telerik.WinControls.UI.RadTreeView();
+            this.toolTabStrip1 = new Telerik.WinControls.UI.Docking.ToolTabStrip();
             this.documentContainer2 = new Telerik.WinControls.UI.Docking.DocumentContainer();
             this.documentTabStrip1 = new Telerik.WinControls.UI.Docking.DocumentTabStrip();
             this.documentWindow_passRes = new Telerik.WinControls.UI.Docking.DocumentWindow();
@@ -130,6 +118,18 @@
             this.tb_input_packageMsg = new Telerik.WinControls.UI.RadTextBox();
             this.rb_package_sn = new Telerik.WinControls.UI.RadRadioButton();
             this.btn_select_package = new Telerik.WinControls.UI.RadButton();
+            this.documentWindow_testRes = new Telerik.WinControls.UI.Docking.DocumentWindow();
+            this.radPanel2 = new Telerik.WinControls.UI.RadPanel();
+            this.listView_TestRes = new Telerik.WinControls.UI.RadListView();
+            this.追溯码 = new Telerik.WinControls.UI.RadPanel();
+            this.cb_typeNo = new System.Windows.Forms.ComboBox();
+            this.cb_station = new System.Windows.Forms.ComboBox();
+            this.btn_search_lastTestRes = new Telerik.WinControls.UI.RadButton();
+            this.btn_search_record = new Telerik.WinControls.UI.RadButton();
+            this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
+            this.tb_sn = new System.Windows.Forms.TextBox();
             this.documentWindow_material_select = new Telerik.WinControls.UI.Docking.DocumentWindow();
             this.radPanel3 = new Telerik.WinControls.UI.RadPanel();
             this.radGridViewMaterial = new Telerik.WinControls.UI.RadGridView();
@@ -142,21 +142,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radDock1)).BeginInit();
             this.radDock1.SuspendLayout();
-            this.documentWindow_testRes.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanel2)).BeginInit();
-            this.radPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.listView_TestRes)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.追溯码)).BeginInit();
-            this.追溯码.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btn_search_lastTestRes)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btn_search_record)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip1)).BeginInit();
-            this.toolTabStrip1.SuspendLayout();
             this.toolWindow_left.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radTreeView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip1)).BeginInit();
+            this.toolTabStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.documentContainer2)).BeginInit();
             this.documentContainer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.documentTabStrip1)).BeginInit();
@@ -174,6 +163,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.tb_input_packageMsg)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rb_package_sn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_select_package)).BeginInit();
+            this.documentWindow_testRes.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radPanel2)).BeginInit();
+            this.radPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.listView_TestRes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.追溯码)).BeginInit();
+            this.追溯码.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_search_lastTestRes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_search_record)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             this.documentWindow_material_select.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel3)).BeginInit();
             this.radPanel3.SuspendLayout();
@@ -575,80 +575,19 @@
             this.radDock1.TabStop = false;
             this.radDock1.ThemeName = "ControlDefault";
             // 
-            // documentWindow_testRes
+            // toolWindow_left
             // 
-            this.documentWindow_testRes.BackColor = System.Drawing.Color.Transparent;
-            this.documentWindow_testRes.Controls.Add(this.radPanel2);
-            this.documentWindow_testRes.Controls.Add(this.追溯码);
-            resources.ApplyResources(this.documentWindow_testRes, "documentWindow_testRes");
-            this.documentWindow_testRes.Name = "documentWindow_testRes";
-            this.documentWindow_testRes.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.TabbedDocument;
+            this.toolWindow_left.Caption = null;
+            this.toolWindow_left.Controls.Add(this.radTreeView1);
+            resources.ApplyResources(this.toolWindow_left, "toolWindow_left");
+            this.toolWindow_left.Name = "toolWindow_left";
+            this.toolWindow_left.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.Docked;
             // 
-            // radPanel2
+            // radTreeView1
             // 
-            this.radPanel2.Controls.Add(this.listView_TestRes);
-            resources.ApplyResources(this.radPanel2, "radPanel2");
-            this.radPanel2.Name = "radPanel2";
-            // 
-            // listView_TestRes
-            // 
-            resources.ApplyResources(this.listView_TestRes, "listView_TestRes");
-            this.listView_TestRes.Name = "listView_TestRes";
-            // 
-            // 追溯码
-            // 
-            this.追溯码.Controls.Add(this.cb_typeNo);
-            this.追溯码.Controls.Add(this.cb_station);
-            this.追溯码.Controls.Add(this.btn_search_lastTestRes);
-            this.追溯码.Controls.Add(this.btn_search_record);
-            this.追溯码.Controls.Add(this.radLabel4);
-            this.追溯码.Controls.Add(this.radLabel3);
-            this.追溯码.Controls.Add(this.radLabel2);
-            this.追溯码.Controls.Add(this.tb_sn);
-            resources.ApplyResources(this.追溯码, "追溯码");
-            this.追溯码.Name = "追溯码";
-            // 
-            // cb_typeNo
-            // 
-            resources.ApplyResources(this.cb_typeNo, "cb_typeNo");
-            this.cb_typeNo.FormattingEnabled = true;
-            this.cb_typeNo.Name = "cb_typeNo";
-            // 
-            // cb_station
-            // 
-            resources.ApplyResources(this.cb_station, "cb_station");
-            this.cb_station.FormattingEnabled = true;
-            this.cb_station.Name = "cb_station";
-            // 
-            // btn_search_lastTestRes
-            // 
-            resources.ApplyResources(this.btn_search_lastTestRes, "btn_search_lastTestRes");
-            this.btn_search_lastTestRes.Name = "btn_search_lastTestRes";
-            // 
-            // btn_search_record
-            // 
-            resources.ApplyResources(this.btn_search_record, "btn_search_record");
-            this.btn_search_record.Name = "btn_search_record";
-            // 
-            // radLabel4
-            // 
-            resources.ApplyResources(this.radLabel4, "radLabel4");
-            this.radLabel4.Name = "radLabel4";
-            // 
-            // radLabel3
-            // 
-            resources.ApplyResources(this.radLabel3, "radLabel3");
-            this.radLabel3.Name = "radLabel3";
-            // 
-            // radLabel2
-            // 
-            resources.ApplyResources(this.radLabel2, "radLabel2");
-            this.radLabel2.Name = "radLabel2";
-            // 
-            // tb_sn
-            // 
-            resources.ApplyResources(this.tb_sn, "tb_sn");
-            this.tb_sn.Name = "tb_sn";
+            resources.ApplyResources(this.radTreeView1, "radTreeView1");
+            this.radTreeView1.Name = "radTreeView1";
+            this.radTreeView1.SpacingBetweenNodes = -1;
             // 
             // toolTabStrip1
             // 
@@ -666,20 +605,6 @@
             this.toolTabStrip1.SizeInfo.SplitterCorrection = new System.Drawing.Size(56, 0);
             this.toolTabStrip1.TabStop = false;
             this.toolTabStrip1.ThemeName = "ControlDefault";
-            // 
-            // toolWindow_left
-            // 
-            this.toolWindow_left.Caption = null;
-            this.toolWindow_left.Controls.Add(this.radTreeView1);
-            resources.ApplyResources(this.toolWindow_left, "toolWindow_left");
-            this.toolWindow_left.Name = "toolWindow_left";
-            this.toolWindow_left.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.Docked;
-            // 
-            // radTreeView1
-            // 
-            resources.ApplyResources(this.radTreeView1, "radTreeView1");
-            this.radTreeView1.Name = "radTreeView1";
-            this.radTreeView1.SpacingBetweenNodes = -1;
             // 
             // documentContainer2
             // 
@@ -847,6 +772,81 @@
             resources.ApplyResources(this.btn_select_package, "btn_select_package");
             this.btn_select_package.Name = "btn_select_package";
             // 
+            // documentWindow_testRes
+            // 
+            this.documentWindow_testRes.BackColor = System.Drawing.Color.Transparent;
+            this.documentWindow_testRes.Controls.Add(this.radPanel2);
+            this.documentWindow_testRes.Controls.Add(this.追溯码);
+            resources.ApplyResources(this.documentWindow_testRes, "documentWindow_testRes");
+            this.documentWindow_testRes.Name = "documentWindow_testRes";
+            this.documentWindow_testRes.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.TabbedDocument;
+            // 
+            // radPanel2
+            // 
+            this.radPanel2.Controls.Add(this.listView_TestRes);
+            resources.ApplyResources(this.radPanel2, "radPanel2");
+            this.radPanel2.Name = "radPanel2";
+            // 
+            // listView_TestRes
+            // 
+            resources.ApplyResources(this.listView_TestRes, "listView_TestRes");
+            this.listView_TestRes.Name = "listView_TestRes";
+            // 
+            // 追溯码
+            // 
+            this.追溯码.Controls.Add(this.cb_typeNo);
+            this.追溯码.Controls.Add(this.cb_station);
+            this.追溯码.Controls.Add(this.btn_search_lastTestRes);
+            this.追溯码.Controls.Add(this.btn_search_record);
+            this.追溯码.Controls.Add(this.radLabel4);
+            this.追溯码.Controls.Add(this.radLabel3);
+            this.追溯码.Controls.Add(this.radLabel2);
+            this.追溯码.Controls.Add(this.tb_sn);
+            resources.ApplyResources(this.追溯码, "追溯码");
+            this.追溯码.Name = "追溯码";
+            // 
+            // cb_typeNo
+            // 
+            resources.ApplyResources(this.cb_typeNo, "cb_typeNo");
+            this.cb_typeNo.FormattingEnabled = true;
+            this.cb_typeNo.Name = "cb_typeNo";
+            // 
+            // cb_station
+            // 
+            resources.ApplyResources(this.cb_station, "cb_station");
+            this.cb_station.FormattingEnabled = true;
+            this.cb_station.Name = "cb_station";
+            // 
+            // btn_search_lastTestRes
+            // 
+            resources.ApplyResources(this.btn_search_lastTestRes, "btn_search_lastTestRes");
+            this.btn_search_lastTestRes.Name = "btn_search_lastTestRes";
+            // 
+            // btn_search_record
+            // 
+            resources.ApplyResources(this.btn_search_record, "btn_search_record");
+            this.btn_search_record.Name = "btn_search_record";
+            // 
+            // radLabel4
+            // 
+            resources.ApplyResources(this.radLabel4, "radLabel4");
+            this.radLabel4.Name = "radLabel4";
+            // 
+            // radLabel3
+            // 
+            resources.ApplyResources(this.radLabel3, "radLabel3");
+            this.radLabel3.Name = "radLabel3";
+            // 
+            // radLabel2
+            // 
+            resources.ApplyResources(this.radLabel2, "radLabel2");
+            this.radLabel2.Name = "radLabel2";
+            // 
+            // tb_sn
+            // 
+            resources.ApplyResources(this.tb_sn, "tb_sn");
+            this.tb_sn.Name = "tb_sn";
+            // 
             // documentWindow_material_select
             // 
             this.documentWindow_material_select.BackColor = System.Drawing.Color.Transparent;
@@ -920,22 +920,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radDock1)).EndInit();
             this.radDock1.ResumeLayout(false);
-            this.documentWindow_testRes.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radPanel2)).EndInit();
-            this.radPanel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.listView_TestRes)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.追溯码)).EndInit();
-            this.追溯码.ResumeLayout(false);
-            this.追溯码.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btn_search_lastTestRes)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btn_search_record)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip1)).EndInit();
-            this.toolTabStrip1.ResumeLayout(false);
             this.toolWindow_left.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radTreeView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.toolTabStrip1)).EndInit();
+            this.toolTabStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.documentContainer2)).EndInit();
             this.documentContainer2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.documentTabStrip1)).EndInit();
@@ -954,6 +942,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.tb_input_packageMsg)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rb_package_sn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_select_package)).EndInit();
+            this.documentWindow_testRes.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radPanel2)).EndInit();
+            this.radPanel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.listView_TestRes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.追溯码)).EndInit();
+            this.追溯码.ResumeLayout(false);
+            this.追溯码.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_search_lastTestRes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_search_record)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             this.documentWindow_material_select.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radPanel3)).EndInit();
             this.radPanel3.ResumeLayout(false);
