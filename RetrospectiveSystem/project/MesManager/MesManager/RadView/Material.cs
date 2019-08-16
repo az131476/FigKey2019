@@ -210,7 +210,7 @@ namespace MesManager.RadView
                     var materialCode = radGridView1.Rows[i].Cells[1].Value.ToString().Trim();
                     var amount = radGridView1.Rows[i].Cells[2].Value.ToString().Trim();
                     material.MaterialCode = materialCode;
-                    material.MaterialAmount = int.Parse(amount);
+                    material.MaterialName = "";
                     materialMsg[i] = material;
                 }
                 //判断主键是否有修改，将原记录删除后，再执行其他更新
@@ -218,7 +218,7 @@ namespace MesManager.RadView
                 {
                     await serviceClient.DeleteMaterialAsync(code);
                 }
-                string res = await serviceClient.CommitMaterialAsync(materialMsg);
+                string res = "";//await serviceClient.CommitMaterialAsync(materialMsg);
                 if (res == "1")
                 {
                     MessageBox.Show("更新成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);

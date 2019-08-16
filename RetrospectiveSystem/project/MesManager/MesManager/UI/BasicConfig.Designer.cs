@@ -87,7 +87,7 @@
             this.tool_status});
             this.statusStrip1.Location = new System.Drawing.Point(0, 715);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(663, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1033, 22);
             this.statusStrip1.TabIndex = 10;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -139,7 +139,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 36);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(663, 65);
+            this.panel1.Size = new System.Drawing.Size(1033, 65);
             this.panel1.TabIndex = 11;
             // 
             // radMenu1
@@ -155,7 +155,7 @@
             this.menu_clear_db});
             this.radMenu1.Location = new System.Drawing.Point(0, 0);
             this.radMenu1.Name = "radMenu1";
-            this.radMenu1.Size = new System.Drawing.Size(663, 36);
+            this.radMenu1.Size = new System.Drawing.Size(1033, 36);
             this.radMenu1.TabIndex = 9;
             // 
             // menu_add
@@ -212,7 +212,7 @@
             // 
             this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.radGridView1.Name = "radGridView1";
-            this.radGridView1.Size = new System.Drawing.Size(663, 614);
+            this.radGridView1.Size = new System.Drawing.Size(1033, 614);
             this.radGridView1.TabIndex = 14;
             // 
             // BasicConfig
@@ -220,7 +220,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MediumBlue;
-            this.ClientSize = new System.Drawing.Size(663, 737);
+            this.ClientSize = new System.Drawing.Size(1033, 737);
             this.Controls.Add(this.radGridView1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.statusStrip1);

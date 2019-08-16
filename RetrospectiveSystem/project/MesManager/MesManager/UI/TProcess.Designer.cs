@@ -28,8 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TProcess));
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btn_setprocess = new Telerik.WinControls.UI.RadButton();
+            this.cb_curprocess = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.radMenu1 = new Telerik.WinControls.UI.RadMenu();
             this.menu_add = new Telerik.WinControls.UI.RadMenuItem();
             this.menu_del = new Telerik.WinControls.UI.RadMenuItem();
@@ -40,115 +44,16 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbx_process = new System.Windows.Forms.Label();
             this.cb_processItem = new System.Windows.Forms.ComboBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btn_setprocess = new Telerik.WinControls.UI.RadButton();
-            this.cb_curprocess = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.radGridView1 = new Telerik.WinControls.UI.RadGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).BeginInit();
-            this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btn_setprocess)).BeginInit();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).BeginInit();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
-            // 
-            // radMenu1
-            // 
-            this.radMenu1.BackColor = System.Drawing.Color.Transparent;
-            this.radMenu1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radMenu1.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.menu_add,
-            this.menu_del,
-            this.menu_commit,
-            this.menu_refresh,
-            this.menu_grid,
-            this.menu_clear_db});
-            this.radMenu1.Location = new System.Drawing.Point(0, 0);
-            this.radMenu1.Name = "radMenu1";
-            this.radMenu1.Size = new System.Drawing.Size(792, 36);
-            this.radMenu1.TabIndex = 10;
-            // 
-            // menu_add
-            // 
-            this.menu_add.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.menu_add.Image = global::MesManager.Properties.Resources.bullet_add;
-            this.menu_add.Name = "menu_add";
-            this.menu_add.Text = "新增";
-            this.menu_add.UseCompatibleTextRendering = false;
-            // 
-            // menu_del
-            // 
-            this.menu_del.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.menu_del.Image = ((System.Drawing.Image)(resources.GetObject("menu_del.Image")));
-            this.menu_del.Name = "menu_del";
-            this.menu_del.Shape = null;
-            this.menu_del.Text = "删除";
-            this.menu_del.UseCompatibleTextRendering = false;
-            // 
-            // menu_commit
-            // 
-            this.menu_commit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.menu_commit.Image = global::MesManager.Properties.Resources.upload_for_cloud;
-            this.menu_commit.Name = "menu_commit";
-            this.menu_commit.Text = "修改";
-            this.menu_commit.UseCompatibleTextRendering = false;
-            // 
-            // menu_refresh
-            // 
-            this.menu_refresh.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.menu_refresh.Image = global::MesManager.Properties.Resources.update;
-            this.menu_refresh.Name = "menu_refresh";
-            this.menu_refresh.Text = "刷新";
-            this.menu_refresh.UseCompatibleTextRendering = false;
-            // 
-            // menu_grid
-            // 
-            this.menu_grid.ForeColor = System.Drawing.Color.White;
-            this.menu_grid.Image = global::MesManager.Properties.Resources.ClearGrid;
-            this.menu_grid.Name = "menu_grid";
-            this.menu_grid.Text = "清空显示";
-            this.menu_grid.UseCompatibleTextRendering = false;
-            // 
-            // menu_clear_db
-            // 
-            this.menu_clear_db.ForeColor = System.Drawing.Color.White;
-            this.menu_clear_db.Image = global::MesManager.Properties.Resources.DeleteDataSource_16x16;
-            this.menu_clear_db.Name = "menu_clear_db";
-            this.menu_clear_db.Text = "清空数据";
-            this.menu_clear_db.UseCompatibleTextRendering = false;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.lbx_process);
-            this.panel1.Controls.Add(this.cb_processItem);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 36);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(792, 65);
-            this.panel1.TabIndex = 12;
-            // 
-            // lbx_process
-            // 
-            this.lbx_process.AutoSize = true;
-            this.lbx_process.ForeColor = System.Drawing.Color.White;
-            this.lbx_process.Location = new System.Drawing.Point(12, 31);
-            this.lbx_process.Name = "lbx_process";
-            this.lbx_process.Size = new System.Drawing.Size(59, 13);
-            this.lbx_process.TabIndex = 11;
-            this.lbx_process.Text = "工艺名称";
-            // 
-            // cb_processItem
-            // 
-            this.cb_processItem.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cb_processItem.FormattingEnabled = true;
-            this.cb_processItem.Location = new System.Drawing.Point(81, 23);
-            this.cb_processItem.Name = "cb_processItem";
-            this.cb_processItem.Size = new System.Drawing.Size(183, 28);
-            this.cb_processItem.TabIndex = 10;
             // 
             // groupBox1
             // 
@@ -201,9 +106,103 @@
             this.panel2.Size = new System.Drawing.Size(792, 73);
             this.panel2.TabIndex = 17;
             // 
+            // radMenu1
+            // 
+            this.radMenu1.BackColor = System.Drawing.Color.Transparent;
+            this.radMenu1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radMenu1.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.menu_add,
+            this.menu_del,
+            this.menu_commit,
+            this.menu_refresh,
+            this.menu_grid,
+            this.menu_clear_db});
+            this.radMenu1.Location = new System.Drawing.Point(0, 0);
+            this.radMenu1.Name = "radMenu1";
+            this.radMenu1.Size = new System.Drawing.Size(792, 36);
+            this.radMenu1.TabIndex = 18;
+            // 
+            // menu_add
+            // 
+            this.menu_add.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.menu_add.Image = global::MesManager.Properties.Resources.bullet_add;
+            this.menu_add.Name = "menu_add";
+            this.menu_add.Text = "新增";
+            this.menu_add.UseCompatibleTextRendering = false;
+            // 
+            // menu_del
+            // 
+            this.menu_del.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.menu_del.Image = global::MesManager.Properties.Resources.bullet_delete;
+            this.menu_del.Name = "menu_del";
+            this.menu_del.Text = "删除";
+            this.menu_del.UseCompatibleTextRendering = false;
+            // 
+            // menu_commit
+            // 
+            this.menu_commit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.menu_commit.Image = global::MesManager.Properties.Resources.upload_for_cloud;
+            this.menu_commit.Name = "menu_commit";
+            this.menu_commit.Text = "修改";
+            this.menu_commit.UseCompatibleTextRendering = false;
+            // 
+            // menu_refresh
+            // 
+            this.menu_refresh.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.menu_refresh.Image = global::MesManager.Properties.Resources.update;
+            this.menu_refresh.Name = "menu_refresh";
+            this.menu_refresh.Text = "刷新";
+            this.menu_refresh.UseCompatibleTextRendering = false;
+            // 
+            // menu_grid
+            // 
+            this.menu_grid.ForeColor = System.Drawing.Color.White;
+            this.menu_grid.Image = global::MesManager.Properties.Resources.ClearGrid;
+            this.menu_grid.Name = "menu_grid";
+            this.menu_grid.Text = "清空显示";
+            this.menu_grid.UseCompatibleTextRendering = false;
+            // 
+            // menu_clear_db
+            // 
+            this.menu_clear_db.ForeColor = System.Drawing.Color.White;
+            this.menu_clear_db.Image = global::MesManager.Properties.Resources.DeleteDataSource_16x16;
+            this.menu_clear_db.Name = "menu_clear_db";
+            this.menu_clear_db.Text = "清空数据";
+            this.menu_clear_db.UseCompatibleTextRendering = false;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.lbx_process);
+            this.panel1.Controls.Add(this.cb_processItem);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 36);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(792, 65);
+            this.panel1.TabIndex = 19;
+            // 
+            // lbx_process
+            // 
+            this.lbx_process.AutoSize = true;
+            this.lbx_process.ForeColor = System.Drawing.Color.White;
+            this.lbx_process.Location = new System.Drawing.Point(12, 31);
+            this.lbx_process.Name = "lbx_process";
+            this.lbx_process.Size = new System.Drawing.Size(59, 13);
+            this.lbx_process.TabIndex = 11;
+            this.lbx_process.Text = "工艺名称";
+            // 
+            // cb_processItem
+            // 
+            this.cb_processItem.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cb_processItem.FormattingEnabled = true;
+            this.cb_processItem.Location = new System.Drawing.Point(81, 23);
+            this.cb_processItem.Name = "cb_processItem";
+            this.cb_processItem.Size = new System.Drawing.Size(183, 28);
+            this.cb_processItem.TabIndex = 10;
+            // 
             // radGridView1
             // 
             this.radGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radGridView1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radGridView1.Location = new System.Drawing.Point(0, 101);
             // 
             // 
@@ -211,7 +210,7 @@
             this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.radGridView1.Name = "radGridView1";
             this.radGridView1.Size = new System.Drawing.Size(792, 514);
-            this.radGridView1.TabIndex = 0;
+            this.radGridView1.TabIndex = 20;
             // 
             // TProcess
             // 
@@ -220,9 +219,9 @@
             this.BackColor = System.Drawing.Color.MediumBlue;
             this.ClientSize = new System.Drawing.Size(792, 688);
             this.Controls.Add(this.radGridView1);
-            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.radMenu1);
+            this.Controls.Add(this.panel2);
             this.Name = "TProcess";
             // 
             // 
@@ -230,13 +229,13 @@
             this.RootElement.ApplyShapeToControl = true;
             this.Text = "工艺流程";
             this.Load += new System.EventHandler(this.TProcess_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btn_setprocess)).EndInit();
             this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
@@ -246,7 +245,11 @@
         }
 
         #endregion
-
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.ComboBox cb_curprocess;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Panel panel2;
+        private Telerik.WinControls.UI.RadButton btn_setprocess;
         private Telerik.WinControls.UI.RadMenu radMenu1;
         private Telerik.WinControls.UI.RadMenuItem menu_add;
         private Telerik.WinControls.UI.RadMenuItem menu_del;
@@ -257,11 +260,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lbx_process;
         private System.Windows.Forms.ComboBox cb_processItem;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.ComboBox cb_curprocess;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Panel panel2;
         private Telerik.WinControls.UI.RadGridView radGridView1;
-        private Telerik.WinControls.UI.RadButton btn_setprocess;
     }
 }

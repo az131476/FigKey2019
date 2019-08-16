@@ -12,8 +12,26 @@ namespace MesAPI.Model
         [Description("物料编码")]
         public string MaterialCode { get; set; }
 
-        [Description("物料数量")]
-        public int MaterialAmount { get; set; }
+        [Description("LOT")]
+        public string MaterialLOT { get; set; }
+
+        [Description("RID")]
+        public string MaterialRID { get; set; }
+
+        [Description("PN")]
+        public string MaterialPN { get; set; }
+
+        [Description("物料名称")]
+        public string MaterialName { get; set; }
+
+        [Description("操作用户")]
+        public string UserName { get; set; }
+
+        [Description("修改日期")]
+        public string UpdateDate { get; set; }
+
+        [Description("执行结果")]
+        public int Result { get; set; }
 
         [Description("内壳码")]
         public string Sn_Inner { get; set; }

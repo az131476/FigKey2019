@@ -15,7 +15,7 @@ namespace MesWcfService.DB
         public const string F_MATERIAL_NAME                 = "[WT_SCL].[dbo].[f_material]";
         public const string F_MATERIAL_STATISTICS_NAME      = "[WT_SCL].[dbo].[f_material_statistics]";
         public const string F_OUT_CASE_STORAGE_NAME         = "[WT_SCL].[dbo].[f_product_package_storage]";
-        public const string F_OUT_CASE_PRODUCT_NAME         = "[WT_SCL].[dbo].[f_out_case_product]";
+        public const string F_OUT_CASE_PRODUCT_NAME         = "[WT_SCL].[dbo].[f_product_package]";
         public const string F_PASS_RATE_STATISTICS_NAME     = "[WT_SCL].[dbo].[f_pass_rate_statistics]";
         public const string F_TEST_PROGRAME_VERSION_NAME    = "[WT_SCL].[dbo].[f_test_programe_version]";
         public const string F_TEST_LIMIT_CONFIG_NAME        = "[WT_SCL].[dbo].[f_test_limit_config]";

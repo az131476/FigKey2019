@@ -126,7 +126,7 @@ namespace MesManager
             //cut 执行delete 服务数据
             if (MessageBox.Show("是否删除该行数据", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
             {
-                int del = await mesService.DeleteProductTypeNoAsync(curRowStationName);
+                int del = await mesService.DeleteProductContinairCapacityAsync(curRowStationName);
             }
             SelectServiceData("");
         }
@@ -136,7 +136,7 @@ namespace MesManager
             //清空服务所有数据
             if (MessageBox.Show("是否删除数据库服务所有数据", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
             {
-                int del = await mesService.DeleteAllProductTypeNoAsync();
+                int del = await mesService.DeleteAllProductContinairCapacityAsync();
             }
             SelectServiceData("");
         }
@@ -170,7 +170,7 @@ namespace MesManager
         async private void SelectServiceData(string filterText)
         {
             //调用查询接口
-            DataSet dataSet = await mesService.SelectProductTypeNoAsync(filterText);
+            DataSet dataSet = await mesService.SelectProductContinairCapacityAsync(filterText);
             DataTable dataTable = dataSet.Tables[0];
             dataSource.Clear();
             if (dataTable.Rows.Count > 0)
@@ -209,9 +209,9 @@ namespace MesManager
                 //修改行数据
                 foreach (var val in this.modifyTypeNoTemp)
                 {
-                    await mesService.DeleteProductTypeNoAsync(val);
+                    //await mesService.DeleteProductTypeNoAsync(val);
                 }
-                string res = await mesService.CommitProductTypeNoAsync(array);
+                string res = "";//await mesService.CommitProductTypeNoAsync(array);
                 if (res == "1")
                 {
                     MessageBox.Show("更新成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);

@@ -432,24 +432,23 @@ namespace MesAPI
         #endregion
 
         #region 物料信息表
-        public string CommitMaterial(List<MaterialMsg> list)
+        public List<MaterialMsg> CommitMaterial(List<MaterialMsg> list)
         {
+            List<MaterialMsg> materialMsgList = new List<MaterialMsg>();
             foreach (var item in list)
             {
                 if (!IsExistMaterial(item.MaterialCode))
                 {
-                    //update
-                    if (InsertMaterial(item) < 1)
-                        return "I0";//插入失败
+                    //insert
+                    InsertMaterial(item, materialMsgList);
                 }
                 else
                 {
-                    //insert
-                    if (UpdateMaterial(item) < 1)
-                        return "G0";//更新失败
+                    //update
+                    UpdateMaterial(item, materialMsgList);
                 }
             }
-            return "1";
+            return materialMsgList;
         }
         public int DeleteMaterial(string materialCode)
         {
@@ -464,7 +463,11 @@ namespace MesAPI
         }
         public DataSet SelectMaterial()
         {
-            string updateSQL = $"SELECT * FROM {DbTable.F_MATERIAL_NAME}";
+            string updateSQL = $"SELECT {DbTable.F_Material.MATERIAL_CODE}," +
+                $"{DbTable.F_Material.MATERIAL_NAME}," +
+                $"{DbTable.F_Material.MATERIAL_USER}," +
+                $"{DbTable.F_Material.UPDATE_DATE}" +
+                $" FROM {DbTable.F_MATERIAL_NAME}";
             return SQLServer.ExecuteDataSet(updateSQL);
         }
         private bool IsExistMaterial(string materialCode)
@@ -476,48 +479,80 @@ namespace MesAPI
             else
                 return false;
         }
-        private int InsertMaterial(MaterialMsg material)
+        private void InsertMaterial(MaterialMsg material,List<MaterialMsg> materialMsgList)
         {
-            string insertSQL = $"INSERT INTO {DbTable.F_MATERIAL_NAME}({DbTable.F_Material.MATERIAL_CODE},{DbTable.F_Material.MATERIAL_AMOUNT}) " +
-                $"VALUES('{material.MaterialCode}','{material.MaterialAmount}')";
+            MaterialMsg materialMsg = new MaterialMsg();
+            string insertSQL = $"INSERT INTO {DbTable.F_MATERIAL_NAME}(" +
+                $"{DbTable.F_Material.MATERIAL_CODE}," +
+                $"{DbTable.F_Material.MATERIAL_NAME}," +
+                $"{DbTable.F_Material.MATERIAL_USER}) " +
+                $"VALUES('{material.MaterialCode}','{material.MaterialName}','{material.UserName}')";
             LogHelper.Log.Info($"InsertMaterial={insertSQL}");
-            return SQLServer.ExecuteNonQuery(insertSQL);
+            materialMsg.MaterialCode = material.MaterialCode;
+            materialMsg.Result = SQLServer.ExecuteNonQuery(insertSQL);
+            materialMsgList.Add(materialMsg);
         }
-        private int UpdateMaterial(MaterialMsg material)
+        private void UpdateMaterial(MaterialMsg material,List<MaterialMsg> materialMsgList)
         {
-            string updateSQL = $"UPDATE {DbTable.F_MATERIAL_NAME} SET {DbTable.F_Material.MATERIAL_AMOUNT} = '{material.MaterialAmount}' " +
+            string updateSQL = $"UPDATE {DbTable.F_MATERIAL_NAME} SET " +
+                $"{DbTable.F_Material.MATERIAL_NAME} = '{material.MaterialName}'," +
+                $"{DbTable.F_Material.MATERIAL_USER} = '{material.UserName}'," +
+                $"{DbTable.F_Material.UPDATE_DATE} = '{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}' " +
                 $"WHERE {DbTable.F_Material.MATERIAL_CODE} = '{material.MaterialCode}'";
-            LogHelper.Log.Info($"UpdateMaterial={updateSQL}");
-            return SQLServer.ExecuteNonQuery(updateSQL);
+
+            var selectSQL = $"SELECT * FROM {DbTable.F_MATERIAL_NAME} WHERE " +
+                $"{DbTable.F_Material.MATERIAL_CODE} = '{material.MaterialCode}' AND " +
+                $"{DbTable.F_Material.MATERIAL_NAME} = '{material.MaterialName}'";
+            if (SQLServer.ExecuteDataSet(selectSQL).Tables[0].Rows.Count > 0)
+            {
+                //存在 没有可更新信息
+                return ;
+            }
+            MaterialMsg materialMsg = new MaterialMsg();
+            materialMsg.MaterialCode = material.MaterialCode;
+            materialMsg.Result = SQLServer.ExecuteNonQuery(updateSQL);
+            materialMsgList.Add(materialMsg);
         }
 
         #endregion
 
         #region 产品物料绑定
-        public int CommitProductMaterial(List<ProductMaterial> pmList)
+        public List<ProductMaterial> CommitProductMaterial(List<ProductMaterial> pmList)
         {
+            List<ProductMaterial> productMaterialList = new List<ProductMaterial>();
             foreach (var material in pmList)
             {
                 if (IsExistMaterial(material))
                 {
                     //更新
                     string updateSQL = $"UPDATE {DbTable.F_PRODUCT_MATERIAL_NAME} SET " +
-                        $"{DbTable.F_PRODUCT_MATERIAL.Describle} = '{material.Describle}' " +
+                        $"{DbTable.F_PRODUCT_MATERIAL.Describle} = '{material.Describle}'," +
+                        $"{DbTable.F_PRODUCT_MATERIAL.USERNAME} = '{material.UserName}' " +
                         $"WHERE {DbTable.F_PRODUCT_MATERIAL.TYPE_NO} = '{material.TypeNo}' AND " +
                         $"{DbTable.F_PRODUCT_MATERIAL.MATERIAL_CODE} = '{material.MaterialCode}'";
-                    LogHelper.Log.Info(updateSQL);
-                    if (SQLServer.ExecuteNonQuery(updateSQL) < 1)
-                        return 0;
+                    string selectSQL = $"SELECT * FROM {DbTable.F_PRODUCT_MATERIAL_NAME} WHERE " +
+                        $"{DbTable.F_PRODUCT_MATERIAL.TYPE_NO} = '{material.TypeNo}' AND " +
+                        $"{DbTable.F_PRODUCT_MATERIAL.MATERIAL_CODE} = '{material.MaterialCode}' AND " +
+                        $"{DbTable.F_PRODUCT_MATERIAL.Describle} = '{material.Describle}' ";
+                    ProductMaterial productMaterial = new ProductMaterial();
+                    if (SQLServer.ExecuteDataSet(selectSQL).Tables[0].Rows.Count < 1)
+                    {
+                        productMaterial.Result = SQLServer.ExecuteNonQuery(updateSQL);
+                        productMaterial.MaterialCode = material.MaterialCode;
+                        productMaterial.TypeNo = material.TypeNo;
+                    }
                 }
                 else
                 {
                     //insert
-                    if (InsertProductMaterial(material) < 1)
-                        return 0;
-                    UpdateMaterialStock(material.TypeNo,material.MaterialCode,material.Stock);
+                    if (InsertProductMaterial(material, productMaterialList) > 0)
+                    {
+                        //插入成功，更新库存
+                        UpdateMaterialStock(material.TypeNo, material.MaterialCode, material.Stock);
+                    }
                 }
             }
-            return 1;
+            return productMaterialList;
         }
         public int DeleteProductMaterial(ProductMaterial material)
         {
@@ -535,18 +570,25 @@ namespace MesAPI
             if (string.IsNullOrEmpty(material.TypeNo) && string.IsNullOrEmpty(material.MaterialCode))
             {
                 selectSQL = $"SELECT " +
-                   $"{DbTable.F_PRODUCT_MATERIAL.TYPE_NO},{DbTable.F_PRODUCT_MATERIAL.MATERIAL_CODE}," +
-                   $"{DbTable.F_PRODUCT_MATERIAL.Describle} " +
-                   $"FROM {DbTable.F_PRODUCT_MATERIAL_NAME} ORDER BY {DbTable.F_PRODUCT_MATERIAL.UpdateDate} ASC";
+                   $"{DbTable.F_PRODUCT_MATERIAL.TYPE_NO}," +
+                   $"{DbTable.F_PRODUCT_MATERIAL.MATERIAL_CODE}," +
+                   $"{DbTable.F_PRODUCT_MATERIAL.Describle}," +
+                   $"{DbTable.F_PRODUCT_MATERIAL.USERNAME}," +
+                   $"{DbTable.F_PRODUCT_MATERIAL.UpdateDate} " +
+                   $"FROM {DbTable.F_PRODUCT_MATERIAL_NAME} " +
+                   $"ORDER BY {DbTable.F_PRODUCT_MATERIAL.TYPE_NO} ";
             }
             else
                 selectSQL = $"SELECT " +
-                    $"{DbTable.F_PRODUCT_MATERIAL.TYPE_NO},{DbTable.F_PRODUCT_MATERIAL.MATERIAL_CODE}," +
-                    $"{DbTable.F_PRODUCT_MATERIAL.Describle} " +
+                    $"{DbTable.F_PRODUCT_MATERIAL.TYPE_NO}," +
+                    $"{DbTable.F_PRODUCT_MATERIAL.MATERIAL_CODE}," +
+                    $"{DbTable.F_PRODUCT_MATERIAL.Describle}," +
+                    $"{DbTable.F_PRODUCT_MATERIAL.USERNAME}," +
+                    $"{DbTable.F_PRODUCT_MATERIAL.UpdateDate} " +
                     $"FROM {DbTable.F_PRODUCT_MATERIAL_NAME} "+
                     $"WHERE {DbTable.F_PRODUCT_MATERIAL.TYPE_NO} = '{material.TypeNo}' OR " +
                     $"{DbTable.F_PRODUCT_MATERIAL.MATERIAL_CODE} = '{material.MaterialCode}' " +
-                    $"ORDER BY {DbTable.F_PRODUCT_MATERIAL.UpdateDate} ASC";
+                    $"ORDER BY {DbTable.F_PRODUCT_MATERIAL.TYPE_NO}";
             return SQLServer.ExecuteDataSet(selectSQL);
         }
         private bool IsExistMaterial(ProductMaterial material)
@@ -560,12 +602,21 @@ namespace MesAPI
             else
                 return false;
         }
-        private int InsertProductMaterial(ProductMaterial material)
+        private int InsertProductMaterial(ProductMaterial material,List<ProductMaterial> productMaterialList)
         {
-            string insertSQL = $"INSERT INTO {DbTable.F_PRODUCT_MATERIAL_NAME}({DbTable.F_PRODUCT_MATERIAL.TYPE_NO},{DbTable.F_PRODUCT_MATERIAL.MATERIAL_CODE}) " +
-                $"VALUES('{material.TypeNo}','{material.MaterialCode}')";
+            ProductMaterial productMaterial = new ProductMaterial();
+            string insertSQL = $"INSERT INTO {DbTable.F_PRODUCT_MATERIAL_NAME}(" +
+                $"{DbTable.F_PRODUCT_MATERIAL.TYPE_NO}," +
+                $"{DbTable.F_PRODUCT_MATERIAL.MATERIAL_CODE}," +
+                $"{DbTable.F_PRODUCT_MATERIAL.Describle}," +
+                $"{DbTable.F_PRODUCT_MATERIAL.USERNAME}) " +
+                $"VALUES('{material.TypeNo}','{material.MaterialCode}','{material.Describle}','{material.UserName}')";
             LogHelper.Log.Info(insertSQL);
-            return SQLServer.ExecuteNonQuery(insertSQL);
+            productMaterial.Result = SQLServer.ExecuteNonQuery(insertSQL);
+            productMaterial.MaterialCode = material.MaterialCode;
+            productMaterial.TypeNo = material.TypeNo;
+            productMaterialList.Add(productMaterial);
+            return productMaterial.Result;
         }
 
         #region 添加绑定时更新物料库存
@@ -574,7 +625,7 @@ namespace MesAPI
             var updateSQL = $"UPDATE {DbTable.F_PRODUCT_MATERIAL_NAME} SET " +
                 $"{DbTable.F_PRODUCT_MATERIAL.STOCK} = '{stock}' WHERE " +
                 $"{DbTable.F_PRODUCT_MATERIAL.TYPE_NO} = '{typeNo}' AND " +
-                $"{DbTable.F_PRODUCT_MATERIAL.MATERIAL_CODE} = '{stock}'";
+                $"{DbTable.F_PRODUCT_MATERIAL.MATERIAL_CODE} = '{materialCode}'";
             return SQLServer.ExecuteNonQuery(updateSQL);
         }
         #endregion
@@ -623,12 +674,16 @@ namespace MesAPI
         #region 物料综合查询
         public DataSet SelectMaterialMsg(MaterialMsg materialMsg, bool IsSelectAll)
         {
+            //查询情况：
+            //1）根据物料编码-其中之一，查询此物料用到哪些产品上，产品上的某一工序等
+            //2）
             string selectSQL = "";
             if (IsSelectAll)
             {
                 selectSQL = "SELECT a.material_code 物料编码,a.amount 物料总数,b.type_no 产品型号,b.update_date 绑定日期 " +
                     "FROM [WT_SCL].[dbo].[f_material] a,[WT_SCL].[dbo].[f_product_material] b " +
-                    $"WHERE a.material_code = b.material_code ";
+                    $"WHERE a.material_code like b.material_code ";
+                //selectSQL = $"SELECT {DbTable.f}";
             }
             else
             {
@@ -956,28 +1011,40 @@ namespace MesAPI
         #endregion
 
         #region 产品/容器容量
-        public int CommitProductContinairCapacity(string productTypeNo, string amount)
+        public int CommitProductContinairCapacity(string productTypeNo, string capacity,string username)
         {
             string insertSQL = $"INSERT INTO {DbTable.F_OUT_CASE_STORAGE_NAME}(" +
                 $"{DbTable.F_Out_Case_Storage.PRODUCT_TYPE_NO}," +
-                $"{DbTable.F_Out_Case_Storage.STORAGE_CAPACITY}) " +
-                $"VALUES('{productTypeNo}','{amount}')";
+                $"{DbTable.F_Out_Case_Storage.STORAGE_CAPACITY}," +
+                $"{DbTable.F_Out_Case_Storage.USER_NAME}) " +
+                $"VALUES('{productTypeNo}','{capacity}','{username}')";
             if (IsExistOutCaseBoxStorage(productTypeNo))
             {
                 //update
-                return UpdateProductContinairCapacity(productTypeNo, amount);
+                return UpdateProductContinairCapacity(productTypeNo, capacity, username);
             }
             else
             {
                 //insert
+                LogHelper.Log.Info(insertSQL);
                 return SQLServer.ExecuteNonQuery(insertSQL);
             }
         }
-        public int UpdateProductContinairCapacity(string productTypeNo, string amount)
+        public int UpdateProductContinairCapacity(string productTypeNo, string amount,string username)
         {
-            string updateSQL = $"UPDATE {DbTable.F_OUT_CASE_STORAGE_NAME} SET {DbTable.F_Out_Case_Storage.STORAGE_CAPACITY} = '{amount}' " +
+            string updateSQL = $"UPDATE {DbTable.F_OUT_CASE_STORAGE_NAME} SET {DbTable.F_Out_Case_Storage.STORAGE_CAPACITY} = '{amount}'," +
+                $"{DbTable.F_Out_Case_Storage.USER_NAME} = '{username}'," +
+                $"{DbTable.F_Out_Case_Storage.UPDATE_DATE_U} = '{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}' " +
                 $"WHERE {DbTable.F_Out_Case_Storage.PRODUCT_TYPE_NO} = '{productTypeNo}'";
-            return SQLServer.ExecuteNonQuery(updateSQL);
+            string selectSQL = $"SELECT * FROM {DbTable.F_OUT_CASE_STORAGE_NAME} WHERE " +
+                $"{DbTable.F_Out_Case_Storage.PRODUCT_TYPE_NO} = '{productTypeNo}' AND " +
+                $"{DbTable.F_Out_Case_Storage.STORAGE_CAPACITY} = '{amount}'";
+
+            if (SQLServer.ExecuteDataSet(selectSQL).Tables[0].Rows.Count > 0)
+            {
+                return 1;
+            }
+            return SQLServer.ExecuteNonQuery(updateSQL); ;
         }
         public DataSet SelectProductContinairCapacity(string productTypeNo)
         {
@@ -1000,6 +1067,19 @@ namespace MesAPI
                     $"WHERE {DbTable.F_Out_Case_Storage.PRODUCT_TYPE_NO} = '{productTypeNo}'";
             }
             return SQLServer.ExecuteDataSet(selectSQL);
+        }
+
+        public int DeleteProductContinairCapacity(string productTypeNo)
+        {
+            var deleteSQL = $"DELETE FROM {DbTable.F_OUT_CASE_STORAGE_NAME} WHERE " +
+                $"{DbTable.F_Out_Case_Storage.PRODUCT_TYPE_NO} = '{productTypeNo}'";
+            return SQLServer.ExecuteNonQuery(deleteSQL);
+        }
+
+        public int DeleteAllProductContinairCapacity()
+        {
+            var deleteSQL = $"DELETE FROM {DbTable.F_OUT_CASE_STORAGE_NAME} ";
+            return SQLServer.ExecuteNonQuery(deleteSQL);
         }
         private bool IsExistOutCaseBoxStorage(string productTypeNo)
         {

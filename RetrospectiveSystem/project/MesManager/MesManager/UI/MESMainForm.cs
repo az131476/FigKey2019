@@ -7,15 +7,15 @@ using System.Text;
 using System.Windows.Forms;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
-using MesManager.UI;
 
-namespace MesManager.RadView
+namespace MesManager.UI
 {
     public partial class MESMainForm : Telerik.WinControls.UI.RadForm
     {
         private RadTitleBarElement titleBar;
         private bool isFormMoving = false;
         public static bool IsLogin;
+        public static string currentUser;
         public MESMainForm()
         {
             InitializeComponent();
@@ -127,6 +127,7 @@ namespace MesManager.RadView
             else if (login.DialogResult == DialogResult.OK)
             {
                 IsLogin = true;
+                currentUser = Login.GetUserName;
             }
         }
 
@@ -196,6 +197,8 @@ namespace MesManager.RadView
         private void MainMaterialManager_Click(object sender, EventArgs e)
         {
             //物料绑定
+            if (!IsLoginAuthon())
+                return;
             ProductMaterial productMaterial = new ProductMaterial();
             productMaterial.ShowDialog();
         }

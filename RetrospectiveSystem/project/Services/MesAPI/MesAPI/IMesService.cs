@@ -72,7 +72,7 @@ namespace MesAPI
         [OperationContract]
         DataSet SelectMaterial();
         [OperationContract]
-        string CommitMaterial(List<MaterialMsg> list);
+        List<MaterialMsg> CommitMaterial(List<MaterialMsg> list);
 
         [OperationContract]
         int DeleteMaterial(string materialCode);
@@ -81,7 +81,7 @@ namespace MesAPI
         int DeleteAllMaterial();
 
         [OperationContract]
-        int CommitProductMaterial(List<ProductMaterial> pmList);
+        List<ProductMaterial> CommitProductMaterial(List<ProductMaterial> pmList);
         [OperationContract]
         DataSet SelectProductMaterial(ProductMaterial material);
 
@@ -104,12 +104,18 @@ namespace MesAPI
 
         //外箱容量
         [OperationContract]
-        int CommitProductContinairCapacity(string productTypeNo, string amount);
+        int CommitProductContinairCapacity(string productTypeNo, string amount,string username);
         [OperationContract]
         DataSet SelectProductContinairCapacity(string productTypeNo);
         
         [OperationContract]
         DataSet SelectProductBindingState(string sn);
+
+        [OperationContract]
+        int DeleteProductContinairCapacity(string productTypeNo);
+
+        [OperationContract]
+        int DeleteAllProductContinairCapacity();
 
         #region 【接口】查询已绑定数据
         [OperationContract]

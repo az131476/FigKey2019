@@ -93,7 +93,7 @@ namespace MesManager.RadView
             InitCaseCodeList();
             //获取型号
             cb_typeNo.Items.Clear();
-            DataTable dt = (await serviceClient.SelectProductTypeNoAsync("")).Tables[0];
+            DataTable dt = null;// (await serviceClient.SelectProductTypeNoAsync("")).Tables[0];
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 cb_typeNo.Items.Add(dt.Rows[i][0].ToString());
@@ -164,7 +164,7 @@ namespace MesManager.RadView
             }
             //提交箱子容量
             MesService.PackageProduct[] packageProducts = new MesService.PackageProduct[10];
-            await serviceClient.CommitProductContinairCapacityAsync(caseCode,caseAmount);
+            await serviceClient.CommitProductContinairCapacityAsync(caseCode,caseAmount,"");
             packageProduct.CaseCode = caseCode;
             packageProduct.SnOutter = sn;
             packageProduct.TypeNo = typeNo;

@@ -1,4 +1,4 @@
-﻿namespace MesManager.RadView
+﻿namespace MesManager.UI
 {
     partial class MESMainForm
     {

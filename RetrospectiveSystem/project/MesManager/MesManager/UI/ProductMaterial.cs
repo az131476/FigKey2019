@@ -10,7 +10,7 @@ using Telerik.WinControls.UI;
 using MesManager.Control;
 using CommonUtils.Logger;
 
-namespace MesManager.RadView
+namespace MesManager.UI
 {
     //物料绑定信息：序号+物料编码（可选）+ 产品型号（可选）+ 工站名称（可选）+描述
     public partial class ProductMaterial : RadForm
@@ -216,7 +216,14 @@ namespace MesManager.RadView
                 if (rowInfo.Cells[1].Value != null)
                     productMaterial.TypeNo = rowInfo.Cells[1].Value.ToString();
                 if (rowInfo.Cells[2].Value != null)
+                {
                     productMaterial.MaterialCode = rowInfo.Cells[2].Value.ToString();
+                    //更新编码库存
+                    if (productMaterial.MaterialCode.Contains("@"))
+                    {
+                        productMaterial.Stock = productMaterial.MaterialCode.Substring(productMaterial.MaterialCode.LastIndexOf('@') + 1);
+                    }
+                }
                 if (rowInfo.Cells[3].Value != null)
                     productMaterial.Describle = rowInfo.Cells[3].Value.ToString();
 
@@ -233,15 +240,16 @@ namespace MesManager.RadView
                 int del = await serviceClient.DeleteProductMaterialAsync(productMaterial);
             }
             pmListTemp.Clear();
-            int res = await serviceClient.CommitProductMaterialAsync(productMaterialList);
-            if (res == 1)
+            MesService.ProductMaterial[] materialList = await serviceClient.CommitProductMaterialAsync(productMaterialList);
+            foreach (var material in materialList)
             {
-                MessageBox.Show("更新成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (material.Result != 1)
+                {
+                    MessageBox.Show("更新失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
             }
-            else
-            {
-                MessageBox.Show("更新失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            MessageBox.Show("更新成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
             SelectData();
         }
 
@@ -277,7 +285,7 @@ namespace MesManager.RadView
         {
             if (MessageBox.Show("确认删除所有数据？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.Cancel)
                 return;
-            int res = await serviceClient.DeleteAllProductTypeNoAsync();
+            int res = await serviceClient.DeleteAllProductContinairCapacityAsync();
             if (res > 0)
             {
                 MessageBox.Show("清除服务数据完成！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -300,6 +308,8 @@ namespace MesManager.RadView
                 this.radGridView1.Rows[i].Cells[1].Value = dt.Rows[i][0].ToString();
                 this.radGridView1.Rows[i].Cells[2].Value = dt.Rows[i][1].ToString();
                 this.radGridView1.Rows[i].Cells[3].Value = dt.Rows[i][2].ToString();
+                this.radGridView1.Rows[i].Cells[4].Value = dt.Rows[i][3].ToString();
+                this.radGridView1.Rows[i].Cells[5].Value = dt.Rows[i][4].ToString();
             }
             //删除空行
             int startIndex = dt.Rows.Count;

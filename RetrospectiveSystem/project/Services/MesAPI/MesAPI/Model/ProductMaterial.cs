@@ -15,6 +15,10 @@ namespace MesAPI.Model
 
         public string Describle { get; set; }
 
+        public string UserName { get; set; }
+
         public string Update_Date { get; set; }
+
+        public int Result { get; set; }
     }
 }

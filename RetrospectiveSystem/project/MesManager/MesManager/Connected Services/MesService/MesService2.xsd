@@ -58,12 +58,15 @@
   <xs:element name="ArrayOfMaterialMsg" nillable="true" type="tns:ArrayOfMaterialMsg" />
   <xs:complexType name="MaterialMsg">
     <xs:sequence>
-      <xs:element minOccurs="0" name="MaterialAmount" type="xs:int" />
       <xs:element minOccurs="0" name="MaterialCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MaterialName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" type="xs:int" />
       <xs:element minOccurs="0" name="Sn_Inner" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Sn_Outter" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="StationName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="TypeNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UpdateDate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="MaterialMsg" nillable="true" type="tns:MaterialMsg" />
@@ -77,9 +80,11 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="Describle" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="MaterialCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" type="xs:int" />
       <xs:element minOccurs="0" name="Stock" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="TypeNo" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Update_Date" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ProductMaterial" nillable="true" type="tns:ProductMaterial" />

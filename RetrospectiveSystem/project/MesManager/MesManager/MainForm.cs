@@ -13,7 +13,7 @@ using System.Web;
 using System.IO;
 using System.Net;
 using System.Runtime.InteropServices;
-using MesManager.RadView;
+using MesManager.UI;
 using MesManager.Control;
 using Sunisoft.IrisSkin;
 using Telerik.WinControls.Themes;
@@ -301,14 +301,14 @@ namespace MesManager
 
         private void Menu_product_binding_Click(object sender, EventArgs e)
         {
-            PackageProduct packageProduct = new PackageProduct();
-            packageProduct.ShowDialog();
+            //PackageProduct packageProduct = new PackageProduct();
+            //packageProduct.ShowDialog();
         }
 
         private void Menu_material_msg_Click(object sender, EventArgs e)
         {
-            Material material = new Material();
-            material.ShowDialog();
+            //Material material = new Material();
+            //material.ShowDialog();
         }
 
         async private void Btn_search_LastTestRes_Click(object sender, EventArgs e)
@@ -428,7 +428,7 @@ namespace MesManager
             cb_station.Items.Clear();
             try
             {
-                DataTable dt = (await serviceClient.SelectProductTypeNoAsync("")).Tables[0];
+                DataTable dt = (await serviceClient.SelectProductContinairCapacityAsync("")).Tables[0];
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
                     cb_typeNo.Items.Add(dt.Rows[i][0]);

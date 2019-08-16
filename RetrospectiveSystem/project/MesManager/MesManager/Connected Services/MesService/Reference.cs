@@ -181,10 +181,13 @@ namespace MesManager.MesService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int MaterialAmountField;
+        private string MaterialCodeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string MaterialCodeField;
+        private string MaterialNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ResultField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string Sn_InnerField;
@@ -198,6 +201,12 @@ namespace MesManager.MesService {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string TypeNoField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string UpdateDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string UserNameField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -205,19 +214,6 @@ namespace MesManager.MesService {
             }
             set {
                 this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int MaterialAmount {
-            get {
-                return this.MaterialAmountField;
-            }
-            set {
-                if ((this.MaterialAmountField.Equals(value) != true)) {
-                    this.MaterialAmountField = value;
-                    this.RaisePropertyChanged("MaterialAmount");
-                }
             }
         }
         
@@ -230,6 +226,32 @@ namespace MesManager.MesService {
                 if ((object.ReferenceEquals(this.MaterialCodeField, value) != true)) {
                     this.MaterialCodeField = value;
                     this.RaisePropertyChanged("MaterialCode");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string MaterialName {
+            get {
+                return this.MaterialNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MaterialNameField, value) != true)) {
+                    this.MaterialNameField = value;
+                    this.RaisePropertyChanged("MaterialName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Result {
+            get {
+                return this.ResultField;
+            }
+            set {
+                if ((this.ResultField.Equals(value) != true)) {
+                    this.ResultField = value;
+                    this.RaisePropertyChanged("Result");
                 }
             }
         }
@@ -286,6 +308,32 @@ namespace MesManager.MesService {
             }
         }
         
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string UpdateDate {
+            get {
+                return this.UpdateDateField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UpdateDateField, value) != true)) {
+                    this.UpdateDateField = value;
+                    this.RaisePropertyChanged("UpdateDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string UserName {
+            get {
+                return this.UserNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserNameField, value) != true)) {
+                    this.UserNameField = value;
+                    this.RaisePropertyChanged("UserName");
+                }
+            }
+        }
+        
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
@@ -312,6 +360,9 @@ namespace MesManager.MesService {
         private string MaterialCodeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ResultField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string StockField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -319,6 +370,9 @@ namespace MesManager.MesService {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string Update_DateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string UserNameField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -352,6 +406,19 @@ namespace MesManager.MesService {
                 if ((object.ReferenceEquals(this.MaterialCodeField, value) != true)) {
                     this.MaterialCodeField = value;
                     this.RaisePropertyChanged("MaterialCode");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Result {
+            get {
+                return this.ResultField;
+            }
+            set {
+                if ((this.ResultField.Equals(value) != true)) {
+                    this.ResultField = value;
+                    this.RaisePropertyChanged("Result");
                 }
             }
         }
@@ -391,6 +458,19 @@ namespace MesManager.MesService {
                 if ((object.ReferenceEquals(this.Update_DateField, value) != true)) {
                     this.Update_DateField = value;
                     this.RaisePropertyChanged("Update_Date");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string UserName {
+            get {
+                return this.UserNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserNameField, value) != true)) {
+                    this.UserNameField = value;
+                    this.RaisePropertyChanged("UserName");
                 }
             }
         }
@@ -654,10 +734,10 @@ namespace MesManager.MesService {
         System.Threading.Tasks.Task<System.Data.DataSet> SelectMaterialAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/CommitMaterial", ReplyAction="http://tempuri.org/IMesService/CommitMaterialResponse")]
-        string CommitMaterial(MesManager.MesService.MaterialMsg[] list);
+        MesManager.MesService.MaterialMsg[] CommitMaterial(MesManager.MesService.MaterialMsg[] list);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/CommitMaterial", ReplyAction="http://tempuri.org/IMesService/CommitMaterialResponse")]
-        System.Threading.Tasks.Task<string> CommitMaterialAsync(MesManager.MesService.MaterialMsg[] list);
+        System.Threading.Tasks.Task<MesManager.MesService.MaterialMsg[]> CommitMaterialAsync(MesManager.MesService.MaterialMsg[] list);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/DeleteMaterial", ReplyAction="http://tempuri.org/IMesService/DeleteMaterialResponse")]
         int DeleteMaterial(string materialCode);
@@ -672,10 +752,10 @@ namespace MesManager.MesService {
         System.Threading.Tasks.Task<int> DeleteAllMaterialAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/CommitProductMaterial", ReplyAction="http://tempuri.org/IMesService/CommitProductMaterialResponse")]
-        int CommitProductMaterial(MesManager.MesService.ProductMaterial[] pmList);
+        MesManager.MesService.ProductMaterial[] CommitProductMaterial(MesManager.MesService.ProductMaterial[] pmList);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/CommitProductMaterial", ReplyAction="http://tempuri.org/IMesService/CommitProductMaterialResponse")]
-        System.Threading.Tasks.Task<int> CommitProductMaterialAsync(MesManager.MesService.ProductMaterial[] pmList);
+        System.Threading.Tasks.Task<MesManager.MesService.ProductMaterial[]> CommitProductMaterialAsync(MesManager.MesService.ProductMaterial[] pmList);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectProductMaterial", ReplyAction="http://tempuri.org/IMesService/SelectProductMaterialResponse")]
         System.Data.DataSet SelectProductMaterial(MesManager.MesService.ProductMaterial material);
@@ -708,10 +788,10 @@ namespace MesManager.MesService {
         System.Threading.Tasks.Task<System.Data.DataSet> SelectMaterialMsgAsync(MesManager.MesService.MaterialMsg materialMsg, bool IsSelectAll);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/CommitProductContinairCapacity", ReplyAction="http://tempuri.org/IMesService/CommitProductContinairCapacityResponse")]
-        int CommitProductContinairCapacity(string productTypeNo, string amount);
+        int CommitProductContinairCapacity(string productTypeNo, string amount, string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/CommitProductContinairCapacity", ReplyAction="http://tempuri.org/IMesService/CommitProductContinairCapacityResponse")]
-        System.Threading.Tasks.Task<int> CommitProductContinairCapacityAsync(string productTypeNo, string amount);
+        System.Threading.Tasks.Task<int> CommitProductContinairCapacityAsync(string productTypeNo, string amount, string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectProductContinairCapacity", ReplyAction="http://tempuri.org/IMesService/SelectProductContinairCapacityResponse")]
         System.Data.DataSet SelectProductContinairCapacity(string productTypeNo);
@@ -724,6 +804,18 @@ namespace MesManager.MesService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectProductBindingState", ReplyAction="http://tempuri.org/IMesService/SelectProductBindingStateResponse")]
         System.Threading.Tasks.Task<System.Data.DataSet> SelectProductBindingStateAsync(string sn);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/DeleteProductContinairCapacity", ReplyAction="http://tempuri.org/IMesService/DeleteProductContinairCapacityResponse")]
+        int DeleteProductContinairCapacity(string productTypeNo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/DeleteProductContinairCapacity", ReplyAction="http://tempuri.org/IMesService/DeleteProductContinairCapacityResponse")]
+        System.Threading.Tasks.Task<int> DeleteProductContinairCapacityAsync(string productTypeNo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/DeleteAllProductContinairCapacity", ReplyAction="http://tempuri.org/IMesService/DeleteAllProductContinairCapacityResponse")]
+        int DeleteAllProductContinairCapacity();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/DeleteAllProductContinairCapacity", ReplyAction="http://tempuri.org/IMesService/DeleteAllProductContinairCapacityResponse")]
+        System.Threading.Tasks.Task<int> DeleteAllProductContinairCapacityAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectProductBindingRecord", ReplyAction="http://tempuri.org/IMesService/SelectProductBindingRecordResponse")]
         System.Data.DataSet SelectProductBindingRecord(string casecode, string bindingState);
@@ -946,11 +1038,11 @@ namespace MesManager.MesService {
             return base.Channel.SelectMaterialAsync();
         }
         
-        public string CommitMaterial(MesManager.MesService.MaterialMsg[] list) {
+        public MesManager.MesService.MaterialMsg[] CommitMaterial(MesManager.MesService.MaterialMsg[] list) {
             return base.Channel.CommitMaterial(list);
         }
         
-        public System.Threading.Tasks.Task<string> CommitMaterialAsync(MesManager.MesService.MaterialMsg[] list) {
+        public System.Threading.Tasks.Task<MesManager.MesService.MaterialMsg[]> CommitMaterialAsync(MesManager.MesService.MaterialMsg[] list) {
             return base.Channel.CommitMaterialAsync(list);
         }
         
@@ -970,11 +1062,11 @@ namespace MesManager.MesService {
             return base.Channel.DeleteAllMaterialAsync();
         }
         
-        public int CommitProductMaterial(MesManager.MesService.ProductMaterial[] pmList) {
+        public MesManager.MesService.ProductMaterial[] CommitProductMaterial(MesManager.MesService.ProductMaterial[] pmList) {
             return base.Channel.CommitProductMaterial(pmList);
         }
         
-        public System.Threading.Tasks.Task<int> CommitProductMaterialAsync(MesManager.MesService.ProductMaterial[] pmList) {
+        public System.Threading.Tasks.Task<MesManager.MesService.ProductMaterial[]> CommitProductMaterialAsync(MesManager.MesService.ProductMaterial[] pmList) {
             return base.Channel.CommitProductMaterialAsync(pmList);
         }
         
@@ -1018,12 +1110,12 @@ namespace MesManager.MesService {
             return base.Channel.SelectMaterialMsgAsync(materialMsg, IsSelectAll);
         }
         
-        public int CommitProductContinairCapacity(string productTypeNo, string amount) {
-            return base.Channel.CommitProductContinairCapacity(productTypeNo, amount);
+        public int CommitProductContinairCapacity(string productTypeNo, string amount, string username) {
+            return base.Channel.CommitProductContinairCapacity(productTypeNo, amount, username);
         }
         
-        public System.Threading.Tasks.Task<int> CommitProductContinairCapacityAsync(string productTypeNo, string amount) {
-            return base.Channel.CommitProductContinairCapacityAsync(productTypeNo, amount);
+        public System.Threading.Tasks.Task<int> CommitProductContinairCapacityAsync(string productTypeNo, string amount, string username) {
+            return base.Channel.CommitProductContinairCapacityAsync(productTypeNo, amount, username);
         }
         
         public System.Data.DataSet SelectProductContinairCapacity(string productTypeNo) {
@@ -1040,6 +1132,22 @@ namespace MesManager.MesService {
         
         public System.Threading.Tasks.Task<System.Data.DataSet> SelectProductBindingStateAsync(string sn) {
             return base.Channel.SelectProductBindingStateAsync(sn);
+        }
+        
+        public int DeleteProductContinairCapacity(string productTypeNo) {
+            return base.Channel.DeleteProductContinairCapacity(productTypeNo);
+        }
+        
+        public System.Threading.Tasks.Task<int> DeleteProductContinairCapacityAsync(string productTypeNo) {
+            return base.Channel.DeleteProductContinairCapacityAsync(productTypeNo);
+        }
+        
+        public int DeleteAllProductContinairCapacity() {
+            return base.Channel.DeleteAllProductContinairCapacity();
+        }
+        
+        public System.Threading.Tasks.Task<int> DeleteAllProductContinairCapacityAsync() {
+            return base.Channel.DeleteAllProductContinairCapacityAsync();
         }
         
         public System.Data.DataSet SelectProductBindingRecord(string casecode, string bindingState) {

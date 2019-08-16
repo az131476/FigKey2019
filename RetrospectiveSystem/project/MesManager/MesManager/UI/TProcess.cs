@@ -42,10 +42,9 @@ namespace MesManager.UI
             serviceClient = new MesService.MesServiceClient();
             serviceClientTest = new MesServiceTest.MesServiceClient();
             stationListTemp = new List<string>();
-            DataGridViewCommon.SetRadGridViewProperty(this.radGridView1, true);
+            DataGridViewCommon.SetRadGridViewProperty(this.radGridView1, false);
             this.radGridView1.AllowRowHeaderContextMenu = false;
             DataSource();
-            menu_del.Enabled = false;
             UpdateProcesList();
             RefreshCurrentProcess();
             SelectStationList(this.cb_processItem.Text.Trim());
@@ -54,6 +53,7 @@ namespace MesManager.UI
         async private void RefreshCurrentProcess()
         {
             this.cb_curprocess.Text = await serviceClientTest.SelectCurrentTProcessAsync();
+            this.cb_processItem.Text = this.cb_curprocess.Text;
         }
 
         private void DataSource()
@@ -75,6 +75,7 @@ namespace MesManager.UI
             menu_clear_db.Click += Menu_clear_db_Click;
             menu_del.Click += Menu_del_Click;
             menu_add.Click += Menu_add_Click;
+            menu_commit.Click += Menu_commit_Click;
             this.cb_processItem.SelectedIndexChanged += Cb_processItem_SelectedIndexChanged;
 
             this.radGridView1.CellBeginEdit += RadGridView1_CellBeginEdit;
@@ -88,17 +89,28 @@ namespace MesManager.UI
 
         private void Menu_add_Click(object sender, EventArgs e)
         {
-            this.radGridView1.Rows.NewRow();
+            this.radGridView1.Rows.AddNew();
         }
 
         async private void Menu_del_Click(object sender, EventArgs e)
         {
             //删除当前行
-            if (MessageBox.Show("确认要删除当前行记录？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
+            var stationName = this.radGridView1.CurrentRow.Cells[1].Value.ToString();
+            if (string.IsNullOrEmpty(stationName))
             {
-                var stationName = this.radGridView1.CurrentRow.Cells[1].Value.ToString();
-                int row = await serviceClient.DeleteStationAsync(cb_processItem.Text.Trim(),stationName);
-                //tool_status.Text = "【型号】删除1行记录 【删除】完成";
+                this.radGridView1.CurrentRow.Delete();
+            }
+            else
+            {
+                if (MessageBox.Show("确认要删除当前行记录？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
+                {
+                    int row = await serviceClient.DeleteStationAsync(cb_processItem.Text.Trim(), stationName);
+                    if (row > 0)
+                    {
+                        RefreshProcessData();
+                    }
+                    //tool_status.Text = "【型号】删除1行记录 【删除】完成";
+                }
             }
         }
 
@@ -121,11 +133,21 @@ namespace MesManager.UI
         private void RadGridView1_CellEndEdit(object sender, GridViewCellEventArgs e)
         {
             var key = this.radGridView1.CurrentRow.Cells[1].Value;
+            var index = this.radGridView1.RowCount;
             if (key == null)
                 return;
             if (keyStation != key.ToString())
             {
                 stationListTemp.Add(keyStation);
+            }
+            //结束编辑，同时更新新增列序号
+            if (index <= 0)
+            {
+                this.radGridView1.Rows[0].Cells[0].Value = 1;
+            }
+            else
+            {
+                this.radGridView1.Rows[index-1].Cells[0].Value = index;
             }
         }
 
@@ -140,8 +162,14 @@ namespace MesManager.UI
 
         private void Menu_refresh_Click(object sender, EventArgs e)
         {
+            RefreshProcessData();
+        }
+
+        private void RefreshProcessData()
+        {
             UpdateProcesList();
             SelectStationList(this.cb_processItem.Text.Trim());
+            stationListTemp.Clear();
         }
 
         private void Menu_commit_Click(object sender, EventArgs e)
@@ -179,7 +207,7 @@ namespace MesManager.UI
                 stationData.Clear();
                 radGridView1.DataSource = stationData;
             }
-            DataGridViewCommon.SetRadGridViewProperty(this.radGridView1, true);
+            DataGridViewCommon.SetRadGridViewProperty(this.radGridView1, false);
             this.radGridView1.Columns[0].ReadOnly = true;
             this.radGridView1.Columns[2].ReadOnly = true;
             this.radGridView1.Columns[3].ReadOnly = true;
@@ -218,8 +246,10 @@ namespace MesManager.UI
                     var stationName = radGridView1.Rows[i].Cells[1].Value.ToString().Trim();
                     if (!string.IsNullOrEmpty(stationName))
                     {
+                        station.ProcessName = this.cb_processItem.Text.Trim();
                         station.StationID = int.Parse(ID);
                         station.StationName = stationName;
+                        station.UserName = MESMainForm.currentUser;
                         stationsArray[i] = station;
                     }
                 }
@@ -234,7 +264,7 @@ namespace MesManager.UI
                 int res = await serviceClient.InsertStationAsync(stationsArray);
                 if (res == 1)
                 {
-                    UpdateProcesList();//更新完成后，更新工艺流程可选项
+                    RefreshProcessData();
                     MessageBox.Show("更新成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
@@ -245,6 +275,7 @@ namespace MesManager.UI
             catch (Exception ex)
             {
                 LogHelper.Log.Error(ex.Message + "\r\n" + ex.StackTrace);
+                MessageBox.Show($"{ex.Message}", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -268,6 +299,7 @@ namespace MesManager.UI
                     int upt = await serviceClient.SetCurrentProcessAsync(this.cb_curprocess.Text.Trim(),1);
                     if (upt > 0)
                     {
+                        this.cb_processItem.Text = this.cb_curprocess.Text;
                         MessageBox.Show("设置成功！","提示",MessageBoxButtons.OK,MessageBoxIcon.Information);
                     }
                 }
@@ -277,7 +309,7 @@ namespace MesManager.UI
                 }
             }
 
-            UpdateProcesList();
+            RefreshProcessData();
         }
     }
 }

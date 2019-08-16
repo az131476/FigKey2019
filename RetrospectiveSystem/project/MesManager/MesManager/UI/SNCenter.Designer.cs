@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SNCenter));
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition3 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition4 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition5 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition6 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition7 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition8 = new Telerik.WinControls.UI.TableViewDefinition();
             this.radMenu1 = new Telerik.WinControls.UI.RadMenu();
             this.menu_sn_result = new Telerik.WinControls.UI.RadMenuItem();
             this.menu_package = new Telerik.WinControls.UI.RadMenuItem();
@@ -186,7 +186,7 @@
             // 
             // 
             // 
-            this.radGridViewSn.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.radGridViewSn.MasterTemplate.ViewDefinition = tableViewDefinition5;
             this.radGridViewSn.Name = "radGridViewSn";
             this.radGridViewSn.Size = new System.Drawing.Size(593, 113);
             this.radGridViewSn.TabIndex = 10;
@@ -227,6 +227,7 @@
             // radLabel3
             // 
             this.radLabel3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel3.ForeColor = System.Drawing.Color.White;
             this.radLabel3.Location = new System.Drawing.Point(3, 19);
             this.radLabel3.Name = "radLabel3";
             this.radLabel3.Size = new System.Drawing.Size(157, 21);
@@ -262,7 +263,7 @@
             // 
             // 
             // 
-            this.radGridViewPackage.MasterTemplate.ViewDefinition = tableViewDefinition2;
+            this.radGridViewPackage.MasterTemplate.ViewDefinition = tableViewDefinition6;
             this.radGridViewPackage.Name = "radGridViewPackage";
             this.radGridViewPackage.Size = new System.Drawing.Size(602, 113);
             this.radGridViewPackage.TabIndex = 10;
@@ -303,6 +304,7 @@
             // radLabel2
             // 
             this.radLabel2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel2.ForeColor = System.Drawing.Color.White;
             this.radLabel2.Location = new System.Drawing.Point(3, 19);
             this.radLabel2.Name = "radLabel2";
             this.radLabel2.Size = new System.Drawing.Size(186, 21);
@@ -334,7 +336,7 @@
             // 
             // 
             // 
-            this.radGridViewMaterial.MasterTemplate.ViewDefinition = tableViewDefinition3;
+            this.radGridViewMaterial.MasterTemplate.ViewDefinition = tableViewDefinition7;
             this.radGridViewMaterial.Name = "radGridViewMaterial";
             this.radGridViewMaterial.Size = new System.Drawing.Size(1201, 141);
             this.radGridViewMaterial.TabIndex = 8;
@@ -356,6 +358,7 @@
             // rbtn_materialed
             // 
             this.rbtn_materialed.AutoSize = true;
+            this.rbtn_materialed.ForeColor = System.Drawing.Color.White;
             this.rbtn_materialed.Location = new System.Drawing.Point(105, 21);
             this.rbtn_materialed.Name = "rbtn_materialed";
             this.rbtn_materialed.Size = new System.Drawing.Size(90, 17);
@@ -367,6 +370,7 @@
             // rbtn_material
             // 
             this.rbtn_material.AutoSize = true;
+            this.rbtn_material.ForeColor = System.Drawing.Color.White;
             this.rbtn_material.Location = new System.Drawing.Point(22, 20);
             this.rbtn_material.Name = "rbtn_material";
             this.rbtn_material.Size = new System.Drawing.Size(77, 17);
@@ -399,6 +403,7 @@
             // radLabel1
             // 
             this.radLabel1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel1.ForeColor = System.Drawing.Color.White;
             this.radLabel1.Location = new System.Drawing.Point(201, 19);
             this.radLabel1.Name = "radLabel1";
             this.radLabel1.Size = new System.Drawing.Size(247, 21);
@@ -430,7 +435,7 @@
             // 
             // 
             // 
-            this.radGridView4.MasterTemplate.ViewDefinition = tableViewDefinition4;
+            this.radGridView4.MasterTemplate.ViewDefinition = tableViewDefinition8;
             this.radGridView4.Name = "radGridView4";
             this.radGridView4.Size = new System.Drawing.Size(593, 100);
             this.radGridView4.TabIndex = 10;
@@ -470,6 +475,7 @@
             // radLabel4
             // 
             this.radLabel4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel4.ForeColor = System.Drawing.Color.White;
             this.radLabel4.Location = new System.Drawing.Point(3, 19);
             this.radLabel4.Name = "radLabel4";
             this.radLabel4.Size = new System.Drawing.Size(138, 21);

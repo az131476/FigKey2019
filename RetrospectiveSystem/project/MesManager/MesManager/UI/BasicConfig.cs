@@ -9,6 +9,7 @@ using Telerik.WinControls;
 using Telerik.WinControls.UI;
 using CommonUtils.Logger;
 using MesManager.Control;
+using MesManager.RadView;
 
 namespace MesManager.UI
 {
@@ -101,28 +102,41 @@ namespace MesManager.UI
 
         private void Menu_add_Click(object sender, EventArgs e)
         {
-            this.radGridView1.Rows.NewRow();
+            this.radGridView1.Rows.AddNew();
         }
 
         async private void Menu_del_Click(object sender, EventArgs e)
         {
             //删除当前行
-            if (cb_cfgType.SelectedIndex == 1)
+            var stationName = this.radGridView1.CurrentRow.Cells[1].Value.ToString();
+            if (string.IsNullOrEmpty(stationName))
             {
-                if (MessageBox.Show("确认要删除当前行记录？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
-                {
-                    var typeNo = this.radGridView1.CurrentRow.Cells[1].Value.ToString();
-                    int row = await serviceClient.DeleteProductTypeNoAsync(typeNo);
-                    tool_status.Text = "【型号】删除1行记录 【删除】完成";
-                }
+                this.radGridView1.CurrentRow.Delete();
             }
-            else if (cb_cfgType.SelectedIndex == 2)
+            else
             {
                 if (MessageBox.Show("确认要删除当前行记录？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
                 {
-                    var materialCode = this.radGridView1.CurrentRow.Cells[1].Value.ToString();
-                    int row = await serviceClient.DeleteMaterialAsync(materialCode);
-                    tool_status.Text = "【物料】删除1行记录 【删除】完成";
+                    if (cb_cfgType.SelectedIndex == 0)
+                    {
+                        var typeNo = this.radGridView1.CurrentRow.Cells[1].Value.ToString();
+                        int row = await serviceClient.DeleteProductContinairCapacityAsync(typeNo);
+                        tool_status.Text = "【型号】删除1行记录 【删除】完成";
+                        if (row > 0)
+                        {
+                            RefreshData();
+                        }
+                    }
+                    else if (cb_cfgType.SelectedIndex == 1)
+                    {
+                        var materialCode = this.radGridView1.CurrentRow.Cells[1].Value.ToString();
+                        int row = await serviceClient.DeleteMaterialAsync(materialCode);
+                        tool_status.Text = "【物料】删除1行记录 【删除】完成";
+                        if (row > 0)
+                        {
+                            RefreshData();
+                        }
+                    }
                 }
             }
         }
@@ -134,7 +148,7 @@ namespace MesManager.UI
             if (cb_cfgType.SelectedIndex == 0)
             {
                 //型号
-                int row = await serviceClient.DeleteAllProductTypeNoAsync();
+                int row = 0;// await serviceClient.DeleteAllProductTypeNoAsync();
                 tool_status.Text = $"【型号】删除服务数据【{row}】条  【清空数据】完成";
             }
             else if (cb_cfgType.SelectedIndex == 1)
@@ -216,13 +230,11 @@ namespace MesManager.UI
             if (cb_cfgType.SelectedIndex == 0)
             {
                 //型号
-                menu_del.Enabled = true;
                 SelectProductTypeData();
             }
             else if (cb_cfgType.SelectedIndex == 1)
             {
                 //物料
-                menu_del.Enabled = true;
                 SelectMaterial();
             }
         }
@@ -262,7 +274,7 @@ namespace MesManager.UI
                     typeNoData.Rows.Add(dr);
                 }
                 radGridView1.DataSource = typeNoData;
-                this.radGridView1.Columns[0].ReadOnly = true;
+                SetGridReadOnly();
             }
             else
             {
@@ -270,7 +282,14 @@ namespace MesManager.UI
                 radGridView1.DataSource = typeNoData;
             }
             DataGridViewCommon.SetRadGridViewProperty(this.radGridView1, true);
+            SetGridReadOnly();
+        }
+
+        private void SetGridReadOnly()
+        {
             this.radGridView1.Columns[0].ReadOnly = true;
+            this.radGridView1.Columns[3].ReadOnly = true;
+            this.radGridView1.Columns[4].ReadOnly = true;
         }
 
         async private void SelectMaterial()
@@ -289,6 +308,8 @@ namespace MesManager.UI
                     dr[DATA_ORDER] = i + 1;
                     dr[DATA_MATERIAL_CODE] = dataTable.Rows[i][0].ToString();
                     dr[DATA_MATERIAL_NAME] = dataTable.Rows[i][1].ToString();
+                    dr[DATA_USER_NAME]     = dataTable.Rows[i][2].ToString();
+                    dr[DATA_UPDATE_DATE]   = dataTable.Rows[i][3].ToString();
                     materialData.Rows.Add(dr);
                 }
                 radGridView1.DataSource = materialData;
@@ -300,12 +321,23 @@ namespace MesManager.UI
             }
             DataGridViewCommon.SetRadGridViewProperty(this.radGridView1, true);
             this.radGridView1.Columns[0].ReadOnly = true;
+            materialCodeTemp.Clear();
+            modifyTypeNoTemp.Clear();
         }
 
         async private void CommitTypeNoMesService()
         {
             try
             {
+                //修改行数据
+                if (modifyTypeNoTemp.Count > 0)
+                {
+                    foreach (var val in this.modifyTypeNoTemp)
+                    {
+                        await serviceClient.DeleteProductContinairCapacityAsync(val);
+                    }
+                }
+
                 int row = radGridView1.RowCount;
                 string[] array = new string[row];
                 //新增行数据
@@ -313,32 +345,25 @@ namespace MesManager.UI
                 {
                     var ID = radGridView1.Rows[i].Cells[0].Value.ToString().Trim();
                     var productName = radGridView1.Rows[i].Cells[1].Value.ToString().Trim();
+                    var storage = radGridView1.Rows[i].Cells[2].Value.ToString().Trim();
                     if (!string.IsNullOrEmpty(productName))
                     {
                         array[i] = productName;
+                        var res = await serviceClient.CommitProductContinairCapacityAsync(productName,storage,MESMainForm.currentUser);
+                        if (res < 1)
+                        {
+                            MessageBox.Show($"【{productName}】更新失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            return;
+                        }
                     }
                 }
-                //修改行数据
-                if (modifyTypeNoTemp.Count > 0)
-                {
-                    foreach (var val in this.modifyTypeNoTemp)
-                    {
-                        await serviceClient.DeleteProductTypeNoAsync(val);
-                    }
-                }
-                string res = await serviceClient.CommitProductTypeNoAsync(array);
-                if (res == "1")
-                {
-                    MessageBox.Show("更新成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    MessageBox.Show($"更新失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                MessageBox.Show("更新成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                RefreshData();
             }
             catch (Exception ex)
             {
                 LogHelper.Log.Error(ex.Message + "\r\n" + ex.StackTrace);
+                MessageBox.Show($"{ex.Message}", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -353,11 +378,13 @@ namespace MesManager.UI
                 {
                     MesService.MaterialMsg material = new MesService.MaterialMsg();
                     var materialCode = radGridView1.Rows[i].Cells[1].Value.ToString().Trim();
-                    var amount = radGridView1.Rows[i].Cells[2].Value.ToString().Trim();
+                    var materialName = radGridView1.Rows[i].Cells[2].Value.ToString().Trim();
                     if (!string.IsNullOrEmpty(materialCode))
                     {
                         material.MaterialCode = materialCode;
-                        material.MaterialAmount = int.Parse(amount);
+                        material.MaterialName = materialName;
+                        material.UserName = MESMainForm.currentUser;
+
                         materialMsg[i] = material;
                     }
                 }
@@ -369,19 +396,22 @@ namespace MesManager.UI
                         await serviceClient.DeleteMaterialAsync(code);
                     }
                 }
-                string res = await serviceClient.CommitMaterialAsync(materialMsg);
-                if (res == "1")
+                MesService.MaterialMsg[] materialList = await serviceClient.CommitMaterialAsync(materialMsg);
+                foreach(var material in materialList)
                 {
-                    MessageBox.Show("更新成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if(material.Result != 1)
+                    {
+                        MessageBox.Show($"【{material.MaterialCode}】更新失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
                 }
-                else
-                {
-                    MessageBox.Show($"更新失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                MessageBox.Show("更新成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                RefreshData();
             }
             catch (Exception ex)
             {
                 LogHelper.Log.Error(ex.Message + "\r\n" + ex.StackTrace);
+                MessageBox.Show($"{ex.Message}","ERROR",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
         }
         #endregion

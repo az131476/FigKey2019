@@ -18,7 +18,7 @@ namespace MesManager.Control
             radGridView.AddNewRowPosition = SystemRowPosition.Bottom;
             radGridView.ShowRowHeaderColumn = true;
             radGridView.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
-            radGridView.AutoSizeRows = true;
+            //radGridView.AutoSizeRows = true;
             //radGridView.BestFitColumns();
             radGridView.ReadOnly = false;
             //gridView.ColumnChooserSortOrder = RadSortOrder.Ascending;

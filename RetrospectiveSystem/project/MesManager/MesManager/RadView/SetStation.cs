@@ -35,7 +35,7 @@ namespace MesManager
         {
             serviceClient = new MesService.MesServiceClient();
             //获取零件号可选项
-            DataSet dataSet = await serviceClient.SelectProductTypeNoAsync("");
+            DataSet dataSet = null;//await serviceClient.SelectProductTypeNoAsync("");
             DataTable dataSource = dataSet.Tables[0];
             cb_typeNo.Items.Clear();
             for (int i = 0; i < dataSource.Rows.Count; i++)
