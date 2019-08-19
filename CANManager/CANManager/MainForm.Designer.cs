@@ -201,13 +201,13 @@
             // device_usb_can1
             // 
             this.device_usb_can1.Name = "device_usb_can1";
-            this.device_usb_can1.Size = new System.Drawing.Size(147, 24);
+            this.device_usb_can1.Size = new System.Drawing.Size(180, 24);
             this.device_usb_can1.Text = "USB CAN1";
             // 
             // device_usb_can2
             // 
             this.device_usb_can2.Name = "device_usb_can2";
-            this.device_usb_can2.Size = new System.Drawing.Size(147, 24);
+            this.device_usb_can2.Size = new System.Drawing.Size(180, 24);
             this.device_usb_can2.Text = "USB CAN2";
             // 
             // toolStripLabel1

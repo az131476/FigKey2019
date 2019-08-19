@@ -199,14 +199,35 @@ namespace MesManager
             return true;
         }
 
+        private bool TestCommunication()
+        {
+            //检测通讯
+            var testValue = "test";
+            var rebackValue = mesService.TestCommunication(testValue);
+            if (rebackValue != testValue)
+            {
+                //通讯异常
+                MessageBox.Show(rebackValue, "ERR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            return true;
+        }
         async private void Init()
         {
             mesService = new MesService.MesServiceClient();
+            if (!TestCommunication())
+                return;
             //设置单行
             //tbx_username.Multiline = false;
             tbx_pwd.Multiline = false;
             tbx_username.Items.Clear();
-            DataTable dt = (await mesService.GetAllUserInfoAsync()).Tables[0];
+            DataSet ds = await mesService.GetAllUserInfoAsync();
+            if (ds == null)
+            {
+                MessageBox.Show("连接数据库服务异常！","ERR",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                return;
+            }
+            var dt = ds.Tables[0];
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 tbx_username.Items.Add(dt.Rows[i][0].ToString());
@@ -279,6 +300,8 @@ namespace MesManager
             //    RemoteValidate(MesService.LoginUser.ORDINARY_USER);
             //    GetUserType = UserType.USER_ORDINARY;
             //}
+            if (!TestCommunication())
+                return;
             if (!LocalValidate())
                 return;
             RemoteValidate(MesService.LoginUser.ADMIN_USER);

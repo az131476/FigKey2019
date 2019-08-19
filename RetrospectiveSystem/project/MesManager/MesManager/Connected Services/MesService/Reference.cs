@@ -184,7 +184,16 @@ namespace MesManager.MesService {
         private string MaterialCodeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MaterialLOTField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string MaterialNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MaterialPNField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MaterialRIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int ResultField;
@@ -231,6 +240,19 @@ namespace MesManager.MesService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string MaterialLOT {
+            get {
+                return this.MaterialLOTField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MaterialLOTField, value) != true)) {
+                    this.MaterialLOTField = value;
+                    this.RaisePropertyChanged("MaterialLOT");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string MaterialName {
             get {
                 return this.MaterialNameField;
@@ -239,6 +261,32 @@ namespace MesManager.MesService {
                 if ((object.ReferenceEquals(this.MaterialNameField, value) != true)) {
                     this.MaterialNameField = value;
                     this.RaisePropertyChanged("MaterialName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string MaterialPN {
+            get {
+                return this.MaterialPNField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MaterialPNField, value) != true)) {
+                    this.MaterialPNField = value;
+                    this.RaisePropertyChanged("MaterialPN");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string MaterialRID {
+            get {
+                return this.MaterialRIDField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MaterialRIDField, value) != true)) {
+                    this.MaterialRIDField = value;
+                    this.RaisePropertyChanged("MaterialRID");
                 }
             }
         }
@@ -630,6 +678,12 @@ namespace MesManager.MesService {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="MesService.IMesService")]
     public interface IMesService {
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/TestCommunication", ReplyAction="http://tempuri.org/IMesService/TestCommunicationResponse")]
+        string TestCommunication(string value);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/TestCommunication", ReplyAction="http://tempuri.org/IMesService/TestCommunicationResponse")]
+        System.Threading.Tasks.Task<string> TestCommunicationAsync(string value);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/Login", ReplyAction="http://tempuri.org/IMesService/LoginResponse")]
         MesManager.MesService.LoginResult Login(string username, string password, MesManager.MesService.LoginUser loginUser);
         
@@ -787,6 +841,12 @@ namespace MesManager.MesService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectMaterialMsg", ReplyAction="http://tempuri.org/IMesService/SelectMaterialMsgResponse")]
         System.Threading.Tasks.Task<System.Data.DataSet> SelectMaterialMsgAsync(MesManager.MesService.MaterialMsg materialMsg, bool IsSelectAll);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectMaterialUserProduct", ReplyAction="http://tempuri.org/IMesService/SelectMaterialUserProductResponse")]
+        System.Data.DataSet SelectMaterialUserProduct(string materialCode);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectMaterialUserProduct", ReplyAction="http://tempuri.org/IMesService/SelectMaterialUserProductResponse")]
+        System.Threading.Tasks.Task<System.Data.DataSet> SelectMaterialUserProductAsync(string materialCode);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/CommitProductContinairCapacity", ReplyAction="http://tempuri.org/IMesService/CommitProductContinairCapacityResponse")]
         int CommitProductContinairCapacity(string productTypeNo, string amount, string username);
         
@@ -891,6 +951,14 @@ namespace MesManager.MesService {
         
         public MesServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
+        }
+        
+        public string TestCommunication(string value) {
+            return base.Channel.TestCommunication(value);
+        }
+        
+        public System.Threading.Tasks.Task<string> TestCommunicationAsync(string value) {
+            return base.Channel.TestCommunicationAsync(value);
         }
         
         public MesManager.MesService.LoginResult Login(string username, string password, MesManager.MesService.LoginUser loginUser) {
@@ -1108,6 +1176,14 @@ namespace MesManager.MesService {
         
         public System.Threading.Tasks.Task<System.Data.DataSet> SelectMaterialMsgAsync(MesManager.MesService.MaterialMsg materialMsg, bool IsSelectAll) {
             return base.Channel.SelectMaterialMsgAsync(materialMsg, IsSelectAll);
+        }
+        
+        public System.Data.DataSet SelectMaterialUserProduct(string materialCode) {
+            return base.Channel.SelectMaterialUserProduct(materialCode);
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> SelectMaterialUserProductAsync(string materialCode) {
+            return base.Channel.SelectMaterialUserProductAsync(materialCode);
         }
         
         public int CommitProductContinairCapacity(string productTypeNo, string amount, string username) {

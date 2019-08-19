@@ -65,8 +65,12 @@ namespace MesWcfService.MessageQueue.RemoteClient
                     if (upackageProduct.IsProductBinding)
                     {
                         //已绑定
-                        if(bindingState == "0")
+                        if (bindingState == "0")
+                        {
                             UpdateBindingAmount(typeNo, int.Parse(bindingState));
+                            //将解绑数据添加到记录
+                            InsertProductCheckRecord(outCaseCode,snOutter,typeNo,stationName,bindingState,remark,teamdLeader,admin);
+                        }
                     }
                     else
                     {
@@ -175,6 +179,27 @@ namespace MesWcfService.MessageQueue.RemoteClient
                 $"{DbTable.F_Out_Case_Storage.AMOUNTED} += {value} WHERE " +
                 $"{DbTable.F_Out_Case_Storage.TYPE_NO} = '{typeNo}'";
             SQLServer.ExecuteNonQuery(updateSQL);
+        }
+
+        /// <summary>
+        /// 记录抽检时，不合格数据
+        /// </summary>
+        private static void InsertProductCheckRecord(string outCaseCode,string snOutter,string typeNo,string stationName,
+            string bindingState,string remark,string teamdLeader,string admin)
+        {
+            string insertSQL = $"INSERT INTO {DbTable.F_PRODUCT_CHECK_RECORD_NAME}(" +
+                    $"{DbTable.F_Out_Case_Product.OUT_CASE_CODE}," +
+                    $"{DbTable.F_Out_Case_Product.SN_OUTTER}," +
+                    $"{DbTable.F_Out_Case_Product.TYPE_NO}," +
+                    $"{DbTable.F_Out_Case_Product.STATION_NAME}," +
+                    $"{DbTable.F_Out_Case_Product.BINDING_STATE}," +
+                    $"{DbTable.F_Out_Case_Product.REMARK}," +
+                    $"{DbTable.F_Out_Case_Product.TEAM_LEADER}," +
+                    $"{DbTable.F_Out_Case_Product.ADMIN}," +
+                    $"{DbTable.F_Out_Case_Product.BINDING_DATE}) VALUES(" +
+                    $"'{outCaseCode}','{snOutter}','{typeNo}','{stationName}'," +
+                    $"'{bindingState}','{remark}','{teamdLeader}','{admin}','{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}')";
+            SQLServer.ExecuteNonQuery(insertSQL);
         }
     }
 }

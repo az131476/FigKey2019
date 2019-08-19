@@ -9,6 +9,12 @@
       <xsd:import schemaLocation="http://192.168.0.175:8085/MesService.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IMesService_TestCommunication_InputMessage">
+    <wsdl:part name="parameters" element="tns:TestCommunication" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_TestCommunication_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TestCommunicationResponse" />
+  </wsdl:message>
   <wsdl:message name="IMesService_Login_InputMessage">
     <wsdl:part name="parameters" element="tns:Login" />
   </wsdl:message>
@@ -165,6 +171,12 @@
   <wsdl:message name="IMesService_SelectMaterialMsg_OutputMessage">
     <wsdl:part name="parameters" element="tns:SelectMaterialMsgResponse" />
   </wsdl:message>
+  <wsdl:message name="IMesService_SelectMaterialUserProduct_InputMessage">
+    <wsdl:part name="parameters" element="tns:SelectMaterialUserProduct" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_SelectMaterialUserProduct_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SelectMaterialUserProductResponse" />
+  </wsdl:message>
   <wsdl:message name="IMesService_CommitProductContinairCapacity_InputMessage">
     <wsdl:part name="parameters" element="tns:CommitProductContinairCapacity" />
   </wsdl:message>
@@ -208,6 +220,10 @@
     <wsdl:part name="parameters" element="tns:SelectPackageProductResponse" />
   </wsdl:message>
   <wsdl:portType name="IMesService">
+    <wsdl:operation name="TestCommunication">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/TestCommunication" message="tns:IMesService_TestCommunication_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/TestCommunicationResponse" message="tns:IMesService_TestCommunication_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="Login">
       <wsdl:input wsaw:Action="http://tempuri.org/IMesService/Login" message="tns:IMesService_Login_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMesService/LoginResponse" message="tns:IMesService_Login_OutputMessage" />
@@ -312,6 +328,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IMesService/SelectMaterialMsg" message="tns:IMesService_SelectMaterialMsg_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMesService/SelectMaterialMsgResponse" message="tns:IMesService_SelectMaterialMsg_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="SelectMaterialUserProduct">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/SelectMaterialUserProduct" message="tns:IMesService_SelectMaterialUserProduct_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/SelectMaterialUserProductResponse" message="tns:IMesService_SelectMaterialUserProduct_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="CommitProductContinairCapacity">
       <wsdl:input wsaw:Action="http://tempuri.org/IMesService/CommitProductContinairCapacity" message="tns:IMesService_CommitProductContinairCapacity_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMesService/CommitProductContinairCapacityResponse" message="tns:IMesService_CommitProductContinairCapacity_OutputMessage" />
@@ -343,6 +363,15 @@
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IMesService" type="tns:IMesService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="TestCommunication">
+      <soap:operation soapAction="http://tempuri.org/IMesService/TestCommunication" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Login">
       <soap:operation soapAction="http://tempuri.org/IMesService/Login" style="document" />
       <wsdl:input>
@@ -570,6 +599,15 @@
     </wsdl:operation>
     <wsdl:operation name="SelectMaterialMsg">
       <soap:operation soapAction="http://tempuri.org/IMesService/SelectMaterialMsg" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectMaterialUserProduct">
+      <soap:operation soapAction="http://tempuri.org/IMesService/SelectMaterialUserProduct" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

@@ -37,6 +37,22 @@ namespace MesAPI
             return DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
         }
 
+        #region 测试通讯
+        [SwaggerWcfTag("MesServcie 服务")]
+        public string TestCommunication(string value)
+        {
+            //通讯正常返回原值
+            //客户端与接口异常：收不到返回值
+            //接口与数据库异常：
+            var testRes = SQLServer.TestSQLConnectState();
+            if (testRes != "")
+            {
+                return "【SQLServer】"+testRes;
+            }
+            return value;
+        }
+        #endregion
+
         #region 用户信息接口
 
         #region 用户登录
@@ -314,44 +330,6 @@ namespace MesAPI
         #endregion
 
         #region 测试结果数据接口
-        [SwaggerWcfTag("MesServcie 服务")]
-        [SwaggerWcfResponse(HttpStatusCode.Created, "Book created, value in the response body with id updated")]
-        [SwaggerWcfResponse(HttpStatusCode.BadRequest, "Bad request", true)]
-        [SwaggerWcfResponse(HttpStatusCode.InternalServerError, "Internal error (can be forced using ERROR_500 as book title)", true)]
-        /// <summary>
-        /// 测试端插入测试结果
-        /// </summary>
-        /// <param name="sn"></param>
-        /// <param name="typeNo"></param>
-        /// <param name="station"></param>
-        /// <param name="dateTime"></param>
-        /// <param name="result"></param>
-        /// <returns></returns>
-        public string InsertTestResultData(string sn, string typeNo, string station, string dateTime, string result)
-        {
-            string[] array = new string[] { sn, typeNo, station, dateTime, result };
-            insertDataQueue.Enqueue(array);
-            return TestResult.InsertTestResult(insertDataQueue);
-        }
-
-        [SwaggerWcfTag("MesServcie 服务")]
-        [SwaggerWcfResponse(HttpStatusCode.Created, "Book created, value in the response body with id updated")]
-        [SwaggerWcfResponse(HttpStatusCode.BadRequest, "Bad request", true)]
-        [SwaggerWcfResponse(HttpStatusCode.InternalServerError, "Internal error (can be forced using ERROR_500 as book title)", true)]
-        /// <summary>
-        /// 测试端查询上一站位的最后一条记录
-        /// </summary>
-        /// <param name="sn"></param>
-        /// <param name="typeNo"></param>
-        /// <param name="station"></param>
-        /// <returns></returns>
-        public string SelectLastTestResult(string sn, string typeNo, string station)
-        {
-            string[] array = new string[] { sn, typeNo, station };
-            selectDataQueue.Enqueue(array);
-            return TestResult.SelectTestResult(selectDataQueue);
-        }
-
         /// <summary>
         /// 上位机查询测试结果
         /// </summary>
@@ -366,32 +344,50 @@ namespace MesAPI
             string selectSQL = "";
             if (string.IsNullOrEmpty(sn) && string.IsNullOrEmpty(typeNo) && string.IsNullOrEmpty(station))
             {
-                selectSQL = $"SELECT {DbTable.F_Test_Result.SN} AS 产品追溯码,{DbTable.F_Test_Result.TYPE_NO} AS 产品型号," +
-                $"{DbTable.F_Test_Result.STATION_NAME} AS 站位名称,{DbTable.F_Test_Result.TEST_RESULT} AS 测试结果," +
-                $"{DbTable.F_Test_Result.UPDATE_DATE} AS 更新日期,{DbTable.F_Test_Result.REMARK} AS 备注 " +
+                selectSQL = $"SELECT {DbTable.F_Test_Result.PROCESS_NAME} 工艺流程," +
+                $"{DbTable.F_Test_Result.SN} AS 产品追溯码," +
+                $"{DbTable.F_Test_Result.TYPE_NO} AS 产品型号," +
+                $"{DbTable.F_Test_Result.STATION_NAME} AS 站位名称," +
+                $"{DbTable.F_Test_Result.TEST_RESULT} AS 测试结果," +
+                $"{DbTable.F_Test_Result.UPDATE_DATE} AS 更新日期," +
+                $"{DbTable.F_Test_Result.REMARK} AS 备注, " +
+                $"{DbTable.F_Test_Result.TEAM_LEADER} 班组长, " +
+                $"{DbTable.F_Test_Result.ADMIN} 管理员 " +
                 $"FROM {DbTable.F_TEST_RESULT_NAME}";
             }
             else
             {
                 if (IsSnFuzzy)
                 {
-                    selectSQL = $"SELECT {DbTable.F_Test_Result.SN} 产品追溯码,{DbTable.F_Test_Result.TYPE_NO} 产品型号," +
-                    $"{DbTable.F_Test_Result.STATION_NAME} 站位名称,{DbTable.F_Test_Result.TEST_RESULT} 测试结果," +
-                    $"{DbTable.F_Test_Result.UPDATE_DATE} 更新日期,{DbTable.F_Test_Result.REMARK} 备注 " +
-                    $"FROM {DbTable.F_TEST_RESULT_NAME} " +
-                    $"WHERE {DbTable.F_Test_Result.SN} like '%{sn}%' OR " +
-                    $"{DbTable.F_Test_Result.TYPE_NO} like '%{typeNo}%' OR " +
-                    $"{DbTable.F_Test_Result.STATION_NAME} like '%{station}%'";
+                    selectSQL = $"SELECT {DbTable.F_Test_Result.PROCESS_NAME} 工艺流程," +
+                        $"{DbTable.F_Test_Result.SN} 产品追溯码," +
+                        $"{DbTable.F_Test_Result.TYPE_NO} 产品型号," +
+                        $"{DbTable.F_Test_Result.STATION_NAME} 站位名称," +
+                        $"{DbTable.F_Test_Result.TEST_RESULT} 测试结果," +
+                        $"{DbTable.F_Test_Result.UPDATE_DATE} 更新日期," +
+                        $"{DbTable.F_Test_Result.REMARK} 备注, " +
+                        $"{DbTable.F_Test_Result.TEAM_LEADER} 班组长, " +
+                        $"{DbTable.F_Test_Result.ADMIN} 管理员 " +
+                        $"FROM {DbTable.F_TEST_RESULT_NAME} " +
+                        $"WHERE {DbTable.F_Test_Result.SN} like '%{sn}%' OR " +
+                        $"{DbTable.F_Test_Result.TYPE_NO} like '%{typeNo}%' OR " +
+                        $"{DbTable.F_Test_Result.STATION_NAME} like '%{station}%'";
                 }
                 else
                 {
-                    selectSQL = $"SELECT {DbTable.F_Test_Result.SN} 产品追溯码,{DbTable.F_Test_Result.TYPE_NO} 产品型号," +
-                    $"{DbTable.F_Test_Result.STATION_NAME} 站位名称,{DbTable.F_Test_Result.TEST_RESULT} 测试结果," +
-                    $"{DbTable.F_Test_Result.UPDATE_DATE} 更新日期,{DbTable.F_Test_Result.REMARK} 备注 " +
-                    $"FROM {DbTable.F_TEST_RESULT_NAME} " +
-                    $"WHERE {DbTable.F_Test_Result.SN} = '{sn}' OR " +
-                    $"{DbTable.F_Test_Result.TYPE_NO} = '{typeNo}' OR " +
-                    $"{DbTable.F_Test_Result.STATION_NAME} = '{station}'";
+                    selectSQL = $"SELECT {DbTable.F_Test_Result.PROCESS_NAME} 工艺流程," +
+                        $"{DbTable.F_Test_Result.SN} 产品追溯码," +
+                        $"{DbTable.F_Test_Result.TYPE_NO} 产品型号," +
+                        $"{DbTable.F_Test_Result.STATION_NAME} 站位名称," +
+                        $"{DbTable.F_Test_Result.TEST_RESULT} 测试结果," +
+                        $"{DbTable.F_Test_Result.UPDATE_DATE} 更新日期," +
+                        $"{DbTable.F_Test_Result.REMARK} 备注, " +
+                        $"{DbTable.F_Test_Result.TEAM_LEADER} 班组长, " +
+                        $"{DbTable.F_Test_Result.ADMIN} 管理员 " +
+                        $"FROM {DbTable.F_TEST_RESULT_NAME} " +
+                        $"WHERE {DbTable.F_Test_Result.SN} = '{sn}' OR " +
+                        $"{DbTable.F_Test_Result.TYPE_NO} = '{typeNo}' OR " +
+                        $"{DbTable.F_Test_Result.STATION_NAME} = '{station}'";
                 }
             }
             LogHelper.Log.Info(selectSQL);
@@ -709,6 +705,28 @@ namespace MesAPI
                     $"{DbTable.F_Material_Statistics.STATION_NAME} = '{materialMsg.StationName}'";
                 }
             }
+            LogHelper.Log.Info(selectSQL);
+            return SQLServer.ExecuteDataSet(selectSQL);
+        }
+
+        public DataSet SelectMaterialUserProduct(string materialCode)
+        {
+            var selectSQL = $"SELECT DISTINCT " +
+                $"a.{DbTable.F_Material_Statistics.MATERIAL_CODE} 物料编码," +
+                $"c.{DbTable.F_Material.MATERIAL_NAME} 物料名称," +
+                $"a.{DbTable.F_Material_Statistics.TYPE_NO} 产品型号," +
+                $"b.{DbTable.F_PRODUCT_MATERIAL.STOCK} 物料总库存," +
+                $"sum(a.{DbTable.F_Material_Statistics.MATERIAL_AMOUNT}) 当前产品已使用物料数量 " +
+                $"FROM " +
+                $"{DbTable.F_MATERIAL_STATISTICS_NAME} a," +
+                $"{DbTable.F_PRODUCT_MATERIAL_NAME} b," +
+                $"{DbTable.F_MATERIAL_NAME} c " +
+                $"WHERE " +
+                $"a.{DbTable.F_Material_Statistics.MATERIAL_CODE} = b.{DbTable.F_PRODUCT_MATERIAL.MATERIAL_CODE} AND " +
+                $"a.{DbTable.F_Material_Statistics.MATERIAL_CODE} = c.{DbTable.F_Material.MATERIAL_CODE} AND " +
+                $"a.{DbTable.F_Material_Statistics.MATERIAL_CODE} like '%{materialCode}%' GROUP BY " +
+                $"a.{DbTable.F_Material_Statistics.TYPE_NO},a.{DbTable.F_Material_Statistics.MATERIAL_CODE}," +
+                $"b.{DbTable.F_PRODUCT_MATERIAL.STOCK},c.{DbTable.F_Material.MATERIAL_NAME}";
             LogHelper.Log.Info(selectSQL);
             return SQLServer.ExecuteDataSet(selectSQL);
         }

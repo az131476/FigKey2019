@@ -16,6 +16,14 @@ namespace MesAPI
     [ServiceContract]
     public interface IMesService
     {
+        #region 【接口】TestCommunication 测试通讯
+        [OperationContract]
+        [SwaggerWcfPath("TestCommunication", "测试通讯")]
+        [WebInvoke(Method = "GET", UriTemplate = "TestCommunication?value={value}",
+            BodyStyle = WebMessageBodyStyle.Bare, RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
+        string TestCommunication([SwaggerWcfParameter(Description = "传入任意字符串=返回值")]string value);
+        #endregion
+
         //用户信息
         [OperationContract]
         LoginResult Login(string username, string password, LoginUser loginUser);
@@ -101,6 +109,9 @@ namespace MesAPI
 
         [OperationContract]
         DataSet SelectMaterialMsg(MaterialMsg materialMsg, bool IsSelectAll);
+
+        [OperationContract]
+        DataSet SelectMaterialUserProduct(string materialCode);
 
         //外箱容量
         [OperationContract]

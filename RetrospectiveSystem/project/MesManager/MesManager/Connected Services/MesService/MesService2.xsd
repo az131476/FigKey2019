@@ -59,7 +59,10 @@
   <xs:complexType name="MaterialMsg">
     <xs:sequence>
       <xs:element minOccurs="0" name="MaterialCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MaterialLOT" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="MaterialName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MaterialPN" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MaterialRID" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Result" type="xs:int" />
       <xs:element minOccurs="0" name="Sn_Inner" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Sn_Outter" nillable="true" type="xs:string" />

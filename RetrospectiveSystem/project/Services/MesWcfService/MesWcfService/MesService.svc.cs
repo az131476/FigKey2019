@@ -39,6 +39,14 @@ namespace MesWcfService
         [SwaggerWcfTag("MesServcie 服务")]
         public string TestCommunication(string value)
         {
+            //通讯正常返回原值
+            //客户端与接口异常：收不到返回值
+            //接口与数据库异常：
+            var testRes = SQLServer.TestSQLConnectState();
+            if (testRes != "")
+            {
+                return "【SQL Server】"+testRes;
+            }
             return value;
         }
         #endregion
