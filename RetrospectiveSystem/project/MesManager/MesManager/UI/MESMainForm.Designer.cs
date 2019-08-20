@@ -30,28 +30,28 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MESMainForm));
             this.radPanorama1 = new Telerik.WinControls.UI.RadPanorama();
+            this.btn_user_manger = new Telerik.WinControls.UI.RadButton();
+            this.btn_user_login = new Telerik.WinControls.UI.RadButton();
             this.toolsGroup = new Telerik.WinControls.UI.TileGroupElement();
             this.mainBasicInfo = new Telerik.WinControls.UI.RadTileElement();
             this.mainMaterialManager = new Telerik.WinControls.UI.RadTileElement();
             this.mainGraphView = new Telerik.WinControls.UI.RadTileElement();
             this.mainProcess = new Telerik.WinControls.UI.RadTileElement();
             this.mainQuanlityAnomaly = new Telerik.WinControls.UI.RadTileElement();
+            this.mainReportData = new Telerik.WinControls.UI.RadTileElement();
             this.mainStatisticalAnalysis = new Telerik.WinControls.UI.RadTileElement();
             this.mainTestStandData = new Telerik.WinControls.UI.RadTileElement();
-            this.mainReportData = new Telerik.WinControls.UI.RadTileElement();
-            this.btn_user_login = new Telerik.WinControls.UI.RadButton();
-            this.btn_user_manger = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.radPanorama1)).BeginInit();
             this.radPanorama1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btn_user_login)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_user_manger)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_user_login)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
             // radPanorama1
             // 
             this.radPanorama1.AutoArrangeNewTiles = false;
-            this.radPanorama1.BackColor = System.Drawing.Color.White;
+            this.radPanorama1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(35)))), ((int)(((byte)(49)))));
             this.radPanorama1.Controls.Add(this.btn_user_manger);
             this.radPanorama1.Controls.Add(this.btn_user_login);
             this.radPanorama1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -62,9 +62,31 @@
             this.radPanorama1.PanelImageSize = new System.Drawing.Size(1024, 768);
             this.radPanorama1.RowsCount = 2;
             this.radPanorama1.ShowGroups = true;
-            this.radPanorama1.Size = new System.Drawing.Size(1124, 929);
+            this.radPanorama1.Size = new System.Drawing.Size(1132, 959);
             this.radPanorama1.TabIndex = 1;
             ((Telerik.WinControls.UI.RadPanoramaElement)(this.radPanorama1.GetChildAt(0))).BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(23)))), ((int)(((byte)(117)))));
+            // 
+            // btn_user_manger
+            // 
+            this.btn_user_manger.BackColor = System.Drawing.Color.Navy;
+            this.btn_user_manger.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_user_manger.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btn_user_manger.Location = new System.Drawing.Point(12, 712);
+            this.btn_user_manger.Name = "btn_user_manger";
+            this.btn_user_manger.Size = new System.Drawing.Size(120, 48);
+            this.btn_user_manger.TabIndex = 2;
+            this.btn_user_manger.Text = "用户管理";
+            // 
+            // btn_user_login
+            // 
+            this.btn_user_login.BackColor = System.Drawing.Color.Navy;
+            this.btn_user_login.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_user_login.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btn_user_login.Location = new System.Drawing.Point(12, 795);
+            this.btn_user_login.Name = "btn_user_login";
+            this.btn_user_login.Size = new System.Drawing.Size(120, 48);
+            this.btn_user_login.TabIndex = 1;
+            this.btn_user_login.Text = "用户登录";
             // 
             // toolsGroup
             // 
@@ -199,7 +221,6 @@
             this.mainReportData.ImageLayout = System.Windows.Forms.ImageLayout.None;
             this.mainReportData.Name = "mainReportData";
             this.mainReportData.Padding = new System.Windows.Forms.Padding(15, 15, 0, 10);
-            this.mainReportData.Row = 0;
             this.mainReportData.Text = "<html>追溯管理 <br>";
             this.mainReportData.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.mainReportData.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
@@ -246,34 +267,12 @@
             this.mainTestStandData.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
             this.mainTestStandData.UseCompatibleTextRendering = false;
             // 
-            // btn_user_login
-            // 
-            this.btn_user_login.BackColor = System.Drawing.Color.Navy;
-            this.btn_user_login.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_user_login.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.btn_user_login.Location = new System.Drawing.Point(12, 795);
-            this.btn_user_login.Name = "btn_user_login";
-            this.btn_user_login.Size = new System.Drawing.Size(120, 48);
-            this.btn_user_login.TabIndex = 1;
-            this.btn_user_login.Text = "用户登录";
-            // 
-            // btn_user_manger
-            // 
-            this.btn_user_manger.BackColor = System.Drawing.Color.Navy;
-            this.btn_user_manger.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_user_manger.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.btn_user_manger.Location = new System.Drawing.Point(12, 712);
-            this.btn_user_manger.Name = "btn_user_manger";
-            this.btn_user_manger.Size = new System.Drawing.Size(120, 48);
-            this.btn_user_manger.TabIndex = 2;
-            this.btn_user_manger.Text = "用户管理";
-            // 
             // MESMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1124, 929);
+            this.ClientSize = new System.Drawing.Size(1132, 959);
             this.Controls.Add(this.radPanorama1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -286,8 +285,8 @@
             this.Load += new System.EventHandler(this.MESMainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.radPanorama1)).EndInit();
             this.radPanorama1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.btn_user_login)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_user_manger)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_user_login)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 

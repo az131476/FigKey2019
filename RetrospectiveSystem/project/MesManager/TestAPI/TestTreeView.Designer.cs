@@ -1,6 +1,6 @@
-﻿namespace MesManager.UI
+﻿namespace TestAPI
 {
-    partial class RepairCenter
+    partial class TestTreeView
     {
         /// <summary>
         /// Required designer variable.
@@ -28,26 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
+            this.treeView1 = new System.Windows.Forms.TreeView();
             this.SuspendLayout();
             // 
-            // RepairCenter
+            // treeView1
+            // 
+            this.treeView1.Location = new System.Drawing.Point(12, 12);
+            this.treeView1.Name = "treeView1";
+            this.treeView1.Size = new System.Drawing.Size(292, 426);
+            this.treeView1.TabIndex = 0;
+            // 
+            // TestTreeView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(35)))), ((int)(((byte)(49)))));
-            this.ClientSize = new System.Drawing.Size(810, 596);
-            this.Name = "RepairCenter";
-            // 
-            // 
-            // 
-            this.RootElement.ApplyShapeToControl = true;
-            this.Text = "RepairCenter";
-            ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
+            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.treeView1);
+            this.Name = "TestTreeView";
+            this.Text = "TestTreeView";
+            this.Load += new System.EventHandler(this.TestTreeView_Load);
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private System.Windows.Forms.TreeView treeView1;
     }
 }

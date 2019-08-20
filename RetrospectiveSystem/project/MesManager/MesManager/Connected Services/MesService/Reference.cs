@@ -888,6 +888,18 @@ namespace MesManager.MesService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectPackageProduct", ReplyAction="http://tempuri.org/IMesService/SelectPackageProductResponse")]
         System.Threading.Tasks.Task<System.Data.DataSet> SelectPackageProductAsync(MesManager.MesService.PackageProduct packageProduct);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectTestProgrameVersion", ReplyAction="http://tempuri.org/IMesService/SelectTestProgrameVersionResponse")]
+        System.Data.DataSet SelectTestProgrameVersion(string productTypeNo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectTestProgrameVersion", ReplyAction="http://tempuri.org/IMesService/SelectTestProgrameVersionResponse")]
+        System.Threading.Tasks.Task<System.Data.DataSet> SelectTestProgrameVersionAsync(string productTypeNo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectTestLimitConfig", ReplyAction="http://tempuri.org/IMesService/SelectTestLimitConfigResponse")]
+        System.Data.DataSet SelectTestLimitConfig(string productTypeNo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectTestLimitConfig", ReplyAction="http://tempuri.org/IMesService/SelectTestLimitConfigResponse")]
+        System.Threading.Tasks.Task<System.Data.DataSet> SelectTestLimitConfigAsync(string productTypeNo);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -1240,6 +1252,22 @@ namespace MesManager.MesService {
         
         public System.Threading.Tasks.Task<System.Data.DataSet> SelectPackageProductAsync(MesManager.MesService.PackageProduct packageProduct) {
             return base.Channel.SelectPackageProductAsync(packageProduct);
+        }
+        
+        public System.Data.DataSet SelectTestProgrameVersion(string productTypeNo) {
+            return base.Channel.SelectTestProgrameVersion(productTypeNo);
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> SelectTestProgrameVersionAsync(string productTypeNo) {
+            return base.Channel.SelectTestProgrameVersionAsync(productTypeNo);
+        }
+        
+        public System.Data.DataSet SelectTestLimitConfig(string productTypeNo) {
+            return base.Channel.SelectTestLimitConfig(productTypeNo);
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> SelectTestLimitConfigAsync(string productTypeNo) {
+            return base.Channel.SelectTestLimitConfigAsync(productTypeNo);
         }
     }
 }

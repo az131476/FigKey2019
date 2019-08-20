@@ -1109,7 +1109,68 @@ namespace MesAPI
         }
         #endregion
 
-        #region 产品设站接口
+        #region 测试台数据
+        public DataSet SelectTestLimitConfig(string productTypeNo)
+        {
+            var selectSQL = "";
+            if (productTypeNo == "")
+            {
+                selectSQL = $"SELECT {DbTable.F_TEST_LIMIT_CONFIG.TYPE_NO} 产品型号," +
+                $"{DbTable.F_TEST_LIMIT_CONFIG.STATION_NAME} 工站名称," +
+                $"{DbTable.F_TEST_LIMIT_CONFIG.LIMIT_VALUE} LIMIT值," +
+                $"{DbTable.F_TEST_LIMIT_CONFIG.TEAM_LEADER} 班组长," +
+                $"{DbTable.F_TEST_LIMIT_CONFIG.ADMIN} 管理员," +
+                $"{DbTable.F_TEST_LIMIT_CONFIG.UPDATE_DATE} 更新日期 FROM " +
+                $"{DbTable.F_TEST_LIMIT_CONFIG_NAME} ORDER BY " +
+                $"{DbTable.F_TEST_LIMIT_CONFIG.UPDATE_DATE} DESC";
+            }
+            else
+            {
+                selectSQL = $"SELECT {DbTable.F_TEST_LIMIT_CONFIG.TYPE_NO} 产品型号," +
+                $"{DbTable.F_TEST_LIMIT_CONFIG.STATION_NAME} 工站名称," +
+                $"{DbTable.F_TEST_LIMIT_CONFIG.LIMIT_VALUE} LIMIT值," +
+                $"{DbTable.F_TEST_LIMIT_CONFIG.TEAM_LEADER} 班组长," +
+                $"{DbTable.F_TEST_LIMIT_CONFIG.ADMIN} 管理员," +
+                $"{DbTable.F_TEST_LIMIT_CONFIG.UPDATE_DATE} 更新日期 FROM " +
+                $"{DbTable.F_TEST_LIMIT_CONFIG_NAME} WHERE " +
+                $"{DbTable.F_TEST_LIMIT_CONFIG.TYPE_NO} = '{productTypeNo}' ORDER BY " +
+                $"{DbTable.F_TEST_LIMIT_CONFIG.UPDATE_DATE} DESC";
+            }
+            
+            return SQLServer.ExecuteDataSet(selectSQL);
+        }
+
+        public DataSet SelectTestProgrameVersion(string productTypeNo)
+        {
+            var selectSQL = "";
+            if (productTypeNo == "")
+            {
+                selectSQL = $"SELECT {DbTable.F_TEST_PROGRAME_VERSION.TYPE_NO} 产品型号," +
+                $"{DbTable.F_TEST_PROGRAME_VERSION.STATION_NAME} 工站名称," +
+                $"{DbTable.F_TEST_PROGRAME_VERSION.PROGRAME_NAME} 程序名称," +
+                $"{DbTable.F_TEST_PROGRAME_VERSION.PROGRAME_VERSION} 程序版本," +
+                $"{DbTable.F_TEST_PROGRAME_VERSION.TEAM_LEADER} 班组长," +
+                $"{DbTable.F_TEST_PROGRAME_VERSION.ADMIN} 管理员," +
+                $"{DbTable.F_TEST_PROGRAME_VERSION.UPDATE_DATE} 更新日期 FROM " +
+                $"{DbTable.F_TEST_PROGRAME_VERSION_NAME} ORDER BY " +
+                $"{DbTable.F_TEST_PROGRAME_VERSION.UPDATE_DATE} DESC";
+            }
+            else
+            {
+                selectSQL = $"SELECT {DbTable.F_TEST_PROGRAME_VERSION.TYPE_NO} 产品型号," +
+                $"{DbTable.F_TEST_PROGRAME_VERSION.STATION_NAME} 工站名称," +
+                $"{DbTable.F_TEST_PROGRAME_VERSION.PROGRAME_NAME} 程序名称," +
+                $"{DbTable.F_TEST_PROGRAME_VERSION.PROGRAME_VERSION} 程序版本," +
+                $"{DbTable.F_TEST_PROGRAME_VERSION.TEAM_LEADER} 班组长," +
+                $"{DbTable.F_TEST_PROGRAME_VERSION.ADMIN} 管理员," +
+                $"{DbTable.F_TEST_PROGRAME_VERSION.UPDATE_DATE} 更新日期 FROM " +
+                $"{DbTable.F_TEST_PROGRAME_VERSION_NAME} WHERE " +
+                $"{DbTable.F_TEST_PROGRAME_VERSION.TYPE_NO} = '{productTypeNo}' ORDER BY " +
+                $"{DbTable.F_TEST_PROGRAME_VERSION.UPDATE_DATE} DESC";
+            }
+            
+            return SQLServer.ExecuteDataSet(selectSQL);
+        }
         #endregion
     }
 }

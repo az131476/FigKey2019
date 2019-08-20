@@ -143,5 +143,11 @@ namespace MesAPI
             BodyStyle = WebMessageBodyStyle.WrappedRequest, RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
         DataSet SelectPackageProduct(PackageProduct packageProduct);
         #endregion
+
+        [OperationContract]
+        DataSet SelectTestProgrameVersion(string productTypeNo);
+
+        [OperationContract]
+        DataSet SelectTestLimitConfig(string productTypeNo);
     }
 }

@@ -10,9 +10,9 @@ using Telerik.WinControls.UI;
 using MesManager.Control;
 using System.IO;
 using Telerik.WinControls.UI.Export;
-using Microsoft.Office.Interop.Excel;
 using CommonUtils.Logger;
 using CommonUtils.FileHelper;
+using MesManager.TelerikWinform.GridViewCommon.GridViewDataExport;
 
 namespace MesManager.UI
 {
@@ -81,7 +81,7 @@ namespace MesManager.UI
                 var path = FileSelect.SaveAs(filter, "C:\\");
                 if (path == "")
                     return;
-                RunExportToExcelML(path, radGridView);
+                ExportData.RunExportToExcelML(path, radGridView);
             }
             else if (selectIndex == (int)ExportFormat.HTML)
             {
@@ -89,7 +89,7 @@ namespace MesManager.UI
                 var path = FileSelect.SaveAs(filter, "C:\\");
                 if (path == "")
                     return;
-                RunExportToHTML(path, radGridView);
+                ExportData.RunExportToHTML(path, radGridView);
             }
             else if (selectIndex == (int)ExportFormat.PDF)
             {
@@ -97,7 +97,7 @@ namespace MesManager.UI
                 var path = FileSelect.SaveAs(filter, "C:\\");
                 if (path == "")
                     return;
-                RunExportToPDF(path, radGridView);
+                ExportData.RunExportToPDF(path, radGridView);
             }
             else if (selectIndex == (int)ExportFormat.CSV)
             {
@@ -105,7 +105,7 @@ namespace MesManager.UI
                 var path = FileSelect.SaveAs(filter, "C:\\");
                 if (path == "")
                     return;
-                RunExportToCSV(path, radGridView);
+                ExportData.RunExportToCSV(path, radGridView);
             }
         }
 
@@ -154,21 +154,26 @@ namespace MesManager.UI
             DataGridViewCommon.SetRadGridViewProperty(this.radGridViewPackage, false);
             DataGridViewCommon.SetRadGridViewProperty(this.radGridViewMaterial, false);
             SetPanelFalse();
+            this.panel_sn.Visible = true;
+            this.panel_sn.Dock = DockStyle.Fill;
             this.tool_sn_exportFilter.Items.Clear();
             this.tool_sn_exportFilter.Items.Add(ExportFormat.EXCEL);
             this.tool_sn_exportFilter.Items.Add(ExportFormat.HTML);
             this.tool_sn_exportFilter.Items.Add(ExportFormat.PDF);
             this.tool_sn_exportFilter.Items.Add(ExportFormat.CSV);
+            this.tool_sn_exportFilter.SelectedIndex = 0;
             this.tool_package_exportFilter.Items.Clear();
             this.tool_package_exportFilter.Items.Add(ExportFormat.EXCEL);
             this.tool_package_exportFilter.Items.Add(ExportFormat.HTML);
             this.tool_package_exportFilter.Items.Add(ExportFormat.PDF);
             this.tool_package_exportFilter.Items.Add(ExportFormat.CSV);
+            this.tool_package_exportFilter.SelectedIndex = 0;
             this.tool_material_exportFilter.Items.Clear();
             this.tool_material_exportFilter.Items.Add(ExportFormat.EXCEL);
             this.tool_material_exportFilter.Items.Add(ExportFormat.HTML);
             this.tool_material_exportFilter.Items.Add(ExportFormat.PDF);
             this.tool_material_exportFilter.Items.Add(ExportFormat.CSV);
+            this.tool_material_exportFilter.SelectedIndex = 0;
         }
 
         private void SetPanelFalse()
@@ -217,222 +222,7 @@ namespace MesManager.UI
 
         private void Btn_selectOfPackage_Click(object sender, EventArgs e)
         {
-            SelectOfPackage();
-        }
-
-        private void RunExportToExcelML(string fileName,RadGridView radGridView)
-        {
-            ExportToExcelML excelExporter = new ExportToExcelML(radGridView);
-            excelExporter.SummariesExportOption = SummariesOption.ExportAll;
-
-            //set export settings
-            //excelExporter.ExportVisualSettings = this.radCheckBoxExportVisual.IsChecked;
-            //excelExporter.ExportHierarchy = this.radCheckBoxExportHierarchy.IsChecked;
-            excelExporter.HiddenColumnOption = HiddenOption.DoNotExport;
-            try
-            {
-                this.Cursor = Cursors.WaitCursor;
-
-                excelExporter.RunExport(fileName);
-
-                RadMessageBox.SetThemeName(radGridView.ThemeName);
-                DialogResult dr = RadMessageBox.Show("The data in the grid was exported successfully. Do you want to open the file?",
-                    "Export to Excel", MessageBoxButtons.YesNo, RadMessageIcon.Question);
-                if (dr == DialogResult.Yes)
-                {
-                    try
-                    {
-                        System.Diagnostics.Process.Start(fileName);
-                    }
-                    catch (Exception ex)
-                    {
-                        string message = String.Format("The file cannot be opened on your system.\nError message: {0}", ex.Message);
-                        RadMessageBox.Show(message, "Open File", MessageBoxButtons.OK, RadMessageIcon.Error);
-                    }
-                }
-            }
-            catch (IOException ex)
-            {
-                RadMessageBox.SetThemeName(radGridView.ThemeName);
-                RadMessageBox.Show(this, ex.Message, "I/O Error", MessageBoxButtons.OK, RadMessageIcon.Error);
-            }
-            finally
-            {
-                this.Cursor = Cursors.Default;
-            }
-        }
-
-        private void RunExportToCSV(string fileName,RadGridView radGridView)
-        {
-            ExportToCSV csvExporter = new ExportToCSV(radGridView);
-            csvExporter.CSVCellFormatting += csvExporter_CSVCellFormatting;
-            csvExporter.SummariesExportOption = SummariesOption.ExportAll;
-
-            //set export settings
-            //csvExporter.ExportHierarchy = this.radCheckBoxExportHierarchy.IsChecked;
-            csvExporter.HiddenColumnOption = HiddenOption.DoNotExport;
-
-            try
-            {
-                this.Cursor = Cursors.WaitCursor;
-
-                csvExporter.RunExport(fileName);
-
-                RadMessageBox.SetThemeName(radGridView.ThemeName);
-                DialogResult dr = RadMessageBox.Show("The data in the grid was exported successfully. Do you want to open the file?",
-                    "Export to CSV", MessageBoxButtons.YesNo, RadMessageIcon.Question);
-                if (dr == DialogResult.Yes)
-                {
-                    try
-                    {
-                        System.Diagnostics.Process.Start(fileName);
-                    }
-                    catch (Exception ex)
-                    {
-                        string message = String.Format("The file cannot be opened on your system.\nError message: {0}", ex.Message);
-                        RadMessageBox.Show(message, "Open File", MessageBoxButtons.OK, RadMessageIcon.Error);
-                    }
-                }
-            }
-            catch (IOException ex)
-            {
-                RadMessageBox.SetThemeName(radGridView.ThemeName);
-                RadMessageBox.Show(this, ex.Message, "I/O Error", MessageBoxButtons.OK, RadMessageIcon.Error);
-            }
-            finally
-            {
-                this.Cursor = Cursors.Default;
-            }
-        }
-
-        void csvExporter_CSVCellFormatting(object sender, Telerik.WinControls.UI.Export.CSV.CSVCellFormattingEventArgs e)
-        {
-            if (e.GridCellInfo.ColumnInfo is GridViewDateTimeColumn)
-            {
-                e.CSVCellElement.Value = this.FormatDate(e.CSVCellElement.Value);
-            }
-        }
-
-        private string FormatDate(object value)
-        {
-            DateTime date;
-            if (DateTime.TryParse(value.ToString(), out date))
-            {
-                return date.ToString("d MMM yyyy");
-            }
-
-            return value.ToString();
-        }
-
-        private void RunExportToHTML(string fileName,RadGridView radGridView)
-        {
-            ExportToHTML htmlExporter = new ExportToHTML(radGridView);
-            htmlExporter.HTMLCellFormatting += htmlExporter_HTMLCellFormatting;
-
-            htmlExporter.SummariesExportOption = SummariesOption.ExportAll;
-
-            //set export settings
-            //htmlExporter.ExportVisualSettings = this.radCheckBoxExportVisual.IsChecked;
-            //htmlExporter.ExportHierarchy = this.radCheckBoxExportHierarchy.IsChecked;
-            htmlExporter.HiddenColumnOption = HiddenOption.DoNotExport;
-
-            try
-            {
-                this.Cursor = Cursors.WaitCursor;
-
-                htmlExporter.RunExport(fileName);
-
-                RadMessageBox.SetThemeName(radGridView.ThemeName);
-                DialogResult dr = RadMessageBox.Show("The data in the grid was exported successfully. Do you want to open the file?",
-                    "Export to HTML", MessageBoxButtons.YesNo, RadMessageIcon.Question);
-                if (dr == DialogResult.Yes)
-                {
-                    try
-                    {
-                        System.Diagnostics.Process.Start(fileName);
-                    }
-                    catch (Exception ex)
-                    {
-                        string message = String.Format("The file cannot be opened on your system.\nError message: {0}", ex.Message);
-                        RadMessageBox.Show(message, "Open File", MessageBoxButtons.OK, RadMessageIcon.Error);
-                    }
-                }
-            }
-            catch (IOException ex)
-            {
-                RadMessageBox.SetThemeName(radGridView.ThemeName);
-                RadMessageBox.Show(this, ex.Message, "I/O Error", MessageBoxButtons.OK, RadMessageIcon.Error);
-            }
-            finally
-            {
-                this.Cursor = Cursors.Default;
-            }
-        }
-
-        void htmlExporter_HTMLCellFormatting(object sender, Telerik.WinControls.UI.Export.HTML.HTMLCellFormattingEventArgs e)
-        {
-            if (e.GridCellInfo.ColumnInfo is GridViewDateTimeColumn)
-            {
-                e.HTMLCellElement.Value = this.FormatDate(e.HTMLCellElement.Value);
-            }
-        }
-
-        private void RunExportToPDF(string fileName,RadGridView radGridView)
-        {
-            ExportToPDF pdfExporter = new ExportToPDF(radGridView);
-            pdfExporter.PdfExportSettings.Title = "My PDF Title";
-            pdfExporter.PdfExportSettings.PageWidth = 297;
-            pdfExporter.PdfExportSettings.PageHeight = 210;
-            pdfExporter.FitToPageWidth = true;
-            pdfExporter.HTMLCellFormatting += pdfExporter_HTMLCellFormatting;
-
-            pdfExporter.SummariesExportOption = SummariesOption.ExportAll;
-
-            //set export settings
-            //pdfExporter.ExportVisualSettings = this.radCheckBoxExportVisual.IsChecked;
-            //pdfExporter.ExportHierarchy = this.radCheckBoxExportHierarchy.IsChecked;
-            pdfExporter.HiddenColumnOption = HiddenOption.DoNotExport;
-
-            try
-            {
-                this.Cursor = Cursors.WaitCursor;
-
-                pdfExporter.RunExport(fileName);
-
-                RadMessageBox.SetThemeName(radGridView.ThemeName);
-                DialogResult dr = RadMessageBox.Show("The data in the grid was exported successfully. Do you want to open the file?",
-                    "Export to PDF", MessageBoxButtons.YesNo, RadMessageIcon.Question);
-                if (dr == DialogResult.Yes)
-                {
-                    try
-                    {
-                        System.Diagnostics.Process.Start(fileName);
-                    }
-                    catch (Exception ex)
-                    {
-                        string message = String.Format("The file cannot be opened on your system.\nError message: {0}", ex.Message);
-                        RadMessageBox.Show(message, "Open File", MessageBoxButtons.OK, RadMessageIcon.Error);
-                    }
-                }
-
-            }
-            catch (IOException ex)
-            {
-                RadMessageBox.SetThemeName(radGridView.ThemeName);
-                RadMessageBox.Show(this, ex.Message, "I/O Error", MessageBoxButtons.OK, RadMessageIcon.Error);
-            }
-            finally
-            {
-                this.Cursor = Cursors.Default;
-            }
-        }
-
-        void pdfExporter_HTMLCellFormatting(object sender, Telerik.WinControls.UI.Export.HTML.HTMLCellFormattingEventArgs e)
-        {
-            if (e.GridCellInfo.ColumnInfo is GridViewDateTimeColumn)
-            {
-                e.HTMLCellElement.Value = this.FormatDate(e.HTMLCellElement.Value);
-            }
+            SelectOfPackage();MessageBox.Show("","",MessageBoxButtons.OK);
         }
     }
 }
