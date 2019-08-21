@@ -9,6 +9,7 @@ using Telerik.WinControls;
 using MesManager.Control;
 using CommonUtils.Logger;
 using Telerik.WinControls.UI;
+using NetronLight;
 
 namespace MesManager.UI
 {
@@ -310,6 +311,53 @@ namespace MesManager.UI
             }
 
             RefreshProcessData();
+        }
+
+        private void NetronLightGraph()
+        {
+            this.groupbox_graph.Controls.Clear();
+            GraphControl graphControl1 = new GraphControl();
+            graphControl1.Dock = DockStyle.Fill;
+            //this.graphControl1.Enabled = false;
+            graphControl1.ShowGrid = false;
+            graphControl1.BackColor = Color.SteelBlue;
+            this.groupbox_graph.Controls.Add(graphControl1);
+            int x = 50;
+            int y = 30;
+            SimpleRectangle srSharpLast = null;
+            for (int i = 0; i < this.radGridView1.Rows.Count; i++)
+            {
+                var stationName = this.radGridView1.Rows[i].Cells[1].Value.ToString();
+                
+                SimpleRectangle srSharp = graphControl1.AddShape(ShapeTypes.Rectangular, new Point(x, y)) as SimpleRectangle;
+                srSharp.Text = stationName;
+                srSharp.Height = 50;
+                srSharp.ShapeColor = Color.LightSteelBlue;
+                //
+                if (i % 2 == 0  && i>1)
+                {
+                    graphControl1.AddConnection(srSharpLast.Connectors[2], srSharp.Connectors[1]);
+                }
+
+                if (i + 1 < this.radGridView1.Rows.Count)
+                {
+                    x += 200;
+                    var stationNameLast = this.radGridView1.Rows[i + 1].Cells[1].Value.ToString();
+                    srSharpLast = graphControl1.AddShape(ShapeTypes.Rectangular, new Point(x, y)) as SimpleRectangle;
+                    srSharpLast.Text = stationNameLast;
+                    srSharpLast.Height = 50;
+                    srSharpLast.ShapeColor = Color.LightSteelBlue;
+
+                    graphControl1.AddConnection(srSharp.Connectors[2],srSharpLast.Connectors[1]);
+                    i++;
+                }
+                x += 200;
+            }
+        }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            NetronLightGraph();
         }
     }
 }

@@ -67,6 +67,9 @@
       <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
+    <Reference Include="NetronLight">
+      <HintPath>..\Lib\NetronLight.dll</HintPath>
+    </Reference>
     <Reference Include="RadControlSpy, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\telerik\RadControlSpy.dll</HintPath>
@@ -636,6 +639,9 @@
     <None Include="Resources\万通公司LOG426x90.png" />
     <None Include="Resources\Export_16x16.png" />
     <None Include="Resources\Refresh_16x16.png" />
+    <None Include="Resources\file_extension_txt.png" />
+    <None Include="Resources\FolderList32.png" />
+    <None Include="Resources\file_extension_xls.png" />
     <Content Include="完善.txt" />
     <Content Include="新需求.txt" />
     <Content Include="说明.txt" />

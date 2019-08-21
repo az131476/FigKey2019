@@ -53,7 +53,7 @@ namespace MesManager.Control.TreeViewUI
             }
         }
 
-        public static void PopulateTreeView(string path,TreeView treeView)
+        public static void PopulateTreeView(string path, TreeView treeView)
         {
             TreeNode rootNode;
             DirectoryInfo info = new DirectoryInfo(path);
@@ -61,26 +61,51 @@ namespace MesManager.Control.TreeViewUI
             {
                 rootNode = new TreeNode(info.Name);
                 rootNode.Tag = info;
-                GetDirectories(info.GetDirectories(), rootNode);
+                GetDirectories(info, rootNode);
                 treeView.Nodes.Add(rootNode);
+                treeView.ExpandAll();
             }
         }
 
-        private static void GetDirectories(DirectoryInfo[] subDirs, TreeNode nodeToAddTo)
+        private static void GetDirectories(DirectoryInfo subDirs, TreeNode nodeToAddTo)
         {
             TreeNode aNode;
-            DirectoryInfo[] subSubDirs;
-            foreach (DirectoryInfo subDir in subDirs)
+            DirectoryInfo[] subSubDirs = subDirs.GetDirectories();
+            foreach (DirectoryInfo subDir in subSubDirs)
             {
                 aNode = new TreeNode(subDir.Name, 0, 0);
-                aNode.Tag = subDir;
-                aNode.ImageKey = "folder";
-                subSubDirs = subDir.GetDirectories();
+                //aNode.Tag = subDir;
+                aNode.ImageKey = "Folder";
+                nodeToAddTo.Nodes.Add(aNode);
+
                 if (subSubDirs.Length != 0)
                 {
-                    GetDirectories(subSubDirs, aNode);
+                    GetDirectories(subDir, aNode);
                 }
+            }
+            FileInfo[] fileInfo = subDirs.GetFiles();   //目录下的文件
+            int fIndex = 0;
+            foreach (FileInfo fInfo in fileInfo)
+            {
+                var fName = fInfo.Name.ToString();
+                var fExtension = fInfo.Extension;
+                aNode = new TreeNode(fName);
+
+                //aNode.ImageKey = imageName;
+                //aNode.SelectedImageKey = imageName;
+                //aNode.Tag = fInfo;
+                //if (fExtension == ".txt")
+                //{
+                //    aNode.ImageKey = "export";
+                //    aNode.SelectedImageKey = "export";
+                //}
+                //else if (fExtension == ".xls")
+                //{
+                //    aNode.ImageKey = "extension_xls";
+                //    aNode.SelectedImageKey = "extension_xls";
+                //}
                 nodeToAddTo.Nodes.Add(aNode);
+                fIndex++;
             }
         }
     }

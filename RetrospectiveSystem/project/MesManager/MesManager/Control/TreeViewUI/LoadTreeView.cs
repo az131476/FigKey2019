@@ -27,13 +27,11 @@ namespace MesManager.Control.TreeViewUI
                 foreach (DirectoryInfo direc in new DirectoryInfo(FilePath).GetDirectories())
                 {
                     TreeNode tn = new TreeNode(direc.Name);
-                    tn.Text = direc.FullName;
+                    tn.Text = direc.Name;
                     SetTreeNodeIco(tn, "dir", imgs);
                     tn.Tag = direc.FullName;
                     SetSubDirectoryTreenode(direc, tn, imgs);
                     treeview.Nodes.Add(tn);
-
-
                 }
                 foreach (FileInfo finfo in new DirectoryInfo(FilePath).GetFiles())
                 {
@@ -105,12 +103,11 @@ namespace MesManager.Control.TreeViewUI
             }
         }
 
-
-
         #endregion
 
 
-        #region 根据文件夹绑定到树
+        #region 只绑定文件夹
+
         /// <summary>
         /// 根据文件夹绑定到树
         /// </summary>
@@ -144,9 +141,6 @@ namespace MesManager.Control.TreeViewUI
             }
 
         }
-        #endregion
-
-        #region 设置子目录
         /// <summary>
         /// 设置子目录的
         /// </summary>
@@ -174,6 +168,7 @@ namespace MesManager.Control.TreeViewUI
 
             }
         }
+
         #endregion
     }
 }

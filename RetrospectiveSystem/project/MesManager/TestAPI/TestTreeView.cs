@@ -29,7 +29,6 @@ namespace TestAPI
         private static TreeView treeViews;
         public static void PopulateTreeView(string path, TreeView treeView)
         {
-            treeViews = treeView;
             TreeNode rootNode;
             DirectoryInfo info = new DirectoryInfo(path);
             if (info.Exists)
@@ -40,13 +39,7 @@ namespace TestAPI
                 InitImageList(treeView);
                 treeView.Nodes.Add(rootNode);
                 treeView.ExpandAll();
-                treeView.NodeMouseClick += TreeView_NodeMouseClick;
             }
-        }
-
-        private static void TreeView_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
-        {
-
         }
 
         private static void GetDirectories(DirectoryInfo subDirs, TreeNode nodeToAddTo,TreeView treeView)
@@ -72,13 +65,9 @@ namespace TestAPI
                 var fName = fInfo.Name.ToString();
                 var fExtension = fInfo.Extension;
                 aNode = new TreeNode(fName);
-                Image image = Icon.ExtractAssociatedIcon(@"D:\work\project\FigKey\RetrospectiveSystem\project\IIS\FTP\21.txt").ToBitmap();
-                ImageList imageList = new ImageList();
-                var imageName = fName + "_" + fIndex;
-                imageList.Images.Add(imageName,image);
 
-                aNode.ImageKey = imageName;
-                aNode.SelectedImageKey = imageName;
+                //aNode.ImageKey = imageName;
+                //aNode.SelectedImageKey = imageName;
                 //aNode.Tag = fInfo;
                 //if (fExtension == ".txt")
                 //{
@@ -90,7 +79,6 @@ namespace TestAPI
                 //    aNode.ImageKey = "extension_xls";
                 //    aNode.SelectedImageKey = "extension_xls";
                 //}
-                treeView.ImageList = imageList;
                 nodeToAddTo.Nodes.Add(aNode);
                 fIndex++;
             }

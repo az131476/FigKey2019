@@ -9,6 +9,7 @@ using Telerik.WinControls;
 using Telerik.WinControls.UI;
 using MesManager.Control;
 using MesManager.Control.TreeViewUI;
+using MesManager.Properties;
 
 namespace MesManager.UI
 {
@@ -79,27 +80,27 @@ namespace MesManager.UI
                 SelectTestLimitConfig(this.tool_productTypeNo.Text);
                 this.radGridView1.Dock = DockStyle.Fill;
                 this.radGridView1.Visible = true;
-                this.splitContainer1.Visible = false;
+                this.panel1.Visible = false;
             }
             else if (currentDataType == TestStandDataType.TEST_LOG_DATA)
             {
-                this.splitContainer1.Dock = DockStyle.Fill;
+                this.panel1.Dock = DockStyle.Fill;
                 this.radGridView1.Visible = false;
-                this.splitContainer1.Visible = true;
+                this.panel1.Visible = true;
             }
             else if (currentDataType == TestStandDataType.TEST_PROGRAME_VERSION)
             {
                 SelectTestProgrameVersion(this.tool_productTypeNo.Text);
                 this.radGridView1.Dock = DockStyle.Fill;
                 this.radGridView1.Visible = true;
-                this.splitContainer1.Visible = false;
+                this.panel1.Visible = false;
             }
         }
 
         async private void Init()
         {
             serviceClient = new MesService.MesServiceClient();
-            this.splitContainer1.Visible = false;
+            this.panel1.Visible = false;
             this.radGridView1.Dock = DockStyle.Fill;
             DataGridViewCommon.SetRadGridViewProperty(this.radGridView1,false);
             this.radGridView1.ReadOnly = true;
@@ -112,7 +113,11 @@ namespace MesManager.UI
                 }
             }
             //init treeview
-            TreeViewData.PopulateTreeView(@"D:\work\project\FigKey\RetrospectiveSystem\project\IIS", this.treeView1);
+            string path = @"D:\work\project\FigKey\RetrospectiveSystem\project\IIS";
+            ImageList imageList = new ImageList();
+            imageList.Images.Add("open", Resources.FolderList32);
+            LoadTreeView.SetTreeNoByFilePath(this.treeView1,path,new ImageList());
+            //TreeViewData.PopulateTreeView(path, this.treeView1);
         }
 
         async private void SelectTestLimitConfig(string productTypeNo)

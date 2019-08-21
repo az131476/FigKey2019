@@ -28,12 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btn_setprocess = new Telerik.WinControls.UI.RadButton();
-            this.cb_curprocess = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             this.radMenu1 = new Telerik.WinControls.UI.RadMenu();
             this.menu_add = new Telerik.WinControls.UI.RadMenuItem();
             this.menu_del = new Telerik.WinControls.UI.RadMenuItem();
@@ -45,66 +40,22 @@
             this.lbx_process = new System.Windows.Forms.Label();
             this.cb_processItem = new System.Windows.Forms.ComboBox();
             this.radGridView1 = new Telerik.WinControls.UI.RadGridView();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btn_setprocess)).BeginInit();
-            this.panel2.SuspendLayout();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btn_setprocess = new Telerik.WinControls.UI.RadButton();
+            this.cb_curprocess = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.groupbox_graph = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_setprocess)).BeginInit();
+            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.btn_setprocess);
-            this.groupBox1.Controls.Add(this.cb_curprocess);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.ForeColor = System.Drawing.Color.White;
-            this.groupBox1.Location = new System.Drawing.Point(0, 0);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(792, 73);
-            this.groupBox1.TabIndex = 16;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "工艺设置";
-            // 
-            // btn_setprocess
-            // 
-            this.btn_setprocess.Location = new System.Drawing.Point(417, 30);
-            this.btn_setprocess.Name = "btn_setprocess";
-            this.btn_setprocess.Size = new System.Drawing.Size(63, 28);
-            this.btn_setprocess.TabIndex = 12;
-            this.btn_setprocess.Text = "应用";
-            this.btn_setprocess.Click += new System.EventHandler(this.Btn_setprocess_Click);
-            // 
-            // cb_curprocess
-            // 
-            this.cb_curprocess.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cb_curprocess.FormattingEnabled = true;
-            this.cb_curprocess.Location = new System.Drawing.Point(173, 30);
-            this.cb_curprocess.Name = "cb_curprocess";
-            this.cb_curprocess.Size = new System.Drawing.Size(183, 28);
-            this.cb_curprocess.TabIndex = 11;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(78, 33);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(72, 13);
-            this.label2.TabIndex = 9;
-            this.label2.Text = "当前工艺：";
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.groupBox1);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 615);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(792, 73);
-            this.panel2.TabIndex = 17;
             // 
             // radMenu1
             // 
@@ -127,7 +78,7 @@
             this.menu_add.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.menu_add.Image = global::MesManager.Properties.Resources.bullet_add;
             this.menu_add.Name = "menu_add";
-            this.menu_add.Text = "新增";
+            this.menu_add.Text = "新增工站";
             this.menu_add.UseCompatibleTextRendering = false;
             // 
             // menu_del
@@ -172,6 +123,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.lbx_process);
             this.panel1.Controls.Add(this.cb_processItem);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -207,21 +159,93 @@
             // 
             // 
             // 
-            this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition2;
             this.radGridView1.Name = "radGridView1";
-            this.radGridView1.Size = new System.Drawing.Size(792, 514);
-            this.radGridView1.TabIndex = 20;
+            this.radGridView1.Size = new System.Drawing.Size(792, 587);
+            this.radGridView1.TabIndex = 22;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.btn_setprocess);
+            this.groupBox1.Controls.Add(this.cb_curprocess);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox1.ForeColor = System.Drawing.Color.White;
+            this.groupBox1.Location = new System.Drawing.Point(0, 0);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(792, 64);
+            this.groupBox1.TabIndex = 28;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "工艺设置";
+            // 
+            // btn_setprocess
+            // 
+            this.btn_setprocess.Location = new System.Drawing.Point(417, 30);
+            this.btn_setprocess.Name = "btn_setprocess";
+            this.btn_setprocess.Size = new System.Drawing.Size(63, 28);
+            this.btn_setprocess.TabIndex = 12;
+            this.btn_setprocess.Text = "应用";
+            // 
+            // cb_curprocess
+            // 
+            this.cb_curprocess.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cb_curprocess.FormattingEnabled = true;
+            this.cb_curprocess.Location = new System.Drawing.Point(173, 30);
+            this.cb_curprocess.Name = "cb_curprocess";
+            this.cb_curprocess.Size = new System.Drawing.Size(183, 28);
+            this.cb_curprocess.TabIndex = 11;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(78, 33);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(72, 13);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "当前工艺：";
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.groupBox1);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 624);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(792, 64);
+            this.panel2.TabIndex = 29;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(281, 28);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 12;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            // 
+            // groupbox_graph
+            // 
+            this.groupbox_graph.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.groupbox_graph.ForeColor = System.Drawing.Color.White;
+            this.groupbox_graph.Location = new System.Drawing.Point(0, 473);
+            this.groupbox_graph.Name = "groupbox_graph";
+            this.groupbox_graph.Size = new System.Drawing.Size(792, 151);
+            this.groupbox_graph.TabIndex = 31;
+            this.groupbox_graph.TabStop = false;
+            this.groupbox_graph.Text = "工艺流程图";
             // 
             // TProcess
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.MediumBlue;
+            this.BackColor = System.Drawing.Color.SteelBlue;
             this.ClientSize = new System.Drawing.Size(792, 688);
+            this.Controls.Add(this.groupbox_graph);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.radGridView1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.radMenu1);
-            this.Controls.Add(this.panel2);
             this.Name = "TProcess";
             // 
             // 
@@ -229,15 +253,15 @@
             this.RootElement.ApplyShapeToControl = true;
             this.Text = "工艺流程";
             this.Load += new System.EventHandler(this.TProcess_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btn_setprocess)).EndInit();
-            this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_setprocess)).EndInit();
+            this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -245,11 +269,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.ComboBox cb_curprocess;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Panel panel2;
-        private Telerik.WinControls.UI.RadButton btn_setprocess;
         private Telerik.WinControls.UI.RadMenu radMenu1;
         private Telerik.WinControls.UI.RadMenuItem menu_add;
         private Telerik.WinControls.UI.RadMenuItem menu_del;
@@ -261,5 +280,12 @@
         private System.Windows.Forms.Label lbx_process;
         private System.Windows.Forms.ComboBox cb_processItem;
         private Telerik.WinControls.UI.RadGridView radGridView1;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private Telerik.WinControls.UI.RadButton btn_setprocess;
+        private System.Windows.Forms.ComboBox cb_curprocess;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.GroupBox groupbox_graph;
     }
 }
