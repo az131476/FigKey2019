@@ -81,11 +81,32 @@ namespace MesManager.UI
 
             this.radGridView1.CellBeginEdit += RadGridView1_CellBeginEdit;
             this.radGridView1.CellEndEdit += RadGridView1_CellEndEdit;
+
+            this.btn_setprocess.Click += Btn_setprocess_Click;
+        }
+
+        private void Btn_setprocess_Click(object sender, EventArgs e)
+        {
+            SetCurrentPorcess();
         }
 
         private void Cb_processItem_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(this.cb_processItem.Text))
+            {
+                ClearGridView();
+                this.radGridView1.Rows.AddNew();
+                return;
+            }
             SelectStationList(this.cb_processItem.Text.Trim());
+        }
+
+        private void ClearGridView()
+        {
+            for (int i = this.radGridView1.Rows.Count - 1; i >= 0; i--)
+            {
+                this.radGridView1.Rows[i].Delete();
+            }
         }
 
         private void Menu_add_Click(object sender, EventArgs e)
@@ -202,6 +223,7 @@ namespace MesManager.UI
                     //this.radGridView1.Rows[i].Cells[0].Value = dataTable.Rows[i][0].ToString();
                 }
                 radGridView1.DataSource = stationData;
+                NetronLightGraph();
             }
             else
             {
@@ -229,6 +251,9 @@ namespace MesManager.UI
                     this.cb_processItem.Items.Add(dataTable.Rows[i][0]);
                     this.cb_curprocess.Items.Add(dataTable.Rows[i][0]);
                 }
+                this.cb_processItem.Items.Add("");
+                if (!cb_processItem.Items.Contains(this.cb_processItem.Text))
+                    cb_processItem.Text = "";
             }
             this.cb_curprocess.Text = await serviceClientTest.SelectCurrentTProcessAsync();
         }
@@ -250,6 +275,14 @@ namespace MesManager.UI
                         station.ProcessName = this.cb_processItem.Text.Trim();
                         station.StationID = int.Parse(ID);
                         station.StationName = stationName;
+                        if (cb_curprocess.Text == cb_processItem.Text)
+                        {
+                            station.ProcessState = 1;
+                        }
+                        else
+                        {
+                            station.ProcessState = 0;
+                        }
                         station.UserName = MESMainForm.currentUser;
                         stationsArray[i] = station;
                     }
@@ -280,11 +313,6 @@ namespace MesManager.UI
             }
         }
 
-        private void Btn_setprocess_Click(object sender, EventArgs e)
-        {
-            SetCurrentPorcess();
-        }
-
         async private void SetCurrentPorcess()
         {
             if (!this.cb_curprocess.Items.Contains(this.cb_curprocess.Text))
@@ -301,7 +329,11 @@ namespace MesManager.UI
                     if (upt > 0)
                     {
                         this.cb_processItem.Text = this.cb_curprocess.Text;
-                        MessageBox.Show("设置成功！","提示",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                        MessageBox.Show("设置成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("设置失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
                 else
@@ -309,7 +341,6 @@ namespace MesManager.UI
                     await serviceClient.SetCurrentProcessAsync(process.ToString(), 0);
                 }
             }
-
             RefreshProcessData();
         }
 
@@ -318,20 +349,28 @@ namespace MesManager.UI
             this.groupbox_graph.Controls.Clear();
             GraphControl graphControl1 = new GraphControl();
             graphControl1.Dock = DockStyle.Fill;
-            //this.graphControl1.Enabled = false;
+            graphControl1.Enabled = false;
             graphControl1.ShowGrid = false;
             graphControl1.BackColor = Color.SteelBlue;
+            graphControl1.Font = new Font("宋体",10);
             this.groupbox_graph.Controls.Add(graphControl1);
             int x = 50;
             int y = 30;
             SimpleRectangle srSharpLast = null;
+            
             for (int i = 0; i < this.radGridView1.Rows.Count; i++)
             {
                 var stationName = this.radGridView1.Rows[i].Cells[1].Value.ToString();
                 
                 SimpleRectangle srSharp = graphControl1.AddShape(ShapeTypes.Rectangular, new Point(x, y)) as SimpleRectangle;
+                
+                Graphics graphics = CreateGraphics();
+                SizeF sizeF = graphics.MeasureString(stationName, new Font("宋体", 10));
+                //MessageBox.Show(string.Format("字体宽度：{0}，高度：{1}", sizeF.Width, sizeF.Height));
                 srSharp.Text = stationName;
                 srSharp.Height = 50;
+                srSharp.Width = (int)sizeF.Width + (int)sizeF.Width / 5;
+                graphics.Dispose();
                 srSharp.ShapeColor = Color.LightSteelBlue;
                 //
                 if (i % 2 == 0  && i>1)
@@ -343,9 +382,14 @@ namespace MesManager.UI
                 {
                     x += 200;
                     var stationNameLast = this.radGridView1.Rows[i + 1].Cells[1].Value.ToString();
+                    Graphics graphicsLast = CreateGraphics();
+                    SizeF sizeFLast = graphicsLast.MeasureString(stationNameLast, new Font("宋体", 10));
+
                     srSharpLast = graphControl1.AddShape(ShapeTypes.Rectangular, new Point(x, y)) as SimpleRectangle;
                     srSharpLast.Text = stationNameLast;
                     srSharpLast.Height = 50;
+                    srSharpLast.Width = (int)sizeFLast.Width + (int)sizeFLast.Width / 5;
+                    graphicsLast.Dispose();
                     srSharpLast.ShapeColor = Color.LightSteelBlue;
 
                     graphControl1.AddConnection(srSharp.Connectors[2],srSharpLast.Connectors[1]);
@@ -355,9 +399,5 @@ namespace MesManager.UI
             }
         }
 
-        private void Button1_Click(object sender, EventArgs e)
-        {
-            NetronLightGraph();
-        }
     }
 }

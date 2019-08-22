@@ -27,6 +27,9 @@ namespace MesAPI.Model
         [Description("操作用户")]
         public string UserName { get; set; }
 
+        [Description("描述说明")]
+        public string Describle { get; set; }
+
         [Description("修改日期")]
         public string UpdateDate { get; set; }
 

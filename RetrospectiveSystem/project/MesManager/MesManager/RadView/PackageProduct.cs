@@ -164,7 +164,7 @@ namespace MesManager.RadView
             }
             //提交箱子容量
             MesService.PackageProduct[] packageProducts = new MesService.PackageProduct[10];
-            await serviceClient.CommitProductContinairCapacityAsync(caseCode,caseAmount,"");
+            await serviceClient.CommitProductContinairCapacityAsync(caseCode,caseAmount,"","");
             packageProduct.CaseCode = caseCode;
             packageProduct.SnOutter = sn;
             packageProduct.TypeNo = typeNo;

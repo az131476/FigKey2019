@@ -115,7 +115,7 @@ namespace MesAPI
 
         //外箱容量
         [OperationContract]
-        int CommitProductContinairCapacity(string productTypeNo, string amount,string username);
+        int CommitProductContinairCapacity(string productTypeNo, string amount,string username,string describle);
         [OperationContract]
         DataSet SelectProductContinairCapacity(string productTypeNo);
         

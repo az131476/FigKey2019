@@ -25,6 +25,7 @@ namespace MesManager.UI
         private List<string> materialCodeTemp;//存储用户修改的物料编码
         private string keyTypeNo;
         private string keyMaterialCode;//记录修改前的编码
+        private string keyDescrible;
         private string keyStation;
         private string curMaterialCode;//记录鼠标右键选中行编码
         private string curRowTypeNo;
@@ -35,6 +36,7 @@ namespace MesManager.UI
         private const string DATA_CONTAINER_CAPACITY = "容器容量";
         private const string DATA_USER_NAME = "用户名";
         private const string DATA_UPDATE_DATE = "更新日期";
+        private const string DATA_DESCRIBLE = "描述说明";
 
         public BasicConfig()
         {
@@ -61,7 +63,6 @@ namespace MesManager.UI
             cb_cfgType.Items.Add("型号配置");
             cb_cfgType.Items.Add("物料配置");
             cb_cfgType.SelectedIndex = 0;
-            menu_del.Enabled = false;
             RefreshData();
         }
 
@@ -75,6 +76,7 @@ namespace MesManager.UI
                 materialData.Columns.Add(DATA_MATERIAL_NAME);
                 materialData.Columns.Add(DATA_USER_NAME);
                 materialData.Columns.Add(DATA_UPDATE_DATE);
+                materialData.Columns.Add(DATA_DESCRIBLE);
             }
             if (typeNoData == null)
             {
@@ -84,6 +86,7 @@ namespace MesManager.UI
                 typeNoData.Columns.Add(DATA_CONTAINER_CAPACITY);
                 typeNoData.Columns.Add(DATA_USER_NAME);
                 typeNoData.Columns.Add(DATA_UPDATE_DATE);
+                typeNoData.Columns.Add(DATA_DESCRIBLE);
             }
         }
 
@@ -170,42 +173,39 @@ namespace MesManager.UI
 
         private void RadGridView1_CellEndEdit(object sender, GridViewCellEventArgs e)
         {
-            var key = this.radGridView1.CurrentRow.Cells[1].Value;
-            if (key == null)
-                return;
+            var key = this.radGridView1.CurrentRow.Cells[1].Value.ToString();
+            var kdescrible = this.radGridView1.CurrentRow.Cells[5].Value.ToString();
+
             if (cb_cfgType.SelectedIndex == 0)
             {
-                if (keyTypeNo != key.ToString())
+                if (keyTypeNo != key || keyDescrible != kdescrible)
                 {
-                    modifyTypeNoTemp.Add(keyTypeNo);
+                    modifyTypeNoTemp.Add(this.keyTypeNo);
                 }
             }
             else if (cb_cfgType.SelectedIndex == 1)
             {
-                if (keyMaterialCode != key.ToString())
+                if (this.keyMaterialCode != key || this.keyDescrible != kdescrible)
                 {
-                    materialCodeTemp.Add(keyMaterialCode);
+                    materialCodeTemp.Add(this.keyMaterialCode);
                 }
             }
         }
 
         private void RadGridView1_CellBeginEdit(object sender, GridViewCellCancelEventArgs e)
         {
-            var key = this.radGridView1.CurrentRow.Cells[1].Value;
-            if (key != null)
+            var key = this.radGridView1.CurrentRow.Cells[1].Value.ToString();
+            var key_describle = this.radGridView1.CurrentRow.Cells[5].Value.ToString();
+            
+            if (cb_cfgType.SelectedIndex == 0)
             {
-                if (cb_cfgType.SelectedIndex == 0)
-                {
-                    this.keyStation = key.ToString();
-                }
-                else if (cb_cfgType.SelectedIndex == 1)
-                {
-                    this.keyTypeNo = key.ToString();
-                }
-                else if (cb_cfgType.SelectedIndex == 2)
-                {
-                    this.keyMaterialCode = key.ToString();
-                }
+                this.keyTypeNo = key;
+                this.keyDescrible = key_describle;
+            }
+            else if (cb_cfgType.SelectedIndex == 1)
+            {
+                this.keyMaterialCode = key;
+                this.keyDescrible = key_describle;
             }
         }
 
@@ -271,6 +271,7 @@ namespace MesManager.UI
                     dr[DATA_CONTAINER_CAPACITY] = dataTable.Rows[i][1].ToString();
                     dr[DATA_USER_NAME] = dataTable.Rows[i][2].ToString();
                     dr[DATA_UPDATE_DATE] = dataTable.Rows[i][3].ToString();
+                    dr[DATA_DESCRIBLE] = dataTable.Rows[i][4].ToString();
                     typeNoData.Rows.Add(dr);
                 }
                 radGridView1.DataSource = typeNoData;
@@ -310,6 +311,7 @@ namespace MesManager.UI
                     dr[DATA_MATERIAL_NAME] = dataTable.Rows[i][1].ToString();
                     dr[DATA_USER_NAME]     = dataTable.Rows[i][2].ToString();
                     dr[DATA_UPDATE_DATE]   = dataTable.Rows[i][3].ToString();
+                    dr[DATA_DESCRIBLE]     = dataTable.Rows[i][4].ToString();
                     materialData.Rows.Add(dr);
                 }
                 radGridView1.DataSource = materialData;
@@ -321,6 +323,8 @@ namespace MesManager.UI
             }
             DataGridViewCommon.SetRadGridViewProperty(this.radGridView1, true);
             this.radGridView1.Columns[0].ReadOnly = true;
+            this.radGridView1.Columns[0].BestFit();
+            this.radGridView1.Columns[1].BestFit();
             materialCodeTemp.Clear();
             modifyTypeNoTemp.Clear();
         }
@@ -346,10 +350,11 @@ namespace MesManager.UI
                     var ID = radGridView1.Rows[i].Cells[0].Value.ToString().Trim();
                     var productName = radGridView1.Rows[i].Cells[1].Value.ToString().Trim();
                     var storage = radGridView1.Rows[i].Cells[2].Value.ToString().Trim();
+                    var describle = radGridView1.Rows[i].Cells[5].Value.ToString().Trim();
                     if (!string.IsNullOrEmpty(productName))
                     {
                         array[i] = productName;
-                        var res = await serviceClient.CommitProductContinairCapacityAsync(productName,storage,MESMainForm.currentUser);
+                        var res = await serviceClient.CommitProductContinairCapacityAsync(productName,storage,MESMainForm.currentUser,describle);
                         if (res < 1)
                         {
                             MessageBox.Show($"【{productName}】更新失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -379,12 +384,13 @@ namespace MesManager.UI
                     MesService.MaterialMsg material = new MesService.MaterialMsg();
                     var materialCode = radGridView1.Rows[i].Cells[1].Value.ToString().Trim();
                     var materialName = radGridView1.Rows[i].Cells[2].Value.ToString().Trim();
+                    var describle = radGridView1.Rows[i].Cells[5].Value.ToString().Trim();
                     if (!string.IsNullOrEmpty(materialCode))
                     {
                         material.MaterialCode = materialCode;
                         material.MaterialName = materialName;
                         material.UserName = MESMainForm.currentUser;
-
+                        material.Describle = describle;
                         materialMsg[i] = material;
                     }
                 }

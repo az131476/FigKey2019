@@ -82,15 +82,27 @@ namespace MesWcfService.DB
 
         public class F_Material_Statistics
         {
-            public const string SN_INNER        = "[sn_inner]";
-            public const string SN_OUTTER       = "[sn_outter]";
-            public const string TYPE_NO         = "[type_no]";
-            public const string STATION_NAME    = "[station_name]";
-            public const string MATERIAL_CODE   = "[material_code]";
-            public const string MATERIAL_AMOUNT = "[material_amount]";
-            public const string UPDATE_DATE     = "[update_date]";
-            public const string TEAM_LEADER     = "[team_leader]";
-            public const string ADMIN           = "[admin]";
+            public const string SN_INNER                    = "[sn_inner]";
+            public const string SN_OUTTER                   = "[sn_outter]";
+            public const string TYPE_NO                     = "[type_no]";
+            public const string STATION_NAME                = "[station_name]";
+            public const string MATERIAL_TOP_COVER          = "[material_top_cover]";
+            public const string MATERIAL_UPPER_SHELL        = "[material_upper_shell]";
+            public const string MATERIAL_LOWER_SHELL        = "[material_lower_shell]";
+            public const string MATERIAL_WIREBEAM           = "[material_wirebeam]";
+            public const string MATERIAL_SUPPORT_PLATE      = "[material_support_plate]";
+            public const string MATERIAL_BUBBLE_COTTON      = "[material_bubble_cotton]";
+            public const string MATERIAL_TEMP_STENT         = "[material_temp_stent]";
+            public const string MATERIAL_FINAL_STENT        = "[material_final_stent]";
+            public const string MATERIAL_LITTLE_SCREW       = "[material_little_screw]";
+            public const string MATERIAL_LONG_SCREW         = "[material_long_screw]";
+            public const string MATERIAL_SCREW_NUT          = "[material_screw_nut]";
+            public const string MATERIAL_WATERPROOF_RING    = "[material_waterproof_ring]";
+            public const string MATERIAL_SEAL_RING          = "[material_seal_ring]";
+            public const string MATERIAL_AMOUNT             = "[material_amount]";
+            public const string TEAM_LEADER                 = "[team_leader]";
+            public const string ADMIN                       = "[admin]";
+            public const string UPDATE_DATE                 = "[update_date]";
         }
 
         public class F_Out_Case_Storage

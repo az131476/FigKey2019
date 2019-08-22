@@ -15,8 +15,8 @@ namespace MesAPI.DB
         public const string F_PRODUCT_MATERIAL_NAME             = "[WT_SCL].[dbo].[f_product_material]";
         public const string F_MATERIAL_NAME                     = "[WT_SCL].[dbo].[f_material]";
         public const string F_MATERIAL_STATISTICS_NAME          = "[WT_SCL].[dbo].[f_material_statistics]";
-        public const string F_OUT_CASE_STORAGE_NAME             = "[WT_SCL].[dbo].[f_product_package_storage]";
-        public const string F_OUT_CASE_PRODUCT_NAME             = "[WT_SCL].[dbo].[f_product_package]";
+        public const string F_PRODUCT_PACKAGE_STORAGE_NAME      = "[WT_SCL].[dbo].[f_product_package_storage]";
+        public const string F_PRODUCT_PACKAGE_NAME              = "[WT_SCL].[dbo].[f_product_package]";
         public const string F_PRODUCT_CHECK_RECORD_NAME         = "[WT_SCL].[dbo].[f_product_check_record]";
         public const string F_PASS_RATE_STATISTICS_NAME         = "[WT_SCL].[dbo].[f_pass_rate_statistics]";
         public const string F_TEST_PROGRAME_VERSION_NAME        = "[WT_SCL].[dbo].[f_test_programe_version]";
@@ -77,6 +77,7 @@ namespace MesAPI.DB
             public const string MATERIAL_NAME = "[material_name]";
             public const string MATERIAL_USER = "[username]";
             public const string UPDATE_DATE   = "[update_date]";
+            public const string DESCRIBLE     = "[describle]";
         }
 
         public class F_PRODUCT_MATERIAL
@@ -101,15 +102,16 @@ namespace MesAPI.DB
             public const string UPDATE_DATE = "[update_date]";
         }
 
-        public class F_Out_Case_Storage
+        public class F_PRODUCT_PACKAGE_STORAGE
         {
             public const string PRODUCT_TYPE_NO = "[type_no]";
             public const string USER_NAME = "[username]";
             public const string STORAGE_CAPACITY = "[storage_capacity]";
             public const string UPDATE_DATE_U = "[update_date_u]";
+            public const string DESCRIBLE = "[describle]";
         }
 
-        public class F_Out_Case_Product
+        public class F_PRODUCT_PACKAGE
         {
             public const string OUT_CASE_CODE = "[out_case_code]";
             public const string SN_OUTTER = "[sn_outter]";

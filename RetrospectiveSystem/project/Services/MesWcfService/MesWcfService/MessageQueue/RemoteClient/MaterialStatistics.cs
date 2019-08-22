@@ -34,7 +34,7 @@ namespace MesWcfService.MessageQueue.RemoteClient
                 string admin = array[7];
                 string insertSQL = $"INSERT INTO {DbTable.F_MATERIAL_STATISTICS_NAME}({DbTable.F_Material_Statistics.SN_INNER}," +
                     $"{DbTable.F_Material_Statistics.SN_OUTTER},{DbTable.F_Material_Statistics.TYPE_NO}," +
-                    $"{DbTable.F_Material_Statistics.STATION_NAME},{DbTable.F_Material_Statistics.MATERIAL_CODE}," +
+                    $"{DbTable.F_Material_Statistics.STATION_NAME},{DbTable.F_Material_Statistics.MATERIAL_AMOUNT}," +
                     $"{DbTable.F_Material_Statistics.MATERIAL_AMOUNT},{DbTable.F_Material_Statistics.UPDATE_DATE}," +
                     $"{DbTable.F_Material_Statistics.TEAM_LEADER},{DbTable.F_Material_Statistics.ADMIN}) " +
                     $"VALUES('{sn_inner}','{sn_outter}','{type_no}','{station_name}','{material_code}'," +
@@ -99,7 +99,7 @@ namespace MesWcfService.MessageQueue.RemoteClient
                 $"{DbTable.F_Material_Statistics.SN_INNER} = '{sn_inner}' AND " +
                 $"{DbTable.F_Material_Statistics.SN_OUTTER} = '{sn_outter}' AND " +
                 $"{DbTable.F_Material_Statistics.STATION_NAME} = '{station_name}' AND " +
-                $"{DbTable.F_Material_Statistics.MATERIAL_CODE} = '{material_code}'";
+                $"{DbTable.F_Material_Statistics.MATERIAL_AMOUNT} = '{material_code}'";
             var dt = SQLServer.ExecuteDataSet(selectSQL).Tables[0];
             if (dt.Rows.Count > 0)
                 return true;
@@ -115,7 +115,7 @@ namespace MesWcfService.MessageQueue.RemoteClient
                 $"{DbTable.F_Material_Statistics.SN_OUTTER} = '{sn_outter}' AND " +
                 $"{DbTable.F_Material_Statistics.TYPE_NO} = '{type_no}' AND " +
                 $"{DbTable.F_Material_Statistics.STATION_NAME} = '{stationName}' AND " +
-                $"{DbTable.F_Material_Statistics.MATERIAL_CODE} = '{code}'";
+                $"{DbTable.F_Material_Statistics.MATERIAL_AMOUNT} = '{code}'";
             return SQLServer.ExecuteNonQuery(updateSQL);
         }
 
@@ -127,7 +127,7 @@ namespace MesWcfService.MessageQueue.RemoteClient
                 $"{DbTable.F_Material_Statistics.SN_OUTTER} = '{sn_outter}' AND " +
                 $"{DbTable.F_Material_Statistics.TYPE_NO} = '{type_no}' AND " +
                 $"{DbTable.F_Material_Statistics.STATION_NAME} = '{stationName}' AND " +
-                $"{DbTable.F_Material_Statistics.MATERIAL_CODE} = '{code}'";
+                $"{DbTable.F_Material_Statistics.MATERIAL_AMOUNT} = '{code}'";
             return int.Parse(SQLServer.ExecuteDataSet(selectSQL).Tables[0].Rows[0][0].ToString());
         }
 

@@ -44,6 +44,7 @@
   <xs:complexType name="Station">
     <xs:sequence>
       <xs:element minOccurs="0" name="ProcessName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ProcessState" type="xs:int" />
       <xs:element minOccurs="0" name="StationID" type="xs:int" />
       <xs:element minOccurs="0" name="StationName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string" />
@@ -58,6 +59,7 @@
   <xs:element name="ArrayOfMaterialMsg" nillable="true" type="tns:ArrayOfMaterialMsg" />
   <xs:complexType name="MaterialMsg">
     <xs:sequence>
+      <xs:element minOccurs="0" name="Describle" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="MaterialCode" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="MaterialLOT" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="MaterialName" nillable="true" type="xs:string" />

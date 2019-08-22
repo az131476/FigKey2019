@@ -91,6 +91,9 @@ namespace MesManager.MesService {
         private string ProcessNameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ProcessStateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int StationIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -118,6 +121,19 @@ namespace MesManager.MesService {
                 if ((object.ReferenceEquals(this.ProcessNameField, value) != true)) {
                     this.ProcessNameField = value;
                     this.RaisePropertyChanged("ProcessName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ProcessState {
+            get {
+                return this.ProcessStateField;
+            }
+            set {
+                if ((this.ProcessStateField.Equals(value) != true)) {
+                    this.ProcessStateField = value;
+                    this.RaisePropertyChanged("ProcessState");
                 }
             }
         }
@@ -181,6 +197,9 @@ namespace MesManager.MesService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DescribleField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string MaterialCodeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -223,6 +242,19 @@ namespace MesManager.MesService {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Describle {
+            get {
+                return this.DescribleField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DescribleField, value) != true)) {
+                    this.DescribleField = value;
+                    this.RaisePropertyChanged("Describle");
+                }
             }
         }
         
@@ -848,10 +880,10 @@ namespace MesManager.MesService {
         System.Threading.Tasks.Task<System.Data.DataSet> SelectMaterialUserProductAsync(string materialCode);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/CommitProductContinairCapacity", ReplyAction="http://tempuri.org/IMesService/CommitProductContinairCapacityResponse")]
-        int CommitProductContinairCapacity(string productTypeNo, string amount, string username);
+        int CommitProductContinairCapacity(string productTypeNo, string amount, string username, string describle);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/CommitProductContinairCapacity", ReplyAction="http://tempuri.org/IMesService/CommitProductContinairCapacityResponse")]
-        System.Threading.Tasks.Task<int> CommitProductContinairCapacityAsync(string productTypeNo, string amount, string username);
+        System.Threading.Tasks.Task<int> CommitProductContinairCapacityAsync(string productTypeNo, string amount, string username, string describle);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectProductContinairCapacity", ReplyAction="http://tempuri.org/IMesService/SelectProductContinairCapacityResponse")]
         System.Data.DataSet SelectProductContinairCapacity(string productTypeNo);
@@ -1198,12 +1230,12 @@ namespace MesManager.MesService {
             return base.Channel.SelectMaterialUserProductAsync(materialCode);
         }
         
-        public int CommitProductContinairCapacity(string productTypeNo, string amount, string username) {
-            return base.Channel.CommitProductContinairCapacity(productTypeNo, amount, username);
+        public int CommitProductContinairCapacity(string productTypeNo, string amount, string username, string describle) {
+            return base.Channel.CommitProductContinairCapacity(productTypeNo, amount, username, describle);
         }
         
-        public System.Threading.Tasks.Task<int> CommitProductContinairCapacityAsync(string productTypeNo, string amount, string username) {
-            return base.Channel.CommitProductContinairCapacityAsync(productTypeNo, amount, username);
+        public System.Threading.Tasks.Task<int> CommitProductContinairCapacityAsync(string productTypeNo, string amount, string username, string describle) {
+            return base.Channel.CommitProductContinairCapacityAsync(productTypeNo, amount, username, describle);
         }
         
         public System.Data.DataSet SelectProductContinairCapacity(string productTypeNo) {

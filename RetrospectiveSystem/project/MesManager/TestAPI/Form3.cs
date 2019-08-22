@@ -23,6 +23,13 @@ namespace TestAPI
 
         private void Form3_Load(object sender, EventArgs e)
         {
+            MesServiceTest.MesServiceClient mesServiceClient = new MesServiceTest.MesServiceClient();
+            MesServiceTest.MaterialType materialType = new MesServiceTest.MaterialType();
+            mesServiceClient.UpdateMaterialStatisticsAsync();
+        }
+
+        public void LSOSQL()
+        {
             try
             {
                 var connectionString = ConfigurationManager.ConnectionStrings["sqlconstring"].ToString();

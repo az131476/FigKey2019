@@ -11,6 +11,6 @@ namespace MesAPI.Model
         public int StationID { get; set; }
         public string StationName { get; set; }
         public string UserName { get; set; }
-
+        public int ProcessState { get; set; }
     }
 }

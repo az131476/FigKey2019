@@ -90,14 +90,13 @@ namespace MesWcfService
         [SwaggerWcfResponse("FAIL","插入数据失败")]
         [SwaggerWcfResponse("ERR_NOT_DECIMAL", "数量数据类型不为整型")]
         [SwaggerWcfResponse("ERROR", "异常错误")]
-        public string UpdateMaterialStatistics(string snInner, string snOutter, string typeNo, 
-            string stationName, string materialCode, int amount,string teamLeader,string admin)
+        public string UpdateMaterialStatistics(MaterialType materialType)
         {
-            if (!ExamineInputFormat.IsDecimal(amount.ToString()))
+            if (!ExamineInputFormat.IsDecimal(materialType.MaterialUseAmount.ToString()))
                 return "ERR_NOT_DECIMAL";
-            string[] array = new string[] { snInner, snOutter, typeNo, stationName, materialCode, amount+"",teamLeader,admin};
-            insertMaterialStatistics.Enqueue(array);
-            return MaterialStatistics.UpdateMaterialStatistics(insertMaterialStatistics);
+            //insertMaterialStatistics.Enqueue(array);
+            return "OK";
+            //return MaterialStatistics.UpdateMaterialStatistics(insertMaterialStatistics);
         }
 
         #endregion

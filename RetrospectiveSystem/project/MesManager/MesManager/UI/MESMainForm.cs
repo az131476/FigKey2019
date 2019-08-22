@@ -27,7 +27,7 @@ namespace MesManager.UI
         }
         private void MESMainForm_Load(object sender, EventArgs e)
         {
-            
+            //this.pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
         }
 
         public void InitMain()

@@ -52,17 +52,9 @@ namespace MesWcfService
         #region【接口】UpdateMaterialStatistics 更新物料计数
         [OperationContract]
         [SwaggerWcfPath("UpdateMaterialStatistics", "更新物料计数")]
-        [WebInvoke(Method = "GET", UriTemplate = "UpdateMaterialStatistics?snInner={snInner}&snOutter={snOutter}&typeNo={typeNo}" +
-            "&stationName={stationName}&materialCode={materialCode}&amount={amount}&teamLeader={teamLeader}&admin={admin}",
-            BodyStyle = WebMessageBodyStyle.Bare, RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
-        string UpdateMaterialStatistics([SwaggerWcfParameter(Description = "追溯码(内壳)*")]string snInner, 
-            [SwaggerWcfParameter(Description = "追溯码(外壳)*")]string snOutter, 
-            [SwaggerWcfParameter(Description = "产品型号*")]string typeNo, 
-            [SwaggerWcfParameter(Description = "站位名称*")]string stationName,
-            [SwaggerWcfParameter(Description = "物料编码*")]string materialCode, 
-            [SwaggerWcfParameter(Description = "物料数量(使用数量)*")]int amount,
-            [SwaggerWcfParameter(Description = "班组长")]string teamLeader,
-            [SwaggerWcfParameter(Description = "管理员")]string admin);
+        [WebInvoke(Method = "POST", UriTemplate = "UpdateMaterialStatistics",
+            BodyStyle = WebMessageBodyStyle.WrappedRequest, RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
+        string UpdateMaterialStatistics(MaterialType materialType);
         #endregion
 
         #region【接口】UpdatePackageProductBindingMsg 【打包/抽检】添加绑定信息/更新绑定信息                
@@ -169,5 +161,89 @@ namespace MesWcfService
             get { return stringValue; }
             set { stringValue = value; }
         }
+    }
+
+    [DataContract]
+    public struct MaterialType
+    {
+        [DataMember]
+        [Description("PCBA")]
+        public string MaterialPCBA { get; set; }
+
+        [DataMember]
+        [Description("外壳")]
+        public string MaterialOutterShell { get; set; }
+
+        [DataMember]
+        [Description("产品型号")]
+        public string ProductTypeNo { get; set; }
+
+        [DataMember]
+        [Description("站位名称")]
+        public string StationName { get; set; }
+
+        [DataMember]
+        [Description("上盖")]
+        public string MaterialTopCover { get; set; }
+
+        [DataMember]
+        [Description("上壳")]
+        public string MaterialUpperShell { get; set; }
+
+        [DataMember]
+        [Description("下壳")]
+        public string MaterialLowerShell { get; set; }
+
+        [DataMember]
+        [Description("线束")]
+        public string MaterialWirebean { get; set; }
+
+        [DataMember]
+        [Description("支架板")]
+        public string MaterialSupportPlate { get; set; }
+
+        [DataMember]
+        [Description("泡棉")]
+        public string MaterialBubbleCotton { get; set; }
+
+        [DataMember]
+        [Description("临时支架")]
+        public string MaterialTempStent { get; set; }
+
+        [DataMember]
+        [Description("最终支架")]
+        public string MaterialFinalStent { get; set; }
+
+        [DataMember]
+        [Description("小螺钉")]
+        public string MaterialLittleScrew { get; set; }
+
+        [DataMember]
+        [Description("长螺钉")]
+        public string MaterialLongScrew { get; set; }
+
+        [DataMember]
+        [Description("螺丝/螺母")]
+        public string MaterialScrewNut { get; set; }
+
+        [DataMember]
+        [Description("防水圈")]
+        public string MaterialWaterProofRing { get; set; }
+
+        [DataMember]
+        [Description("密封圈")]
+        public string MaterialSealRing { get; set; }
+
+        [DataMember]
+        [Description("使用数量")]
+        public string MaterialUseAmount { get; set; }
+
+        [DataMember]
+        [Description("班组长")]
+        public string TeamLeader { get; set; }
+
+        [DataMember]
+        [Description("管理员")]
+        public string Admin { get; set; }
     }
 }

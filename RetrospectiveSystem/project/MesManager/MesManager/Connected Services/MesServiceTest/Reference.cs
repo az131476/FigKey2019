@@ -9,7 +9,37 @@
 //------------------------------------------------------------------------------
 
 namespace MesManager.MesServiceTest {
+    using System.Runtime.Serialization;
+    using System;
     
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="MaterialType", Namespace="http://schemas.datacontract.org/2004/07/MesWcfService")]
+    [System.SerializableAttribute()]
+    public partial struct MaterialType : System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="MesServiceTest.IMesService")]
@@ -34,10 +64,10 @@ namespace MesManager.MesServiceTest {
         System.Threading.Tasks.Task<string[]> SelectLastTestResultAsync(string sn, string station);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/UpdateMaterialStatistics", ReplyAction="http://tempuri.org/IMesService/UpdateMaterialStatisticsResponse")]
-        string UpdateMaterialStatistics(string snInner, string snOutter, string typeNo, string stationName, string materialCode, int amount, string teamLeader, string admin);
+        string UpdateMaterialStatistics(MesManager.MesServiceTest.MaterialType materialType);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/UpdateMaterialStatistics", ReplyAction="http://tempuri.org/IMesService/UpdateMaterialStatisticsResponse")]
-        System.Threading.Tasks.Task<string> UpdateMaterialStatisticsAsync(string snInner, string snOutter, string typeNo, string stationName, string materialCode, int amount, string teamLeader, string admin);
+        System.Threading.Tasks.Task<string> UpdateMaterialStatisticsAsync(MesManager.MesServiceTest.MaterialType materialType);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/UpdatePackageProductBindingMsg", ReplyAction="http://tempuri.org/IMesService/UpdatePackageProductBindingMsgResponse")]
         string UpdatePackageProductBindingMsg(string outCaseCode, string snOutter, string typeNo, string stationName, string bindingState, string remark, string teamLeader, string admin);
@@ -139,12 +169,12 @@ namespace MesManager.MesServiceTest {
             return base.Channel.SelectLastTestResultAsync(sn, station);
         }
         
-        public string UpdateMaterialStatistics(string snInner, string snOutter, string typeNo, string stationName, string materialCode, int amount, string teamLeader, string admin) {
-            return base.Channel.UpdateMaterialStatistics(snInner, snOutter, typeNo, stationName, materialCode, amount, teamLeader, admin);
+        public string UpdateMaterialStatistics(MesManager.MesServiceTest.MaterialType materialType) {
+            return base.Channel.UpdateMaterialStatistics(materialType);
         }
         
-        public System.Threading.Tasks.Task<string> UpdateMaterialStatisticsAsync(string snInner, string snOutter, string typeNo, string stationName, string materialCode, int amount, string teamLeader, string admin) {
-            return base.Channel.UpdateMaterialStatisticsAsync(snInner, snOutter, typeNo, stationName, materialCode, amount, teamLeader, admin);
+        public System.Threading.Tasks.Task<string> UpdateMaterialStatisticsAsync(MesManager.MesServiceTest.MaterialType materialType) {
+            return base.Channel.UpdateMaterialStatisticsAsync(materialType);
         }
         
         public string UpdatePackageProductBindingMsg(string outCaseCode, string snOutter, string typeNo, string stationName, string bindingState, string remark, string teamLeader, string admin) {
