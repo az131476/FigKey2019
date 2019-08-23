@@ -120,6 +120,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Connected Services\MesServiceTest\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Connected Services\MesService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -174,6 +179,16 @@
     <EmbeddedResource Include="TestTreeView.resx">
       <DependentUpon>TestTreeView.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Connected Services\MesServiceTest\MesService.wsdl" />
+    <None Include="Connected Services\MesServiceTest\MesService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\MesServiceTest\MesService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\MesServiceTest\MesService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\MesService\MesService.wsdl" />
     <None Include="Connected Services\MesService\MesService.xsd">
       <SubType>Designer</SubType>
@@ -202,6 +217,7 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\MesServiceTest\" />
     <WCFMetadataStorage Include="Connected Services\MesService\" />
   </ItemGroup>
   <ItemGroup>
@@ -236,6 +252,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\file_extension_xls.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\MesServiceTest\MesService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\MesServiceTest\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\MesServiceTest\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\MesServiceTest\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -30,10 +30,12 @@ namespace MesWcfService
         private Queue<string[]> fcQueue = new Queue<string[]>();
         private Queue<string[]> insertDataQueue = new Queue<string[]>();
         private Queue<string[]> selectDataQueue = new Queue<string[]>();
-        private Queue<string[]> insertMaterialStatistics = new Queue<string[]>();
+        private Queue<string[]> insertMaterialStatisticsQueue = new Queue<string[]>();
         private Queue<string[]> updateProgrameVersionQueue = new Queue<string[]>();
         private Queue<string[]> updateLimitConfigQueue = new Queue<string[]>();
-        private Queue<string[]> updatePackageProduct = new Queue<string[]>();
+        private Queue<string[]> updatePackageProductQueue = new Queue<string[]>();
+        private Queue<string> checkMaterialStateQueue = new Queue<string>();
+        private int materialLength = 20;
 
         #region 测试通讯
         [SwaggerWcfTag("MesServcie 服务")]
@@ -90,13 +92,24 @@ namespace MesWcfService
         [SwaggerWcfResponse("FAIL","插入数据失败")]
         [SwaggerWcfResponse("ERR_NOT_DECIMAL", "数量数据类型不为整型")]
         [SwaggerWcfResponse("ERROR", "异常错误")]
-        public string UpdateMaterialStatistics(MaterialType materialType)
+        public string UpdateMaterialStatistics(string[] materialArray)
         {
-            if (!ExamineInputFormat.IsDecimal(materialType.MaterialUseAmount.ToString()))
-                return "ERR_NOT_DECIMAL";
-            //insertMaterialStatistics.Enqueue(array);
-            return "OK";
-            //return MaterialStatistics.UpdateMaterialStatistics(insertMaterialStatistics);
+            if (materialArray.Length < materialLength)
+                return MaterialStatistics.ConvertMaterialStatisticsCode(MaterialStatisticsReturnCode.ERROR_ARRAY_LENGTH_NOT_ENOUGH);
+            if (materialArray.Length > materialLength)
+                return MaterialStatistics.ConvertMaterialStatisticsCode(MaterialStatisticsReturnCode.ERROR_ARRAY_LENGTH_OVER_FLOW);
+            if (!ExamineInputFormat.IsDecimal(materialArray[17]))
+                return MaterialStatistics.ConvertMaterialStatisticsCode(MaterialStatisticsReturnCode.ERROR_USE_AMOUNT_NOT_INT_INDEX17);
+            insertMaterialStatisticsQueue.Enqueue(materialArray);
+            return MaterialStatistics.UpdateMaterialStatistics(insertMaterialStatisticsQueue);
+        }
+
+        public string CheckMaterialState(string materialCode)
+        {
+            if (string.IsNullOrEmpty(materialCode))
+                return MaterialStatistics.ConvertCheckMaterialStateCode(MaterialStateReturnCode.ERROR_NULL_STRING);
+            checkMaterialStateQueue.Enqueue(materialCode);
+            return MaterialStatistics.CheckMaterialState(checkMaterialStateQueue);
         }
 
         #endregion
@@ -111,8 +124,8 @@ namespace MesWcfService
             string bindingState,string remark,string temaLeader,string admin)
         {
             string[] array = new string[] { outCaseCode,snOutter,typeNo,stationName,bindingState,remark,temaLeader,admin};
-            updatePackageProduct.Enqueue(array);
-            return UPackageProduct.UpdatePackageProduct(updatePackageProduct);
+            updatePackageProductQueue.Enqueue(array);
+            return UPackageProduct.UpdatePackageProduct(updatePackageProductQueue);
         }
         #endregion
 

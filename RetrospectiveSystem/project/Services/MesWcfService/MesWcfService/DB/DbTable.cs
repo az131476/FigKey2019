@@ -65,15 +65,22 @@ namespace MesWcfService.DB
 
         public class F_Material
         {
-            public const string MATERIAL_CODE   = "[material_code]";
-            public const string MATERIAL_AMOUNT = "[amount]";
+            public const string MATERIAL_CODE           = "[material_code]";
+            public const string MATERIAL_NAME           = "[material_name]";
+            public const string MATERIAL_STOCK          = "[material_stock]";
+            public const string MATERIAL_AMOUNTED       = "[material_amounted]";
+            public const string MATERIAL_ACTUAL_AMOUNT  = "[material_actualAmount]";
+            public const string MATERIAL_BREAK_AMOUNT   = "[material_breakAmount]";
+            public const string MATERIAL_STATE          = "[material_state]";
+            public const string MATERIAL_DESCRIBLE      = "[material_describle]";
+            public const string MATERIAL_USERNAME       = "[material_username]";
+            public const string MATERIAL_UPDATE_DATE    = "[material_update_date]";
         }
 
         public class F_PRODUCT_MATERIAL
         {
             public const string TYPE_NO         = "[type_no]";
             public const string MATERIAL_CODE   = "[material_code]";
-            public const string STOCK           = "[stock]";
             public const string AMOUNTED        = "[amounted]";
             public const string Describle       = "[describle]";
             public const string UpdateDate      = "[update_date]";
@@ -82,9 +89,9 @@ namespace MesWcfService.DB
 
         public class F_Material_Statistics
         {
-            public const string SN_INNER                    = "[sn_inner]";
-            public const string SN_OUTTER                   = "[sn_outter]";
-            public const string TYPE_NO                     = "[type_no]";
+            public const string MATERIAL_PCBA               = "[material_pcba]";
+            public const string MATERIAL_OUTTER_SHELL       = "[material_outter_shell]";
+            public const string PRODUCT_TYPE_NO             = "[type_no]";
             public const string STATION_NAME                = "[station_name]";
             public const string MATERIAL_TOP_COVER          = "[material_top_cover]";
             public const string MATERIAL_UPPER_SHELL        = "[material_upper_shell]";

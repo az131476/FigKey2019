@@ -75,9 +75,14 @@ namespace MesAPI.DB
         {
             public const string MATERIAL_CODE = "[material_code]";
             public const string MATERIAL_NAME = "[material_name]";
-            public const string MATERIAL_USER = "[username]";
-            public const string UPDATE_DATE   = "[update_date]";
-            public const string DESCRIBLE     = "[describle]";
+            public const string MATERIAL_STOCK = "[material_stock]";
+            public const string MATERIAL_AMOUNTED = "[material_amounted]";
+            public const string MATERIAL_ACTUAL_AMOUNT = "[material_actualAmount]";
+            public const string MATERIAL_BREAK_AMOUNT = "[material_breakAmount]";
+            public const string MATERIAL_STATE = "[material_state]";
+            public const string MATERIAL_DESCRIBLE = "[material_describle]";
+            public const string MATERIAL_USERNAME = "[material_username]";
+            public const string MATERIAL_UPDATE_DATE = "[material_update_date]";
         }
 
         public class F_PRODUCT_MATERIAL

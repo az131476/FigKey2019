@@ -16,7 +16,7 @@ namespace TestAPI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new TestTreeView());
+            Application.Run(new Form3());
         }
     }
 }

@@ -21,11 +21,13 @@ namespace TestAPI
             InitializeComponent();
         }
 
-        private void Form3_Load(object sender, EventArgs e)
+        async private void Form3_Load(object sender, EventArgs e)
         {
             MesServiceTest.MesServiceClient mesServiceClient = new MesServiceTest.MesServiceClient();
-            MesServiceTest.MaterialType materialType = new MesServiceTest.MaterialType();
-            mesServiceClient.UpdateMaterialStatisticsAsync();
+            var res = await mesServiceClient.UpdateMaterialStatisticsAsync(new string[] { "1","2","3"});
+            //mesServiceClient.UpdateMaterialStatisticsAsync();
+            MessageBox.Show(res[0]);
+            
         }
 
         public void LSOSQL()

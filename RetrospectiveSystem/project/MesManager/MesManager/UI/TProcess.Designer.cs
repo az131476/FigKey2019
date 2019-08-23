@@ -47,7 +47,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.groupbox_graph = new System.Windows.Forms.GroupBox();
             this.radGridView1 = new Telerik.WinControls.UI.RadGridView();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radStatusStrip1)).BeginInit();
@@ -56,7 +55,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.btn_setprocess)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).BeginInit();
-            this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -227,26 +225,14 @@
             // 
             this.radGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radGridView1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radGridView1.Location = new System.Drawing.Point(3, 18);
+            this.radGridView1.Location = new System.Drawing.Point(0, 101);
             // 
             // 
             // 
             this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.radGridView1.Name = "radGridView1";
-            this.radGridView1.Size = new System.Drawing.Size(1114, 327);
-            this.radGridView1.TabIndex = 36;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.radGridView1);
-            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.ForeColor = System.Drawing.Color.White;
-            this.groupBox2.Location = new System.Drawing.Point(0, 101);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1120, 348);
-            this.groupBox2.TabIndex = 37;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "工序配置";
+            this.radGridView1.Size = new System.Drawing.Size(1120, 348);
+            this.radGridView1.TabIndex = 38;
             // 
             // TProcess
             // 
@@ -254,7 +240,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SteelBlue;
             this.ClientSize = new System.Drawing.Size(1120, 688);
-            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.radGridView1);
             this.Controls.Add(this.groupbox_graph);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.radStatusStrip1);
@@ -277,7 +263,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.btn_setprocess)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).EndInit();
-            this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -303,6 +288,5 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupbox_graph;
         private Telerik.WinControls.UI.RadGridView radGridView1;
-        private System.Windows.Forms.GroupBox groupBox2;
     }
 }

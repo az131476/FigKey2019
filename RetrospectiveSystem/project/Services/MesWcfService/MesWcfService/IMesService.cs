@@ -51,10 +51,15 @@ namespace MesWcfService
 
         #region【接口】UpdateMaterialStatistics 更新物料计数
         [OperationContract]
-        [SwaggerWcfPath("UpdateMaterialStatistics", "更新物料计数")]
+        [SwaggerWcfPath("UpdateMaterialStatistics", "【装配物料统计】array[0]=PCBA,array[1]=外壳,array[2]=产品型号," +
+            "array[3]=站位名称,array[4]=上盖,array[5]=上壳,array[6]=下壳,array[7]=线束,array[8]=支架板,array[9]=泡棉," +
+            "array[10]=临时支架,array[11]=最终支架,array[12]=小螺钉,array[13]=长螺钉,array[14]=螺丝/螺帽," +
+            "array[15]=防水圈,array[16]=密封圈,array[17]=使用数量,array[18]=班组长,array[19]=管理员")]
         [WebInvoke(Method = "POST", UriTemplate = "UpdateMaterialStatistics",
             BodyStyle = WebMessageBodyStyle.WrappedRequest, RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
-        string UpdateMaterialStatistics(MaterialType materialType);
+        string UpdateMaterialStatistics(string[] materialArray);
+
+        string CheckMaterialState(string materialCode);
         #endregion
 
         #region【接口】UpdatePackageProductBindingMsg 【打包/抽检】添加绑定信息/更新绑定信息                

@@ -256,6 +256,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Connected Services\WeatherWebService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Control\ComGraph.cs" />
     <Compile Include="Control\DataGridViewCommon.cs" />
     <Compile Include="Control\ListViewCommon.cs" />
@@ -544,6 +549,9 @@
     <None Include="Connected Services\MesServiceTest\MesService2.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\MesServiceTest\MesService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\MesService\MesManager.MesService.GetUserInfoResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -578,6 +586,7 @@
     <None Include="Connected Services\MesService\MesService4.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\WeatherWebService\WeatherWebService.wsdl" />
     <None Include="DB\WT_SCL.bak" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\System.Data.DataSet.datasource" />
@@ -606,6 +615,13 @@
     <None Include="Connected Services\MesServiceTest\configuration91.svcinfo" />
     <None Include="Connected Services\MesServiceTest\configuration.svcinfo" />
     <None Include="Connected Services\MesServiceTest\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\WeatherWebService\WeatherWebService.disco" />
+    <None Include="Connected Services\WeatherWebService\configuration91.svcinfo" />
+    <None Include="Connected Services\WeatherWebService\configuration.svcinfo" />
+    <None Include="Connected Services\WeatherWebService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -642,7 +658,9 @@
     <None Include="Resources\file_extension_txt.png" />
     <None Include="Resources\FolderList32.png" />
     <None Include="Resources\file_extension_xls.png" />
+    <Content Include="功能描述.txt" />
     <Content Include="完善.txt" />
+    <Content Include="新增.txt" />
     <Content Include="新需求.txt" />
     <Content Include="说明.txt" />
     <Content Include="需求.txt" />
@@ -671,6 +689,7 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\MesServiceTest\" />
     <WCFMetadataStorage Include="Connected Services\MesService\" />
+    <WCFMetadataStorage Include="Connected Services\WeatherWebService\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
