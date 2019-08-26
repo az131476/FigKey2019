@@ -861,23 +861,17 @@ namespace MesManager.MesService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/InsertMaterialStatistics", ReplyAction="http://tempuri.org/IMesService/InsertMaterialStatisticsResponse")]
         System.Threading.Tasks.Task<string> InsertMaterialStatisticsAsync(string snInner, string snOutter, string typeNo, string stationName, string materialCode, string amount);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectMaterialStatistics", ReplyAction="http://tempuri.org/IMesService/SelectMaterialStatisticsResponse")]
-        System.Data.DataSet SelectMaterialStatistics(string typeNo);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectMaterialBasicMsg", ReplyAction="http://tempuri.org/IMesService/SelectMaterialBasicMsgResponse")]
+        System.Data.DataSet SelectMaterialBasicMsg(string materialCode);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectMaterialStatistics", ReplyAction="http://tempuri.org/IMesService/SelectMaterialStatisticsResponse")]
-        System.Threading.Tasks.Task<System.Data.DataSet> SelectMaterialStatisticsAsync(string typeNo);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectMaterialBasicMsg", ReplyAction="http://tempuri.org/IMesService/SelectMaterialBasicMsgResponse")]
+        System.Threading.Tasks.Task<System.Data.DataSet> SelectMaterialBasicMsgAsync(string materialCode);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectMaterialMsg", ReplyAction="http://tempuri.org/IMesService/SelectMaterialMsgResponse")]
-        System.Data.DataSet SelectMaterialMsg(MesManager.MesService.MaterialMsg materialMsg, bool IsSelectAll);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectMaterialDetailMsg", ReplyAction="http://tempuri.org/IMesService/SelectMaterialDetailMsgResponse")]
+        System.Data.DataSet SelectMaterialDetailMsg(string materialCode);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectMaterialMsg", ReplyAction="http://tempuri.org/IMesService/SelectMaterialMsgResponse")]
-        System.Threading.Tasks.Task<System.Data.DataSet> SelectMaterialMsgAsync(MesManager.MesService.MaterialMsg materialMsg, bool IsSelectAll);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectMaterialUserProduct", ReplyAction="http://tempuri.org/IMesService/SelectMaterialUserProductResponse")]
-        System.Data.DataSet SelectMaterialUserProduct(string materialCode);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectMaterialUserProduct", ReplyAction="http://tempuri.org/IMesService/SelectMaterialUserProductResponse")]
-        System.Threading.Tasks.Task<System.Data.DataSet> SelectMaterialUserProductAsync(string materialCode);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectMaterialDetailMsg", ReplyAction="http://tempuri.org/IMesService/SelectMaterialDetailMsgResponse")]
+        System.Threading.Tasks.Task<System.Data.DataSet> SelectMaterialDetailMsgAsync(string materialCode);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/CommitProductContinairCapacity", ReplyAction="http://tempuri.org/IMesService/CommitProductContinairCapacityResponse")]
         int CommitProductContinairCapacity(string productTypeNo, string amount, string username, string describle);
@@ -932,6 +926,18 @@ namespace MesManager.MesService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectTestLimitConfig", ReplyAction="http://tempuri.org/IMesService/SelectTestLimitConfigResponse")]
         System.Threading.Tasks.Task<System.Data.DataSet> SelectTestLimitConfigAsync(string productTypeNo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectTestLogDataDetail", ReplyAction="http://tempuri.org/IMesService/SelectTestLogDataDetailResponse")]
+        System.Data.DataSet SelectTestLogDataDetail(string queryFilter, string startDate, string endDate);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectTestLogDataDetail", ReplyAction="http://tempuri.org/IMesService/SelectTestLogDataDetailResponse")]
+        System.Threading.Tasks.Task<System.Data.DataSet> SelectTestLogDataDetailAsync(string queryFilter, string startDate, string endDate);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectTodayTestLogData", ReplyAction="http://tempuri.org/IMesService/SelectTodayTestLogDataResponse")]
+        System.Data.DataSet SelectTodayTestLogData(string queryFilter);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectTodayTestLogData", ReplyAction="http://tempuri.org/IMesService/SelectTodayTestLogDataResponse")]
+        System.Threading.Tasks.Task<System.Data.DataSet> SelectTodayTestLogDataAsync(string queryFilter);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -1206,28 +1212,20 @@ namespace MesManager.MesService {
             return base.Channel.InsertMaterialStatisticsAsync(snInner, snOutter, typeNo, stationName, materialCode, amount);
         }
         
-        public System.Data.DataSet SelectMaterialStatistics(string typeNo) {
-            return base.Channel.SelectMaterialStatistics(typeNo);
+        public System.Data.DataSet SelectMaterialBasicMsg(string materialCode) {
+            return base.Channel.SelectMaterialBasicMsg(materialCode);
         }
         
-        public System.Threading.Tasks.Task<System.Data.DataSet> SelectMaterialStatisticsAsync(string typeNo) {
-            return base.Channel.SelectMaterialStatisticsAsync(typeNo);
+        public System.Threading.Tasks.Task<System.Data.DataSet> SelectMaterialBasicMsgAsync(string materialCode) {
+            return base.Channel.SelectMaterialBasicMsgAsync(materialCode);
         }
         
-        public System.Data.DataSet SelectMaterialMsg(MesManager.MesService.MaterialMsg materialMsg, bool IsSelectAll) {
-            return base.Channel.SelectMaterialMsg(materialMsg, IsSelectAll);
+        public System.Data.DataSet SelectMaterialDetailMsg(string materialCode) {
+            return base.Channel.SelectMaterialDetailMsg(materialCode);
         }
         
-        public System.Threading.Tasks.Task<System.Data.DataSet> SelectMaterialMsgAsync(MesManager.MesService.MaterialMsg materialMsg, bool IsSelectAll) {
-            return base.Channel.SelectMaterialMsgAsync(materialMsg, IsSelectAll);
-        }
-        
-        public System.Data.DataSet SelectMaterialUserProduct(string materialCode) {
-            return base.Channel.SelectMaterialUserProduct(materialCode);
-        }
-        
-        public System.Threading.Tasks.Task<System.Data.DataSet> SelectMaterialUserProductAsync(string materialCode) {
-            return base.Channel.SelectMaterialUserProductAsync(materialCode);
+        public System.Threading.Tasks.Task<System.Data.DataSet> SelectMaterialDetailMsgAsync(string materialCode) {
+            return base.Channel.SelectMaterialDetailMsgAsync(materialCode);
         }
         
         public int CommitProductContinairCapacity(string productTypeNo, string amount, string username, string describle) {
@@ -1300,6 +1298,22 @@ namespace MesManager.MesService {
         
         public System.Threading.Tasks.Task<System.Data.DataSet> SelectTestLimitConfigAsync(string productTypeNo) {
             return base.Channel.SelectTestLimitConfigAsync(productTypeNo);
+        }
+        
+        public System.Data.DataSet SelectTestLogDataDetail(string queryFilter, string startDate, string endDate) {
+            return base.Channel.SelectTestLogDataDetail(queryFilter, startDate, endDate);
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> SelectTestLogDataDetailAsync(string queryFilter, string startDate, string endDate) {
+            return base.Channel.SelectTestLogDataDetailAsync(queryFilter, startDate, endDate);
+        }
+        
+        public System.Data.DataSet SelectTodayTestLogData(string queryFilter) {
+            return base.Channel.SelectTodayTestLogData(queryFilter);
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> SelectTodayTestLogDataAsync(string queryFilter) {
+            return base.Channel.SelectTodayTestLogDataAsync(queryFilter);
         }
     }
 }

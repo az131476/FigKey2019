@@ -464,9 +464,9 @@ namespace MesAPI
         {
             string updateSQL = $"SELECT {DbTable.F_Material.MATERIAL_CODE}," +
                 $"{DbTable.F_Material.MATERIAL_NAME}," +
-                $"{DbTable.F_Material.MATERIAL_USER}," +
-                $"{DbTable.F_Material.UPDATE_DATE}," +
-                $"{DbTable.F_Material.DESCRIBLE}" +
+                $"{DbTable.F_Material.MATERIAL_USERNAME}," +
+                $"{DbTable.F_Material.MATERIAL_UPDATE_DATE}," +
+                $"{DbTable.F_Material.MATERIAL_DESCRIBLE}" +
                 $" FROM {DbTable.F_MATERIAL_NAME}";
             return SQLServer.ExecuteDataSet(updateSQL);
         }
@@ -485,8 +485,8 @@ namespace MesAPI
             string insertSQL = $"INSERT INTO {DbTable.F_MATERIAL_NAME}(" +
                 $"{DbTable.F_Material.MATERIAL_CODE}," +
                 $"{DbTable.F_Material.MATERIAL_NAME}," +
-                $"{DbTable.F_Material.MATERIAL_USER}," +
-                $"{DbTable.F_Material.DESCRIBLE}) " +
+                $"{DbTable.F_Material.MATERIAL_USERNAME}," +
+                $"{DbTable.F_Material.MATERIAL_DESCRIBLE}) " +
                 $"VALUES('{material.MaterialCode}','{material.MaterialName}','{material.UserName}','{material.Describle}')";
             LogHelper.Log.Info($"InsertMaterial={insertSQL}");
             materialMsg.MaterialCode = material.MaterialCode;
@@ -497,9 +497,9 @@ namespace MesAPI
         {
             string updateSQL = $"UPDATE {DbTable.F_MATERIAL_NAME} SET " +
                 $"{DbTable.F_Material.MATERIAL_NAME} = '{material.MaterialName}'," +
-                $"{DbTable.F_Material.MATERIAL_USER} = '{material.UserName}'" +
-                $"{DbTable.F_Material.DESCRIBLE} = '{material.Describle}'," +
-                $"{DbTable.F_Material.UPDATE_DATE} = '{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}' " +
+                $"{DbTable.F_Material.MATERIAL_USERNAME} = '{material.UserName}'" +
+                $"{DbTable.F_Material.MATERIAL_DESCRIBLE} = '{material.Describle}'," +
+                $"{DbTable.F_Material.MATERIAL_UPDATE_DATE} = '{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}' " +
                 $"WHERE {DbTable.F_Material.MATERIAL_CODE} = '{material.MaterialCode}'";
 
             var selectSQL = $"SELECT * FROM {DbTable.F_MATERIAL_NAME} WHERE " +
@@ -674,65 +674,40 @@ namespace MesAPI
         #endregion
 
         #region 物料综合查询
-        public DataSet SelectMaterialMsg(MaterialMsg materialMsg, bool IsSelectAll)
+
+        public DataSet SelectMaterialBasicMsg(string materialCode)
         {
-            //查询情况：
-            //1）根据物料编码-其中之一，查询此物料用到哪些产品上，产品上的某一工序等
-            //2）
-            string selectSQL = "";
-            if (IsSelectAll)
-            {
-                selectSQL = "SELECT a.material_code 物料编码,a.amount 物料总数,b.type_no 产品型号,b.update_date 绑定日期 " +
-                    "FROM [WT_SCL].[dbo].[f_material] a,[WT_SCL].[dbo].[f_product_material] b " +
-                    $"WHERE a.material_code like b.material_code ";
-                //selectSQL = $"SELECT {DbTable.f}";
-            }
-            else
-            {
-                if (materialMsg.MaterialCode == "" && materialMsg.Sn_Inner == "" && materialMsg.Sn_Outter == "" && materialMsg.TypeNo == "" && materialMsg.StationName == "")
-                {
-                    selectSQL = "SELECT a.material_code 物料编码,a.amount 物料总数,b.sn_inner 内壳码," +
-                    "b.sn_outter 外壳码,b.type_no 产品型号, b.station_name 站位名称, b.material_amount 消耗数量," +
-                    "(a.amount - b.material_amount) 剩余数量,b.update_date 更新日期 " +
-                    "FROM[WT_SCL].[dbo].[f_material] a,[WT_SCL].[dbo].f_material_statistics b " +
-                    $"WHERE a.material_code = b.material_code ";
-                }
-                else
-                {
-                    selectSQL = "SELECT a.material_code 物料编码,a.amount 物料总数,b.sn_inner 内壳码," +
-                    "b.sn_outter 外壳码,b.type_no 产品型号, b.station_name 站位名称, b.material_amount 消耗数量," +
-                    "(a.amount - b.material_amount) 剩余数量,b.update_date 更新日期 " +
-                    "FROM[WT_SCL].[dbo].[f_material] a,[WT_SCL].[dbo].f_material_statistics b " +
-                    $"WHERE a.material_code = b.material_code AND " +
-                    $"{DbTable.F_Material.MATERIAL_CODE} = '{materialMsg.MaterialCode}' OR " +
-                    $"{DbTable.F_Material_Statistics.SN_INNER} = '{materialMsg.Sn_Inner}' OR " +
-                    $"{DbTable.F_Material_Statistics.SN_OUTTER} = '{materialMsg.Sn_Outter}' OR " +
-                    $"{DbTable.F_Material_Statistics.TYPE_NO} = '{materialMsg.TypeNo}' OR " +
-                    $"{DbTable.F_Material_Statistics.STATION_NAME} = '{materialMsg.StationName}'";
-                }
-            }
+            var selectSQL = "";
+            selectSQL = $"SELECT DISTINCT " +
+                $"a.{DbTable.F_Material_Statistics.MATERIAL_CODE} 物料编码," +
+                $"b.{DbTable.F_Material.MATERIAL_NAME} 物料名称," +
+                $"a.{DbTable.F_Material_Statistics.TYPE_NO} 产品型号," +
+                $"b.{DbTable.F_Material.MATERIAL_AMOUNTED} 使用总数量 " +
+                $"FROM " +
+                $"{DbTable.F_MATERIAL_STATISTICS_NAME} a," +
+                $"{DbTable.F_MATERIAL_NAME} b " +
+                $"WHERE " +
+                $"a.{DbTable.F_Material_Statistics.MATERIAL_CODE} = b.{DbTable.F_Material.MATERIAL_CODE} AND " +
+                $"a.{DbTable.F_Material_Statistics.MATERIAL_CODE} like '%{materialCode}%' ";
+
             LogHelper.Log.Info(selectSQL);
             return SQLServer.ExecuteDataSet(selectSQL);
         }
 
-        public DataSet SelectMaterialUserProduct(string materialCode)
+        public DataSet SelectMaterialDetailMsg(string materialCode)
         {
             var selectSQL = $"SELECT DISTINCT " +
-                $"a.{DbTable.F_Material_Statistics.MATERIAL_CODE} 物料编码," +
-                $"c.{DbTable.F_Material.MATERIAL_NAME} 物料名称," +
-                $"a.{DbTable.F_Material_Statistics.TYPE_NO} 产品型号," +
-                $"b.{DbTable.F_PRODUCT_MATERIAL.STOCK} 物料总库存," +
-                $"sum(a.{DbTable.F_Material_Statistics.MATERIAL_AMOUNT}) 当前产品已使用物料数量 " +
-                $"FROM " +
-                $"{DbTable.F_MATERIAL_STATISTICS_NAME} a," +
-                $"{DbTable.F_PRODUCT_MATERIAL_NAME} b," +
-                $"{DbTable.F_MATERIAL_NAME} c " +
-                $"WHERE " +
-                $"a.{DbTable.F_Material_Statistics.MATERIAL_CODE} = b.{DbTable.F_PRODUCT_MATERIAL.MATERIAL_CODE} AND " +
-                $"a.{DbTable.F_Material_Statistics.MATERIAL_CODE} = c.{DbTable.F_Material.MATERIAL_CODE} AND " +
-                $"a.{DbTable.F_Material_Statistics.MATERIAL_CODE} like '%{materialCode}%' GROUP BY " +
-                $"a.{DbTable.F_Material_Statistics.TYPE_NO},a.{DbTable.F_Material_Statistics.MATERIAL_CODE}," +
-                $"b.{DbTable.F_PRODUCT_MATERIAL.STOCK},c.{DbTable.F_Material.MATERIAL_NAME}";
+                           $"a.{DbTable.F_Material_Statistics.MATERIAL_CODE} 物料编码," +
+                           $"b.{DbTable.F_Material.MATERIAL_NAME} 物料名称," +
+                           $"b.{DbTable.F_Material_Statistics.TYPE_NO} 产品型号," +
+                           $"b.{DbTable.F_Material_Statistics.STATION_NAME} 工站名称," +
+                           $"b.{DbTable.F_Material_Statistics.MATERIAL_AMOUNT} 使用数量 " +
+                           $"FROM " +
+                           $"{DbTable.F_MATERIAL_STATISTICS_NAME} a," +
+                           $"{DbTable.F_MATERIAL_NAME} b " +
+                           $"WHERE " +
+                           $"a.{DbTable.F_Material_Statistics.MATERIAL_CODE} = b.{DbTable.F_Material.MATERIAL_CODE} AND " +
+                           $"a.{DbTable.F_Material_Statistics.MATERIAL_CODE} like '%{materialCode}%' ";
             LogHelper.Log.Info(selectSQL);
             return SQLServer.ExecuteDataSet(selectSQL);
         }
@@ -1131,7 +1106,8 @@ namespace MesAPI
             {
                 selectSQL = $"SELECT {DbTable.F_TEST_LIMIT_CONFIG.TYPE_NO} 产品型号," +
                 $"{DbTable.F_TEST_LIMIT_CONFIG.STATION_NAME} 工站名称," +
-                $"{DbTable.F_TEST_LIMIT_CONFIG.LIMIT_VALUE} LIMIT值," +
+                $"{DbTable.F_TEST_LIMIT_CONFIG.TEST_ITEM} 测试项," +
+                $"{DbTable.F_TEST_LIMIT_CONFIG.LIMIT} LIMIT值," +
                 $"{DbTable.F_TEST_LIMIT_CONFIG.TEAM_LEADER} 班组长," +
                 $"{DbTable.F_TEST_LIMIT_CONFIG.ADMIN} 管理员," +
                 $"{DbTable.F_TEST_LIMIT_CONFIG.UPDATE_DATE} 更新日期 FROM " +
@@ -1142,7 +1118,8 @@ namespace MesAPI
             {
                 selectSQL = $"SELECT {DbTable.F_TEST_LIMIT_CONFIG.TYPE_NO} 产品型号," +
                 $"{DbTable.F_TEST_LIMIT_CONFIG.STATION_NAME} 工站名称," +
-                $"{DbTable.F_TEST_LIMIT_CONFIG.LIMIT_VALUE} LIMIT值," +
+                $"{DbTable.F_TEST_LIMIT_CONFIG.TEST_ITEM} 测试项," +
+                $"{DbTable.F_TEST_LIMIT_CONFIG.LIMIT} LIMIT值," +
                 $"{DbTable.F_TEST_LIMIT_CONFIG.TEAM_LEADER} 班组长," +
                 $"{DbTable.F_TEST_LIMIT_CONFIG.ADMIN} 管理员," +
                 $"{DbTable.F_TEST_LIMIT_CONFIG.UPDATE_DATE} 更新日期 FROM " +
@@ -1183,6 +1160,81 @@ namespace MesAPI
                 $"{DbTable.F_TEST_PROGRAME_VERSION.UPDATE_DATE} DESC";
             }
             
+            return SQLServer.ExecuteDataSet(selectSQL);
+        }
+
+        public DataSet SelectTodayTestLogData(string queryFilter)
+        {
+            //string productSn,string productTypeNo,string stationName
+            var selectSQL = "";
+            if (string.IsNullOrEmpty(queryFilter))
+            {
+                selectSQL = $"SELECT {DbTable.F_TEST_LOG_DATA.TYPE_NO} 产品型号," +
+                $"{DbTable.F_TEST_LOG_DATA.PRODUCT_SN} 产品SN," +
+                $"{DbTable.F_TEST_LOG_DATA.STATION_NAME} 工站名称," +
+                $"{DbTable.F_TEST_LOG_DATA.TEST_ITEM} 测试项," +
+                $"{DbTable.F_TEST_LOG_DATA.TEST_RESULT} 测试结果 FROM {DbTable.F_TEST_LOG_DATA_NAME} " +
+                $"WHERE "+
+                $"{DbTable.F_TEST_LOG_DATA.UPDATE_DATE} > '{DateTime.Now.ToString("yyyy-MM-dd")}'";
+            }
+            else
+            {
+                selectSQL = $"SELECT {DbTable.F_TEST_LOG_DATA.TYPE_NO} 产品型号," +
+                $"{DbTable.F_TEST_LOG_DATA.PRODUCT_SN} 产品SN," +
+                $"{DbTable.F_TEST_LOG_DATA.STATION_NAME} 工站名称," +
+                $"{DbTable.F_TEST_LOG_DATA.TEST_ITEM} 测试项," +
+                $"{DbTable.F_TEST_LOG_DATA.TEST_RESULT} 测试结果 " +
+                $"FROM {DbTable.F_TEST_LOG_DATA_NAME} " +
+                $"WHERE {DbTable.F_TEST_LOG_DATA.PRODUCT_SN} = '{queryFilter}' OR " +
+                $"{DbTable.F_TEST_LOG_DATA.TYPE_NO} = '{queryFilter}' OR " +
+                $"{DbTable.F_TEST_LOG_DATA.STATION_NAME} = '{queryFilter}' AND " +
+                $"{DbTable.F_TEST_LOG_DATA.UPDATE_DATE} > '{DateTime.Now.ToString("yyyy-MM-dd")}'";
+            }
+            LogHelper.Log.Info(selectSQL);
+            return SQLServer.ExecuteDataSet(selectSQL);
+        }
+
+        public DataSet SelectTestLogDataDetail(string queryFilter,string startDate,string endDate)
+        {
+            var selectSQL = "";
+            if (string.IsNullOrEmpty(queryFilter))
+                return null;
+            if (!string.IsNullOrEmpty(startDate) || !string.IsNullOrEmpty(endDate))
+            {
+                selectSQL = $"SELECT {DbTable.F_TEST_LOG_DATA.TYPE_NO} 产品型号," +
+    $"{DbTable.F_TEST_LOG_DATA.PRODUCT_SN} 产品SN," +
+    $"{DbTable.F_TEST_LOG_DATA.STATION_NAME} 工站名称," +
+    $"{DbTable.F_TEST_LOG_DATA.TEST_ITEM} 测试项," +
+    $"{DbTable.F_TEST_LOG_DATA.TEST_RESULT} 测试结果," +
+    $"{DbTable.F_TEST_LOG_DATA.LIMIT} LIMIT," +
+    $"{DbTable.F_TEST_LOG_DATA.CURRENT_VALUE} 当前值," +
+    $"{DbTable.F_TEST_LOG_DATA.TEAM_LEADER} 班组长," +
+    $"{DbTable.F_TEST_LOG_DATA.ADMIN} 管理员," +
+    $"{DbTable.F_TEST_LOG_DATA.UPDATE_DATE} 更新日期 " +
+    $"FROM {DbTable.F_TEST_LOG_DATA_NAME} " +
+    $"WHERE " +
+    $"{DbTable.F_TEST_LOG_DATA.PRODUCT_SN} = '{queryFilter}' AND " +
+    $"{DbTable.F_TEST_LOG_DATA.UPDATE_DATE} >= '{startDate}' AND " +
+    $"{DbTable.F_TEST_LOG_DATA.UPDATE_DATE} <= '{endDate}'";
+            }
+            else
+            {
+                selectSQL = $"SELECT {DbTable.F_TEST_LOG_DATA.TYPE_NO} 产品型号," +
+    $"{DbTable.F_TEST_LOG_DATA.PRODUCT_SN} 产品SN," +
+    $"{DbTable.F_TEST_LOG_DATA.STATION_NAME} 工站名称," +
+    $"{DbTable.F_TEST_LOG_DATA.TEST_ITEM} 测试项," +
+    $"{DbTable.F_TEST_LOG_DATA.TEST_RESULT} 测试结果," +
+    $"{DbTable.F_TEST_LOG_DATA.LIMIT} LIMIT," +
+    $"{DbTable.F_TEST_LOG_DATA.CURRENT_VALUE} 当前值," +
+    $"{DbTable.F_TEST_LOG_DATA.TEAM_LEADER} 班组长," +
+    $"{DbTable.F_TEST_LOG_DATA.ADMIN} 管理员," +
+    $"{DbTable.F_TEST_LOG_DATA.UPDATE_DATE} 更新日期 " +
+    $"FROM {DbTable.F_TEST_LOG_DATA_NAME} " +
+    $"WHERE " +
+    $"{DbTable.F_TEST_LOG_DATA.PRODUCT_SN} = '{queryFilter}' AND " +
+    $"{DbTable.F_TEST_LOG_DATA.UPDATE_DATE} > '{DateTime.Now.ToString("yyyy-MM-dd")}'";
+            }
+            LogHelper.Log.Info(selectSQL);
             return SQLServer.ExecuteDataSet(selectSQL);
         }
         #endregion

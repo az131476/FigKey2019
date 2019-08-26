@@ -28,10 +28,35 @@ namespace MesWcfService.MessageQueue.RemoteClient
             return "0X"+Convert.ToString((int)msCode,16).PadLeft(2,'0');
         }
 
+        public static string ConvertCheckMaterialMatch(MaterialCheckMatchReturnCode mcmCode)
+        {
+            return "0X" + Convert.ToString((int)mcmCode,16).PadLeft(2,'0');
+        }
+
+        /// <summary>
+        /// 物料号防错
+        /// </summary>
+        /// <param name="queue"></param>
+        /// <returns></returns>
+        public static string CheckMaterialMatch(Queue<string[]> queue)
+        {
+            var materialArray = queue.Dequeue();
+            var productTypeNo = materialArray[0];
+            var materialPN = materialArray[1];
+            var selectSQL = $"SELECT * FROM {DbTable.F_PRODUCT_TYPE_NO_NAME}  WHERE " +
+                $"{DbTable.F_PRODUCT_TYPE_NO.TYPE_NO} = '{productTypeNo}' AND " +
+                $"{DbTable.F_PRODUCT_TYPE_NO.MATERIAL_PN} = '{materialPN}'";
+            var dt = SQLServer.ExecuteDataSet(selectSQL).Tables[0];
+            if (dt.Rows.Count == 1)
+                return ConvertCheckMaterialMatch(MaterialCheckMatchReturnCode.IS_MATCH);
+            return ConvertCheckMaterialMatch(MaterialCheckMatchReturnCode.IS_NOT_MATCH);
+        }
+
         public static string CheckMaterialState(Queue<string> queue)
         {
             var materialCode = queue.Dequeue();
-            var selectSQl = $"SELECT {DbTable.F_Material.MATERIAL_STATE} FROM {DbTable.F_MATERIAL_NAME} WHERE " +
+            var selectSQl = $"SELECT {DbTable.F_Material.MATERIAL_STATE} " +
+                $"FROM {DbTable.F_MATERIAL_NAME} WHERE " +
                 $"{DbTable.F_Material.MATERIAL_CODE} = '{materialCode}'";
             var dt = SQLServer.ExecuteDataSet(selectSQl).Tables[0];
             if (dt.Rows.Count < 1)
@@ -45,60 +70,30 @@ namespace MesWcfService.MessageQueue.RemoteClient
             //更新物料统计：插入/更新
             //更新产品-物料：使用物料数量
             //更新物料库存：使用数量，物料状态，使用完成更新结单状态为2
+            //typeNo,stationName,materialCode,amounted,teamLeader,admin
             try
             {
-                MaterialParams materialParams = new MaterialParams();
                 #region material params
                 string[] array = queue.Dequeue();
-                var materialPCBA = array[0];
-                var materialOutterShell = array[1];
-                var productTypeNo = array[2];
-                var stationName = array[3];
-                var materialTopCover = array[4];
-                var materialUpperShell = array[5];
-                var materialLowerShell = array[6];
-                var materialWirebean = array[7];
-                var materialSupportPlate = array[8];
-                var materialBubbleCotton = array[9];
-                var materialTempStent = array[10];
-                var materialFinalStent = array[11];
-                var materialLittleScrew = array[12];
-                var materialLongScrew = array[13];
-                var materialScrewNut = array[14];
-                var materialWaterProofRing = array[15];
-                var materialSealRing = array[16];
-                var materialUseAmount = array[17];
-                var teamLeader = array[18];
-                var admin = array[19];
-                materialParams.MaterialPCBA = materialPCBA;
-                materialParams.MaterialOutterShell = materialOutterShell;
-                materialParams.ProductTypeNo = productTypeNo;
-                materialParams.StationName = stationName;
-                materialParams.MaterialTopCover = materialTopCover;
-                materialParams.MaterialUpperShell = materialUpperShell;
-                materialParams.MaterialLowerShell = materialLowerShell;
-                materialParams.MaterialWirebean = materialWirebean;
-                materialParams.MaterialSupportPlate = materialSupportPlate;
-                materialParams.MaterialBubbleCotton = materialBubbleCotton;
-                materialParams.MaterialTempStent
+                var productTypeNo = array[0];
+                var stationName = array[1];
+                var materialCode = array[2];
+                var amounted = array[3];
+                var teamLeader = array[4];
+                var admin = array[5];
                 #endregion
 
                 #region insert sql
                 var insertSQL = $"INSERT INTO {DbTable.F_MATERIAL_STATISTICS_NAME}(" +
-                    $"{DbTable.F_Material_Statistics.MATERIAL_PCBA}," +
-                    $"{DbTable.F_Material_Statistics.MATERIAL_OUTTER_SHELL}," +
                     $"{DbTable.F_Material_Statistics.PRODUCT_TYPE_NO}," +
                     $"{DbTable.F_Material_Statistics.STATION_NAME}," +
+                    $"{DbTable.F_Material_Statistics.MATERIAL_CODE}," +
                     $"{DbTable.F_Material_Statistics.MATERIAL_AMOUNT}," +
-                    $"{DbTable.F_Material_Statistics.MATERIAL_AMOUNT}," +
-                    $"{DbTable.F_Material_Statistics.UPDATE_DATE}," +
                     $"{DbTable.F_Material_Statistics.TEAM_LEADER}," +
-                    $"{DbTable.F_Material_Statistics.ADMIN}) " +
-                    $"VALUES('{materialPCBA}','{materialOutterShell}','{productTypeNo}','{stationName}'," +
-                    $"'{materialTopCover}','{materialUpperShell}','{materialLowerShell}','{materialWirebean}'," +
-                    $"'{materialSupportPlate}','{materialBubbleCotton}','{materialTempStent}','{materialFinalStent}'" +
-                    $"'{materialLittleScrew}','{materialLongScrew}','{materialScrewNut}','{materialWaterProofRing}'," +
-                    $"'{materialSealRing}','{materialUseAmount}','{teamLeader}','{admin}')";
+                    $"{DbTable.F_Material_Statistics.ADMIN}," +
+                    $"{DbTable.F_Material_Statistics.UPDATE_DATE}) VALUES(" +
+                    $"'{productTypeNo}','{stationName}','{materialCode}','{amounted}','{teamLeader}','{admin}','{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}')";
+
                 #endregion
 
                 int row = 0;
@@ -106,17 +101,30 @@ namespace MesWcfService.MessageQueue.RemoteClient
                 {
                     //插入
                     row = SQLServer.ExecuteNonQuery(insertSQL);
-                    UpdateMaterialQuantity(type_no,material_code,int.Parse(material_amount));
+                    if (row > 0)
+                    {
+                        //插入成功
+                        var iuRes = UpdateMaterialAmounted(materialCode, int.Parse(amounted));//更新计数
+                        var isRes = UpdateMaterialState(materialCode);//更新状态
+                        if (iuRes > 0 && isRes > 0)
+                        {
+                            //更新物料使用数量成功
+                            return ConvertMaterialStatisticsCode(MaterialStatisticsReturnCode.STATUS_USCCESS);
+                        }
+                    }
+                    return ConvertMaterialStatisticsCode(MaterialStatisticsReturnCode.STATUS_FAIL);
                 }
-                else
+
+                //更新物料统计
+                int originNum = SelectLastInsertAmount(productTypeNo, stationName, materialCode);
+                var uRes = UpdateMaterialAmounted(materialCode, int.Parse(amounted) - originNum);//更新计数
+                var sRes = UpdateMaterialState(materialCode);//更新状态
+                if (uRes > 0 && sRes > 0)
                 {
-                    int originNum = SelectLastInsertAmount(sn_inner,sn_outter,type_no,station_name,material_code);
-                    row = UpdateMaterialAmount(sn_inner,sn_outter,type_no,station_name,material_code, material_amount);
-                    UpdateMaterialQuantity(type_no,material_code,int.Parse(material_amount) - originNum);
+                    //更新物料使用数量成功
+                    return ConvertMaterialStatisticsCode(MaterialStatisticsReturnCode.STATUS_USCCESS);
                 }
-                if (row > 0)
-                    return "OK";
-                return "FAIL";
+                return ConvertMaterialStatisticsCode(MaterialStatisticsReturnCode.STATUS_FAIL);
             }
             catch (Exception ex)
             {
@@ -127,69 +135,74 @@ namespace MesWcfService.MessageQueue.RemoteClient
 
         private static bool IsExistMaterialData(string[] array)
         {
-            string sn_inner = array[0];
-            string sn_outter = array[1];
-            string type_no = array[2];
-            string station_name = array[3];
-            string material_code = array[4];
-            string material_amount = array[5];
-            string teamLeader = array[6];
-            string admin = array[7];
+            var productTypeNo = array[0];
+            var stationName = array[1];
+            var materialCode = array[2];
+            var amounted = array[3];
             var selectSQL = $"SELECT * FROM {DbTable.F_MATERIAL_STATISTICS_NAME} WHERE " +
-                $"{DbTable.F_Material_Statistics.SN_INNER} = '{sn_inner}' AND " +
-                $"{DbTable.F_Material_Statistics.SN_OUTTER} = '{sn_outter}' AND " +
-                $"{DbTable.F_Material_Statistics.STATION_NAME} = '{station_name}' AND " +
-                $"{DbTable.F_Material_Statistics.MATERIAL_AMOUNT} = '{material_code}'";
+                $"{DbTable.F_Material_Statistics.PRODUCT_TYPE_NO} = '{productTypeNo}' AND " +
+                $"{DbTable.F_Material_Statistics.STATION_NAME} = '{stationName}' AND " +
+                $"{DbTable.F_Material_Statistics.MATERIAL_CODE} = '{materialCode}' AND " +
+                $"{DbTable.F_Material_Statistics.MATERIAL_AMOUNT} = '{amounted}'";
             var dt = SQLServer.ExecuteDataSet(selectSQL).Tables[0];
             if (dt.Rows.Count > 0)
                 return true;
             return false;
         }
 
-        private static int UpdateMaterialAmount(string sn_inner, string sn_outter, string type_no, string stationName, string code, string amount)
-        {
-            var updateSQL = $"UPDATE {DbTable.F_MATERIAL_STATISTICS_NAME} SET " +
-                $"{DbTable.F_Material_Statistics.MATERIAL_AMOUNT} = '{amount}' ," +
-                $"{DbTable.F_Material_Statistics.UPDATE_DATE} = '{GetDateTime()}' WHERE " +
-                $"{DbTable.F_Material_Statistics.SN_INNER} = '{sn_inner}' AND " +
-                $"{DbTable.F_Material_Statistics.SN_OUTTER} = '{sn_outter}' AND " +
-                $"{DbTable.F_Material_Statistics.TYPE_NO} = '{type_no}' AND " +
-                $"{DbTable.F_Material_Statistics.STATION_NAME} = '{stationName}' AND " +
-                $"{DbTable.F_Material_Statistics.MATERIAL_AMOUNT} = '{code}'";
-            return SQLServer.ExecuteNonQuery(updateSQL);
-        }
-
-        private static int SelectLastInsertAmount(string sn_inner, string sn_outter, string type_no, string stationName, string code)
+        private static int SelectLastInsertAmount(string type_no, string stationName, string code)
         {
             var selectSQL = $"SELECT {DbTable.F_Material_Statistics.MATERIAL_AMOUNT} " +
                 $"FROM {DbTable.F_MATERIAL_STATISTICS_NAME} WHERE " +
-                $"{DbTable.F_Material_Statistics.SN_INNER} = '{sn_inner}' AND " +
-                $"{DbTable.F_Material_Statistics.SN_OUTTER} = '{sn_outter}' AND " +
-                $"{DbTable.F_Material_Statistics.TYPE_NO} = '{type_no}' AND " +
                 $"{DbTable.F_Material_Statistics.STATION_NAME} = '{stationName}' AND " +
-                $"{DbTable.F_Material_Statistics.MATERIAL_AMOUNT} = '{code}'";
-            return int.Parse(SQLServer.ExecuteDataSet(selectSQL).Tables[0].Rows[0][0].ToString());
+                $"{DbTable.F_Material_Statistics.PRODUCT_TYPE_NO} = '{type_no}' AND " +
+                $"{DbTable.F_Material_Statistics.MATERIAL_CODE} = '{code}'";
+            var dt = SQLServer.ExecuteDataSet(selectSQL).Tables[0];
+            if (dt.Rows.Count > 0)
+            {
+                return int.Parse(dt.Rows[0][0].ToString());
+            }
+            return 0;
         }
 
-        //更新产品物料数据
-        private static void UpdateProductMaterialQuantity(string typeNo,string materialCode,int amounted)
-        {
-            var updateSQL = $"UPDATE {DbTable.F_PRODUCT_MATERIAL_NAME} SET " +
-                $"{DbTable.F_PRODUCT_MATERIAL.AMOUNTED} += '{amounted}' " +
-                $"WHERE " +
-                $"{DbTable.F_PRODUCT_MATERIAL.TYPE_NO} = '{typeNo}' AND " +
-                $"{DbTable.F_PRODUCT_MATERIAL.MATERIAL_CODE} = '{materialCode}'";
-            SQLServer.ExecuteNonQuery(updateSQL);
-        }
-
-        //更新物料
-        private static void UpdateMaterial()
+        //更新产品物料数量
+        private static int UpdateMaterialAmounted(string materialCode,int amounted)
         {
             var updateSQL = $"UPDATE {DbTable.F_MATERIAL_NAME} SET " +
-                $"{DbTable.F_Material.MATERIAL_AMOUNTED} = '{}'";
+                $"{DbTable.F_Material.MATERIAL_AMOUNTED} += '{amounted}' " +
+                $"WHERE " +
+                $"{DbTable.F_Material.MATERIAL_CODE} = '{materialCode}'";
+            return SQLServer.ExecuteNonQuery(updateSQL);
         }
 
-
+        /// <summary>
+        /// 更新物料状态 0-fail,1-success
+        /// </summary>
+        /// <param name="materialCode"></param>
+        /// <returns></returns>
+        private static int UpdateMaterialState(string materialCode)
+        {
+            var selectSQL = $"SELECT {DbTable.F_Material.MATERIAL_STOCK},{DbTable.F_Material.MATERIAL_AMOUNTED} " +
+                $"FROM {DbTable.F_MATERIAL_NAME} " +
+                $"WHERE " +
+                $"{DbTable.F_Material.MATERIAL_CODE} = '{materialCode}'";
+            var dt = SQLServer.ExecuteDataSet(selectSQL).Tables[0];
+            if (dt.Rows.Count > 0)
+            {
+                var stock = int.Parse(dt.Rows[0][0].ToString());
+                var amounted = int.Parse(dt.Rows[0][1].ToString());
+                if (stock == amounted)
+                {
+                    //物料已使用完，更新状态为2
+                    var updateSQL = $"UPDATE {DbTable.F_MATERIAL_NAME} SET " +
+                        $"{DbTable.F_Material.MATERIAL_STATE} = '1' WHERE " +
+                        $"{DbTable.F_Material.MATERIAL_CODE} = '{materialCode}'";
+                    return  SQLServer.ExecuteNonQuery(updateSQL);
+                }
+                return 1;
+            }
+            return 0;
+        }
     }
     public class MaterialParams
     {

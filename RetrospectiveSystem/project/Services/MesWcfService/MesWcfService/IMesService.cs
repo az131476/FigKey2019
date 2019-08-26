@@ -51,15 +51,30 @@ namespace MesWcfService
 
         #region【接口】UpdateMaterialStatistics 更新物料计数
         [OperationContract]
-        [SwaggerWcfPath("UpdateMaterialStatistics", "【装配物料统计】array[0]=PCBA,array[1]=外壳,array[2]=产品型号," +
-            "array[3]=站位名称,array[4]=上盖,array[5]=上壳,array[6]=下壳,array[7]=线束,array[8]=支架板,array[9]=泡棉," +
-            "array[10]=临时支架,array[11]=最终支架,array[12]=小螺钉,array[13]=长螺钉,array[14]=螺丝/螺帽," +
-            "array[15]=防水圈,array[16]=密封圈,array[17]=使用数量,array[18]=班组长,array[19]=管理员")]
-        [WebInvoke(Method = "POST", UriTemplate = "UpdateMaterialStatistics",
+        [SwaggerWcfPath("UpdateMaterialStatistics", "装配物料统计")]
+        [WebInvoke(Method = "POST", UriTemplate = "UpdateMaterialStatistics?typeNo={typeNo}&stationName={stationName}&" +
+            "materialCode={materialCode}&amounted={amounted}&teamLeader={teamLeader}&admin={admin}",
             BodyStyle = WebMessageBodyStyle.WrappedRequest, RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
-        string UpdateMaterialStatistics(string[] materialArray);
+        string UpdateMaterialStatistics(
+            [SwaggerWcfParameter(Description = "产品型号")]string typeNo,
+            [SwaggerWcfParameter(Description = "工站名称")]string stationName,
+            [SwaggerWcfParameter(Description = "物料编码")]string materialCode,
+            [SwaggerWcfParameter(Description = "使用数量")]string amounted,
+            [SwaggerWcfParameter(Description = "班组长")]string teamLeader,
+            [SwaggerWcfParameter(Description = "管理员")]string admin);
 
-        string CheckMaterialState(string materialCode);
+        [OperationContract]
+        [SwaggerWcfPath("CheckMaterialState","检查物料状态，1-正常，2-正常使用完，3-强制使用完；2/3都为使用完")]
+        [WebInvoke(Method = "GET",UriTemplate = "CheckMaterialState?materialCode={materialCode}", BodyStyle = WebMessageBodyStyle.Bare,
+            RequestFormat = WebMessageFormat.Json,ResponseFormat = WebMessageFormat.Json)]
+        string CheckMaterialState([SwaggerWcfParameter(Description = "物料编码")]string materialCode);
+
+        [OperationContract]
+        [SwaggerWcfPath("CheckMaterialMatch", "检查物料码是否匹配，0-不匹配；1-匹配")]
+        [WebInvoke(Method = "GET", UriTemplate = "CheckMaterialMatch?productTypeNo={productTypeNo}&materialPN={materialPN}", BodyStyle = WebMessageBodyStyle.Bare,
+            RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
+        string CheckMaterialMatch([SwaggerWcfParameter(Description = "产品型号")]string productTypeNo,
+            [SwaggerWcfParameter(Description = "物料编码")]string materialPN);
         #endregion
 
         #region【接口】UpdatePackageProductBindingMsg 【打包/抽检】添加绑定信息/更新绑定信息                
@@ -101,6 +116,25 @@ namespace MesWcfService
         string UpdateLimitConfig([SwaggerWcfParameter(Description = "工站名称*")]string stationName,
             [SwaggerWcfParameter(Description = "产品型号*")]string typeNo,
             [SwaggerWcfParameter(Description = "limit值*")]string limitValue,
+            [SwaggerWcfParameter(Description = "班组长")]string teamLeader,
+            [SwaggerWcfParameter(Description = "管理员")]string admin);
+        #endregion
+
+        #region 【接口】 UpdateLimitConfig 更新测试台log记录
+        [OperationContract]
+        [SwaggerWcfPath("UpdateTestLog", "更新测试台log记录")]
+        [WebInvoke(Method = "GET", UriTemplate = "UpdateTestLog?typeNo={typeNo}&stationName={stationName}&" +
+            "productSN={productSN}&testItem={testItem}&limit={limit}&currentValue={currentValue}&testResult={testResult}&" +
+            "teamLeader={teamLeader}&admin={admin}",
+            BodyStyle = WebMessageBodyStyle.Bare, RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
+        string UpdateTestLog(
+            [SwaggerWcfParameter(Description = "产品型号")]string typeNo, 
+            [SwaggerWcfParameter(Description = "工站名称")]string stationName, 
+            [SwaggerWcfParameter(Description = "产品SN")]string productSN,
+            [SwaggerWcfParameter(Description = "测试项")]string testItem,
+            [SwaggerWcfParameter(Description = "limit")]string limit,
+            [SwaggerWcfParameter(Description = "当前值")]string currentValue,
+            [SwaggerWcfParameter(Description = "测试结果")]string testResult,
             [SwaggerWcfParameter(Description = "班组长")]string teamLeader,
             [SwaggerWcfParameter(Description = "管理员")]string admin);
         #endregion

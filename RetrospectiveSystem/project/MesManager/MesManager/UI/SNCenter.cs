@@ -19,6 +19,20 @@ namespace MesManager.UI
     public partial class SNCenter : RadForm
     {
         private MesService.MesServiceClient serviceClient;
+        private DataTable dataSourceMaterialBasic;
+        private DataTable dataSourceMaterialDetail;
+        private const string MATERIAL_PN = "物料号";
+        private const string MATERIAL_LOT = "批次号";
+        private const string MATERIAL_RID = "料盘号";
+        private const string MATERIAL_DC = "有效期";
+        private const string MATERIAL_QTY = "库存";
+        private const string MATERIAL_NAME = "物料名称";
+        private const string PRODUCT_TYPENO = "产品型号";
+        private const string STATION_NAME = "工站名称";
+        private const string USE_AMOUNTED = "使用数量";
+        private const string TEAM_LEADER = "班组长";
+        private const string ADMIN = "管理员";
+        private const string UPDATE_DATE = "更新日期";
 
         private enum ExportFormat
         {
@@ -38,6 +52,36 @@ namespace MesManager.UI
         {
             Init();
             EventHandlers();
+        }
+
+        private void InitDataTable()
+        {
+            if (dataSourceMaterialBasic == null)
+            {
+                dataSourceMaterialBasic = new DataTable();
+                dataSourceMaterialBasic.Columns.Add(MATERIAL_PN);
+                dataSourceMaterialBasic.Columns.Add(MATERIAL_LOT);
+                dataSourceMaterialBasic.Columns.Add(MATERIAL_RID);
+                dataSourceMaterialBasic.Columns.Add(MATERIAL_DC);
+                dataSourceMaterialBasic.Columns.Add(MATERIAL_QTY);
+                dataSourceMaterialBasic.Columns.Add(PRODUCT_TYPENO);
+                dataSourceMaterialBasic.Columns.Add(USE_AMOUNTED);
+            }
+            if (dataSourceMaterialDetail == null)
+            {
+                dataSourceMaterialDetail = new DataTable();
+                dataSourceMaterialDetail.Columns.Add(MATERIAL_PN);
+                dataSourceMaterialDetail.Columns.Add(MATERIAL_LOT);
+                dataSourceMaterialDetail.Columns.Add(MATERIAL_RID);
+                dataSourceMaterialDetail.Columns.Add(MATERIAL_DC);
+                dataSourceMaterialDetail.Columns.Add(MATERIAL_QTY);
+                dataSourceMaterialDetail.Columns.Add(PRODUCT_TYPENO);
+                dataSourceMaterialDetail.Columns.Add(STATION_NAME);
+                dataSourceMaterialDetail.Columns.Add(USE_AMOUNTED);
+                dataSourceMaterialDetail.Columns.Add(TEAM_LEADER);
+                dataSourceMaterialDetail.Columns.Add(ADMIN);
+                dataSourceMaterialDetail.Columns.Add(UPDATE_DATE);
+            }
         }
 
         private void EventHandlers()
@@ -211,7 +255,7 @@ namespace MesManager.UI
         {
             //物料信息表
             //物料编码+物料名称+所属型号+在哪个工序/站位消耗+该位置消耗数量
-            var dt = (await serviceClient.SelectMaterialUserProductAsync(this.tb_material.Text)).Tables[0];
+            var dt = (await serviceClient.SelectMaterialBasicMsgAsync(this.tb_material.Text)).Tables[0];
             this.radGridViewMaterial.DataSource = dt;
         }
 

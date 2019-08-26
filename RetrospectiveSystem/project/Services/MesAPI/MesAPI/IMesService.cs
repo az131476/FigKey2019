@@ -105,13 +105,10 @@ namespace MesAPI
             string materialCode, string amount);
 
         [OperationContract]
-        DataSet SelectMaterialStatistics(string typeNo);
+        DataSet SelectMaterialBasicMsg(string materialCode);
 
         [OperationContract]
-        DataSet SelectMaterialMsg(MaterialMsg materialMsg, bool IsSelectAll);
-
-        [OperationContract]
-        DataSet SelectMaterialUserProduct(string materialCode);
+        DataSet SelectMaterialDetailMsg(string materialCode);
 
         //外箱容量
         [OperationContract]
@@ -149,5 +146,11 @@ namespace MesAPI
 
         [OperationContract]
         DataSet SelectTestLimitConfig(string productTypeNo);
+
+        [OperationContract]
+        DataSet SelectTestLogDataDetail(string queryFilter,string startDate, string endDate);
+
+        [OperationContract]
+        DataSet SelectTodayTestLogData(string queryFilter);
     }
 }

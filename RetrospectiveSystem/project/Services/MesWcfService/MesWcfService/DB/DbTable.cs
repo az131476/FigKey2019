@@ -20,6 +20,7 @@ namespace MesWcfService.DB
         public const string F_PASS_RATE_STATISTICS_NAME     = "[WT_SCL].[dbo].[f_pass_rate_statistics]";
         public const string F_TEST_PROGRAME_VERSION_NAME    = "[WT_SCL].[dbo].[f_test_programe_version]";
         public const string F_TEST_LIMIT_CONFIG_NAME        = "[WT_SCL].[dbo].[f_test_limit_config]";
+        public const string F_TEST_LOG_DATA_NAME            = "[WT_SCL].[dbo].[f_test_log_data]";
 
         public class F_User
         {
@@ -61,6 +62,7 @@ namespace MesWcfService.DB
         {
             public const string TYPE_NO = "[type_no]";
             public const string USER_NAME = "[username]";
+            public const string MATERIAL_PN = "[material_pn]";
         }
 
         public class F_Material
@@ -89,24 +91,10 @@ namespace MesWcfService.DB
 
         public class F_Material_Statistics
         {
-            public const string MATERIAL_PCBA               = "[material_pcba]";
-            public const string MATERIAL_OUTTER_SHELL       = "[material_outter_shell]";
             public const string PRODUCT_TYPE_NO             = "[type_no]";
             public const string STATION_NAME                = "[station_name]";
-            public const string MATERIAL_TOP_COVER          = "[material_top_cover]";
-            public const string MATERIAL_UPPER_SHELL        = "[material_upper_shell]";
-            public const string MATERIAL_LOWER_SHELL        = "[material_lower_shell]";
-            public const string MATERIAL_WIREBEAM           = "[material_wirebeam]";
-            public const string MATERIAL_SUPPORT_PLATE      = "[material_support_plate]";
-            public const string MATERIAL_BUBBLE_COTTON      = "[material_bubble_cotton]";
-            public const string MATERIAL_TEMP_STENT         = "[material_temp_stent]";
-            public const string MATERIAL_FINAL_STENT        = "[material_final_stent]";
-            public const string MATERIAL_LITTLE_SCREW       = "[material_little_screw]";
-            public const string MATERIAL_LONG_SCREW         = "[material_long_screw]";
-            public const string MATERIAL_SCREW_NUT          = "[material_screw_nut]";
-            public const string MATERIAL_WATERPROOF_RING    = "[material_waterproof_ring]";
-            public const string MATERIAL_SEAL_RING          = "[material_seal_ring]";
-            public const string MATERIAL_AMOUNT             = "[material_amount]";
+            public const string MATERIAL_CODE               = "[material_code]";
+            public const string MATERIAL_AMOUNT             = "[material_amounted]";
             public const string TEAM_LEADER                 = "[team_leader]";
             public const string ADMIN                       = "[admin]";
             public const string UPDATE_DATE                 = "[update_date]";
@@ -181,10 +169,25 @@ namespace MesWcfService.DB
         {
             public const string STATION_NAME    = "[station_name]";
             public const string TYPE_NO         = "[type_no]";
-            public const string LIMIT_VALUE     = "[limit_value]";
+            public const string TEST_ITEM       = "test_item";
+            public const string LIMIT           = "[limit]";
             public const string TEAM_LEADER     = "[team_leader]";
             public const string ADMIN           = "[admin]";
             public const string UPDATE_DATE     = "[update_date]";
+        }
+
+        public class F_TEST_LOG_DATA
+        {
+            public const string STATION_NAME = "[stationName]";
+            public const string PRODUCT_SN = "[productSn]";
+            public const string TYPE_NO = "[productTypeNo]";
+            public const string TEST_ITEM = "[testItem]";
+            public const string LIMIT = "[limit]";
+            public const string CURRENT_VALUE = "[currentValue]";
+            public const string TEST_RESULT = "[testResult]";
+            public const string TEAM_LEADER = "[teamLeader]";
+            public const string ADMIN = "[admin]";
+            public const string UPDATE_DATE = "[updateDate]";
         }
     }
 }

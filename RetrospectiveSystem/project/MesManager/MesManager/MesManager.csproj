@@ -413,6 +413,12 @@
     <Compile Include="UI\StatisticalAnalysis.Designer.cs">
       <DependentUpon>StatisticalAnalysis.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\TestLogDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\TestLogDetail.Designer.cs">
+      <DependentUpon>TestLogDetail.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\TestStand.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -522,6 +528,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\StatisticalAnalysis.resx">
       <DependentUpon>StatisticalAnalysis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\TestLogDetail.resx">
+      <DependentUpon>TestLogDetail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\TestStand.resx">
       <DependentUpon>TestStand.cs</DependentUpon>

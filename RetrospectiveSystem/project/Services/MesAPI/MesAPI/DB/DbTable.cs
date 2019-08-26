@@ -21,6 +21,7 @@ namespace MesAPI.DB
         public const string F_PASS_RATE_STATISTICS_NAME         = "[WT_SCL].[dbo].[f_pass_rate_statistics]";
         public const string F_TEST_PROGRAME_VERSION_NAME        = "[WT_SCL].[dbo].[f_test_programe_version]";
         public const string F_TEST_LIMIT_CONFIG_NAME            = "[WT_SCL].[dbo].[f_test_limit_config]";
+        public const string F_TEST_LOG_DATA_NAME                = "[WT_SCL].[dbo].[f_test_log_data]";
 
         public class F_User
         {
@@ -83,6 +84,7 @@ namespace MesAPI.DB
             public const string MATERIAL_DESCRIBLE = "[material_describle]";
             public const string MATERIAL_USERNAME = "[material_username]";
             public const string MATERIAL_UPDATE_DATE = "[material_update_date]";
+
         }
 
         public class F_PRODUCT_MATERIAL
@@ -166,12 +168,27 @@ namespace MesAPI.DB
 
         public class F_TEST_LIMIT_CONFIG
         {
-            public const string STATION_NAME = "station_name";
-            public const string TYPE_NO = "type_no";
-            public const string LIMIT_VALUE = "limit_value";
-            public const string TEAM_LEADER = "team_leader";
-            public const string ADMIN = "admin";
-            public const string UPDATE_DATE = "update_date";
+            public const string STATION_NAME = "[station_name]";
+            public const string TYPE_NO = "[type_no]";
+            public const string TEST_ITEM = "test_item";
+            public const string LIMIT = "[limit]";
+            public const string TEAM_LEADER = "[team_leader]";
+            public const string ADMIN = "[admin]";
+            public const string UPDATE_DATE = "[update_date]";
+        }
+
+        public class F_TEST_LOG_DATA
+        {
+            public const string STATION_NAME = "[stationName]";
+            public const string PRODUCT_SN = "[productSn]";
+            public const string TYPE_NO = "[productTypeNo]";
+            public const string TEST_ITEM = "[testItem]";
+            public const string LIMIT = "[limit]";
+            public const string CURRENT_VALUE = "[currentValue]";
+            public const string TEST_RESULT = "[testResult]";
+            public const string TEAM_LEADER = "[teamLeader]";
+            public const string ADMIN = "[admin]";
+            public const string UPDATE_DATE = "[updateDate]";
         }
     }
 }

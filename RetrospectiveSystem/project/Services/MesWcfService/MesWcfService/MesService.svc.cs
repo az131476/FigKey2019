@@ -33,8 +33,10 @@ namespace MesWcfService
         private Queue<string[]> insertMaterialStatisticsQueue = new Queue<string[]>();
         private Queue<string[]> updateProgrameVersionQueue = new Queue<string[]>();
         private Queue<string[]> updateLimitConfigQueue = new Queue<string[]>();
+        private Queue<string[]> updateLogDataQueue = new Queue<string[]>();
         private Queue<string[]> updatePackageProductQueue = new Queue<string[]>();
         private Queue<string> checkMaterialStateQueue = new Queue<string>();
+        private Queue<string[]> checkMaterialMatchQueue = new Queue<string[]>();
         private int materialLength = 20;
 
         #region 测试通讯
@@ -84,32 +86,55 @@ namespace MesWcfService
 
         #region 物料统计表
         [SwaggerWcfTag("MesServcie 服务")]
-        /// <summary>
-        /// 测试端传入装配消耗物料计数
-        /// </summary>
-        [SwaggerWcfResponse("OK","插入数据成功")]
-        [SwaggerWcfResponse("NONE","物料已使用完")]
-        [SwaggerWcfResponse("FAIL","插入数据失败")]
-        [SwaggerWcfResponse("ERR_NOT_DECIMAL", "数量数据类型不为整型")]
-        [SwaggerWcfResponse("ERROR", "异常错误")]
-        public string UpdateMaterialStatistics(string[] materialArray)
+        [SwaggerWcfResponse("0X00", "STATUS_FAIL")]
+        [SwaggerWcfResponse("0X01", "STATUS_USCCESS")]
+        [SwaggerWcfResponse("0X02", "ERROR_IS_NULL_TYPNO")]
+        [SwaggerWcfResponse("0X03", "ERROR_IS_NULL_STATION_NAME")]
+        [SwaggerWcfResponse("0X04", "ERROR_IS_NULL_MATERIAL_CODE")]
+        [SwaggerWcfResponse("0X05", "ERROR_IS_NULL_AMOUNTED")]
+        [SwaggerWcfResponse("0X06", "ERROR_USE_AMOUNT_NOT_INT")]
+        [SwaggerWcfResponse("0X07", "ERROR_NOT_MATCH_MATERIAL_PN")]
+        [SwaggerWcfResponse("0X08", "ERROR_NOT_AMOUNT_STATE")]
+        public string UpdateMaterialStatistics(string typeNo,string stationName,string materialCode,string amounted,string teamLeader,string admin)
         {
-            if (materialArray.Length < materialLength)
-                return MaterialStatistics.ConvertMaterialStatisticsCode(MaterialStatisticsReturnCode.ERROR_ARRAY_LENGTH_NOT_ENOUGH);
-            if (materialArray.Length > materialLength)
-                return MaterialStatistics.ConvertMaterialStatisticsCode(MaterialStatisticsReturnCode.ERROR_ARRAY_LENGTH_OVER_FLOW);
-            if (!ExamineInputFormat.IsDecimal(materialArray[17]))
-                return MaterialStatistics.ConvertMaterialStatisticsCode(MaterialStatisticsReturnCode.ERROR_USE_AMOUNT_NOT_INT_INDEX17);
-            insertMaterialStatisticsQueue.Enqueue(materialArray);
+            if (string.IsNullOrEmpty(typeNo))
+                return MaterialStatistics.ConvertMaterialStatisticsCode(MaterialStatisticsReturnCode.ERROR_IS_NULL_TYPNO);
+            if (string.IsNullOrEmpty(stationName))
+                return MaterialStatistics.ConvertMaterialStatisticsCode(MaterialStatisticsReturnCode.ERROR_IS_NULL_STATION_NAME);
+            if (string.IsNullOrEmpty(materialCode))
+                return MaterialStatistics.ConvertMaterialStatisticsCode(MaterialStatisticsReturnCode.ERROR_IS_NULL_MATERIAL_CODE);
+            if (!ExamineInputFormat.IsDecimal(amounted))
+                return MaterialStatistics.ConvertMaterialStatisticsCode(MaterialStatisticsReturnCode.ERROR_USE_AMOUNT_NOT_INT);
+            insertMaterialStatisticsQueue.Enqueue(new string[] { typeNo,stationName,materialCode,amounted,teamLeader,admin});
             return MaterialStatistics.UpdateMaterialStatistics(insertMaterialStatisticsQueue);
         }
 
+        [SwaggerWcfTag("MesServcie 服务")]
+        [SwaggerWcfResponse("0X00", "ERROR_NULL_STRING")]
+        [SwaggerWcfResponse("0X01", "STATUS_USING")]
+        [SwaggerWcfResponse("0X02", "STATUS_COMPLETE_NORMAL")]
+        [SwaggerWcfResponse("0X03", "STATUS_COMPLETE_UNUSUAL")]
+        [SwaggerWcfResponse("0X04", "ERROR_NULL_QUERY")]
         public string CheckMaterialState(string materialCode)
         {
             if (string.IsNullOrEmpty(materialCode))
                 return MaterialStatistics.ConvertCheckMaterialStateCode(MaterialStateReturnCode.ERROR_NULL_STRING);
             checkMaterialStateQueue.Enqueue(materialCode);
             return MaterialStatistics.CheckMaterialState(checkMaterialStateQueue);
+        }
+        [SwaggerWcfTag("MesServcie 服务")]
+        [SwaggerWcfResponse("0X00", "IS_NOT_MATCH")]
+        [SwaggerWcfResponse("0X01", "IS_MATCH")]
+        [SwaggerWcfResponse("0X02", "ERROR_NULL_PRODUCT_TYPENO")]
+        [SwaggerWcfResponse("0X03", "ERROR_NULL_MATERIAL_PN")]
+        public string CheckMaterialMatch(string productTypeNo,string materialPN)
+        {
+            if (string.IsNullOrEmpty(productTypeNo))
+                return MaterialStatistics.ConvertCheckMaterialMatch(MaterialCheckMatchReturnCode.ERROR_NULL_PRODUCT_TYPENO);
+            if (string.IsNullOrEmpty(materialPN))
+                return MaterialStatistics.ConvertCheckMaterialMatch(MaterialCheckMatchReturnCode.ERROR_NULL_MATERIAL_PN);
+            checkMaterialMatchQueue.Enqueue(new string[] { productTypeNo,materialPN});
+            return MaterialStatistics.CheckMaterialMatch(checkMaterialMatchQueue);
         }
 
         #endregion
@@ -148,11 +173,25 @@ namespace MesWcfService
         [SwaggerWcfResponse("OK", "更新LIMIT配置成功")]
         [SwaggerWcfResponse("FAIL", "更新LIMIT配置失败")]
         [SwaggerWcfResponse("ERROR", "异常错误")]
-        public string UpdateLimitConfig(string stationName,string typeNo,string limitValue,string teamLeader,string admin)
+        public string UpdateLimitConfig(string stationName,string typeNo,string testItem,string limit,string teamLeader,string admin)
         {
-            string[] array = new string[] { stationName,typeNo,limitValue,teamLeader,admin};
+            string[] array = new string[] { stationName,typeNo,testItem,limit,teamLeader,admin};
             updateLimitConfigQueue.Enqueue(array);
             return LimitConfig.UpdateLimitConfig(updateLimitConfigQueue);
+        }
+        #endregion
+
+        #region 更新测试log数据
+        [SwaggerWcfTag("MesServcie 服务")]
+        [SwaggerWcfResponse("OK", "更新LIMIT配置成功")]
+        [SwaggerWcfResponse("FAIL", "更新LIMIT配置失败")]
+        [SwaggerWcfResponse("ERROR", "异常错误")]
+        public string UpdateTestLog(string typeNo, string stationName,string productSN, 
+            string testItem,string limit,string currentValue,string testResult, string teamLeader, string admin)
+        {
+            string[] array = new string[] {typeNo,stationName,productSN,testItem,limit,currentValue,testResult,teamLeader,admin};
+            updateLogDataQueue.Enqueue(array);
+            return TestLogData.UpdateTestLogData(updateLogDataQueue);
         }
         #endregion
 

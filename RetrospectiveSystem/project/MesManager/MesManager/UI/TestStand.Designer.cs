@@ -32,22 +32,19 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TestStand));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.tool_productTypeNo = new System.Windows.Forms.ToolStripComboBox();
-            this.radMenuItem5 = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItem6 = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItem7 = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItem8 = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenu1 = new Telerik.WinControls.UI.RadMenu();
-            this.radMenuItem1 = new Telerik.WinControls.UI.RadMenuItem();
-            this.menu_programe_version = new Telerik.WinControls.UI.RadMenuItem();
-            this.menu_limit_cfg = new Telerik.WinControls.UI.RadMenuItem();
-            this.menu_log_data = new Telerik.WinControls.UI.RadMenuItem();
+            this.tool_queryCondition = new System.Windows.Forms.ToolStripComboBox();
+            this.tool_export = new System.Windows.Forms.ToolStripButton();
+            this.tool_programv = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.radGridView1 = new Telerik.WinControls.UI.RadGridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.treeView1 = new System.Windows.Forms.TreeView();
+            this.listView1 = new System.Windows.Forms.ListView();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripComboBox1 = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripLabel4 = new System.Windows.Forms.ToolStripLabel();
@@ -56,23 +53,18 @@
             this.toolStripTextBox3 = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripTextBox4 = new System.Windows.Forms.ToolStripTextBox();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.treeView1 = new System.Windows.Forms.TreeView();
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.tool_export = new System.Windows.Forms.ToolStripButton();
-            this.tool_refresh = new System.Windows.Forms.ToolStripButton();
+            this.tool_specCfg = new System.Windows.Forms.ToolStripButton();
+            this.tool_logData = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).BeginInit();
             this.panel1.SuspendLayout();
-            this.toolStrip2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.toolStrip2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -82,10 +74,12 @@
             this.toolStrip1.Font = new System.Drawing.Font("Microsoft YaHei UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripLabel1,
-            this.tool_productTypeNo,
+            this.tool_queryCondition,
             this.tool_export,
-            this.tool_refresh});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 26);
+            this.tool_programv,
+            this.tool_specCfg,
+            this.tool_logData});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1187, 27);
             this.toolStrip1.TabIndex = 1;
@@ -94,74 +88,29 @@
             // toolStripLabel1
             // 
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(69, 24);
-            this.toolStripLabel1.Text = "产品类型";
+            this.toolStripLabel1.Size = new System.Drawing.Size(132, 24);
+            this.toolStripLabel1.Text = "产品型号/SN/工站";
             // 
-            // tool_productTypeNo
+            // tool_queryCondition
             // 
-            this.tool_productTypeNo.Name = "tool_productTypeNo";
-            this.tool_productTypeNo.Size = new System.Drawing.Size(121, 27);
+            this.tool_queryCondition.Name = "tool_queryCondition";
+            this.tool_queryCondition.Size = new System.Drawing.Size(121, 27);
             // 
-            // radMenuItem5
+            // tool_export
             // 
-            this.radMenuItem5.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.radMenuItem6,
-            this.radMenuItem7,
-            this.radMenuItem8});
-            this.radMenuItem5.Name = "radMenuItem5";
-            this.radMenuItem5.Text = "文件";
+            this.tool_export.Image = global::MesManager.Properties.Resources.Export_16x16;
+            this.tool_export.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tool_export.Name = "tool_export";
+            this.tool_export.Size = new System.Drawing.Size(59, 24);
+            this.tool_export.Text = "导出";
             // 
-            // radMenuItem6
+            // tool_programv
             // 
-            this.radMenuItem6.Name = "radMenuItem6";
-            this.radMenuItem6.Text = "打开";
-            // 
-            // radMenuItem7
-            // 
-            this.radMenuItem7.Name = "radMenuItem7";
-            this.radMenuItem7.Text = "保存";
-            // 
-            // radMenuItem8
-            // 
-            this.radMenuItem8.Name = "radMenuItem8";
-            this.radMenuItem8.Text = "退出";
-            // 
-            // radMenu1
-            // 
-            this.radMenu1.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.radMenu1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radMenu1.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.radMenuItem5,
-            this.radMenuItem1});
-            this.radMenu1.Location = new System.Drawing.Point(0, 0);
-            this.radMenu1.Name = "radMenu1";
-            this.radMenu1.Size = new System.Drawing.Size(1187, 26);
-            this.radMenu1.TabIndex = 0;
-            // 
-            // radMenuItem1
-            // 
-            this.radMenuItem1.Image = null;
-            this.radMenuItem1.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.menu_programe_version,
-            this.menu_limit_cfg,
-            this.menu_log_data});
-            this.radMenuItem1.Name = "radMenuItem1";
-            this.radMenuItem1.Text = "数据类型";
-            // 
-            // menu_programe_version
-            // 
-            this.menu_programe_version.Name = "menu_programe_version";
-            this.menu_programe_version.Text = "程序版本";
-            // 
-            // menu_limit_cfg
-            // 
-            this.menu_limit_cfg.Name = "menu_limit_cfg";
-            this.menu_limit_cfg.Text = "LIMIT配置";
-            // 
-            // menu_log_data
-            // 
-            this.menu_log_data.Name = "menu_log_data";
-            this.menu_log_data.Text = "LOG数据";
+            this.tool_programv.Image = global::MesManager.Properties.Resources.Refresh_16x16;
+            this.tool_programv.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tool_programv.Name = "tool_programv";
+            this.tool_programv.Size = new System.Drawing.Size(89, 24);
+            this.tool_programv.Text = "程序版本";
             // 
             // statusStrip1
             // 
@@ -190,6 +139,41 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1163, 304);
             this.panel1.TabIndex = 10;
+            this.panel1.Visible = false;
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 25);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.treeView1);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.listView1);
+            this.splitContainer1.Size = new System.Drawing.Size(1163, 279);
+            this.splitContainer1.SplitterDistance = 231;
+            this.splitContainer1.TabIndex = 11;
+            // 
+            // treeView1
+            // 
+            this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeView1.Location = new System.Drawing.Point(0, 0);
+            this.treeView1.Name = "treeView1";
+            this.treeView1.Size = new System.Drawing.Size(231, 279);
+            this.treeView1.TabIndex = 4;
+            // 
+            // listView1
+            // 
+            this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listView1.Location = new System.Drawing.Point(0, 0);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(928, 279);
+            this.listView1.TabIndex = 0;
+            this.listView1.UseCompatibleStateImageBehavior = false;
             // 
             // toolStrip2
             // 
@@ -223,6 +207,14 @@
             // 
             this.toolStripComboBox1.Name = "toolStripComboBox1";
             this.toolStripComboBox1.Size = new System.Drawing.Size(121, 25);
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(52, 22);
+            this.toolStripButton1.Text = "设置";
             // 
             // toolStripLabel3
             // 
@@ -268,48 +260,6 @@
             this.toolStripTextBox4.Name = "toolStripTextBox4";
             this.toolStripTextBox4.Size = new System.Drawing.Size(100, 25);
             // 
-            // splitContainer1
-            // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 25);
-            this.splitContainer1.Name = "splitContainer1";
-            // 
-            // splitContainer1.Panel1
-            // 
-            this.splitContainer1.Panel1.Controls.Add(this.treeView1);
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.Controls.Add(this.listView1);
-            this.splitContainer1.Size = new System.Drawing.Size(1163, 279);
-            this.splitContainer1.SplitterDistance = 231;
-            this.splitContainer1.TabIndex = 11;
-            // 
-            // treeView1
-            // 
-            this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeView1.Location = new System.Drawing.Point(0, 0);
-            this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(231, 279);
-            this.treeView1.TabIndex = 4;
-            // 
-            // listView1
-            // 
-            this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView1.Location = new System.Drawing.Point(0, 0);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(928, 279);
-            this.listView1.TabIndex = 0;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(52, 22);
-            this.toolStripButton1.Text = "设置";
-            // 
             // toolStripButton2
             // 
             this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -319,21 +269,21 @@
             this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton2.Text = "连接";
             // 
-            // tool_export
+            // tool_specCfg
             // 
-            this.tool_export.Image = global::MesManager.Properties.Resources.Export_16x16;
-            this.tool_export.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tool_export.Name = "tool_export";
-            this.tool_export.Size = new System.Drawing.Size(59, 24);
-            this.tool_export.Text = "导出";
+            this.tool_specCfg.Image = global::MesManager.Properties.Resources.update;
+            this.tool_specCfg.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tool_specCfg.Name = "tool_specCfg";
+            this.tool_specCfg.Size = new System.Drawing.Size(95, 24);
+            this.tool_specCfg.Text = "SPEC配置";
             // 
-            // tool_refresh
+            // tool_logData
             // 
-            this.tool_refresh.Image = global::MesManager.Properties.Resources.Refresh_16x16;
-            this.tool_refresh.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tool_refresh.Name = "tool_refresh";
-            this.tool_refresh.Size = new System.Drawing.Size(59, 24);
-            this.tool_refresh.Text = "刷新";
+            this.tool_logData.Image = global::MesManager.Properties.Resources.update;
+            this.tool_logData.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tool_logData.Name = "tool_logData";
+            this.tool_logData.Size = new System.Drawing.Size(90, 24);
+            this.tool_logData.Text = "LOG记录";
             // 
             // TestStand
             // 
@@ -345,7 +295,6 @@
             this.Controls.Add(this.radGridView1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.toolStrip1);
-            this.Controls.Add(this.radMenu1);
             this.Name = "TestStand";
             // 
             // 
@@ -355,17 +304,16 @@
             this.Load += new System.EventHandler(this.TestStand_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.toolStrip2.ResumeLayout(false);
-            this.toolStrip2.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.toolStrip2.ResumeLayout(false);
+            this.toolStrip2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -373,21 +321,11 @@
         }
 
         #endregion
-
-        private Telerik.WinControls.UI.RadMenu radMenu1;
-        private Telerik.WinControls.UI.RadMenuItem radMenuItem1;
-        private Telerik.WinControls.UI.RadMenuItem menu_programe_version;
-        private Telerik.WinControls.UI.RadMenuItem menu_limit_cfg;
-        private Telerik.WinControls.UI.RadMenuItem menu_log_data;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
-        private System.Windows.Forms.ToolStripComboBox tool_productTypeNo;
-        private Telerik.WinControls.UI.RadMenuItem radMenuItem5;
-        private Telerik.WinControls.UI.RadMenuItem radMenuItem6;
-        private Telerik.WinControls.UI.RadMenuItem radMenuItem7;
-        private Telerik.WinControls.UI.RadMenuItem radMenuItem8;
+        private System.Windows.Forms.ToolStripComboBox tool_queryCondition;
         private System.Windows.Forms.ToolStripButton tool_export;
-        private System.Windows.Forms.ToolStripButton tool_refresh;
+        private System.Windows.Forms.ToolStripButton tool_programv;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private Telerik.WinControls.UI.RadGridView radGridView1;
         private System.Windows.Forms.Panel panel1;
@@ -407,5 +345,7 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ToolStripButton tool_specCfg;
+        private System.Windows.Forms.ToolStripButton tool_logData;
     }
 }
