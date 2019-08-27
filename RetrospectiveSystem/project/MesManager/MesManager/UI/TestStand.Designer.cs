@@ -28,13 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TestStand));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.tool_queryCondition = new System.Windows.Forms.ToolStripComboBox();
             this.tool_export = new System.Windows.Forms.ToolStripButton();
             this.tool_programv = new System.Windows.Forms.ToolStripButton();
+            this.tool_specCfg = new System.Windows.Forms.ToolStripButton();
+            this.tool_logData = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.radGridView1 = new Telerik.WinControls.UI.RadGridView();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -54,8 +56,6 @@
             this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripTextBox4 = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.tool_specCfg = new System.Windows.Forms.ToolStripButton();
-            this.tool_logData = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).BeginInit();
@@ -112,6 +112,22 @@
             this.tool_programv.Size = new System.Drawing.Size(89, 24);
             this.tool_programv.Text = "程序版本";
             // 
+            // tool_specCfg
+            // 
+            this.tool_specCfg.Image = global::MesManager.Properties.Resources.update;
+            this.tool_specCfg.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tool_specCfg.Name = "tool_specCfg";
+            this.tool_specCfg.Size = new System.Drawing.Size(95, 24);
+            this.tool_specCfg.Text = "SPEC配置";
+            // 
+            // tool_logData
+            // 
+            this.tool_logData.Image = global::MesManager.Properties.Resources.update;
+            this.tool_logData.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tool_logData.Name = "tool_logData";
+            this.tool_logData.Size = new System.Drawing.Size(90, 24);
+            this.tool_logData.Text = "LOG记录";
+            // 
             // statusStrip1
             // 
             this.statusStrip1.Location = new System.Drawing.Point(0, 632);
@@ -122,11 +138,12 @@
             // 
             // radGridView1
             // 
+            this.radGridView1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radGridView1.Location = new System.Drawing.Point(0, 65);
             // 
             // 
             // 
-            this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition2;
             this.radGridView1.Name = "radGridView1";
             this.radGridView1.Size = new System.Drawing.Size(1175, 168);
             this.radGridView1.TabIndex = 2;
@@ -269,22 +286,6 @@
             this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton2.Text = "连接";
             // 
-            // tool_specCfg
-            // 
-            this.tool_specCfg.Image = global::MesManager.Properties.Resources.update;
-            this.tool_specCfg.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tool_specCfg.Name = "tool_specCfg";
-            this.tool_specCfg.Size = new System.Drawing.Size(95, 24);
-            this.tool_specCfg.Text = "SPEC配置";
-            // 
-            // tool_logData
-            // 
-            this.tool_logData.Image = global::MesManager.Properties.Resources.update;
-            this.tool_logData.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tool_logData.Name = "tool_logData";
-            this.tool_logData.Size = new System.Drawing.Size(90, 24);
-            this.tool_logData.Text = "LOG记录";
-            // 
             // TestStand
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -295,6 +296,7 @@
             this.Controls.Add(this.radGridView1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.toolStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "TestStand";
             // 
             // 

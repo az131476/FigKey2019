@@ -13,6 +13,7 @@ using Telerik.WinControls.UI.Export;
 using CommonUtils.Logger;
 using CommonUtils.FileHelper;
 using MesManager.TelerikWinform.GridViewCommon.GridViewDataExport;
+using System.Threading;
 
 namespace MesManager.UI
 {
@@ -20,7 +21,8 @@ namespace MesManager.UI
     {
         private MesService.MesServiceClient serviceClient;
         private DataTable dataSourceMaterialBasic;
-        private DataTable dataSourceMaterialDetail;
+        private DataTable dataSourceProductCheck;
+        #region 物料统计字段
         private const string MATERIAL_PN = "物料号";
         private const string MATERIAL_LOT = "批次号";
         private const string MATERIAL_RID = "料盘号";
@@ -33,6 +35,19 @@ namespace MesManager.UI
         private const string TEAM_LEADER = "班组长";
         private const string ADMIN = "管理员";
         private const string UPDATE_DATE = "更新日期";
+        #endregion
+
+        #region 成品抽检字段
+        private const string CHECK_ORDER = "序号";
+        private const string CHECK_SN = "产品SN";
+        private const string CHECK_CASE_CODE = "箱子编码";
+        private const string CHECK_TYPE_NO = "产品型号";
+        private const string CHECK_BINDING_DATE = "修改日期";
+        private const string CHECK_BINDING_STATE = "产品状态";
+        private const string CHECK_REMARK = "描述";
+        private const string CHECK_LEADER = "班组长";
+        private const string CHECK_ADMIN = "管理员";
+        #endregion
 
         private enum ExportFormat
         {
@@ -51,37 +66,8 @@ namespace MesManager.UI
         private void SNCenter_Load(object sender, EventArgs e)
         {
             Init();
+            SelectOfSn();
             EventHandlers();
-        }
-
-        private void InitDataTable()
-        {
-            if (dataSourceMaterialBasic == null)
-            {
-                dataSourceMaterialBasic = new DataTable();
-                dataSourceMaterialBasic.Columns.Add(MATERIAL_PN);
-                dataSourceMaterialBasic.Columns.Add(MATERIAL_LOT);
-                dataSourceMaterialBasic.Columns.Add(MATERIAL_RID);
-                dataSourceMaterialBasic.Columns.Add(MATERIAL_DC);
-                dataSourceMaterialBasic.Columns.Add(MATERIAL_QTY);
-                dataSourceMaterialBasic.Columns.Add(PRODUCT_TYPENO);
-                dataSourceMaterialBasic.Columns.Add(USE_AMOUNTED);
-            }
-            if (dataSourceMaterialDetail == null)
-            {
-                dataSourceMaterialDetail = new DataTable();
-                dataSourceMaterialDetail.Columns.Add(MATERIAL_PN);
-                dataSourceMaterialDetail.Columns.Add(MATERIAL_LOT);
-                dataSourceMaterialDetail.Columns.Add(MATERIAL_RID);
-                dataSourceMaterialDetail.Columns.Add(MATERIAL_DC);
-                dataSourceMaterialDetail.Columns.Add(MATERIAL_QTY);
-                dataSourceMaterialDetail.Columns.Add(PRODUCT_TYPENO);
-                dataSourceMaterialDetail.Columns.Add(STATION_NAME);
-                dataSourceMaterialDetail.Columns.Add(USE_AMOUNTED);
-                dataSourceMaterialDetail.Columns.Add(TEAM_LEADER);
-                dataSourceMaterialDetail.Columns.Add(ADMIN);
-                dataSourceMaterialDetail.Columns.Add(UPDATE_DATE);
-            }
         }
 
         private void EventHandlers()
@@ -89,21 +75,41 @@ namespace MesManager.UI
             this.menu_sn_result.Click += Menu_sn_result_Click;
             this.menu_material.Click += Menu_material_Click;
             this.menu_package.Click += Menu_package_Click;
-            this.menu_quanlity.Click += Menu_quanlity_Click;
             this.menu_productCheck.Click += Menu_productCheck_Click;
 
             this.btn_materialSelect.Click += Btn_materialSelect_Click;
             this.btn_selectOfSn.Click += Btn_selectOfSn_Click;
             this.btn_selectOfPackage.Click += Btn_selectOfPackage_Click;
+            this.btn_productCheck.Click += Btn_productCheck_Click;
 
             this.tool_sn_export.Click += Tool_sn_export_Click;
             this.tool_material_export.Click += Tool_material_export_Click;
             this.tool_package_export.Click += Tool_package_export_Click;
+            this.tool_productCheck_export.Click += Tool_productCheck_export_Click;
+
+            this.radGridViewMaterial.CellDoubleClick += RadGridViewMaterial_CellDoubleClick;
+        }
+
+        private void Btn_productCheck_Click(object sender, EventArgs e)
+        {
+            SelectOfPackageCheck("0");
+        }
+
+        private void RadGridViewMaterial_CellDoubleClick(object sender, GridViewCellEventArgs e)
+        {
+            var ridCode = this.radGridViewMaterial.CurrentRow.Cells[2].Value.ToString();
+            MaterialDetailMsg materialDetailMsg = new MaterialDetailMsg(ridCode);
+            materialDetailMsg.ShowDialog();
         }
 
         private void Tool_package_export_Click(object sender, EventArgs e)
         {
             ExportGridViewData(this.tool_package_exportFilter.SelectedIndex, this.radGridViewPackage);
+        }
+
+        private void Tool_productCheck_export_Click(object sender, EventArgs e)
+        {
+            ExportGridViewData(this.tool_productCheck_exportFilter.SelectedIndex, this.radGridViewCheck);
         }
 
         private void Tool_material_export_Click(object sender, EventArgs e)
@@ -160,14 +166,10 @@ namespace MesManager.UI
 
         private void Menu_productCheck_Click(object sender, EventArgs e)
         {
-            
-        }
-
-        private void Menu_quanlity_Click(object sender, EventArgs e)
-        {
-            this.panel_quanlity.Dock = DockStyle.Fill;
+            this.panel_productCheck.Dock = DockStyle.Fill;
             SetPanelFalse();
-            this.panel_quanlity.Visible = true;
+            this.panel_productCheck.Visible = true;
+            SelectOfPackageCheck("0");
         }
 
         private void Menu_package_Click(object sender, EventArgs e)
@@ -175,6 +177,7 @@ namespace MesManager.UI
             this.panel_package.Dock = DockStyle.Fill;
             SetPanelFalse();
             this.panel_package.Visible = true;
+            SelectOfPackage("1");
         }
 
         private void Menu_material_Click(object sender, EventArgs e)
@@ -182,6 +185,7 @@ namespace MesManager.UI
             this.panel_material.Dock = DockStyle.Fill;
             SetPanelFalse();
             this.panel_material.Visible = true;
+            SelectOfMaterial();
         }
 
         private void Menu_sn_result_Click(object sender, EventArgs e)
@@ -189,6 +193,7 @@ namespace MesManager.UI
             this.panel_sn.Dock = DockStyle.Fill;
             SetPanelFalse();
             this.panel_sn.Visible = true;
+            SelectOfSn();
         }
 
         private void Init()
@@ -197,7 +202,13 @@ namespace MesManager.UI
             DataGridViewCommon.SetRadGridViewProperty(this.radGridViewSn, false);
             DataGridViewCommon.SetRadGridViewProperty(this.radGridViewPackage, false);
             DataGridViewCommon.SetRadGridViewProperty(this.radGridViewMaterial, false);
+            DataGridViewCommon.SetRadGridViewProperty(this.radGridViewCheck,false);
+            this.radGridViewSn.ReadOnly = true;
+            this.radGridViewPackage.ReadOnly = true;
+            this.radGridViewMaterial.ReadOnly = true;
+            this.radGridViewCheck.ReadOnly = true;
             SetPanelFalse();
+            InitDataTable();
             this.panel_sn.Visible = true;
             this.panel_sn.Dock = DockStyle.Fill;
             this.tool_sn_exportFilter.Items.Clear();
@@ -218,6 +229,12 @@ namespace MesManager.UI
             this.tool_material_exportFilter.Items.Add(ExportFormat.PDF);
             this.tool_material_exportFilter.Items.Add(ExportFormat.CSV);
             this.tool_material_exportFilter.SelectedIndex = 0;
+            this.tool_productCheck_exportFilter.Items.Clear();
+            this.tool_productCheck_exportFilter.Items.Add(ExportFormat.EXCEL);
+            this.tool_productCheck_exportFilter.Items.Add(ExportFormat.HTML);
+            this.tool_productCheck_exportFilter.Items.Add(ExportFormat.PDF);
+            this.tool_productCheck_exportFilter.Items.Add(ExportFormat.CSV);
+            this.tool_productCheck_exportFilter.SelectedIndex = 0;
         }
 
         private void SetPanelFalse()
@@ -225,27 +242,88 @@ namespace MesManager.UI
             this.panel_sn.Visible = false;
             this.panel_material.Visible = false;
             this.panel_package.Visible = false;
-            this.panel_quanlity.Visible = false;
+            this.panel_productCheck.Visible = false;
         }
 
         async private void SelectOfSn()
         {
             var filter = tb_sn.Text;
-            DataSet dt = await serviceClient.SelectTestResultUpperAsync(filter, filter, filter, true);
-            radGridViewSn.DataSource = dt.Tables[0];
+            DataTable dt = (await serviceClient.SelectTestResultUpperAsync(filter, filter, filter, true)).Tables[0];
+            if (dt.Rows.Count < 1)
+                return;
+            radGridViewSn.DataSource = dt;
         }
 
-        async private void SelectOfPackage()
+        async private void SelectOfPackage(string state)
         {
             var filter = tb_package.Text;
             //箱子编码/追溯码/型号
-            MesService.PackageProduct packageProduct = new MesService.PackageProduct();
-            packageProduct.BindingState = 1;
-            packageProduct.CaseCode = tb_package.Text;
-            packageProduct.TypeNo = tb_package.Text;
-            packageProduct.SnOutter = tb_package.Text;
-            System.Data.DataTable dt = (await serviceClient.SelectPackageProductAsync(packageProduct)).Tables[0];
+            System.Data.DataTable dt = (await serviceClient.SelectPackageProductAsync(filter,state)).Tables[0];
+            if (dt.Rows.Count < 1)
+                return;
             this.radGridViewPackage.DataSource = dt;
+        }
+
+        async private void SelectOfPackageCheck(string state)
+        {
+            var filter = tb_productCheck.Text;
+            //箱子编码/追溯码/型号
+            DataTable dt = (await serviceClient.SelectPackageProductAsync(filter, state)).Tables[0];
+            if (dt.Rows.Count < 1)
+                return;
+            this.dataSourceProductCheck.Clear();
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                var orderID = i + 1;
+                var caseCode = dt.Rows[i][0].ToString();
+                var sn = dt.Rows[i][1].ToString();
+                var typeNo = dt.Rows[i][2].ToString();
+                var bindingDate = dt.Rows[i][3].ToString();
+                var teamLeader = dt.Rows[i][4].ToString();
+                var admin = dt.Rows[i][5].ToString();
+                var remark = dt.Rows[i][6].ToString();
+                var productState = "已解包";
+                DataRow dr = dataSourceProductCheck.NewRow();
+                dr[CHECK_ORDER] = orderID;
+                dr[CHECK_CASE_CODE] = caseCode;
+                dr[CHECK_SN] = sn;
+                dr[CHECK_TYPE_NO] = typeNo;
+                dr[CHECK_BINDING_DATE] = bindingDate;
+                dr[CHECK_LEADER] = teamLeader;
+                dr[CHECK_ADMIN] = admin;
+                dr[CHECK_REMARK] = remark;
+                dr[CHECK_BINDING_STATE] = productState;
+                dataSourceProductCheck.Rows.Add(dr);
+            }
+            this.radGridViewCheck.DataSource = dataSourceProductCheck;
+        }
+        private void InitDataTable()
+        {
+            if (dataSourceMaterialBasic == null)
+            {
+                dataSourceMaterialBasic = new DataTable();
+                dataSourceMaterialBasic.Columns.Add(MATERIAL_PN);
+                dataSourceMaterialBasic.Columns.Add(MATERIAL_LOT);
+                dataSourceMaterialBasic.Columns.Add(MATERIAL_RID);
+                dataSourceMaterialBasic.Columns.Add(MATERIAL_DC);
+                dataSourceMaterialBasic.Columns.Add(MATERIAL_QTY);
+                dataSourceMaterialBasic.Columns.Add(MATERIAL_NAME);
+                dataSourceMaterialBasic.Columns.Add(PRODUCT_TYPENO);
+                dataSourceMaterialBasic.Columns.Add(USE_AMOUNTED);
+            }
+            if (dataSourceProductCheck == null)
+            {
+                dataSourceProductCheck = new DataTable();
+                dataSourceProductCheck.Columns.Add(CHECK_ORDER);
+                dataSourceProductCheck.Columns.Add(CHECK_CASE_CODE);
+                dataSourceProductCheck.Columns.Add(CHECK_SN);
+                dataSourceProductCheck.Columns.Add(CHECK_TYPE_NO);
+                dataSourceProductCheck.Columns.Add(CHECK_BINDING_STATE);
+                dataSourceProductCheck.Columns.Add(CHECK_REMARK);
+                dataSourceProductCheck.Columns.Add(CHECK_LEADER);
+                dataSourceProductCheck.Columns.Add(CHECK_ADMIN);
+                dataSourceProductCheck.Columns.Add(CHECK_BINDING_DATE);
+            }
         }
 
         /// <summary>
@@ -255,8 +333,37 @@ namespace MesManager.UI
         {
             //物料信息表
             //物料编码+物料名称+所属型号+在哪个工序/站位消耗+该位置消耗数量
+            this.dataSourceMaterialBasic.Clear();
             var dt = (await serviceClient.SelectMaterialBasicMsgAsync(this.tb_material.Text)).Tables[0];
-            this.radGridViewMaterial.DataSource = dt;
+            if (dt.Rows.Count < 1)
+                return;
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                DataRow dr = dataSourceMaterialBasic.NewRow();
+                var materialCode = dt.Rows[i][0].ToString();//pn/lot/rid/dc/qty
+                var materialName = dt.Rows[i][1].ToString();
+                var productTypeNo = dt.Rows[i][2].ToString();
+                var useAmounted = dt.Rows[i][3].ToString();
+                var pnCode = materialCode.Substring(0,materialCode.IndexOf('@'));
+                materialCode = materialCode.Substring(materialCode.IndexOf('@')+1);
+                var lotCode = materialCode.Substring(0,materialCode.IndexOf('@'));
+                materialCode = materialCode.Substring(materialCode.IndexOf('@')+1);
+                var ridCode = materialCode.Substring(0,materialCode.IndexOf('@'));
+                materialCode = materialCode.Substring(materialCode.IndexOf('@')+1);
+                var dcCode = materialCode.Substring(0,materialCode.IndexOf('@'));
+                materialCode = materialCode.Substring(materialCode.IndexOf('@')+1);
+                var qtyCode = materialCode;
+                dr[MATERIAL_PN] = pnCode;
+                dr[MATERIAL_LOT] = lotCode;
+                dr[MATERIAL_RID] = ridCode;
+                dr[MATERIAL_DC] = dcCode;
+                dr[MATERIAL_QTY] = qtyCode;
+                dr[MATERIAL_NAME] = materialName;
+                dr[PRODUCT_TYPENO] = productTypeNo;
+                dr[USE_AMOUNTED] = useAmounted;
+                dataSourceMaterialBasic.Rows.Add(dr);
+            }
+            this.radGridViewMaterial.DataSource = dataSourceMaterialBasic;
         }
 
         private void Btn_selectOfSn_Click(object sender, EventArgs e)
@@ -266,7 +373,7 @@ namespace MesManager.UI
 
         private void Btn_selectOfPackage_Click(object sender, EventArgs e)
         {
-            SelectOfPackage();MessageBox.Show("","",MessageBoxButtons.OK);
+            SelectOfPackage("1");
         }
     }
 }

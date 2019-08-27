@@ -35,11 +35,9 @@
             this.toolsGroup = new Telerik.WinControls.UI.TileGroupElement();
             this.mainBasicInfo = new Telerik.WinControls.UI.RadTileElement();
             this.mainMaterialManager = new Telerik.WinControls.UI.RadTileElement();
-            this.mainGraphView = new Telerik.WinControls.UI.RadTileElement();
             this.mainProcess = new Telerik.WinControls.UI.RadTileElement();
             this.mainQuanlityAnomaly = new Telerik.WinControls.UI.RadTileElement();
             this.mainReportData = new Telerik.WinControls.UI.RadTileElement();
-            this.mainStatisticalAnalysis = new Telerik.WinControls.UI.RadTileElement();
             this.mainTestStandData = new Telerik.WinControls.UI.RadTileElement();
             ((System.ComponentModel.ISupportInitialize)(this.radPanorama1)).BeginInit();
             this.radPanorama1.SuspendLayout();
@@ -62,7 +60,7 @@
             this.radPanorama1.PanelImageSize = new System.Drawing.Size(1024, 768);
             this.radPanorama1.RowsCount = 2;
             this.radPanorama1.ShowGroups = true;
-            this.radPanorama1.Size = new System.Drawing.Size(1156, 1049);
+            this.radPanorama1.Size = new System.Drawing.Size(1164, 1079);
             this.radPanorama1.TabIndex = 1;
             ((Telerik.WinControls.UI.RadPanoramaElement)(this.radPanorama1.GetChildAt(0))).BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(23)))), ((int)(((byte)(117)))));
             // 
@@ -99,11 +97,9 @@
             this.toolsGroup.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.mainBasicInfo,
             this.mainMaterialManager,
-            this.mainGraphView,
             this.mainProcess,
             this.mainQuanlityAnomaly,
             this.mainReportData,
-            this.mainStatisticalAnalysis,
             this.mainTestStandData});
             this.toolsGroup.Margin = new System.Windows.Forms.Padding(300, 200, 200, 0);
             this.toolsGroup.Name = "toolsGroup";
@@ -150,25 +146,6 @@
             this.mainMaterialManager.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
             this.mainMaterialManager.UseCompatibleTextRendering = false;
             // 
-            // mainGraphView
-            // 
-            this.mainGraphView.AccessibleDescription = "mainGraphView";
-            this.mainGraphView.AccessibleName = "mainGraphView";
-            this.mainGraphView.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(33)))));
-            this.mainGraphView.CellPadding = new System.Windows.Forms.Padding(5);
-            this.mainGraphView.DisabledTextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            this.mainGraphView.DrawBorder = true;
-            this.mainGraphView.ImageAlignment = System.Drawing.ContentAlignment.BottomLeft;
-            this.mainGraphView.ImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.mainGraphView.Name = "mainGraphView";
-            this.mainGraphView.Padding = new System.Windows.Forms.Padding(15, 15, 0, 10);
-            this.mainGraphView.Row = 1;
-            this.mainGraphView.Text = "<html>报表查询 <br>";
-            this.mainGraphView.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.mainGraphView.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-            this.mainGraphView.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            this.mainGraphView.UseCompatibleTextRendering = false;
-            // 
             // mainProcess
             // 
             this.mainProcess.AccessibleDescription = "mainProductPackage";
@@ -194,7 +171,7 @@
             this.mainQuanlityAnomaly.AccessibleName = "mainQuanlityAnomaly";
             this.mainQuanlityAnomaly.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(33)))));
             this.mainQuanlityAnomaly.CellPadding = new System.Windows.Forms.Padding(5);
-            this.mainQuanlityAnomaly.Column = 2;
+            this.mainQuanlityAnomaly.Column = 1;
             this.mainQuanlityAnomaly.DisabledTextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
             this.mainQuanlityAnomaly.DrawBorder = true;
             this.mainQuanlityAnomaly.ImageAlignment = System.Drawing.ContentAlignment.BottomLeft;
@@ -214,7 +191,7 @@
             this.mainReportData.AccessibleName = "mainReportData";
             this.mainReportData.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(33)))));
             this.mainReportData.CellPadding = new System.Windows.Forms.Padding(5);
-            this.mainReportData.Column = 3;
+            this.mainReportData.Column = 0;
             this.mainReportData.DisabledTextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
             this.mainReportData.DrawBorder = true;
             this.mainReportData.ImageAlignment = System.Drawing.ContentAlignment.BottomLeft;
@@ -222,30 +199,11 @@
             this.mainReportData.Name = "mainReportData";
             this.mainReportData.Padding = new System.Windows.Forms.Padding(15, 15, 0, 10);
             this.mainReportData.Text = "<html>追溯管理 <br>";
+            this.mainReportData.Row = 1;
             this.mainReportData.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.mainReportData.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this.mainReportData.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
             this.mainReportData.UseCompatibleTextRendering = false;
-            // 
-            // mainStatisticalAnalysis
-            // 
-            this.mainStatisticalAnalysis.AccessibleDescription = "mainStatisticalAnalysis";
-            this.mainStatisticalAnalysis.AccessibleName = "mainStatisticalAnalysis";
-            this.mainStatisticalAnalysis.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(126)))), ((int)(((byte)(216)))));
-            this.mainStatisticalAnalysis.CellPadding = new System.Windows.Forms.Padding(5);
-            this.mainStatisticalAnalysis.Column = 1;
-            this.mainStatisticalAnalysis.DisabledTextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            this.mainStatisticalAnalysis.DrawBorder = true;
-            this.mainStatisticalAnalysis.ImageAlignment = System.Drawing.ContentAlignment.BottomLeft;
-            this.mainStatisticalAnalysis.ImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.mainStatisticalAnalysis.Name = "mainStatisticalAnalysis";
-            this.mainStatisticalAnalysis.Padding = new System.Windows.Forms.Padding(15, 15, 0, 10);
-            this.mainStatisticalAnalysis.Row = 1;
-            this.mainStatisticalAnalysis.Text = "<html>统计分析 <br>";
-            this.mainStatisticalAnalysis.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.mainStatisticalAnalysis.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-            this.mainStatisticalAnalysis.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            this.mainStatisticalAnalysis.UseCompatibleTextRendering = false;
             // 
             // mainTestStandData
             // 
@@ -253,7 +211,7 @@
             this.mainTestStandData.AccessibleName = "mainTestStandData";
             this.mainTestStandData.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(126)))), ((int)(((byte)(216)))));
             this.mainTestStandData.CellPadding = new System.Windows.Forms.Padding(5);
-            this.mainTestStandData.Column = 3;
+            this.mainTestStandData.Column = 2;
             this.mainTestStandData.DisabledTextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
             this.mainTestStandData.DrawBorder = true;
             this.mainTestStandData.ImageAlignment = System.Drawing.ContentAlignment.BottomLeft;
@@ -272,7 +230,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1156, 1049);
+            this.ClientSize = new System.Drawing.Size(1164, 1079);
             this.Controls.Add(this.radPanorama1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -299,11 +257,8 @@
         private Telerik.WinControls.UI.RadTileElement mainBasicInfo;//基础信息
         private Telerik.WinControls.UI.RadTileElement mainMaterialManager;//物料管理
         private Telerik.WinControls.UI.RadTileElement mainProcess;//成品装箱
-
-        private Telerik.WinControls.UI.RadTileElement mainGraphView;//看板中心
         private Telerik.WinControls.UI.RadTileElement mainReportData;//报表中心
         private Telerik.WinControls.UI.RadTileElement mainQuanlityAnomaly;//品质异常管理
-        private Telerik.WinControls.UI.RadTileElement mainStatisticalAnalysis;//统计分析
         private Telerik.WinControls.UI.RadTileElement mainTestStandData;//测试台数据
         private Telerik.WinControls.UI.RadButton btn_user_login;
         private Telerik.WinControls.UI.RadButton btn_user_manger;

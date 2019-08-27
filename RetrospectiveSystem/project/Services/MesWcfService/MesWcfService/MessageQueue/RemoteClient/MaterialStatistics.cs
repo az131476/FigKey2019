@@ -43,9 +43,9 @@ namespace MesWcfService.MessageQueue.RemoteClient
             var materialArray = queue.Dequeue();
             var productTypeNo = materialArray[0];
             var materialPN = materialArray[1];
-            var selectSQL = $"SELECT * FROM {DbTable.F_PRODUCT_TYPE_NO_NAME}  WHERE " +
-                $"{DbTable.F_PRODUCT_TYPE_NO.TYPE_NO} = '{productTypeNo}' AND " +
-                $"{DbTable.F_PRODUCT_TYPE_NO.MATERIAL_PN} = '{materialPN}'";
+            var selectSQL = $"SELECT * FROM {DbTable.F_PRODUCT_MATERIAL_NAME}  WHERE " +
+                $"{DbTable.F_PRODUCT_MATERIAL.TYPE_NO} = '{productTypeNo}' AND " +
+                $"{DbTable.F_PRODUCT_MATERIAL.MATERIAL_CODE} = '{materialPN}'";
             var dt = SQLServer.ExecuteDataSet(selectSQL).Tables[0];
             if (dt.Rows.Count == 1)
                 return ConvertCheckMaterialMatch(MaterialCheckMatchReturnCode.IS_MATCH);

@@ -317,11 +317,23 @@
     <Compile Include="UI\CheckStation.Designer.cs">
       <DependentUpon>CheckStation.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\GetBackPwd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\GetBackPwd.Designer.cs">
+      <DependentUpon>GetBackPwd.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\GraphView.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UI\GraphView.Designer.cs">
       <DependentUpon>GraphView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\MaterialDetailMsg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\MaterialDetailMsg.Designer.cs">
+      <DependentUpon>MaterialDetailMsg.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\MESMainForm.cs">
       <SubType>Form</SubType>
@@ -335,6 +347,12 @@
     <Compile Include="RadView\PackageProduct.Designer.cs">
       <DependentUpon>PackageProduct.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\ModifyPwd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ModifyPwd.Designer.cs">
+      <DependentUpon>ModifyPwd.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\ProductMaterial.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -347,10 +365,10 @@
     <Compile Include="RadView\ProductType.Designer.cs">
       <DependentUpon>ProductType.cs</DependentUpon>
     </Compile>
-    <Compile Include="RadView\Register.cs">
+    <Compile Include="UI\Register.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RadView\Register.Designer.cs">
+    <Compile Include="UI\Register.Designer.cs">
       <DependentUpon>Register.cs</DependentUpon>
     </Compile>
     <Compile Include="RadView\SetStation.cs">
@@ -481,8 +499,14 @@
     <EmbeddedResource Include="UI\CheckStation.resx">
       <DependentUpon>CheckStation.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\GetBackPwd.resx">
+      <DependentUpon>GetBackPwd.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\GraphView.resx">
       <DependentUpon>GraphView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\MaterialDetailMsg.resx">
+      <DependentUpon>MaterialDetailMsg.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\MESMainForm.resx">
       <DependentUpon>MESMainForm.cs</DependentUpon>
@@ -490,13 +514,16 @@
     <EmbeddedResource Include="RadView\PackageProduct.resx">
       <DependentUpon>PackageProduct.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\ModifyPwd.resx">
+      <DependentUpon>ModifyPwd.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\ProductMaterial.resx">
       <DependentUpon>ProductMaterial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RadView\ProductType.resx">
       <DependentUpon>ProductType.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="RadView\Register.resx">
+    <EmbeddedResource Include="UI\Register.resx">
       <DependentUpon>Register.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RadView\SetStation.resx">
@@ -558,12 +585,6 @@
     <None Include="Connected Services\MesServiceTest\MesService2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\MesServiceTest\MesService3.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\MesService\MesManager.MesService.GetUserInfoResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
     <None Include="Connected Services\MesService\MesManager.MesService.LoginResult.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -571,9 +592,6 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\MesService\MesManager.MesService.ProductMaterial.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\MesService\MesManager.MesService.QueryResult.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\MesService\MesManager.MesService.RegisterResult.datasource">
@@ -667,6 +685,7 @@
     <None Include="Resources\file_extension_txt.png" />
     <None Include="Resources\FolderList32.png" />
     <None Include="Resources\file_extension_xls.png" />
+    <None Include="Resources\ffpic1306125140893.png" />
     <Content Include="功能描述.txt" />
     <Content Include="完善.txt" />
     <Content Include="新增.txt" />

@@ -29,13 +29,19 @@ namespace MesAPI
         LoginResult Login(string username, string password, LoginUser loginUser);
 
         [OperationContract]
-        QueryResult GetUserInfo(string userName, out DataSet dataSet);
+        DataSet GetUserInfo(string username);
 
         [OperationContract]
         DataSet GetAllUserInfo();
 
         [OperationContract]
-        RegisterResult Register(string username, string pwd, string phone, string email, LoginUser loginUser);
+        RegisterResult Register(string username, string pwd, string phone, string email, int userType);
+
+        [OperationContract]
+        int ModifyUserPassword(string username,string pwd);
+
+        [OperationContract]
+        int DeleteUser(string username);
 
         //站位信息
         [OperationContract]
@@ -138,7 +144,7 @@ namespace MesAPI
         [SwaggerWcfPath("SelectPackageProduct", "查询打包产品记录")]
         [WebInvoke(Method = "POST", UriTemplate = "SelectPackageProduct",
             BodyStyle = WebMessageBodyStyle.WrappedRequest, RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
-        DataSet SelectPackageProduct(PackageProduct packageProduct);
+        DataSet SelectPackageProduct(string queryFilter, string state);
         #endregion
 
         [OperationContract]
@@ -152,5 +158,12 @@ namespace MesAPI
 
         [OperationContract]
         DataSet SelectTodayTestLogData(string queryFilter);
+
+        [OperationContract]
+        int UpdateQuanlityData(string eType, string mCode, string sDate, string stock, string aStock, string station,
+            string state, string reason, string user);
+
+        [OperationContract]
+        int UpdateMaterialStateMent(string materialCode, int state);
     }
 }

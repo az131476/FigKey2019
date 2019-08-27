@@ -123,6 +123,16 @@ namespace MesManager.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap ffpic1306125140893 {
+            get {
+                object obj = ResourceManager.GetObject("ffpic1306125140893", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap figkeyLogo {
             get {
                 object obj = ResourceManager.GetObject("figkeyLogo", resourceCulture);

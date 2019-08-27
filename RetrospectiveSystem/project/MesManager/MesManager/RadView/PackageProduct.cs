@@ -13,7 +13,6 @@ namespace MesManager.RadView
     public partial class PackageProduct : Telerik.WinControls.UI.RadForm
     {
         private MesService.MesServiceClient serviceClient;
-        private MesService.PackageProduct packageProduct;
         private DataTable dataSource;
         private const string CASE_CODE = "箱子编码";
         private const string SN_CODE = "追溯码";
@@ -89,7 +88,7 @@ namespace MesManager.RadView
         async private void Init()
         {
             serviceClient = new MesService.MesServiceClient();
-            packageProduct = new MesService.PackageProduct();
+            //packageProduct = new MesService.PackageProduct();
             InitCaseCodeList();
             //获取型号
             cb_typeNo.Items.Clear();
@@ -163,14 +162,14 @@ namespace MesManager.RadView
                 return;
             }
             //提交箱子容量
-            MesService.PackageProduct[] packageProducts = new MesService.PackageProduct[10];
-            await serviceClient.CommitProductContinairCapacityAsync(caseCode,caseAmount,"","");
-            packageProduct.CaseCode = caseCode;
-            packageProduct.SnOutter = sn;
-            packageProduct.TypeNo = typeNo;
-            packageProduct.BindingState = 1;
-            packageProduct.BindingDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            packageProduct.Picture = UpLoadImage.ProductImage;
+            //MesService.PackageProduct[] packageProducts = new MesService.PackageProduct[10];
+            //await serviceClient.CommitProductContinairCapacityAsync(caseCode,caseAmount,"","");
+            //packageProduct.CaseCode = caseCode;
+            //packageProduct.SnOutter = sn;
+            //packageProduct.TypeNo = typeNo;
+            //packageProduct.BindingState = 1;
+            //packageProduct.BindingDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            //packageProduct.Picture = UpLoadImage.ProductImage;
             int x = 0;//await serviceClient.CommitPackageProductAsync(packageProducts);
             //绑定完成后，添加到显示列表
             UpLoadImage.ProductImage = null;
@@ -178,10 +177,10 @@ namespace MesManager.RadView
             {
                 MessageBox.Show("绑定失败！","提示",MessageBoxButtons.OK,MessageBoxIcon.Warning);
             }
-            packageProduct.BindingState = 1;//查询绑定成功的记录
-            packageProduct.CaseCode = "";
-            packageProduct.SnOutter = "";
-            SelectBindingData(packageProduct.CaseCode,packageProduct.SnOutter);
+            //packageProduct.BindingState = 1;//查询绑定成功的记录
+            //packageProduct.CaseCode = "";
+            //packageProduct.SnOutter = "";
+            //SelectBindingData(packageProduct.CaseCode,packageProduct.SnOutter);
         }
 
         /// <summary>
@@ -191,32 +190,32 @@ namespace MesManager.RadView
         {
             var casecode = this.radGridView1.CurrentRow.Cells[0].Value.ToString();
             var sncode = this.radGridView1.CurrentRow.Cells[1].Value.ToString();
-            packageProduct.CaseCode = casecode;
-            packageProduct.SnOutter = sncode;
-            packageProduct.BindingState = 0;
-            //await serviceClient.UpdatePackageProductAsync(packageProduct);
-            //更新查询结果,查询所有已绑定的数据
-            packageProduct.BindingState = 1;
-            packageProduct.CaseCode = "";
-            packageProduct.SnOutter = "";
-            SelectBindingData(packageProduct.CaseCode,packageProduct.SnOutter);
+            //packageProduct.CaseCode = casecode;
+            //packageProduct.SnOutter = sncode;
+            //packageProduct.BindingState = 0;
+            ////await serviceClient.UpdatePackageProductAsync(packageProduct);
+            ////更新查询结果,查询所有已绑定的数据
+            //packageProduct.BindingState = 1;
+            //packageProduct.CaseCode = "";
+            //packageProduct.SnOutter = "";
+            //SelectBindingData(packageProduct.CaseCode,packageProduct.SnOutter);
         }
 
         async private void SelectBindingData(string caseCode,string snOutter)
         {
-            packageProduct.CaseCode = caseCode;
-            packageProduct.SnOutter = snOutter;
-            DataTable dt = (await serviceClient.SelectPackageProductAsync(packageProduct)).Tables[0];
-            if (dt.Rows.Count < 1)
-                return;
-            DataRow[] dataRows = dt.Select("","binding_date desc");
-            dataSource.Clear();
-            foreach (DataRow dataRow in dataRows)
-            {
-                dataSource.Rows.Add(dataRow.ItemArray);
-            }
-            this.radGridView1.DataSource = dataSource;
-            this.radGridView1.CurrentRow = this.radGridView1.Rows[0];
+            //packageProduct.CaseCode = caseCode;
+            //packageProduct.SnOutter = snOutter;
+            //DataTable dt = (await serviceClient.SelectPackageProductAsync(packageProduct)).Tables[0];
+            //if (dt.Rows.Count < 1)
+            //    return;
+            //DataRow[] dataRows = dt.Select("","binding_date desc");
+            //dataSource.Clear();
+            //foreach (DataRow dataRow in dataRows)
+            //{
+            //    dataSource.Rows.Add(dataRow.ItemArray);
+            //}
+            //this.radGridView1.DataSource = dataSource;
+            //this.radGridView1.CurrentRow = this.radGridView1.Rows[0];
         }
 
         private void Btn_apply_Click(object sender, EventArgs e)
@@ -240,10 +239,10 @@ namespace MesManager.RadView
         {
             InitCaseCodeList();
             //更新查询结果,查询所有已绑定的数据
-            packageProduct.BindingState = 1;
-            packageProduct.CaseCode = "";
-            packageProduct.SnOutter = "";
-            SelectBindingData(packageProduct.CaseCode, packageProduct.SnOutter);
+            //packageProduct.BindingState = 1;
+            //packageProduct.CaseCode = "";
+            //packageProduct.SnOutter = "";
+            //SelectBindingData(packageProduct.CaseCode, packageProduct.SnOutter);
         }
 
         async private void Btn_delRow_Click(object sender, EventArgs e)
@@ -251,14 +250,14 @@ namespace MesManager.RadView
             //删除选择行数据
             var casecode = this.radGridView1.CurrentRow.Cells[0].Value.ToString();
             var sncode = this.radGridView1.CurrentRow.Cells[1].Value.ToString();
-            packageProduct.CaseCode = casecode;
-            packageProduct.SnOutter = sncode;
-            //await serviceClient.DeletePackageProductAsync(packageProduct);
-            //更新查询
-            packageProduct.BindingState = 1;
-            packageProduct.CaseCode = "";
-            packageProduct.SnOutter = "";
-            SelectBindingData(packageProduct.CaseCode, packageProduct.SnOutter);
+            //packageProduct.CaseCode = casecode;
+            //packageProduct.SnOutter = sncode;
+            ////await serviceClient.DeletePackageProductAsync(packageProduct);
+            ////更新查询
+            //packageProduct.BindingState = 1;
+            //packageProduct.CaseCode = "";
+            //packageProduct.SnOutter = "";
+            //SelectBindingData(packageProduct.CaseCode, packageProduct.SnOutter);
         }
 
         private void Btn_clearLocal_Click(object sender, EventArgs e)
@@ -271,14 +270,14 @@ namespace MesManager.RadView
         async private void Btn_clearServer_Click(object sender, EventArgs e)
         {
             //清空数据库
-            packageProduct.CaseCode = "";
-            packageProduct.SnOutter = "";
-            //await serviceClient.DeletePackageProductAsync(packageProduct);
-            //更新查询
-            packageProduct.BindingState = 1;
-            packageProduct.CaseCode = "";
-            packageProduct.SnOutter = "";
-            SelectBindingData(packageProduct.CaseCode, packageProduct.SnOutter);
+            //packageProduct.CaseCode = "";
+            //packageProduct.SnOutter = "";
+            ////await serviceClient.DeletePackageProductAsync(packageProduct);
+            ////更新查询
+            //packageProduct.BindingState = 1;
+            //packageProduct.CaseCode = "";
+            //packageProduct.SnOutter = "";
+            //SelectBindingData(packageProduct.CaseCode, packageProduct.SnOutter);
         }
     }
 }

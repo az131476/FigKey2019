@@ -28,22 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TestLogDetail));
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.radDateTimePicker1 = new Telerik.WinControls.UI.RadDateTimePicker();
             this.radDateTimePicker2 = new Telerik.WinControls.UI.RadDateTimePicker();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btn_export = new Telerik.WinControls.UI.RadButton();
             this.btn_search = new Telerik.WinControls.UI.RadButton();
             this.radGridView1 = new Telerik.WinControls.UI.RadGridView();
-            this.btn_export = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.radDateTimePicker1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radDateTimePicker2)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_export)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_search)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btn_export)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -99,6 +100,15 @@
             this.panel1.Size = new System.Drawing.Size(1080, 62);
             this.panel1.TabIndex = 8;
             // 
+            // btn_export
+            // 
+            this.btn_export.Location = new System.Drawing.Point(717, 27);
+            this.btn_export.Name = "btn_export";
+            this.btn_export.Size = new System.Drawing.Size(76, 24);
+            this.btn_export.TabIndex = 9;
+            this.btn_export.Text = "导出";
+            this.btn_export.Click += new System.EventHandler(this.Btn_export_Click);
+            // 
             // btn_search
             // 
             this.btn_search.Location = new System.Drawing.Point(589, 27);
@@ -115,19 +125,10 @@
             // 
             // 
             // 
-            this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition2;
+            this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.radGridView1.Name = "radGridView1";
             this.radGridView1.Size = new System.Drawing.Size(1080, 522);
             this.radGridView1.TabIndex = 9;
-            // 
-            // btn_export
-            // 
-            this.btn_export.Location = new System.Drawing.Point(717, 27);
-            this.btn_export.Name = "btn_export";
-            this.btn_export.Size = new System.Drawing.Size(76, 24);
-            this.btn_export.TabIndex = 9;
-            this.btn_export.Text = "导出";
-            this.btn_export.Click += new System.EventHandler(this.Btn_export_Click);
             // 
             // TestLogDetail
             // 
@@ -137,6 +138,7 @@
             this.ClientSize = new System.Drawing.Size(1080, 584);
             this.Controls.Add(this.radGridView1);
             this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "TestLogDetail";
             // 
             // 
@@ -148,10 +150,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.radDateTimePicker2)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_export)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_search)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btn_export)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 

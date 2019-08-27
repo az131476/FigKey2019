@@ -128,16 +128,16 @@ namespace MesManager
 
         async private void Btn_select_package_Click(object sender, EventArgs e)
         {
-            MesService.PackageProduct packageProduct = new MesService.PackageProduct();
+            //MesService.PackageProduct packageProduct = new MesService.PackageProduct();
             if (rb_package_caseCode.CheckState == CheckState.Checked)
             {
-                packageProduct.CaseCode = tb_input_packageMsg.Text.Trim();
+                //packageProduct.CaseCode = tb_input_packageMsg.Text.Trim();
             }
             else if (rb_package_sn.CheckState == CheckState.Checked)
             {
-                packageProduct.SnOutter = tb_input_packageMsg.Text.Trim();
+                //packageProduct.SnOutter = tb_input_packageMsg.Text.Trim();
             }
-            this.radGridViewPackage.DataSource = (await serviceClient.SelectPackageProductAsync(packageProduct)).Tables[0];
+            //this.radGridViewPackage.DataSource = (await serviceClient.SelectPackageProductAsync(packageProduct)).Tables[0];
         }
 
         async private void Btn_selectMaterial_Click(object sender, EventArgs e)
@@ -373,7 +373,7 @@ namespace MesManager
 
         private void Menu_set_station_Click(object sender, EventArgs e)
         {
-            Login.UserType userType = Login.GetUserType;
+            Login.UserType userType = Login.UserType.USER_ADMIN;//Login.GetUserType;
             if (userType == Login.UserType.USER_ADMIN)
             {
                 //管理员
@@ -382,7 +382,7 @@ namespace MesManager
                 setStationAdmin.ShowDialog();
                 
             }
-            else if (userType == Login.UserType.USER_ORDINARY)
+            else if (userType == Login.UserType.USER_ORIDNARY)
             {
                 //普通用户
                 SetStation setStation = new SetStation();

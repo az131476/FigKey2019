@@ -86,21 +86,19 @@ namespace MesAPI.Model
     public enum LoginUser
     {
         [EnumMember]
-        /// <summary>
-        /// 普通用户
-        /// </summary>
-        ORDINARY_USER,
-
-        [EnumMember]
-        /// <summary>
-        /// 管理员
-        /// </summary>
+        [Description("管理员")]
         ADMIN_USER,
 
         [EnumMember]
-        /// <summary>
-        /// 游客
-        /// </summary>
-        TOURIST_USER
+        [Description("班组长")]
+        TEAM_LEADER,
+
+        [EnumMember]
+        [Description("操作员")]
+        OPERATOR,
+
+        [EnumMember]
+        [Description("普通工人")]
+        ORDINARY_USER,
     }
 }

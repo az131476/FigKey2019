@@ -39,6 +39,7 @@ namespace MesManager
             this.lbx_ToFindPwd = new System.Windows.Forms.LinkLabel();
             this.btn_login = new Telerik.WinControls.UI.RadButton();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lbx_register = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.lbx_username)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lbx_pwd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cb_memberpwd)).BeginInit();
@@ -141,6 +142,18 @@ namespace MesManager
             this.pictureBox1.TabIndex = 23;
             this.pictureBox1.TabStop = false;
             // 
+            // lbx_register
+            // 
+            this.lbx_register.AutoSize = true;
+            this.lbx_register.Font = new System.Drawing.Font("Segoe UI", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbx_register.ForeColor = System.Drawing.Color.White;
+            this.lbx_register.Location = new System.Drawing.Point(12, 365);
+            this.lbx_register.Name = "lbx_register";
+            this.lbx_register.Size = new System.Drawing.Size(37, 19);
+            this.lbx_register.TabIndex = 24;
+            this.lbx_register.Text = "注册";
+            this.lbx_register.Click += new System.EventHandler(this.Lbx_register_Click);
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -148,6 +161,7 @@ namespace MesManager
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(427, 393);
+            this.Controls.Add(this.lbx_register);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lbx_username);
             this.Controls.Add(this.tbx_username);
@@ -187,5 +201,6 @@ namespace MesManager
         private LinkLabel lbx_ToFindPwd;
         private Telerik.WinControls.UI.RadButton btn_login;
         private PictureBox pictureBox1;
+        private Label lbx_register;
     }
 }

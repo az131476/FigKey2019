@@ -201,6 +201,8 @@ namespace MesManager.UI
             this.radGridView1.EndEdit();
             //设置第一列不可编辑
             this.radGridView1.Columns[0].ReadOnly = true;
+            this.radGridView1.Columns[4].ReadOnly = true;
+            this.radGridView1.Columns[5].ReadOnly = true;
             this.pmListTemp.Clear();
         }
 
@@ -266,16 +268,16 @@ namespace MesManager.UI
                 this.radGridView1.CurrentRow.Delete();
                 return;
             }
-            if (MessageBox.Show("确认删除当前记录？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+            if (MessageBox.Show($"确认解除物料【{productMaterial.MaterialCode}】与产品【{productMaterial.TypeNo}】的绑定？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
             {
                 int res = await serviceClient.DeleteProductMaterialAsync(productMaterial);
                 if (res > 0)
                 {
-                    MessageBox.Show("删除成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("解除绑定成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    MessageBox.Show("删除失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("解除绑定失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 SelectData();
             }

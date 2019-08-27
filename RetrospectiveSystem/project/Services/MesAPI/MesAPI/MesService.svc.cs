@@ -67,24 +67,21 @@ namespace MesAPI
             //暂未处理用户角色
             try
             {
-                DataSet dataSet;
-                QueryResult queryResult = GetUserInfo(username, out dataSet);
-                if (queryResult == QueryResult.NONE_DATE)
+                DataTable dt = GetUserInfo(username).Tables[0];
+                if (dt.Rows.Count < 1)
                 {
                     //用户不存在
                     LogHelper.Log.Info($"用户名{username}不存在，验证失败！");
                     return LoginResult.USER_NAME_ERR;
                 }
-                else if (queryResult == QueryResult.EXIST_DATA)
+                else
                 {
                     //用户存在
                     //验证登录密码
-                    string sql = "SELECT * " +
-                        "FROM " +
-                        "[WT_SCL].[dbo].[f_user] " +
-                        "WHERE " +
-                        $"[password] = '{password}' ";
-                    DataTable dtRes = SQLServer.ExecuteDataSet(sql).Tables[0];
+                    var selectSQL = $"SELECT * FROM {DbTable.F_USER_NAME} WHERE " +
+                        $"{DbTable.F_User.USER_NAME} = '{username}' AND " +
+                        $"{DbTable.F_User.PASS_WORD} = '{password}'";
+                    DataTable dtRes = SQLServer.ExecuteDataSet(selectSQL).Tables[0];
                     if (dtRes.Rows.Count < 1)
                     {
                         //密码验证失败
@@ -98,7 +95,6 @@ namespace MesAPI
                         return LoginResult.SUCCESS;
                     }
                 }
-                return LoginResult.FAIL_EXCEP;
             }
             catch (Exception ex)
             {
@@ -115,30 +111,12 @@ namespace MesAPI
         /// </summary>
         /// <param name="userName"></param>
         /// <returns></returns>
-        public QueryResult GetUserInfo(string username, out DataSet dataSet)
+        public DataSet GetUserInfo(string username)
         {
-            string sqlString = "SELECT * " +
-            "FROM [WT_SCL].[dbo].[f_user] " +
-            "WHERE " +
-            $"[username] = '{username}' or [phone] = '{username}' or [email] = '{username}' ";
-            try
-            {
-                dataSet = SQLServer.ExecuteDataSet(sqlString);
-                if (dataSet.Tables[0].Rows.Count < 1)
-                {
-                    return QueryResult.NONE_DATE;
-                }
-                else
-                {
-                    return QueryResult.EXIST_DATA;
-                }
-            }
-            catch (Exception ex)
-            {
-                LogHelper.Log.Error("获取用户信息异常..." + ex.Message + "\r\n" + ex.StackTrace + "\r\nSQL:" + sqlString);
-                dataSet = null;
-                return QueryResult.EXCEPT_ERR;
-            }
+            var selectSQL = $"SELECT {DbTable.F_User.ROLE_NAME},{DbTable.F_User.PASS_WORD}" +
+                $" FROM {DbTable.F_USER_NAME} " +
+                     $"WHERE {DbTable.F_User.USER_NAME} = '{username}'";
+            return SQLServer.ExecuteDataSet(selectSQL);
         }
         #endregion
 
@@ -150,17 +128,12 @@ namespace MesAPI
         /// <returns></returns>
         public DataSet GetAllUserInfo()
         {
-            try
-            {
-                string sqlString = $"SELECT {DbTable.F_User.USER_NAME} " +
-                            "FROM [WT_SCL].[dbo].[f_user] ";
-                return SQLServer.ExecuteDataSet(sqlString);
-            }
-            catch
-            {
-                LogHelper.Log.Error("获取所有用户信息异常...");
-                return null;
-            }
+            string sqlString = $"SELECT {DbTable.F_User.USER_NAME}," +
+                    $"{DbTable.F_User.ROLE_NAME}," +
+                    $"{DbTable.F_User.STATUS}," +
+                    $"{DbTable.F_User.UPDATE_DATE} " +
+                    $"FROM {DbTable.F_USER_NAME} ";
+            return SQLServer.ExecuteDataSet(sqlString);
         }
         #endregion
 
@@ -173,32 +146,28 @@ namespace MesAPI
         /// <param name="phone"></param>
         /// <param name="email"></param>
         /// <returns></returns>
-        public RegisterResult Register(string username, string pwd, string phone, string email, LoginUser loginUser)
+        public RegisterResult Register(string username, string pwd, string phone, string email, int userType)
         {
             try
             {
-                DataSet dataSet;
-                QueryResult queryResult = GetUserInfo(username, out dataSet);
-                if (queryResult == QueryResult.EXIST_DATA)
+                DataTable dt = GetUserInfo(username).Tables[0];
+                if (dt.Rows.Count > 0)
                 {
                     //用户已存在
                     return RegisterResult.REGISTER_EXIST_USER;
                 }
-                else if (queryResult == QueryResult.NONE_DATE)
+                else
                 {
                     //用户不存在，可以注册
                     string dateTimeNow = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                    string insertString = "INSERT INTO [WT_SCL].[dbo].[f_user]" +
-                        "([username]," +
-                        "[password] ," +
-                        "[phone]," +
-                        "[email] ," +
-                        "[picture]," +
-                        "[create_date]," +
-                        "[last_update_date] ," +
-                        "[status]," +
-                        "[user_type]) " +
-                        $"VALUES('{username}', '{pwd}', '{phone}', '{email}', '', '', '{dateTimeNow}', '', '{(int)loginUser}')";
+                    string insertString = $"INSERT INTO {DbTable.F_USER_NAME}" +
+                        $"({DbTable.F_User.USER_NAME}," +
+                        $"{DbTable.F_User.PASS_WORD} ," +
+                        $"{DbTable.F_User.PHONE}," +
+                        $"{DbTable.F_User.EMAIL} ," +
+                        $"{DbTable.F_User.UPDATE_DATE} ," +
+                        $"{DbTable.F_User.ROLE_NAME}) " +
+                        $"VALUES('{username}', '{pwd}', '{phone}', '{email}', '{dateTimeNow}','{userType}')";
                     int executeResult = SQLServer.ExecuteNonQuery(insertString);
                     if (executeResult < 1)
                     {
@@ -206,8 +175,6 @@ namespace MesAPI
                     }
                     return RegisterResult.REGISTER_SUCCESS;
                 }
-                //查询失败
-                return RegisterResult.REGISTER_ERR;
             }
             catch (Exception ex)
             {
@@ -217,8 +184,21 @@ namespace MesAPI
         }
         #endregion
 
-        #region 找回密码
+        #region 修改密码
+        public int ModifyUserPassword(string username,string pwd)
+        {
+            var updateSQL = $"UPDATE {DbTable.F_USER_NAME} SET " +
+                $"{DbTable.F_User.PASS_WORD} = '{pwd}' WHERE {DbTable.F_User.USER_NAME} = '{username}'";
+            return SQLServer.ExecuteNonQuery(updateSQL);
+        }
+        #endregion
 
+        #region 删除用户
+        public int DeleteUser(string username)
+        {
+            var deleteSQL = $"DELETE FROM {DbTable.F_USER_NAME} WHERE {DbTable.F_User.USER_NAME} = '{username}'";
+            return SQLServer.ExecuteNonQuery(deleteSQL);
+        }
         #endregion
 
         #endregion
@@ -651,26 +631,6 @@ namespace MesAPI
             insertMaterialStatistics.Enqueue(array);
             return MaterialStatistics.InsertMaterialStatistics(insertMaterialStatistics);
         }
-        public DataSet SelectMaterialStatistics(string typeNo)
-        {
-            //按型号与物料查
-            string selectSQL = "";
-            if (!string.IsNullOrEmpty(typeNo))
-            {
-                selectSQL = $"SELECT {DbTable.F_Material_Statistics.SN_INNER},{DbTable.F_Material_Statistics.SN_OUTTER}," +
-                    $"{DbTable.F_Material_Statistics.TYPE_NO},{DbTable.F_Material_Statistics.MATERIAL_CODE}," +
-                    $"SUM({DbTable.F_Material_Statistics.MATERIAL_AMOUNT} as amount) " +
-                    $"FROM {DbTable.F_MATERIAL_STATISTICS_NAME} " +
-                    $"WHERE {DbTable.F_Material_Statistics.TYPE_NO} = '{typeNo}' " +
-                    $"GROUP BY {DbTable.F_Material_Statistics.SN_INNER},{DbTable.F_Material_Statistics.SN_OUTTER}," +
-                    $"{DbTable.F_Material_Statistics.TYPE_NO},{DbTable.F_Material_Statistics.MATERIAL_CODE}";
-            }
-            else
-            {
-                selectSQL = $"SELECT * FROM {DbTable.F_MATERIAL_STATISTICS_NAME}";
-            }
-            return SQLServer.ExecuteDataSet(selectSQL);
-        }
         #endregion
 
         #region 物料综合查询
@@ -681,7 +641,7 @@ namespace MesAPI
             selectSQL = $"SELECT DISTINCT " +
                 $"a.{DbTable.F_Material_Statistics.MATERIAL_CODE} 物料编码," +
                 $"b.{DbTable.F_Material.MATERIAL_NAME} 物料名称," +
-                $"a.{DbTable.F_Material_Statistics.TYPE_NO} 产品型号," +
+                $"a.{DbTable.F_Material_Statistics.PRODUCT_TYPE_NO} 产品型号," +
                 $"b.{DbTable.F_Material.MATERIAL_AMOUNTED} 使用总数量 " +
                 $"FROM " +
                 $"{DbTable.F_MATERIAL_STATISTICS_NAME} a," +
@@ -699,9 +659,12 @@ namespace MesAPI
             var selectSQL = $"SELECT DISTINCT " +
                            $"a.{DbTable.F_Material_Statistics.MATERIAL_CODE} 物料编码," +
                            $"b.{DbTable.F_Material.MATERIAL_NAME} 物料名称," +
-                           $"b.{DbTable.F_Material_Statistics.TYPE_NO} 产品型号," +
-                           $"b.{DbTable.F_Material_Statistics.STATION_NAME} 工站名称," +
-                           $"b.{DbTable.F_Material_Statistics.MATERIAL_AMOUNT} 使用数量 " +
+                           $"a.{DbTable.F_Material_Statistics.PRODUCT_TYPE_NO} 产品型号," +
+                           $"a.{DbTable.F_Material_Statistics.STATION_NAME} 工站名称," +
+                           $"a.{DbTable.F_Material_Statistics.MATERIAL_AMOUNT} 使用数量," +
+                           $"a.{DbTable.F_Material_Statistics.TEAM_LEADER}," +
+                           $"a.{DbTable.F_Material_Statistics.ADMIN}," +
+                           $"a.{DbTable.F_Material_Statistics.UPDATE_DATE} " +
                            $"FROM " +
                            $"{DbTable.F_MATERIAL_STATISTICS_NAME} a," +
                            $"{DbTable.F_MATERIAL_NAME} b " +
@@ -943,26 +906,38 @@ namespace MesAPI
 
         #region 查询打包产品
         [SwaggerWcfTag("MesServcie 服务")]
-        public DataSet SelectPackageProduct(PackageProduct packageProduct)
+        public DataSet SelectPackageProduct(string queryFilter,string state)
         {
             //箱子编码/追溯码查询/产品型号
             string selectSQL = "";
-            if (string.IsNullOrEmpty(packageProduct.CaseCode) && string.IsNullOrEmpty(packageProduct.SnOutter) && string.IsNullOrEmpty(packageProduct.TypeNo))
+            if (string.IsNullOrEmpty(queryFilter))
             {
                 //查询所有已绑定记录
-                selectSQL = $"SELECT OUT_CASE_CODE 包装箱编码,SN_OUTTER 产品追溯码," +
-                    $"TYPE_NO 产品型号,BINDING_STATE 绑定状态,BINDING_DATE 绑定日期 FROM " +
+                selectSQL = $"SELECT {DbTable.F_PRODUCT_PACKAGE.OUT_CASE_CODE} 箱子编码," +
+                    $"{DbTable.F_PRODUCT_PACKAGE.SN_OUTTER} 产品SN," +
+                    $"{DbTable.F_PRODUCT_PACKAGE.TYPE_NO} 产品型号," +
+                    $"{DbTable.F_PRODUCT_PACKAGE.BINDING_DATE} 绑定日期," +
+                    $"{DbTable.F_PRODUCT_PACKAGE.TEAM_LEADER} 班组长," +
+                    $"{DbTable.F_PRODUCT_PACKAGE.ADMIN} 管理员," +
+                    $"{DbTable.F_PRODUCT_PACKAGE.REMARK} 描述 FROM " +
                     $"{DbTable.F_PRODUCT_PACKAGE_NAME} " +
-                    $"WHERE {DbTable.F_PRODUCT_PACKAGE.BINDING_STATE} = '{packageProduct.BindingState}'";
+                    $"WHERE {DbTable.F_PRODUCT_PACKAGE.BINDING_STATE} = '{state}'";
             }
             else
             {
-                selectSQL = $"SELECT OUT_CASE_CODE 包装箱编码,SN_OUTTER 产品追溯码," +
-                    $"TYPE_NO 产品型号,BINDING_STATE 绑定状态,BINDING_DATE 绑定日期 " +
-                    $"FROM {DbTable.F_PRODUCT_PACKAGE_NAME} WHERE " +
-                    $"{DbTable.F_PRODUCT_PACKAGE.OUT_CASE_CODE} = '{packageProduct.CaseCode}' AND " +
-                    $"{DbTable.F_PRODUCT_PACKAGE.SN_OUTTER} = '{packageProduct.SnOutter}' OR "+
-                    $"{DbTable.F_PRODUCT_PACKAGE.BINDING_STATE} = '{packageProduct.BindingState}'";
+                selectSQL = $"SELECT {DbTable.F_PRODUCT_PACKAGE.OUT_CASE_CODE} 箱子编码," +
+                     $"{DbTable.F_PRODUCT_PACKAGE.SN_OUTTER} 产品SN," +
+                     $"{DbTable.F_PRODUCT_PACKAGE.TYPE_NO} 产品型号," +
+                     $"{DbTable.F_PRODUCT_PACKAGE.BINDING_DATE} 绑定日期," +
+                     $"{DbTable.F_PRODUCT_PACKAGE.TEAM_LEADER} 班组长," +
+                     $"{DbTable.F_PRODUCT_PACKAGE.ADMIN} 管理员," +
+                     $"{DbTable.F_PRODUCT_PACKAGE.REMARK} 描述 FROM " +
+                     $"{DbTable.F_PRODUCT_PACKAGE_NAME} " +
+                     $"WHERE " +
+                     $"{DbTable.F_PRODUCT_PACKAGE.SN_OUTTER} like '%{queryFilter}%' OR " +
+                     $"{DbTable.F_PRODUCT_PACKAGE.OUT_CASE_CODE} like '%{queryFilter}%' OR " +
+                     $"{DbTable.F_PRODUCT_PACKAGE.TYPE_NO}  like '%{queryFilter}%'" +
+                     $"{DbTable.F_PRODUCT_PACKAGE.BINDING_STATE} = '{state}'";
             }
             return SQLServer.ExecuteDataSet(selectSQL);
         }
@@ -1236,6 +1211,35 @@ namespace MesAPI
             }
             LogHelper.Log.Info(selectSQL);
             return SQLServer.ExecuteDataSet(selectSQL);
+        }
+        #endregion
+
+        #region 品质异常管理
+        public int UpdateQuanlityData(string eType,string mCode,string sDate,string estock,string aStock,string station,
+            string state,string reason,string user)
+        {
+            var insertSQL = $"INSERT INTO {DbTable.F_QUANLITY_MANAGER_NAME}(" +
+                $"{DbTable.F_QUANLITY_MANAGER.EXCEPT_TYPE}," +
+                $"{DbTable.F_QUANLITY_MANAGER.MATERIAL_CODE}," +
+                $"{DbTable.F_QUANLITY_MANAGER.STATEMENT_DATE}," +
+                $"{DbTable.F_QUANLITY_MANAGER.EXCEPT_STOCK}," +
+                $"{DbTable.F_QUANLITY_MANAGER.ACTUAL_STOCK}," +
+                $"{DbTable.F_QUANLITY_MANAGER.STATION_NAME}," +
+                $"{DbTable.F_QUANLITY_MANAGER.MATERIAL_STATE}," +
+                $"{DbTable.F_QUANLITY_MANAGER.STATEMENT_REASON}," +
+                $"{DbTable.F_QUANLITY_MANAGER.STATEMENT_USER}," +
+                $"{DbTable.F_QUANLITY_MANAGER.UPDATE_DATE}) VALUES(" +
+                $"'{eType}','{mCode}','{sDate}','{estock}','{aStock}','{station}','{state}','{reason}','{user}','{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}')";
+            LogHelper.Log.Info(insertSQL);
+            return SQLServer.ExecuteNonQuery(insertSQL); 
+        }
+
+        public int UpdateMaterialStateMent(string materialCode,int state)
+        {
+            var updateSQL = $"UPDATE {DbTable.F_MATERIAL_NAME} SET " +
+                $"{DbTable.F_Material.MATERIAL_STATE} = '{state}' WHERE " +
+                $"{DbTable.F_Material.MATERIAL_CODE} = '{materialCode}'";
+            return SQLServer.ExecuteNonQuery(updateSQL);
         }
         #endregion
     }

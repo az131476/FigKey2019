@@ -10,7 +10,6 @@ namespace MesWcfService.DB
         public const string F_USER_NAME                     = "[WT_SCL].[dbo].[f_user]";
         public const string F_TECHNOLOGICAL_PROCESS_NAME    = "[WT_SCL].[dbo].[f_technological_process]";
         public const string F_TEST_RESULT_NAME              = "[WT_SCL].[dbo].[f_test_result_data]";
-        public const string F_PRODUCT_TYPE_NO_NAME          = "[WT_SCL].[dbo].[f_product_typeNo]";
         public const string F_PRODUCT_MATERIAL_NAME         = "[WT_SCL].[dbo].[f_product_material]";
         public const string F_MATERIAL_NAME                 = "[WT_SCL].[dbo].[f_material]";
         public const string F_MATERIAL_STATISTICS_NAME      = "[WT_SCL].[dbo].[f_material_statistics]";
@@ -56,13 +55,6 @@ namespace MesWcfService.DB
             public const string REMARK          = "[remark]";
             public const string TEAM_LEADER     = "team_leader";
             public const string ADMIN           = "[admin]";
-        }
-
-        public class F_PRODUCT_TYPE_NO
-        {
-            public const string TYPE_NO = "[type_no]";
-            public const string USER_NAME = "[username]";
-            public const string MATERIAL_PN = "[material_pn]";
         }
 
         public class F_Material

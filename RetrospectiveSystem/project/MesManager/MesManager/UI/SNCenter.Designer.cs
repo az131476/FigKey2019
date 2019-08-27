@@ -40,10 +40,10 @@
             this.toolStrip3 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this.tb_material = new System.Windows.Forms.ToolStripComboBox();
-            this.tool_material_export = new System.Windows.Forms.ToolStripButton();
-            this.btn_materialSelect = new System.Windows.Forms.ToolStripButton();
             this.toolStripLabel7 = new System.Windows.Forms.ToolStripLabel();
             this.tool_material_exportFilter = new System.Windows.Forms.ToolStripComboBox();
+            this.tool_material_export = new System.Windows.Forms.ToolStripButton();
+            this.btn_materialSelect = new System.Windows.Forms.ToolStripButton();
             this.panel_sn = new System.Windows.Forms.Panel();
             this.radGridViewSn = new Telerik.WinControls.UI.RadGridView();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -65,21 +65,20 @@
             this.tool_package_exportFilter = new System.Windows.Forms.ToolStripComboBox();
             this.tool_package_export = new System.Windows.Forms.ToolStripButton();
             this.btn_selectOfPackage = new System.Windows.Forms.ToolStripButton();
-            this.panel_quanlity = new System.Windows.Forms.Panel();
-            this.radGridView4 = new Telerik.WinControls.UI.RadGridView();
+            this.panel_productCheck = new System.Windows.Forms.Panel();
+            this.radGridViewCheck = new Telerik.WinControls.UI.RadGridView();
             this.panel7 = new System.Windows.Forms.Panel();
             this.toolStrip4 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel4 = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripComboBox1 = new System.Windows.Forms.ToolStripComboBox();
-            this.tool_quantility_exoirt = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.tb_productCheck = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripLabel8 = new System.Windows.Forms.ToolStripLabel();
-            this.tool_quanlity_exportFilter = new System.Windows.Forms.ToolStripComboBox();
+            this.tool_productCheck_exportFilter = new System.Windows.Forms.ToolStripComboBox();
+            this.tool_productCheck_export = new System.Windows.Forms.ToolStripButton();
+            this.btn_productCheck = new System.Windows.Forms.ToolStripButton();
             this.menu_sn_result = new Telerik.WinControls.UI.RadMenuItem();
             this.menu_package = new Telerik.WinControls.UI.RadMenuItem();
             this.menu_material = new Telerik.WinControls.UI.RadMenuItem();
             this.menu_productCheck = new Telerik.WinControls.UI.RadMenuItem();
-            this.menu_quanlity = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenu1 = new Telerik.WinControls.UI.RadMenu();
             this.panel_material.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGridViewMaterial)).BeginInit();
@@ -97,9 +96,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.radGridViewPackage.MasterTemplate)).BeginInit();
             this.panel1.SuspendLayout();
             this.toolStrip2.SuspendLayout();
-            this.panel_quanlity.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radGridView4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGridView4.MasterTemplate)).BeginInit();
+            this.panel_productCheck.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radGridViewCheck)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGridViewCheck.MasterTemplate)).BeginInit();
             this.panel7.SuspendLayout();
             this.toolStrip4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
@@ -116,7 +115,7 @@
             this.panel_material.Controls.Add(this.panel5);
             this.panel_material.Location = new System.Drawing.Point(4, 284);
             this.panel_material.Name = "panel_material";
-            this.panel_material.Size = new System.Drawing.Size(1201, 196);
+            this.panel_material.Size = new System.Drawing.Size(622, 196);
             this.panel_material.TabIndex = 27;
             // 
             // radGridViewMaterial
@@ -129,7 +128,7 @@
             // 
             this.radGridViewMaterial.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.radGridViewMaterial.Name = "radGridViewMaterial";
-            this.radGridViewMaterial.Size = new System.Drawing.Size(1201, 159);
+            this.radGridViewMaterial.Size = new System.Drawing.Size(622, 159);
             this.radGridViewMaterial.TabIndex = 8;
             // 
             // panel5
@@ -138,7 +137,7 @@
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel5.Location = new System.Drawing.Point(0, 0);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1201, 37);
+            this.panel5.Size = new System.Drawing.Size(622, 37);
             this.panel5.TabIndex = 7;
             // 
             // toolStrip3
@@ -149,13 +148,13 @@
             this.toolStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripLabel3,
             this.tb_material,
-            this.tool_material_export,
-            this.btn_materialSelect,
             this.toolStripLabel7,
-            this.tool_material_exportFilter});
+            this.tool_material_exportFilter,
+            this.tool_material_export,
+            this.btn_materialSelect});
             this.toolStrip3.Location = new System.Drawing.Point(0, 0);
             this.toolStrip3.Name = "toolStrip3";
-            this.toolStrip3.Size = new System.Drawing.Size(1201, 37);
+            this.toolStrip3.Size = new System.Drawing.Size(622, 37);
             this.toolStrip3.TabIndex = 32;
             this.toolStrip3.Text = "toolStrip3";
             // 
@@ -169,11 +168,26 @@
             // 
             // tb_material
             // 
+            this.tb_material.ForeColor = System.Drawing.Color.Black;
             this.tb_material.Name = "tb_material";
             this.tb_material.Size = new System.Drawing.Size(121, 37);
             // 
+            // toolStripLabel7
+            // 
+            this.toolStripLabel7.ForeColor = System.Drawing.Color.White;
+            this.toolStripLabel7.Name = "toolStripLabel7";
+            this.toolStripLabel7.Size = new System.Drawing.Size(61, 34);
+            this.toolStripLabel7.Text = "导出格式";
+            // 
+            // tool_material_exportFilter
+            // 
+            this.tool_material_exportFilter.ForeColor = System.Drawing.Color.Black;
+            this.tool_material_exportFilter.Name = "tool_material_exportFilter";
+            this.tool_material_exportFilter.Size = new System.Drawing.Size(121, 37);
+            // 
             // tool_material_export
             // 
+            this.tool_material_export.ForeColor = System.Drawing.Color.White;
             this.tool_material_export.Image = global::MesManager.Properties.Resources.Export_16x16;
             this.tool_material_export.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tool_material_export.Name = "tool_material_export";
@@ -183,22 +197,12 @@
             // 
             // btn_materialSelect
             // 
+            this.btn_materialSelect.ForeColor = System.Drawing.Color.White;
             this.btn_materialSelect.Image = global::MesManager.Properties.Resources.Refresh_16x16;
             this.btn_materialSelect.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btn_materialSelect.Name = "btn_materialSelect";
             this.btn_materialSelect.Size = new System.Drawing.Size(55, 34);
-            this.btn_materialSelect.Text = "刷新";
-            // 
-            // toolStripLabel7
-            // 
-            this.toolStripLabel7.Name = "toolStripLabel7";
-            this.toolStripLabel7.Size = new System.Drawing.Size(61, 34);
-            this.toolStripLabel7.Text = "导出格式";
-            // 
-            // tool_material_exportFilter
-            // 
-            this.tool_material_exportFilter.Name = "tool_material_exportFilter";
-            this.tool_material_exportFilter.Size = new System.Drawing.Size(121, 37);
+            this.btn_materialSelect.Text = "查询";
             // 
             // panel_sn
             // 
@@ -259,22 +263,26 @@
             // 
             // tb_sn
             // 
+            this.tb_sn.ForeColor = System.Drawing.Color.Black;
             this.tb_sn.Name = "tb_sn";
             this.tb_sn.Size = new System.Drawing.Size(121, 39);
             // 
             // toolStripLabel5
             // 
+            this.toolStripLabel5.ForeColor = System.Drawing.Color.White;
             this.toolStripLabel5.Name = "toolStripLabel5";
             this.toolStripLabel5.Size = new System.Drawing.Size(74, 36);
             this.toolStripLabel5.Text = "导出格式：";
             // 
             // tool_sn_exportFilter
             // 
+            this.tool_sn_exportFilter.ForeColor = System.Drawing.Color.Black;
             this.tool_sn_exportFilter.Name = "tool_sn_exportFilter";
             this.tool_sn_exportFilter.Size = new System.Drawing.Size(121, 39);
             // 
             // tool_sn_export
             // 
+            this.tool_sn_export.ForeColor = System.Drawing.Color.White;
             this.tool_sn_export.Image = global::MesManager.Properties.Resources.Export_16x16;
             this.tool_sn_export.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tool_sn_export.Name = "tool_sn_export";
@@ -284,11 +292,12 @@
             // 
             // btn_selectOfSn
             // 
+            this.btn_selectOfSn.ForeColor = System.Drawing.Color.White;
             this.btn_selectOfSn.Image = global::MesManager.Properties.Resources.Refresh_16x16;
             this.btn_selectOfSn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btn_selectOfSn.Name = "btn_selectOfSn";
             this.btn_selectOfSn.Size = new System.Drawing.Size(55, 36);
-            this.btn_selectOfSn.Text = "刷新";
+            this.btn_selectOfSn.Text = "查询";
             // 
             // panel_package
             // 
@@ -358,22 +367,26 @@
             // 
             // tb_package
             // 
+            this.tb_package.ForeColor = System.Drawing.Color.Black;
             this.tb_package.Name = "tb_package";
             this.tb_package.Size = new System.Drawing.Size(121, 42);
             // 
             // toolStripLabel6
             // 
+            this.toolStripLabel6.ForeColor = System.Drawing.Color.White;
             this.toolStripLabel6.Name = "toolStripLabel6";
             this.toolStripLabel6.Size = new System.Drawing.Size(74, 39);
             this.toolStripLabel6.Text = "导出格式：";
             // 
             // tool_package_exportFilter
             // 
+            this.tool_package_exportFilter.ForeColor = System.Drawing.Color.Black;
             this.tool_package_exportFilter.Name = "tool_package_exportFilter";
             this.tool_package_exportFilter.Size = new System.Drawing.Size(121, 42);
             // 
             // tool_package_export
             // 
+            this.tool_package_export.ForeColor = System.Drawing.Color.White;
             this.tool_package_export.Image = global::MesManager.Properties.Resources.Export_16x16;
             this.tool_package_export.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tool_package_export.Name = "tool_package_export";
@@ -383,33 +396,34 @@
             // 
             // btn_selectOfPackage
             // 
+            this.btn_selectOfPackage.ForeColor = System.Drawing.Color.White;
             this.btn_selectOfPackage.Image = global::MesManager.Properties.Resources.Refresh_16x16;
             this.btn_selectOfPackage.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btn_selectOfPackage.Name = "btn_selectOfPackage";
             this.btn_selectOfPackage.Size = new System.Drawing.Size(55, 39);
-            this.btn_selectOfPackage.Text = "刷新";
+            this.btn_selectOfPackage.Text = "查询";
             // 
-            // panel_quanlity
+            // panel_productCheck
             // 
-            this.panel_quanlity.Controls.Add(this.radGridView4);
-            this.panel_quanlity.Controls.Add(this.panel7);
-            this.panel_quanlity.Location = new System.Drawing.Point(4, 496);
-            this.panel_quanlity.Name = "panel_quanlity";
-            this.panel_quanlity.Size = new System.Drawing.Size(768, 155);
-            this.panel_quanlity.TabIndex = 30;
+            this.panel_productCheck.Controls.Add(this.radGridViewCheck);
+            this.panel_productCheck.Controls.Add(this.panel7);
+            this.panel_productCheck.Location = new System.Drawing.Point(4, 496);
+            this.panel_productCheck.Name = "panel_productCheck";
+            this.panel_productCheck.Size = new System.Drawing.Size(768, 155);
+            this.panel_productCheck.TabIndex = 30;
             // 
-            // radGridView4
+            // radGridViewCheck
             // 
-            this.radGridView4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radGridView4.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radGridView4.Location = new System.Drawing.Point(0, 40);
+            this.radGridViewCheck.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radGridViewCheck.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radGridViewCheck.Location = new System.Drawing.Point(0, 40);
             // 
             // 
             // 
-            this.radGridView4.MasterTemplate.ViewDefinition = tableViewDefinition4;
-            this.radGridView4.Name = "radGridView4";
-            this.radGridView4.Size = new System.Drawing.Size(768, 115);
-            this.radGridView4.TabIndex = 10;
+            this.radGridViewCheck.MasterTemplate.ViewDefinition = tableViewDefinition4;
+            this.radGridViewCheck.Name = "radGridViewCheck";
+            this.radGridViewCheck.Size = new System.Drawing.Size(768, 115);
+            this.radGridViewCheck.TabIndex = 10;
             // 
             // panel7
             // 
@@ -427,11 +441,11 @@
             this.toolStrip4.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.toolStrip4.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripLabel4,
-            this.toolStripComboBox1,
-            this.tool_quantility_exoirt,
-            this.toolStripButton2,
+            this.tb_productCheck,
             this.toolStripLabel8,
-            this.tool_quanlity_exportFilter});
+            this.tool_productCheck_exportFilter,
+            this.tool_productCheck_export,
+            this.btn_productCheck});
             this.toolStrip4.Location = new System.Drawing.Point(0, 0);
             this.toolStrip4.Name = "toolStrip4";
             this.toolStrip4.Size = new System.Drawing.Size(768, 40);
@@ -446,38 +460,43 @@
             this.toolStripLabel4.Size = new System.Drawing.Size(106, 37);
             this.toolStripLabel4.Text = "箱子编码/追溯码";
             // 
-            // toolStripComboBox1
+            // tb_productCheck
             // 
-            this.toolStripComboBox1.Name = "toolStripComboBox1";
-            this.toolStripComboBox1.Size = new System.Drawing.Size(121, 40);
-            // 
-            // tool_quantility_exoirt
-            // 
-            this.tool_quantility_exoirt.Image = global::MesManager.Properties.Resources.Export_16x16;
-            this.tool_quantility_exoirt.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tool_quantility_exoirt.Name = "tool_quantility_exoirt";
-            this.tool_quantility_exoirt.Size = new System.Drawing.Size(55, 37);
-            this.tool_quantility_exoirt.Text = "导出";
-            this.tool_quantility_exoirt.ToolTipText = "导出";
-            // 
-            // toolStripButton2
-            // 
-            this.toolStripButton2.Image = global::MesManager.Properties.Resources.Refresh_16x16;
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(55, 37);
-            this.toolStripButton2.Text = "刷新";
+            this.tb_productCheck.ForeColor = System.Drawing.Color.Black;
+            this.tb_productCheck.Name = "tb_productCheck";
+            this.tb_productCheck.Size = new System.Drawing.Size(121, 40);
             // 
             // toolStripLabel8
             // 
+            this.toolStripLabel8.ForeColor = System.Drawing.Color.White;
             this.toolStripLabel8.Name = "toolStripLabel8";
             this.toolStripLabel8.Size = new System.Drawing.Size(74, 37);
             this.toolStripLabel8.Text = "导出格式：";
             // 
-            // tool_quanlity_exportFilter
+            // tool_productCheck_exportFilter
             // 
-            this.tool_quanlity_exportFilter.Name = "tool_quanlity_exportFilter";
-            this.tool_quanlity_exportFilter.Size = new System.Drawing.Size(121, 40);
+            this.tool_productCheck_exportFilter.ForeColor = System.Drawing.Color.Black;
+            this.tool_productCheck_exportFilter.Name = "tool_productCheck_exportFilter";
+            this.tool_productCheck_exportFilter.Size = new System.Drawing.Size(121, 40);
+            // 
+            // tool_productCheck_export
+            // 
+            this.tool_productCheck_export.ForeColor = System.Drawing.Color.White;
+            this.tool_productCheck_export.Image = global::MesManager.Properties.Resources.Export_16x16;
+            this.tool_productCheck_export.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tool_productCheck_export.Name = "tool_productCheck_export";
+            this.tool_productCheck_export.Size = new System.Drawing.Size(55, 37);
+            this.tool_productCheck_export.Text = "导出";
+            this.tool_productCheck_export.ToolTipText = "导出";
+            // 
+            // btn_productCheck
+            // 
+            this.btn_productCheck.ForeColor = System.Drawing.Color.White;
+            this.btn_productCheck.Image = global::MesManager.Properties.Resources.Refresh_16x16;
+            this.btn_productCheck.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btn_productCheck.Name = "btn_productCheck";
+            this.btn_productCheck.Size = new System.Drawing.Size(55, 37);
+            this.btn_productCheck.Text = "查询";
             // 
             // menu_sn_result
             // 
@@ -512,19 +531,11 @@
             this.menu_productCheck.Text = "成品抽检";
             this.menu_productCheck.UseCompatibleTextRendering = false;
             // 
-            // menu_quanlity
-            // 
-            this.menu_quanlity.ForeColor = System.Drawing.Color.White;
-            this.menu_quanlity.Image = global::MesManager.Properties.Resources.DeleteDataSource_16x16;
-            this.menu_quanlity.Name = "menu_quanlity";
-            this.menu_quanlity.Text = "品质异常";
-            this.menu_quanlity.UseCompatibleTextRendering = false;
-            // 
             // SNCenter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.BackColor = System.Drawing.Color.SteelBlue;
             this.ClientSize = new System.Drawing.Size(1361, 663);
             // 
             // radMenu1
@@ -535,19 +546,19 @@
             this.menu_sn_result,
             this.menu_package,
             this.menu_material,
-            this.menu_productCheck,
-            this.menu_quanlity});
+            this.menu_productCheck});
             this.radMenu1.Location = new System.Drawing.Point(0, 0);
             this.radMenu1.Name = "radMenu1";
             this.radMenu1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.radMenu1.Size = new System.Drawing.Size(1361, 36);
             this.radMenu1.TabIndex = 26;
-            this.Controls.Add(this.panel_quanlity);
+            this.Controls.Add(this.panel_productCheck);
             this.Controls.Add(this.panel_package);
             this.Controls.Add(this.panel_sn);
             this.Controls.Add(this.panel_material);
             this.Controls.Add(this.radMenu1);
             this.ForeColor = System.Drawing.Color.Black;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SNCenter";
             // 
             // 
@@ -577,9 +588,9 @@
             this.panel1.PerformLayout();
             this.toolStrip2.ResumeLayout(false);
             this.toolStrip2.PerformLayout();
-            this.panel_quanlity.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radGridView4.MasterTemplate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGridView4)).EndInit();
+            this.panel_productCheck.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radGridViewCheck.MasterTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGridViewCheck)).EndInit();
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
             this.toolStrip4.ResumeLayout(false);
@@ -597,7 +608,6 @@
         private Telerik.WinControls.UI.RadMenuItem menu_package;
         private Telerik.WinControls.UI.RadMenuItem menu_material;
         private Telerik.WinControls.UI.RadMenuItem menu_productCheck;
-        private Telerik.WinControls.UI.RadMenuItem menu_quanlity;
         private System.Windows.Forms.Panel panel_material;
         private Telerik.WinControls.UI.RadGridView radGridViewMaterial;
         private System.Windows.Forms.Panel panel5;
@@ -606,8 +616,8 @@
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel_package;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Panel panel_quanlity;
-        private Telerik.WinControls.UI.RadGridView radGridView4;
+        private System.Windows.Forms.Panel panel_productCheck;
+        private Telerik.WinControls.UI.RadGridView radGridViewCheck;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
@@ -626,9 +636,9 @@
         private System.Windows.Forms.ToolStripButton btn_materialSelect;
         private System.Windows.Forms.ToolStrip toolStrip4;
         private System.Windows.Forms.ToolStripLabel toolStripLabel4;
-        private System.Windows.Forms.ToolStripComboBox toolStripComboBox1;
-        private System.Windows.Forms.ToolStripButton tool_quantility_exoirt;
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.ToolStripComboBox tb_productCheck;
+        private System.Windows.Forms.ToolStripButton tool_productCheck_export;
+        private System.Windows.Forms.ToolStripButton btn_productCheck;
         private System.Windows.Forms.Panel panel1;
         private Telerik.WinControls.UI.RadGridView radGridViewPackage;
         private System.Windows.Forms.ToolStripLabel toolStripLabel5;
@@ -638,7 +648,7 @@
         private System.Windows.Forms.ToolStripLabel toolStripLabel6;
         private System.Windows.Forms.ToolStripComboBox tool_package_exportFilter;
         private System.Windows.Forms.ToolStripLabel toolStripLabel8;
-        private System.Windows.Forms.ToolStripComboBox tool_quanlity_exportFilter;
+        private System.Windows.Forms.ToolStripComboBox tool_productCheck_exportFilter;
         private Telerik.WinControls.UI.RadMenu radMenu1;
     }
 }

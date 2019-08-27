@@ -62,13 +62,17 @@ namespace MesWcfService
             [SwaggerWcfParameter(Description = "使用数量")]string amounted,
             [SwaggerWcfParameter(Description = "班组长")]string teamLeader,
             [SwaggerWcfParameter(Description = "管理员")]string admin);
+        #endregion
 
+        #region 【接口】物料数量防错
         [OperationContract]
         [SwaggerWcfPath("CheckMaterialState","检查物料状态，1-正常，2-正常使用完，3-强制使用完；2/3都为使用完")]
         [WebInvoke(Method = "GET",UriTemplate = "CheckMaterialState?materialCode={materialCode}", BodyStyle = WebMessageBodyStyle.Bare,
             RequestFormat = WebMessageFormat.Json,ResponseFormat = WebMessageFormat.Json)]
         string CheckMaterialState([SwaggerWcfParameter(Description = "物料编码")]string materialCode);
+        #endregion
 
+        #region 【接口】物料号防错
         [OperationContract]
         [SwaggerWcfPath("CheckMaterialMatch", "检查物料码是否匹配，0-不匹配；1-匹配")]
         [WebInvoke(Method = "GET", UriTemplate = "CheckMaterialMatch?productTypeNo={productTypeNo}&materialPN={materialPN}", BodyStyle = WebMessageBodyStyle.Bare,
@@ -111,11 +115,12 @@ namespace MesWcfService
         [OperationContract]
         [SwaggerWcfPath("UpdateProgrameVersion", "更新测试程序版本号")]
         [WebInvoke(Method = "GET", UriTemplate = "UpdateLimitConfig?stationName={stationName}&typeNo={typeNo}&" +
-            "limitValue={limitValue}&teamLeader={teamLeader}&admin={admin}",
+            "testItem={testItem}&limit={limit}&teamLeader={teamLeader}&admin={admin}",
             BodyStyle = WebMessageBodyStyle.Bare,RequestFormat = WebMessageFormat.Json,ResponseFormat = WebMessageFormat.Json)]
         string UpdateLimitConfig([SwaggerWcfParameter(Description = "工站名称*")]string stationName,
             [SwaggerWcfParameter(Description = "产品型号*")]string typeNo,
-            [SwaggerWcfParameter(Description = "limit值*")]string limitValue,
+            [SwaggerWcfParameter(Description = "测试项")]string testItem,
+            [SwaggerWcfParameter(Description = "limit")]string limit,
             [SwaggerWcfParameter(Description = "班组长")]string teamLeader,
             [SwaggerWcfParameter(Description = "管理员")]string admin);
         #endregion

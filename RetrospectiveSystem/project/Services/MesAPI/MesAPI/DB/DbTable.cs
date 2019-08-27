@@ -22,6 +22,7 @@ namespace MesAPI.DB
         public const string F_TEST_PROGRAME_VERSION_NAME        = "[WT_SCL].[dbo].[f_test_programe_version]";
         public const string F_TEST_LIMIT_CONFIG_NAME            = "[WT_SCL].[dbo].[f_test_limit_config]";
         public const string F_TEST_LOG_DATA_NAME                = "[WT_SCL].[dbo].[f_test_log_data]";
+        public const string F_QUANLITY_MANAGER_NAME             = "[WT_SCL].[dbo].[f_quanlity_manager]";
 
         public class F_User
         {
@@ -100,12 +101,12 @@ namespace MesAPI.DB
 
         public class F_Material_Statistics
         {
-            public const string SN_INNER = "[sn_inner]";
-            public const string SN_OUTTER = "[sn_outter]";
-            public const string TYPE_NO = "[type_no]";
+            public const string PRODUCT_TYPE_NO = "[type_no]";
             public const string STATION_NAME = "[station_name]";
             public const string MATERIAL_CODE = "[material_code]";
-            public const string MATERIAL_AMOUNT = "[material_amount]";
+            public const string MATERIAL_AMOUNT = "[material_amounted]";
+            public const string TEAM_LEADER = "[team_leader]";
+            public const string ADMIN = "[admin]";
             public const string UPDATE_DATE = "[update_date]";
         }
 
@@ -127,6 +128,8 @@ namespace MesAPI.DB
             public const string BINDING_STATE = "[binding_state]";
             public const string BINDING_DATE = "[binding_date]";
             public const string REMARK = "[remark]";
+            public const string TEAM_LEADER = "[team_leader]";
+            public const string ADMIN = "[admin]";
         }
 
         public class F_Product_Check_Record
@@ -189,6 +192,20 @@ namespace MesAPI.DB
             public const string TEAM_LEADER = "[teamLeader]";
             public const string ADMIN = "[admin]";
             public const string UPDATE_DATE = "[updateDate]";
+        }
+
+        public class F_QUANLITY_MANAGER
+        {
+            public const string EXCEPT_TYPE = "[except_type]";
+            public const string MATERIAL_CODE = "[material_code]";
+            public const string STATEMENT_DATE = "[statement_date]";
+            public const string EXCEPT_STOCK = "[except_stock]";
+            public const string ACTUAL_STOCK = "[actual_stock]";
+            public const string STATION_NAME = "[station_name]";
+            public const string MATERIAL_STATE = "[material_state]";
+            public const string STATEMENT_REASON = "[statement_reason]";
+            public const string STATEMENT_USER = "[statement_user]";
+            public const string UPDATE_DATE = "[update_date]";
         }
     }
 }

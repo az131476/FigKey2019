@@ -166,7 +166,7 @@ namespace MesManager.UI
 
         async private void UpdateData()
         {
-            MesService.PackageProduct[] packageProducts = new MesService.PackageProduct[this.radGridView1.Rows.Count];
+            //MesService.PackageProduct[] packageProducts = new MesService.PackageProduct[this.radGridView1.Rows.Count];
             int index = 0;
             if (this.radGridView1.Rows.Count < 1)
                 return;
@@ -184,13 +184,13 @@ namespace MesManager.UI
                 if (rowInfo.Cells[4].Value != null)
                     remark = rowInfo.Cells[4].Value.ToString();
 
-                MesService.PackageProduct packageProduct = new MesService.PackageProduct();
-                packageProduct.CaseCode = caseCode;
-                packageProduct.SnOutter = productSN;
-                packageProduct.BindingState = 1;
-                packageProduct.BindingDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                packageProduct.Remark = remark;
-                packageProducts[index] = packageProduct;
+                //MesService.PackageProduct packageProduct = new MesService.PackageProduct();
+                //packageProduct.CaseCode = caseCode;
+                //packageProduct.SnOutter = productSN;
+                //packageProduct.BindingState = 1;
+                //packageProduct.BindingDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                //packageProduct.Remark = remark;
+                //packageProducts[index] = packageProduct;
                 index++;
             }
             var res = 0;// await serviceClient.CommitPackageProductAsync(packageProducts);

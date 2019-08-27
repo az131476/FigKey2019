@@ -18,13 +18,16 @@ namespace MesManager.MesService {
     public enum LoginUser : int {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        ORDINARY_USER = 0,
+        ADMIN_USER = 0,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        ADMIN_USER = 1,
+        TEAM_LEADER = 1,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        TOURIST_USER = 2,
+        OPERATOR = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        ORDINARY_USER = 3,
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
@@ -45,20 +48,6 @@ namespace MesManager.MesService {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
         SUCCESS = 4,
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="QueryResult", Namespace="http://schemas.datacontract.org/2004/07/MesAPI.Model")]
-    public enum QueryResult : int {
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        EXIST_DATA = 0,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        NONE_DATE = 1,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        EXCEPT_ERR = 2,
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
@@ -565,147 +554,6 @@ namespace MesManager.MesService {
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="PackageProduct", Namespace="http://schemas.datacontract.org/2004/07/MesAPI.Model")]
-    [System.SerializableAttribute()]
-    public partial class PackageProduct : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string BindingDateField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int BindingStateField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CaseCodeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private byte[] PictureField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string RemarkField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string SnOutterField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string TypeNoField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string BindingDate {
-            get {
-                return this.BindingDateField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.BindingDateField, value) != true)) {
-                    this.BindingDateField = value;
-                    this.RaisePropertyChanged("BindingDate");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int BindingState {
-            get {
-                return this.BindingStateField;
-            }
-            set {
-                if ((this.BindingStateField.Equals(value) != true)) {
-                    this.BindingStateField = value;
-                    this.RaisePropertyChanged("BindingState");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string CaseCode {
-            get {
-                return this.CaseCodeField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CaseCodeField, value) != true)) {
-                    this.CaseCodeField = value;
-                    this.RaisePropertyChanged("CaseCode");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public byte[] Picture {
-            get {
-                return this.PictureField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.PictureField, value) != true)) {
-                    this.PictureField = value;
-                    this.RaisePropertyChanged("Picture");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Remark {
-            get {
-                return this.RemarkField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.RemarkField, value) != true)) {
-                    this.RemarkField = value;
-                    this.RaisePropertyChanged("Remark");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string SnOutter {
-            get {
-                return this.SnOutterField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.SnOutterField, value) != true)) {
-                    this.SnOutterField = value;
-                    this.RaisePropertyChanged("SnOutter");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string TypeNo {
-            get {
-                return this.TypeNoField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.TypeNoField, value) != true)) {
-                    this.TypeNoField = value;
-                    this.RaisePropertyChanged("TypeNo");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="MesService.IMesService")]
     public interface IMesService {
@@ -723,11 +571,10 @@ namespace MesManager.MesService {
         System.Threading.Tasks.Task<MesManager.MesService.LoginResult> LoginAsync(string username, string password, MesManager.MesService.LoginUser loginUser);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/GetUserInfo", ReplyAction="http://tempuri.org/IMesService/GetUserInfoResponse")]
-        MesManager.MesService.GetUserInfoResponse GetUserInfo(MesManager.MesService.GetUserInfoRequest request);
+        System.Data.DataSet GetUserInfo(string username);
         
-        // CODEGEN: 正在生成消息协定，应为该操作具有多个返回值。
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/GetUserInfo", ReplyAction="http://tempuri.org/IMesService/GetUserInfoResponse")]
-        System.Threading.Tasks.Task<MesManager.MesService.GetUserInfoResponse> GetUserInfoAsync(MesManager.MesService.GetUserInfoRequest request);
+        System.Threading.Tasks.Task<System.Data.DataSet> GetUserInfoAsync(string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/GetAllUserInfo", ReplyAction="http://tempuri.org/IMesService/GetAllUserInfoResponse")]
         System.Data.DataSet GetAllUserInfo();
@@ -736,10 +583,22 @@ namespace MesManager.MesService {
         System.Threading.Tasks.Task<System.Data.DataSet> GetAllUserInfoAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/Register", ReplyAction="http://tempuri.org/IMesService/RegisterResponse")]
-        MesManager.MesService.RegisterResult Register(string username, string pwd, string phone, string email, MesManager.MesService.LoginUser loginUser);
+        MesManager.MesService.RegisterResult Register(string username, string pwd, string phone, string email, int userType);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/Register", ReplyAction="http://tempuri.org/IMesService/RegisterResponse")]
-        System.Threading.Tasks.Task<MesManager.MesService.RegisterResult> RegisterAsync(string username, string pwd, string phone, string email, MesManager.MesService.LoginUser loginUser);
+        System.Threading.Tasks.Task<MesManager.MesService.RegisterResult> RegisterAsync(string username, string pwd, string phone, string email, int userType);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/ModifyUserPassword", ReplyAction="http://tempuri.org/IMesService/ModifyUserPasswordResponse")]
+        int ModifyUserPassword(string username, string pwd);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/ModifyUserPassword", ReplyAction="http://tempuri.org/IMesService/ModifyUserPasswordResponse")]
+        System.Threading.Tasks.Task<int> ModifyUserPasswordAsync(string username, string pwd);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/DeleteUser", ReplyAction="http://tempuri.org/IMesService/DeleteUserResponse")]
+        int DeleteUser(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/DeleteUser", ReplyAction="http://tempuri.org/IMesService/DeleteUserResponse")]
+        System.Threading.Tasks.Task<int> DeleteUserAsync(string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/DeleteStation", ReplyAction="http://tempuri.org/IMesService/DeleteStationResponse")]
         int DeleteStation(string processName, string stationName);
@@ -910,10 +769,10 @@ namespace MesManager.MesService {
         System.Threading.Tasks.Task<System.Data.DataSet> SelectProductBindingRecordAsync(string casecode, string bindingState);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectPackageProduct", ReplyAction="http://tempuri.org/IMesService/SelectPackageProductResponse")]
-        System.Data.DataSet SelectPackageProduct(MesManager.MesService.PackageProduct packageProduct);
+        System.Data.DataSet SelectPackageProduct(string queryFilter, string state);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectPackageProduct", ReplyAction="http://tempuri.org/IMesService/SelectPackageProductResponse")]
-        System.Threading.Tasks.Task<System.Data.DataSet> SelectPackageProductAsync(MesManager.MesService.PackageProduct packageProduct);
+        System.Threading.Tasks.Task<System.Data.DataSet> SelectPackageProductAsync(string queryFilter, string state);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectTestProgrameVersion", ReplyAction="http://tempuri.org/IMesService/SelectTestProgrameVersionResponse")]
         System.Data.DataSet SelectTestProgrameVersion(string productTypeNo);
@@ -938,42 +797,18 @@ namespace MesManager.MesService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectTodayTestLogData", ReplyAction="http://tempuri.org/IMesService/SelectTodayTestLogDataResponse")]
         System.Threading.Tasks.Task<System.Data.DataSet> SelectTodayTestLogDataAsync(string queryFilter);
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="GetUserInfo", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
-    public partial class GetUserInfoRequest {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public string userName;
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/UpdateQuanlityData", ReplyAction="http://tempuri.org/IMesService/UpdateQuanlityDataResponse")]
+        int UpdateQuanlityData(string eType, string mCode, string sDate, string stock, string aStock, string station, string state, string reason, string user);
         
-        public GetUserInfoRequest() {
-        }
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/UpdateQuanlityData", ReplyAction="http://tempuri.org/IMesService/UpdateQuanlityDataResponse")]
+        System.Threading.Tasks.Task<int> UpdateQuanlityDataAsync(string eType, string mCode, string sDate, string stock, string aStock, string station, string state, string reason, string user);
         
-        public GetUserInfoRequest(string userName) {
-            this.userName = userName;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="GetUserInfoResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
-    public partial class GetUserInfoResponse {
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/UpdateMaterialStateMent", ReplyAction="http://tempuri.org/IMesService/UpdateMaterialStateMentResponse")]
+        int UpdateMaterialStateMent(string materialCode, int state);
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public MesManager.MesService.QueryResult GetUserInfoResult;
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
-        public System.Data.DataSet dataSet;
-        
-        public GetUserInfoResponse() {
-        }
-        
-        public GetUserInfoResponse(MesManager.MesService.QueryResult GetUserInfoResult, System.Data.DataSet dataSet) {
-            this.GetUserInfoResult = GetUserInfoResult;
-            this.dataSet = dataSet;
-        }
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/UpdateMaterialStateMent", ReplyAction="http://tempuri.org/IMesService/UpdateMaterialStateMentResponse")]
+        System.Threading.Tasks.Task<int> UpdateMaterialStateMentAsync(string materialCode, int state);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1019,21 +854,12 @@ namespace MesManager.MesService {
             return base.Channel.LoginAsync(username, password, loginUser);
         }
         
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        MesManager.MesService.GetUserInfoResponse MesManager.MesService.IMesService.GetUserInfo(MesManager.MesService.GetUserInfoRequest request) {
-            return base.Channel.GetUserInfo(request);
+        public System.Data.DataSet GetUserInfo(string username) {
+            return base.Channel.GetUserInfo(username);
         }
         
-        public MesManager.MesService.QueryResult GetUserInfo(string userName, out System.Data.DataSet dataSet) {
-            MesManager.MesService.GetUserInfoRequest inValue = new MesManager.MesService.GetUserInfoRequest();
-            inValue.userName = userName;
-            MesManager.MesService.GetUserInfoResponse retVal = ((MesManager.MesService.IMesService)(this)).GetUserInfo(inValue);
-            dataSet = retVal.dataSet;
-            return retVal.GetUserInfoResult;
-        }
-        
-        public System.Threading.Tasks.Task<MesManager.MesService.GetUserInfoResponse> GetUserInfoAsync(MesManager.MesService.GetUserInfoRequest request) {
-            return base.Channel.GetUserInfoAsync(request);
+        public System.Threading.Tasks.Task<System.Data.DataSet> GetUserInfoAsync(string username) {
+            return base.Channel.GetUserInfoAsync(username);
         }
         
         public System.Data.DataSet GetAllUserInfo() {
@@ -1044,12 +870,28 @@ namespace MesManager.MesService {
             return base.Channel.GetAllUserInfoAsync();
         }
         
-        public MesManager.MesService.RegisterResult Register(string username, string pwd, string phone, string email, MesManager.MesService.LoginUser loginUser) {
-            return base.Channel.Register(username, pwd, phone, email, loginUser);
+        public MesManager.MesService.RegisterResult Register(string username, string pwd, string phone, string email, int userType) {
+            return base.Channel.Register(username, pwd, phone, email, userType);
         }
         
-        public System.Threading.Tasks.Task<MesManager.MesService.RegisterResult> RegisterAsync(string username, string pwd, string phone, string email, MesManager.MesService.LoginUser loginUser) {
-            return base.Channel.RegisterAsync(username, pwd, phone, email, loginUser);
+        public System.Threading.Tasks.Task<MesManager.MesService.RegisterResult> RegisterAsync(string username, string pwd, string phone, string email, int userType) {
+            return base.Channel.RegisterAsync(username, pwd, phone, email, userType);
+        }
+        
+        public int ModifyUserPassword(string username, string pwd) {
+            return base.Channel.ModifyUserPassword(username, pwd);
+        }
+        
+        public System.Threading.Tasks.Task<int> ModifyUserPasswordAsync(string username, string pwd) {
+            return base.Channel.ModifyUserPasswordAsync(username, pwd);
+        }
+        
+        public int DeleteUser(string username) {
+            return base.Channel.DeleteUser(username);
+        }
+        
+        public System.Threading.Tasks.Task<int> DeleteUserAsync(string username) {
+            return base.Channel.DeleteUserAsync(username);
         }
         
         public int DeleteStation(string processName, string stationName) {
@@ -1276,12 +1118,12 @@ namespace MesManager.MesService {
             return base.Channel.SelectProductBindingRecordAsync(casecode, bindingState);
         }
         
-        public System.Data.DataSet SelectPackageProduct(MesManager.MesService.PackageProduct packageProduct) {
-            return base.Channel.SelectPackageProduct(packageProduct);
+        public System.Data.DataSet SelectPackageProduct(string queryFilter, string state) {
+            return base.Channel.SelectPackageProduct(queryFilter, state);
         }
         
-        public System.Threading.Tasks.Task<System.Data.DataSet> SelectPackageProductAsync(MesManager.MesService.PackageProduct packageProduct) {
-            return base.Channel.SelectPackageProductAsync(packageProduct);
+        public System.Threading.Tasks.Task<System.Data.DataSet> SelectPackageProductAsync(string queryFilter, string state) {
+            return base.Channel.SelectPackageProductAsync(queryFilter, state);
         }
         
         public System.Data.DataSet SelectTestProgrameVersion(string productTypeNo) {
@@ -1314,6 +1156,22 @@ namespace MesManager.MesService {
         
         public System.Threading.Tasks.Task<System.Data.DataSet> SelectTodayTestLogDataAsync(string queryFilter) {
             return base.Channel.SelectTodayTestLogDataAsync(queryFilter);
+        }
+        
+        public int UpdateQuanlityData(string eType, string mCode, string sDate, string stock, string aStock, string station, string state, string reason, string user) {
+            return base.Channel.UpdateQuanlityData(eType, mCode, sDate, stock, aStock, station, state, reason, user);
+        }
+        
+        public System.Threading.Tasks.Task<int> UpdateQuanlityDataAsync(string eType, string mCode, string sDate, string stock, string aStock, string station, string state, string reason, string user) {
+            return base.Channel.UpdateQuanlityDataAsync(eType, mCode, sDate, stock, aStock, station, state, reason, user);
+        }
+        
+        public int UpdateMaterialStateMent(string materialCode, int state) {
+            return base.Channel.UpdateMaterialStateMent(materialCode, state);
+        }
+        
+        public System.Threading.Tasks.Task<int> UpdateMaterialStateMentAsync(string materialCode, int state) {
+            return base.Channel.UpdateMaterialStateMentAsync(materialCode, state);
         }
     }
 }

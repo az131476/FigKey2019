@@ -84,7 +84,7 @@ namespace MesWcfService
         }
         #endregion
 
-        #region 物料统计表
+        #region 更新物料统计表
         [SwaggerWcfTag("MesServcie 服务")]
         [SwaggerWcfResponse("0X00", "STATUS_FAIL")]
         [SwaggerWcfResponse("0X01", "STATUS_USCCESS")]
@@ -108,7 +108,9 @@ namespace MesWcfService
             insertMaterialStatisticsQueue.Enqueue(new string[] { typeNo,stationName,materialCode,amounted,teamLeader,admin});
             return MaterialStatistics.UpdateMaterialStatistics(insertMaterialStatisticsQueue);
         }
+        #endregion
 
+        #region 物料数量防错
         [SwaggerWcfTag("MesServcie 服务")]
         [SwaggerWcfResponse("0X00", "ERROR_NULL_STRING")]
         [SwaggerWcfResponse("0X01", "STATUS_USING")]
@@ -122,6 +124,9 @@ namespace MesWcfService
             checkMaterialStateQueue.Enqueue(materialCode);
             return MaterialStatistics.CheckMaterialState(checkMaterialStateQueue);
         }
+        #endregion
+
+        #region 物料号防错
         [SwaggerWcfTag("MesServcie 服务")]
         [SwaggerWcfResponse("0X00", "IS_NOT_MATCH")]
         [SwaggerWcfResponse("0X01", "IS_MATCH")]
@@ -258,7 +263,7 @@ namespace MesWcfService
         [SwaggerWcfResponse("NULL", "查询结果为空！请检查传入参数是否正确")]
         public string[] SelectTypeNoList()
         {
-            var selectSQL = $"SELECT {DbTable.F_PRODUCT_TYPE_NO.TYPE_NO} FROM {DbTable.F_PRODUCT_TYPE_NO_NAME} ";
+            var selectSQL = $"SELECT {DbTable.F_Out_Case_Storage.TYPE_NO} FROM {DbTable.F_OUT_CASE_STORAGE_NAME} ";
             var dt = SQLServer.ExecuteDataSet(selectSQL).Tables[0];
             if (dt.Rows.Count > 0)
             {

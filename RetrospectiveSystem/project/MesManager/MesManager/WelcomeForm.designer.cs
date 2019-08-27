@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WelcomeForm));
             this.radPanorama1 = new Telerik.WinControls.UI.RadPanorama();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -56,15 +57,14 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Location = new System.Drawing.Point(3, 302);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(137, 13);
+            this.label2.Size = new System.Drawing.Size(0, 13);
             this.label2.TabIndex = 2;
-            this.label2.Text = "丰柯电子科技有限公司";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(348, 73);
+            this.label1.Location = new System.Drawing.Point(340, 98);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(48, 13);
             this.label1.TabIndex = 1;
@@ -74,7 +74,7 @@
             // 
             this.radLabel1.BackColor = System.Drawing.Color.Transparent;
             this.radLabel1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel1.Location = new System.Drawing.Point(130, 65);
+            this.radLabel1.Location = new System.Drawing.Point(122, 90);
             this.radLabel1.Name = "radLabel1";
             this.radLabel1.Size = new System.Drawing.Size(212, 25);
             this.radLabel1.TabIndex = 0;
@@ -86,12 +86,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(492, 324);
             this.Controls.Add(this.radPanorama1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "WelcomeForm";
             // 
             // 
             // 
             this.RootElement.ApplyShapeToControl = true;
-            this.Text = "WelcomeForm";
+            this.Text = "";
             ((System.ComponentModel.ISupportInitialize)(this.radPanorama1)).EndInit();
             this.radPanorama1.ResumeLayout(false);
             this.radPanorama1.PerformLayout();

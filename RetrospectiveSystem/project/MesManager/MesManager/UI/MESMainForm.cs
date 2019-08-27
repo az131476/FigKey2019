@@ -16,6 +16,7 @@ namespace MesManager.UI
         private bool isFormMoving = false;
         public static bool IsLogin;
         public static string currentUser;
+        public static int currentUsetType;
         public MESMainForm()
         {
             InitializeComponent();
@@ -41,7 +42,7 @@ namespace MesManager.UI
         {
             this.mainBasicInfo.Click += MainBasicInfo_Click;
             //this.mainCheckStation.Click += MainCheckStation_Click;
-            this.mainGraphView.Click += MainGraphView_Click;
+            //this.mainGraphView.Click += MainGraphView_Click;
             this.mainMaterialManager.Click += MainMaterialManager_Click;
             //this.mainProduceManager.Click += MainProduceManager_Click;
             //this.mainProductCheck.Click += MainProductCheck_Click;
@@ -50,7 +51,7 @@ namespace MesManager.UI
             //this.mainRepairCenter.Click += MainRepairCenter_Click;
             this.mainReportData.Click += MainReportData_Click;
             this.mainTestStandData.Click += MainTestStandData_Click;
-            this.mainStatisticalAnalysis.Click += MainStatisticalAnalysis_Click;
+            //this.mainStatisticalAnalysis.Click += MainStatisticalAnalysis_Click;
             this.btn_user_manger.Click += Btn_user_manger_Click;
             this.btn_user_login.Click += Btn_user_login_Click;
         }
@@ -128,11 +129,20 @@ namespace MesManager.UI
             {
                 IsLogin = true;
                 currentUser = Login.GetUserName;
+                currentUsetType = Login.CurrentUserType;
             }
         }
 
         private void Btn_user_manger_Click(object sender, EventArgs e)
         {
+            //用户管理
+            if (!IsLoginAuthon())
+                return;
+            if (currentUsetType != 0)
+            {
+                MessageBox.Show("您没有此操作权限！","提示",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                return;
+            }
             UserManager userManager = new UserManager();
             userManager.ShowDialog();
         }
@@ -165,6 +175,13 @@ namespace MesManager.UI
         private void MainQuanlityAnomaly_Click(object sender, EventArgs e)
         {
             //品质异常管理
+            if (!IsLoginAuthon())
+                return;
+            if (currentUsetType != 0 && currentUsetType != 1)
+            {
+                MessageBox.Show("您没有此操作权限！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             QuanlityAnomaly quanlityAnomaly = new QuanlityAnomaly();
             quanlityAnomaly.ShowDialog();
         }
@@ -177,6 +194,11 @@ namespace MesManager.UI
             //工艺流程
             if(!IsLoginAuthon())
                 return;
+            if (currentUsetType != 0)
+            {
+                MessageBox.Show("您没有此操作权限！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             TProcess process = new TProcess();
             process.ShowDialog();
         }
@@ -199,6 +221,11 @@ namespace MesManager.UI
             //物料绑定
             if (!IsLoginAuthon())
                 return;
+            if (currentUsetType != 0)
+            {
+                MessageBox.Show("您没有此操作权限！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             ProductMaterial productMaterial = new ProductMaterial();
             productMaterial.ShowDialog();
         }
@@ -225,6 +252,11 @@ namespace MesManager.UI
             //如配置型号/配置产线/配置物料信息等
             if(!IsLoginAuthon())
                 return;
+            if (currentUsetType != 0)
+            {
+                MessageBox.Show("您没有此操作权限！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             BasicConfig basicConfig = new BasicConfig();
             basicConfig.ShowDialog();
         }
@@ -233,7 +265,7 @@ namespace MesManager.UI
         {
             if (!IsLogin)
             {
-                if (MessageBox.Show("请先登录！立即打开登录？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
+                if (MessageBox.Show("请先登录！立即打开登录界面？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
                 {
                     //打开登录
                     OpenLogin();

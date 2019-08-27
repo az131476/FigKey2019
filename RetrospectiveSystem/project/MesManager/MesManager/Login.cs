@@ -15,6 +15,7 @@ using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
 using MesManager.RadView;
 using Telerik.WinControls.UI;
+using MesManager.UI;
 
 namespace MesManager
 {
@@ -30,8 +31,8 @@ namespace MesManager
         private string configPath;
         private MesService.MesServiceClient mesService;
         private bool isFormMoving = false;
-        public static UserType GetUserType { get; set; }
-        public static string GetUserName { get; set; }
+        public static int CurrentUserType;
+        public static string GetUserName;
 
         [DllImport("user32.dll", EntryPoint = "HideCaret")]
         private static extern bool HideCaret(IntPtr hWnd);
@@ -69,8 +70,22 @@ namespace MesManager
 
         public enum UserType
         {
+            /// <summary>
+            /// 管理员
+            /// </summary>
             USER_ADMIN,
-            USER_ORDINARY
+            /// <summary>
+            /// 班组长
+            /// </summary>
+            USER_TEAM_LEADER,
+            /// <summary>
+            /// 操作员
+            /// </summary>
+            USER_OPERATOR,
+            /// <summary>
+            /// 普通工人
+            /// </summary>
+            USER_ORIDNARY
         }
 
         private void Login_Load(object sender, EventArgs e)
@@ -144,11 +159,11 @@ namespace MesManager
         /// 调用接口验证用户名和密码
         /// </summary>
         /// <param name="loginUser"></param>
-        private void RemoteValidate(MesService.LoginUser loginUser)
+        async private void RemoteValidate(MesService.LoginUser loginUser)
         {
             try
             {
-                MesService.LoginResult loginRes = mesService.Login(tbx_username.Text, tbx_pwd.Text, loginUser);
+                MesService.LoginResult loginRes = await mesService.LoginAsync(tbx_username.Text, tbx_pwd.Text, loginUser);
                 //验证用户密码
                 switch (loginRes)
                 {
@@ -274,7 +289,7 @@ namespace MesManager
 
         private void Lbx_regist_Click(object sender, EventArgs e)
         {
-            Register register = new Register();
+            Register register = new Register("注册");
             register.ShowDialog();
         }
 
@@ -306,17 +321,33 @@ namespace MesManager
                 return;
             RemoteValidate(MesService.LoginUser.ADMIN_USER);
             GetUserName = tbx_username.Text;
+            SelectUserType();
 
             UpdateUserCfg();
             if (this.DialogResult == DialogResult.OK)
             {
+                MessageBox.Show("登录成功！","提示",MessageBoxButtons.OK,MessageBoxIcon.Information);
                 this.Close();
             }
+        }
+        async private void SelectUserType()
+        {
+            var dt = (await mesService.GetUserInfoAsync(tbx_username.Text)).Tables[0];
+            if (dt.Rows.Count < 1)
+                return;
+            CurrentUserType = int.Parse(dt.Rows[0][0].ToString()); 
         }
 
         private void Lbx_ToFindPwd_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            GetBackPwd getBackPwd = new GetBackPwd();
+            getBackPwd.ShowDialog();
+        }
 
+        private void Lbx_register_Click(object sender, EventArgs e)
+        {
+            Register register = new Register("注册");
+            register.ShowDialog();
         }
     }
 }

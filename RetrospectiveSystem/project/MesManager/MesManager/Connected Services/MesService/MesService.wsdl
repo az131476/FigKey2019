@@ -39,6 +39,18 @@
   <wsdl:message name="IMesService_Register_OutputMessage">
     <wsdl:part name="parameters" element="tns:RegisterResponse" />
   </wsdl:message>
+  <wsdl:message name="IMesService_ModifyUserPassword_InputMessage">
+    <wsdl:part name="parameters" element="tns:ModifyUserPassword" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_ModifyUserPassword_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ModifyUserPasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_DeleteUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUser" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_DeleteUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUserResponse" />
+  </wsdl:message>
   <wsdl:message name="IMesService_DeleteStation_InputMessage">
     <wsdl:part name="parameters" element="tns:DeleteStation" />
   </wsdl:message>
@@ -237,6 +249,18 @@
   <wsdl:message name="IMesService_SelectTodayTestLogData_OutputMessage">
     <wsdl:part name="parameters" element="tns:SelectTodayTestLogDataResponse" />
   </wsdl:message>
+  <wsdl:message name="IMesService_UpdateQuanlityData_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateQuanlityData" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_UpdateQuanlityData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateQuanlityDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_UpdateMaterialStateMent_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateMaterialStateMent" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_UpdateMaterialStateMent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateMaterialStateMentResponse" />
+  </wsdl:message>
   <wsdl:portType name="IMesService">
     <wsdl:operation name="TestCommunication">
       <wsdl:input wsaw:Action="http://tempuri.org/IMesService/TestCommunication" message="tns:IMesService_TestCommunication_InputMessage" />
@@ -257,6 +281,14 @@
     <wsdl:operation name="Register">
       <wsdl:input wsaw:Action="http://tempuri.org/IMesService/Register" message="tns:IMesService_Register_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMesService/RegisterResponse" message="tns:IMesService_Register_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ModifyUserPassword">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/ModifyUserPassword" message="tns:IMesService_ModifyUserPassword_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/ModifyUserPasswordResponse" message="tns:IMesService_ModifyUserPassword_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/DeleteUser" message="tns:IMesService_DeleteUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/DeleteUserResponse" message="tns:IMesService_DeleteUser_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="DeleteStation">
       <wsdl:input wsaw:Action="http://tempuri.org/IMesService/DeleteStation" message="tns:IMesService_DeleteStation_InputMessage" />
@@ -390,6 +422,14 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IMesService/SelectTodayTestLogData" message="tns:IMesService_SelectTodayTestLogData_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMesService/SelectTodayTestLogDataResponse" message="tns:IMesService_SelectTodayTestLogData_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="UpdateQuanlityData">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/UpdateQuanlityData" message="tns:IMesService_UpdateQuanlityData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/UpdateQuanlityDataResponse" message="tns:IMesService_UpdateQuanlityData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMaterialStateMent">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/UpdateMaterialStateMent" message="tns:IMesService_UpdateMaterialStateMent_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/UpdateMaterialStateMentResponse" message="tns:IMesService_UpdateMaterialStateMent_OutputMessage" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IMesService" type="tns:IMesService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -431,6 +471,24 @@
     </wsdl:operation>
     <wsdl:operation name="Register">
       <soap:operation soapAction="http://tempuri.org/IMesService/Register" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModifyUserPassword">
+      <soap:operation soapAction="http://tempuri.org/IMesService/ModifyUserPassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUser">
+      <soap:operation soapAction="http://tempuri.org/IMesService/DeleteUser" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -728,6 +786,24 @@
     </wsdl:operation>
     <wsdl:operation name="SelectTodayTestLogData">
       <soap:operation soapAction="http://tempuri.org/IMesService/SelectTodayTestLogData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateQuanlityData">
+      <soap:operation soapAction="http://tempuri.org/IMesService/UpdateQuanlityData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMaterialStateMent">
+      <soap:operation soapAction="http://tempuri.org/IMesService/UpdateMaterialStateMent" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

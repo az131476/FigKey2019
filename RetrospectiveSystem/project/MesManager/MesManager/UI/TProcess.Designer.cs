@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TProcess));
             this.radMenu1 = new Telerik.WinControls.UI.RadMenu();
             this.menu_add = new Telerik.WinControls.UI.RadMenuItem();
             this.menu_del = new Telerik.WinControls.UI.RadMenuItem();
@@ -246,6 +247,7 @@
             this.Controls.Add(this.radStatusStrip1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.radMenu1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "TProcess";
             // 
             // 

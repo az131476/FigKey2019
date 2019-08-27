@@ -28,151 +28,153 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QuanlityAnomaly));
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
-            this.radRadioButton1 = new Telerik.WinControls.UI.RadRadioButton();
-            this.radRadioButton2 = new Telerik.WinControls.UI.RadRadioButton();
+            this.rbtn_material_stock = new Telerik.WinControls.UI.RadRadioButton();
+            this.rbtn_material_produce = new Telerik.WinControls.UI.RadRadioButton();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.radLabel10 = new Telerik.WinControls.UI.RadLabel();
+            this.cb_station = new System.Windows.Forms.ComboBox();
+            this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
+            this.cb_materialCode = new System.Windows.Forms.ComboBox();
             this.radDateTimePicker1 = new Telerik.WinControls.UI.RadDateTimePicker();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.radLabel9 = new Telerik.WinControls.UI.RadLabel();
-            this.textBox7 = new System.Windows.Forms.TextBox();
             this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.tb_reason = new System.Windows.Forms.TextBox();
             this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.tb_matualStock = new System.Windows.Forms.TextBox();
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.tb_stock = new System.Windows.Forms.TextBox();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
-            this.radButton1 = new Telerik.WinControls.UI.RadButton();
-            this.radButton2 = new Telerik.WinControls.UI.RadButton();
+            this.btn_apply = new Telerik.WinControls.UI.RadButton();
+            this.btn_cancel = new Telerik.WinControls.UI.RadButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.radRadioButton3 = new Telerik.WinControls.UI.RadRadioButton();
-            this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.radLabel10 = new Telerik.WinControls.UI.RadLabel();
+            this.rbtn_material_process = new Telerik.WinControls.UI.RadRadioButton();
+            this.cb_materialState = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radRadioButton1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radRadioButton2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rbtn_material_stock)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rbtn_material_produce)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radDateTimePicker1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_apply)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_cancel)).BeginInit();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radRadioButton3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rbtn_material_process)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
             // radLabel2
             // 
+            this.radLabel2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radLabel2.ForeColor = System.Drawing.Color.White;
             this.radLabel2.Location = new System.Drawing.Point(15, 13);
             this.radLabel2.Name = "radLabel2";
-            this.radLabel2.Size = new System.Drawing.Size(54, 18);
+            this.radLabel2.Size = new System.Drawing.Size(63, 21);
             this.radLabel2.TabIndex = 1;
             this.radLabel2.Text = "物料编码";
             // 
-            // radRadioButton1
+            // rbtn_material_stock
             // 
-            this.radRadioButton1.ForeColor = System.Drawing.Color.White;
-            this.radRadioButton1.Location = new System.Drawing.Point(39, 31);
-            this.radRadioButton1.Name = "radRadioButton1";
-            this.radRadioButton1.Size = new System.Drawing.Size(91, 18);
-            this.radRadioButton1.TabIndex = 2;
-            this.radRadioButton1.Text = "库存物料异常";
+            this.rbtn_material_stock.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbtn_material_stock.ForeColor = System.Drawing.Color.White;
+            this.rbtn_material_stock.Location = new System.Drawing.Point(39, 31);
+            this.rbtn_material_stock.Name = "rbtn_material_stock";
+            this.rbtn_material_stock.Size = new System.Drawing.Size(105, 21);
+            this.rbtn_material_stock.TabIndex = 2;
+            this.rbtn_material_stock.Text = "库存物料异常";
             // 
-            // radRadioButton2
+            // rbtn_material_produce
             // 
-            this.radRadioButton2.ForeColor = System.Drawing.Color.White;
-            this.radRadioButton2.Location = new System.Drawing.Point(166, 31);
-            this.radRadioButton2.Name = "radRadioButton2";
-            this.radRadioButton2.Size = new System.Drawing.Size(91, 18);
-            this.radRadioButton2.TabIndex = 3;
-            this.radRadioButton2.Text = "生产物料异常";
+            this.rbtn_material_produce.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbtn_material_produce.ForeColor = System.Drawing.Color.White;
+            this.rbtn_material_produce.Location = new System.Drawing.Point(166, 31);
+            this.rbtn_material_produce.Name = "rbtn_material_produce";
+            this.rbtn_material_produce.Size = new System.Drawing.Size(105, 21);
+            this.rbtn_material_produce.TabIndex = 3;
+            this.rbtn_material_produce.Text = "生产物料异常";
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.cb_materialState);
             this.panel1.Controls.Add(this.radLabel10);
-            this.panel1.Controls.Add(this.comboBox1);
+            this.panel1.Controls.Add(this.cb_station);
             this.panel1.Controls.Add(this.radLabel1);
-            this.panel1.Controls.Add(this.radLabel7);
-            this.panel1.Controls.Add(this.comboBox3);
+            this.panel1.Controls.Add(this.cb_materialCode);
             this.panel1.Controls.Add(this.radDateTimePicker1);
-            this.panel1.Controls.Add(this.textBox8);
-            this.panel1.Controls.Add(this.radLabel9);
-            this.panel1.Controls.Add(this.textBox7);
             this.panel1.Controls.Add(this.radLabel8);
-            this.panel1.Controls.Add(this.textBox5);
+            this.panel1.Controls.Add(this.tb_reason);
             this.panel1.Controls.Add(this.radLabel6);
             this.panel1.Controls.Add(this.radLabel5);
-            this.panel1.Controls.Add(this.textBox3);
+            this.panel1.Controls.Add(this.tb_matualStock);
             this.panel1.Controls.Add(this.radLabel4);
-            this.panel1.Controls.Add(this.textBox2);
+            this.panel1.Controls.Add(this.tb_stock);
             this.panel1.Controls.Add(this.radLabel3);
             this.panel1.Controls.Add(this.radLabel2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(3, 18);
+            this.panel1.Location = new System.Drawing.Point(3, 25);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(605, 517);
+            this.panel1.Size = new System.Drawing.Size(714, 341);
             this.panel1.TabIndex = 5;
             // 
-            // comboBox3
+            // radLabel10
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(84, 13);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(191, 20);
-            this.comboBox3.TabIndex = 18;
+            this.radLabel10.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel10.ForeColor = System.Drawing.Color.White;
+            this.radLabel10.Location = new System.Drawing.Point(398, 105);
+            this.radLabel10.Name = "radLabel10";
+            this.radLabel10.Size = new System.Drawing.Size(63, 21);
+            this.radLabel10.TabIndex = 22;
+            this.radLabel10.Text = "物料状态";
+            // 
+            // cb_station
+            // 
+            this.cb_station.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cb_station.FormattingEnabled = true;
+            this.cb_station.Location = new System.Drawing.Point(84, 105);
+            this.cb_station.Name = "cb_station";
+            this.cb_station.Size = new System.Drawing.Size(279, 25);
+            this.cb_station.TabIndex = 21;
+            // 
+            // radLabel1
+            // 
+            this.radLabel1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel1.ForeColor = System.Drawing.Color.White;
+            this.radLabel1.Location = new System.Drawing.Point(15, 105);
+            this.radLabel1.Name = "radLabel1";
+            this.radLabel1.Size = new System.Drawing.Size(63, 21);
+            this.radLabel1.TabIndex = 20;
+            this.radLabel1.Text = "工站名称";
+            // 
+            // cb_materialCode
+            // 
+            this.cb_materialCode.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cb_materialCode.FormattingEnabled = true;
+            this.cb_materialCode.Location = new System.Drawing.Point(84, 13);
+            this.cb_materialCode.Name = "cb_materialCode";
+            this.cb_materialCode.Size = new System.Drawing.Size(279, 25);
+            this.cb_materialCode.TabIndex = 18;
             // 
             // radDateTimePicker1
             // 
-            this.radDateTimePicker1.Location = new System.Drawing.Point(363, 14);
+            this.radDateTimePicker1.CustomFormat = "yyyy-MM-dd HH:mm:ss";
+            this.radDateTimePicker1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radDateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.radDateTimePicker1.Location = new System.Drawing.Point(467, 14);
             this.radDateTimePicker1.Name = "radDateTimePicker1";
-            this.radDateTimePicker1.Size = new System.Drawing.Size(191, 20);
+            this.radDateTimePicker1.Size = new System.Drawing.Size(221, 23);
             this.radDateTimePicker1.TabIndex = 17;
             this.radDateTimePicker1.TabStop = false;
-            this.radDateTimePicker1.Text = "2019-08-06";
+            this.radDateTimePicker1.Text = "2019-08-06 11:02:22";
             this.radDateTimePicker1.Value = new System.DateTime(2019, 8, 6, 11, 2, 22, 418);
-            // 
-            // textBox8
-            // 
-            this.textBox8.Location = new System.Drawing.Point(84, 408);
-            this.textBox8.Multiline = true;
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(470, 79);
-            this.textBox8.TabIndex = 16;
-            // 
-            // radLabel9
-            // 
-            this.radLabel9.ForeColor = System.Drawing.Color.White;
-            this.radLabel9.Location = new System.Drawing.Point(15, 408);
-            this.radLabel9.Name = "radLabel9";
-            this.radLabel9.Size = new System.Drawing.Size(54, 18);
-            this.radLabel9.TabIndex = 15;
-            this.radLabel9.Text = "改善方案";
-            // 
-            // textBox7
-            // 
-            this.textBox7.Location = new System.Drawing.Point(84, 320);
-            this.textBox7.Multiline = true;
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(470, 65);
-            this.textBox7.TabIndex = 14;
             // 
             // radLabel8
             // 
@@ -181,80 +183,90 @@
             this.radLabel8.Size = new System.Drawing.Size(2, 2);
             this.radLabel8.TabIndex = 13;
             // 
-            // textBox5
+            // tb_reason
             // 
-            this.textBox5.Location = new System.Drawing.Point(84, 151);
-            this.textBox5.Multiline = true;
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(470, 140);
-            this.textBox5.TabIndex = 10;
+            this.tb_reason.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb_reason.Location = new System.Drawing.Point(84, 151);
+            this.tb_reason.Multiline = true;
+            this.tb_reason.Name = "tb_reason";
+            this.tb_reason.Size = new System.Drawing.Size(604, 187);
+            this.tb_reason.TabIndex = 10;
             // 
             // radLabel6
             // 
+            this.radLabel6.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radLabel6.ForeColor = System.Drawing.Color.White;
             this.radLabel6.Location = new System.Drawing.Point(15, 151);
             this.radLabel6.Name = "radLabel6";
-            this.radLabel6.Size = new System.Drawing.Size(54, 18);
+            this.radLabel6.Size = new System.Drawing.Size(63, 21);
             this.radLabel6.TabIndex = 9;
             this.radLabel6.Text = "结单原因";
             // 
             // radLabel5
             // 
+            this.radLabel5.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radLabel5.ForeColor = System.Drawing.Color.White;
-            this.radLabel5.Location = new System.Drawing.Point(294, 15);
+            this.radLabel5.Location = new System.Drawing.Point(398, 15);
             this.radLabel5.Name = "radLabel5";
-            this.radLabel5.Size = new System.Drawing.Size(54, 18);
+            this.radLabel5.Size = new System.Drawing.Size(63, 21);
             this.radLabel5.TabIndex = 7;
             this.radLabel5.Text = "发生日期";
             // 
-            // textBox3
+            // tb_matualStock
             // 
-            this.textBox3.Location = new System.Drawing.Point(363, 61);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(191, 21);
-            this.textBox3.TabIndex = 6;
+            this.tb_matualStock.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb_matualStock.Location = new System.Drawing.Point(467, 61);
+            this.tb_matualStock.Name = "tb_matualStock";
+            this.tb_matualStock.Size = new System.Drawing.Size(221, 25);
+            this.tb_matualStock.TabIndex = 6;
             // 
             // radLabel4
             // 
+            this.radLabel4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radLabel4.ForeColor = System.Drawing.Color.White;
-            this.radLabel4.Location = new System.Drawing.Point(294, 61);
+            this.radLabel4.Location = new System.Drawing.Point(398, 61);
             this.radLabel4.Name = "radLabel4";
-            this.radLabel4.Size = new System.Drawing.Size(54, 18);
+            this.radLabel4.Size = new System.Drawing.Size(63, 21);
             this.radLabel4.TabIndex = 5;
             this.radLabel4.Text = "实际库存";
             // 
-            // textBox2
+            // tb_stock
             // 
-            this.textBox2.Enabled = false;
-            this.textBox2.Location = new System.Drawing.Point(84, 58);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(191, 21);
-            this.textBox2.TabIndex = 4;
+            this.tb_stock.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb_stock.Location = new System.Drawing.Point(84, 58);
+            this.tb_stock.Name = "tb_stock";
+            this.tb_stock.Size = new System.Drawing.Size(279, 25);
+            this.tb_stock.TabIndex = 4;
             // 
             // radLabel3
             // 
+            this.radLabel3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radLabel3.ForeColor = System.Drawing.Color.White;
             this.radLabel3.Location = new System.Drawing.Point(15, 61);
             this.radLabel3.Name = "radLabel3";
-            this.radLabel3.Size = new System.Drawing.Size(54, 18);
+            this.radLabel3.Size = new System.Drawing.Size(63, 21);
             this.radLabel3.TabIndex = 3;
-            this.radLabel3.Text = "总库存数";
+            this.radLabel3.Text = "异常数量";
             // 
-            // radButton1
+            // btn_apply
             // 
-            this.radButton1.Location = new System.Drawing.Point(417, 654);
-            this.radButton1.Name = "radButton1";
-            this.radButton1.Size = new System.Drawing.Size(89, 24);
-            this.radButton1.TabIndex = 6;
-            this.radButton1.Text = "结单";
+            this.btn_apply.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_apply.Location = new System.Drawing.Point(520, 508);
+            this.btn_apply.Name = "btn_apply";
+            this.btn_apply.Size = new System.Drawing.Size(89, 24);
+            this.btn_apply.TabIndex = 6;
+            this.btn_apply.Text = "结单";
+            this.btn_apply.Click += new System.EventHandler(this.Btn_apply_Click);
             // 
-            // radButton2
+            // btn_cancel
             // 
-            this.radButton2.Location = new System.Drawing.Point(531, 654);
-            this.radButton2.Name = "radButton2";
-            this.radButton2.Size = new System.Drawing.Size(93, 24);
-            this.radButton2.TabIndex = 7;
-            this.radButton2.Text = "取消";
+            this.btn_cancel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_cancel.Location = new System.Drawing.Point(634, 508);
+            this.btn_cancel.Name = "btn_cancel";
+            this.btn_cancel.Size = new System.Drawing.Size(93, 24);
+            this.btn_cancel.TabIndex = 7;
+            this.btn_cancel.Text = "取消";
+            this.btn_cancel.Click += new System.EventHandler(this.Btn_cancel_Click);
             // 
             // groupBox1
             // 
@@ -262,112 +274,81 @@
             this.groupBox1.ForeColor = System.Drawing.Color.White;
             this.groupBox1.Location = new System.Drawing.Point(12, 97);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(611, 538);
+            this.groupBox1.Size = new System.Drawing.Size(720, 369);
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "结单记录";
             // 
-            // radLabel7
-            // 
-            this.radLabel7.ForeColor = System.Drawing.Color.White;
-            this.radLabel7.Location = new System.Drawing.Point(18, 322);
-            this.radLabel7.Name = "radLabel7";
-            this.radLabel7.Size = new System.Drawing.Size(54, 18);
-            this.radLabel7.TabIndex = 19;
-            this.radLabel7.Text = "异常分析";
-            // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.radRadioButton1);
-            this.groupBox2.Controls.Add(this.radRadioButton2);
-            this.groupBox2.Controls.Add(this.radRadioButton3);
+            this.groupBox2.Controls.Add(this.rbtn_material_stock);
+            this.groupBox2.Controls.Add(this.rbtn_material_produce);
+            this.groupBox2.Controls.Add(this.rbtn_material_process);
             this.groupBox2.ForeColor = System.Drawing.Color.White;
             this.groupBox2.Location = new System.Drawing.Point(12, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(611, 79);
+            this.groupBox2.Size = new System.Drawing.Size(720, 79);
             this.groupBox2.TabIndex = 10;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "异常类别";
             // 
-            // radRadioButton3
+            // rbtn_material_process
             // 
-            this.radRadioButton3.ForeColor = System.Drawing.Color.White;
-            this.radRadioButton3.Location = new System.Drawing.Point(288, 31);
-            this.radRadioButton3.Name = "radRadioButton3";
-            this.radRadioButton3.Size = new System.Drawing.Size(91, 18);
-            this.radRadioButton3.TabIndex = 4;
-            this.radRadioButton3.Text = "生产过程异常";
+            this.rbtn_material_process.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbtn_material_process.ForeColor = System.Drawing.Color.White;
+            this.rbtn_material_process.Location = new System.Drawing.Point(288, 31);
+            this.rbtn_material_process.Name = "rbtn_material_process";
+            this.rbtn_material_process.Size = new System.Drawing.Size(105, 21);
+            this.rbtn_material_process.TabIndex = 4;
+            this.rbtn_material_process.Text = "生产过程异常";
             // 
-            // radLabel1
+            // cb_materialState
             // 
-            this.radLabel1.ForeColor = System.Drawing.Color.White;
-            this.radLabel1.Location = new System.Drawing.Point(15, 105);
-            this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(54, 18);
-            this.radLabel1.TabIndex = 20;
-            this.radLabel1.Text = "工站名称";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(84, 105);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(191, 20);
-            this.comboBox1.TabIndex = 21;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(363, 105);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(191, 21);
-            this.textBox1.TabIndex = 23;
-            // 
-            // radLabel10
-            // 
-            this.radLabel10.ForeColor = System.Drawing.Color.White;
-            this.radLabel10.Location = new System.Drawing.Point(294, 105);
-            this.radLabel10.Name = "radLabel10";
-            this.radLabel10.Size = new System.Drawing.Size(54, 18);
-            this.radLabel10.TabIndex = 22;
-            this.radLabel10.Text = "物料状态";
+            this.cb_materialState.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cb_materialState.FormattingEnabled = true;
+            this.cb_materialState.Location = new System.Drawing.Point(467, 106);
+            this.cb_materialState.Name = "cb_materialState";
+            this.cb_materialState.Size = new System.Drawing.Size(221, 25);
+            this.cb_materialState.TabIndex = 23;
             // 
             // QuanlityAnomaly
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SteelBlue;
-            this.ClientSize = new System.Drawing.Size(635, 690);
+            this.ClientSize = new System.Drawing.Size(744, 566);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.radButton2);
-            this.Controls.Add(this.radButton1);
+            this.Controls.Add(this.btn_cancel);
+            this.Controls.Add(this.btn_apply);
+            this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "QuanlityAnomaly";
             // 
             // 
             // 
             this.RootElement.ApplyShapeToControl = true;
             this.Text = "品质异常管理";
+            this.Load += new System.EventHandler(this.QuanlityAnomaly_Load);
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radRadioButton1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radRadioButton2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rbtn_material_stock)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rbtn_material_produce)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radDateTimePicker1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_apply)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_cancel)).EndInit();
             this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radRadioButton3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rbtn_material_process)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -375,31 +356,27 @@
 
         #endregion
         private Telerik.WinControls.UI.RadLabel radLabel2;
-        private Telerik.WinControls.UI.RadRadioButton radRadioButton1;
-        private Telerik.WinControls.UI.RadRadioButton radRadioButton2;
+        private Telerik.WinControls.UI.RadRadioButton rbtn_material_stock;
+        private Telerik.WinControls.UI.RadRadioButton rbtn_material_produce;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox tb_reason;
         private Telerik.WinControls.UI.RadLabel radLabel6;
         private Telerik.WinControls.UI.RadLabel radLabel5;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox tb_matualStock;
         private Telerik.WinControls.UI.RadLabel radLabel4;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox tb_stock;
         private Telerik.WinControls.UI.RadLabel radLabel3;
-        private System.Windows.Forms.TextBox textBox8;
-        private Telerik.WinControls.UI.RadLabel radLabel9;
-        private System.Windows.Forms.TextBox textBox7;
         private Telerik.WinControls.UI.RadLabel radLabel8;
-        private Telerik.WinControls.UI.RadButton radButton1;
-        private Telerik.WinControls.UI.RadButton radButton2;
+        private Telerik.WinControls.UI.RadButton btn_apply;
+        private Telerik.WinControls.UI.RadButton btn_cancel;
         private Telerik.WinControls.UI.RadDateTimePicker radDateTimePicker1;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox cb_materialCode;
         private System.Windows.Forms.GroupBox groupBox1;
-        private Telerik.WinControls.UI.RadLabel radLabel7;
         private System.Windows.Forms.GroupBox groupBox2;
-        private Telerik.WinControls.UI.RadRadioButton radRadioButton3;
+        private Telerik.WinControls.UI.RadRadioButton rbtn_material_process;
         private Telerik.WinControls.UI.RadLabel radLabel1;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ComboBox cb_station;
         private Telerik.WinControls.UI.RadLabel radLabel10;
+        private System.Windows.Forms.ComboBox cb_materialState;
     }
 }
