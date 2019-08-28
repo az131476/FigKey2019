@@ -326,7 +326,7 @@ namespace MesManager
             UpdateUserCfg();
             if (this.DialogResult == DialogResult.OK)
             {
-                MessageBox.Show("登录成功！","提示",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                
                 this.Close();
             }
         }

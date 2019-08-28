@@ -24,11 +24,14 @@ namespace MesWcfService.Model
 
     public enum MaterialStateReturnCode
     {
-        ERROR_NULL_STRING = 0,
         STATUS_USING = 1,
         STATUS_COMPLETE_NORMAL = 2,
         STATUS_COMPLETE_UNUSUAL = 3,
-        ERROR_NULL_QUERY
+        ERROR_NULL_PRODUCT_TYPENO = 4,
+        ERROR_NULL_MATERIAL_CODE = 5,
+        STATUS_NULL_QUERY = 6,
+        ERROR_FORMAT_MATERIAL_CODE = 7,
+        ERROR_MATRIAL_CODE_IS_NOT_MATCH_WITH_PRODUCT_TYPENO = 8
     }
 
     public enum MaterialCheckMatchReturnCode

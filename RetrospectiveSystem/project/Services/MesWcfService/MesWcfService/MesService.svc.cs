@@ -35,7 +35,7 @@ namespace MesWcfService
         private Queue<string[]> updateLimitConfigQueue = new Queue<string[]>();
         private Queue<string[]> updateLogDataQueue = new Queue<string[]>();
         private Queue<string[]> updatePackageProductQueue = new Queue<string[]>();
-        private Queue<string> checkMaterialStateQueue = new Queue<string>();
+        private Queue<string[]> checkMaterialStateQueue = new Queue<string[]>();
         private Queue<string[]> checkMaterialMatchQueue = new Queue<string[]>();
         private int materialLength = 20;
 
@@ -112,16 +112,22 @@ namespace MesWcfService
 
         #region 物料数量防错
         [SwaggerWcfTag("MesServcie 服务")]
-        [SwaggerWcfResponse("0X00", "ERROR_NULL_STRING")]
         [SwaggerWcfResponse("0X01", "STATUS_USING")]
         [SwaggerWcfResponse("0X02", "STATUS_COMPLETE_NORMAL")]
         [SwaggerWcfResponse("0X03", "STATUS_COMPLETE_UNUSUAL")]
-        [SwaggerWcfResponse("0X04", "ERROR_NULL_QUERY")]
-        public string CheckMaterialState(string materialCode)
+        [SwaggerWcfResponse("0X04", "ERROR_NULL_PRODUCT_TYPENO")]
+        [SwaggerWcfResponse("0X05", "ERROR_NULL_MATERIAL_CODE")]
+        [SwaggerWcfResponse("0X06", "STATUS_NULL_QUERY")]
+        [SwaggerWcfResponse("0X07", "ERROR_FORMAT_MATERIAL_CODE")]
+        [SwaggerWcfResponse("0X08", "ERROR_MATRIAL_CODE_IS_NOT_MATCH_WITH_PRODUCT_TYPENO")]
+        public string CheckMaterialUseState(string productTypeNo, string materialCode)
         {
             if (string.IsNullOrEmpty(materialCode))
-                return MaterialStatistics.ConvertCheckMaterialStateCode(MaterialStateReturnCode.ERROR_NULL_STRING);
-            checkMaterialStateQueue.Enqueue(materialCode);
+                return MaterialStatistics.ConvertCheckMaterialStateCode(MaterialStateReturnCode.ERROR_NULL_MATERIAL_CODE);
+            if (string.IsNullOrEmpty(productTypeNo))
+                return MaterialStatistics.ConvertCheckMaterialStateCode(MaterialStateReturnCode.ERROR_NULL_PRODUCT_TYPENO);
+
+            checkMaterialStateQueue.Enqueue(new string[] { productTypeNo,materialCode});
             return MaterialStatistics.CheckMaterialState(checkMaterialStateQueue);
         }
         #endregion

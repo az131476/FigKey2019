@@ -17,6 +17,7 @@ namespace MesManager.UI
         public static bool IsLogin;
         public static string currentUser;
         public static int currentUsetType;
+        private MesService.MesServiceClient serviceClient;
         public MESMainForm()
         {
             InitializeComponent();
@@ -29,13 +30,38 @@ namespace MesManager.UI
         private void MESMainForm_Load(object sender, EventArgs e)
         {
             //this.pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
+            serviceClient = new MesService.MesServiceClient();
+            TestCommunication();
         }
 
         public void InitMain()
         {
             PrepareTitleBar();
             EventHandlers();
-            System.Threading.Thread.Sleep(1000);
+            System.Threading.Thread.Sleep(100);
+        }
+
+        private void TestCommunication()
+        {
+            var inputStr = "TEST";
+            var tRes = serviceClient.TestCommunication(inputStr);
+            if (tRes != inputStr)
+            {
+                //异常
+                this.ledControl1.LEDCircleColor = Color.Red;
+                this.ledControl1.LEDCenterColor = Color.Red;
+                this.ledControl1.LEDSurroundColor = Color.Red;
+                //this.ledControl1.LEDSwitch = false;
+                this.ledControl1.Invalidate();
+                label2.Text = "服务器通讯异常！";
+                return;
+            }
+            this.ledControl1.LEDCircleColor = Color.LimeGreen;
+            this.ledControl1.LEDCenterColor = Color.LimeGreen;
+            this.ledControl1.LEDSurroundColor = Color.LimeGreen;
+            //this.ledControl1.LEDSwitch = true;
+            this.ledControl1.Invalidate();
+            label2.Text = "正常";
         }
 
         private void EventHandlers()
@@ -54,6 +80,15 @@ namespace MesManager.UI
             //this.mainStatisticalAnalysis.Click += MainStatisticalAnalysis_Click;
             this.btn_user_manger.Click += Btn_user_manger_Click;
             this.btn_user_login.Click += Btn_user_login_Click;
+            this.ledControl1.Click += LedControl1_Click;
+        }
+
+        private void LedControl1_Click(object sender, EventArgs e)
+        {
+            this.label2.Text = "正在测试...";
+            this.label2.Invalidate();
+            System.Threading.Thread.Sleep(500);
+            TestCommunication();
         }
 
         private void PrepareTitleBar()
@@ -130,6 +165,7 @@ namespace MesManager.UI
                 IsLogin = true;
                 currentUser = Login.GetUserName;
                 currentUsetType = Login.CurrentUserType;
+                MessageBox.Show("登录成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 

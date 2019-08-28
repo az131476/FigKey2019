@@ -30,6 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MESMainForm));
             this.radPanorama1 = new Telerik.WinControls.UI.RadPanorama();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.ledControl1 = new LEDLib.LEDControl();
             this.btn_user_manger = new Telerik.WinControls.UI.RadButton();
             this.btn_user_login = new Telerik.WinControls.UI.RadButton();
             this.toolsGroup = new Telerik.WinControls.UI.TileGroupElement();
@@ -50,6 +53,9 @@
             // 
             this.radPanorama1.AutoArrangeNewTiles = false;
             this.radPanorama1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(35)))), ((int)(((byte)(49)))));
+            this.radPanorama1.Controls.Add(this.label2);
+            this.radPanorama1.Controls.Add(this.label1);
+            this.radPanorama1.Controls.Add(this.ledControl1);
             this.radPanorama1.Controls.Add(this.btn_user_manger);
             this.radPanorama1.Controls.Add(this.btn_user_login);
             this.radPanorama1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -60,9 +66,43 @@
             this.radPanorama1.PanelImageSize = new System.Drawing.Size(1024, 768);
             this.radPanorama1.RowsCount = 2;
             this.radPanorama1.ShowGroups = true;
-            this.radPanorama1.Size = new System.Drawing.Size(1164, 1079);
+            this.radPanorama1.Size = new System.Drawing.Size(1188, 1100);
             this.radPanorama1.TabIndex = 1;
             ((Telerik.WinControls.UI.RadPanoramaElement)(this.radPanorama1.GetChildAt(0))).BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(23)))), ((int)(((byte)(117)))));
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.label2.Location = new System.Drawing.Point(77, 405);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(13, 13);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "..";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.label1.Location = new System.Drawing.Point(9, 405);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(72, 13);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "通讯状态：";
+            // 
+            // ledControl1
+            // 
+            this.ledControl1.LEDCenterColor = System.Drawing.Color.Lime;
+            this.ledControl1.LEDCircleColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.ledControl1.LEDClickEnable = true;
+            this.ledControl1.LEDSurroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.ledControl1.LEDSwitch = true;
+            this.ledControl1.Location = new System.Drawing.Point(12, 441);
+            this.ledControl1.Name = "ledControl1";
+            this.ledControl1.Size = new System.Drawing.Size(69, 73);
+            this.ledControl1.TabIndex = 3;
             // 
             // btn_user_manger
             // 
@@ -101,7 +141,7 @@
             this.mainQuanlityAnomaly,
             this.mainReportData,
             this.mainTestStandData});
-            this.toolsGroup.Margin = new System.Windows.Forms.Padding(300, 200, 200, 0);
+            this.toolsGroup.Margin = new System.Windows.Forms.Padding(360, 200, 200, 0);
             this.toolsGroup.Name = "toolsGroup";
             this.toolsGroup.RowsCount = 2;
             this.toolsGroup.Text = "主功能";
@@ -179,7 +219,7 @@
             this.mainQuanlityAnomaly.Name = "mainQuanlityAnomaly";
             this.mainQuanlityAnomaly.Padding = new System.Windows.Forms.Padding(15, 15, 0, 10);
             this.mainQuanlityAnomaly.Row = 1;
-            this.mainQuanlityAnomaly.Text = "<html>品质异常管理 <br>";
+            this.mainQuanlityAnomaly.Text = "<html>品质管理 <br>";
             this.mainQuanlityAnomaly.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.mainQuanlityAnomaly.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this.mainQuanlityAnomaly.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
@@ -191,15 +231,14 @@
             this.mainReportData.AccessibleName = "mainReportData";
             this.mainReportData.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(33)))));
             this.mainReportData.CellPadding = new System.Windows.Forms.Padding(5);
-            this.mainReportData.Column = 0;
             this.mainReportData.DisabledTextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
             this.mainReportData.DrawBorder = true;
             this.mainReportData.ImageAlignment = System.Drawing.ContentAlignment.BottomLeft;
             this.mainReportData.ImageLayout = System.Windows.Forms.ImageLayout.None;
             this.mainReportData.Name = "mainReportData";
             this.mainReportData.Padding = new System.Windows.Forms.Padding(15, 15, 0, 10);
-            this.mainReportData.Text = "<html>追溯管理 <br>";
             this.mainReportData.Row = 1;
+            this.mainReportData.Text = "<html>追溯管理 <br>";
             this.mainReportData.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.mainReportData.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this.mainReportData.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
@@ -230,7 +269,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1164, 1079);
+            this.ClientSize = new System.Drawing.Size(1188, 1100);
             this.Controls.Add(this.radPanorama1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -243,6 +282,7 @@
             this.Load += new System.EventHandler(this.MESMainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.radPanorama1)).EndInit();
             this.radPanorama1.ResumeLayout(false);
+            this.radPanorama1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btn_user_manger)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_user_login)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
@@ -262,5 +302,8 @@
         private Telerik.WinControls.UI.RadTileElement mainTestStandData;//测试台数据
         private Telerik.WinControls.UI.RadButton btn_user_login;
         private Telerik.WinControls.UI.RadButton btn_user_manger;
+        private LEDLib.LEDControl ledControl1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }

@@ -43,6 +43,11 @@ namespace MesWcfService.MessageQueue.RemoteClient
             var materialArray = queue.Dequeue();
             var productTypeNo = materialArray[0];
             var materialPN = materialArray[1];
+            return CheckMaterialTypeMatch(productTypeNo,materialPN);
+        }
+
+        private static string CheckMaterialTypeMatch(string productTypeNo,string materialPN)
+        {
             var selectSQL = $"SELECT * FROM {DbTable.F_PRODUCT_MATERIAL_NAME}  WHERE " +
                 $"{DbTable.F_PRODUCT_MATERIAL.TYPE_NO} = '{productTypeNo}' AND " +
                 $"{DbTable.F_PRODUCT_MATERIAL.MATERIAL_CODE} = '{materialPN}'";
@@ -52,17 +57,115 @@ namespace MesWcfService.MessageQueue.RemoteClient
             return ConvertCheckMaterialMatch(MaterialCheckMatchReturnCode.IS_NOT_MATCH);
         }
 
-        public static string CheckMaterialState(Queue<string> queue)
+            /*物料数量防错：即该种物料使用完后才能继续扫描新的物料使用
+             * 防错原理：
+             * 1）传入产品型号+物料完整编码
+             * 2）根据传入的产品型号+物料号=》查询产品统计表，是否有使用记录？
+             *      （1）有使用记录：
+             *              则继续查询出使用记录中的所有物料编码
+             *              将传入物料编码与查询出的编码匹配，是否有一样的？
+             *                  （1）匹配到相同的编码：则说明正在使用该物料编码；此时，在物料信息表中查询该物料状态反馈即可
+             *                  （2）没有匹配到相同编码：说明传入的物料编码为新扫描的物料编码，
+             *                       此时，将物料统计表中查询出的所有物料编码，查询出不一致的状态反馈
+             *      （2）无使用记录：则为第一次扫描该物料，只需在物料信息表查询该物料编码的状态反馈即可
+             */ 
+        public static string CheckMaterialState(Queue<string[]> queue)
         {
-            var materialCode = queue.Dequeue();
+            var array = queue.Dequeue();
+            var productTypeNo = array[0];
+            var materialCode = array[1];
+            if(!materialCode.Contains("@"))
+                return ConvertCheckMaterialStateCode(MaterialStateReturnCode.ERROR_FORMAT_MATERIAL_CODE);
+            var materialPN = materialCode.Substring(0,materialCode.IndexOf('@'));
+
+            //根据物料号+产品型号查询是否有统计计数记录
+            var selectRecordSQL = $"SELECT {DbTable.F_Material_Statistics.MATERIAL_CODE} FROM {DbTable.F_MATERIAL_STATISTICS_NAME} WHERE " +
+                $"{DbTable.F_Material_Statistics.PRODUCT_TYPE_NO} = '{productTypeNo}' AND " +
+                $"{DbTable.F_Material_Statistics.MATERIAL_CODE} like '%{materialPN}'";
+            var dt = SQLServer.ExecuteDataSet(selectRecordSQL).Tables[0];
+            if (dt.Rows.Count > 0)
+            {
+                /* 有统计记录
+                 * 查询统计记录中的所有物料编码
+                 * 比对传入物料编码在统计记录中是否存在
+                 */
+                bool IsSameMaterialCode = false;
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    var mCode = dt.Rows[i][0].ToString();
+                    if (materialCode == mCode)
+                    {
+                        IsSameMaterialCode = true;
+                    }
+                }
+                if (IsSameMaterialCode)
+                {
+                    //存在相同编码
+                    return SelectMaterialState(materialCode);
+                }
+                else
+                {
+                    /* 不存在相同编码
+                     * 则说明传入物料编码为新扫描编码
+                     * 则查询所有已知编码的状态，是否都是使用完成状态，否则提示不能继续使用新扫描的物料
+                     */
+                    bool IsUseComplete = true;//默认使用完成
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        var mCode = dt.Rows[i][0].ToString();
+
+                        var selectSQl = $"SELECT {DbTable.F_Material.MATERIAL_STATE} " +
+                                        $"FROM {DbTable.F_MATERIAL_NAME} WHERE " +
+                                        $"{DbTable.F_Material.MATERIAL_CODE} = '{mCode}'";
+                        var mdt = SQLServer.ExecuteDataSet(selectSQl).Tables[0];
+                        if (mdt.Rows.Count > 0)
+                        {
+                            var mState = mdt.Rows[0][0].ToString();
+                            if (mState == "1")
+                            {
+                                //有物料未使用完，请使用完了在扫描别的箱使用
+                                IsUseComplete = false;
+                            }
+                        }
+                    }
+                    if (IsUseComplete)
+                    {
+                        //使用完成
+                        return ConvertCheckMaterialStateCode(MaterialStateReturnCode.STATUS_COMPLETE_NORMAL);
+                    }
+                    else
+                    {
+                        //有未使用完成物料
+                        return ConvertCheckMaterialStateCode(MaterialStateReturnCode.STATUS_USING);
+                    }
+                }
+            }
+            else
+            {
+                /* 无统计记录/为防止改物料在之前未进行物料号防错，此步骤可再次验证物料防错
+                 * 则为第一次扫描该物料编码
+                 * 直接查询物料信息表中该物料状态反馈即可
+                 */
+                string cRes = CheckMaterialTypeMatch(productTypeNo, materialPN);
+                if (cRes == ConvertCheckMaterialMatch(MaterialCheckMatchReturnCode.IS_NOT_MATCH))
+                {
+                    return ConvertCheckMaterialStateCode(MaterialStateReturnCode.ERROR_MATRIAL_CODE_IS_NOT_MATCH_WITH_PRODUCT_TYPENO);
+                }
+                return SelectMaterialState(materialCode);
+            }
+        }
+
+        private static string SelectMaterialState(string materialCode)
+        {
             var selectSQl = $"SELECT {DbTable.F_Material.MATERIAL_STATE} " +
-                $"FROM {DbTable.F_MATERIAL_NAME} WHERE " +
-                $"{DbTable.F_Material.MATERIAL_CODE} = '{materialCode}'";
+               $"FROM {DbTable.F_MATERIAL_NAME} WHERE " +
+               $"{DbTable.F_Material.MATERIAL_CODE} = '{materialCode}'";
+
             var dt = SQLServer.ExecuteDataSet(selectSQl).Tables[0];
             if (dt.Rows.Count < 1)
-                return ConvertCheckMaterialStateCode(MaterialStateReturnCode.ERROR_NULL_QUERY);
+                return ConvertCheckMaterialStateCode(MaterialStateReturnCode.STATUS_NULL_QUERY);
             var queryRes = dt.Rows[0][0].ToString();
-            return "0X" + Convert.ToString(int.Parse(queryRes)).PadLeft(2,'0');
+            return "0X" + Convert.ToString(int.Parse(queryRes),16).PadLeft(2, '0');
         }
 
         public static string UpdateMaterialStatistics(Queue<string[]> queue)

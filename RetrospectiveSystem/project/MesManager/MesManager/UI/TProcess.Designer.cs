@@ -72,7 +72,7 @@
             this.menu_clear_db});
             this.radMenu1.Location = new System.Drawing.Point(0, 0);
             this.radMenu1.Name = "radMenu1";
-            this.radMenu1.Size = new System.Drawing.Size(1120, 36);
+            this.radMenu1.Size = new System.Drawing.Size(1421, 36);
             this.radMenu1.TabIndex = 18;
             // 
             // menu_add
@@ -130,7 +130,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 36);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1120, 65);
+            this.panel1.Size = new System.Drawing.Size(1421, 65);
             this.panel1.TabIndex = 19;
             // 
             // lbx_process
@@ -157,7 +157,7 @@
             this.radStatusStrip1.BackColor = System.Drawing.Color.SteelBlue;
             this.radStatusStrip1.Location = new System.Drawing.Point(0, 664);
             this.radStatusStrip1.Name = "radStatusStrip1";
-            this.radStatusStrip1.Size = new System.Drawing.Size(1120, 24);
+            this.radStatusStrip1.Size = new System.Drawing.Size(1421, 24);
             this.radStatusStrip1.TabIndex = 33;
             // 
             // panel2
@@ -167,7 +167,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.Location = new System.Drawing.Point(0, 600);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1120, 64);
+            this.panel2.Size = new System.Drawing.Size(1421, 64);
             this.panel2.TabIndex = 34;
             // 
             // groupBox1
@@ -179,7 +179,7 @@
             this.groupBox1.ForeColor = System.Drawing.Color.White;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1120, 64);
+            this.groupBox1.Size = new System.Drawing.Size(1421, 64);
             this.groupBox1.TabIndex = 28;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "工艺设置";
@@ -217,7 +217,7 @@
             this.groupbox_graph.ForeColor = System.Drawing.Color.White;
             this.groupbox_graph.Location = new System.Drawing.Point(0, 449);
             this.groupbox_graph.Name = "groupbox_graph";
-            this.groupbox_graph.Size = new System.Drawing.Size(1120, 151);
+            this.groupbox_graph.Size = new System.Drawing.Size(1421, 151);
             this.groupbox_graph.TabIndex = 35;
             this.groupbox_graph.TabStop = false;
             this.groupbox_graph.Text = "工艺流程图";
@@ -232,7 +232,7 @@
             // 
             this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.radGridView1.Name = "radGridView1";
-            this.radGridView1.Size = new System.Drawing.Size(1120, 348);
+            this.radGridView1.Size = new System.Drawing.Size(1421, 348);
             this.radGridView1.TabIndex = 38;
             // 
             // TProcess
@@ -240,7 +240,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SteelBlue;
-            this.ClientSize = new System.Drawing.Size(1120, 688);
+            this.ClientSize = new System.Drawing.Size(1421, 688);
             this.Controls.Add(this.radGridView1);
             this.Controls.Add(this.groupbox_graph);
             this.Controls.Add(this.panel2);

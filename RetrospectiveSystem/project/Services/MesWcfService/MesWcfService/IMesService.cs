@@ -67,9 +67,11 @@ namespace MesWcfService
         #region 【接口】物料数量防错
         [OperationContract]
         [SwaggerWcfPath("CheckMaterialState","检查物料状态，1-正常，2-正常使用完，3-强制使用完；2/3都为使用完")]
-        [WebInvoke(Method = "GET",UriTemplate = "CheckMaterialState?materialCode={materialCode}", BodyStyle = WebMessageBodyStyle.Bare,
+        [WebInvoke(Method = "GET",UriTemplate = "CheckMaterialState?productTypeNo={productTypeNo}&materialCode={materialCode}", BodyStyle = WebMessageBodyStyle.Bare,
             RequestFormat = WebMessageFormat.Json,ResponseFormat = WebMessageFormat.Json)]
-        string CheckMaterialState([SwaggerWcfParameter(Description = "物料编码")]string materialCode);
+        string CheckMaterialUseState(
+            [SwaggerWcfParameter(Description = "产品型号")]string productTypeNo,
+            [SwaggerWcfParameter(Description = "物料编码")]string materialCode);
         #endregion
 
         #region 【接口】物料号防错
