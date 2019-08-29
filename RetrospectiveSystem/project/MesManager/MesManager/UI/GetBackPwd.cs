@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using Telerik.WinControls;
+using Telerik.WinControls.Themes;
 
 namespace MesManager.UI
 {
@@ -68,6 +69,11 @@ namespace MesManager.UI
             {
                 MessageBox.Show("修改失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void Btn_cancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

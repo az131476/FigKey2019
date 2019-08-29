@@ -28,17 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TestStand));
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.tool_queryCondition = new System.Windows.Forms.ToolStripComboBox();
-            this.tool_export = new System.Windows.Forms.ToolStripButton();
-            this.tool_programv = new System.Windows.Forms.ToolStripButton();
-            this.tool_specCfg = new System.Windows.Forms.ToolStripButton();
-            this.tool_logData = new System.Windows.Forms.ToolStripButton();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition3 = new Telerik.WinControls.UI.TableViewDefinition();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.radGridView1 = new Telerik.WinControls.UI.RadGridView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.treeView1 = new System.Windows.Forms.TreeView();
@@ -56,77 +48,35 @@
             this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripTextBox4 = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.toolStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).BeginInit();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.tool_queryCondition = new System.Windows.Forms.ToolStripComboBox();
+            this.tool_export = new System.Windows.Forms.ToolStripButton();
+            this.tool_programv = new System.Windows.Forms.ToolStripButton();
+            this.tool_specCfg = new System.Windows.Forms.ToolStripButton();
+            this.tool_logData = new System.Windows.Forms.ToolStripButton();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.pickerEndTime = new Telerik.WinControls.UI.RadDateTimePicker();
+            this.pickerStartTime = new Telerik.WinControls.UI.RadDateTimePicker();
+            this.radGridView1 = new Telerik.WinControls.UI.RadGridView();
+            this.btn_search = new Telerik.WinControls.UI.RadButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.toolStrip2.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pickerEndTime)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pickerStartTime)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_search)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
-            // 
-            // toolStrip1
-            // 
-            this.toolStrip1.BackColor = System.Drawing.Color.SkyBlue;
-            this.toolStrip1.Font = new System.Drawing.Font("Microsoft YaHei UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripLabel1,
-            this.tool_queryCondition,
-            this.tool_export,
-            this.tool_programv,
-            this.tool_specCfg,
-            this.tool_logData});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1187, 27);
-            this.toolStrip1.TabIndex = 1;
-            this.toolStrip1.Text = "toolStrip1";
-            // 
-            // toolStripLabel1
-            // 
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(132, 24);
-            this.toolStripLabel1.Text = "产品型号/SN/工站";
-            // 
-            // tool_queryCondition
-            // 
-            this.tool_queryCondition.Name = "tool_queryCondition";
-            this.tool_queryCondition.Size = new System.Drawing.Size(121, 27);
-            // 
-            // tool_export
-            // 
-            this.tool_export.Image = global::MesManager.Properties.Resources.Export_16x16;
-            this.tool_export.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tool_export.Name = "tool_export";
-            this.tool_export.Size = new System.Drawing.Size(59, 24);
-            this.tool_export.Text = "导出";
-            // 
-            // tool_programv
-            // 
-            this.tool_programv.Image = global::MesManager.Properties.Resources.Refresh_16x16;
-            this.tool_programv.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tool_programv.Name = "tool_programv";
-            this.tool_programv.Size = new System.Drawing.Size(89, 24);
-            this.tool_programv.Text = "程序版本";
-            // 
-            // tool_specCfg
-            // 
-            this.tool_specCfg.Image = global::MesManager.Properties.Resources.update;
-            this.tool_specCfg.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tool_specCfg.Name = "tool_specCfg";
-            this.tool_specCfg.Size = new System.Drawing.Size(95, 24);
-            this.tool_specCfg.Text = "SPEC配置";
-            // 
-            // tool_logData
-            // 
-            this.tool_logData.Image = global::MesManager.Properties.Resources.update;
-            this.tool_logData.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tool_logData.Name = "tool_logData";
-            this.tool_logData.Size = new System.Drawing.Size(90, 24);
-            this.tool_logData.Text = "LOG记录";
             // 
             // statusStrip1
             // 
@@ -136,23 +86,11 @@
             this.statusStrip1.TabIndex = 7;
             this.statusStrip1.Text = "statusStrip1";
             // 
-            // radGridView1
-            // 
-            this.radGridView1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radGridView1.Location = new System.Drawing.Point(0, 65);
-            // 
-            // 
-            // 
-            this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition2;
-            this.radGridView1.Name = "radGridView1";
-            this.radGridView1.Size = new System.Drawing.Size(1175, 168);
-            this.radGridView1.TabIndex = 2;
-            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.splitContainer1);
             this.panel1.Controls.Add(this.toolStrip2);
-            this.panel1.Location = new System.Drawing.Point(12, 277);
+            this.panel1.Location = new System.Drawing.Point(12, 325);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1163, 304);
             this.panel1.TabIndex = 10;
@@ -286,16 +224,167 @@
             this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton2.Text = "连接";
             // 
+            // toolStrip1
+            // 
+            this.toolStrip1.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.toolStrip1.Font = new System.Drawing.Font("Microsoft YaHei UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripLabel1,
+            this.tool_queryCondition,
+            this.tool_export,
+            this.tool_programv,
+            this.tool_specCfg,
+            this.tool_logData});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(1187, 27);
+            this.toolStrip1.TabIndex = 13;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.ForeColor = System.Drawing.Color.White;
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(132, 24);
+            this.toolStripLabel1.Text = "产品型号/SN/工站";
+            // 
+            // tool_queryCondition
+            // 
+            this.tool_queryCondition.ForeColor = System.Drawing.Color.White;
+            this.tool_queryCondition.Name = "tool_queryCondition";
+            this.tool_queryCondition.Size = new System.Drawing.Size(121, 27);
+            // 
+            // tool_export
+            // 
+            this.tool_export.ForeColor = System.Drawing.Color.White;
+            this.tool_export.Image = global::MesManager.Properties.Resources.Export_16x16;
+            this.tool_export.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tool_export.Name = "tool_export";
+            this.tool_export.Size = new System.Drawing.Size(59, 24);
+            this.tool_export.Text = "导出";
+            // 
+            // tool_programv
+            // 
+            this.tool_programv.ForeColor = System.Drawing.Color.White;
+            this.tool_programv.Image = global::MesManager.Properties.Resources.Version_16x16;
+            this.tool_programv.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tool_programv.Name = "tool_programv";
+            this.tool_programv.Size = new System.Drawing.Size(89, 24);
+            this.tool_programv.Text = "程序版本";
+            // 
+            // tool_specCfg
+            // 
+            this.tool_specCfg.ForeColor = System.Drawing.Color.White;
+            this.tool_specCfg.Image = global::MesManager.Properties.Resources.configure_cluster;
+            this.tool_specCfg.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tool_specCfg.Name = "tool_specCfg";
+            this.tool_specCfg.Size = new System.Drawing.Size(95, 24);
+            this.tool_specCfg.Text = "SPEC配置";
+            // 
+            // tool_logData
+            // 
+            this.tool_logData.ForeColor = System.Drawing.Color.White;
+            this.tool_logData.Image = ((System.Drawing.Image)(resources.GetObject("tool_logData.Image")));
+            this.tool_logData.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tool_logData.Name = "tool_logData";
+            this.tool_logData.Size = new System.Drawing.Size(90, 24);
+            this.tool_logData.Text = "LOG记录";
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.btn_search);
+            this.panel2.Controls.Add(this.label1);
+            this.panel2.Controls.Add(this.label2);
+            this.panel2.Controls.Add(this.pickerEndTime);
+            this.panel2.Controls.Add(this.pickerStartTime);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 27);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1187, 55);
+            this.panel2.TabIndex = 14;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(26, 28);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(59, 13);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "开始日期";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(281, 28);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(59, 13);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "结束日期";
+            // 
+            // pickerEndTime
+            // 
+            this.pickerEndTime.CustomFormat = "yyyy-MM-dd HH:mm:ss";
+            this.pickerEndTime.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pickerEndTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.pickerEndTime.Location = new System.Drawing.Point(346, 19);
+            this.pickerEndTime.Name = "pickerEndTime";
+            this.pickerEndTime.Size = new System.Drawing.Size(169, 23);
+            this.pickerEndTime.TabIndex = 5;
+            this.pickerEndTime.TabStop = false;
+            this.pickerEndTime.Text = "2019-08-26 17:09:41";
+            this.pickerEndTime.Value = new System.DateTime(2019, 8, 26, 17, 9, 41, 544);
+            // 
+            // pickerStartTime
+            // 
+            this.pickerStartTime.CustomFormat = "yyyy-MM-dd HH:mm:ss";
+            this.pickerStartTime.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pickerStartTime.ForeColor = System.Drawing.Color.Black;
+            this.pickerStartTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.pickerStartTime.Location = new System.Drawing.Point(91, 19);
+            this.pickerStartTime.Name = "pickerStartTime";
+            this.pickerStartTime.Size = new System.Drawing.Size(171, 23);
+            this.pickerStartTime.TabIndex = 4;
+            this.pickerStartTime.TabStop = false;
+            this.pickerStartTime.Text = "2019-08-26 17:09:35";
+            this.pickerStartTime.Value = new System.DateTime(2019, 8, 26, 17, 9, 35, 395);
+            // 
+            // radGridView1
+            // 
+            this.radGridView1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radGridView1.Location = new System.Drawing.Point(0, 134);
+            // 
+            // 
+            // 
+            this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition3;
+            this.radGridView1.Name = "radGridView1";
+            this.radGridView1.Size = new System.Drawing.Size(1175, 168);
+            this.radGridView1.TabIndex = 15;
+            // 
+            // btn_search
+            // 
+            this.btn_search.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_search.Image = global::MesManager.Properties.Resources.Search_16x16;
+            this.btn_search.Location = new System.Drawing.Point(575, 19);
+            this.btn_search.Name = "btn_search";
+            this.btn_search.Size = new System.Drawing.Size(88, 25);
+            this.btn_search.TabIndex = 8;
+            this.btn_search.Text = "查询";
+            this.btn_search.ThemeName = "Breeze";
+            this.btn_search.Click += new System.EventHandler(this.Btn_search_Click);
+            // 
             // TestStand
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.BackColor = System.Drawing.Color.SteelBlue;
             this.ClientSize = new System.Drawing.Size(1187, 654);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.radGridView1);
-            this.Controls.Add(this.statusStrip1);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.toolStrip1);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.statusStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "TestStand";
             // 
@@ -304,10 +393,6 @@
             this.RootElement.ApplyShapeToControl = true;
             this.Text = "测试台";
             this.Load += new System.EventHandler(this.TestStand_Load);
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -316,6 +401,15 @@
             this.splitContainer1.ResumeLayout(false);
             this.toolStrip2.ResumeLayout(false);
             this.toolStrip2.PerformLayout();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pickerEndTime)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pickerStartTime)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_search)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -323,13 +417,7 @@
         }
 
         #endregion
-        private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
-        private System.Windows.Forms.ToolStripComboBox tool_queryCondition;
-        private System.Windows.Forms.ToolStripButton tool_export;
-        private System.Windows.Forms.ToolStripButton tool_programv;
         private System.Windows.Forms.StatusStrip statusStrip1;
-        private Telerik.WinControls.UI.RadGridView radGridView1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ToolStrip toolStrip2;
         private System.Windows.Forms.ToolStripLabel toolStripLabel2;
@@ -347,7 +435,19 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
+        private System.Windows.Forms.ToolStripComboBox tool_queryCondition;
+        private System.Windows.Forms.ToolStripButton tool_export;
+        private System.Windows.Forms.ToolStripButton tool_programv;
         private System.Windows.Forms.ToolStripButton tool_specCfg;
         private System.Windows.Forms.ToolStripButton tool_logData;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private Telerik.WinControls.UI.RadDateTimePicker pickerEndTime;
+        private Telerik.WinControls.UI.RadDateTimePicker pickerStartTime;
+        private Telerik.WinControls.UI.RadGridView radGridView1;
+        private Telerik.WinControls.UI.RadButton btn_search;
     }
 }

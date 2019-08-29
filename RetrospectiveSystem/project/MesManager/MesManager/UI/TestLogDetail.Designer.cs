@@ -38,6 +38,7 @@
             this.btn_export = new Telerik.WinControls.UI.RadButton();
             this.btn_search = new Telerik.WinControls.UI.RadButton();
             this.radGridView1 = new Telerik.WinControls.UI.RadGridView();
+            this.breezeTheme1 = new Telerik.WinControls.Themes.BreezeTheme();
             ((System.ComponentModel.ISupportInitialize)(this.radDateTimePicker1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radDateTimePicker2)).BeginInit();
             this.panel1.SuspendLayout();
@@ -51,39 +52,48 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(280, 31);
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(267, 31);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(59, 13);
+            this.label2.Size = new System.Drawing.Size(72, 17);
             this.label2.TabIndex = 7;
             this.label2.Text = "结束日期";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(12, 31);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(59, 13);
+            this.label1.Size = new System.Drawing.Size(72, 17);
             this.label1.TabIndex = 6;
             this.label1.Text = "开始日期";
             // 
             // radDateTimePicker1
             // 
-            this.radDateTimePicker1.Location = new System.Drawing.Point(77, 29);
+            this.radDateTimePicker1.CustomFormat = "yyyy-MM-dd HH:mm:ss";
+            this.radDateTimePicker1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radDateTimePicker1.ForeColor = System.Drawing.Color.Black;
+            this.radDateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.radDateTimePicker1.Location = new System.Drawing.Point(90, 29);
             this.radDateTimePicker1.Name = "radDateTimePicker1";
-            this.radDateTimePicker1.Size = new System.Drawing.Size(164, 20);
+            this.radDateTimePicker1.Size = new System.Drawing.Size(164, 23);
             this.radDateTimePicker1.TabIndex = 4;
             this.radDateTimePicker1.TabStop = false;
-            this.radDateTimePicker1.Text = "2019-08-26";
+            this.radDateTimePicker1.Text = "2019-08-26 17:09:35";
             this.radDateTimePicker1.Value = new System.DateTime(2019, 8, 26, 17, 9, 35, 395);
             // 
             // radDateTimePicker2
             // 
+            this.radDateTimePicker2.CustomFormat = "yyyy-MM-dd HH:mm:ss";
+            this.radDateTimePicker2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radDateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.radDateTimePicker2.Location = new System.Drawing.Point(345, 29);
             this.radDateTimePicker2.Name = "radDateTimePicker2";
-            this.radDateTimePicker2.Size = new System.Drawing.Size(164, 20);
+            this.radDateTimePicker2.Size = new System.Drawing.Size(164, 23);
             this.radDateTimePicker2.TabIndex = 5;
             this.radDateTimePicker2.TabStop = false;
-            this.radDateTimePicker2.Text = "2019-08-26";
+            this.radDateTimePicker2.Text = "2019-08-26 17:09:41";
             this.radDateTimePicker2.Value = new System.DateTime(2019, 8, 26, 17, 9, 41, 544);
             // 
             // panel1
@@ -102,25 +112,34 @@
             // 
             // btn_export
             // 
+            this.btn_export.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_export.ForeColor = System.Drawing.Color.White;
+            this.btn_export.Image = global::MesManager.Properties.Resources.Export_16x16;
             this.btn_export.Location = new System.Drawing.Point(717, 27);
             this.btn_export.Name = "btn_export";
-            this.btn_export.Size = new System.Drawing.Size(76, 24);
+            this.btn_export.Size = new System.Drawing.Size(72, 24);
             this.btn_export.TabIndex = 9;
             this.btn_export.Text = "导出";
+            this.btn_export.ThemeName = "Breeze";
             this.btn_export.Click += new System.EventHandler(this.Btn_export_Click);
             // 
             // btn_search
             // 
+            this.btn_search.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_search.ForeColor = System.Drawing.Color.White;
+            this.btn_search.Image = global::MesManager.Properties.Resources.Search_16x16;
             this.btn_search.Location = new System.Drawing.Point(589, 27);
             this.btn_search.Name = "btn_search";
-            this.btn_search.Size = new System.Drawing.Size(84, 24);
+            this.btn_search.Size = new System.Drawing.Size(74, 24);
             this.btn_search.TabIndex = 8;
             this.btn_search.Text = "查询";
+            this.btn_search.ThemeName = "Breeze";
             this.btn_search.Click += new System.EventHandler(this.Btn_search_Click);
             // 
             // radGridView1
             // 
             this.radGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radGridView1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radGridView1.Location = new System.Drawing.Point(0, 62);
             // 
             // 
@@ -138,6 +157,7 @@
             this.ClientSize = new System.Drawing.Size(1080, 584);
             this.Controls.Add(this.radGridView1);
             this.Controls.Add(this.panel1);
+            this.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "TestLogDetail";
             // 
@@ -169,5 +189,6 @@
         private Telerik.WinControls.UI.RadGridView radGridView1;
         private Telerik.WinControls.UI.RadButton btn_search;
         private Telerik.WinControls.UI.RadButton btn_export;
+        private Telerik.WinControls.Themes.BreezeTheme breezeTheme1;
     }
 }

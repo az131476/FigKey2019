@@ -31,18 +31,19 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GetBackPwd));
             this.tb_repwd = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.btn_cancel = new Telerik.WinControls.UI.RadButton();
             this.tb_pwd = new Telerik.WinControls.UI.RadTextBox();
             this.tb_username = new Telerik.WinControls.UI.RadTextBox();
-            this.btn_register = new Telerik.WinControls.UI.RadButton();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
-            ((System.ComponentModel.ISupportInitialize)(this.btn_cancel)).BeginInit();
+            this.btn_cancel = new Telerik.WinControls.UI.RadButton();
+            this.btn_register = new Telerik.WinControls.UI.RadButton();
+            this.breezeTheme1 = new Telerik.WinControls.Themes.BreezeTheme();
             ((System.ComponentModel.ISupportInitialize)(this.tb_pwd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tb_username)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btn_register)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_cancel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_register)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -63,14 +64,6 @@
             this.label4.TabIndex = 16;
             this.label4.Text = "确认密码：";
             // 
-            // btn_cancel
-            // 
-            this.btn_cancel.Location = new System.Drawing.Point(190, 181);
-            this.btn_cancel.Name = "btn_cancel";
-            this.btn_cancel.Size = new System.Drawing.Size(71, 24);
-            this.btn_cancel.TabIndex = 15;
-            this.btn_cancel.Text = "取消";
-            // 
             // tb_pwd
             // 
             this.tb_pwd.Location = new System.Drawing.Point(99, 82);
@@ -85,15 +78,6 @@
             this.tb_username.Name = "tb_username";
             this.tb_username.Size = new System.Drawing.Size(162, 20);
             this.tb_username.TabIndex = 13;
-            // 
-            // btn_register
-            // 
-            this.btn_register.Location = new System.Drawing.Point(99, 181);
-            this.btn_register.Name = "btn_register";
-            this.btn_register.Size = new System.Drawing.Size(71, 24);
-            this.btn_register.TabIndex = 12;
-            this.btn_register.Text = "确定";
-            this.btn_register.Click += new System.EventHandler(this.Btn_register_Click);
             // 
             // radLabel2
             // 
@@ -112,6 +96,32 @@
             this.radLabel1.Size = new System.Drawing.Size(65, 18);
             this.radLabel1.TabIndex = 10;
             this.radLabel1.Text = "用户名称：";
+            // 
+            // btn_cancel
+            // 
+            this.btn_cancel.BackColor = System.Drawing.Color.White;
+            this.btn_cancel.ForeColor = System.Drawing.Color.SteelBlue;
+            this.btn_cancel.Image = global::MesManager.Properties.Resources.ClearGrid;
+            this.btn_cancel.Location = new System.Drawing.Point(190, 181);
+            this.btn_cancel.Name = "btn_cancel";
+            this.btn_cancel.Size = new System.Drawing.Size(70, 24);
+            this.btn_cancel.TabIndex = 15;
+            this.btn_cancel.Text = "取消";
+            this.btn_cancel.ThemeName = "Breeze";
+            this.btn_cancel.Click += new System.EventHandler(this.Btn_cancel_Click);
+            // 
+            // btn_register
+            // 
+            this.btn_register.BackColor = System.Drawing.Color.White;
+            this.btn_register.ForeColor = System.Drawing.Color.SteelBlue;
+            this.btn_register.Image = global::MesManager.Properties.Resources.Apply_16x16;
+            this.btn_register.Location = new System.Drawing.Point(99, 181);
+            this.btn_register.Name = "btn_register";
+            this.btn_register.Size = new System.Drawing.Size(71, 24);
+            this.btn_register.TabIndex = 12;
+            this.btn_register.Text = "确定";
+            this.btn_register.ThemeName = "Breeze";
+            this.btn_register.Click += new System.EventHandler(this.Btn_register_Click);
             // 
             // GetBackPwd
             // 
@@ -135,12 +145,12 @@
             this.RootElement.ApplyShapeToControl = true;
             this.Text = "找回密码";
             this.Load += new System.EventHandler(this.GetBackPwd_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.btn_cancel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tb_pwd)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tb_username)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btn_register)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_cancel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_register)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -157,5 +167,6 @@
         private Telerik.WinControls.UI.RadButton btn_register;
         private Telerik.WinControls.UI.RadLabel radLabel2;
         private Telerik.WinControls.UI.RadLabel radLabel1;
+        private Telerik.WinControls.Themes.BreezeTheme breezeTheme1;
     }
 }

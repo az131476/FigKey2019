@@ -43,6 +43,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.btn_modify = new Telerik.WinControls.UI.RadButton();
             this.btn_cancel = new Telerik.WinControls.UI.RadButton();
+            this.breezeTheme1 = new Telerik.WinControls.Themes.BreezeTheme();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_modify)).BeginInit();
@@ -158,20 +159,24 @@
             // 
             // btn_modify
             // 
+            this.btn_modify.Image = global::MesManager.Properties.Resources.Apply_16x16;
             this.btn_modify.Location = new System.Drawing.Point(167, 292);
             this.btn_modify.Name = "btn_modify";
             this.btn_modify.Size = new System.Drawing.Size(74, 24);
             this.btn_modify.TabIndex = 11;
             this.btn_modify.Text = "修改";
+            this.btn_modify.ThemeName = "Breeze";
             this.btn_modify.Click += new System.EventHandler(this.Btn_modify_Click);
             // 
             // btn_cancel
             // 
+            this.btn_cancel.Image = global::MesManager.Properties.Resources.Cancel_16x16;
             this.btn_cancel.Location = new System.Drawing.Point(270, 292);
             this.btn_cancel.Name = "btn_cancel";
             this.btn_cancel.Size = new System.Drawing.Size(74, 24);
             this.btn_cancel.TabIndex = 12;
             this.btn_cancel.Text = "取消";
+            this.btn_cancel.ThemeName = "Breeze";
             this.btn_cancel.Click += new System.EventHandler(this.Btn_cancel_Click);
             // 
             // ModifyPwd
@@ -227,5 +232,6 @@
         private System.Windows.Forms.Label label6;
         private Telerik.WinControls.UI.RadButton btn_modify;
         private Telerik.WinControls.UI.RadButton btn_cancel;
+        private Telerik.WinControls.Themes.BreezeTheme breezeTheme1;
     }
 }

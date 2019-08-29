@@ -14,6 +14,8 @@ using CommonUtils.Logger;
 using CommonUtils.FileHelper;
 using MesManager.TelerikWinform.GridViewCommon.GridViewDataExport;
 using System.Threading;
+using Telerik.WinControls.Themes;
+using Sunisoft.IrisSkin;
 
 namespace MesManager.UI
 {
@@ -68,6 +70,21 @@ namespace MesManager.UI
             Init();
             SelectOfSn();
             EventHandlers();
+            //InitStyle();
+        }
+
+        private void InitStyle()
+        {
+            for (int i = 0; i < 18; i++)
+            {
+                this.toolStripComboBox1.Items.Add(i);
+            }
+            SkinEngine skinEngine = new SkinEngine();
+            string path = AppDomain.CurrentDomain.BaseDirectory + "Skins\\EighteenColor2.ssk";
+            skinEngine.SkinFile = path;
+            LogHelper.Log.Info(path);
+            skinEngine.Active = true;
+            skinEngine.SkinAllForm = true;
         }
 
         private void EventHandlers()
@@ -88,7 +105,181 @@ namespace MesManager.UI
             this.tool_productCheck_export.Click += Tool_productCheck_export_Click;
 
             this.radGridViewMaterial.CellDoubleClick += RadGridViewMaterial_CellDoubleClick;
+            this.toolStripComboBox1.SelectedIndexChanged += ToolStripComboBox1_SelectedIndexChanged;
         }
+
+        private void ToolStripComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = this.toolStripComboBox1.SelectedIndex;
+            switch (index)
+            {
+                case 0:
+                    Menu_windows8_Click();
+                    break;
+                case 1:
+                    Menu_windows7_Click();
+                    break;
+                case 2:
+                    Menu_Office2013Light_Click();
+                    break;
+                case 3:
+                    Menu_office2013Dark_Click();
+                    break;
+                case 4:
+                    Menu_office2010Silver_Click();
+                    break;
+                case 5:
+                    Menu_office2010Blue_Click();
+                    break;
+                case 6:
+                    Menu_office2010Black_Click();
+                    break;
+                case 7:
+                    Menu_office2007Silver_Click();
+                    break;
+                case 8:
+                    Menu_office2007Black_Click();
+                    break;
+                case 9:
+                    Menu_telerikMetroTouch_Click();
+                    break;
+                case 10:
+                    Menu_telerikMetroBlue_Click();
+                    break;
+                case 11:
+                    Menu_telerikMetro_Click();
+                    break;
+                case 12:
+                    Menu_materialTeal_Click();
+                    break;
+                case 13:
+                    Menu_materialPink_Click();
+                    break;
+                case 14:
+                    Menu_materialBlue_Click();
+                    break;
+                case 15:
+                    Menu_material_Click();
+                    break;
+                case 16:
+                    Menu_vs2012Light_Click();
+                    break;
+                case 17:
+                    Menu_vs2012dark_Click();
+                    break;
+            }
+
+            //8 12
+        }
+        #region UI style
+        private void Menu_windows8_Click()
+        {
+            Windows8Theme windows8Theme = new Windows8Theme();
+            ThemeResolutionService.ApplicationThemeName = windows8Theme.ThemeName;
+        }
+
+        private void Menu_windows7_Click()
+        {
+            Windows7Theme windows7Theme = new Windows7Theme();
+            ThemeResolutionService.ApplicationThemeName = windows7Theme.ThemeName;
+        }
+
+        private void Menu_Office2013Light_Click()
+        {
+            Office2013LightTheme office2013LightTheme = new Office2013LightTheme();
+            ThemeResolutionService.ApplicationThemeName = office2013LightTheme.ThemeName;
+        }
+
+        private void Menu_office2013Dark_Click()
+        {
+            Office2013DarkTheme office2013DarkTheme = new Office2013DarkTheme();
+            ThemeResolutionService.ApplicationThemeName = office2013DarkTheme.ThemeName;
+        }
+
+        private void Menu_office2010Silver_Click()
+        {
+            Office2010SilverTheme office2010SilverTheme = new Office2010SilverTheme();
+            ThemeResolutionService.ApplicationThemeName = office2010SilverTheme.ThemeName;
+        }
+
+        private void Menu_office2010Blue_Click()
+        {
+            Office2010BlueTheme office2010BlueTheme = new Office2010BlueTheme();
+            ThemeResolutionService.ApplicationThemeName = office2010BlueTheme.ThemeName;
+        }
+
+        private void Menu_office2010Black_Click()
+        {
+            Office2010BlackTheme office2010BlackTheme = new Office2010BlackTheme();
+            ThemeResolutionService.ApplicationThemeName = office2010BlackTheme.ThemeName;
+        }
+
+        private void Menu_office2007Silver_Click()
+        {
+            Office2007SilverTheme office2007SilverTheme = new Office2007SilverTheme();
+            ThemeResolutionService.ApplicationThemeName = office2007SilverTheme.ThemeName;
+        }
+
+        private void Menu_office2007Black_Click()
+        {
+            Office2007BlackTheme office2007BlackTheme = new Office2007BlackTheme();
+            ThemeResolutionService.ApplicationThemeName = office2007BlackTheme.ThemeName;
+        }
+
+        private void Menu_telerikMetroTouch_Click()
+        {
+            TelerikMetroTouchTheme telerikMetroTouchTheme = new TelerikMetroTouchTheme();
+            ThemeResolutionService.ApplicationThemeName = telerikMetroTouchTheme.ThemeName;
+        }
+
+        private void Menu_telerikMetroBlue_Click()
+        {
+            TelerikMetroBlueTheme telerikMetroBlueTheme = new TelerikMetroBlueTheme();
+            ThemeResolutionService.ApplicationThemeName = telerikMetroBlueTheme.ThemeName;
+        }
+
+        private void Menu_telerikMetro_Click()
+        {
+            TelerikMetroBlueTheme telerikMetroBlueTheme = new TelerikMetroBlueTheme();
+            ThemeResolutionService.ApplicationThemeName = telerikMetroBlueTheme.ThemeName;
+        }
+
+        private void Menu_materialTeal_Click()
+        {
+            MaterialTealTheme materialTealTheme = new MaterialTealTheme();
+            ThemeResolutionService.ApplicationThemeName = materialTealTheme.ThemeName;
+        }
+
+        private void Menu_materialPink_Click()
+        {
+            MaterialPinkTheme materialPinkTheme = new MaterialPinkTheme();
+            ThemeResolutionService.ApplicationThemeName = materialPinkTheme.ThemeName;
+        }
+
+        private void Menu_materialBlue_Click()
+        {
+            MaterialBlueGreyTheme materialBlueGreyTheme = new MaterialBlueGreyTheme();
+            ThemeResolutionService.ApplicationThemeName = materialBlueGreyTheme.ThemeName;
+        }
+
+        private void Menu_material_Click()
+        {
+            MaterialTheme materialTheme = new MaterialTheme();
+            ThemeResolutionService.ApplicationThemeName = materialTheme.ThemeName;
+        }
+
+        private void Menu_vs2012Light_Click()
+        {
+            VisualStudio2012LightTheme visualStudio2012LightTheme = new VisualStudio2012LightTheme();
+            ThemeResolutionService.ApplicationThemeName = visualStudio2012LightTheme.ThemeName;
+        }
+
+        private void Menu_vs2012dark_Click()
+        {
+            VisualStudio2012DarkTheme visualStudio2012DarkTheme = new VisualStudio2012DarkTheme();
+            ThemeResolutionService.ApplicationThemeName = visualStudio2012DarkTheme.ThemeName;
+        }
+        #endregion
 
         private void Btn_productCheck_Click(object sender, EventArgs e)
         {

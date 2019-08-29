@@ -63,6 +63,26 @@ namespace MesManager.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap Apply_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("Apply_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap box_open {
+            get {
+                object obj = ResourceManager.GetObject("box_open", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap bullet_add {
             get {
                 object obj = ResourceManager.GetObject("bullet_add", resourceCulture);
@@ -83,9 +103,39 @@ namespace MesManager.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap cancel {
+            get {
+                object obj = ResourceManager.GetObject("cancel", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap Cancel_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("Cancel_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap ClearGrid {
             get {
                 object obj = ResourceManager.GetObject("ClearGrid", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap configure_cluster {
+            get {
+                object obj = ResourceManager.GetObject("configure_cluster", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -183,9 +233,9 @@ namespace MesManager.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap GenericShareFolder_24x24 {
+        internal static System.Drawing.Bitmap GenericShareFolder_16x16 {
             get {
-                object obj = ResourceManager.GetObject("GenericShareFolder_24x24", resourceCulture);
+                object obj = ResourceManager.GetObject("GenericShareFolder_16x16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -203,9 +253,89 @@ namespace MesManager.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap PackageProduct_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("PackageProduct_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap PackageProduct_32x32 {
+            get {
+                object obj = ResourceManager.GetObject("PackageProduct_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap Product_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("Product_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap Project_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("Project_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap Refresh_16x16 {
             get {
                 object obj = ResourceManager.GetObject("Refresh_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap save_data {
+            get {
+                object obj = ResourceManager.GetObject("save_data", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap Search_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("Search_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap server_database {
+            get {
+                object obj = ResourceManager.GetObject("server_database", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap ServerConnection {
+            get {
+                object obj = ResourceManager.GetObject("ServerConnection", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -226,6 +356,16 @@ namespace MesManager.Properties {
         internal static System.Drawing.Bitmap t01ef4cc12bbcc9fb6e1 {
             get {
                 object obj = ResourceManager.GetObject("t01ef4cc12bbcc9fb6e1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap terminal_seats_red {
+            get {
+                object obj = ResourceManager.GetObject("terminal_seats_red", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -256,6 +396,16 @@ namespace MesManager.Properties {
         internal static System.Drawing.Bitmap upload_for_cloud {
             get {
                 object obj = ResourceManager.GetObject("upload_for_cloud", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap Version_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("Version_16x16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

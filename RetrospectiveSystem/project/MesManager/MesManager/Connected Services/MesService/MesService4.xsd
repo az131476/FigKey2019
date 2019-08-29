@@ -782,6 +782,8 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="queryFilter" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="startTime" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="endTime" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

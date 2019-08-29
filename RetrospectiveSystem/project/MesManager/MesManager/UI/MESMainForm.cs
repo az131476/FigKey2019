@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
+using CommonUtils.Logger;
 
 namespace MesManager.UI
 {
@@ -18,6 +19,7 @@ namespace MesManager.UI
         public static string currentUser;
         public static int currentUsetType;
         private MesService.MesServiceClient serviceClient;
+        private bool IsFirstState = true;
         public MESMainForm()
         {
             InitializeComponent();
@@ -32,6 +34,7 @@ namespace MesManager.UI
             //this.pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
             serviceClient = new MesService.MesServiceClient();
             TestCommunication();
+            IsFirstState = false;
         }
 
         public void InitMain()
@@ -43,25 +46,36 @@ namespace MesManager.UI
 
         private void TestCommunication()
         {
-            var inputStr = "TEST";
-            var tRes = serviceClient.TestCommunication(inputStr);
-            if (tRes != inputStr)
+            try
             {
-                //异常
-                this.ledControl1.LEDCircleColor = Color.Red;
-                this.ledControl1.LEDCenterColor = Color.Red;
-                this.ledControl1.LEDSurroundColor = Color.Red;
-                //this.ledControl1.LEDSwitch = false;
+                var inputStr = "TEST";
+                var tRes = serviceClient.TestCommunication(inputStr);
+                if (tRes != inputStr)
+                {
+                    //异常
+                    this.ledControl1.LEDCircleColor = Color.Gray;
+                    this.ledControl1.LEDCenterColor = Color.Gray;
+                    this.ledControl1.LEDSurroundColor = Color.Gray;
+                    //this.ledControl1.LEDSwitch = false;
+                    this.ledControl1.Invalidate();
+                    LogHelper.Log.Error(tRes);
+                    MessageBox.Show("与服务器通讯失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                this.ledControl1.LEDCircleColor = Color.LimeGreen;
+                this.ledControl1.LEDCenterColor = Color.LimeGreen;
+                this.ledControl1.LEDSurroundColor = Color.LimeGreen;
+                //this.ledControl1.LEDSwitch = true;
                 this.ledControl1.Invalidate();
-                label2.Text = "服务器通讯异常！";
-                return;
+                if (IsFirstState)
+                    return;
+                MessageBox.Show("与服务器通讯正常！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            this.ledControl1.LEDCircleColor = Color.LimeGreen;
-            this.ledControl1.LEDCenterColor = Color.LimeGreen;
-            this.ledControl1.LEDSurroundColor = Color.LimeGreen;
-            //this.ledControl1.LEDSwitch = true;
-            this.ledControl1.Invalidate();
-            label2.Text = "正常";
+            catch (Exception ex)
+            {
+                LogHelper.Log.Error(ex.Message);
+                MessageBox.Show(ex.Message, "ERR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void EventHandlers()
@@ -85,9 +99,6 @@ namespace MesManager.UI
 
         private void LedControl1_Click(object sender, EventArgs e)
         {
-            this.label2.Text = "正在测试...";
-            this.label2.Invalidate();
-            System.Threading.Thread.Sleep(500);
             TestCommunication();
         }
 
@@ -242,8 +253,7 @@ namespace MesManager.UI
         private void MainProductCheck_Click(object sender, EventArgs e)
         {
             //成品抽检
-            ProductCheck productCheck = new ProductCheck();
-            productCheck.ShowDialog();
+            
         }
 
         private void MainProduceManager_Click(object sender, EventArgs e)
@@ -277,8 +287,7 @@ namespace MesManager.UI
         private void MainCheckStation_Click(object sender, EventArgs e)
         {
             //检验过站
-            CheckStation checkStation = new CheckStation();
-            checkStation.ShowDialog();
+            
         }
 
         private void MainBasicInfo_Click(object sender, EventArgs e)

@@ -39,6 +39,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tb_repwd = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.breezeTheme1 = new Telerik.WinControls.Themes.BreezeTheme();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_register)).BeginInit();
@@ -68,11 +69,13 @@
             // 
             // btn_register
             // 
+            this.btn_register.Image = global::MesManager.Properties.Resources.Apply_16x16;
             this.btn_register.Location = new System.Drawing.Point(119, 204);
             this.btn_register.Name = "btn_register";
             this.btn_register.Size = new System.Drawing.Size(71, 24);
             this.btn_register.TabIndex = 2;
             this.btn_register.Text = "注册";
+            this.btn_register.ThemeName = "Breeze";
             this.btn_register.Click += new System.EventHandler(this.Btn_register_Click);
             // 
             // tb_username
@@ -92,11 +95,13 @@
             // 
             // btn_cancel
             // 
+            this.btn_cancel.Image = global::MesManager.Properties.Resources.Cancel_16x16;
             this.btn_cancel.Location = new System.Drawing.Point(210, 204);
             this.btn_cancel.Name = "btn_cancel";
             this.btn_cancel.Size = new System.Drawing.Size(71, 24);
             this.btn_cancel.TabIndex = 5;
             this.btn_cancel.Text = "取消";
+            this.btn_cancel.ThemeName = "Breeze";
             this.btn_cancel.Click += new System.EventHandler(this.Btn_cancel_Click);
             // 
             // cb_userType
@@ -185,5 +190,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tb_repwd;
         private System.Windows.Forms.Label label4;
+        private Telerik.WinControls.Themes.BreezeTheme breezeTheme1;
     }
 }

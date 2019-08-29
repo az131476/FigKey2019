@@ -21,10 +21,17 @@ namespace MesWcfService.MessageQueue.RemoteClient
                 var limitValue = array[3];
                 var teamLeader = array[4];
                 var admin = array[5];
+                //limit可能为路径
+                LogHelper.Log.Info(limitValue);
+                if (limitValue.Contains("\\"))
+                {
+                    limitValue = limitValue.Replace("\\", "\\\\");
+                    LogHelper.Log.Info(limitValue);
+                }
                 var insertSQL = $"INSERT INTO {DbTable.F_TEST_LIMIT_CONFIG_NAME}(" +
                     $"{DbTable.F_TEST_LIMIT_CONFIG.STATION_NAME}," +
                     $"{DbTable.F_TEST_LIMIT_CONFIG.TYPE_NO}," +
-                    $"{DbTable.F_TEST_LIMIT_CONFIG.TEST_ITEM}" +
+                    $"{DbTable.F_TEST_LIMIT_CONFIG.TEST_ITEM}," +
                     $"{DbTable.F_TEST_LIMIT_CONFIG.LIMIT}," +
                     $"{DbTable.F_TEST_LIMIT_CONFIG.TEAM_LEADER}," +
                     $"{DbTable.F_TEST_LIMIT_CONFIG.ADMIN}," +

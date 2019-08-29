@@ -34,6 +34,14 @@ namespace MesManager.UI
             TEST_LOG_DATA
         }
 
+        private enum ExportFormat
+        {
+            EXCEL,
+            HTML,
+            PDF,
+            CSV
+        }
+
         private void TestStand_Load(object sender, EventArgs e)
         {
             Init();
@@ -57,6 +65,8 @@ namespace MesManager.UI
 
         private void RadGridView1_CellDoubleClick(object sender, GridViewCellEventArgs e)
         {
+            if (currentDataType != TestStandDataType.TEST_LOG_DATA)
+                return;
             var productTypeNo = this.radGridView1.CurrentRow.Cells[0].Value.ToString();
             var productSN = this.radGridView1.CurrentRow.Cells[1].Value.ToString();
             var stationName = this.radGridView1.CurrentRow.Cells[2].Value.ToString();
@@ -72,18 +82,21 @@ namespace MesManager.UI
         private void Tool_refresh_Click(object sender, EventArgs e)
         {
             currentDataType = TestStandDataType.TEST_PROGRAME_VERSION;
+            this.panel2.Visible = false;
             RefreshUI();
         }
 
         private void Tool_logData_Click(object sender, EventArgs e)
         {
             currentDataType = TestStandDataType.TEST_LOG_DATA;
+            this.panel2.Visible = true;
             RefreshUI();
         }
 
         private void Tool_specCfg_Click(object sender, EventArgs e)
         {
             currentDataType = TestStandDataType.TEST_LIMIT_CONFIG;
+            this.panel2.Visible = false;
             RefreshUI();
         }
 
@@ -98,7 +111,7 @@ namespace MesManager.UI
             }
             else if (currentDataType == TestStandDataType.TEST_LOG_DATA)
             {
-                SelectTestLogData(this.tool_queryCondition.Text);
+                SelectTestLogData(this.tool_queryCondition.Text,this.pickerStartTime.Text,this.pickerEndTime.Text);
                 this.radGridView1.Dock = DockStyle.Fill;
                 this.radGridView1.Visible = true;
                 this.panel1.Visible = false;
@@ -133,6 +146,10 @@ namespace MesManager.UI
             imageList.Images.Add("open", Resources.FolderList32);
             LoadTreeView.SetTreeNoByFilePath(this.treeView1,path,new ImageList());
             //TreeViewData.PopulateTreeView(path, this.treeView1);
+
+            currentDataType = TestStandDataType.TEST_LOG_DATA;
+            this.panel2.Visible = true;
+            RefreshUI();
         }
 
         async private void SelectTestLimitConfig(string productTypeNo)
@@ -153,11 +170,14 @@ namespace MesManager.UI
             this.radGridView1.DataSource = dt;
         }
 
-        async private void SelectTestLogData(string queryFilter)
+        async private void SelectTestLogData(string queryFilter,string startTime,string endTime)
         {
-            var dt = (await serviceClient.SelectTodayTestLogDataAsync(queryFilter)).Tables[0];
+            var dt = (await serviceClient.SelectTodayTestLogDataAsync(queryFilter,startTime,endTime)).Tables[0];
             if (dt.Rows.Count < 1)
+            {
+                MessageBox.Show("无查询结果","提示",MessageBoxButtons.OK,MessageBoxIcon.Information);
                 return;
+            }
             this.radGridView1.DataSource = null;
             this.radGridView1.DataSource = dt;
         }
@@ -199,12 +219,9 @@ namespace MesManager.UI
             }
         }
 
-        private enum ExportFormat
+        private void Btn_search_Click(object sender, EventArgs e)
         {
-            EXCEL,
-            HTML,
-            PDF,
-            CSV
+            RefreshUI();
         }
     }
 }

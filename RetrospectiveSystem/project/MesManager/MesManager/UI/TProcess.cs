@@ -43,7 +43,7 @@ namespace MesManager.UI
             serviceClient = new MesService.MesServiceClient();
             serviceClientTest = new MesServiceTest.MesServiceClient();
             stationListTemp = new List<string>();
-            DataGridViewCommon.SetRadGridViewProperty(this.radGridView1, false);
+            DataGridViewCommon.SetRadGridViewProperty(this.radGridView1, true);
             this.radGridView1.AllowRowHeaderContextMenu = false;
             DataSource();
             UpdateProcesList();
@@ -129,7 +129,13 @@ namespace MesManager.UI
                     int row = await serviceClient.DeleteStationAsync(cb_processItem.Text.Trim(), stationName);
                     if (row > 0)
                     {
+                        //查询删除成功
                         RefreshProcessData();
+                    }
+                    else
+                    {
+                        //查询删除失败
+                        this.radGridView1.CurrentRow.Delete();
                     }
                     //tool_status.Text = "【型号】删除1行记录 【删除】完成";
                 }
@@ -165,20 +171,31 @@ namespace MesManager.UI
             //结束编辑，同时更新新增列序号
             if (index <= 0)
             {
-                this.radGridView1.Rows[0].Cells[0].Value = 1;
+                //this.radGridView1.Rows[0].Cells[0].Value = 1;
             }
             else
             {
-                this.radGridView1.Rows[index-1].Cells[0].Value = index;
+                //this.radGridView1.Rows[index - 1].Cells[0].Value = index;
+                //this.radGridView1.Rows[index - 2].Cells[0].Value = index - 1;
             }
         }
 
         private void RadGridView1_CellBeginEdit(object sender, GridViewCellCancelEventArgs e)
         {
             var key = this.radGridView1.CurrentRow.Cells[1].Value;
+            var index = this.radGridView1.RowCount;
+            var rIndex = this.radGridView1.CurrentRow.Index;
             if (key != null)
             {
                 this.keyStation = key.ToString();
+            }
+            if (index <= 0)
+            {
+                this.radGridView1.Rows[0].Cells[0].Value = 1;
+            }
+            else
+            {
+                this.radGridView1.Rows[rIndex].Cells[0].Value = rIndex + 1;
             }
         }
 
@@ -231,6 +248,7 @@ namespace MesManager.UI
                 radGridView1.DataSource = stationData;
             }
             DataGridViewCommon.SetRadGridViewProperty(this.radGridView1, false);
+            this.radGridView1.AllowRowHeaderContextMenu = false;
             this.radGridView1.Columns[0].ReadOnly = true;
             this.radGridView1.Columns[2].ReadOnly = true;
             this.radGridView1.Columns[3].ReadOnly = true;

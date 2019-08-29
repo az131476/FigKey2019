@@ -30,8 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MESMainForm));
             this.radPanorama1 = new Telerik.WinControls.UI.RadPanorama();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.ledControl1 = new LEDLib.LEDControl();
             this.btn_user_manger = new Telerik.WinControls.UI.RadButton();
             this.btn_user_login = new Telerik.WinControls.UI.RadButton();
@@ -42,6 +40,7 @@
             this.mainQuanlityAnomaly = new Telerik.WinControls.UI.RadTileElement();
             this.mainReportData = new Telerik.WinControls.UI.RadTileElement();
             this.mainTestStandData = new Telerik.WinControls.UI.RadTileElement();
+            this.breezeTheme1 = new Telerik.WinControls.Themes.BreezeTheme();
             ((System.ComponentModel.ISupportInitialize)(this.radPanorama1)).BeginInit();
             this.radPanorama1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btn_user_manger)).BeginInit();
@@ -53,8 +52,6 @@
             // 
             this.radPanorama1.AutoArrangeNewTiles = false;
             this.radPanorama1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(35)))), ((int)(((byte)(49)))));
-            this.radPanorama1.Controls.Add(this.label2);
-            this.radPanorama1.Controls.Add(this.label1);
             this.radPanorama1.Controls.Add(this.ledControl1);
             this.radPanorama1.Controls.Add(this.btn_user_manger);
             this.radPanorama1.Controls.Add(this.btn_user_login);
@@ -66,31 +63,10 @@
             this.radPanorama1.PanelImageSize = new System.Drawing.Size(1024, 768);
             this.radPanorama1.RowsCount = 2;
             this.radPanorama1.ShowGroups = true;
-            this.radPanorama1.Size = new System.Drawing.Size(1188, 1100);
+            this.radPanorama1.Size = new System.Drawing.Size(1196, 1100);
             this.radPanorama1.TabIndex = 1;
+            this.radPanorama1.ThemeName = "ControlDefault";
             ((Telerik.WinControls.UI.RadPanoramaElement)(this.radPanorama1.GetChildAt(0))).BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(23)))), ((int)(((byte)(117)))));
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.label2.Location = new System.Drawing.Point(77, 405);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(13, 13);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "..";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.label1.Location = new System.Drawing.Point(9, 405);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(72, 13);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "通讯状态：";
             // 
             // ledControl1
             // 
@@ -99,9 +75,9 @@
             this.ledControl1.LEDClickEnable = true;
             this.ledControl1.LEDSurroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.ledControl1.LEDSwitch = true;
-            this.ledControl1.Location = new System.Drawing.Point(12, 441);
+            this.ledControl1.Location = new System.Drawing.Point(12, 54);
             this.ledControl1.Name = "ledControl1";
-            this.ledControl1.Size = new System.Drawing.Size(69, 73);
+            this.ledControl1.Size = new System.Drawing.Size(43, 37);
             this.ledControl1.TabIndex = 3;
             // 
             // btn_user_manger
@@ -269,7 +245,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1188, 1100);
+            this.ClientSize = new System.Drawing.Size(1196, 1100);
             this.Controls.Add(this.radPanorama1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -282,7 +258,6 @@
             this.Load += new System.EventHandler(this.MESMainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.radPanorama1)).EndInit();
             this.radPanorama1.ResumeLayout(false);
-            this.radPanorama1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btn_user_manger)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_user_login)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
@@ -303,7 +278,6 @@
         private Telerik.WinControls.UI.RadButton btn_user_login;
         private Telerik.WinControls.UI.RadButton btn_user_manger;
         private LEDLib.LEDControl ledControl1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private Telerik.WinControls.Themes.BreezeTheme breezeTheme1;
     }
 }

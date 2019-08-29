@@ -1138,7 +1138,7 @@ namespace MesAPI
             return SQLServer.ExecuteDataSet(selectSQL);
         }
 
-        public DataSet SelectTodayTestLogData(string queryFilter)
+        public DataSet SelectTodayTestLogData(string queryFilter,string startTime,string endTime)
         {
             //string productSn,string productTypeNo,string stationName
             var selectSQL = "";
@@ -1150,7 +1150,8 @@ namespace MesAPI
                 $"{DbTable.F_TEST_LOG_DATA.TEST_ITEM} 测试项," +
                 $"{DbTable.F_TEST_LOG_DATA.TEST_RESULT} 测试结果 FROM {DbTable.F_TEST_LOG_DATA_NAME} " +
                 $"WHERE "+
-                $"{DbTable.F_TEST_LOG_DATA.UPDATE_DATE} > '{DateTime.Now.ToString("yyyy-MM-dd")}'";
+                $"{DbTable.F_TEST_LOG_DATA.UPDATE_DATE} >= '{startTime}' AND " +
+                $"{DbTable.F_TEST_LOG_DATA.UPDATE_DATE} <= '{endTime}'";
             }
             else
             {
@@ -1163,7 +1164,8 @@ namespace MesAPI
                 $"WHERE {DbTable.F_TEST_LOG_DATA.PRODUCT_SN} = '{queryFilter}' OR " +
                 $"{DbTable.F_TEST_LOG_DATA.TYPE_NO} = '{queryFilter}' OR " +
                 $"{DbTable.F_TEST_LOG_DATA.STATION_NAME} = '{queryFilter}' AND " +
-                $"{DbTable.F_TEST_LOG_DATA.UPDATE_DATE} > '{DateTime.Now.ToString("yyyy-MM-dd")}'";
+                $"{DbTable.F_TEST_LOG_DATA.UPDATE_DATE} >= '{startTime}' AND " +
+                $"{DbTable.F_TEST_LOG_DATA.UPDATE_DATE} <= '{endTime}'";
             }
             LogHelper.Log.Info(selectSQL);
             return SQLServer.ExecuteDataSet(selectSQL);
@@ -1177,37 +1179,36 @@ namespace MesAPI
             if (!string.IsNullOrEmpty(startDate) || !string.IsNullOrEmpty(endDate))
             {
                 selectSQL = $"SELECT {DbTable.F_TEST_LOG_DATA.TYPE_NO} 产品型号," +
-    $"{DbTable.F_TEST_LOG_DATA.PRODUCT_SN} 产品SN," +
-    $"{DbTable.F_TEST_LOG_DATA.STATION_NAME} 工站名称," +
-    $"{DbTable.F_TEST_LOG_DATA.TEST_ITEM} 测试项," +
-    $"{DbTable.F_TEST_LOG_DATA.TEST_RESULT} 测试结果," +
-    $"{DbTable.F_TEST_LOG_DATA.LIMIT} LIMIT," +
-    $"{DbTable.F_TEST_LOG_DATA.CURRENT_VALUE} 当前值," +
-    $"{DbTable.F_TEST_LOG_DATA.TEAM_LEADER} 班组长," +
-    $"{DbTable.F_TEST_LOG_DATA.ADMIN} 管理员," +
-    $"{DbTable.F_TEST_LOG_DATA.UPDATE_DATE} 更新日期 " +
-    $"FROM {DbTable.F_TEST_LOG_DATA_NAME} " +
-    $"WHERE " +
-    $"{DbTable.F_TEST_LOG_DATA.PRODUCT_SN} = '{queryFilter}' AND " +
-    $"{DbTable.F_TEST_LOG_DATA.UPDATE_DATE} >= '{startDate}' AND " +
-    $"{DbTable.F_TEST_LOG_DATA.UPDATE_DATE} <= '{endDate}'";
+                            $"{DbTable.F_TEST_LOG_DATA.PRODUCT_SN} 产品SN," +
+                            $"{DbTable.F_TEST_LOG_DATA.STATION_NAME} 工站名称," +
+                            $"{DbTable.F_TEST_LOG_DATA.TEST_ITEM} 测试项," +
+                            $"{DbTable.F_TEST_LOG_DATA.TEST_RESULT} 测试结果," +
+                            $"{DbTable.F_TEST_LOG_DATA.LIMIT} LIMIT," +
+                            $"{DbTable.F_TEST_LOG_DATA.CURRENT_VALUE} 当前值," +
+                            $"{DbTable.F_TEST_LOG_DATA.TEAM_LEADER} 班组长," +
+                            $"{DbTable.F_TEST_LOG_DATA.ADMIN} 管理员," +
+                            $"{DbTable.F_TEST_LOG_DATA.UPDATE_DATE} 更新日期 " +
+                            $"FROM {DbTable.F_TEST_LOG_DATA_NAME} " +
+                            $"WHERE " +
+                            $"{DbTable.F_TEST_LOG_DATA.PRODUCT_SN} = '{queryFilter}' AND " +
+                            $"{DbTable.F_TEST_LOG_DATA.UPDATE_DATE} >= '{startDate}' AND " +
+                            $"{DbTable.F_TEST_LOG_DATA.UPDATE_DATE} <= '{endDate}'";
             }
             else
             {
                 selectSQL = $"SELECT {DbTable.F_TEST_LOG_DATA.TYPE_NO} 产品型号," +
-    $"{DbTable.F_TEST_LOG_DATA.PRODUCT_SN} 产品SN," +
-    $"{DbTable.F_TEST_LOG_DATA.STATION_NAME} 工站名称," +
-    $"{DbTable.F_TEST_LOG_DATA.TEST_ITEM} 测试项," +
-    $"{DbTable.F_TEST_LOG_DATA.TEST_RESULT} 测试结果," +
-    $"{DbTable.F_TEST_LOG_DATA.LIMIT} LIMIT," +
-    $"{DbTable.F_TEST_LOG_DATA.CURRENT_VALUE} 当前值," +
-    $"{DbTable.F_TEST_LOG_DATA.TEAM_LEADER} 班组长," +
-    $"{DbTable.F_TEST_LOG_DATA.ADMIN} 管理员," +
-    $"{DbTable.F_TEST_LOG_DATA.UPDATE_DATE} 更新日期 " +
-    $"FROM {DbTable.F_TEST_LOG_DATA_NAME} " +
-    $"WHERE " +
-    $"{DbTable.F_TEST_LOG_DATA.PRODUCT_SN} = '{queryFilter}' AND " +
-    $"{DbTable.F_TEST_LOG_DATA.UPDATE_DATE} > '{DateTime.Now.ToString("yyyy-MM-dd")}'";
+                            $"{DbTable.F_TEST_LOG_DATA.PRODUCT_SN} 产品SN," +
+                            $"{DbTable.F_TEST_LOG_DATA.STATION_NAME} 工站名称," +
+                            $"{DbTable.F_TEST_LOG_DATA.TEST_ITEM} 测试项," +
+                            $"{DbTable.F_TEST_LOG_DATA.TEST_RESULT} 测试结果," +
+                            $"{DbTable.F_TEST_LOG_DATA.LIMIT} LIMIT," +
+                            $"{DbTable.F_TEST_LOG_DATA.CURRENT_VALUE} 当前值," +
+                            $"{DbTable.F_TEST_LOG_DATA.TEAM_LEADER} 班组长," +
+                            $"{DbTable.F_TEST_LOG_DATA.ADMIN} 管理员," +
+                            $"{DbTable.F_TEST_LOG_DATA.UPDATE_DATE} 更新日期 " +
+                            $"FROM {DbTable.F_TEST_LOG_DATA_NAME} " +
+                            $"WHERE " +
+                            $"{DbTable.F_TEST_LOG_DATA.PRODUCT_SN} = '{queryFilter}' ";
             }
             LogHelper.Log.Info(selectSQL);
             return SQLServer.ExecuteDataSet(selectSQL);

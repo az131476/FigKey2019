@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition3 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition4 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition5 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition6 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition7 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition8 = new Telerik.WinControls.UI.TableViewDefinition();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SNCenter));
             this.chamferedRectShape1 = new Telerik.WinControls.ChamferedRectShape();
             this.panel_material = new System.Windows.Forms.Panel();
@@ -79,6 +79,7 @@
             this.menu_package = new Telerik.WinControls.UI.RadMenuItem();
             this.menu_material = new Telerik.WinControls.UI.RadMenuItem();
             this.menu_productCheck = new Telerik.WinControls.UI.RadMenuItem();
+            this.toolStripComboBox1 = new System.Windows.Forms.ToolStripComboBox();
             this.radMenu1 = new Telerik.WinControls.UI.RadMenu();
             this.panel_material.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGridViewMaterial)).BeginInit();
@@ -126,7 +127,7 @@
             // 
             // 
             // 
-            this.radGridViewMaterial.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.radGridViewMaterial.MasterTemplate.ViewDefinition = tableViewDefinition5;
             this.radGridViewMaterial.Name = "radGridViewMaterial";
             this.radGridViewMaterial.Size = new System.Drawing.Size(622, 159);
             this.radGridViewMaterial.TabIndex = 8;
@@ -221,7 +222,7 @@
             // 
             // 
             // 
-            this.radGridViewSn.MasterTemplate.ViewDefinition = tableViewDefinition2;
+            this.radGridViewSn.MasterTemplate.ViewDefinition = tableViewDefinition6;
             this.radGridViewSn.Name = "radGridViewSn";
             this.radGridViewSn.Size = new System.Drawing.Size(622, 129);
             this.radGridViewSn.TabIndex = 10;
@@ -325,7 +326,7 @@
             // 
             // 
             // 
-            this.radGridViewPackage.MasterTemplate.ViewDefinition = tableViewDefinition3;
+            this.radGridViewPackage.MasterTemplate.ViewDefinition = tableViewDefinition7;
             this.radGridViewPackage.Name = "radGridViewPackage";
             this.radGridViewPackage.Size = new System.Drawing.Size(656, 126);
             this.radGridViewPackage.TabIndex = 35;
@@ -420,7 +421,7 @@
             // 
             // 
             // 
-            this.radGridViewCheck.MasterTemplate.ViewDefinition = tableViewDefinition4;
+            this.radGridViewCheck.MasterTemplate.ViewDefinition = tableViewDefinition8;
             this.radGridViewCheck.Name = "radGridViewCheck";
             this.radGridViewCheck.Size = new System.Drawing.Size(768, 115);
             this.radGridViewCheck.TabIndex = 10;
@@ -445,7 +446,8 @@
             this.toolStripLabel8,
             this.tool_productCheck_exportFilter,
             this.tool_productCheck_export,
-            this.btn_productCheck});
+            this.btn_productCheck,
+            this.toolStripComboBox1});
             this.toolStrip4.Location = new System.Drawing.Point(0, 0);
             this.toolStrip4.Name = "toolStrip4";
             this.toolStrip4.Size = new System.Drawing.Size(768, 40);
@@ -501,7 +503,7 @@
             // menu_sn_result
             // 
             this.menu_sn_result.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.menu_sn_result.Image = global::MesManager.Properties.Resources.bullet_add;
+            this.menu_sn_result.Image = global::MesManager.Properties.Resources.terminal_seats_red;
             this.menu_sn_result.Name = "menu_sn_result";
             this.menu_sn_result.Text = "SN过站记录";
             this.menu_sn_result.UseCompatibleTextRendering = false;
@@ -509,7 +511,7 @@
             // menu_package
             // 
             this.menu_package.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.menu_package.Image = ((System.Drawing.Image)(resources.GetObject("menu_package.Image")));
+            this.menu_package.Image = global::MesManager.Properties.Resources.PackageProduct_16x16;
             this.menu_package.Name = "menu_package";
             this.menu_package.Shape = null;
             this.menu_package.Text = "包装信息";
@@ -518,7 +520,7 @@
             // menu_material
             // 
             this.menu_material.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.menu_material.Image = global::MesManager.Properties.Resources.update;
+            this.menu_material.Image = global::MesManager.Properties.Resources.Product_16x16;
             this.menu_material.Name = "menu_material";
             this.menu_material.Text = "物料信息";
             this.menu_material.UseCompatibleTextRendering = false;
@@ -526,10 +528,15 @@
             // menu_productCheck
             // 
             this.menu_productCheck.ForeColor = System.Drawing.Color.White;
-            this.menu_productCheck.Image = global::MesManager.Properties.Resources.ClearGrid;
+            this.menu_productCheck.Image = ((System.Drawing.Image)(resources.GetObject("menu_productCheck.Image")));
             this.menu_productCheck.Name = "menu_productCheck";
             this.menu_productCheck.Text = "成品抽检";
             this.menu_productCheck.UseCompatibleTextRendering = false;
+            // 
+            // toolStripComboBox1
+            // 
+            this.toolStripComboBox1.Name = "toolStripComboBox1";
+            this.toolStripComboBox1.Size = new System.Drawing.Size(121, 40);
             // 
             // SNCenter
             // 
@@ -550,7 +557,7 @@
             this.radMenu1.Location = new System.Drawing.Point(0, 0);
             this.radMenu1.Name = "radMenu1";
             this.radMenu1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.radMenu1.Size = new System.Drawing.Size(1361, 36);
+            this.radMenu1.Size = new System.Drawing.Size(1361, 26);
             this.radMenu1.TabIndex = 26;
             this.Controls.Add(this.panel_productCheck);
             this.Controls.Add(this.panel_package);
@@ -649,6 +656,7 @@
         private System.Windows.Forms.ToolStripComboBox tool_package_exportFilter;
         private System.Windows.Forms.ToolStripLabel toolStripLabel8;
         private System.Windows.Forms.ToolStripComboBox tool_productCheck_exportFilter;
+        private System.Windows.Forms.ToolStripComboBox toolStripComboBox1;
         private Telerik.WinControls.UI.RadMenu radMenu1;
     }
 }

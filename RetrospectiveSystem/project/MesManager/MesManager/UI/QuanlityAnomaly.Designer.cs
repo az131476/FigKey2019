@@ -33,6 +33,7 @@
             this.rbtn_material_stock = new Telerik.WinControls.UI.RadRadioButton();
             this.rbtn_material_produce = new Telerik.WinControls.UI.RadRadioButton();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.cb_materialState = new System.Windows.Forms.ComboBox();
             this.radLabel10 = new Telerik.WinControls.UI.RadLabel();
             this.cb_station = new System.Windows.Forms.ComboBox();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
@@ -51,7 +52,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.rbtn_material_process = new Telerik.WinControls.UI.RadRadioButton();
-            this.cb_materialState = new System.Windows.Forms.ComboBox();
+            this.breezeTheme1 = new Telerik.WinControls.Themes.BreezeTheme();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rbtn_material_stock)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rbtn_material_produce)).BeginInit();
@@ -124,6 +125,15 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(714, 341);
             this.panel1.TabIndex = 5;
+            // 
+            // cb_materialState
+            // 
+            this.cb_materialState.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cb_materialState.FormattingEnabled = true;
+            this.cb_materialState.Location = new System.Drawing.Point(467, 106);
+            this.cb_materialState.Name = "cb_materialState";
+            this.cb_materialState.Size = new System.Drawing.Size(221, 25);
+            this.cb_materialState.TabIndex = 23;
             // 
             // radLabel10
             // 
@@ -251,21 +261,25 @@
             // btn_apply
             // 
             this.btn_apply.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_apply.Image = global::MesManager.Properties.Resources.Apply_16x16;
             this.btn_apply.Location = new System.Drawing.Point(520, 508);
             this.btn_apply.Name = "btn_apply";
             this.btn_apply.Size = new System.Drawing.Size(89, 24);
             this.btn_apply.TabIndex = 6;
             this.btn_apply.Text = "结单";
+            this.btn_apply.ThemeName = "Breeze";
             this.btn_apply.Click += new System.EventHandler(this.Btn_apply_Click);
             // 
             // btn_cancel
             // 
             this.btn_cancel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_cancel.Image = global::MesManager.Properties.Resources.Cancel_16x16;
             this.btn_cancel.Location = new System.Drawing.Point(634, 508);
             this.btn_cancel.Name = "btn_cancel";
             this.btn_cancel.Size = new System.Drawing.Size(93, 24);
             this.btn_cancel.TabIndex = 7;
             this.btn_cancel.Text = "取消";
+            this.btn_cancel.ThemeName = "Breeze";
             this.btn_cancel.Click += new System.EventHandler(this.Btn_cancel_Click);
             // 
             // groupBox1
@@ -301,15 +315,6 @@
             this.rbtn_material_process.Size = new System.Drawing.Size(105, 21);
             this.rbtn_material_process.TabIndex = 4;
             this.rbtn_material_process.Text = "生产过程异常";
-            // 
-            // cb_materialState
-            // 
-            this.cb_materialState.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cb_materialState.FormattingEnabled = true;
-            this.cb_materialState.Location = new System.Drawing.Point(467, 106);
-            this.cb_materialState.Name = "cb_materialState";
-            this.cb_materialState.Size = new System.Drawing.Size(221, 25);
-            this.cb_materialState.TabIndex = 23;
             // 
             // QuanlityAnomaly
             // 
@@ -378,5 +383,6 @@
         private System.Windows.Forms.ComboBox cb_station;
         private Telerik.WinControls.UI.RadLabel radLabel10;
         private System.Windows.Forms.ComboBox cb_materialState;
+        private Telerik.WinControls.Themes.BreezeTheme breezeTheme1;
     }
 }

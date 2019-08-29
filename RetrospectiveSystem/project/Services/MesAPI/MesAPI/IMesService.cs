@@ -157,7 +157,7 @@ namespace MesAPI
         DataSet SelectTestLogDataDetail(string queryFilter,string startDate, string endDate);
 
         [OperationContract]
-        DataSet SelectTodayTestLogData(string queryFilter);
+        DataSet SelectTodayTestLogData(string queryFilter, string startTime, string endTime);
 
         [OperationContract]
         int UpdateQuanlityData(string eType, string mCode, string sDate, string stock, string aStock, string station,

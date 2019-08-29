@@ -178,7 +178,6 @@ namespace MesManager.UI
             GridViewComboBoxColumn materialCode = this.radGridView1.Columns[DataGridViewColumnName.rdvc_materialCode.ToString()] as GridViewComboBoxColumn;
             GridViewComboBoxColumn productTypeNo = this.radGridView1.Columns[DataGridViewColumnName.rdvc_typeNo.ToString()] as GridViewComboBoxColumn;
             GridViewTextBoxColumn describle = this.radGridView1.Columns[DataGridViewColumnName.rdvc_describle.ToString()] as GridViewTextBoxColumn;
-
             DataTable materialCodeDt = (await serviceClient.SelectMaterialAsync()).Tables[0];//0
             DataTable typeNoDt = (await serviceClient.SelectProductContinairCapacityAsync("")).Tables[0];//1
 
@@ -189,7 +188,12 @@ namespace MesManager.UI
 
             for (int i = 0; i < materialCodeDt.Rows.Count; i++)
             {
-                materialListTemp.Add(materialCodeDt.Rows[i][0].ToString());
+                var materialCodeTmp = materialCodeDt.Rows[i][0].ToString();
+                var materialPN = materialCodeTmp.Substring(0,materialCodeTmp.IndexOf('@'));
+                if (!materialListTemp.Contains(materialPN))
+                {
+                    materialListTemp.Add(materialPN);
+                }
             }
             for (int i = 0; i < typeNoDt.Rows.Count; i++)
             {

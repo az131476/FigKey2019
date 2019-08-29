@@ -793,10 +793,10 @@ namespace MesManager.MesService {
         System.Threading.Tasks.Task<System.Data.DataSet> SelectTestLogDataDetailAsync(string queryFilter, string startDate, string endDate);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectTodayTestLogData", ReplyAction="http://tempuri.org/IMesService/SelectTodayTestLogDataResponse")]
-        System.Data.DataSet SelectTodayTestLogData(string queryFilter);
+        System.Data.DataSet SelectTodayTestLogData(string queryFilter, string startTime, string endTime);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectTodayTestLogData", ReplyAction="http://tempuri.org/IMesService/SelectTodayTestLogDataResponse")]
-        System.Threading.Tasks.Task<System.Data.DataSet> SelectTodayTestLogDataAsync(string queryFilter);
+        System.Threading.Tasks.Task<System.Data.DataSet> SelectTodayTestLogDataAsync(string queryFilter, string startTime, string endTime);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/UpdateQuanlityData", ReplyAction="http://tempuri.org/IMesService/UpdateQuanlityDataResponse")]
         int UpdateQuanlityData(string eType, string mCode, string sDate, string stock, string aStock, string station, string state, string reason, string user);
@@ -1150,12 +1150,12 @@ namespace MesManager.MesService {
             return base.Channel.SelectTestLogDataDetailAsync(queryFilter, startDate, endDate);
         }
         
-        public System.Data.DataSet SelectTodayTestLogData(string queryFilter) {
-            return base.Channel.SelectTodayTestLogData(queryFilter);
+        public System.Data.DataSet SelectTodayTestLogData(string queryFilter, string startTime, string endTime) {
+            return base.Channel.SelectTodayTestLogData(queryFilter, startTime, endTime);
         }
         
-        public System.Threading.Tasks.Task<System.Data.DataSet> SelectTodayTestLogDataAsync(string queryFilter) {
-            return base.Channel.SelectTodayTestLogDataAsync(queryFilter);
+        public System.Threading.Tasks.Task<System.Data.DataSet> SelectTodayTestLogDataAsync(string queryFilter, string startTime, string endTime) {
+            return base.Channel.SelectTodayTestLogDataAsync(queryFilter, startTime, endTime);
         }
         
         public int UpdateQuanlityData(string eType, string mCode, string sDate, string stock, string aStock, string station, string state, string reason, string user) {
