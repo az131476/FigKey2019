@@ -64,7 +64,7 @@
             this.radMenu1.Location = new System.Drawing.Point(0, 0);
             this.radMenu1.Name = "radMenu1";
             this.radMenu1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.radMenu1.Size = new System.Drawing.Size(1088, 36);
+            this.radMenu1.Size = new System.Drawing.Size(1272, 36);
             this.radMenu1.TabIndex = 12;
             // 
             // menu_add_row
@@ -134,7 +134,7 @@
             gridViewComboBoxColumn1.HeaderText = "产品型号";
             gridViewComboBoxColumn1.Name = "rdvc_typeNo";
             gridViewComboBoxColumn2.EnableExpressionEditor = false;
-            gridViewComboBoxColumn2.HeaderText = "物料编码";
+            gridViewComboBoxColumn2.HeaderText = "物料名称";
             gridViewComboBoxColumn2.Name = "rdvc_materialCode";
             gridViewTextBoxColumn2.EnableExpressionEditor = false;
             gridViewTextBoxColumn2.HeaderText = "描述";
@@ -155,7 +155,7 @@
             this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.radGridView1.Name = "radGridView1";
             this.radGridView1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.radGridView1.Size = new System.Drawing.Size(1088, 686);
+            this.radGridView1.Size = new System.Drawing.Size(1272, 686);
             this.radGridView1.TabIndex = 13;
             // 
             // ProductMaterial
@@ -163,7 +163,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SteelBlue;
-            this.ClientSize = new System.Drawing.Size(1088, 722);
+            this.ClientSize = new System.Drawing.Size(1272, 722);
             this.Controls.Add(this.radGridView1);
             this.Controls.Add(this.radMenu1);
             this.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

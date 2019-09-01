@@ -261,6 +261,18 @@
   <wsdl:message name="IMesService_UpdateMaterialStateMent_OutputMessage">
     <wsdl:part name="parameters" element="tns:UpdateMaterialStateMentResponse" />
   </wsdl:message>
+  <wsdl:message name="IMesService_SelectQuanlityManager_InputMessage">
+    <wsdl:part name="parameters" element="tns:SelectQuanlityManager" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_SelectQuanlityManager_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SelectQuanlityManagerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_SelectMaterialName_InputMessage">
+    <wsdl:part name="parameters" element="tns:SelectMaterialName" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_SelectMaterialName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SelectMaterialNameResponse" />
+  </wsdl:message>
   <wsdl:portType name="IMesService">
     <wsdl:operation name="TestCommunication">
       <wsdl:input wsaw:Action="http://tempuri.org/IMesService/TestCommunication" message="tns:IMesService_TestCommunication_InputMessage" />
@@ -429,6 +441,14 @@
     <wsdl:operation name="UpdateMaterialStateMent">
       <wsdl:input wsaw:Action="http://tempuri.org/IMesService/UpdateMaterialStateMent" message="tns:IMesService_UpdateMaterialStateMent_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMesService/UpdateMaterialStateMentResponse" message="tns:IMesService_UpdateMaterialStateMent_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectQuanlityManager">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/SelectQuanlityManager" message="tns:IMesService_SelectQuanlityManager_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/SelectQuanlityManagerResponse" message="tns:IMesService_SelectQuanlityManager_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectMaterialName">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/SelectMaterialName" message="tns:IMesService_SelectMaterialName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/SelectMaterialNameResponse" message="tns:IMesService_SelectMaterialName_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IMesService" type="tns:IMesService">
@@ -804,6 +824,24 @@
     </wsdl:operation>
     <wsdl:operation name="UpdateMaterialStateMent">
       <soap:operation soapAction="http://tempuri.org/IMesService/UpdateMaterialStateMent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectQuanlityManager">
+      <soap:operation soapAction="http://tempuri.org/IMesService/SelectQuanlityManager" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectMaterialName">
+      <soap:operation soapAction="http://tempuri.org/IMesService/SelectMaterialName" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

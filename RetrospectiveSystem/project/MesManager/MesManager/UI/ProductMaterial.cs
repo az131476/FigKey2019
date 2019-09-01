@@ -65,7 +65,12 @@ namespace MesManager.UI
             if (this.radGridView1.CurrentRow.Cells[1].Value != null)
                 curTypeNo = this.radGridView1.CurrentRow.Cells[1].Value.ToString();
             if (this.radGridView1.CurrentRow.Cells[2].Value != null)
-                curMaterialCode = this.radGridView1.CurrentRow.Cells[2].Value.ToString();
+            {
+                var materialPn = this.radGridView1.CurrentRow.Cells[2].Value.ToString();
+                if(materialPn.Contains("("))
+                    materialPn = materialPn.Substring(0, materialPn.IndexOf('('));
+                curMaterialCode = materialPn;
+            }
 
             if (curMaterialCode != keyMaterialCode || curTypeNo != keyTypeNo)
             {
@@ -83,7 +88,12 @@ namespace MesManager.UI
             if (this.radGridView1.CurrentRow.Cells[1].Value != null)
                 keyTypeNo = this.radGridView1.CurrentRow.Cells[1].Value.ToString();
             if (this.radGridView1.CurrentRow.Cells[2].Value != null)
-                keyMaterialCode = this.radGridView1.CurrentRow.Cells[2].Value.ToString();
+            {
+                var materialPN =  this.radGridView1.CurrentRow.Cells[2].Value.ToString();
+                if(materialPN.Contains("("))
+                    materialPN = materialPN.Substring(0, materialPN.IndexOf('('));
+                keyMaterialCode = materialPN;
+            }
         }
 
         private void RadGridView1_ContextMenuOpening(object sender, ContextMenuOpeningEventArgs e)
@@ -186,18 +196,36 @@ namespace MesManager.UI
 
             this.radGridView1.BeginEdit();
 
-            for (int i = 0; i < materialCodeDt.Rows.Count; i++)
+            if (materialCodeDt.Rows.Count > 0)
             {
-                var materialCodeTmp = materialCodeDt.Rows[i][0].ToString();
-                var materialPN = materialCodeTmp.Substring(0,materialCodeTmp.IndexOf('@'));
-                if (!materialListTemp.Contains(materialPN))
+                for (int i = 0; i < materialCodeDt.Rows.Count; i++)
                 {
-                    materialListTemp.Add(materialPN);
+                    var materialCodeTmp = materialCodeDt.Rows[i][0].ToString();
+                    var materialName = materialCodeDt.Rows[i][1].ToString();
+                    var materialPN = "";
+                    if (materialCodeTmp.Contains("@"))
+                    {
+                        materialPN = materialCodeTmp.Substring(0, materialCodeTmp.IndexOf('@'));
+                    }
+                    if (!materialListTemp.Contains(materialPN) && materialPN != "")
+                    {
+                        if (!string.IsNullOrEmpty(materialName))
+                        {
+                            materialListTemp.Add(materialPN + "(" + materialName + ")");
+                        }
+                        else
+                        {
+                            materialListTemp.Add(materialPN);
+                        }
+                    }
                 }
             }
-            for (int i = 0; i < typeNoDt.Rows.Count; i++)
+            if (typeNoDt.Rows.Count > 0)
             {
-                typeNoListTemp.Add(typeNoDt.Rows[i][0].ToString());
+                for (int i = 0; i < typeNoDt.Rows.Count; i++)
+                {
+                    typeNoListTemp.Add(typeNoDt.Rows[i][0].ToString());
+                }
             }
             materialCode.DataSource = materialListTemp;
             productTypeNo.DataSource = typeNoListTemp;
@@ -223,7 +251,10 @@ namespace MesManager.UI
                     productMaterial.TypeNo = rowInfo.Cells[1].Value.ToString();
                 if (rowInfo.Cells[2].Value != null)
                 {
-                    productMaterial.MaterialCode = rowInfo.Cells[2].Value.ToString();
+                    var materialPn = rowInfo.Cells[2].Value.ToString();
+                    if(materialPn.Contains("("))
+                        materialPn = materialPn.Substring(0, materialPn.IndexOf('('));
+                    productMaterial.MaterialCode = materialPn;
                     //更新编码库存
                     if (productMaterial.MaterialCode.Contains("@"))
                     {
@@ -312,10 +343,15 @@ namespace MesManager.UI
                 this.radGridView1.Rows.AddNew();
                 this.radGridView1.Rows[i].Cells[0].Value = i + 1;
                 this.radGridView1.Rows[i].Cells[1].Value = dt.Rows[i][0].ToString();
-                this.radGridView1.Rows[i].Cells[2].Value = dt.Rows[i][1].ToString();
                 this.radGridView1.Rows[i].Cells[3].Value = dt.Rows[i][2].ToString();
                 this.radGridView1.Rows[i].Cells[4].Value = dt.Rows[i][3].ToString();
                 this.radGridView1.Rows[i].Cells[5].Value = dt.Rows[i][4].ToString();
+                var materialName = dt.Rows[i][5].ToString();
+                if (materialName != "")
+                {
+                    materialName = "(" + materialName + ")";
+                }
+                this.radGridView1.Rows[i].Cells[2].Value = dt.Rows[i][1].ToString() + materialName;
             }
             //删除空行
             int startIndex = dt.Rows.Count;

@@ -21,6 +21,13 @@ namespace MesManager.UI
     {
         private MesService.MesServiceClient serviceClient;
         private TestStandDataType currentDataType;
+        private const string LOG_ORDER = "序号";
+        private const string LOG_TYPE_NO = "产品型号";
+        private const string LOG_SN = "产品SN";
+        private const string LOG_STATION_NAME = "工站名称";
+        private const string LOG_TEST_RESULT = "测试结果";
+        private DataTable dataSource;
+
         public TestStand()
         {
             InitializeComponent();
@@ -45,6 +52,7 @@ namespace MesManager.UI
         private void TestStand_Load(object sender, EventArgs e)
         {
             Init();
+            InitDataTable();
             EventHandlers();
         }
 
@@ -56,6 +64,43 @@ namespace MesManager.UI
             tool_queryCondition.SelectedIndexChanged += Tool_productTypeNo_SelectedIndexChanged;
             this.radGridView1.CellDoubleClick += RadGridView1_CellDoubleClick;
             this.tool_export.Click += Tool_export_Click;
+            this.rbtn_today.Click += Rbtn_today_Click;
+            this.rbtn_oneMonth.Click += Rbtn_oneMonth_Click;
+            this.rbtn_threeMonth.Click += Rbtn_threeMonth_Click;
+            this.rbtn_oneYear.Click += Rbtn_oneYear_Click;
+        }
+
+        private void Rbtn_oneYear_Click(object sender, EventArgs e)
+        {
+            RefreshUI();
+        }
+
+        private void Rbtn_threeMonth_Click(object sender, EventArgs e)
+        {
+            RefreshUI();
+        }
+
+        private void Rbtn_oneMonth_Click(object sender, EventArgs e)
+        {
+            RefreshUI();
+        }
+
+        private void Rbtn_today_Click(object sender, EventArgs e)
+        {
+            RefreshUI();
+        }
+
+        private void InitDataTable()
+        {
+            if (dataSource == null)
+            {
+                dataSource = new DataTable();
+                dataSource.Columns.Add(LOG_ORDER);
+                dataSource.Columns.Add(LOG_TYPE_NO);
+                dataSource.Columns.Add(LOG_SN);
+                dataSource.Columns.Add(LOG_STATION_NAME);
+                dataSource.Columns.Add(LOG_TEST_RESULT);
+            }
         }
 
         private void Tool_export_Click(object sender, EventArgs e)
@@ -67,10 +112,10 @@ namespace MesManager.UI
         {
             if (currentDataType != TestStandDataType.TEST_LOG_DATA)
                 return;
-            var productTypeNo = this.radGridView1.CurrentRow.Cells[0].Value.ToString();
-            var productSN = this.radGridView1.CurrentRow.Cells[1].Value.ToString();
-            var stationName = this.radGridView1.CurrentRow.Cells[2].Value.ToString();
-            TestLogDetail testLogDetail = new TestLogDetail(productTypeNo,productSN,stationName);
+            var productTypeNo = this.radGridView1.CurrentRow.Cells[1].Value.ToString();
+            var productSN = this.radGridView1.CurrentRow.Cells[2].Value.ToString();
+            var stationName = this.radGridView1.CurrentRow.Cells[3].Value.ToString();
+            TestLogDetail testLogDetail = new TestLogDetail(productSN);
             testLogDetail.ShowDialog();
         }
 
@@ -111,7 +156,34 @@ namespace MesManager.UI
             }
             else if (currentDataType == TestStandDataType.TEST_LOG_DATA)
             {
-                SelectTestLogData(this.tool_queryCondition.Text,this.pickerStartTime.Text,this.pickerEndTime.Text);
+                var startTime = "";
+                var endTime = "";
+                if (rbtn_today.Checked)
+                {
+                    startTime = DateTime.Now.ToString("yyyy-MM-dd")+" 00:00:00";
+                    endTime = DateTime.Now.ToString("yyyy-MM-dd")+" 23:59:59";
+                }
+                else if (rbtn_oneMonth.Checked)
+                {
+                    startTime = DateTime.Now.AddMonths(-1).ToString("yyyy-MM-dd") + " 00:00:00";
+                    endTime = DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59";
+                }
+                else if (rbtn_threeMonth.Checked)
+                {
+                    startTime = DateTime.Now.AddMonths(-3).ToString("yyyy-MM-dd") + " 00:00:00";
+                    endTime = DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59";
+                }
+                else if (rbtn_oneYear.Checked)
+                {
+                    startTime = DateTime.Now.AddYears(-1).ToString("yyyy-MM-dd") + " 00:00:00";
+                    endTime = DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59";
+                }
+                else if (rbtn_custom.Checked)
+                {
+                    startTime = this.pickerStartTime.Text;
+                    endTime = this.pickerEndTime.Text;
+                }
+                SelectTestLogData(this.tool_queryCondition.Text,startTime,endTime);
                 this.radGridView1.Dock = DockStyle.Fill;
                 this.radGridView1.Visible = true;
                 this.panel1.Visible = false;
@@ -140,6 +212,7 @@ namespace MesManager.UI
                     this.tool_queryCondition.Items.Add(dt.Rows[i][0].ToString());
                 }
             }
+            rbtn_today.Checked = true;
             //init treeview
             string path = @"D:\work\project\FigKey\RetrospectiveSystem\project\IIS";
             ImageList imageList = new ImageList();
@@ -149,37 +222,47 @@ namespace MesManager.UI
 
             currentDataType = TestStandDataType.TEST_LOG_DATA;
             this.panel2.Visible = true;
+            this.pickerStartTime.Text = DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00";
+            this.pickerEndTime.Text = DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59";
+
             RefreshUI();
         }
 
         async private void SelectTestLimitConfig(string productTypeNo)
         {
             var dt = (await serviceClient.SelectTestLimitConfigAsync(productTypeNo)).Tables[0];
-            if (dt.Rows.Count < 1)
-                return;
             this.radGridView1.DataSource = null;
             this.radGridView1.DataSource = dt;
+            this.radGridView1.Columns[0].BestFit();
         }
 
         async private void SelectTestProgrameVersion(string productTypeNo)
         {
             var dt = (await serviceClient.SelectTestProgrameVersionAsync(productTypeNo)).Tables[0];
-            if (dt.Rows.Count < 1)
-                return;
             this.radGridView1.DataSource = null;
             this.radGridView1.DataSource = dt;
+            this.radGridView1.Columns[0].BestFit();
         }
 
         async private void SelectTestLogData(string queryFilter,string startTime,string endTime)
         {
             var dt = (await serviceClient.SelectTodayTestLogDataAsync(queryFilter,startTime,endTime)).Tables[0];
-            if (dt.Rows.Count < 1)
+            dataSource.Clear();
+            if (dt.Rows.Count > 0)
             {
-                MessageBox.Show("无查询结果","提示",MessageBoxButtons.OK,MessageBoxIcon.Information);
-                return;
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    DataRow dr = dataSource.NewRow();
+                    dr[LOG_ORDER] = i + 1;
+                    dr[LOG_TYPE_NO] = dt.Rows[i][0].ToString();
+                    dr[LOG_SN] = dt.Rows[i][1].ToString();
+                    dr[LOG_STATION_NAME] = dt.Rows[i][2].ToString();
+                    dr[LOG_TEST_RESULT] = dt.Rows[i][3].ToString();
+                    dataSource.Rows.Add(dr);
+                }
             }
-            this.radGridView1.DataSource = null;
-            this.radGridView1.DataSource = dt;
+            this.radGridView1.DataSource = dataSource;
+            this.radGridView1.Columns[0].BestFit();
         }
 
         private void ExportGridViewData(int selectIndex, RadGridView radGridView)

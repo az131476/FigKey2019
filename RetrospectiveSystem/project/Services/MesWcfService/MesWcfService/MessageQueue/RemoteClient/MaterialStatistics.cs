@@ -79,7 +79,8 @@ namespace MesWcfService.MessageQueue.RemoteClient
             var materialPN = materialCode.Substring(0,materialCode.IndexOf('@'));
 
             //根据物料号+产品型号查询是否有统计计数记录
-            var selectRecordSQL = $"SELECT {DbTable.F_Material_Statistics.MATERIAL_CODE} FROM {DbTable.F_MATERIAL_STATISTICS_NAME} WHERE " +
+            var selectRecordSQL = $"SELECT {DbTable.F_Material_Statistics.MATERIAL_CODE} FROM " +
+                $"{DbTable.F_MATERIAL_STATISTICS_NAME} WHERE " +
                 $"{DbTable.F_Material_Statistics.PRODUCT_TYPE_NO} = '{productTypeNo}' AND " +
                 $"{DbTable.F_Material_Statistics.MATERIAL_CODE} like '%{materialPN}'";
             var dt = SQLServer.ExecuteDataSet(selectRecordSQL).Tables[0];
@@ -146,9 +147,11 @@ namespace MesWcfService.MessageQueue.RemoteClient
                  * 则为第一次扫描该物料编码
                  * 直接查询物料信息表中该物料状态反馈即可
                  */
+                LogHelper.Log.Info("【物料防错-状态-无统计记录-直接查询状态】");
                 string cRes = CheckMaterialTypeMatch(productTypeNo, materialPN);
                 if (cRes == ConvertCheckMaterialMatch(MaterialCheckMatchReturnCode.IS_NOT_MATCH))
                 {
+                    LogHelper.Log.Info("【物料防错-状态-物料号与当前产品不匹配】");
                     return ConvertCheckMaterialStateCode(MaterialStateReturnCode.ERROR_MATRIAL_CODE_IS_NOT_MATCH_WITH_PRODUCT_TYPENO);
                 }
                 return SelectMaterialState(materialCode);
@@ -160,7 +163,7 @@ namespace MesWcfService.MessageQueue.RemoteClient
             var selectSQl = $"SELECT {DbTable.F_Material.MATERIAL_STATE} " +
                $"FROM {DbTable.F_MATERIAL_NAME} WHERE " +
                $"{DbTable.F_Material.MATERIAL_CODE} = '{materialCode}'";
-
+            LogHelper.Log.Info(selectSQl);
             var dt = SQLServer.ExecuteDataSet(selectSQl).Tables[0];
             if (dt.Rows.Count < 1)
                 return ConvertCheckMaterialStateCode(MaterialStateReturnCode.STATUS_NULL_QUERY);

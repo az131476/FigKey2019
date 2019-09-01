@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TestStand));
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition3 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.panel1 = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -56,12 +56,18 @@
             this.tool_specCfg = new System.Windows.Forms.ToolStripButton();
             this.tool_logData = new System.Windows.Forms.ToolStripButton();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btn_search = new Telerik.WinControls.UI.RadButton();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.pickerEndTime = new Telerik.WinControls.UI.RadDateTimePicker();
             this.pickerStartTime = new Telerik.WinControls.UI.RadDateTimePicker();
             this.radGridView1 = new Telerik.WinControls.UI.RadGridView();
-            this.btn_search = new Telerik.WinControls.UI.RadButton();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.rbtn_custom = new System.Windows.Forms.RadioButton();
+            this.rbtn_today = new System.Windows.Forms.RadioButton();
+            this.rbtn_oneMonth = new System.Windows.Forms.RadioButton();
+            this.rbtn_threeMonth = new System.Windows.Forms.RadioButton();
+            this.rbtn_oneYear = new System.Windows.Forms.RadioButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -70,11 +76,12 @@
             this.toolStrip2.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_search)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pickerEndTime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pickerStartTime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btn_search)).BeginInit();
+            this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -82,7 +89,7 @@
             // 
             this.statusStrip1.Location = new System.Drawing.Point(0, 632);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1187, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1272, 22);
             this.statusStrip1.TabIndex = 7;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -237,7 +244,7 @@
             this.tool_logData});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1187, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(1272, 27);
             this.toolStrip1.TabIndex = 13;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -250,7 +257,7 @@
             // 
             // tool_queryCondition
             // 
-            this.tool_queryCondition.ForeColor = System.Drawing.Color.White;
+            this.tool_queryCondition.ForeColor = System.Drawing.Color.SteelBlue;
             this.tool_queryCondition.Name = "tool_queryCondition";
             this.tool_queryCondition.Size = new System.Drawing.Size(121, 27);
             // 
@@ -292,6 +299,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.tableLayoutPanel1);
             this.panel2.Controls.Add(this.btn_search);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.label2);
@@ -300,14 +308,26 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 27);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1187, 55);
+            this.panel2.Size = new System.Drawing.Size(1272, 55);
             this.panel2.TabIndex = 14;
+            // 
+            // btn_search
+            // 
+            this.btn_search.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_search.Image = global::MesManager.Properties.Resources.Search_16x16;
+            this.btn_search.Location = new System.Drawing.Point(1087, 15);
+            this.btn_search.Name = "btn_search";
+            this.btn_search.Size = new System.Drawing.Size(88, 25);
+            this.btn_search.TabIndex = 8;
+            this.btn_search.Text = "查询";
+            this.btn_search.ThemeName = "Breeze";
+            this.btn_search.Click += new System.EventHandler(this.Btn_search_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(26, 28);
+            this.label1.Location = new System.Drawing.Point(466, 22);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(59, 13);
             this.label1.TabIndex = 6;
@@ -317,7 +337,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(281, 28);
+            this.label2.Location = new System.Drawing.Point(731, 21);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(59, 13);
             this.label2.TabIndex = 7;
@@ -327,8 +347,9 @@
             // 
             this.pickerEndTime.CustomFormat = "yyyy-MM-dd HH:mm:ss";
             this.pickerEndTime.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pickerEndTime.ForeColor = System.Drawing.Color.SteelBlue;
             this.pickerEndTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.pickerEndTime.Location = new System.Drawing.Point(346, 19);
+            this.pickerEndTime.Location = new System.Drawing.Point(796, 12);
             this.pickerEndTime.Name = "pickerEndTime";
             this.pickerEndTime.Size = new System.Drawing.Size(169, 23);
             this.pickerEndTime.TabIndex = 5;
@@ -340,9 +361,9 @@
             // 
             this.pickerStartTime.CustomFormat = "yyyy-MM-dd HH:mm:ss";
             this.pickerStartTime.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pickerStartTime.ForeColor = System.Drawing.Color.Black;
+            this.pickerStartTime.ForeColor = System.Drawing.Color.SteelBlue;
             this.pickerStartTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.pickerStartTime.Location = new System.Drawing.Point(91, 19);
+            this.pickerStartTime.Location = new System.Drawing.Point(531, 13);
             this.pickerStartTime.Name = "pickerStartTime";
             this.pickerStartTime.Size = new System.Drawing.Size(171, 23);
             this.pickerStartTime.TabIndex = 4;
@@ -357,29 +378,103 @@
             // 
             // 
             // 
-            this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition3;
+            this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.radGridView1.Name = "radGridView1";
             this.radGridView1.Size = new System.Drawing.Size(1175, 168);
             this.radGridView1.TabIndex = 15;
             // 
-            // btn_search
+            // tableLayoutPanel1
             // 
-            this.btn_search.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_search.Image = global::MesManager.Properties.Resources.Search_16x16;
-            this.btn_search.Location = new System.Drawing.Point(575, 19);
-            this.btn_search.Name = "btn_search";
-            this.btn_search.Size = new System.Drawing.Size(88, 25);
-            this.btn_search.TabIndex = 8;
-            this.btn_search.Text = "查询";
-            this.btn_search.ThemeName = "Breeze";
-            this.btn_search.Click += new System.EventHandler(this.Btn_search_Click);
+            this.tableLayoutPanel1.ColumnCount = 5;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 41.61074F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 58.38926F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 98F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 85F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 104F));
+            this.tableLayoutPanel1.Controls.Add(this.rbtn_threeMonth, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.rbtn_oneMonth, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.rbtn_today, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.rbtn_oneYear, 3, 0);
+            this.tableLayoutPanel1.Controls.Add(this.rbtn_custom, 4, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(457, 55);
+            this.tableLayoutPanel1.TabIndex = 16;
+            // 
+            // rbtn_custom
+            // 
+            this.rbtn_custom.AutoSize = true;
+            this.rbtn_custom.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rbtn_custom.ForeColor = System.Drawing.Color.White;
+            this.rbtn_custom.Location = new System.Drawing.Point(355, 3);
+            this.rbtn_custom.Name = "rbtn_custom";
+            this.rbtn_custom.Size = new System.Drawing.Size(99, 49);
+            this.rbtn_custom.TabIndex = 13;
+            this.rbtn_custom.TabStop = true;
+            this.rbtn_custom.Text = "自定义日期";
+            this.rbtn_custom.UseVisualStyleBackColor = true;
+            // 
+            // rbtn_today
+            // 
+            this.rbtn_today.AutoSize = true;
+            this.rbtn_today.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rbtn_today.ForeColor = System.Drawing.Color.White;
+            this.rbtn_today.Location = new System.Drawing.Point(3, 3);
+            this.rbtn_today.Name = "rbtn_today";
+            this.rbtn_today.Size = new System.Drawing.Size(64, 49);
+            this.rbtn_today.TabIndex = 14;
+            this.rbtn_today.TabStop = true;
+            this.rbtn_today.Text = "当天";
+            this.rbtn_today.UseVisualStyleBackColor = true;
+            // 
+            // rbtn_oneMonth
+            // 
+            this.rbtn_oneMonth.AutoSize = true;
+            this.rbtn_oneMonth.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rbtn_oneMonth.ForeColor = System.Drawing.Color.White;
+            this.rbtn_oneMonth.Location = new System.Drawing.Point(73, 3);
+            this.rbtn_oneMonth.Name = "rbtn_oneMonth";
+            this.rbtn_oneMonth.Size = new System.Drawing.Size(93, 49);
+            this.rbtn_oneMonth.TabIndex = 15;
+            this.rbtn_oneMonth.TabStop = true;
+            this.rbtn_oneMonth.Text = "最近一个月";
+            this.rbtn_oneMonth.UseVisualStyleBackColor = true;
+            // 
+            // rbtn_threeMonth
+            // 
+            this.rbtn_threeMonth.AutoSize = true;
+            this.rbtn_threeMonth.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rbtn_threeMonth.ForeColor = System.Drawing.Color.White;
+            this.rbtn_threeMonth.Location = new System.Drawing.Point(172, 3);
+            this.rbtn_threeMonth.Name = "rbtn_threeMonth";
+            this.rbtn_threeMonth.Size = new System.Drawing.Size(92, 49);
+            this.rbtn_threeMonth.TabIndex = 16;
+            this.rbtn_threeMonth.TabStop = true;
+            this.rbtn_threeMonth.Text = "最近三个月";
+            this.rbtn_threeMonth.UseVisualStyleBackColor = true;
+            // 
+            // rbtn_oneYear
+            // 
+            this.rbtn_oneYear.AutoSize = true;
+            this.rbtn_oneYear.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rbtn_oneYear.ForeColor = System.Drawing.Color.White;
+            this.rbtn_oneYear.Location = new System.Drawing.Point(270, 3);
+            this.rbtn_oneYear.Name = "rbtn_oneYear";
+            this.rbtn_oneYear.Size = new System.Drawing.Size(79, 49);
+            this.rbtn_oneYear.TabIndex = 18;
+            this.rbtn_oneYear.TabStop = true;
+            this.rbtn_oneYear.Text = "最近一年";
+            this.rbtn_oneYear.UseVisualStyleBackColor = true;
             // 
             // TestStand
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SteelBlue;
-            this.ClientSize = new System.Drawing.Size(1187, 654);
+            this.ClientSize = new System.Drawing.Size(1272, 654);
             this.Controls.Add(this.radGridView1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.toolStrip1);
@@ -405,11 +500,13 @@
             this.toolStrip1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_search)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pickerEndTime)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pickerStartTime)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btn_search)).EndInit();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -449,5 +546,11 @@
         private Telerik.WinControls.UI.RadDateTimePicker pickerStartTime;
         private Telerik.WinControls.UI.RadGridView radGridView1;
         private Telerik.WinControls.UI.RadButton btn_search;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.RadioButton rbtn_threeMonth;
+        private System.Windows.Forms.RadioButton rbtn_oneMonth;
+        private System.Windows.Forms.RadioButton rbtn_today;
+        private System.Windows.Forms.RadioButton rbtn_oneYear;
+        private System.Windows.Forms.RadioButton rbtn_custom;
     }
 }

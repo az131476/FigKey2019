@@ -32,6 +32,8 @@ namespace MesWcfService.MessageQueue.RemoteClient
                     $"{DbTable.F_TEST_PROGRAME_VERSION.UPDATE_DATE}) VALUES(" +
                     $"'{typeNo}','{stationName}','{programeName}','{programeVersion}'," +
                     $"'{teamLeader}','{admin}','{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}')";
+                //if (IsExistVersion(typeNo, stationName, programeName, programeVersion, teamLeader, admin))
+                //    return "OK";
                 var res = SQLServer.ExecuteNonQuery(insertSQL);
                 if (res > 0)
                     return "OK";
@@ -46,6 +48,21 @@ namespace MesWcfService.MessageQueue.RemoteClient
                 LogHelper.Log.Error(ex.Message);
                 return "ERROR";
             }
+        }
+
+        private static bool IsExistVersion(string typeNo,string stationName,string programeName,string version,string teamLeader,string admin)
+        {
+            var selectSQL = $"SELECT * FROM {DbTable.F_TEST_PROGRAME_VERSION_NAME} WHERE " +
+                $"{DbTable.F_TEST_PROGRAME_VERSION.TYPE_NO} = '{typeNo}' AND " +
+                $"{DbTable.F_TEST_PROGRAME_VERSION.STATION_NAME} = '{stationName}' AND " +
+                $"{DbTable.F_TEST_PROGRAME_VERSION.PROGRAME_NAME} = '{programeName}' AND " +
+                $"{DbTable.F_TEST_PROGRAME_VERSION.PROGRAME_VERSION} = '{version}' AND " +
+                $"{DbTable.F_TEST_PROGRAME_VERSION.TEAM_LEADER} = '{teamLeader}' AND " +
+                $"{DbTable.F_TEST_PROGRAME_VERSION.ADMIN} = '{admin}'";
+            var dt = SQLServer.ExecuteDataSet(selectSQL).Tables[0];
+            if (dt.Rows.Count > 0)
+                return true;
+            return false;
         }
     }
 }

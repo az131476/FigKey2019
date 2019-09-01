@@ -41,7 +41,7 @@ namespace MesManager.UI
         {
             PrepareTitleBar();
             EventHandlers();
-            System.Threading.Thread.Sleep(100);
+            System.Threading.Thread.Sleep(3000);
         }
 
         private void TestCommunication()

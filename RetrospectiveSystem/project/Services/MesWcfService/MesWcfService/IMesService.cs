@@ -115,7 +115,7 @@ namespace MesWcfService
 
         #region 【接口】 UpdateLimitConfig 更新limit配置
         [OperationContract]
-        [SwaggerWcfPath("UpdateProgrameVersion", "更新测试程序版本号")]
+        [SwaggerWcfPath("UpdateProgrameVersion", "更新SPEC配置信息")]
         [WebInvoke(Method = "GET", UriTemplate = "UpdateLimitConfig?stationName={stationName}&typeNo={typeNo}&" +
             "testItem={testItem}&limit={limit}&teamLeader={teamLeader}&admin={admin}",
             BodyStyle = WebMessageBodyStyle.Bare,RequestFormat = WebMessageFormat.Json,ResponseFormat = WebMessageFormat.Json)]
@@ -184,6 +184,38 @@ namespace MesWcfService
         [WebInvoke(Method = "GET", UriTemplate = "SelectMaterialList?productTypeNo={productTypeNo}", BodyStyle = WebMessageBodyStyle.Bare,
             RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
         string[] SelectMaterialList([SwaggerWcfParameter(Description = "产品型号")]string productTypeNo);
+        #endregion
+
+        #region 【接口】 绑定PCBA
+        [OperationContract]
+        [SwaggerWcfPath("BindingPCBA", "绑定产品PCBA")]
+        [WebInvoke(Method = "GET", UriTemplate = "BindingPCBA?snPCBA={snPCBA}&snOutter={snOutter}", BodyStyle = WebMessageBodyStyle.Bare,
+            RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
+        string BindingPCBA([SwaggerWcfParameter(Description = "PCBA")]string snPCBA,
+            [SwaggerWcfParameter(Description = "外壳码")]string snOutter);
+        #endregion
+
+        #region 【接口】 SPEC-LIMIT配置
+        [OperationContract]
+        [SwaggerWcfPath("SelectLimitConfig", "查询SPEC-LIMIT配置")]
+        [WebInvoke(Method = "GET", UriTemplate = "SelectLimitConfig?productTypeNo={productTypeNo}" +
+            "&stationName={stationName}&item={item}", BodyStyle = WebMessageBodyStyle.Bare,
+            RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
+        string[] SelectLimitConfig(
+            [SwaggerWcfParameter(Description = "产品型号")]string productTypeNo,
+            [SwaggerWcfParameter(Description = "站位名称")]string stationName,
+            [SwaggerWcfParameter(Description = "ITEM项")]string item);
+        #endregion
+
+        #region 【接口】 程序版本查询
+        [OperationContract]
+        [SwaggerWcfPath("SelectProgrameVersion", "程序版本查询")]
+        [WebInvoke(Method = "GET", UriTemplate = "SelectProgrameVersion?productTypeNo={productTypeNo}" +
+            "&stationName={stationName}", BodyStyle = WebMessageBodyStyle.Bare,
+            RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
+        string[] SelectProgrameVersion(
+            [SwaggerWcfParameter(Description = "产品型号")]string productTypeNo,
+            [SwaggerWcfParameter(Description = "站位名称")]string stationName);
         #endregion
     }
 

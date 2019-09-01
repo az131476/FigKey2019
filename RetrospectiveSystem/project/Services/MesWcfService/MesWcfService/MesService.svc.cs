@@ -37,6 +37,9 @@ namespace MesWcfService
         private Queue<string[]> updatePackageProductQueue = new Queue<string[]>();
         private Queue<string[]> checkMaterialStateQueue = new Queue<string[]>();
         private Queue<string[]> checkMaterialMatchQueue = new Queue<string[]>();
+        private Queue<string[]> bindingSnPcbaQueue = new Queue<string[]>();
+        private Queue<string[]> selectPVersionQueue = new Queue<string[]>();
+        private Queue<string[]> selectSpecLimitQueue = new Queue<string[]>();
         private int materialLength = 20;
 
         #region 测试通讯
@@ -302,6 +305,39 @@ namespace MesWcfService
                 return array;
             }
             return new string[] { "NULL" };
+        }
+        #endregion
+
+        #region PCBA与外壳的绑定
+        [SwaggerWcfTag("MesServcie 服务")]
+        [SwaggerWcfResponse("OK", "外壳与PCBA绑定成功")]
+        [SwaggerWcfResponse("FAIL", "外壳与PCBA绑定失败")]
+        public string BindingPCBA(string snPCBA,string snOutter)
+        {
+            if (snPCBA == "")
+                return "snPCBA is not null";
+            if (snOutter == "")
+                return "snOutter is not null";
+            bindingSnPcbaQueue.Enqueue(new string[] { snPCBA,snOutter});
+            return AddBindingPCBA.BindingPCBA(bindingSnPcbaQueue);
+        }
+        #endregion
+
+        #region 查询LIMIT
+        [SwaggerWcfTag("MesServcie 服务")]
+        public string[] SelectLimitConfig(string productTypeNo, string stationName,string item)
+        {
+            selectSpecLimitQueue.Enqueue(new string[] { productTypeNo,stationName,item });
+            return SelectLastTestConfig.SelectSpecLimit(selectSpecLimitQueue);
+        }
+        #endregion
+
+        #region 查询程序版本
+        [SwaggerWcfTag("MesServcie 服务")]
+        public string[] SelectProgrameVersion(string productTypeNo, string stationName)
+        {
+            selectPVersionQueue.Enqueue(new string[] { productTypeNo, stationName});
+            return SelectLastTestConfig.SelectPVersion(selectPVersionQueue);
         }
         #endregion
     }

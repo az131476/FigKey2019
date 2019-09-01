@@ -769,10 +769,10 @@ namespace MesManager.MesService {
         System.Threading.Tasks.Task<System.Data.DataSet> SelectProductBindingRecordAsync(string casecode, string bindingState);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectPackageProduct", ReplyAction="http://tempuri.org/IMesService/SelectPackageProductResponse")]
-        System.Data.DataSet SelectPackageProduct(string queryFilter, string state);
+        System.Data.DataSet SelectPackageProduct(string queryFilter, string state, bool IsShowNumber);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectPackageProduct", ReplyAction="http://tempuri.org/IMesService/SelectPackageProductResponse")]
-        System.Threading.Tasks.Task<System.Data.DataSet> SelectPackageProductAsync(string queryFilter, string state);
+        System.Threading.Tasks.Task<System.Data.DataSet> SelectPackageProductAsync(string queryFilter, string state, bool IsShowNumber);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectTestProgrameVersion", ReplyAction="http://tempuri.org/IMesService/SelectTestProgrameVersionResponse")]
         System.Data.DataSet SelectTestProgrameVersion(string productTypeNo);
@@ -809,6 +809,18 @@ namespace MesManager.MesService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/UpdateMaterialStateMent", ReplyAction="http://tempuri.org/IMesService/UpdateMaterialStateMentResponse")]
         System.Threading.Tasks.Task<int> UpdateMaterialStateMentAsync(string materialCode, int state);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectQuanlityManager", ReplyAction="http://tempuri.org/IMesService/SelectQuanlityManagerResponse")]
+        System.Data.DataSet SelectQuanlityManager(string materialCode);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectQuanlityManager", ReplyAction="http://tempuri.org/IMesService/SelectQuanlityManagerResponse")]
+        System.Threading.Tasks.Task<System.Data.DataSet> SelectQuanlityManagerAsync(string materialCode);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectMaterialName", ReplyAction="http://tempuri.org/IMesService/SelectMaterialNameResponse")]
+        string SelectMaterialName(string materialPN);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectMaterialName", ReplyAction="http://tempuri.org/IMesService/SelectMaterialNameResponse")]
+        System.Threading.Tasks.Task<string> SelectMaterialNameAsync(string materialPN);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1118,12 +1130,12 @@ namespace MesManager.MesService {
             return base.Channel.SelectProductBindingRecordAsync(casecode, bindingState);
         }
         
-        public System.Data.DataSet SelectPackageProduct(string queryFilter, string state) {
-            return base.Channel.SelectPackageProduct(queryFilter, state);
+        public System.Data.DataSet SelectPackageProduct(string queryFilter, string state, bool IsShowNumber) {
+            return base.Channel.SelectPackageProduct(queryFilter, state, IsShowNumber);
         }
         
-        public System.Threading.Tasks.Task<System.Data.DataSet> SelectPackageProductAsync(string queryFilter, string state) {
-            return base.Channel.SelectPackageProductAsync(queryFilter, state);
+        public System.Threading.Tasks.Task<System.Data.DataSet> SelectPackageProductAsync(string queryFilter, string state, bool IsShowNumber) {
+            return base.Channel.SelectPackageProductAsync(queryFilter, state, IsShowNumber);
         }
         
         public System.Data.DataSet SelectTestProgrameVersion(string productTypeNo) {
@@ -1172,6 +1184,22 @@ namespace MesManager.MesService {
         
         public System.Threading.Tasks.Task<int> UpdateMaterialStateMentAsync(string materialCode, int state) {
             return base.Channel.UpdateMaterialStateMentAsync(materialCode, state);
+        }
+        
+        public System.Data.DataSet SelectQuanlityManager(string materialCode) {
+            return base.Channel.SelectQuanlityManager(materialCode);
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> SelectQuanlityManagerAsync(string materialCode) {
+            return base.Channel.SelectQuanlityManagerAsync(materialCode);
+        }
+        
+        public string SelectMaterialName(string materialPN) {
+            return base.Channel.SelectMaterialName(materialPN);
+        }
+        
+        public System.Threading.Tasks.Task<string> SelectMaterialNameAsync(string materialPN) {
+            return base.Channel.SelectMaterialNameAsync(materialPN);
         }
     }
 }

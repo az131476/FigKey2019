@@ -10,6 +10,9 @@ using Telerik.WinControls.UI;
 using CommonUtils.Logger;
 using MesManager.Control;
 using MesManager.RadView;
+using System.Configuration;
+using MesManager.TelerikWinform.GridViewCommon.GridViewDataExport;
+using CommonUtils.FileHelper;
 
 namespace MesManager.UI
 {
@@ -18,6 +21,7 @@ namespace MesManager.UI
     /// </summary>
     public partial class BasicConfig : RadForm
     {
+        #region 私有变量
         private MesService.MesServiceClient serviceClient;
         private MesServiceTest.MesServiceClient serviceClientTest;
         private DataTable typeNoData,materialData;
@@ -37,6 +41,8 @@ namespace MesManager.UI
         private const string DATA_USER_NAME = "用户名";
         private const string DATA_UPDATE_DATE = "更新日期";
         private const string DATA_DESCRIBLE = "描述说明";
+        private int materialCodeLength;
+        #endregion
 
         public BasicConfig()
         {
@@ -58,12 +64,19 @@ namespace MesManager.UI
             materialCodeTemp = new List<string>();
             DataGridViewCommon.SetRadGridViewProperty(this.radGridView1,true);
             this.radGridView1.AllowRowHeaderContextMenu = false;
+            var bMaterialCode = int.TryParse(ConfigurationManager.AppSettings["materialLength"].ToString(), out materialCodeLength);
             DataSource();
             cb_cfgType.Items.Clear();
             cb_cfgType.Items.Add("型号配置");
             cb_cfgType.Items.Add("物料配置");
             cb_cfgType.SelectedIndex = 0;
+            this.label_materialInput.Visible = false;
+            this.tb_materialInput.Visible = false;
             RefreshData();
+            if (!bMaterialCode)
+            {
+                MessageBox.Show("配置参数格式错误！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void DataSource()
@@ -97,10 +110,32 @@ namespace MesManager.UI
             menu_clear_db.Click += Menu_clear_db_Click;
             menu_del.Click += Menu_del_Click;
             menu_add.Click += Menu_add_Click;
+            this.menu_export.Click += Menu_export_Click;
+            this.tb_materialInput.TextChanged += Tb_materialInput_TextChanged;
 
             cb_cfgType.SelectedIndexChanged += Cb_cfgType_SelectedIndexChanged;
             this.radGridView1.CellBeginEdit += RadGridView1_CellBeginEdit;
             this.radGridView1.CellEndEdit += RadGridView1_CellEndEdit;
+        }
+
+        private void Menu_export_Click(object sender, EventArgs e)
+        {
+            ExportGridViewData(0, this.radGridView1);
+        }
+
+        private void Tb_materialInput_TextChanged(object sender, EventArgs e)
+        {
+            //输入完成,由条码长度决定
+            if (tb_materialInput.Text.Length == materialCodeLength)
+            {
+                //自动添加到行
+                this.radGridView1.Rows.AddNew();
+                int rIndex = this.radGridView1.Rows.Count;
+                this.radGridView1.Rows[rIndex - 1].Cells[0].Value = rIndex;
+                this.radGridView1.Rows[rIndex - 1].Cells[1].Value = this.tb_materialInput.Text;
+                this.tb_materialInput.Clear();
+                this.tb_materialInput.Focus();
+            }
         }
 
         private void Menu_add_Click(object sender, EventArgs e)
@@ -173,19 +208,20 @@ namespace MesManager.UI
 
         private void RadGridView1_CellEndEdit(object sender, GridViewCellEventArgs e)
         {
-            var key = this.radGridView1.CurrentRow.Cells[1].Value.ToString();
-            var kdescrible = this.radGridView1.CurrentRow.Cells[5].Value.ToString();
-
+            var key = this.radGridView1.CurrentRow.Cells[1].Value;
+            var kdescrible = this.radGridView1.CurrentRow.Cells[5].Value;
+            if (key == null && kdescrible == null)//行不存在
+                return;
             if (cb_cfgType.SelectedIndex == 0)
             {
-                if (keyTypeNo != key || keyDescrible != kdescrible)
+                if (keyTypeNo != key.ToString() || keyDescrible != kdescrible.ToString())
                 {
                     modifyTypeNoTemp.Add(this.keyTypeNo);
                 }
             }
             else if (cb_cfgType.SelectedIndex == 1)
             {
-                if (this.keyMaterialCode != key || this.keyDescrible != kdescrible)
+                if (this.keyMaterialCode != key.ToString() || this.keyDescrible != kdescrible.ToString())
                 {
                     materialCodeTemp.Add(this.keyMaterialCode);
                 }
@@ -194,18 +230,20 @@ namespace MesManager.UI
 
         private void RadGridView1_CellBeginEdit(object sender, GridViewCellCancelEventArgs e)
         {
-            var key = this.radGridView1.CurrentRow.Cells[1].Value.ToString();
-            var key_describle = this.radGridView1.CurrentRow.Cells[5].Value.ToString();
-            
+            var key = this.radGridView1.CurrentRow.Cells[1].Value;
+            var key_describle = this.radGridView1.CurrentRow.Cells[5].Value;
+            if (key == null && key_describle == null)//行不存在
+                return;
+
             if (cb_cfgType.SelectedIndex == 0)
             {
-                this.keyTypeNo = key;
-                this.keyDescrible = key_describle;
+                this.keyTypeNo = key.ToString();
+                this.keyDescrible = key_describle.ToString();
             }
             else if (cb_cfgType.SelectedIndex == 1)
             {
-                this.keyMaterialCode = key;
-                this.keyDescrible = key_describle;
+                this.keyMaterialCode = key.ToString();
+                this.keyDescrible = key_describle.ToString();
             }
         }
 
@@ -230,11 +268,15 @@ namespace MesManager.UI
             if (cb_cfgType.SelectedIndex == 0)
             {
                 //型号
+                this.label_materialInput.Visible = false;
+                this.tb_materialInput.Visible = false;
                 SelectProductTypeData();
             }
             else if (cb_cfgType.SelectedIndex == 1)
             {
                 //物料
+                this.label_materialInput.Visible = true;
+                this.tb_materialInput.Visible = true;
                 SelectMaterial();
             }
         }
@@ -253,11 +295,11 @@ namespace MesManager.UI
 
         #region 调用接口
 
-        async private void SelectProductTypeData()
+        private void SelectProductTypeData()
         {
             //调用查询接口
             radGridView1.DataSource = null;
-            DataSet dataSet = await serviceClient.SelectProductContinairCapacityAsync("");
+            DataSet dataSet = serviceClient.SelectProductContinairCapacity("");
             DataTable dataTable = dataSet.Tables[0];
             typeNoData.Clear();
             if (dataTable.Rows.Count > 0)
@@ -293,11 +335,11 @@ namespace MesManager.UI
             this.radGridView1.Columns[4].ReadOnly = true;
         }
 
-        async private void SelectMaterial()
+        private void SelectMaterial()
         {
             //调用查询接口
             radGridView1.DataSource = null;
-            DataSet dataSet = await serviceClient.SelectMaterialAsync();
+            DataSet dataSet = serviceClient.SelectMaterial();
             DataTable dataTable = dataSet.Tables[0];
             materialData.Clear();
             if (dataTable.Rows.Count > 0)
@@ -421,5 +463,50 @@ namespace MesManager.UI
             }
         }
         #endregion
+
+        private void ExportGridViewData(int selectIndex, RadGridView radGridView)
+        {
+            var filter = "Excel (*.xls)|*.xls";
+            if (selectIndex == (int)ExportFormat.EXCEL)
+            {
+                filter = "Excel (*.xls)|*.xls";
+                var path = FileSelect.SaveAs(filter, "C:\\");
+                if (path == "")
+                    return;
+                ExportData.RunExportToExcelML(path, radGridView);
+            }
+            else if (selectIndex == (int)ExportFormat.HTML)
+            {
+                filter = "Html File (*.htm)|*.htm";
+                var path = FileSelect.SaveAs(filter, "C:\\");
+                if (path == "")
+                    return;
+                ExportData.RunExportToHTML(path, radGridView);
+            }
+            else if (selectIndex == (int)ExportFormat.PDF)
+            {
+                filter = "PDF file (*.pdf)|*.pdf";
+                var path = FileSelect.SaveAs(filter, "C:\\");
+                if (path == "")
+                    return;
+                ExportData.RunExportToPDF(path, radGridView);
+            }
+            else if (selectIndex == (int)ExportFormat.CSV)
+            {
+                filter = "PDF file (*.pdf)|*.csv";
+                var path = FileSelect.SaveAs(filter, "C:\\");
+                if (path == "")
+                    return;
+                ExportData.RunExportToCSV(path, radGridView);
+            }
+        }
+        private enum ExportFormat
+        {
+            EXCEL,
+            HTML,
+            PDF,
+            CSV
+        }
+
     }
 }

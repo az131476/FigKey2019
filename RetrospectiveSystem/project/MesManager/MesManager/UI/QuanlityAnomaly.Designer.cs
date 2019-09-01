@@ -123,23 +123,23 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 25);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(714, 341);
+            this.panel1.Size = new System.Drawing.Size(762, 346);
             this.panel1.TabIndex = 5;
             // 
             // cb_materialState
             // 
             this.cb_materialState.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cb_materialState.FormattingEnabled = true;
-            this.cb_materialState.Location = new System.Drawing.Point(467, 106);
+            this.cb_materialState.Location = new System.Drawing.Point(502, 108);
             this.cb_materialState.Name = "cb_materialState";
-            this.cb_materialState.Size = new System.Drawing.Size(221, 25);
+            this.cb_materialState.Size = new System.Drawing.Size(248, 25);
             this.cb_materialState.TabIndex = 23;
             // 
             // radLabel10
             // 
             this.radLabel10.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radLabel10.ForeColor = System.Drawing.Color.White;
-            this.radLabel10.Location = new System.Drawing.Point(398, 105);
+            this.radLabel10.Location = new System.Drawing.Point(433, 107);
             this.radLabel10.Name = "radLabel10";
             this.radLabel10.Size = new System.Drawing.Size(63, 21);
             this.radLabel10.TabIndex = 22;
@@ -151,7 +151,7 @@
             this.cb_station.FormattingEnabled = true;
             this.cb_station.Location = new System.Drawing.Point(84, 105);
             this.cb_station.Name = "cb_station";
-            this.cb_station.Size = new System.Drawing.Size(279, 25);
+            this.cb_station.Size = new System.Drawing.Size(326, 25);
             this.cb_station.TabIndex = 21;
             // 
             // radLabel1
@@ -170,7 +170,7 @@
             this.cb_materialCode.FormattingEnabled = true;
             this.cb_materialCode.Location = new System.Drawing.Point(84, 13);
             this.cb_materialCode.Name = "cb_materialCode";
-            this.cb_materialCode.Size = new System.Drawing.Size(279, 25);
+            this.cb_materialCode.Size = new System.Drawing.Size(326, 25);
             this.cb_materialCode.TabIndex = 18;
             // 
             // radDateTimePicker1
@@ -178,9 +178,9 @@
             this.radDateTimePicker1.CustomFormat = "yyyy-MM-dd HH:mm:ss";
             this.radDateTimePicker1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radDateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.radDateTimePicker1.Location = new System.Drawing.Point(467, 14);
+            this.radDateTimePicker1.Location = new System.Drawing.Point(502, 16);
             this.radDateTimePicker1.Name = "radDateTimePicker1";
-            this.radDateTimePicker1.Size = new System.Drawing.Size(221, 23);
+            this.radDateTimePicker1.Size = new System.Drawing.Size(248, 23);
             this.radDateTimePicker1.TabIndex = 17;
             this.radDateTimePicker1.TabStop = false;
             this.radDateTimePicker1.Text = "2019-08-06 11:02:22";
@@ -199,7 +199,7 @@
             this.tb_reason.Location = new System.Drawing.Point(84, 151);
             this.tb_reason.Multiline = true;
             this.tb_reason.Name = "tb_reason";
-            this.tb_reason.Size = new System.Drawing.Size(604, 187);
+            this.tb_reason.Size = new System.Drawing.Size(666, 187);
             this.tb_reason.TabIndex = 10;
             // 
             // radLabel6
@@ -216,7 +216,7 @@
             // 
             this.radLabel5.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radLabel5.ForeColor = System.Drawing.Color.White;
-            this.radLabel5.Location = new System.Drawing.Point(398, 15);
+            this.radLabel5.Location = new System.Drawing.Point(433, 17);
             this.radLabel5.Name = "radLabel5";
             this.radLabel5.Size = new System.Drawing.Size(63, 21);
             this.radLabel5.TabIndex = 7;
@@ -225,16 +225,16 @@
             // tb_matualStock
             // 
             this.tb_matualStock.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_matualStock.Location = new System.Drawing.Point(467, 61);
+            this.tb_matualStock.Location = new System.Drawing.Point(502, 63);
             this.tb_matualStock.Name = "tb_matualStock";
-            this.tb_matualStock.Size = new System.Drawing.Size(221, 25);
+            this.tb_matualStock.Size = new System.Drawing.Size(248, 25);
             this.tb_matualStock.TabIndex = 6;
             // 
             // radLabel4
             // 
             this.radLabel4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radLabel4.ForeColor = System.Drawing.Color.White;
-            this.radLabel4.Location = new System.Drawing.Point(398, 61);
+            this.radLabel4.Location = new System.Drawing.Point(433, 63);
             this.radLabel4.Name = "radLabel4";
             this.radLabel4.Size = new System.Drawing.Size(63, 21);
             this.radLabel4.TabIndex = 5;
@@ -245,7 +245,7 @@
             this.tb_stock.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tb_stock.Location = new System.Drawing.Point(84, 58);
             this.tb_stock.Name = "tb_stock";
-            this.tb_stock.Size = new System.Drawing.Size(279, 25);
+            this.tb_stock.Size = new System.Drawing.Size(326, 25);
             this.tb_stock.TabIndex = 4;
             // 
             // radLabel3
@@ -262,7 +262,7 @@
             // 
             this.btn_apply.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_apply.Image = global::MesManager.Properties.Resources.Apply_16x16;
-            this.btn_apply.Location = new System.Drawing.Point(520, 508);
+            this.btn_apply.Location = new System.Drawing.Point(565, 508);
             this.btn_apply.Name = "btn_apply";
             this.btn_apply.Size = new System.Drawing.Size(89, 24);
             this.btn_apply.TabIndex = 6;
@@ -274,7 +274,7 @@
             // 
             this.btn_cancel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_cancel.Image = global::MesManager.Properties.Resources.Cancel_16x16;
-            this.btn_cancel.Location = new System.Drawing.Point(634, 508);
+            this.btn_cancel.Location = new System.Drawing.Point(679, 508);
             this.btn_cancel.Name = "btn_cancel";
             this.btn_cancel.Size = new System.Drawing.Size(93, 24);
             this.btn_cancel.TabIndex = 7;
@@ -288,7 +288,7 @@
             this.groupBox1.ForeColor = System.Drawing.Color.White;
             this.groupBox1.Location = new System.Drawing.Point(12, 97);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(720, 369);
+            this.groupBox1.Size = new System.Drawing.Size(768, 374);
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "结单记录";
@@ -301,7 +301,7 @@
             this.groupBox2.ForeColor = System.Drawing.Color.White;
             this.groupBox2.Location = new System.Drawing.Point(12, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(720, 79);
+            this.groupBox2.Size = new System.Drawing.Size(768, 84);
             this.groupBox2.TabIndex = 10;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "异常类别";
@@ -321,7 +321,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SteelBlue;
-            this.ClientSize = new System.Drawing.Size(744, 566);
+            this.ClientSize = new System.Drawing.Size(792, 566);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btn_cancel);

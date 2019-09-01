@@ -42,6 +42,8 @@
             this.donutShape1 = new Telerik.WinControls.Tests.DonutShape();
             this.customShape1 = new Telerik.WinControls.OldShapeEditor.CustomShape();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label_materialInput = new System.Windows.Forms.Label();
+            this.tb_materialInput = new System.Windows.Forms.TextBox();
             this.radMenu1 = new Telerik.WinControls.UI.RadMenu();
             this.menu_add = new Telerik.WinControls.UI.RadMenuItem();
             this.menu_del = new Telerik.WinControls.UI.RadMenuItem();
@@ -50,6 +52,7 @@
             this.menu_grid = new Telerik.WinControls.UI.RadMenuItem();
             this.menu_clear_db = new Telerik.WinControls.UI.RadMenuItem();
             this.radGridView1 = new Telerik.WinControls.UI.RadGridView();
+            this.menu_export = new Telerik.WinControls.UI.RadMenuItem();
             this.statusStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).BeginInit();
@@ -87,7 +90,7 @@
             this.tool_status});
             this.statusStrip1.Location = new System.Drawing.Point(0, 715);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1428, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1272, 22);
             this.statusStrip1.TabIndex = 10;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -135,13 +138,33 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.SteelBlue;
+            this.panel1.Controls.Add(this.label_materialInput);
+            this.panel1.Controls.Add(this.tb_materialInput);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.cb_cfgType);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 36);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1428, 65);
+            this.panel1.Size = new System.Drawing.Size(1272, 65);
             this.panel1.TabIndex = 11;
+            // 
+            // label_materialInput
+            // 
+            this.label_materialInput.AutoSize = true;
+            this.label_materialInput.ForeColor = System.Drawing.Color.White;
+            this.label_materialInput.Location = new System.Drawing.Point(320, 29);
+            this.label_materialInput.Name = "label_materialInput";
+            this.label_materialInput.Size = new System.Drawing.Size(73, 20);
+            this.label_materialInput.TabIndex = 10;
+            this.label_materialInput.Text = "物料编码";
+            // 
+            // tb_materialInput
+            // 
+            this.tb_materialInput.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb_materialInput.Location = new System.Drawing.Point(399, 26);
+            this.tb_materialInput.Name = "tb_materialInput";
+            this.tb_materialInput.Size = new System.Drawing.Size(497, 25);
+            this.tb_materialInput.TabIndex = 9;
             // 
             // radMenu1
             // 
@@ -153,10 +176,11 @@
             this.menu_commit,
             this.menu_refresh,
             this.menu_grid,
-            this.menu_clear_db});
+            this.menu_clear_db,
+            this.menu_export});
             this.radMenu1.Location = new System.Drawing.Point(0, 0);
             this.radMenu1.Name = "radMenu1";
-            this.radMenu1.Size = new System.Drawing.Size(1428, 36);
+            this.radMenu1.Size = new System.Drawing.Size(1272, 36);
             this.radMenu1.TabIndex = 9;
             // 
             // menu_add
@@ -213,15 +237,22 @@
             // 
             this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.radGridView1.Name = "radGridView1";
-            this.radGridView1.Size = new System.Drawing.Size(1428, 614);
+            this.radGridView1.Size = new System.Drawing.Size(1272, 614);
             this.radGridView1.TabIndex = 14;
+            // 
+            // menu_export
+            // 
+            this.menu_export.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.menu_export.Image = global::MesManager.Properties.Resources.Export_16x16;
+            this.menu_export.Name = "menu_export";
+            this.menu_export.Text = "导出";
             // 
             // BasicConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SteelBlue;
-            this.ClientSize = new System.Drawing.Size(1428, 737);
+            this.ClientSize = new System.Drawing.Size(1272, 737);
             this.Controls.Add(this.radGridView1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.statusStrip1);
@@ -270,5 +301,8 @@
         private Telerik.WinControls.UI.RadMenuItem menu_add;
         private System.Windows.Forms.Panel panel1;
         private Telerik.WinControls.UI.RadGridView radGridView1;
+        private System.Windows.Forms.Label label_materialInput;
+        private System.Windows.Forms.TextBox tb_materialInput;
+        private Telerik.WinControls.UI.RadMenuItem menu_export;
     }
 }

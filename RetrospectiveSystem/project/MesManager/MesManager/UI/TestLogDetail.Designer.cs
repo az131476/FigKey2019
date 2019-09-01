@@ -32,15 +32,15 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TestLogDetail));
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.radDateTimePicker1 = new Telerik.WinControls.UI.RadDateTimePicker();
-            this.radDateTimePicker2 = new Telerik.WinControls.UI.RadDateTimePicker();
+            this.pickerStartTime = new Telerik.WinControls.UI.RadDateTimePicker();
+            this.pickerEndTime = new Telerik.WinControls.UI.RadDateTimePicker();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btn_export = new Telerik.WinControls.UI.RadButton();
             this.btn_search = new Telerik.WinControls.UI.RadButton();
             this.radGridView1 = new Telerik.WinControls.UI.RadGridView();
             this.breezeTheme1 = new Telerik.WinControls.Themes.BreezeTheme();
-            ((System.ComponentModel.ISupportInitialize)(this.radDateTimePicker1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radDateTimePicker2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pickerStartTime)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pickerEndTime)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btn_export)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_search)).BeginInit();
@@ -69,32 +69,32 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "开始日期";
             // 
-            // radDateTimePicker1
+            // pickerStartTime
             // 
-            this.radDateTimePicker1.CustomFormat = "yyyy-MM-dd HH:mm:ss";
-            this.radDateTimePicker1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radDateTimePicker1.ForeColor = System.Drawing.Color.Black;
-            this.radDateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.radDateTimePicker1.Location = new System.Drawing.Point(90, 29);
-            this.radDateTimePicker1.Name = "radDateTimePicker1";
-            this.radDateTimePicker1.Size = new System.Drawing.Size(164, 23);
-            this.radDateTimePicker1.TabIndex = 4;
-            this.radDateTimePicker1.TabStop = false;
-            this.radDateTimePicker1.Text = "2019-08-26 17:09:35";
-            this.radDateTimePicker1.Value = new System.DateTime(2019, 8, 26, 17, 9, 35, 395);
+            this.pickerStartTime.CustomFormat = "yyyy-MM-dd HH:mm:ss";
+            this.pickerStartTime.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pickerStartTime.ForeColor = System.Drawing.Color.Black;
+            this.pickerStartTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.pickerStartTime.Location = new System.Drawing.Point(90, 29);
+            this.pickerStartTime.Name = "pickerStartTime";
+            this.pickerStartTime.Size = new System.Drawing.Size(164, 23);
+            this.pickerStartTime.TabIndex = 4;
+            this.pickerStartTime.TabStop = false;
+            this.pickerStartTime.Text = "2019-08-26 17:09:35";
+            this.pickerStartTime.Value = new System.DateTime(2019, 8, 26, 17, 9, 35, 395);
             // 
-            // radDateTimePicker2
+            // pickerEndTime
             // 
-            this.radDateTimePicker2.CustomFormat = "yyyy-MM-dd HH:mm:ss";
-            this.radDateTimePicker2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radDateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.radDateTimePicker2.Location = new System.Drawing.Point(345, 29);
-            this.radDateTimePicker2.Name = "radDateTimePicker2";
-            this.radDateTimePicker2.Size = new System.Drawing.Size(164, 23);
-            this.radDateTimePicker2.TabIndex = 5;
-            this.radDateTimePicker2.TabStop = false;
-            this.radDateTimePicker2.Text = "2019-08-26 17:09:41";
-            this.radDateTimePicker2.Value = new System.DateTime(2019, 8, 26, 17, 9, 41, 544);
+            this.pickerEndTime.CustomFormat = "yyyy-MM-dd HH:mm:ss";
+            this.pickerEndTime.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pickerEndTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.pickerEndTime.Location = new System.Drawing.Point(345, 29);
+            this.pickerEndTime.Name = "pickerEndTime";
+            this.pickerEndTime.Size = new System.Drawing.Size(164, 23);
+            this.pickerEndTime.TabIndex = 5;
+            this.pickerEndTime.TabStop = false;
+            this.pickerEndTime.Text = "2019-08-26 17:09:41";
+            this.pickerEndTime.Value = new System.DateTime(2019, 8, 26, 17, 9, 41, 544);
             // 
             // panel1
             // 
@@ -102,12 +102,12 @@
             this.panel1.Controls.Add(this.btn_search);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.radDateTimePicker2);
-            this.panel1.Controls.Add(this.radDateTimePicker1);
+            this.panel1.Controls.Add(this.pickerEndTime);
+            this.panel1.Controls.Add(this.pickerStartTime);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1080, 62);
+            this.panel1.Size = new System.Drawing.Size(1272, 62);
             this.panel1.TabIndex = 8;
             // 
             // btn_export
@@ -146,7 +146,7 @@
             // 
             this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.radGridView1.Name = "radGridView1";
-            this.radGridView1.Size = new System.Drawing.Size(1080, 522);
+            this.radGridView1.Size = new System.Drawing.Size(1272, 522);
             this.radGridView1.TabIndex = 9;
             // 
             // TestLogDetail
@@ -154,7 +154,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SteelBlue;
-            this.ClientSize = new System.Drawing.Size(1080, 584);
+            this.ClientSize = new System.Drawing.Size(1272, 584);
             this.Controls.Add(this.radGridView1);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -166,8 +166,8 @@
             this.RootElement.ApplyShapeToControl = true;
             this.Text = "LOG详细记录";
             this.Load += new System.EventHandler(this.TestLogDetail_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.radDateTimePicker1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radDateTimePicker2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pickerStartTime)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pickerEndTime)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btn_export)).EndInit();
@@ -183,8 +183,8 @@
 
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private Telerik.WinControls.UI.RadDateTimePicker radDateTimePicker1;
-        private Telerik.WinControls.UI.RadDateTimePicker radDateTimePicker2;
+        private Telerik.WinControls.UI.RadDateTimePicker pickerStartTime;
+        private Telerik.WinControls.UI.RadDateTimePicker pickerEndTime;
         private System.Windows.Forms.Panel panel1;
         private Telerik.WinControls.UI.RadGridView radGridView1;
         private Telerik.WinControls.UI.RadButton btn_search;

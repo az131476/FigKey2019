@@ -676,6 +676,7 @@
       <xs:sequence>
         <xs:element minOccurs="0" name="queryFilter" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="state" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="IsShowNumber" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -840,6 +841,46 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="UpdateMaterialStateMentResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SelectQuanlityManager">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="materialCode" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SelectQuanlityManagerResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SelectQuanlityManagerResult" nillable="true">
+          <xs:complexType>
+            <xs:annotation>
+              <xs:appinfo>
+                <ActualType Name="DataSet" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+              </xs:appinfo>
+            </xs:annotation>
+            <xs:sequence>
+              <xs:element ref="xs:schema" />
+              <xs:any />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SelectMaterialName">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="materialPN" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SelectMaterialNameResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SelectMaterialNameResult" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

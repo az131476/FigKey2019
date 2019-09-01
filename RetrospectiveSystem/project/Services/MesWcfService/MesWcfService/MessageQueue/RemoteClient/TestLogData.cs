@@ -38,6 +38,8 @@ namespace MesWcfService.MessageQueue.RemoteClient
                     $"{DbTable.F_TEST_LOG_DATA.UPDATE_DATE}) VALUES(" +
                     $"'{typeNo}','{stationName}','{productSN}','{testItem}','{limit}'," +
                     $"'{currentValue}','{testResult}','{teamLeader}','{admin}','{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}')";
+                //if (IsExistLogData(array))
+                //    return "OK";
                 var res = SQLServer.ExecuteNonQuery(insertSQL);
                 if (res > 0)
                     return "OK";
@@ -52,6 +54,24 @@ namespace MesWcfService.MessageQueue.RemoteClient
                 LogHelper.Log.Error(ex.Message);
                 return "ERROR";
             }
+        }
+
+        private static bool IsExistLogData(string[] logArray)
+        {
+            var selectSQL = $"SELECT * FROM {DbTable.F_TEST_LOG_DATA_NAME} WHERE " +
+                $"{DbTable.F_TEST_LOG_DATA.TYPE_NO} = '{logArray[0]}' AND " +
+                $"{DbTable.F_TEST_LOG_DATA.STATION_NAME} = '{logArray[1]}' AND " +
+                $"{DbTable.F_TEST_LOG_DATA.PRODUCT_SN} = '{logArray[2]}' AND " +
+                $"{DbTable.F_TEST_LOG_DATA.TEST_ITEM} = '{logArray[3]}' AND " +
+                $"{DbTable.F_TEST_LOG_DATA.LIMIT} = '{logArray[4]}' AND " +
+                $"{DbTable.F_TEST_LOG_DATA.CURRENT_VALUE} = '{logArray[5]}' AND " +
+                $"{DbTable.F_TEST_LOG_DATA.TEST_RESULT} = '{logArray[6]}' AND " +
+                $"{DbTable.F_TEST_LOG_DATA.TEAM_LEADER} = '{logArray[7]}' AND " +
+                $"{DbTable.F_TEST_LOG_DATA.ADMIN} = '{logArray[8]}'";
+            var dt = SQLServer.ExecuteDataSet(selectSQL).Tables[0];
+            if (dt.Rows.Count > 0)
+                return true;
+            return false;
         }
     }
 }

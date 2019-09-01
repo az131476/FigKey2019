@@ -17,40 +17,37 @@ namespace MesManager.UI
 {
     public partial class TestLogDetail : RadForm
     {
-        private string productTypeNo;
+        private string startTime;
         private string productSn;
-        private string stationName;
+        private string endTime;
         private MesService.MesServiceClient serviceClient;
-        public TestLogDetail(string typeNo,string sn,string stationName)
+        public TestLogDetail(string sn)
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterParent;
-            this.productTypeNo = typeNo;
             this.productSn = sn;
-            this.stationName = stationName;
         }
 
         async private void TestLogDetail_Load(object sender, EventArgs e)
         {
             DataGridViewCommon.SetRadGridViewProperty(this.radGridView1, false);
             this.radGridView1.ReadOnly = true;
+            this.pickerStartTime.Text = DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00";
+            this.pickerEndTime.Text = DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59";
             serviceClient = new MesService.MesServiceClient();
             var dt = (await serviceClient.SelectTestLogDataDetailAsync(productSn,"","")).Tables[0];
-            if (dt.Rows.Count < 1)
-                return;
             this.radGridView1.DataSource = null;
             this.radGridView1.DataSource = dt;
         }
 
         async private void Btn_search_Click(object sender, EventArgs e)
         {
-            var startTime = Convert.ToDateTime(this.radDateTimePicker1.Text);
-            var endTime = Convert.ToDateTime(this.radDateTimePicker2.Text).AddDays(1);
+            var startTime = Convert.ToDateTime(this.pickerStartTime.Text);
+            var endTime = Convert.ToDateTime(this.pickerEndTime.Text).AddDays(1);
             var dt = (await serviceClient.SelectTestLogDataDetailAsync(productSn,startTime.ToString(),endTime.ToString())).Tables[0];
-            if (dt.Rows.Count < 1)
-                return;
             this.radGridView1.DataSource = null;
             this.radGridView1.DataSource = dt;
+            this.radGridView1.Columns[0].BestFit();
         }
 
         private void Btn_export_Click(object sender, EventArgs e)

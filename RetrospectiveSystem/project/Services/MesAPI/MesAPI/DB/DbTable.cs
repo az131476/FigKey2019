@@ -23,6 +23,8 @@ namespace MesAPI.DB
         public const string F_TEST_LIMIT_CONFIG_NAME            = "[WT_SCL].[dbo].[f_test_limit_config]";
         public const string F_TEST_LOG_DATA_NAME                = "[WT_SCL].[dbo].[f_test_log_data]";
         public const string F_QUANLITY_MANAGER_NAME             = "[WT_SCL].[dbo].[f_quanlity_manager]";
+        public const string F_MATERIAL_PN_NAME                  = "[WT_SCL].[dbo].[f_material_pn]";
+        public const string F_BINDING_PCBA_NAME                 = "[WT_SCL].[dbo].[f_binding_pcba]";
 
         public class F_User
         {
@@ -88,10 +90,18 @@ namespace MesAPI.DB
 
         }
 
+        public class F_MATERIAL_PN
+        {
+            public const string MATERIAL_PN = "[material_pn]";
+            public const string MATERIAL_NAME = "[material_name]";
+            public const string USER_NAME = "[user_name]";
+            public const string UPDATE_DATE = "[update_date]";
+        }
+
         public class F_PRODUCT_MATERIAL
         {
             public const string TYPE_NO = "[type_no]";
-            public const string MATERIAL_CODE = "[material_code]";
+            public const string MATERIAL_CODE = "[material_code]";//material_pn
             public const string STOCK = "[stock]";
             public const string AMOUNTED = "[amounted]";
             public const string Describle = "[describle]";
@@ -206,6 +216,13 @@ namespace MesAPI.DB
             public const string STATEMENT_REASON = "[statement_reason]";
             public const string STATEMENT_USER = "[statement_user]";
             public const string UPDATE_DATE = "[update_date]";
+        }
+
+        public class F_BINDING_PCBA
+        {
+            public const string SN_PCBA = "[sn_pcba]";
+            public const string SN_OUTTER = "[sn_outter]";
+            public const string UPDATE_DATE = "update_date";
         }
     }
 }

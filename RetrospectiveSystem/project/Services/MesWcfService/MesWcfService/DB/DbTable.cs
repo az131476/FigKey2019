@@ -20,6 +20,7 @@ namespace MesWcfService.DB
         public const string F_TEST_PROGRAME_VERSION_NAME    = "[WT_SCL].[dbo].[f_test_programe_version]";
         public const string F_TEST_LIMIT_CONFIG_NAME        = "[WT_SCL].[dbo].[f_test_limit_config]";
         public const string F_TEST_LOG_DATA_NAME            = "[WT_SCL].[dbo].[f_test_log_data]";
+        public const string F_BINDING_PCBA_NAME             = "[WT_SCL].[dbo].[f_binding_pcba]";
 
         public class F_User
         {
@@ -180,6 +181,13 @@ namespace MesWcfService.DB
             public const string TEAM_LEADER = "[teamLeader]";
             public const string ADMIN = "[admin]";
             public const string UPDATE_DATE = "[updateDate]";
+        }
+
+        public class F_BINDING_PCBA
+        {
+            public const string SN_PCBA = "[sn_pcba]";
+            public const string SN_OUTTER = "[sn_outter]";
+            public const string UPDATE_DATE = "update_date";
         }
     }
 }

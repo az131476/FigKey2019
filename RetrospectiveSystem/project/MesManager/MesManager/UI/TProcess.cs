@@ -35,6 +35,7 @@ namespace MesManager.UI
         {
             Init();
             EventHandlers();
+            RefreshProcessData();
         }
 
 
@@ -46,14 +47,12 @@ namespace MesManager.UI
             DataGridViewCommon.SetRadGridViewProperty(this.radGridView1, true);
             this.radGridView1.AllowRowHeaderContextMenu = false;
             DataSource();
-            UpdateProcesList();
             RefreshCurrentProcess();
-            SelectStationList(this.cb_processItem.Text.Trim());
         }
 
-        async private void RefreshCurrentProcess()
+        private void RefreshCurrentProcess()
         {
-            this.cb_curprocess.Text = await serviceClientTest.SelectCurrentTProcessAsync();
+            this.cb_curprocess.Text = serviceClientTest.SelectCurrentTProcess();
             this.cb_processItem.Text = this.cb_curprocess.Text;
         }
 
@@ -71,18 +70,35 @@ namespace MesManager.UI
 
         private void EventHandlers()
         {
-            menu_refresh.Click += Menu_refresh_Click;
-            menu_grid.Click += Menu_grid_Click;
-            menu_clear_db.Click += Menu_clear_db_Click;
-            menu_del.Click += Menu_del_Click;
-            menu_add.Click += Menu_add_Click;
-            menu_commit.Click += Menu_commit_Click;
+            this.menu_refresh.Click += Menu_refresh_Click;
+            this.menu_grid.Click += Menu_grid_Click;
+            this.menu_clear_db.Click += Menu_clear_db_Click;
+            this.menu_del.Click += Menu_del_Click;
+            this.menu_add.Click += Menu_add_Click;
+            this.menu_commit.Click += Menu_commit_Click;
+            //this.menu_up_insert.Click += Menu_up_insert_Click;
             this.cb_processItem.SelectedIndexChanged += Cb_processItem_SelectedIndexChanged;
 
             this.radGridView1.CellBeginEdit += RadGridView1_CellBeginEdit;
             this.radGridView1.CellEndEdit += RadGridView1_CellEndEdit;
 
             this.btn_setprocess.Click += Btn_setprocess_Click;
+        }
+
+        private void Menu_up_insert_Click(object sender, EventArgs e)
+        {
+            //向上插入行
+            var curIndex = this.radGridView1.CurrentRow.Index;
+            if (this.radGridView1.Rows.Count < 1)
+            {
+                this.radGridView1.Rows.AddNew();
+                return;
+            }
+            foreach (GridViewRowInfo rInfo in this.radGridView1.Rows)
+            {
+                this.radGridView1.Rows.Insert(curIndex, rInfo);
+                break;
+            }
         }
 
         private void Btn_setprocess_Click(object sender, EventArgs e)
@@ -157,9 +173,10 @@ namespace MesManager.UI
                 this.radGridView1.Rows[i].Delete();
             }
         }
-
+        private bool IsClickNewRow;
         private void RadGridView1_CellEndEdit(object sender, GridViewCellEventArgs e)
         {
+            //click hear add new row:当前行存在，但行计数未记录此行
             var key = this.radGridView1.CurrentRow.Cells[1].Value;
             var index = this.radGridView1.RowCount;
             if (key == null)
@@ -171,12 +188,15 @@ namespace MesManager.UI
             //结束编辑，同时更新新增列序号
             if (index <= 0)
             {
-                //this.radGridView1.Rows[0].Cells[0].Value = 1;
+                this.radGridView1.Rows[0].Cells[0].Value = 1;
             }
             else
             {
                 //this.radGridView1.Rows[index - 1].Cells[0].Value = index;
-                //this.radGridView1.Rows[index - 2].Cells[0].Value = index - 1;
+                //当行不存在时，click新增行
+                if (!IsClickNewRow)
+                    return;
+                this.radGridView1.CurrentRow.Cells[0].Value = index + 1;
             }
         }
 
@@ -185,10 +205,13 @@ namespace MesManager.UI
             var key = this.radGridView1.CurrentRow.Cells[1].Value;
             var index = this.radGridView1.RowCount;
             var rIndex = this.radGridView1.CurrentRow.Index;
-            if (key != null)
+            if (key == null)//行不存在
             {
-                this.keyStation = key.ToString();
+                IsClickNewRow = true;
+                return;
             }
+            IsClickNewRow = false;
+            this.keyStation = key.ToString();
             if (index <= 0)
             {
                 this.radGridView1.Rows[0].Cells[0].Value = 1;
@@ -228,6 +251,7 @@ namespace MesManager.UI
             stationData.Clear();
             if (dataTable.Rows.Count > 0)
             {
+                this.radGridView1.BeginEdit();
                 //显示数据
                 for (int i = 0; i < dataTable.Rows.Count; i++)
                 {
@@ -239,7 +263,8 @@ namespace MesManager.UI
                     stationData.Rows.Add(dr);
                     //this.radGridView1.Rows[i].Cells[0].Value = dataTable.Rows[i][0].ToString();
                 }
-                radGridView1.DataSource = stationData;
+                this.radGridView1.DataSource = stationData;
+                this.radGridView1.EndEdit();
                 NetronLightGraph();
             }
             else
@@ -247,7 +272,7 @@ namespace MesManager.UI
                 stationData.Clear();
                 radGridView1.DataSource = stationData;
             }
-            DataGridViewCommon.SetRadGridViewProperty(this.radGridView1, false);
+            DataGridViewCommon.SetRadGridViewProperty(this.radGridView1, true);
             this.radGridView1.AllowRowHeaderContextMenu = false;
             this.radGridView1.Columns[0].ReadOnly = true;
             this.radGridView1.Columns[2].ReadOnly = true;
@@ -362,6 +387,9 @@ namespace MesManager.UI
             RefreshProcessData();
         }
 
+        /// <summary>
+        /// 动态流程图
+        /// </summary>
         private void NetronLightGraph()
         {
             this.groupbox_graph.Controls.Clear();
@@ -372,7 +400,7 @@ namespace MesManager.UI
             graphControl1.BackColor = Color.SteelBlue;
             graphControl1.Font = new Font("宋体",10);
             this.groupbox_graph.Controls.Add(graphControl1);
-            int x = 50;
+            int x = 50;//this is left margin
             int y = 30;
             SimpleRectangle srSharpLast = null;
             
@@ -381,24 +409,20 @@ namespace MesManager.UI
                 var stationName = this.radGridView1.Rows[i].Cells[1].Value.ToString();
                 
                 SimpleRectangle srSharp = graphControl1.AddShape(ShapeTypes.Rectangular, new Point(x, y)) as SimpleRectangle;
-                
                 Graphics graphics = CreateGraphics();
                 SizeF sizeF = graphics.MeasureString(stationName, new Font("宋体", 10));
-                //MessageBox.Show(string.Format("字体宽度：{0}，高度：{1}", sizeF.Width, sizeF.Height));
                 srSharp.Text = stationName;
                 srSharp.Height = 50;
-                srSharp.Width = (int)sizeF.Width + (int)sizeF.Width / 5;
+                srSharp.Width = (int)sizeF.Width + (int)sizeF.Width / 2;
                 graphics.Dispose();
                 srSharp.ShapeColor = Color.LightSteelBlue;
-                //
                 if (i % 2 == 0  && i>1)
                 {
                     graphControl1.AddConnection(srSharpLast.Connectors[2], srSharp.Connectors[1]);
                 }
-
                 if (i + 1 < this.radGridView1.Rows.Count)
                 {
-                    x += 200;
+                    x += srSharp.Width + 80;
                     var stationNameLast = this.radGridView1.Rows[i + 1].Cells[1].Value.ToString();
                     Graphics graphicsLast = CreateGraphics();
                     SizeF sizeFLast = graphicsLast.MeasureString(stationNameLast, new Font("宋体", 10));
@@ -406,16 +430,15 @@ namespace MesManager.UI
                     srSharpLast = graphControl1.AddShape(ShapeTypes.Rectangular, new Point(x, y)) as SimpleRectangle;
                     srSharpLast.Text = stationNameLast;
                     srSharpLast.Height = 50;
-                    srSharpLast.Width = (int)sizeFLast.Width + (int)sizeFLast.Width / 5;
+                    srSharpLast.Width = (int)sizeFLast.Width + (int)sizeFLast.Width / 2;
                     graphicsLast.Dispose();
                     srSharpLast.ShapeColor = Color.LightSteelBlue;
 
                     graphControl1.AddConnection(srSharp.Connectors[2],srSharpLast.Connectors[1]);
                     i++;
                 }
-                x += 200;
+                x += srSharpLast.Width + 80;
             }
         }
-
     }
 }

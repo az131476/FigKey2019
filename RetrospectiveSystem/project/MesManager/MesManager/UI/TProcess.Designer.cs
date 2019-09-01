@@ -30,7 +30,6 @@
         {
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TProcess));
-            this.radMenu1 = new Telerik.WinControls.UI.RadMenu();
             this.menu_add = new Telerik.WinControls.UI.RadMenuItem();
             this.menu_del = new Telerik.WinControls.UI.RadMenuItem();
             this.menu_commit = new Telerik.WinControls.UI.RadMenuItem();
@@ -48,7 +47,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.groupbox_graph = new System.Windows.Forms.GroupBox();
             this.radGridView1 = new Telerik.WinControls.UI.RadGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).BeginInit();
+            this.breezeTheme1 = new Telerik.WinControls.Themes.BreezeTheme();
+            this.radMenu1 = new Telerik.WinControls.UI.RadMenu();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radStatusStrip1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -57,23 +57,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // radMenu1
-            // 
-            this.radMenu1.BackColor = System.Drawing.Color.Transparent;
-            this.radMenu1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radMenu1.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.menu_add,
-            this.menu_del,
-            this.menu_commit,
-            this.menu_refresh,
-            this.menu_grid,
-            this.menu_clear_db});
-            this.radMenu1.Location = new System.Drawing.Point(0, 0);
-            this.radMenu1.Name = "radMenu1";
-            this.radMenu1.Size = new System.Drawing.Size(1421, 36);
-            this.radMenu1.TabIndex = 18;
             // 
             // menu_add
             // 
@@ -130,7 +115,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 36);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1421, 65);
+            this.panel1.Size = new System.Drawing.Size(1272, 65);
             this.panel1.TabIndex = 19;
             // 
             // lbx_process
@@ -157,7 +142,7 @@
             this.radStatusStrip1.BackColor = System.Drawing.Color.SteelBlue;
             this.radStatusStrip1.Location = new System.Drawing.Point(0, 664);
             this.radStatusStrip1.Name = "radStatusStrip1";
-            this.radStatusStrip1.Size = new System.Drawing.Size(1421, 24);
+            this.radStatusStrip1.Size = new System.Drawing.Size(1272, 24);
             this.radStatusStrip1.TabIndex = 33;
             // 
             // panel2
@@ -167,7 +152,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.Location = new System.Drawing.Point(0, 600);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1421, 64);
+            this.panel2.Size = new System.Drawing.Size(1272, 64);
             this.panel2.TabIndex = 34;
             // 
             // groupBox1
@@ -179,24 +164,27 @@
             this.groupBox1.ForeColor = System.Drawing.Color.White;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1421, 64);
+            this.groupBox1.Size = new System.Drawing.Size(1272, 64);
             this.groupBox1.TabIndex = 28;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "工艺设置";
             // 
             // btn_setprocess
             // 
-            this.btn_setprocess.Location = new System.Drawing.Point(417, 30);
+            this.btn_setprocess.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_setprocess.Image = global::MesManager.Properties.Resources.Apply_16x16;
+            this.btn_setprocess.Location = new System.Drawing.Point(380, 25);
             this.btn_setprocess.Name = "btn_setprocess";
-            this.btn_setprocess.Size = new System.Drawing.Size(63, 28);
+            this.btn_setprocess.Size = new System.Drawing.Size(78, 28);
             this.btn_setprocess.TabIndex = 12;
             this.btn_setprocess.Text = "应用";
+            this.btn_setprocess.ThemeName = "Breeze";
             // 
             // cb_curprocess
             // 
             this.cb_curprocess.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cb_curprocess.FormattingEnabled = true;
-            this.cb_curprocess.Location = new System.Drawing.Point(173, 30);
+            this.cb_curprocess.Location = new System.Drawing.Point(156, 25);
             this.cb_curprocess.Name = "cb_curprocess";
             this.cb_curprocess.Size = new System.Drawing.Size(183, 28);
             this.cb_curprocess.TabIndex = 11;
@@ -217,7 +205,7 @@
             this.groupbox_graph.ForeColor = System.Drawing.Color.White;
             this.groupbox_graph.Location = new System.Drawing.Point(0, 449);
             this.groupbox_graph.Name = "groupbox_graph";
-            this.groupbox_graph.Size = new System.Drawing.Size(1421, 151);
+            this.groupbox_graph.Size = new System.Drawing.Size(1272, 151);
             this.groupbox_graph.TabIndex = 35;
             this.groupbox_graph.TabStop = false;
             this.groupbox_graph.Text = "工艺流程图";
@@ -232,7 +220,7 @@
             // 
             this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.radGridView1.Name = "radGridView1";
-            this.radGridView1.Size = new System.Drawing.Size(1421, 348);
+            this.radGridView1.Size = new System.Drawing.Size(1272, 348);
             this.radGridView1.TabIndex = 38;
             // 
             // TProcess
@@ -240,7 +228,23 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SteelBlue;
-            this.ClientSize = new System.Drawing.Size(1421, 688);
+            this.ClientSize = new System.Drawing.Size(1272, 688);
+            // 
+            // radMenu1
+            // 
+            this.radMenu1.BackColor = System.Drawing.Color.Transparent;
+            this.radMenu1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radMenu1.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.menu_add,
+            this.menu_del,
+            this.menu_commit,
+            this.menu_refresh,
+            this.menu_grid,
+            this.menu_clear_db});
+            this.radMenu1.Location = new System.Drawing.Point(0, 0);
+            this.radMenu1.Name = "radMenu1";
+            this.radMenu1.Size = new System.Drawing.Size(1272, 36);
+            this.radMenu1.TabIndex = 18;
             this.Controls.Add(this.radGridView1);
             this.Controls.Add(this.groupbox_graph);
             this.Controls.Add(this.panel2);
@@ -255,7 +259,6 @@
             this.RootElement.ApplyShapeToControl = true;
             this.Text = "工艺流程";
             this.Load += new System.EventHandler(this.TProcess_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radStatusStrip1)).EndInit();
@@ -265,6 +268,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.btn_setprocess)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -272,7 +276,6 @@
         }
 
         #endregion
-        private Telerik.WinControls.UI.RadMenu radMenu1;
         private Telerik.WinControls.UI.RadMenuItem menu_add;
         private Telerik.WinControls.UI.RadMenuItem menu_del;
         private Telerik.WinControls.UI.RadMenuItem menu_commit;
@@ -290,5 +293,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupbox_graph;
         private Telerik.WinControls.UI.RadGridView radGridView1;
+        private Telerik.WinControls.Themes.BreezeTheme breezeTheme1;
+        private Telerik.WinControls.UI.RadMenu radMenu1;
     }
 }

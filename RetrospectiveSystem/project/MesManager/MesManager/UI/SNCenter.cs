@@ -24,6 +24,8 @@ namespace MesManager.UI
         private MesService.MesServiceClient serviceClient;
         private DataTable dataSourceMaterialBasic;
         private DataTable dataSourceProductCheck;
+        private DataTable dataSourceQuanlity;
+        private const string DATA_ORDER = "序号";
         #region 物料统计字段
         private const string MATERIAL_PN = "物料号";
         private const string MATERIAL_LOT = "批次号";
@@ -37,6 +39,14 @@ namespace MesManager.UI
         private const string TEAM_LEADER = "班组长";
         private const string ADMIN = "管理员";
         private const string UPDATE_DATE = "更新日期";
+
+        private const string EXCEPT_TYPE = "异常类型";
+        private const string EXCEPT_STOCK = "异常数量";
+        private const string ACTUAL_STOCK = "实际库存";
+        private const string MATERIAL_STATE = "物料状态";
+        private const string SHUT_REASON = "结单原因";
+        private const string USER_NAME = "结单用户";
+        private const string STATEMENT_DATE = "结单日期";
         #endregion
 
         #region 成品抽检字段
@@ -75,10 +85,6 @@ namespace MesManager.UI
 
         private void InitStyle()
         {
-            for (int i = 0; i < 18; i++)
-            {
-                this.toolStripComboBox1.Items.Add(i);
-            }
             SkinEngine skinEngine = new SkinEngine();
             string path = AppDomain.CurrentDomain.BaseDirectory + "Skins\\EighteenColor2.ssk";
             skinEngine.SkinFile = path;
@@ -93,84 +99,23 @@ namespace MesManager.UI
             this.menu_material.Click += Menu_material_Click;
             this.menu_package.Click += Menu_package_Click;
             this.menu_productCheck.Click += Menu_productCheck_Click;
+            this.menu_quanlity.Click += Menu_quanlity_Click;
 
             this.btn_materialSelect.Click += Btn_materialSelect_Click;
             this.btn_selectOfSn.Click += Btn_selectOfSn_Click;
             this.btn_selectOfPackage.Click += Btn_selectOfPackage_Click;
             this.btn_productCheck.Click += Btn_productCheck_Click;
+            this.btn_quanlity.Click += Btn_quanlity_Click;
 
             this.tool_sn_export.Click += Tool_sn_export_Click;
             this.tool_material_export.Click += Tool_material_export_Click;
             this.tool_package_export.Click += Tool_package_export_Click;
             this.tool_productCheck_export.Click += Tool_productCheck_export_Click;
+            this.tool_quanlity_export.Click += Tool_quanlity_export_Click;
 
             this.radGridViewMaterial.CellDoubleClick += RadGridViewMaterial_CellDoubleClick;
-            this.toolStripComboBox1.SelectedIndexChanged += ToolStripComboBox1_SelectedIndexChanged;
         }
 
-        private void ToolStripComboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int index = this.toolStripComboBox1.SelectedIndex;
-            switch (index)
-            {
-                case 0:
-                    Menu_windows8_Click();
-                    break;
-                case 1:
-                    Menu_windows7_Click();
-                    break;
-                case 2:
-                    Menu_Office2013Light_Click();
-                    break;
-                case 3:
-                    Menu_office2013Dark_Click();
-                    break;
-                case 4:
-                    Menu_office2010Silver_Click();
-                    break;
-                case 5:
-                    Menu_office2010Blue_Click();
-                    break;
-                case 6:
-                    Menu_office2010Black_Click();
-                    break;
-                case 7:
-                    Menu_office2007Silver_Click();
-                    break;
-                case 8:
-                    Menu_office2007Black_Click();
-                    break;
-                case 9:
-                    Menu_telerikMetroTouch_Click();
-                    break;
-                case 10:
-                    Menu_telerikMetroBlue_Click();
-                    break;
-                case 11:
-                    Menu_telerikMetro_Click();
-                    break;
-                case 12:
-                    Menu_materialTeal_Click();
-                    break;
-                case 13:
-                    Menu_materialPink_Click();
-                    break;
-                case 14:
-                    Menu_materialBlue_Click();
-                    break;
-                case 15:
-                    Menu_material_Click();
-                    break;
-                case 16:
-                    Menu_vs2012Light_Click();
-                    break;
-                case 17:
-                    Menu_vs2012dark_Click();
-                    break;
-            }
-
-            //8 12
-        }
         #region UI style
         private void Menu_windows8_Click()
         {
@@ -281,6 +226,11 @@ namespace MesManager.UI
         }
         #endregion
 
+        private void Btn_quanlity_Click(object sender, EventArgs e)
+        {
+            SelectOfMaterialQuanlity();
+        }
+
         private void Btn_productCheck_Click(object sender, EventArgs e)
         {
             SelectOfPackageCheck("0");
@@ -296,6 +246,11 @@ namespace MesManager.UI
         private void Tool_package_export_Click(object sender, EventArgs e)
         {
             ExportGridViewData(this.tool_package_exportFilter.SelectedIndex, this.radGridViewPackage);
+        }
+
+        private void Tool_quanlity_export_Click(object sender, EventArgs e)
+        {
+            ExportGridViewData(this.tool_quanlity_exportFilter.SelectedIndex, this.radGridViewQuanlity);
         }
 
         private void Tool_productCheck_export_Click(object sender, EventArgs e)
@@ -355,6 +310,14 @@ namespace MesManager.UI
             SelectOfMaterial();
         }
 
+        private void Menu_quanlity_Click(object sender, EventArgs e)
+        {
+            this.panel_quanlity.Dock = DockStyle.Fill;
+            SetPanelFalse();
+            this.panel_quanlity.Visible = true;
+            SelectOfMaterialQuanlity();
+        }
+
         private void Menu_productCheck_Click(object sender, EventArgs e)
         {
             this.panel_productCheck.Dock = DockStyle.Fill;
@@ -394,10 +357,12 @@ namespace MesManager.UI
             DataGridViewCommon.SetRadGridViewProperty(this.radGridViewPackage, false);
             DataGridViewCommon.SetRadGridViewProperty(this.radGridViewMaterial, false);
             DataGridViewCommon.SetRadGridViewProperty(this.radGridViewCheck,false);
+            DataGridViewCommon.SetRadGridViewProperty(this.radGridViewQuanlity, false);
             this.radGridViewSn.ReadOnly = true;
             this.radGridViewPackage.ReadOnly = true;
             this.radGridViewMaterial.ReadOnly = true;
             this.radGridViewCheck.ReadOnly = true;
+            this.radGridViewQuanlity.ReadOnly = true;
             SetPanelFalse();
             InitDataTable();
             this.panel_sn.Visible = true;
@@ -426,6 +391,12 @@ namespace MesManager.UI
             this.tool_productCheck_exportFilter.Items.Add(ExportFormat.PDF);
             this.tool_productCheck_exportFilter.Items.Add(ExportFormat.CSV);
             this.tool_productCheck_exportFilter.SelectedIndex = 0;
+            this.tool_quanlity_exportFilter.Items.Clear();
+            this.tool_quanlity_exportFilter.Items.Add(ExportFormat.EXCEL);
+            this.tool_quanlity_exportFilter.Items.Add(ExportFormat.HTML);
+            this.tool_quanlity_exportFilter.Items.Add(ExportFormat.PDF);
+            this.tool_quanlity_exportFilter.Items.Add(ExportFormat.CSV);
+            this.tool_quanlity_exportFilter.SelectedIndex = 0;
         }
 
         private void SetPanelFalse()
@@ -434,32 +405,42 @@ namespace MesManager.UI
             this.panel_material.Visible = false;
             this.panel_package.Visible = false;
             this.panel_productCheck.Visible = false;
+            this.panel_quanlity.Visible = false;
         }
 
         async private void SelectOfSn()
         {
             var filter = tb_sn.Text;
-            DataTable dt = (await serviceClient.SelectTestResultUpperAsync(filter, filter, filter, true)).Tables[0];
+            DataSet ds = (await serviceClient.SelectTestResultUpperAsync(filter, filter, filter, true));
+            if (ds == null)
+            {
+                radGridViewSn.DataSource = null;
+                return;
+            }
+            DataTable dt = ds.Tables[0];
             if (dt.Rows.Count < 1)
                 return;
             radGridViewSn.DataSource = dt;
+            this.radGridViewSn.Columns[0].BestFit();
         }
 
         async private void SelectOfPackage(string state)
         {
             var filter = tb_package.Text;
+            this.radGridViewPackage.DataSource = null;
             //箱子编码/追溯码/型号
-            System.Data.DataTable dt = (await serviceClient.SelectPackageProductAsync(filter,state)).Tables[0];
+            System.Data.DataTable dt = (await serviceClient.SelectPackageProductAsync(filter,state,true)).Tables[0];
             if (dt.Rows.Count < 1)
                 return;
             this.radGridViewPackage.DataSource = dt;
+            this.radGridViewPackage.Columns[0].BestFit();
         }
 
         async private void SelectOfPackageCheck(string state)
         {
             var filter = tb_productCheck.Text;
             //箱子编码/追溯码/型号
-            DataTable dt = (await serviceClient.SelectPackageProductAsync(filter, state)).Tables[0];
+            DataTable dt = (await serviceClient.SelectPackageProductAsync(filter, state,false)).Tables[0];
             if (dt.Rows.Count < 1)
                 return;
             this.dataSourceProductCheck.Clear();
@@ -487,12 +468,14 @@ namespace MesManager.UI
                 dataSourceProductCheck.Rows.Add(dr);
             }
             this.radGridViewCheck.DataSource = dataSourceProductCheck;
+            this.radGridViewCheck.Columns[0].BestFit();
         }
         private void InitDataTable()
         {
             if (dataSourceMaterialBasic == null)
             {
                 dataSourceMaterialBasic = new DataTable();
+                dataSourceMaterialBasic.Columns.Add(DATA_ORDER);
                 dataSourceMaterialBasic.Columns.Add(MATERIAL_PN);
                 dataSourceMaterialBasic.Columns.Add(MATERIAL_LOT);
                 dataSourceMaterialBasic.Columns.Add(MATERIAL_RID);
@@ -515,6 +498,65 @@ namespace MesManager.UI
                 dataSourceProductCheck.Columns.Add(CHECK_ADMIN);
                 dataSourceProductCheck.Columns.Add(CHECK_BINDING_DATE);
             }
+            if (dataSourceQuanlity == null)
+            {
+                dataSourceQuanlity = new DataTable();
+                dataSourceQuanlity.Columns.Add(DATA_ORDER);
+                dataSourceQuanlity.Columns.Add(MATERIAL_PN);
+                dataSourceQuanlity.Columns.Add(MATERIAL_LOT);
+                dataSourceQuanlity.Columns.Add(MATERIAL_RID);
+                dataSourceQuanlity.Columns.Add(MATERIAL_DC);
+                dataSourceQuanlity.Columns.Add(MATERIAL_QTY);
+                dataSourceQuanlity.Columns.Add(MATERIAL_NAME);
+                dataSourceQuanlity.Columns.Add(EXCEPT_TYPE);
+                dataSourceQuanlity.Columns.Add(EXCEPT_STOCK);
+                dataSourceQuanlity.Columns.Add(ACTUAL_STOCK);
+                dataSourceQuanlity.Columns.Add(MATERIAL_STATE);
+                dataSourceQuanlity.Columns.Add(SHUT_REASON);
+                dataSourceQuanlity.Columns.Add(USER_NAME);
+                dataSourceQuanlity.Columns.Add(STATEMENT_DATE);
+            }
+        }
+
+        async private void SelectOfMaterialQuanlity()
+        {
+            var materialCodeFilter = this.tb_quanlity_filter.Text;
+            var dt = (await serviceClient.SelectQuanlityManagerAsync(materialCodeFilter)).Tables[0];
+            this.dataSourceQuanlity.Clear();
+            if (dt.Rows.Count < 1)
+                return;
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                DataRow dr = dataSourceQuanlity.NewRow();
+                var materialCode = dt.Rows[i][0].ToString();//pn/lot/rid/dc/qty
+                var pnCode = materialCode.Substring(0, materialCode.IndexOf('@'));
+                materialCode = materialCode.Substring(materialCode.IndexOf('@') + 1);
+                var lotCode = materialCode.Substring(0, materialCode.IndexOf('@'));
+                materialCode = materialCode.Substring(materialCode.IndexOf('@') + 1);
+                var ridCode = materialCode.Substring(0, materialCode.IndexOf('@'));
+                materialCode = materialCode.Substring(materialCode.IndexOf('@') + 1);
+                var dcCode = materialCode.Substring(0, materialCode.IndexOf('@'));
+                materialCode = materialCode.Substring(materialCode.IndexOf('@') + 1);
+                //名称
+                var qtyCode = materialCode;
+                dr[DATA_ORDER] = i + 1;
+                dr[MATERIAL_PN] = pnCode;
+                dr[MATERIAL_LOT] = lotCode;
+                dr[MATERIAL_RID] = ridCode;
+                dr[MATERIAL_DC] = dcCode;
+                dr[MATERIAL_QTY] = qtyCode;
+                dr[MATERIAL_NAME] = serviceClient.SelectMaterialName(pnCode);
+                dr[EXCEPT_TYPE] = dt.Rows[i][1].ToString();
+                dr[EXCEPT_STOCK] = dt.Rows[i][2].ToString();
+                dr[ACTUAL_STOCK] = dt.Rows[i][3].ToString();
+                dr[MATERIAL_STATE] = dt.Rows[i][4].ToString();
+                dr[SHUT_REASON] = dt.Rows[i][5].ToString();
+                dr[USER_NAME] = dt.Rows[i][6].ToString();
+                dr[STATEMENT_DATE] = dt.Rows[i][7].ToString();
+                dataSourceQuanlity.Rows.Add(dr);
+            }
+            this.radGridViewQuanlity.DataSource = dataSourceQuanlity;
+            this.radGridViewQuanlity.Columns[0].BestFit();
         }
 
         /// <summary>
@@ -544,6 +586,7 @@ namespace MesManager.UI
                 var dcCode = materialCode.Substring(0,materialCode.IndexOf('@'));
                 materialCode = materialCode.Substring(materialCode.IndexOf('@')+1);
                 var qtyCode = materialCode;
+                dr[DATA_ORDER] = i + 1;
                 dr[MATERIAL_PN] = pnCode;
                 dr[MATERIAL_LOT] = lotCode;
                 dr[MATERIAL_RID] = ridCode;
@@ -555,6 +598,7 @@ namespace MesManager.UI
                 dataSourceMaterialBasic.Rows.Add(dr);
             }
             this.radGridViewMaterial.DataSource = dataSourceMaterialBasic;
+            this.radGridViewMaterial.Columns[0].BestFit();
         }
 
         private void Btn_selectOfSn_Click(object sender, EventArgs e)
