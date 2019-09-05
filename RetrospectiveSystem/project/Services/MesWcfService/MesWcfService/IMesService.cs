@@ -52,9 +52,9 @@ namespace MesWcfService
         #region【接口】UpdateMaterialStatistics 更新物料计数
         [OperationContract]
         [SwaggerWcfPath("UpdateMaterialStatistics", "装配物料统计")]
-        [WebInvoke(Method = "POST", UriTemplate = "UpdateMaterialStatistics?typeNo={typeNo}&stationName={stationName}&" +
+        [WebInvoke(Method = "GET", UriTemplate = "UpdateMaterialStatistics?typeNo={typeNo}&stationName={stationName}&" +
             "materialCode={materialCode}&amounted={amounted}&teamLeader={teamLeader}&admin={admin}",
-            BodyStyle = WebMessageBodyStyle.WrappedRequest, RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
+            BodyStyle = WebMessageBodyStyle.Bare, RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
         string UpdateMaterialStatistics(
             [SwaggerWcfParameter(Description = "产品型号")]string typeNo,
             [SwaggerWcfParameter(Description = "工站名称")]string stationName,
@@ -62,6 +62,28 @@ namespace MesWcfService
             [SwaggerWcfParameter(Description = "使用数量")]string amounted,
             [SwaggerWcfParameter(Description = "班组长")]string teamLeader,
             [SwaggerWcfParameter(Description = "管理员")]string admin);
+        #endregion
+
+        #region 【接口】物料入库
+        [OperationContract]
+        [SwaggerWcfPath("CheckMaterialPutStorage", "检查物料状态，1-正常，2-正常使用完，3-强制使用完；2/3都为使用完")]
+        [WebInvoke(Method = "GET", UriTemplate = "CheckMaterialPutStorage?materialCode={materialCode}&teamLeader={teamLeader}&admin={admin}", 
+            BodyStyle = WebMessageBodyStyle.Bare,
+            RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
+        string CheckMaterialPutStorage(
+            [SwaggerWcfParameter(Description = "物料编码")]string materialCode,
+            [SwaggerWcfParameter(Description = "班组长")]string teamLeader,
+            [SwaggerWcfParameter(Description = "管理员")]string admin);
+        #endregion
+
+        #region 【接口】查询物料剩余数量
+        [OperationContract]
+        [SwaggerWcfPath("SelectMaterialSurplusAmount", "查询物料剩余数量")]
+        [WebInvoke(Method = "GET", UriTemplate = "SelectMaterialSurplusAmount?materialCode={materialCode}",
+            BodyStyle = WebMessageBodyStyle.Bare,
+            RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
+        string SelectMaterialSurplusAmount(
+            [SwaggerWcfParameter(Description = "物料编码")]string materialCode);
         #endregion
 
         #region 【接口】物料数量防错
@@ -77,10 +99,15 @@ namespace MesWcfService
         #region 【接口】物料号防错
         [OperationContract]
         [SwaggerWcfPath("CheckMaterialMatch", "检查物料码是否匹配，0-不匹配；1-匹配")]
-        [WebInvoke(Method = "GET", UriTemplate = "CheckMaterialMatch?productTypeNo={productTypeNo}&materialPN={materialPN}", BodyStyle = WebMessageBodyStyle.Bare,
+        [WebInvoke(Method = "GET", UriTemplate = "CheckMaterialMatch?productTypeNo={productTypeNo}&" +
+            "materialPN={materialPN}&actualMaterialPn={actualMaterialPn}&materialCode={materialCode}", 
+            BodyStyle = WebMessageBodyStyle.Bare,
             RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
-        string CheckMaterialMatch([SwaggerWcfParameter(Description = "产品型号")]string productTypeNo,
-            [SwaggerWcfParameter(Description = "物料编码")]string materialPN);
+        string CheckMaterialMatch(
+            [SwaggerWcfParameter(Description = "产品型号")]string productTypeNo,
+            [SwaggerWcfParameter(Description = "防错的物料号")]string materialPN,
+            [SwaggerWcfParameter(Description = "实际扫码的物料号")]string actualMaterialPn,
+            [SwaggerWcfParameter(Description = "完整物料编码")]string materialCode);
         #endregion
 
         #region【接口】UpdatePackageProductBindingMsg 【打包/抽检】添加绑定信息/更新绑定信息                

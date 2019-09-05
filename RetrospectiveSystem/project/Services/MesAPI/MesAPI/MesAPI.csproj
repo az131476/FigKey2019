@@ -301,6 +301,7 @@
     <Content Include="接口说明.txt" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\AnalysisMaterialCode.cs" />
     <Compile Include="DB\DbTable.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

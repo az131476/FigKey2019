@@ -28,16 +28,19 @@ namespace MesManager.UI
             this.productSn = sn;
         }
 
-        async private void TestLogDetail_Load(object sender, EventArgs e)
+        private void TestLogDetail_Load(object sender, EventArgs e)
         {
+            serviceClient = new MesService.MesServiceClient();
             DataGridViewCommon.SetRadGridViewProperty(this.radGridView1, false);
             this.radGridView1.ReadOnly = true;
             this.pickerStartTime.Text = DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00";
             this.pickerEndTime.Text = DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59";
-            serviceClient = new MesService.MesServiceClient();
-            var dt = (await serviceClient.SelectTestLogDataDetailAsync(productSn,"","")).Tables[0];
+            var ds = serviceClient.SelectTestLogDataDetail(productSn,"","");
+            if (ds == null)
+                return;
             this.radGridView1.DataSource = null;
-            this.radGridView1.DataSource = dt;
+            this.radGridView1.DataSource = ds.Tables[0];
+            this.radGridView1.Columns[0].BestFit();
         }
 
         async private void Btn_search_Click(object sender, EventArgs e)

@@ -10,6 +10,7 @@ using MesManager.Control;
 using CommonUtils.FileHelper;
 using MesManager.TelerikWinform.GridViewCommon.GridViewDataExport;
 using Telerik.WinControls.UI;
+using MesManager.Common;
 
 namespace MesManager.UI
 {
@@ -98,16 +99,12 @@ namespace MesManager.UI
                 var teamLeader = dt.Rows[i][5].ToString();
                 var admin = dt.Rows[i][6].ToString();
                 var updateDate = dt.Rows[i][7].ToString();
-
-                var pnCode = materialCode.Substring(0, materialCode.IndexOf('@'));
-                materialCode = materialCode.Substring(materialCode.IndexOf('@') + 1);
-                var lotCode = materialCode.Substring(0, materialCode.IndexOf('@'));
-                materialCode = materialCode.Substring(materialCode.IndexOf('@') + 1);
-                var ridCode = materialCode.Substring(0, materialCode.IndexOf('@'));
-                materialCode = materialCode.Substring(materialCode.IndexOf('@') + 1);
-                var dcCode = materialCode.Substring(0, materialCode.IndexOf('@'));
-                materialCode = materialCode.Substring(materialCode.IndexOf('@') + 1);
-                var qtyCode = materialCode;
+                AnalysisMaterialCode analysisMaterialCode = AnalysisMaterialCode.GetMaterialDetail(materialCode);
+                var pnCode = analysisMaterialCode.MaterialPN;
+                var lotCode = analysisMaterialCode.MaterialLOT;
+                var ridCode = analysisMaterialCode.MaterialRID;
+                var dcCode = analysisMaterialCode.MaterialDC;
+                var qtyCode = analysisMaterialCode.MaterialQTY;
                 dr[MATERIAL_PN] = pnCode;
                 dr[MATERIAL_LOT] = lotCode;
                 dr[MATERIAL_RID] = ridCode;

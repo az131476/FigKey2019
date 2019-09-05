@@ -14,23 +14,6 @@ namespace MesManager.MesService {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="LoginUser", Namespace="http://schemas.datacontract.org/2004/07/MesAPI.Model")]
-    public enum LoginUser : int {
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        ADMIN_USER = 0,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        TEAM_LEADER = 1,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        OPERATOR = 2,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        ORDINARY_USER = 3,
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="LoginResult", Namespace="http://schemas.datacontract.org/2004/07/MesAPI.Model")]
     public enum LoginResult : int {
         
@@ -149,243 +132,6 @@ namespace MesManager.MesService {
                 if ((object.ReferenceEquals(this.StationNameField, value) != true)) {
                     this.StationNameField = value;
                     this.RaisePropertyChanged("StationName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string UserName {
-            get {
-                return this.UserNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UserNameField, value) != true)) {
-                    this.UserNameField = value;
-                    this.RaisePropertyChanged("UserName");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="MaterialMsg", Namespace="http://schemas.datacontract.org/2004/07/MesAPI.Model")]
-    [System.SerializableAttribute()]
-    public partial class MaterialMsg : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string DescribleField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string MaterialCodeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string MaterialLOTField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string MaterialNameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string MaterialPNField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string MaterialRIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int ResultField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string Sn_InnerField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string Sn_OutterField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string StationNameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string TypeNoField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string UpdateDateField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string UserNameField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Describle {
-            get {
-                return this.DescribleField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.DescribleField, value) != true)) {
-                    this.DescribleField = value;
-                    this.RaisePropertyChanged("Describle");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string MaterialCode {
-            get {
-                return this.MaterialCodeField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.MaterialCodeField, value) != true)) {
-                    this.MaterialCodeField = value;
-                    this.RaisePropertyChanged("MaterialCode");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string MaterialLOT {
-            get {
-                return this.MaterialLOTField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.MaterialLOTField, value) != true)) {
-                    this.MaterialLOTField = value;
-                    this.RaisePropertyChanged("MaterialLOT");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string MaterialName {
-            get {
-                return this.MaterialNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.MaterialNameField, value) != true)) {
-                    this.MaterialNameField = value;
-                    this.RaisePropertyChanged("MaterialName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string MaterialPN {
-            get {
-                return this.MaterialPNField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.MaterialPNField, value) != true)) {
-                    this.MaterialPNField = value;
-                    this.RaisePropertyChanged("MaterialPN");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string MaterialRID {
-            get {
-                return this.MaterialRIDField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.MaterialRIDField, value) != true)) {
-                    this.MaterialRIDField = value;
-                    this.RaisePropertyChanged("MaterialRID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Result {
-            get {
-                return this.ResultField;
-            }
-            set {
-                if ((this.ResultField.Equals(value) != true)) {
-                    this.ResultField = value;
-                    this.RaisePropertyChanged("Result");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Sn_Inner {
-            get {
-                return this.Sn_InnerField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.Sn_InnerField, value) != true)) {
-                    this.Sn_InnerField = value;
-                    this.RaisePropertyChanged("Sn_Inner");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Sn_Outter {
-            get {
-                return this.Sn_OutterField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.Sn_OutterField, value) != true)) {
-                    this.Sn_OutterField = value;
-                    this.RaisePropertyChanged("Sn_Outter");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string StationName {
-            get {
-                return this.StationNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.StationNameField, value) != true)) {
-                    this.StationNameField = value;
-                    this.RaisePropertyChanged("StationName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string TypeNo {
-            get {
-                return this.TypeNoField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.TypeNoField, value) != true)) {
-                    this.TypeNoField = value;
-                    this.RaisePropertyChanged("TypeNo");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string UpdateDate {
-            get {
-                return this.UpdateDateField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UpdateDateField, value) != true)) {
-                    this.UpdateDateField = value;
-                    this.RaisePropertyChanged("UpdateDate");
                 }
             }
         }
@@ -565,10 +311,10 @@ namespace MesManager.MesService {
         System.Threading.Tasks.Task<string> TestCommunicationAsync(string value);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/Login", ReplyAction="http://tempuri.org/IMesService/LoginResponse")]
-        MesManager.MesService.LoginResult Login(string username, string password, MesManager.MesService.LoginUser loginUser);
+        MesManager.MesService.LoginResult Login(string username, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/Login", ReplyAction="http://tempuri.org/IMesService/LoginResponse")]
-        System.Threading.Tasks.Task<MesManager.MesService.LoginResult> LoginAsync(string username, string password, MesManager.MesService.LoginUser loginUser);
+        System.Threading.Tasks.Task<MesManager.MesService.LoginResult> LoginAsync(string username, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/GetUserInfo", ReplyAction="http://tempuri.org/IMesService/GetUserInfoResponse")]
         System.Data.DataSet GetUserInfo(string username);
@@ -678,11 +424,11 @@ namespace MesManager.MesService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectMaterial", ReplyAction="http://tempuri.org/IMesService/SelectMaterialResponse")]
         System.Threading.Tasks.Task<System.Data.DataSet> SelectMaterialAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/CommitMaterial", ReplyAction="http://tempuri.org/IMesService/CommitMaterialResponse")]
-        MesManager.MesService.MaterialMsg[] CommitMaterial(MesManager.MesService.MaterialMsg[] list);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectMaterialPN", ReplyAction="http://tempuri.org/IMesService/SelectMaterialPNResponse")]
+        System.Data.DataSet SelectMaterialPN();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/CommitMaterial", ReplyAction="http://tempuri.org/IMesService/CommitMaterialResponse")]
-        System.Threading.Tasks.Task<MesManager.MesService.MaterialMsg[]> CommitMaterialAsync(MesManager.MesService.MaterialMsg[] list);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectMaterialPN", ReplyAction="http://tempuri.org/IMesService/SelectMaterialPNResponse")]
+        System.Threading.Tasks.Task<System.Data.DataSet> SelectMaterialPNAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/DeleteMaterial", ReplyAction="http://tempuri.org/IMesService/DeleteMaterialResponse")]
         int DeleteMaterial(string materialCode);
@@ -703,16 +449,22 @@ namespace MesManager.MesService {
         System.Threading.Tasks.Task<MesManager.MesService.ProductMaterial[]> CommitProductMaterialAsync(MesManager.MesService.ProductMaterial[] pmList);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectProductMaterial", ReplyAction="http://tempuri.org/IMesService/SelectProductMaterialResponse")]
-        System.Data.DataSet SelectProductMaterial(MesManager.MesService.ProductMaterial material);
+        System.Data.DataSet SelectProductMaterial();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectProductMaterial", ReplyAction="http://tempuri.org/IMesService/SelectProductMaterialResponse")]
-        System.Threading.Tasks.Task<System.Data.DataSet> SelectProductMaterialAsync(MesManager.MesService.ProductMaterial material);
+        System.Threading.Tasks.Task<System.Data.DataSet> SelectProductMaterialAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/DeleteProductMaterial", ReplyAction="http://tempuri.org/IMesService/DeleteProductMaterialResponse")]
         int DeleteProductMaterial(MesManager.MesService.ProductMaterial material);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/DeleteProductMaterial", ReplyAction="http://tempuri.org/IMesService/DeleteProductMaterialResponse")]
         System.Threading.Tasks.Task<int> DeleteProductMaterialAsync(MesManager.MesService.ProductMaterial material);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/UpdateMaterialPN", ReplyAction="http://tempuri.org/IMesService/UpdateMaterialPNResponse")]
+        int UpdateMaterialPN(string materialPN, string materialName, string username, string describle);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/UpdateMaterialPN", ReplyAction="http://tempuri.org/IMesService/UpdateMaterialPNResponse")]
+        System.Threading.Tasks.Task<int> UpdateMaterialPNAsync(string materialPN, string materialName, string username, string describle);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/InsertMaterialStatistics", ReplyAction="http://tempuri.org/IMesService/InsertMaterialStatisticsResponse")]
         string InsertMaterialStatistics(string snInner, string snOutter, string typeNo, string stationName, string materialCode, string amount);
@@ -858,12 +610,12 @@ namespace MesManager.MesService {
             return base.Channel.TestCommunicationAsync(value);
         }
         
-        public MesManager.MesService.LoginResult Login(string username, string password, MesManager.MesService.LoginUser loginUser) {
-            return base.Channel.Login(username, password, loginUser);
+        public MesManager.MesService.LoginResult Login(string username, string password) {
+            return base.Channel.Login(username, password);
         }
         
-        public System.Threading.Tasks.Task<MesManager.MesService.LoginResult> LoginAsync(string username, string password, MesManager.MesService.LoginUser loginUser) {
-            return base.Channel.LoginAsync(username, password, loginUser);
+        public System.Threading.Tasks.Task<MesManager.MesService.LoginResult> LoginAsync(string username, string password) {
+            return base.Channel.LoginAsync(username, password);
         }
         
         public System.Data.DataSet GetUserInfo(string username) {
@@ -1010,12 +762,12 @@ namespace MesManager.MesService {
             return base.Channel.SelectMaterialAsync();
         }
         
-        public MesManager.MesService.MaterialMsg[] CommitMaterial(MesManager.MesService.MaterialMsg[] list) {
-            return base.Channel.CommitMaterial(list);
+        public System.Data.DataSet SelectMaterialPN() {
+            return base.Channel.SelectMaterialPN();
         }
         
-        public System.Threading.Tasks.Task<MesManager.MesService.MaterialMsg[]> CommitMaterialAsync(MesManager.MesService.MaterialMsg[] list) {
-            return base.Channel.CommitMaterialAsync(list);
+        public System.Threading.Tasks.Task<System.Data.DataSet> SelectMaterialPNAsync() {
+            return base.Channel.SelectMaterialPNAsync();
         }
         
         public int DeleteMaterial(string materialCode) {
@@ -1042,12 +794,12 @@ namespace MesManager.MesService {
             return base.Channel.CommitProductMaterialAsync(pmList);
         }
         
-        public System.Data.DataSet SelectProductMaterial(MesManager.MesService.ProductMaterial material) {
-            return base.Channel.SelectProductMaterial(material);
+        public System.Data.DataSet SelectProductMaterial() {
+            return base.Channel.SelectProductMaterial();
         }
         
-        public System.Threading.Tasks.Task<System.Data.DataSet> SelectProductMaterialAsync(MesManager.MesService.ProductMaterial material) {
-            return base.Channel.SelectProductMaterialAsync(material);
+        public System.Threading.Tasks.Task<System.Data.DataSet> SelectProductMaterialAsync() {
+            return base.Channel.SelectProductMaterialAsync();
         }
         
         public int DeleteProductMaterial(MesManager.MesService.ProductMaterial material) {
@@ -1056,6 +808,14 @@ namespace MesManager.MesService {
         
         public System.Threading.Tasks.Task<int> DeleteProductMaterialAsync(MesManager.MesService.ProductMaterial material) {
             return base.Channel.DeleteProductMaterialAsync(material);
+        }
+        
+        public int UpdateMaterialPN(string materialPN, string materialName, string username, string describle) {
+            return base.Channel.UpdateMaterialPN(materialPN, materialName, username, describle);
+        }
+        
+        public System.Threading.Tasks.Task<int> UpdateMaterialPNAsync(string materialPN, string materialName, string username, string describle) {
+            return base.Channel.UpdateMaterialPNAsync(materialPN, materialName, username, describle);
         }
         
         public string InsertMaterialStatistics(string snInner, string snOutter, string typeNo, string stationName, string materialCode, string amount) {

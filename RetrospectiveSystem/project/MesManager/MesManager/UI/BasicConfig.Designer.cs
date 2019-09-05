@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BasicConfig));
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             this.cb_cfgType = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -51,8 +51,8 @@
             this.menu_refresh = new Telerik.WinControls.UI.RadMenuItem();
             this.menu_grid = new Telerik.WinControls.UI.RadMenuItem();
             this.menu_clear_db = new Telerik.WinControls.UI.RadMenuItem();
-            this.radGridView1 = new Telerik.WinControls.UI.RadGridView();
             this.menu_export = new Telerik.WinControls.UI.RadMenuItem();
+            this.radGridView1 = new Telerik.WinControls.UI.RadGridView();
             this.statusStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).BeginInit();
@@ -227,6 +227,13 @@
             this.menu_clear_db.Name = "menu_clear_db";
             this.menu_clear_db.Text = "清空数据";
             // 
+            // menu_export
+            // 
+            this.menu_export.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.menu_export.Image = global::MesManager.Properties.Resources.Export_16x16;
+            this.menu_export.Name = "menu_export";
+            this.menu_export.Text = "导出";
+            // 
             // radGridView1
             // 
             this.radGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -235,17 +242,10 @@
             // 
             // 
             // 
-            this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition2;
             this.radGridView1.Name = "radGridView1";
             this.radGridView1.Size = new System.Drawing.Size(1272, 614);
             this.radGridView1.TabIndex = 14;
-            // 
-            // menu_export
-            // 
-            this.menu_export.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.menu_export.Image = global::MesManager.Properties.Resources.Export_16x16;
-            this.menu_export.Name = "menu_export";
-            this.menu_export.Text = "导出";
             // 
             // BasicConfig
             // 

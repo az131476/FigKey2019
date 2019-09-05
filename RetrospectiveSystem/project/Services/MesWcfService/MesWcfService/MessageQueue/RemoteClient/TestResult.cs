@@ -85,33 +85,45 @@ namespace MesWcfService.MessageQueue.RemoteClient
                     $"FROM {DbTable.F_TECHNOLOGICAL_PROCESS_NAME} " +
                     $"WHERE {DbTable.F_TECHNOLOGICAL_PROCESS.STATION_NAME} = '{station}' AND " +
                     $"{DbTable.F_TECHNOLOGICAL_PROCESS.PROCESS_NAME} = '{processName}'";
-                LogHelper.Log.Info(selectOrderSQL);
+                LogHelper.Log.Info("【查询当前站ID】"+selectOrderSQL);
                 DataTable dt = SQLServer.ExecuteDataSet(selectOrderSQL).Tables[0];
                 if (dt.Rows.Count < 1)
                 {
                     queryResult = new string[1];
-                    queryResult[0] = "ERR_LAST_STATION";
+                    queryResult[0] = "ERR_LAST_STATION_ID";
                     return queryResult;
                 }
                 int lastOrder = int.Parse(dt.Rows[0][0].ToString()) - 1;
-                selectOrderSQL = $"SELECT {DbTable.F_TECHNOLOGICAL_PROCESS.STATION_NAME} FROM {DbTable.F_TECHNOLOGICAL_PROCESS_NAME} " +
+                LogHelper.Log.Info($"【上一站ID】={lastOrder}");
+                selectOrderSQL = $"SELECT {DbTable.F_TECHNOLOGICAL_PROCESS.STATION_NAME} " +
+                    $"FROM {DbTable.F_TECHNOLOGICAL_PROCESS_NAME} " +
                     $"WHERE {DbTable.F_TECHNOLOGICAL_PROCESS.STATION_ORDER} = '{lastOrder}' AND " +
                     $"{DbTable.F_TECHNOLOGICAL_PROCESS.PROCESS_NAME} = '{processName}'";
                 dt = SQLServer.ExecuteDataSet(selectOrderSQL).Tables[0];
                 if (dt.Rows.Count < 1)
                 {
                     queryResult = new string[1];
-                    queryResult[0] = "ERR_LAST_STATION_KEY";
+                    queryResult[0] = "ERR_LAST_STATION_NAME";
                     return queryResult;
                 }
                 station = dt.Rows[0][0].ToString();
-                LogHelper.Log.Info("测试端查询测试结果,上一站位为" + station);
+                LogHelper.Log.Info($"【上一站工站】={station}");
+                //由外壳码查询关联SN
+                /*
+                 * 由传入SN查询是否绑定PCBA
+                 * 查询有结果-已绑定PCBA：
+                 *  1）装配时存入的是PCBA
+                 *  2）装配时存入的是外壳SN
+                 * 查询无结果-未绑定PCBA：直接由传入SN查询
+                 */ 
+                var snPCBA = SelectSN(sn);
                 //根据上一站位在查询该站位的最后一条记录
                 string selectSQL = $"SELECT {DbTable.F_Test_Result.TEST_RESULT} " +
                     $"FROM " +
                     $"{DbTable.F_TEST_RESULT_NAME} " +
                     $"WHERE " +
-                    $"{DbTable.F_Test_Result.SN} = '{sn}' AND " +
+                    $"{DbTable.F_Test_Result.SN} = '{sn}' OR " +
+                    $"{DbTable.F_Test_Result.SN} = '{snPCBA}' AND " +
                     $"{DbTable.F_Test_Result.STATION_NAME} = '{station}' " +
                     $"ORDER BY " +
                     $"{DbTable.F_Test_Result.UPDATE_DATE} " +
@@ -140,6 +152,29 @@ namespace MesWcfService.MessageQueue.RemoteClient
                 LogHelper.Log.Error(ex.Message+"\r\n"+ex.StackTrace);
                 return queryResult;
             }
+        }
+
+        public static string SelectSN(string snOutter)
+        {
+            //两种情况
+            //sn= snoutter;
+            var selectSQL = $"SELECT {DbTable.F_BINDING_PCBA.SN_PCBA} FROM  {DbTable.F_BINDING_PCBA_NAME} " +
+                $"WHERE " +
+                $"{DbTable.F_BINDING_PCBA.SN_OUTTER} = '{snOutter}'";
+            var dt = SQLServer.ExecuteDataSet(selectSQL).Tables[0];
+            if (dt.Rows.Count > 0)
+            {
+                return dt.Rows[0][0].ToString();
+            }
+            //sn= snPcba
+            selectSQL = $"SELECT {DbTable.F_BINDING_PCBA.SN_OUTTER} FROM {DbTable.F_BINDING_PCBA_NAME} " +
+                $"WHERE " +
+                $"{DbTable.F_BINDING_PCBA.SN_PCBA} = '{snOutter}'";
+
+            dt = SQLServer.ExecuteDataSet(selectSQL).Tables[0];
+            if (dt.Rows.Count > 0)
+                return dt.Rows[0][0].ToString();
+            return "";
         }
     }
 }

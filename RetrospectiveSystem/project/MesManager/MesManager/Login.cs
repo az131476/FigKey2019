@@ -159,11 +159,11 @@ namespace MesManager
         /// 调用接口验证用户名和密码
         /// </summary>
         /// <param name="loginUser"></param>
-        async private void RemoteValidate(MesService.LoginUser loginUser)
+        async private void RemoteValidate()
         {
             try
             {
-                MesService.LoginResult loginRes = await mesService.LoginAsync(tbx_username.Text, tbx_pwd.Text, loginUser);
+                MesService.LoginResult loginRes = await mesService.LoginAsync(tbx_username.Text, tbx_pwd.Text);
                 //验证用户密码
                 switch (loginRes)
                 {
@@ -319,7 +319,7 @@ namespace MesManager
                 return;
             if (!LocalValidate())
                 return;
-            RemoteValidate(MesService.LoginUser.ADMIN_USER);
+            RemoteValidate();
             GetUserName = tbx_username.Text;
             SelectUserType();
 
@@ -330,9 +330,9 @@ namespace MesManager
                 this.Close();
             }
         }
-        async private void SelectUserType()
+        private void SelectUserType()
         {
-            var dt = (await mesService.GetUserInfoAsync(tbx_username.Text)).Tables[0];
+            var dt = mesService.GetUserInfo(tbx_username.Text).Tables[0];
             if (dt.Rows.Count < 1)
                 return;
             CurrentUserType = int.Parse(dt.Rows[0][0].ToString()); 

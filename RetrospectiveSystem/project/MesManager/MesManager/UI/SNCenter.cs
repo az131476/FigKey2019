@@ -16,6 +16,7 @@ using MesManager.TelerikWinform.GridViewCommon.GridViewDataExport;
 using System.Threading;
 using Telerik.WinControls.Themes;
 using Sunisoft.IrisSkin;
+using MesManager.Common;
 
 namespace MesManager.UI
 {
@@ -36,6 +37,7 @@ namespace MesManager.UI
         private const string PRODUCT_TYPENO = "产品型号";
         private const string STATION_NAME = "工站名称";
         private const string USE_AMOUNTED = "使用数量";
+        private const string RESIDUE_STOCK = "剩余库存";
         private const string TEAM_LEADER = "班组长";
         private const string ADMIN = "管理员";
         private const string UPDATE_DATE = "更新日期";
@@ -480,10 +482,11 @@ namespace MesManager.UI
                 dataSourceMaterialBasic.Columns.Add(MATERIAL_LOT);
                 dataSourceMaterialBasic.Columns.Add(MATERIAL_RID);
                 dataSourceMaterialBasic.Columns.Add(MATERIAL_DC);
-                dataSourceMaterialBasic.Columns.Add(MATERIAL_QTY);
                 dataSourceMaterialBasic.Columns.Add(MATERIAL_NAME);
                 dataSourceMaterialBasic.Columns.Add(PRODUCT_TYPENO);
+                dataSourceMaterialBasic.Columns.Add(MATERIAL_QTY);
                 dataSourceMaterialBasic.Columns.Add(USE_AMOUNTED);
+                dataSourceMaterialBasic.Columns.Add(RESIDUE_STOCK);
             }
             if (dataSourceProductCheck == null)
             {
@@ -528,17 +531,15 @@ namespace MesManager.UI
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 DataRow dr = dataSourceQuanlity.NewRow();
-                var materialCode = dt.Rows[i][0].ToString();//pn/lot/rid/dc/qty
-                var pnCode = materialCode.Substring(0, materialCode.IndexOf('@'));
-                materialCode = materialCode.Substring(materialCode.IndexOf('@') + 1);
-                var lotCode = materialCode.Substring(0, materialCode.IndexOf('@'));
-                materialCode = materialCode.Substring(materialCode.IndexOf('@') + 1);
-                var ridCode = materialCode.Substring(0, materialCode.IndexOf('@'));
-                materialCode = materialCode.Substring(materialCode.IndexOf('@') + 1);
-                var dcCode = materialCode.Substring(0, materialCode.IndexOf('@'));
-                materialCode = materialCode.Substring(materialCode.IndexOf('@') + 1);
-                //名称
-                var qtyCode = materialCode;
+                var materialCode = dt.Rows[i][0].ToString();
+                if (!materialCode.Contains("&"))
+                    continue;
+                AnalysisMaterialCode analysisMaterial = AnalysisMaterialCode.GetMaterialDetail(materialCode);
+                var pnCode = analysisMaterial.MaterialPN;
+                var lotCode = analysisMaterial.MaterialLOT;
+                var ridCode = analysisMaterial.MaterialRID;
+                var dcCode = analysisMaterial.MaterialDC;
+                var qtyCode = analysisMaterial.MaterialQTY;
                 dr[DATA_ORDER] = i + 1;
                 dr[MATERIAL_PN] = pnCode;
                 dr[MATERIAL_LOT] = lotCode;
@@ -574,18 +575,18 @@ namespace MesManager.UI
             {
                 DataRow dr = dataSourceMaterialBasic.NewRow();
                 var materialCode = dt.Rows[i][0].ToString();//pn/lot/rid/dc/qty
-                var materialName = dt.Rows[i][1].ToString();
+                //var materialName = dt.Rows[i][1].ToString();
                 var productTypeNo = dt.Rows[i][2].ToString();
                 var useAmounted = dt.Rows[i][3].ToString();
-                var pnCode = materialCode.Substring(0,materialCode.IndexOf('@'));
-                materialCode = materialCode.Substring(materialCode.IndexOf('@')+1);
-                var lotCode = materialCode.Substring(0,materialCode.IndexOf('@'));
-                materialCode = materialCode.Substring(materialCode.IndexOf('@')+1);
-                var ridCode = materialCode.Substring(0,materialCode.IndexOf('@'));
-                materialCode = materialCode.Substring(materialCode.IndexOf('@')+1);
-                var dcCode = materialCode.Substring(0,materialCode.IndexOf('@'));
-                materialCode = materialCode.Substring(materialCode.IndexOf('@')+1);
-                var qtyCode = materialCode;
+                if (!materialCode.Contains("&"))
+                    continue;
+                AnalysisMaterialCode analysisMaterial = AnalysisMaterialCode.GetMaterialDetail(materialCode);
+                var pnCode = analysisMaterial.MaterialPN;
+                var lotCode = analysisMaterial.MaterialLOT;
+                var ridCode = analysisMaterial.MaterialRID;
+                var dcCode = analysisMaterial.MaterialDC;
+                var qtyCode = analysisMaterial.MaterialQTY;
+                var materialName = serviceClient.SelectMaterialName(pnCode);
                 dr[DATA_ORDER] = i + 1;
                 dr[MATERIAL_PN] = pnCode;
                 dr[MATERIAL_LOT] = lotCode;
@@ -595,6 +596,7 @@ namespace MesManager.UI
                 dr[MATERIAL_NAME] = materialName;
                 dr[PRODUCT_TYPENO] = productTypeNo;
                 dr[USE_AMOUNTED] = useAmounted;
+                dr[RESIDUE_STOCK] = int.Parse(qtyCode) - int.Parse(useAmounted);
                 dataSourceMaterialBasic.Rows.Add(dr);
             }
             this.radGridViewMaterial.DataSource = dataSourceMaterialBasic;

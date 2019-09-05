@@ -56,8 +56,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.btn_setprocess)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
             // menu_add
@@ -223,13 +223,6 @@
             this.radGridView1.Size = new System.Drawing.Size(1272, 348);
             this.radGridView1.TabIndex = 38;
             // 
-            // TProcess
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.SteelBlue;
-            this.ClientSize = new System.Drawing.Size(1272, 688);
-            // 
             // radMenu1
             // 
             this.radMenu1.BackColor = System.Drawing.Color.Transparent;
@@ -245,6 +238,13 @@
             this.radMenu1.Name = "radMenu1";
             this.radMenu1.Size = new System.Drawing.Size(1272, 36);
             this.radMenu1.TabIndex = 18;
+            // 
+            // TProcess
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.SteelBlue;
+            this.ClientSize = new System.Drawing.Size(1272, 688);
             this.Controls.Add(this.radGridView1);
             this.Controls.Add(this.groupbox_graph);
             this.Controls.Add(this.panel2);

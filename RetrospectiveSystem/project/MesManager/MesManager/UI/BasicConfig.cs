@@ -26,15 +26,18 @@ namespace MesManager.UI
         private MesServiceTest.MesServiceClient serviceClientTest;
         private DataTable typeNoData,materialData;
         private List<string> modifyTypeNoTemp;
-        private List<string> materialCodeTemp;//存储用户修改的物料编码
+        private List<BasicConfig> materialCodeTemp;//存储用户修改的物料编码
+        private string modifyMaterialPn;
+        private string modifyMaterialDescible;
         private string keyTypeNo;
         private string keyMaterialCode;//记录修改前的编码
         private string keyDescrible;
-        private string keyStation;
+        private string keyMaterialName;
+        private string keyProductStorage;
         private string curMaterialCode;//记录鼠标右键选中行编码
         private string curRowTypeNo;
         private const string DATA_ORDER = "序号";
-        private const string DATA_MATERIAL_CODE = "物料编码";
+        private const string DATA_MATERIAL_CODE = "物料号";
         private const string DATA_MATERIAL_NAME = "物料名称";
         private const string DATA_TYPENO_NAME = "型号名称";
         private const string DATA_CONTAINER_CAPACITY = "容器容量";
@@ -42,6 +45,7 @@ namespace MesManager.UI
         private const string DATA_UPDATE_DATE = "更新日期";
         private const string DATA_DESCRIBLE = "描述说明";
         private int materialCodeLength;
+        private int IsAutoAdd;
         #endregion
 
         public BasicConfig()
@@ -61,10 +65,13 @@ namespace MesManager.UI
             serviceClient = new MesService.MesServiceClient();
             serviceClientTest = new MesServiceTest.MesServiceClient();
             modifyTypeNoTemp = new List<string>();
-            materialCodeTemp = new List<string>();
+            materialCodeTemp = new List<BasicConfig>();
+            label_materialInput.Visible = false;
+            tb_materialInput.Visible = false;
             DataGridViewCommon.SetRadGridViewProperty(this.radGridView1,true);
             this.radGridView1.AllowRowHeaderContextMenu = false;
             var bMaterialCode = int.TryParse(ConfigurationManager.AppSettings["materialLength"].ToString(), out materialCodeLength);
+            int.TryParse(ConfigurationManager.AppSettings["IsAutoAdd"].ToString(),out IsAutoAdd);
             DataSource();
             cb_cfgType.Items.Clear();
             cb_cfgType.Items.Add("型号配置");
@@ -112,10 +119,19 @@ namespace MesManager.UI
             menu_add.Click += Menu_add_Click;
             this.menu_export.Click += Menu_export_Click;
             this.tb_materialInput.TextChanged += Tb_materialInput_TextChanged;
+            this.tb_materialInput.KeyDown += Tb_materialInput_KeyDown;
 
-            cb_cfgType.SelectedIndexChanged += Cb_cfgType_SelectedIndexChanged;
+            this.cb_cfgType.SelectedIndexChanged += Cb_cfgType_SelectedIndexChanged;
             this.radGridView1.CellBeginEdit += RadGridView1_CellBeginEdit;
             this.radGridView1.CellEndEdit += RadGridView1_CellEndEdit;
+        }
+
+        private void Tb_materialInput_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)//扫码有回车符
+            {
+                UpdateAutoAddMaterialRow();
+            }
         }
 
         private void Menu_export_Click(object sender, EventArgs e)
@@ -126,16 +142,72 @@ namespace MesManager.UI
         private void Tb_materialInput_TextChanged(object sender, EventArgs e)
         {
             //输入完成,由条码长度决定
-            if (tb_materialInput.Text.Length == materialCodeLength)
+            //自动添加到行
+            //if (OptionMaterialCode(this.tb_materialInput.Text.Trim()))
+            //    UpdateAutoAddMaterialRow();
+            
+        }
+
+        /// <summary>
+        /// 扫码无回车符的自动添加
+        /// </summary>
+        /// <param name="inputText"></param>
+        /// <returns></returns>
+        private bool OptionMaterialCode(string inputText)
+        {
+            LogHelper.Log.Info($"【扫描物料编码】code={this.tb_materialInput.Text} len=" + this.tb_materialInput.Text.Length);
+            var materialCode = inputText;
+
+            if (materialCode.Contains("&"))
             {
-                //自动添加到行
-                this.radGridView1.Rows.AddNew();
-                int rIndex = this.radGridView1.Rows.Count;
-                this.radGridView1.Rows[rIndex - 1].Cells[0].Value = rIndex;
-                this.radGridView1.Rows[rIndex - 1].Cells[1].Value = this.tb_materialInput.Text;
-                this.tb_materialInput.Clear();
-                this.tb_materialInput.Focus();
+                var materialRID = materialCode.Substring(0, materialCode.IndexOf('&'));
+                materialCode = materialCode.Substring(materialCode.IndexOf('&') + 1);
+                if (materialCode.Length <= 1)
+                    return false;
             }
+            if (materialCode.Contains("&"))
+            {
+                var materialSID = materialCode.Substring(0, materialCode.IndexOf('&'));
+                materialCode = materialCode.Substring(materialCode.IndexOf('&') + 1);
+                if (materialCode.Length <= 1)
+                    return false;
+            }
+            if (materialCode.Contains("&"))
+            {
+                var materialPN = materialCode.Substring(0, materialCode.IndexOf('&'));
+                materialCode = materialCode.Substring(materialCode.IndexOf('&') + 1);
+                if (materialCode.Length <= 1)
+                    return false;
+            }
+            if (materialCode.Contains("&"))
+            {
+                var materialQTY = materialCode.Substring(0, materialCode.IndexOf('&'));
+                materialCode = materialCode.Substring(materialCode.IndexOf('&') + 1);
+                if (materialCode.Length <= 1)
+                    return false;
+            }
+            if (materialCode.Contains("&"))
+            {
+                var materialDC = materialCode.Substring(0, materialCode.IndexOf('&'));
+                materialCode = materialCode.Substring(materialCode.IndexOf('&') + 1);
+                if (materialCode.Length <= 1)
+                    return false;
+            }
+            if (materialCode.Length == 13)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private void UpdateAutoAddMaterialRow()
+        {
+            this.radGridView1.Rows.AddNew();
+            int rIndex = this.radGridView1.Rows.Count;
+            this.radGridView1.Rows[rIndex - 1].Cells[0].Value = rIndex;
+            this.radGridView1.Rows[rIndex - 1].Cells[1].Value = this.tb_materialInput.Text;
+            this.tb_materialInput.Clear();
+            this.tb_materialInput.Focus();
         }
 
         private void Menu_add_Click(object sender, EventArgs e)
@@ -209,21 +281,26 @@ namespace MesManager.UI
         private void RadGridView1_CellEndEdit(object sender, GridViewCellEventArgs e)
         {
             var key = this.radGridView1.CurrentRow.Cells[1].Value;
+            var keyName = this.radGridView1.CurrentRow.Cells[2].Value;
             var kdescrible = this.radGridView1.CurrentRow.Cells[5].Value;
             if (key == null && kdescrible == null)//行不存在
                 return;
+            BasicConfig basicConfig = new BasicConfig();
             if (cb_cfgType.SelectedIndex == 0)
             {
-                if (keyTypeNo != key.ToString() || keyDescrible != kdescrible.ToString())
+                if (keyTypeNo != key.ToString() || keyDescrible != kdescrible.ToString() || keyProductStorage != keyName.ToString())
                 {
                     modifyTypeNoTemp.Add(this.keyTypeNo);
                 }
             }
             else if (cb_cfgType.SelectedIndex == 1)
             {
-                if (this.keyMaterialCode != key.ToString() || this.keyDescrible != kdescrible.ToString())
+                if (this.keyMaterialName != keyName.ToString() || this.keyDescrible != kdescrible.ToString())
                 {
-                    materialCodeTemp.Add(this.keyMaterialCode);
+                    basicConfig.keyMaterialCode = key.ToString();
+                    basicConfig.keyMaterialName = keyName.ToString();
+                    basicConfig.keyDescrible = kdescrible.ToString();
+                    materialCodeTemp.Add(basicConfig);
                 }
             }
         }
@@ -231,19 +308,22 @@ namespace MesManager.UI
         private void RadGridView1_CellBeginEdit(object sender, GridViewCellCancelEventArgs e)
         {
             var key = this.radGridView1.CurrentRow.Cells[1].Value;
+            var key_name = this.radGridView1.CurrentRow.Cells[2].Value;//名称/容量
             var key_describle = this.radGridView1.CurrentRow.Cells[5].Value;
-            if (key == null && key_describle == null)//行不存在
+            if (key == null && key_describle == null )//行不存在
                 return;
 
             if (cb_cfgType.SelectedIndex == 0)
             {
                 this.keyTypeNo = key.ToString();
                 this.keyDescrible = key_describle.ToString();
+                this.keyProductStorage = key_name.ToString();
             }
             else if (cb_cfgType.SelectedIndex == 1)
             {
                 this.keyMaterialCode = key.ToString();
                 this.keyDescrible = key_describle.ToString();
+                this.keyMaterialName = key_name.ToString();
             }
         }
 
@@ -268,15 +348,17 @@ namespace MesManager.UI
             if (cb_cfgType.SelectedIndex == 0)
             {
                 //型号
-                this.label_materialInput.Visible = false;
-                this.tb_materialInput.Visible = false;
+                this.menu_del.Enabled = true;
+                this.menu_clear_db.Enabled = true;
+                this.menu_add.Enabled = true;
                 SelectProductTypeData();
             }
             else if (cb_cfgType.SelectedIndex == 1)
             {
                 //物料
-                this.label_materialInput.Visible = true;
-                this.tb_materialInput.Visible = true;
+                this.menu_del.Enabled = false;
+                this.menu_clear_db.Enabled = false;
+                this.menu_add.Enabled = false;
                 SelectMaterial();
             }
         }
@@ -339,7 +421,7 @@ namespace MesManager.UI
         {
             //调用查询接口
             radGridView1.DataSource = null;
-            DataSet dataSet = serviceClient.SelectMaterial();
+            DataSet dataSet = serviceClient.SelectMaterialPN();
             DataTable dataTable = dataSet.Tables[0];
             materialData.Clear();
             if (dataTable.Rows.Count > 0)
@@ -363,10 +445,9 @@ namespace MesManager.UI
                 materialData.Clear();
                 radGridView1.DataSource = materialData;
             }
-            DataGridViewCommon.SetRadGridViewProperty(this.radGridView1, true);
+            DataGridViewCommon.SetRadGridViewProperty(this.radGridView1, false);
             this.radGridView1.Columns[0].ReadOnly = true;
-            this.radGridView1.Columns[0].BestFit();
-            this.radGridView1.Columns[1].BestFit();
+            this.radGridView1.Columns[1].ReadOnly = true;
             materialCodeTemp.Clear();
             modifyTypeNoTemp.Clear();
         }
@@ -418,42 +499,14 @@ namespace MesManager.UI
         {
             try
             {
-                //提交新增行记录、修改非主键记录
-                int row = radGridView1.RowCount;
-                MesService.MaterialMsg[] materialMsg = new MesService.MaterialMsg[row];
-                for (int i = 0; i < row; i++)
-                {
-                    MesService.MaterialMsg material = new MesService.MaterialMsg();
-                    var materialCode = radGridView1.Rows[i].Cells[1].Value.ToString().Trim();
-                    var materialName = radGridView1.Rows[i].Cells[2].Value.ToString().Trim();
-                    var describle = radGridView1.Rows[i].Cells[5].Value.ToString().Trim();
-                    if (!string.IsNullOrEmpty(materialCode))
-                    {
-                        material.MaterialCode = materialCode;
-                        material.MaterialName = materialName;
-                        material.UserName = MESMainForm.currentUser;
-                        material.Describle = describle;
-                        materialMsg[i] = material;
-                    }
-                }
-                //判断主键是否有修改，将原记录删除后，再执行其他更新
                 if (materialCodeTemp.Count > 0)
                 {
-                    foreach (var code in materialCodeTemp)
+                    foreach (var material in materialCodeTemp)
                     {
-                        await serviceClient.DeleteMaterialAsync(code);
+                        int res = await serviceClient.UpdateMaterialPNAsync(material.keyMaterialCode,
+                            material.keyMaterialName,MESMainForm.currentUser,material.keyDescrible);
                     }
                 }
-                MesService.MaterialMsg[] materialList = await serviceClient.CommitMaterialAsync(materialMsg);
-                foreach(var material in materialList)
-                {
-                    if(material.Result != 1)
-                    {
-                        MessageBox.Show($"【{material.MaterialCode}】更新失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        return;
-                    }
-                }
-                MessageBox.Show("更新成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 RefreshData();
             }
             catch (Exception ex)

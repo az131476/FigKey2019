@@ -103,13 +103,20 @@ namespace MesManager.UI
 
         async private void DeleteUser(string username)
         {
-            if (MessageBox.Show($"确认要删除用户【{username}】", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning) != DialogResult.OK)
+            var dt = serviceClient.GetUserInfo(username).Tables[0];
+            if (dt.Rows.Count < 1)
+                return;
+            var roleID = dt.Rows[0][0].ToString();
+            if (roleID == "0")//admin
+                return;
+            if (MessageBox.Show($"确认要删除用户【{username}】?", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) != DialogResult.OK)
             {
                 return;
             }
             int delV =  await serviceClient.DeleteUserAsync(username);
             if (delV == 1)
             {
+                SelectAllUser();
                 MessageBox.Show("删除成功！","提示",MessageBoxButtons.OK,MessageBoxIcon.Information);
                 return;
             }

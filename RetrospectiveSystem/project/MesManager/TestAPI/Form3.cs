@@ -16,6 +16,7 @@ namespace TestAPI
 {
     public partial class Form3 : Form
     {
+        private MesServiceT.MesServiceClient serviceClient;
         public Form3()
         {
             InitializeComponent();
@@ -24,10 +25,7 @@ namespace TestAPI
         async private void Form3_Load(object sender, EventArgs e)
         {
             MesServiceTest.MesServiceClient mesServiceClient = new MesServiceTest.MesServiceClient();
-            var res = await mesServiceClient.UpdateMaterialStatisticsAsync(new string[] { "1","2","3"});
-            //mesServiceClient.UpdateMaterialStatisticsAsync();
-            MessageBox.Show(res[0]);
-            
+            serviceClient = new MesServiceT.MesServiceClient();
         }
 
         public void LSOSQL()
@@ -64,6 +62,14 @@ namespace TestAPI
             {
                 //LogHelper.Log.Error("异常：" + ex.Message + "\r\n" + ex.StackTrace);
             }
+        }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            var materialCode = this.textBox1.Text;
+            //this.textBox2.Text = serviceClient.CheckMaterialMatch("A02","1.2.11.111","1.2.11.111",
+              //  "A19083100006&S2.118&1.2.11.111&20&20190831&1T20190831001");
+            this.textBox2.Text = serviceClient.CheckMaterialUseState("A02", "A19083100006&S2.118&1.2.11.111&20&20190831&1T20190831001");
         }
     }
 }

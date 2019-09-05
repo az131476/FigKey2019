@@ -125,6 +125,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Connected Services\MesServiceT\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Connected Services\MesService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -189,6 +194,16 @@
     <None Include="Connected Services\MesServiceTest\MesService3.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\MesServiceT\MesService.wsdl" />
+    <None Include="Connected Services\MesServiceT\MesService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\MesServiceT\MesService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\MesServiceT\MesService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\MesService\MesService.wsdl" />
     <None Include="Connected Services\MesService\MesService.xsd">
       <SubType>Designer</SubType>
@@ -218,6 +233,7 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\MesServiceTest\" />
+    <WCFMetadataStorage Include="Connected Services\MesServiceT\" />
     <WCFMetadataStorage Include="Connected Services\MesService\" />
   </ItemGroup>
   <ItemGroup>
@@ -264,6 +280,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\MesServiceTest\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\MesServiceT\MesService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\MesServiceT\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\MesServiceT\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\MesServiceT\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

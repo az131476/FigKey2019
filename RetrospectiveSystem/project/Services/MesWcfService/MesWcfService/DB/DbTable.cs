@@ -21,6 +21,7 @@ namespace MesWcfService.DB
         public const string F_TEST_LIMIT_CONFIG_NAME        = "[WT_SCL].[dbo].[f_test_limit_config]";
         public const string F_TEST_LOG_DATA_NAME            = "[WT_SCL].[dbo].[f_test_log_data]";
         public const string F_BINDING_PCBA_NAME             = "[WT_SCL].[dbo].[f_binding_pcba]";
+        public const string F_MATERIAL_PN_NAME              = "[WT_SCL].[dbo].[f_material_pn]";
 
         public class F_User
         {
@@ -70,6 +71,17 @@ namespace MesWcfService.DB
             public const string MATERIAL_DESCRIBLE      = "[material_describle]";
             public const string MATERIAL_USERNAME       = "[material_username]";
             public const string MATERIAL_UPDATE_DATE    = "[material_update_date]";
+            public const string MATERIAL_TEAM_LEADER    = "[team_leader]";
+            public const string MATERIAL_ADMIN          = "[admin]";
+        }
+
+        public class F_MATERIAL_PN
+        {
+            public const string MATERIAL_PN = "[material_pn]";
+            public const string MATERIAL_NAME = "[material_name]";
+            public const string USER_NAME = "[user_name]";
+            public const string UPDATE_DATE = "[update_date]";
+            public const string DESCRIBLE = "[describle]";
         }
 
         public class F_PRODUCT_MATERIAL

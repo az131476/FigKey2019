@@ -9,6 +9,7 @@ using Telerik.WinControls;
 using Telerik.WinControls.UI;
 using MesManager.Control;
 using CommonUtils.Logger;
+using MesManager.Common;
 
 namespace MesManager.UI
 {
@@ -18,6 +19,7 @@ namespace MesManager.UI
         MesService.MesServiceClient serviceClient;
         private string keyMaterialCode;
         private string keyTypeNo;
+        private string keyDescrible;
 
         List<ProductMaterial> pmListTemp;
         private int editRowIndex;
@@ -60,19 +62,15 @@ namespace MesManager.UI
         private void RadGridView1_CellEndEdit(object sender, GridViewCellEventArgs e)
         {
             //结束编辑，记录下value;与编辑前比较，值改变则执行修改
-            string curMaterialCode = "";
-            string curTypeNo = "";
-            if (this.radGridView1.CurrentRow.Cells[1].Value != null)
-                curTypeNo = this.radGridView1.CurrentRow.Cells[1].Value.ToString();
-            if (this.radGridView1.CurrentRow.Cells[2].Value != null)
-            {
-                var materialPn = this.radGridView1.CurrentRow.Cells[2].Value.ToString();
-                if(materialPn.Contains("("))
-                    materialPn = materialPn.Substring(0, materialPn.IndexOf('('));
-                curMaterialCode = materialPn;
-            }
+            var typeNo = this.radGridView1.CurrentRow.Cells[1].Value;
+            var materialPN = this.radGridView1.CurrentRow.Cells[2].Value;
+            var describle = this.radGridView1.CurrentRow.Cells[3].Value;
+            if (typeNo == null)
+                return;
+            if (materialPN.ToString().Contains("("))
+                materialPN = materialPN.ToString().Substring(0, materialPN.ToString().IndexOf('('));
 
-            if (curMaterialCode != keyMaterialCode || curTypeNo != keyTypeNo)
+            if (materialPN.ToString() != keyMaterialCode || typeNo.ToString() != keyTypeNo || this.keyDescrible != describle.ToString())
             {
                 ProductMaterial productMaterial = new ProductMaterial();
                 productMaterial.keyMaterialCode = keyMaterialCode;
@@ -85,15 +83,16 @@ namespace MesManager.UI
         private void RadGridView1_CellBeginEdit(object sender, GridViewCellCancelEventArgs e)
         {
             //开始编辑，记录下value
-            if (this.radGridView1.CurrentRow.Cells[1].Value != null)
-                keyTypeNo = this.radGridView1.CurrentRow.Cells[1].Value.ToString();
-            if (this.radGridView1.CurrentRow.Cells[2].Value != null)
-            {
-                var materialPN =  this.radGridView1.CurrentRow.Cells[2].Value.ToString();
-                if(materialPN.Contains("("))
-                    materialPN = materialPN.Substring(0, materialPN.IndexOf('('));
-                keyMaterialCode = materialPN;
-            }
+            var typeNo = this.radGridView1.CurrentRow.Cells[1].Value;
+            var materialPN = this.radGridView1.CurrentRow.Cells[2].Value;
+            var describle = this.radGridView1.CurrentRow.Cells[3].Value;
+            if (typeNo == null)
+                return;
+            this.keyTypeNo = typeNo.ToString();
+            if (materialPN.ToString().Contains("("))
+                materialPN = materialPN.ToString().Substring(0, materialPN.ToString().IndexOf('('));
+            this.keyMaterialCode = materialPN.ToString();
+            this.keyDescrible = describle.ToString();
         }
 
         private void RadGridView1_ContextMenuOpening(object sender, ContextMenuOpeningEventArgs e)
@@ -185,10 +184,10 @@ namespace MesManager.UI
         async private void BindingDataSource()
         {
             GridViewTextBoxColumn order = this.radGridView1.Columns[DataGridViewColumnName.rdvc_order.ToString()] as GridViewTextBoxColumn;
-            GridViewComboBoxColumn materialCode = this.radGridView1.Columns[DataGridViewColumnName.rdvc_materialCode.ToString()] as GridViewComboBoxColumn;
+            //GridViewComboBoxColumn materialCode = this.radGridView1.Columns[DataGridViewColumnName.rdvc_materialCode.ToString()] as GridViewComboBoxColumn;
             GridViewComboBoxColumn productTypeNo = this.radGridView1.Columns[DataGridViewColumnName.rdvc_typeNo.ToString()] as GridViewComboBoxColumn;
             GridViewTextBoxColumn describle = this.radGridView1.Columns[DataGridViewColumnName.rdvc_describle.ToString()] as GridViewTextBoxColumn;
-            DataTable materialCodeDt = (await serviceClient.SelectMaterialAsync()).Tables[0];//0
+            DataTable materialCodeDt = (await serviceClient.SelectMaterialPNAsync()).Tables[0];//0
             DataTable typeNoDt = (await serviceClient.SelectProductContinairCapacityAsync("")).Tables[0];//1
 
             List<string> materialListTemp = new List<string>();
@@ -200,14 +199,10 @@ namespace MesManager.UI
             {
                 for (int i = 0; i < materialCodeDt.Rows.Count; i++)
                 {
-                    var materialCodeTmp = materialCodeDt.Rows[i][0].ToString();
+                    var materialPN = materialCodeDt.Rows[i][0].ToString();
                     var materialName = materialCodeDt.Rows[i][1].ToString();
-                    var materialPN = "";
-                    if (materialCodeTmp.Contains("@"))
-                    {
-                        materialPN = materialCodeTmp.Substring(0, materialCodeTmp.IndexOf('@'));
-                    }
-                    if (!materialListTemp.Contains(materialPN) && materialPN != "")
+
+                    if (!materialListTemp.Contains(materialPN))
                     {
                         if (!string.IsNullOrEmpty(materialName))
                         {
@@ -227,7 +222,7 @@ namespace MesManager.UI
                     typeNoListTemp.Add(typeNoDt.Rows[i][0].ToString());
                 }
             }
-            materialCode.DataSource = materialListTemp;
+            //materialCode.DataSource = materialListTemp;
             productTypeNo.DataSource = typeNoListTemp;
             SelectData();
             this.radGridView1.EndEdit();
@@ -256,13 +251,14 @@ namespace MesManager.UI
                         materialPn = materialPn.Substring(0, materialPn.IndexOf('('));
                     productMaterial.MaterialCode = materialPn;
                     //更新编码库存
-                    if (productMaterial.MaterialCode.Contains("@"))
+                    if (productMaterial.MaterialCode.Contains("&"))
                     {
-                        productMaterial.Stock = productMaterial.MaterialCode.Substring(productMaterial.MaterialCode.LastIndexOf('@') + 1);
+                        productMaterial.Stock = AnalysisMaterialCode.GetMaterialDetail(productMaterial.MaterialCode).MaterialQTY;
                     }
                 }
                 if (rowInfo.Cells[3].Value != null)
                     productMaterial.Describle = rowInfo.Cells[3].Value.ToString();
+                productMaterial.UserName = MESMainForm.currentUser;
 
                 if (rowInfo.Cells[1].Value != null && rowInfo.Cells[2].Value != null)
                     productMaterialList[row] = productMaterial;
@@ -336,22 +332,23 @@ namespace MesManager.UI
 
         async private void SelectData()
         {
-            DataTable dt = (await serviceClient.SelectProductMaterialAsync(new MesService.ProductMaterial())).Tables[0];
+            DataTable dt = (await serviceClient.SelectProductMaterialAsync()).Tables[0];
             this.radGridView1.DataSource = null;
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                this.radGridView1.Rows.AddNew();
+                this.radGridView1.Rows.AddNew();//序号/型号/物料号/描述/操作员/更新日期
                 this.radGridView1.Rows[i].Cells[0].Value = i + 1;
                 this.radGridView1.Rows[i].Cells[1].Value = dt.Rows[i][0].ToString();
+                var materialPN = dt.Rows[i][1].ToString();
                 this.radGridView1.Rows[i].Cells[3].Value = dt.Rows[i][2].ToString();
-                this.radGridView1.Rows[i].Cells[4].Value = dt.Rows[i][3].ToString();
-                this.radGridView1.Rows[i].Cells[5].Value = dt.Rows[i][4].ToString();
-                var materialName = dt.Rows[i][5].ToString();
+                this.radGridView1.Rows[i].Cells[4].Value = dt.Rows[i][3].ToString();//用户
+                this.radGridView1.Rows[i].Cells[5].Value = dt.Rows[i][4].ToString();//日期
+                var materialName = serviceClient.SelectMaterialName(materialPN);
                 if (materialName != "")
                 {
                     materialName = "(" + materialName + ")";
                 }
-                this.radGridView1.Rows[i].Cells[2].Value = dt.Rows[i][1].ToString() + materialName;
+                this.radGridView1.Rows[i].Cells[2].Value = materialPN + materialName;
             }
             //删除空行
             int startIndex = dt.Rows.Count;

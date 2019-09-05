@@ -146,8 +146,8 @@ namespace MesManager
             var typeNo = cb_material_typeNo.Text.Trim();
             MesService.ProductMaterial productMaterial = new MesService.ProductMaterial();
             productMaterial.TypeNo = typeNo;
-            DataTable dt = (await serviceClient.SelectProductMaterialAsync(productMaterial)).Tables[0];
-            this.radGridViewMaterial.DataSource = dt;
+            //DataTable dt = (await serviceClient.SelectProductMaterialAsync(productMaterial)).Tables[0];
+            //this.radGridViewMaterial.DataSource = dt;
         }
 
         #region UI style

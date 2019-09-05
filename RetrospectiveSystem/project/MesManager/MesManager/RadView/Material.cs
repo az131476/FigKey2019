@@ -203,15 +203,15 @@ namespace MesManager.RadView
             {
                 //提交新增行记录、修改非主键记录
                 int row = radGridView1.RowCount;
-                MesService.MaterialMsg[] materialMsg = new MesService.MaterialMsg[row];
+                //MesService.MaterialMsg[] materialMsg = new MesService.MaterialMsg[row];
                 for (int i = 0; i < row; i++)
                 {
-                    MesService.MaterialMsg material = new MesService.MaterialMsg();
+                    //MesService.MaterialMsg material = new MesService.MaterialMsg();
                     var materialCode = radGridView1.Rows[i].Cells[1].Value.ToString().Trim();
                     var amount = radGridView1.Rows[i].Cells[2].Value.ToString().Trim();
-                    material.MaterialCode = materialCode;
-                    material.MaterialName = "";
-                    materialMsg[i] = material;
+                    //material.MaterialCode = materialCode;
+                    //material.MaterialName = "";
+                    //materialMsg[i] = material;
                 }
                 //判断主键是否有修改，将原记录删除后，再执行其他更新
                 foreach (var code in materialCodeTemp)

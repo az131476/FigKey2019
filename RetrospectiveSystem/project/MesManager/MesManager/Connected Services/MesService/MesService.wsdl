@@ -129,11 +129,11 @@
   <wsdl:message name="IMesService_SelectMaterial_OutputMessage">
     <wsdl:part name="parameters" element="tns:SelectMaterialResponse" />
   </wsdl:message>
-  <wsdl:message name="IMesService_CommitMaterial_InputMessage">
-    <wsdl:part name="parameters" element="tns:CommitMaterial" />
+  <wsdl:message name="IMesService_SelectMaterialPN_InputMessage">
+    <wsdl:part name="parameters" element="tns:SelectMaterialPN" />
   </wsdl:message>
-  <wsdl:message name="IMesService_CommitMaterial_OutputMessage">
-    <wsdl:part name="parameters" element="tns:CommitMaterialResponse" />
+  <wsdl:message name="IMesService_SelectMaterialPN_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SelectMaterialPNResponse" />
   </wsdl:message>
   <wsdl:message name="IMesService_DeleteMaterial_InputMessage">
     <wsdl:part name="parameters" element="tns:DeleteMaterial" />
@@ -164,6 +164,12 @@
   </wsdl:message>
   <wsdl:message name="IMesService_DeleteProductMaterial_OutputMessage">
     <wsdl:part name="parameters" element="tns:DeleteProductMaterialResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_UpdateMaterialPN_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateMaterialPN" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_UpdateMaterialPN_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateMaterialPNResponse" />
   </wsdl:message>
   <wsdl:message name="IMesService_InsertMaterialStatistics_InputMessage">
     <wsdl:part name="parameters" element="tns:InsertMaterialStatistics" />
@@ -354,9 +360,9 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IMesService/SelectMaterial" message="tns:IMesService_SelectMaterial_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMesService/SelectMaterialResponse" message="tns:IMesService_SelectMaterial_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="CommitMaterial">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/CommitMaterial" message="tns:IMesService_CommitMaterial_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/CommitMaterialResponse" message="tns:IMesService_CommitMaterial_OutputMessage" />
+    <wsdl:operation name="SelectMaterialPN">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/SelectMaterialPN" message="tns:IMesService_SelectMaterialPN_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/SelectMaterialPNResponse" message="tns:IMesService_SelectMaterialPN_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="DeleteMaterial">
       <wsdl:input wsaw:Action="http://tempuri.org/IMesService/DeleteMaterial" message="tns:IMesService_DeleteMaterial_InputMessage" />
@@ -377,6 +383,10 @@
     <wsdl:operation name="DeleteProductMaterial">
       <wsdl:input wsaw:Action="http://tempuri.org/IMesService/DeleteProductMaterial" message="tns:IMesService_DeleteProductMaterial_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMesService/DeleteProductMaterialResponse" message="tns:IMesService_DeleteProductMaterial_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMaterialPN">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/UpdateMaterialPN" message="tns:IMesService_UpdateMaterialPN_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/UpdateMaterialPNResponse" message="tns:IMesService_UpdateMaterialPN_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="InsertMaterialStatistics">
       <wsdl:input wsaw:Action="http://tempuri.org/IMesService/InsertMaterialStatistics" message="tns:IMesService_InsertMaterialStatistics_InputMessage" />
@@ -633,8 +643,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="CommitMaterial">
-      <soap:operation soapAction="http://tempuri.org/IMesService/CommitMaterial" style="document" />
+    <wsdl:operation name="SelectMaterialPN">
+      <soap:operation soapAction="http://tempuri.org/IMesService/SelectMaterialPN" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -680,6 +690,15 @@
     </wsdl:operation>
     <wsdl:operation name="DeleteProductMaterial">
       <soap:operation soapAction="http://tempuri.org/IMesService/DeleteProductMaterial" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMaterialPN">
+      <soap:operation soapAction="http://tempuri.org/IMesService/UpdateMaterialPN" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

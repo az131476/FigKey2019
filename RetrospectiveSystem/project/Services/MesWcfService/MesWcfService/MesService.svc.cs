@@ -37,9 +37,11 @@ namespace MesWcfService
         private Queue<string[]> updatePackageProductQueue = new Queue<string[]>();
         private Queue<string[]> checkMaterialStateQueue = new Queue<string[]>();
         private Queue<string[]> checkMaterialMatchQueue = new Queue<string[]>();
+        private Queue<string[]> checkMaterialPutInStorageQueue = new Queue<string[]>();
         private Queue<string[]> bindingSnPcbaQueue = new Queue<string[]>();
         private Queue<string[]> selectPVersionQueue = new Queue<string[]>();
         private Queue<string[]> selectSpecLimitQueue = new Queue<string[]>();
+        private Queue<string> selectMaterialSurplusQueue = new Queue<string>();
         private int materialLength = 20;
 
         #region 测试通讯
@@ -75,8 +77,8 @@ namespace MesWcfService
 
         #region 查询测试结果
         [SwaggerWcfTag("MesServcie 服务")]
-        [SwaggerWcfResponse("ERR_LAST_STATION","查询上一站位失败")]
-        [SwaggerWcfResponse("ERR_LAST_STATION_KEY","查询上一站位ID失败")]
+        [SwaggerWcfResponse("ERR_LAST_STATION_ID","查询上一站位失败")]
+        [SwaggerWcfResponse("ERR_LAST_STATION_NAME","查询上一站位ID失败")]
         [SwaggerWcfResponse("QUERY_NONE", "未查询到结果")]
         [SwaggerWcfResponse("ERR_EXCEPTION", "异常错误")]
         public string[] SelectLastTestResult(string sn,string station)
@@ -113,8 +115,20 @@ namespace MesWcfService
         }
         #endregion
 
+        #region 查询物料剩余数量
+        [SwaggerWcfTag("MesServcie 服务")]
+        public string SelectMaterialSurplusAmount(string materialCode)
+        {
+            if (string.IsNullOrEmpty(materialCode))
+                return "";
+            selectMaterialSurplusQueue.Enqueue(materialCode);
+            return MaterialStatistics.SelectMaterialSurplus(selectMaterialSurplusQueue);
+        }
+        #endregion
+
         #region 物料数量防错
         [SwaggerWcfTag("MesServcie 服务")]
+        [SwaggerWcfResponse("0X00", "STATUS_OTHER_COMPLETE")]
         [SwaggerWcfResponse("0X01", "STATUS_USING")]
         [SwaggerWcfResponse("0X02", "STATUS_COMPLETE_NORMAL")]
         [SwaggerWcfResponse("0X03", "STATUS_COMPLETE_UNUSUAL")]
@@ -141,14 +155,45 @@ namespace MesWcfService
         [SwaggerWcfResponse("0X01", "IS_MATCH")]
         [SwaggerWcfResponse("0X02", "ERROR_NULL_PRODUCT_TYPENO")]
         [SwaggerWcfResponse("0X03", "ERROR_NULL_MATERIAL_PN")]
-        public string CheckMaterialMatch(string productTypeNo,string materialPN)
+        [SwaggerWcfResponse("0X04", "ERROR_NULL_ACTUAL_MATERIAL_PN")]
+        [SwaggerWcfResponse("0X05", "ERROR_BOTH_MATERIAL_PN_IS_NOT_MATCH")]
+        [SwaggerWcfResponse("0X06", "ERROR_LAST_MATERIAL_PN_IS_NOT_USED_UP")]
+        [SwaggerWcfResponse("0X07", "STATUS_CURRENT_MATERIAL_AMOUNT_END_OF_USE")]
+        public string CheckMaterialMatch(string productTypeNo,string materialPN,string actualMaterialPN,string materialCode)
         {
+            LogHelper.Log.Info("物料防错 "+productTypeNo+" "+materialPN+" "+actualMaterialPN+" "+materialCode);
             if (string.IsNullOrEmpty(productTypeNo))
                 return MaterialStatistics.ConvertCheckMaterialMatch(MaterialCheckMatchReturnCode.ERROR_NULL_PRODUCT_TYPENO);
             if (string.IsNullOrEmpty(materialPN))
                 return MaterialStatistics.ConvertCheckMaterialMatch(MaterialCheckMatchReturnCode.ERROR_NULL_MATERIAL_PN);
-            checkMaterialMatchQueue.Enqueue(new string[] { productTypeNo,materialPN});
+            if (string.IsNullOrEmpty(actualMaterialPN))
+                return MaterialStatistics.ConvertCheckMaterialMatch(MaterialCheckMatchReturnCode.ERROR_NULL_ACTUAL_MATERIAL_PN);
+            if (materialPN != actualMaterialPN)
+                return MaterialStatistics.ConvertCheckMaterialMatch(MaterialCheckMatchReturnCode.ERROR_BOTH_MATERIAL_PN_IS_NOT_MATCH);
+
+            checkMaterialMatchQueue.Enqueue(new string[] { productTypeNo,materialPN, materialCode });
             return MaterialStatistics.CheckMaterialMatch(checkMaterialMatchQueue);
+        }
+
+        #endregion
+
+        #region 物料入库
+        [SwaggerWcfTag("MesServcie 服务")]
+        [SwaggerWcfResponse("0X00", "STATUS_IS_NOT_PUT_IN_STORAGE")]
+        [SwaggerWcfResponse("0X01", "STATUS_IS_PUTED_IN_STORAGE")]
+        [SwaggerWcfResponse("0X02", "STATUS_IS_NEW_PUT_INT_STORAGE")]
+        [SwaggerWcfResponse("0X03", "STATUS_IS_PUT_IN_FAIL_STORAGE")]
+        [SwaggerWcfResponse("0X04", "ERROR_MATERIAL_CODE_IS_NULL")]
+        [SwaggerWcfResponse("0X05", "ERROR_MATERIAL_CODE_FORMAT_NOT_RIGHT")]
+        public string CheckMaterialPutStorage(string materialCode,string teamLeader,string admin)
+        {
+            if (string.IsNullOrEmpty(materialCode))
+                return MaterialStatistics.ConvertCheckMaterialPutInStorage(MaterialCheckPutStorageEnum.ERROR_MATERIAL_CODE_IS_NULL);
+            if (!materialCode.Contains("&"))
+                return MaterialStatistics.ConvertCheckMaterialPutInStorage(MaterialCheckPutStorageEnum.ERROR_MATERIAL_CODE_FORMAT_NOT_RIGHT);
+
+            checkMaterialPutInStorageQueue.Enqueue(new string[] {materialCode,teamLeader,admin });
+            return MaterialStatistics.CheckMaterialPutInStorage(checkMaterialPutInStorageQueue);
         }
 
         #endregion
@@ -203,6 +248,15 @@ namespace MesWcfService
         public string UpdateTestLog(string typeNo, string stationName,string productSN, 
             string testItem,string limit,string currentValue,string testResult, string teamLeader, string admin)
         {
+            typeNo = typeNo.Trim();
+            stationName = stationName.Trim();
+            productSN = productSN.Trim();
+            if (typeNo == "")
+                return "product typeno is null";
+            if (stationName == "")
+                return "stationName is null";
+            if (productSN == "")
+                return "product sn is null";
             string[] array = new string[] {typeNo,stationName,productSN,testItem,limit,currentValue,testResult,teamLeader,admin};
             updateLogDataQueue.Enqueue(array);
             return TestLogData.UpdateTestLogData(updateLogDataQueue);

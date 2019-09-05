@@ -117,7 +117,7 @@
             this.mainQuanlityAnomaly,
             this.mainReportData,
             this.mainTestStandData});
-            this.toolsGroup.Margin = new System.Windows.Forms.Padding(360, 200, 200, 0);
+            this.toolsGroup.Margin = new System.Windows.Forms.Padding(400, 200, 200, 0);
             this.toolsGroup.Name = "toolsGroup";
             this.toolsGroup.RowsCount = 2;
             this.toolsGroup.Text = "主功能";

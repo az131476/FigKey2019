@@ -335,7 +335,7 @@ namespace MesManager.UI
             {
                 this.WindowState = FormWindowState.Normal;
                 //this.toolsGroup.Margin = new System.Windows.Forms.Padding(200, 130, 200, 0);
-                this.toolsGroup.Margin = new System.Windows.Forms.Padding(300, 150, 200, 0);
+                this.toolsGroup.Margin = new System.Windows.Forms.Padding(400, 200, 200, 0);
                 this.StartPosition = FormStartPosition.CenterScreen;
             }
         }

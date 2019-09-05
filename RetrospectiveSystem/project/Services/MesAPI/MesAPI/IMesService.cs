@@ -26,7 +26,7 @@ namespace MesAPI
 
         //用户信息
         [OperationContract]
-        LoginResult Login(string username, string password, LoginUser loginUser);
+        LoginResult Login(string username, string password);
 
         [OperationContract]
         DataSet GetUserInfo(string username);
@@ -85,8 +85,11 @@ namespace MesAPI
         //物料信息接口
         [OperationContract]
         DataSet SelectMaterial();
+
         [OperationContract]
-        List<MaterialMsg> CommitMaterial(List<MaterialMsg> list);
+        DataSet SelectMaterialPN();
+        //[OperationContract]
+        //List<MaterialMsg> CommitMaterial(List<MaterialMsg> list);
 
         [OperationContract]
         int DeleteMaterial(string materialCode);
@@ -97,10 +100,13 @@ namespace MesAPI
         [OperationContract]
         List<ProductMaterial> CommitProductMaterial(List<ProductMaterial> pmList);
         [OperationContract]
-        DataSet SelectProductMaterial(ProductMaterial material);
+        DataSet SelectProductMaterial();
 
         [OperationContract]
         int DeleteProductMaterial(ProductMaterial material);
+
+        [OperationContract]
+        int UpdateMaterialPN(string materialPN, string materialName, string username, string describle);
 
         //物料统计
         [OperationContract]

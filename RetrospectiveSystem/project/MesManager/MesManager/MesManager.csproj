@@ -253,6 +253,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\AnalysisMaterialCode.cs" />
     <Compile Include="Connected Services\MesServiceTest\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -575,9 +576,6 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\MesService\MesManager.MesService.LoginResult.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\MesService\MesManager.MesService.MaterialMsg.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\MesService\MesManager.MesService.ProductMaterial.datasource">

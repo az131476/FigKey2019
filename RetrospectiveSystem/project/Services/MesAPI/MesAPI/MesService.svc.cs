@@ -17,6 +17,7 @@ using MesAPI.MessageQueue.RemoteClient;
 using MesAPI.DB;
 using MesAPI.Model;
 using System.Data.SqlClient;
+using MesAPI.Common;
 
 namespace MesAPI
 {
@@ -62,7 +63,7 @@ namespace MesAPI
         /// <param name="username">用户名/手机号/邮箱</param>
         /// <param name="password">密码</param>
         /// <returns></returns>
-        public LoginResult Login(string username, string password,LoginUser loginUser)
+        public LoginResult Login(string username, string password)
         {
             //暂未处理用户角色
             try
@@ -445,7 +446,7 @@ namespace MesAPI
         #endregion
 
         #region 物料信息表
-        public List<MaterialMsg> CommitMaterial(List<MaterialMsg> list)
+        private List<MaterialMsg> CommitMaterial(List<MaterialMsg> list)
         {
             List<MaterialMsg> materialMsgList = new List<MaterialMsg>();
             foreach (var item in list)
@@ -459,25 +460,6 @@ namespace MesAPI
                 {
                     //update
                     UpdateMaterial(item, materialMsgList);
-                }
-                //更新物料号-名称     
-                //物料名称修改时在更新-物料名称为空时不更新
-                if (!string.IsNullOrEmpty(item.MaterialName.Trim()) || item.MaterialName.Trim() != "")
-                {
-                    var materialPn = "";
-                    if (item.MaterialCode.Contains("@"))
-                    {
-                        materialPn = item.MaterialCode.Substring(0, item.MaterialCode.IndexOf('@'));
-                    }
-                    var pnRes = UpdateMaterialPN(materialPn, item.MaterialName, item.UserName);
-                    if (pnRes < 1)
-                    {
-                        LogHelper.Log.Error("【更新物料号-名称失败！】");
-                    }
-                    else
-                    {
-                        //LogHelper.Log.Info("【更新物料号-名称-成功！】");
-                    }
                 }
             }
             return materialMsgList;
@@ -527,13 +509,13 @@ namespace MesAPI
             materialMsg.Result = SQLServer.ExecuteNonQuery(insertSQL);
 
             var materialQty = "";
-            if (material.MaterialCode.Contains("@"))
+            if (material.MaterialCode.Contains("&"))
             {
-                materialQty = material.MaterialCode.Substring(material.MaterialCode.LastIndexOf('@') + 1);
+                materialQty = AnalysisMaterialCode.GetMaterialDetail(material.MaterialCode).MaterialQTY;
             }
             else
             {
-                LogHelper.Log.Error($"【物料编码不包含@，未解析到物料数量】+materialQty={materialQty}");
+                LogHelper.Log.Error($"【物料编码不包含&，未解析到物料数量】+materialQty={materialQty}");
             }
             int qty = 0;
             if (materialMsg.Result > 0)
@@ -577,29 +559,31 @@ namespace MesAPI
             return SQLServer.ExecuteNonQuery(updateSQL);
         }
 
-        private int UpdateMaterialPN(string materialPN,string materialName,string username)
+        public int UpdateMaterialPN(string materialPN,string materialName,string username,string describle)
         {
-            if (IsExistMaterialPN(materialPN))
+            if (!IsExistMaterialPN_Name(materialPN,materialName,describle))
             {
                 //update name
                 var updateSQL = $"UPDATE {DbTable.F_MATERIAL_PN_NAME} SET " +
                     $"{DbTable.F_MATERIAL_PN.MATERIAL_NAME} = '{materialName}'," +
-                    $"{DbTable.F_MATERIAL_PN.USER_NAME} = '{username}' WHERE " +
+                    $"{DbTable.F_MATERIAL_PN.USER_NAME} = '{username}'," +
+                    $"{DbTable.F_MATERIAL_PN.DESCRIBLE} = '{describle}' WHERE " +
                     $"{DbTable.F_MATERIAL_PN.MATERIAL_PN} = '{materialPN}'";
+                LogHelper.Log.Info("【更新物料PN-名称】"+updateSQL);
                 return SQLServer.ExecuteNonQuery(updateSQL);
             }
-            else
-            {
-                //insert new data
-                var insertSQL = $"INSERT INTO {DbTable.F_MATERIAL_PN_NAME}(" +
-                    $"{DbTable.F_MATERIAL_PN.MATERIAL_PN}," +
-                    $"{DbTable.F_MATERIAL_PN.MATERIAL_NAME}," +
-                    $"{DbTable.F_MATERIAL_PN.USER_NAME}," +
-                    $"{DbTable.F_MATERIAL_PN.UPDATE_DATE}) VALUES(" +
-                    $"'{materialPN}','{materialName}','{username}','{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}')";
-                LogHelper.Log.Info(insertSQL);
-                return SQLServer.ExecuteNonQuery(insertSQL);
-            }
+            return -1;
+        }
+
+        public DataSet SelectMaterialPN()
+        {
+            var selectSQL = $"SELECT {DbTable.F_MATERIAL_PN.MATERIAL_PN}," +
+                $"{DbTable.F_MATERIAL_PN.MATERIAL_NAME}," +
+                $"{DbTable.F_MATERIAL_PN.USER_NAME}," +
+                $"{DbTable.F_MATERIAL_PN.UPDATE_DATE}," +
+                $"{DbTable.F_MATERIAL_PN.DESCRIBLE} FROM " +
+                $"{DbTable.F_MATERIAL_PN_NAME} ";
+            return SQLServer.ExecuteDataSet(selectSQL);
         }
 
         public string SelectMaterialName(string materialPN)
@@ -624,6 +608,18 @@ namespace MesAPI
             return false;
         }
 
+        private bool IsExistMaterialPN_Name(string materialPN,string materialName,string describle)
+        {
+            var selectSQL = $"SELECT * FROM {DbTable.F_MATERIAL_PN_NAME} WHERE " +
+                $"{DbTable.F_MATERIAL_PN.MATERIAL_PN} = '{materialPN}' AND " +
+                $"{DbTable.F_MATERIAL_PN.MATERIAL_NAME} = '{materialName}' AND " +
+                $"{DbTable.F_MATERIAL_PN.DESCRIBLE} = '{describle}'";
+            var dt = SQLServer.ExecuteDataSet(selectSQL).Tables[0];
+            if (dt.Rows.Count > 0)
+                return true;
+            return false;
+        }
+
         #endregion
 
         #region 产品物料绑定
@@ -640,10 +636,12 @@ namespace MesAPI
                         $"{DbTable.F_PRODUCT_MATERIAL.USERNAME} = '{material.UserName}' " +
                         $"WHERE {DbTable.F_PRODUCT_MATERIAL.TYPE_NO} = '{material.TypeNo}' AND " +
                         $"{DbTable.F_PRODUCT_MATERIAL.MATERIAL_CODE} = '{material.MaterialCode}'";
+
                     string selectSQL = $"SELECT * FROM {DbTable.F_PRODUCT_MATERIAL_NAME} WHERE " +
                         $"{DbTable.F_PRODUCT_MATERIAL.TYPE_NO} = '{material.TypeNo}' AND " +
                         $"{DbTable.F_PRODUCT_MATERIAL.MATERIAL_CODE} = '{material.MaterialCode}' AND " +
-                        $"{DbTable.F_PRODUCT_MATERIAL.Describle} = '{material.Describle}' ";
+                        $"{DbTable.F_PRODUCT_MATERIAL.Describle} = '{material.Describle}' AND " +
+                        $"{DbTable.F_PRODUCT_MATERIAL.USERNAME} = '{material.UserName}'";
                     ProductMaterial productMaterial = new ProductMaterial();
                     if (SQLServer.ExecuteDataSet(selectSQL).Tables[0].Rows.Count < 1)
                     {
@@ -674,38 +672,16 @@ namespace MesAPI
             LogHelper.Log.Info(deleteSQL);
             return SQLServer.ExecuteNonQuery(deleteSQL);
         }
-        public DataSet SelectProductMaterial(ProductMaterial material)
+        public DataSet SelectProductMaterial()
         {
-            string selectSQL = "";
-            if (string.IsNullOrEmpty(material.TypeNo) && string.IsNullOrEmpty(material.MaterialCode))
-            {
-                selectSQL = $"SELECT " +
-                   $"a.{DbTable.F_PRODUCT_MATERIAL.TYPE_NO}," +
-                   $"a.{DbTable.F_PRODUCT_MATERIAL.MATERIAL_CODE}," +
-                   $"a.{DbTable.F_PRODUCT_MATERIAL.Describle}," +
-                   $"a.{DbTable.F_PRODUCT_MATERIAL.USERNAME}," +
-                   $"a.{DbTable.F_PRODUCT_MATERIAL.UpdateDate}," +
-                   $"b.{DbTable.F_MATERIAL_PN.MATERIAL_NAME} " +
-                   $"FROM {DbTable.F_PRODUCT_MATERIAL_NAME} a,{DbTable.F_MATERIAL_PN_NAME} b WHERE " +
-                   $"a.{DbTable.F_PRODUCT_MATERIAL.MATERIAL_CODE} = b.{DbTable.F_MATERIAL_PN.MATERIAL_PN} " +
-                   $"ORDER BY {DbTable.F_PRODUCT_MATERIAL.TYPE_NO} ";
-            }
-            else
-            {
-                selectSQL = $"SELECT " +
-                    $"a.{DbTable.F_PRODUCT_MATERIAL.TYPE_NO}," +
-                    $"a.{DbTable.F_PRODUCT_MATERIAL.MATERIAL_CODE}," +
-                    $"a.{DbTable.F_PRODUCT_MATERIAL.Describle}," +
-                    $"a.{DbTable.F_PRODUCT_MATERIAL.USERNAME}," +
-                    $"a.{DbTable.F_PRODUCT_MATERIAL.UpdateDate}," +
-                    $"b.{DbTable.F_MATERIAL_PN.MATERIAL_NAME} " +
-                    $"FROM {DbTable.F_PRODUCT_MATERIAL_NAME} a ,{DbTable.F_MATERIAL_PN_NAME} b " +
-                    $"WHERE a.{DbTable.F_PRODUCT_MATERIAL.MATERIAL_CODE} = b.{DbTable.F_MATERIAL_PN.MATERIAL_PN} " +
-                    $"AND {DbTable.F_PRODUCT_MATERIAL.TYPE_NO} = '{material.TypeNo}' OR " +
-                    $"{DbTable.F_PRODUCT_MATERIAL.MATERIAL_CODE} = '{material.MaterialCode}' " +
-                    $"ORDER BY {DbTable.F_PRODUCT_MATERIAL.TYPE_NO}";
-            }
-            LogHelper.Log.Info(selectSQL);
+            var selectSQL = $"SELECT " +
+                            $"{DbTable.F_PRODUCT_MATERIAL.TYPE_NO}," +
+                            $"{DbTable.F_PRODUCT_MATERIAL.MATERIAL_CODE}," +
+                            $"{DbTable.F_PRODUCT_MATERIAL.Describle}," +
+                            $"{DbTable.F_PRODUCT_MATERIAL.USERNAME}," +
+                            $"{DbTable.F_PRODUCT_MATERIAL.UpdateDate} " +
+                            $"FROM {DbTable.F_PRODUCT_MATERIAL_NAME} " +
+                            $"ORDER BY {DbTable.F_PRODUCT_MATERIAL.TYPE_NO} ";
             return SQLServer.ExecuteDataSet(selectSQL);
         }
         private bool IsExistMaterial(ProductMaterial material)
@@ -1318,7 +1294,7 @@ namespace MesAPI
         public DataSet SelectTestLogDataDetail(string queryFilter,string startDate,string endDate)
         {
             var selectSQL = "";
-            if (string.IsNullOrEmpty(queryFilter))
+            if (string.IsNullOrEmpty(queryFilter) || queryFilter == "")
                 return null;
             if (!string.IsNullOrEmpty(startDate) || !string.IsNullOrEmpty(endDate))
             {
@@ -1423,5 +1399,15 @@ namespace MesAPI
             return SQLServer.ExecuteDataSet(selectSQL);
         }
         #endregion
+
+        public string GetMaterialPN(string materialCode)
+        {
+            //A19083100008&S2.118&1.2.11.111&20&20190831&1T20190831001
+            //RID & &PN & QTY$DC & LOT
+            materialCode = materialCode.Substring(materialCode.IndexOf('&') + 1);
+            materialCode = materialCode.Substring(materialCode.IndexOf('&') + 1);
+            materialCode = materialCode.Substring(0, materialCode.IndexOf('&'));
+            return materialCode;
+        }
     }
 }
