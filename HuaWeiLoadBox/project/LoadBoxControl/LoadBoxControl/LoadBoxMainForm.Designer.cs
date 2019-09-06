@@ -32,7 +32,12 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.tool_cb_serialItem = new System.Windows.Forms.ToolStripComboBox();
+            this.tool_refresh = new System.Windows.Forms.ToolStripButton();
+            this.tool_open_searial = new System.Windows.Forms.ToolStripButton();
+            this.tool_close_serial = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.tool_refresh_internal = new System.Windows.Forms.ToolStripTextBox();
+            this.tool_setParams = new System.Windows.Forms.ToolStripButton();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -180,11 +185,6 @@
             this.label61 = new System.Windows.Forms.Label();
             this.label62 = new System.Windows.Forms.Label();
             this.label63 = new System.Windows.Forms.Label();
-            this.tool_refresh = new System.Windows.Forms.ToolStripButton();
-            this.tool_open_searial = new System.Windows.Forms.ToolStripButton();
-            this.tool_close_serial = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
-            this.tool_setParams = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -224,10 +224,56 @@
             this.tool_cb_serialItem.Name = "tool_cb_serialItem";
             this.tool_cb_serialItem.Size = new System.Drawing.Size(121, 29);
             // 
+            // tool_refresh
+            // 
+            this.tool_refresh.ForeColor = System.Drawing.Color.White;
+            this.tool_refresh.Image = global::LoadBoxControl.Properties.Resources.Refresh2_16x16;
+            this.tool_refresh.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tool_refresh.Name = "tool_refresh";
+            this.tool_refresh.Size = new System.Drawing.Size(62, 26);
+            this.tool_refresh.Text = "刷新";
+            // 
+            // tool_open_searial
+            // 
+            this.tool_open_searial.ForeColor = System.Drawing.Color.White;
+            this.tool_open_searial.Image = global::LoadBoxControl.Properties.Resources.open_source;
+            this.tool_open_searial.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tool_open_searial.Name = "tool_open_searial";
+            this.tool_open_searial.Size = new System.Drawing.Size(94, 26);
+            this.tool_open_searial.Text = "打开串口";
+            // 
+            // tool_close_serial
+            // 
+            this.tool_close_serial.ForeColor = System.Drawing.Color.White;
+            this.tool_close_serial.Image = global::LoadBoxControl.Properties.Resources.Close_16x16;
+            this.tool_close_serial.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tool_close_serial.Name = "tool_close_serial";
+            this.tool_close_serial.Size = new System.Drawing.Size(94, 26);
+            this.tool_close_serial.Text = "关闭串口";
+            // 
+            // toolStripButton4
+            // 
+            this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton4.ForeColor = System.Drawing.Color.White;
+            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
+            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton4.Name = "toolStripButton4";
+            this.toolStripButton4.Size = new System.Drawing.Size(158, 26);
+            this.toolStripButton4.Text = "自动刷新时间间隔：";
+            // 
             // tool_refresh_internal
             // 
             this.tool_refresh_internal.Name = "tool_refresh_internal";
             this.tool_refresh_internal.Size = new System.Drawing.Size(100, 29);
+            // 
+            // tool_setParams
+            // 
+            this.tool_setParams.ForeColor = System.Drawing.Color.White;
+            this.tool_setParams.Image = global::LoadBoxControl.Properties.Resources.SendUpdate;
+            this.tool_setParams.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tool_setParams.Name = "tool_setParams";
+            this.tool_setParams.Size = new System.Drawing.Size(62, 26);
+            this.tool_setParams.Text = "发送";
             // 
             // tableLayoutPanel1
             // 
@@ -1986,52 +2032,6 @@
             this.label63.TabIndex = 102;
             this.label63.Text = "I30(P)";
             this.label63.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // tool_refresh
-            // 
-            this.tool_refresh.ForeColor = System.Drawing.Color.White;
-            this.tool_refresh.Image = global::LoadBoxControl.Properties.Resources.Refresh2_16x16;
-            this.tool_refresh.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tool_refresh.Name = "tool_refresh";
-            this.tool_refresh.Size = new System.Drawing.Size(62, 26);
-            this.tool_refresh.Text = "刷新";
-            // 
-            // tool_open_searial
-            // 
-            this.tool_open_searial.ForeColor = System.Drawing.Color.White;
-            this.tool_open_searial.Image = global::LoadBoxControl.Properties.Resources.open_source;
-            this.tool_open_searial.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tool_open_searial.Name = "tool_open_searial";
-            this.tool_open_searial.Size = new System.Drawing.Size(94, 26);
-            this.tool_open_searial.Text = "打开串口";
-            // 
-            // tool_close_serial
-            // 
-            this.tool_close_serial.ForeColor = System.Drawing.Color.White;
-            this.tool_close_serial.Image = global::LoadBoxControl.Properties.Resources.Close_16x16;
-            this.tool_close_serial.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tool_close_serial.Name = "tool_close_serial";
-            this.tool_close_serial.Size = new System.Drawing.Size(94, 26);
-            this.tool_close_serial.Text = "关闭串口";
-            // 
-            // toolStripButton4
-            // 
-            this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton4.ForeColor = System.Drawing.Color.White;
-            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
-            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(158, 26);
-            this.toolStripButton4.Text = "自动刷新时间间隔：";
-            // 
-            // tool_setParams
-            // 
-            this.tool_setParams.ForeColor = System.Drawing.Color.White;
-            this.tool_setParams.Image = global::LoadBoxControl.Properties.Resources.SendUpdate;
-            this.tool_setParams.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tool_setParams.Name = "tool_setParams";
-            this.tool_setParams.Size = new System.Drawing.Size(62, 26);
-            this.tool_setParams.Text = "发送";
             // 
             // LoadBoxMainForm
             // 

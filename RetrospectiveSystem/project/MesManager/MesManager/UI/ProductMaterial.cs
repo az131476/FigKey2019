@@ -65,7 +65,7 @@ namespace MesManager.UI
             var typeNo = this.radGridView1.CurrentRow.Cells[1].Value;
             var materialPN = this.radGridView1.CurrentRow.Cells[2].Value;
             var describle = this.radGridView1.CurrentRow.Cells[3].Value;
-            if (typeNo == null)
+            if (typeNo == null || materialPN == null || describle == null)
                 return;
             if (materialPN.ToString().Contains("("))
                 materialPN = materialPN.ToString().Substring(0, materialPN.ToString().IndexOf('('));
@@ -86,7 +86,7 @@ namespace MesManager.UI
             var typeNo = this.radGridView1.CurrentRow.Cells[1].Value;
             var materialPN = this.radGridView1.CurrentRow.Cells[2].Value;
             var describle = this.radGridView1.CurrentRow.Cells[3].Value;
-            if (typeNo == null)
+            if (typeNo == null || materialPN == null || describle == null)
                 return;
             this.keyTypeNo = typeNo.ToString();
             if (materialPN.ToString().Contains("("))

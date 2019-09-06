@@ -8,12 +8,14 @@ using System.Windows.Forms;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
 using System.IO.Ports;
+using LoadBoxControl.Model;
+using CommonUtils.Logger;
+
 
 namespace LoadBoxControl
 {
     public partial class LoadBoxMainForm : RadForm
     {
-        private RadGridView radGridView1;
         private DataTable dtVoltage;
         private DataTable dtPVM;
         private DataTypeEnum dataType;
@@ -26,6 +28,8 @@ namespace LoadBoxControl
 
         private SerialPort serialPort;
         private delegate void MessageDelegate(byte[] msg);
+        private VoltageParams voltageParams;
+        private PwmParams pwmParams;
 
         #region 上位机发送参数常量
         private const string PAGE_DAC_VOLTAGE   = "page pageDAC";
@@ -37,8 +41,6 @@ namespace LoadBoxControl
         {
             InitializeComponent();
             this.MaximizeBox = false;
-            InitDataSource();
-            //BindingDataSource();
         }
 
         private enum DataTypeEnum
@@ -47,55 +49,11 @@ namespace LoadBoxControl
             PVM = 1
         }
 
-        private void InitDataSource()
-        {
-            if (dtVoltage == null)
-            {
-                dtVoltage = new DataTable();
-                dtVoltage.Columns.Add(V_CHANNEL);
-                dtVoltage.Columns.Add(V_SIMULATION);
-            }
-            if (dtPVM == null)
-            {
-                dtPVM = new DataTable();
-                dtPVM.Columns.Add(F_CHANNEL);
-                dtPVM.Columns.Add(F_FREQUENCY);
-                dtPVM.Columns.Add(F_PERCENT);
-            }
-        }
-
-        private void BindingDataSource()
-        {
-            if (dataType == DataTypeEnum.Voltage)
-            {
-                for (int i = 0; i < 20; i++)
-                {
-                    DataRow dr = dtVoltage.NewRow();
-                    dr[V_CHANNEL] = "I" + (i + 1) + "(V)";
-                    dr[V_SIMULATION] = 1;
-                    dtVoltage.Rows.Add(dr);
-                }
-                this.radGridView1.DataSource = dtVoltage;
-            }
-            else if (dataType == DataTypeEnum.PVM)
-            {
-                for (int i = 0; i < 30; i++)
-                {
-                    DataRow dr = dtPVM.NewRow();
-                    dr[F_CHANNEL] = "I" + i + 1 + "(Pvm)";
-                    dr[F_FREQUENCY] = 1000;
-                    dr[F_PERCENT] = 20;
-                    dtPVM.Rows.Add(dr);
-                }
-                this.radGridView1.DataSource = dtPVM;
-            }
-            this.radGridView1.Columns[0].ReadOnly = true;
-            this.radGridView1.Columns[0].BestFit();
-        }
-
         private void LoadBoxMainForm_Load(object sender, EventArgs e)
         {
             serialPort = new SerialPort();
+            voltageParams = new VoltageParams();
+            pwmParams = new PwmParams();
             InitControl();
             EventHandlers();
         }
@@ -128,12 +86,15 @@ namespace LoadBoxControl
             {
                 byte[] receiveData = new byte[serialPort.BytesToRead];
                 int readCount = serialPort.Read(receiveData, 0, receiveData.Length);
-                serialPort.ReadLine();
                 if (readCount < 1)
                     return;
-                MessageDelegate myDelegate = new MessageDelegate(ShowData);
-                //ShowData(receiveData);
-                this.BeginInvoke(myDelegate, new object[] { receiveData });
+                //MessageDelegate myDelegate = new MessageDelegate(ShowData);
+
+                //this.BeginInvoke(myDelegate, new object[] { receiveData });
+                this.Invoke((EventHandler)delegate
+                {
+                    ShowData(receiveData);
+                });
             }
             else
             {
@@ -143,7 +104,22 @@ namespace LoadBoxControl
 
         private void Tool_setParams_Click(object sender, EventArgs e)
         {
-            SendDevConfigMsg(,);
+            CheckChangedParamsToSend();
+        }
+
+        private void CheckChangedParamsToSend()
+        {
+            //是否排队延时发送？
+            //检查修改的参数，添加到队列，先取出第一个队列发送；当接收到消息，更新数据后发送下一组修改的数据？
+            var voltageV1 = this.tb_v1.Text;
+            if (voltageV1 == "")
+            {
+                this.tb_v1.ForeColor = Color.Red;
+                MessageBox.Show("值不能为空", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            this.tb_v1.ForeColor = Color.White;
+            if (this.tb_v1.Text != voltageParams.VoltageChannel1)
+                SendVoltageString(1,int.Parse(voltageV1));
         }
 
         private string SendVoltageString(int index,int value)
@@ -288,14 +264,67 @@ namespace LoadBoxControl
 
         private void ShowData(byte[] data)
         {
-            StringBuilder stringBuilder = new StringBuilder();
-            foreach (byte str in data)
+            LogHelper.Log.Info($"【收到下位机返回消息】len={data.Length} " + BitConverter.ToString(data));
+            //解析数据
+            /*
+             * 数据格式：数据接收方+数据发送方+数据长度+标识+子标识+信息数据+数据有效性判断
+             *  总长=126          C1 + C0 +len + sid + subid + data + crc(len+sid+subid+data)
+             */
+            if (data[0] == 0XC1 && data[1] == 0XC0 && data[2] == 0X7B)
             {
-                stringBuilder.AppendFormat("{0:X2} ", str);
+                //频率和占空比数据
+
             }
-            string[] hexStr = stringBuilder.ToString().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-            //LogHelper.Log.Info(" 【接收设备返回值HEX】" + stringBuilder.ToString());
-            //AnalysisReceiveData(hexStr, stringBuilder.ToString());
+            else if (data[0] == 0XC1 && data[1] == 0XC0 && data[2] == 0X2B)
+            {
+                //电压数据
+
+            }
+            else
+            {
+                LogHelper.Log.Info("【数据不完整】");
+            }
+        }
+
+        private void AnalysisVoltageData(byte[] buffer)
+        {
+            //完整性判断
+            while (buffer.Length >= 5) 
+            {
+                //查找数据头
+                if (buffer[0] == 0XC1) //传输数据有帧头，用于判断
+                {
+                    int len = buffer[2];
+                    if (buffer.Length < len + 3) //数据区尚未接收完整
+                    {
+                        LogHelper.Log.Info("【数据不完整】"+buffer.Length);
+                        break;
+                    }
+                    //数据包完成，检查校验
+                    var validValue = CrcValid(buffer);
+                    if (validValue != buffer[len + 3]) //校验失败，最后一个字节是校验位
+                    {
+                        LogHelper.Log.Info("校验失败！数据包不正确！");
+                        break;
+                    }
+                    //执行其他代码，对数据进行处理。
+                }
+                else //帧头不正确时，清除
+                {
+                    
+                }
+            }
+
+        }
+        private byte CrcValid(byte[] receiveData)
+        {
+            //C1 + C0 +len + sid + subid + data + crc(len+sid+subid+data)
+            byte sum = 0;
+            for (int i = 0 + 2; i < receiveData.Length - 1; i++)
+            {
+                sum += receiveData[i];
+            }
+            return sum;
         }
     }
 }

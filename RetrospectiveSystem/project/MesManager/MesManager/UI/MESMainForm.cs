@@ -11,7 +11,7 @@ using CommonUtils.Logger;
 
 namespace MesManager.UI
 {
-    public partial class MESMainForm : Telerik.WinControls.UI.RadForm
+    public partial class MESMainForm : RadForm
     {
         private RadTitleBarElement titleBar;
         private bool isFormMoving = false;

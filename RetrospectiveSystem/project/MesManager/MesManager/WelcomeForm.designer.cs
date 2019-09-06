@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WelcomeForm));
             this.radPanorama1 = new Telerik.WinControls.UI.RadPanorama();
+            this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
@@ -42,6 +43,7 @@
             // radPanorama1
             // 
             this.radPanorama1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.radPanorama1.Controls.Add(this.label3);
             this.radPanorama1.Controls.Add(this.label2);
             this.radPanorama1.Controls.Add(this.label1);
             this.radPanorama1.Controls.Add(this.radLabel1);
@@ -50,6 +52,16 @@
             this.radPanorama1.Name = "radPanorama1";
             this.radPanorama1.Size = new System.Drawing.Size(492, 324);
             this.radPanorama1.TabIndex = 0;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Location = new System.Drawing.Point(28, 302);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(189, 13);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "丰柯电子科技（上海）有限公司";
             // 
             // label2
             // 
@@ -66,9 +78,9 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Location = new System.Drawing.Point(340, 98);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(48, 13);
+            this.label1.Size = new System.Drawing.Size(54, 13);
             this.label1.TabIndex = 1;
-            this.label1.Text = "v 1.0.0.0";
+            this.label1.Text = "v 1.0.2.20";
             // 
             // radLabel1
             // 
@@ -108,5 +120,6 @@
         private Telerik.WinControls.UI.RadLabel radLabel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
     }
 }

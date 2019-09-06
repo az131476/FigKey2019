@@ -283,7 +283,7 @@ namespace MesManager.UI
             var key = this.radGridView1.CurrentRow.Cells[1].Value;
             var keyName = this.radGridView1.CurrentRow.Cells[2].Value;
             var kdescrible = this.radGridView1.CurrentRow.Cells[5].Value;
-            if (key == null && kdescrible == null)//行不存在
+            if (key == null || kdescrible == null || keyName == null)//行不存在
                 return;
             BasicConfig basicConfig = new BasicConfig();
             if (cb_cfgType.SelectedIndex == 0)
@@ -310,7 +310,7 @@ namespace MesManager.UI
             var key = this.radGridView1.CurrentRow.Cells[1].Value;
             var key_name = this.radGridView1.CurrentRow.Cells[2].Value;//名称/容量
             var key_describle = this.radGridView1.CurrentRow.Cells[5].Value;
-            if (key == null && key_describle == null )//行不存在
+            if (key == null && key_describle == null || key_name == null)//行不存在
                 return;
 
             if (cb_cfgType.SelectedIndex == 0)

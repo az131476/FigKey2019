@@ -1281,9 +1281,9 @@ namespace MesAPI
                     $"{DbTable.F_TEST_LOG_DATA.STATION_NAME} 工站名称," +
                     $"{DbTable.F_TEST_LOG_DATA.TEST_RESULT} 测试结果 " +
                     $"FROM {DbTable.F_TEST_LOG_DATA_NAME} " +
-                    $"WHERE {DbTable.F_TEST_LOG_DATA.PRODUCT_SN} = '{queryFilter}' OR " +
-                    $"{DbTable.F_TEST_LOG_DATA.TYPE_NO} = '{queryFilter}' OR " +
-                    $"{DbTable.F_TEST_LOG_DATA.STATION_NAME} = '{queryFilter}' AND " +
+                    $"WHERE {DbTable.F_TEST_LOG_DATA.PRODUCT_SN} = '%{queryFilter}%' OR " +
+                    $"{DbTable.F_TEST_LOG_DATA.TYPE_NO} = '%{queryFilter}%' OR " +
+                    $"{DbTable.F_TEST_LOG_DATA.STATION_NAME} = '%{queryFilter}%' AND " +
                     $"{DbTable.F_TEST_LOG_DATA.UPDATE_DATE} >= '{startTime}' AND " +
                     $"{DbTable.F_TEST_LOG_DATA.UPDATE_DATE} <= '{endTime}' ";
             }

@@ -200,6 +200,7 @@ namespace MesWcfService.MessageQueue.RemoteClient
             var selectSQL = $"SELECT {DbTable.F_Material.MATERIAL_STATE} FROM {DbTable.F_MATERIAL_NAME} WHERE " +
                 $"{DbTable.F_Material.MATERIAL_CODE} = '{materialCode}'";
             var dt = SQLServer.ExecuteDataSet(selectSQL).Tables[0];
+            LogHelper.Log.Info(selectSQL);
             if (dt.Rows.Count > 0)
                 return dt.Rows[0][0].ToString();
             return "";
@@ -279,9 +280,13 @@ namespace MesWcfService.MessageQueue.RemoteClient
             if (!materialCode.Contains("&"))
                 return ConvertCheckMaterialStateCode(MaterialStateReturnCode.ERROR_FORMAT_MATERIAL_CODE);
             //查询当前物料是否使用完成，完成返回1
+            LogHelper.Log.Info("【物料数量防错开始查询】");
             var  stateValue = SelectCurrentMaterialState(materialCode);
-            if(stateValue == "2" || stateValue == "3")
+            LogHelper.Log.Info("【物料数量防错开始查询-状态=】"+stateValue);
+            if (stateValue == "2" || stateValue == "3")
+            {
                 return ConvertCheckMaterialStateCode(MaterialStateReturnCode.STATUS_COMPLETE_NORMAL);
+            }
             var materialPN = MaterialCodeMsg.GetMaterialPN(materialCode);
 
             //根据物料号+产品型号查询是否有统计计数记录
