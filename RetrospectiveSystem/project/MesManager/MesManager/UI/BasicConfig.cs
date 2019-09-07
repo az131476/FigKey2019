@@ -66,19 +66,11 @@ namespace MesManager.UI
             serviceClientTest = new MesServiceTest.MesServiceClient();
             modifyTypeNoTemp = new List<string>();
             materialCodeTemp = new List<BasicConfig>();
-            label_materialInput.Visible = false;
-            tb_materialInput.Visible = false;
             DataGridViewCommon.SetRadGridViewProperty(this.radGridView1,true);
             this.radGridView1.AllowRowHeaderContextMenu = false;
             var bMaterialCode = int.TryParse(ConfigurationManager.AppSettings["materialLength"].ToString(), out materialCodeLength);
             int.TryParse(ConfigurationManager.AppSettings["IsAutoAdd"].ToString(),out IsAutoAdd);
             DataSource();
-            cb_cfgType.Items.Clear();
-            cb_cfgType.Items.Add("型号配置");
-            cb_cfgType.Items.Add("物料配置");
-            cb_cfgType.SelectedIndex = 0;
-            this.label_materialInput.Visible = false;
-            this.tb_materialInput.Visible = false;
             RefreshData();
             if (!bMaterialCode)
             {
@@ -118,10 +110,7 @@ namespace MesManager.UI
             menu_del.Click += Menu_del_Click;
             menu_add.Click += Menu_add_Click;
             this.menu_export.Click += Menu_export_Click;
-            this.tb_materialInput.TextChanged += Tb_materialInput_TextChanged;
-            this.tb_materialInput.KeyDown += Tb_materialInput_KeyDown;
 
-            this.cb_cfgType.SelectedIndexChanged += Cb_cfgType_SelectedIndexChanged;
             this.radGridView1.CellBeginEdit += RadGridView1_CellBeginEdit;
             this.radGridView1.CellEndEdit += RadGridView1_CellEndEdit;
         }
@@ -155,7 +144,7 @@ namespace MesManager.UI
         /// <returns></returns>
         private bool OptionMaterialCode(string inputText)
         {
-            LogHelper.Log.Info($"【扫描物料编码】code={this.tb_materialInput.Text} len=" + this.tb_materialInput.Text.Length);
+           // LogHelper.Log.Info($"【扫描物料编码】code={this.tb_materialInput.Text} len=" + this.tb_materialInput.Text.Length);
             var materialCode = inputText;
 
             if (materialCode.Contains("&"))
@@ -205,9 +194,7 @@ namespace MesManager.UI
             this.radGridView1.Rows.AddNew();
             int rIndex = this.radGridView1.Rows.Count;
             this.radGridView1.Rows[rIndex - 1].Cells[0].Value = rIndex;
-            this.radGridView1.Rows[rIndex - 1].Cells[1].Value = this.tb_materialInput.Text;
-            this.tb_materialInput.Clear();
-            this.tb_materialInput.Focus();
+            //this.radGridView1.Rows[rIndex - 1].Cells[1].Value = this.tb_materialInput.Text;
         }
 
         private void Menu_add_Click(object sender, EventArgs e)
@@ -227,25 +214,12 @@ namespace MesManager.UI
             {
                 if (MessageBox.Show("确认要删除当前行记录？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
                 {
-                    if (cb_cfgType.SelectedIndex == 0)
+                    var typeNo = this.radGridView1.CurrentRow.Cells[1].Value.ToString();
+                    int row = await serviceClient.DeleteProductContinairCapacityAsync(typeNo);
+                    tool_status.Text = "【型号】删除1行记录 【删除】完成";
+                    if (row > 0)
                     {
-                        var typeNo = this.radGridView1.CurrentRow.Cells[1].Value.ToString();
-                        int row = await serviceClient.DeleteProductContinairCapacityAsync(typeNo);
-                        tool_status.Text = "【型号】删除1行记录 【删除】完成";
-                        if (row > 0)
-                        {
-                            RefreshData();
-                        }
-                    }
-                    else if (cb_cfgType.SelectedIndex == 1)
-                    {
-                        var materialCode = this.radGridView1.CurrentRow.Cells[1].Value.ToString();
-                        int row = await serviceClient.DeleteMaterialAsync(materialCode);
-                        tool_status.Text = "【物料】删除1行记录 【删除】完成";
-                        if (row > 0)
-                        {
-                            RefreshData();
-                        }
+                        RefreshData();
                     }
                 }
             }
@@ -255,18 +229,9 @@ namespace MesManager.UI
         {
             if (MessageBox.Show("确定要清空服务所有数据？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.Cancel)
                 return;
-            if (cb_cfgType.SelectedIndex == 0)
-            {
-                //型号
-                int row = 0;// await serviceClient.DeleteAllProductTypeNoAsync();
-                tool_status.Text = $"【型号】删除服务数据【{row}】条  【清空数据】完成";
-            }
-            else if (cb_cfgType.SelectedIndex == 1)
-            {
-                //物料
-                int row = await serviceClient.DeleteAllMaterialAsync();
-                tool_status.Text = $"【物料】删除服务数据【{row}】条  【清空数据】完成";
-            }
+            //型号
+            int row = 0;// await serviceClient.DeleteAllProductTypeNoAsync();
+            tool_status.Text = $"【型号】删除服务数据【{row}】条  【清空数据】完成";
             RefreshData();
         }
 
@@ -285,23 +250,9 @@ namespace MesManager.UI
             var kdescrible = this.radGridView1.CurrentRow.Cells[5].Value;
             if (key == null || kdescrible == null || keyName == null)//行不存在
                 return;
-            BasicConfig basicConfig = new BasicConfig();
-            if (cb_cfgType.SelectedIndex == 0)
+            if (keyTypeNo != key.ToString() || keyDescrible != kdescrible.ToString() || keyProductStorage != keyName.ToString())
             {
-                if (keyTypeNo != key.ToString() || keyDescrible != kdescrible.ToString() || keyProductStorage != keyName.ToString())
-                {
-                    modifyTypeNoTemp.Add(this.keyTypeNo);
-                }
-            }
-            else if (cb_cfgType.SelectedIndex == 1)
-            {
-                if (this.keyMaterialName != keyName.ToString() || this.keyDescrible != kdescrible.ToString())
-                {
-                    basicConfig.keyMaterialCode = key.ToString();
-                    basicConfig.keyMaterialName = keyName.ToString();
-                    basicConfig.keyDescrible = kdescrible.ToString();
-                    materialCodeTemp.Add(basicConfig);
-                }
+                modifyTypeNoTemp.Add(this.keyTypeNo);
             }
         }
 
@@ -313,18 +264,9 @@ namespace MesManager.UI
             if (key == null && key_describle == null || key_name == null)//行不存在
                 return;
 
-            if (cb_cfgType.SelectedIndex == 0)
-            {
-                this.keyTypeNo = key.ToString();
-                this.keyDescrible = key_describle.ToString();
-                this.keyProductStorage = key_name.ToString();
-            }
-            else if (cb_cfgType.SelectedIndex == 1)
-            {
-                this.keyMaterialCode = key.ToString();
-                this.keyDescrible = key_describle.ToString();
-                this.keyMaterialName = key_name.ToString();
-            }
+            this.keyTypeNo = key.ToString();
+            this.keyDescrible = key_describle.ToString();
+            this.keyProductStorage = key_name.ToString();
         }
 
         private void Cb_cfgType_SelectedIndexChanged(object sender, EventArgs e)
@@ -339,40 +281,27 @@ namespace MesManager.UI
 
         private void Menu_commit_Click(object sender, EventArgs e)
         {
-            this.cb_cfgType.Focus();
+            //this.cb_cfgType.Focus();
             CommitData();
         }
 
         private void RefreshData()
         {
-            if (cb_cfgType.SelectedIndex == 0)
-            {
-                //型号
-                this.menu_del.Enabled = true;
-                this.menu_clear_db.Enabled = true;
-                this.menu_add.Enabled = true;
-                SelectProductTypeData();
-            }
-            else if (cb_cfgType.SelectedIndex == 1)
-            {
-                //物料
-                this.menu_del.Enabled = false;
-                this.menu_clear_db.Enabled = false;
-                this.menu_add.Enabled = false;
-                SelectMaterial();
-            }
+            //型号
+            this.menu_del.Enabled = true;
+            this.menu_clear_db.Enabled = true;
+            this.menu_add.Enabled = true;
+            SelectProductTypeData();
+            //物料
+            //this.menu_del.Enabled = false;
+            //this.menu_clear_db.Enabled = false;
+            //this.menu_add.Enabled = false;
+            //SelectMaterial();
         }
 
         private void CommitData()
         {
-            if (cb_cfgType.SelectedIndex == 0)
-            {
-                CommitTypeNoMesService();
-            }
-            else if (cb_cfgType.SelectedIndex == 1)
-            {
-                CommitMaterialMesService();
-            }
+            CommitTypeNoMesService();
         }
 
         #region 调用接口
@@ -504,7 +433,7 @@ namespace MesManager.UI
                     foreach (var material in materialCodeTemp)
                     {
                         int res = await serviceClient.UpdateMaterialPNAsync(material.keyMaterialCode,
-                            material.keyMaterialName,MESMainForm.currentUser,material.keyDescrible);
+                            material.keyMaterialName,MESMainForm.currentUser);
                     }
                 }
                 RefreshData();

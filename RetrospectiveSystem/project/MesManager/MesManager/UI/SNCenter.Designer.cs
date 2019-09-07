@@ -180,8 +180,8 @@
             this.toolStripLabel3.ForeColor = System.Drawing.Color.White;
             this.toolStripLabel3.LinkColor = System.Drawing.Color.White;
             this.toolStripLabel3.Name = "toolStripLabel3";
-            this.toolStripLabel3.Size = new System.Drawing.Size(150, 34);
-            this.toolStripLabel3.Text = "物料编码(LOT/RID/PN):";
+            this.toolStripLabel3.Size = new System.Drawing.Size(222, 34);
+            this.toolStripLabel3.Text = "物料编码(LOT/RID/PN)/PCBA/外壳:";
             // 
             // tb_material
             // 
@@ -218,7 +218,7 @@
             this.btn_materialSelect.Image = global::MesManager.Properties.Resources.Refresh_16x16;
             this.btn_materialSelect.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btn_materialSelect.Name = "btn_materialSelect";
-            this.btn_materialSelect.Size = new System.Drawing.Size(55, 34);
+            this.btn_materialSelect.Size = new System.Drawing.Size(55, 23);
             this.btn_materialSelect.Text = "查询";
             // 
             // panel_sn

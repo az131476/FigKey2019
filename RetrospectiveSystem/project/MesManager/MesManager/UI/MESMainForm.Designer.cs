@@ -63,7 +63,7 @@
             this.radPanorama1.PanelImageSize = new System.Drawing.Size(1024, 768);
             this.radPanorama1.RowsCount = 2;
             this.radPanorama1.ShowGroups = true;
-            this.radPanorama1.Size = new System.Drawing.Size(1196, 1100);
+            this.radPanorama1.Size = new System.Drawing.Size(1288, 1054);
             this.radPanorama1.TabIndex = 1;
             this.radPanorama1.ThemeName = "ControlDefault";
             ((Telerik.WinControls.UI.RadPanoramaElement)(this.radPanorama1.GetChildAt(0))).BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(23)))), ((int)(((byte)(117)))));
@@ -137,7 +137,7 @@
             this.mainBasicInfo.ImageLayout = System.Windows.Forms.ImageLayout.None;
             this.mainBasicInfo.Name = "mainBasicInfo";
             this.mainBasicInfo.Padding = new System.Windows.Forms.Padding(15, 15, 0, 10);
-            this.mainBasicInfo.Text = "<html>基础资料 <br>";
+            this.mainBasicInfo.Text = "<html>产品管理 <br>";
             this.mainBasicInfo.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.mainBasicInfo.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this.mainBasicInfo.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
@@ -245,7 +245,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1280, 1024);
+            this.ClientSize = new System.Drawing.Size(1288, 1054);
             this.Controls.Add(this.radPanorama1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

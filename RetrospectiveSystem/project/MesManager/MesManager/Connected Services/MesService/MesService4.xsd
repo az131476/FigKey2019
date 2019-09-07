@@ -491,7 +491,6 @@
         <xs:element minOccurs="0" name="materialPN" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="materialName" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="describle" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -905,6 +904,20 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="SelectMaterialNameResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMaterialCode">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="materialRID" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMaterialCodeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetMaterialCodeResult" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

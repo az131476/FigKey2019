@@ -35,6 +35,7 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.radMenu1 = new Telerik.WinControls.UI.RadMenu();
             this.menu_add_row = new Telerik.WinControls.UI.RadMenuItem();
@@ -137,21 +138,25 @@
             gridViewTextBoxColumn2.HeaderText = "物料号";
             gridViewTextBoxColumn2.Name = "rdvc_materialPN";
             gridViewTextBoxColumn3.EnableExpressionEditor = false;
-            gridViewTextBoxColumn3.HeaderText = "描述";
-            gridViewTextBoxColumn3.Name = "rdvc_describle";
+            gridViewTextBoxColumn3.HeaderText = "物料名称";
+            gridViewTextBoxColumn3.Name = "dbv_material_name";
             gridViewTextBoxColumn4.EnableExpressionEditor = false;
-            gridViewTextBoxColumn4.HeaderText = "操作用户";
-            gridViewTextBoxColumn4.Name = "rdbc_user";
+            gridViewTextBoxColumn4.HeaderText = "描述";
+            gridViewTextBoxColumn4.Name = "rdvc_describle";
             gridViewTextBoxColumn5.EnableExpressionEditor = false;
-            gridViewTextBoxColumn5.HeaderText = "更新日期";
-            gridViewTextBoxColumn5.Name = "rdbc_date";
+            gridViewTextBoxColumn5.HeaderText = "操作用户";
+            gridViewTextBoxColumn5.Name = "rdbc_user";
+            gridViewTextBoxColumn6.EnableExpressionEditor = false;
+            gridViewTextBoxColumn6.HeaderText = "更新日期";
+            gridViewTextBoxColumn6.Name = "rdbc_date";
             this.radGridView1.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewComboBoxColumn1,
             gridViewTextBoxColumn2,
             gridViewTextBoxColumn3,
             gridViewTextBoxColumn4,
-            gridViewTextBoxColumn5});
+            gridViewTextBoxColumn5,
+            gridViewTextBoxColumn6});
             this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.radGridView1.Name = "radGridView1";
             this.radGridView1.RightToLeft = System.Windows.Forms.RightToLeft.No;

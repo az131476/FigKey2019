@@ -106,7 +106,7 @@ namespace MesAPI
         int DeleteProductMaterial(ProductMaterial material);
 
         [OperationContract]
-        int UpdateMaterialPN(string materialPN, string materialName, string username, string describle);
+        int UpdateMaterialPN(string materialPN, string materialName, string username);
 
         //物料统计
         [OperationContract]
@@ -177,5 +177,8 @@ namespace MesAPI
 
         [OperationContract]
         string SelectMaterialName(string materialPN);
+
+        [OperationContract]
+        string GetMaterialCode(string materialRID);
     }
 }

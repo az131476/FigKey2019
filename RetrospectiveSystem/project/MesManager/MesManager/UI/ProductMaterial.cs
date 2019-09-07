@@ -257,7 +257,9 @@ namespace MesManager.UI
                     }
                 }
                 if (rowInfo.Cells[3].Value != null)
-                    productMaterial.Describle = rowInfo.Cells[3].Value.ToString();
+                    productMaterial.MaterialName = rowInfo.Cells[3].Value.ToString();
+                if (rowInfo.Cells[4].Value != null)
+                    productMaterial.Describle = rowInfo.Cells[4].Value.ToString();
                 productMaterial.UserName = MESMainForm.currentUser;
 
                 if (rowInfo.Cells[1].Value != null && rowInfo.Cells[2].Value != null)
@@ -340,15 +342,17 @@ namespace MesManager.UI
                 this.radGridView1.Rows[i].Cells[0].Value = i + 1;
                 this.radGridView1.Rows[i].Cells[1].Value = dt.Rows[i][0].ToString();
                 var materialPN = dt.Rows[i][1].ToString();
-                this.radGridView1.Rows[i].Cells[3].Value = dt.Rows[i][2].ToString();
-                this.radGridView1.Rows[i].Cells[4].Value = dt.Rows[i][3].ToString();//用户
-                this.radGridView1.Rows[i].Cells[5].Value = dt.Rows[i][4].ToString();//日期
-                var materialName = serviceClient.SelectMaterialName(materialPN);
-                if (materialName != "")
-                {
-                    materialName = "(" + materialName + ")";
-                }
-                this.radGridView1.Rows[i].Cells[2].Value = materialPN + materialName;
+                var materialName = dt.Rows[i][2].ToString();
+                this.radGridView1.Rows[i].Cells[3].Value = materialName;//物料名称
+                this.radGridView1.Rows[i].Cells[4].Value = dt.Rows[i][3].ToString();//描述
+                this.radGridView1.Rows[i].Cells[5].Value = dt.Rows[i][4].ToString();//用户
+                this.radGridView1.Rows[i].Cells[6].Value = dt.Rows[i][4].ToString();//日期
+                //var materialName = serviceClient.SelectMaterialName(materialPN);
+                //if (materialName != "")
+                //{
+                //    materialName = "(" + materialName + ")";
+                //}
+                this.radGridView1.Rows[i].Cells[2].Value = materialPN;
             }
             //删除空行
             int startIndex = dt.Rows.Count;

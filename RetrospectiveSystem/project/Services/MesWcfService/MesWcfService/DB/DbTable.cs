@@ -199,7 +199,8 @@ namespace MesWcfService.DB
         {
             public const string SN_PCBA = "[sn_pcba]";
             public const string SN_OUTTER = "[sn_outter]";
-            public const string UPDATE_DATE = "update_date";
+            public const string MATERIAL_CODE = "[material_code]";
+            public const string UPDATE_DATE = "[update_date]";
         }
     }
 }

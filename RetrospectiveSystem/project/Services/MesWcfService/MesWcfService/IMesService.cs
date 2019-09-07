@@ -216,10 +216,11 @@ namespace MesWcfService
         #region 【接口】 绑定PCBA
         [OperationContract]
         [SwaggerWcfPath("BindingPCBA", "绑定产品PCBA")]
-        [WebInvoke(Method = "GET", UriTemplate = "BindingPCBA?snPCBA={snPCBA}&snOutter={snOutter}", BodyStyle = WebMessageBodyStyle.Bare,
+        [WebInvoke(Method = "GET", UriTemplate = "BindingPCBA?snPCBA={snPCBA}&snOutter={snOutter}&materialCode={materialCode}", BodyStyle = WebMessageBodyStyle.Bare,
             RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
         string BindingPCBA([SwaggerWcfParameter(Description = "PCBA")]string snPCBA,
-            [SwaggerWcfParameter(Description = "外壳码")]string snOutter);
+            [SwaggerWcfParameter(Description = "外壳码")]string snOutter,
+            [SwaggerWcfParameter(Description = "物料编码")]string materialCode);
         #endregion
 
         #region 【接口】 SPEC-LIMIT配置

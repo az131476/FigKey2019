@@ -325,12 +325,16 @@ namespace MesAPI
         {
             //查询时返回
             //通过SN查询，传入sn_outter,查询sn_pcba
-            var sn_other = "";
+            var snTemp = "";
             if (sn != "")
             {
-                sn_other = SelectSN(sn);
-                if (sn_other == "")
-                    return null;
+                snTemp = SelectSN(sn);
+                if (snTemp == "")
+                {
+                    //该SN装配工站未绑定
+                    //直接查询记录
+                    snTemp = sn;
+                }
             }
             string selectSQL = "";
             if (string.IsNullOrEmpty(sn) && string.IsNullOrEmpty(typeNo) && string.IsNullOrEmpty(station))
@@ -363,9 +367,9 @@ namespace MesAPI
                         $"{DbTable.F_Test_Result.UPDATE_DATE} 更新日期 " +
                         $"FROM {DbTable.F_TEST_RESULT_NAME} " +
                         $"WHERE {DbTable.F_Test_Result.SN} like '%{sn}%' OR " +
-                        $"{DbTable.F_Test_Result.SN} like '%{sn_other}%' OR " +
-                        $"{DbTable.F_Test_Result.TYPE_NO} like '%{typeNo}%' OR " +
-                        $"{DbTable.F_Test_Result.STATION_NAME} like '%{station}%'";
+                        $"{DbTable.F_Test_Result.SN} like '%{snTemp}%' OR " +
+                        $"{DbTable.F_Test_Result.TYPE_NO} like '{typeNo}' OR " +
+                        $"{DbTable.F_Test_Result.STATION_NAME} like '{station}'";
                 }
                 else
                 {
@@ -380,8 +384,8 @@ namespace MesAPI
                         $"{DbTable.F_Test_Result.ADMIN} 管理员," +
                         $"{DbTable.F_Test_Result.UPDATE_DATE} 更新日期 " +
                         $"FROM {DbTable.F_TEST_RESULT_NAME} " +
-                        $"WHERE {DbTable.F_Test_Result.SN} = '{sn}' OR " +
-                        $"{DbTable.F_Test_Result.SN} = '{sn_other}' OR " +
+                        $"WHERE {DbTable.F_Test_Result.SN} = '%{sn}%' OR " +
+                        $"{DbTable.F_Test_Result.SN} = '%{snTemp}%' OR " +
                         $"{DbTable.F_Test_Result.TYPE_NO} = '{typeNo}' OR " +
                         $"{DbTable.F_Test_Result.STATION_NAME} = '{station}'";
                 }
@@ -559,20 +563,30 @@ namespace MesAPI
             return SQLServer.ExecuteNonQuery(updateSQL);
         }
 
-        public int UpdateMaterialPN(string materialPN,string materialName,string username,string describle)
+        public int UpdateMaterialPN(string materialPN,string materialName,string username)
         {
-            if (!IsExistMaterialPN_Name(materialPN,materialName,describle))
+            if (IsExistMaterialPN(materialPN))
             {
                 //update name
                 var updateSQL = $"UPDATE {DbTable.F_MATERIAL_PN_NAME} SET " +
                     $"{DbTable.F_MATERIAL_PN.MATERIAL_NAME} = '{materialName}'," +
-                    $"{DbTable.F_MATERIAL_PN.USER_NAME} = '{username}'," +
-                    $"{DbTable.F_MATERIAL_PN.DESCRIBLE} = '{describle}' WHERE " +
+                    $"{DbTable.F_MATERIAL_PN.USER_NAME} = '{username}' " +
+                    $"WHERE " +
                     $"{DbTable.F_MATERIAL_PN.MATERIAL_PN} = '{materialPN}'";
-                LogHelper.Log.Info("【更新物料PN-名称】"+updateSQL);
+                LogHelper.Log.Info("【更新物料PN-名称】" + updateSQL);
                 return SQLServer.ExecuteNonQuery(updateSQL);
             }
-            return -1;
+            else
+            {
+                //insert
+                var insertSQL = $"INSERT INTO {DbTable.F_MATERIAL_PN_NAME}(" +
+                    $"{DbTable.F_MATERIAL_PN.MATERIAL_PN}," +
+                    $"{DbTable.F_MATERIAL_PN.MATERIAL_NAME}," +
+                    $"{DbTable.F_MATERIAL_PN.USER_NAME}) VALUES(" +
+                    $"'{materialPN}','{materialName}','{username}')";
+                LogHelper.Log.Info("【更新物料PN】"+insertSQL);
+                return SQLServer.ExecuteNonQuery(insertSQL);
+            }
         }
 
         public DataSet SelectMaterialPN()
@@ -608,12 +622,11 @@ namespace MesAPI
             return false;
         }
 
-        private bool IsExistMaterialPN_Name(string materialPN,string materialName,string describle)
+        private bool IsExistMaterialPN_Name(string materialPN,string materialName)
         {
             var selectSQL = $"SELECT * FROM {DbTable.F_MATERIAL_PN_NAME} WHERE " +
                 $"{DbTable.F_MATERIAL_PN.MATERIAL_PN} = '{materialPN}' AND " +
-                $"{DbTable.F_MATERIAL_PN.MATERIAL_NAME} = '{materialName}' AND " +
-                $"{DbTable.F_MATERIAL_PN.DESCRIBLE} = '{describle}'";
+                $"{DbTable.F_MATERIAL_PN.MATERIAL_NAME} = '{materialName}' ";
             var dt = SQLServer.ExecuteDataSet(selectSQL).Tables[0];
             if (dt.Rows.Count > 0)
                 return true;
@@ -659,6 +672,7 @@ namespace MesAPI
                         UpdateMaterialStock(material.TypeNo, material.MaterialCode, material.Stock);
                     }
                 }
+                UpdateMaterialPN(material.MaterialCode,material.MaterialName,material.UserName);
             }
             return productMaterialList;
         }
@@ -675,13 +689,19 @@ namespace MesAPI
         public DataSet SelectProductMaterial()
         {
             var selectSQL = $"SELECT " +
-                            $"{DbTable.F_PRODUCT_MATERIAL.TYPE_NO}," +
-                            $"{DbTable.F_PRODUCT_MATERIAL.MATERIAL_CODE}," +
-                            $"{DbTable.F_PRODUCT_MATERIAL.Describle}," +
-                            $"{DbTable.F_PRODUCT_MATERIAL.USERNAME}," +
-                            $"{DbTable.F_PRODUCT_MATERIAL.UpdateDate} " +
-                            $"FROM {DbTable.F_PRODUCT_MATERIAL_NAME} " +
+                            $"a.{DbTable.F_PRODUCT_MATERIAL.TYPE_NO}," +
+                            $"a.{DbTable.F_PRODUCT_MATERIAL.MATERIAL_CODE}," +
+                            $"b.{DbTable.F_MATERIAL_PN.MATERIAL_NAME}," +
+                            $"a.{DbTable.F_PRODUCT_MATERIAL.Describle}," +
+                            $"a.{DbTable.F_PRODUCT_MATERIAL.USERNAME}," +
+                            $"a.{DbTable.F_PRODUCT_MATERIAL.UpdateDate} " +
+                            $"FROM " +
+                            $"{DbTable.F_PRODUCT_MATERIAL_NAME} a," +
+                            $"{DbTable.F_MATERIAL_PN_NAME} b " +
+                            $"WHERE " +
+                            $"a.{DbTable.F_PRODUCT_MATERIAL.MATERIAL_CODE} = b.{DbTable.F_MATERIAL_PN.MATERIAL_PN} " +
                             $"ORDER BY {DbTable.F_PRODUCT_MATERIAL.TYPE_NO} ";
+            LogHelper.Log.Info(selectSQL);
             return SQLServer.ExecuteDataSet(selectSQL);
         }
         private bool IsExistMaterial(ProductMaterial material)
@@ -746,20 +766,27 @@ namespace MesAPI
 
         #region 物料综合查询
 
-        public DataSet SelectMaterialBasicMsg(string materialCode)
+        public DataSet SelectMaterialBasicMsg(string queryCondition)
         {
             var selectSQL = "";
             selectSQL = $"SELECT DISTINCT " +
                 $"a.{DbTable.F_Material_Statistics.MATERIAL_CODE} 物料编码," +
                 $"b.{DbTable.F_Material.MATERIAL_NAME} 物料名称," +
                 $"a.{DbTable.F_Material_Statistics.PRODUCT_TYPE_NO} 产品型号," +
-                $"b.{DbTable.F_Material.MATERIAL_AMOUNTED} 使用总数量 " +
+                $"b.{DbTable.F_Material.MATERIAL_AMOUNTED} 使用总数量 ," +
+                $"c.{DbTable.F_BINDING_PCBA.SN_PCBA}," +
+                $"c.{DbTable.F_BINDING_PCBA.SN_OUTTER} " +
                 $"FROM " +
                 $"{DbTable.F_MATERIAL_STATISTICS_NAME} a," +
-                $"{DbTable.F_MATERIAL_NAME} b " +
+                $"{DbTable.F_MATERIAL_NAME} b," +
+                $"{DbTable.F_BINDING_PCBA_NAME} c " +
                 $"WHERE " +
                 $"a.{DbTable.F_Material_Statistics.MATERIAL_CODE} = b.{DbTable.F_Material.MATERIAL_CODE} AND " +
-                $"a.{DbTable.F_Material_Statistics.MATERIAL_CODE} like '%{materialCode}%' ";
+                $"a.{DbTable.F_BINDING_PCBA.MATERIAL_CODE} = b.{DbTable.F_Material_Statistics.MATERIAL_CODE} AND " +
+                $"a.{DbTable.F_Material_Statistics.MATERIAL_CODE} = c.{DbTable.F_BINDING_PCBA.MATERIAL_CODE} AND " +
+                $"a.{DbTable.F_Material_Statistics.MATERIAL_CODE} like '%{queryCondition}%' OR " +
+                $"c.{DbTable.F_BINDING_PCBA.SN_PCBA} like '%{queryCondition}%' OR " +
+                $"c.{DbTable.F_BINDING_PCBA.SN_OUTTER} like '%{queryCondition}%'";
 
             LogHelper.Log.Info(selectSQL);
             return SQLServer.ExecuteDataSet(selectSQL);
@@ -775,13 +802,17 @@ namespace MesAPI
                            $"a.{DbTable.F_Material_Statistics.MATERIAL_AMOUNT} 使用数量," +
                            $"a.{DbTable.F_Material_Statistics.TEAM_LEADER}," +
                            $"a.{DbTable.F_Material_Statistics.ADMIN}," +
-                           $"a.{DbTable.F_Material_Statistics.UPDATE_DATE} " +
+                           $"a.{DbTable.F_Material_Statistics.UPDATE_DATE}," +
+                           $"c.{DbTable.F_BINDING_PCBA.SN_PCBA}," +
+                           $"c.{DbTable.F_BINDING_PCBA.SN_OUTTER} " +
                            $"FROM " +
                            $"{DbTable.F_MATERIAL_STATISTICS_NAME} a," +
-                           $"{DbTable.F_MATERIAL_NAME} b " +
+                           $"{DbTable.F_MATERIAL_NAME} b," +
+                           $"{DbTable.F_BINDING_PCBA_NAME} c  " +
                            $"WHERE " +
                            $"a.{DbTable.F_Material_Statistics.MATERIAL_CODE} = b.{DbTable.F_Material.MATERIAL_CODE} AND " +
-                           $"a.{DbTable.F_Material_Statistics.MATERIAL_CODE} like '%{materialCode}%' ";
+                           $"a.{DbTable.F_Material_Statistics.MATERIAL_CODE} = c.{DbTable.F_BINDING_PCBA.MATERIAL_CODE} AND " +
+                           $"a.{DbTable.F_Material_Statistics.MATERIAL_CODE} like '{materialCode}' ";
             LogHelper.Log.Info(selectSQL);
             return SQLServer.ExecuteDataSet(selectSQL);
         }
@@ -1053,8 +1084,8 @@ namespace MesAPI
                      $"{DbTable.F_PRODUCT_PACKAGE_NAME} " +
                      $"WHERE " +
                      $"{DbTable.F_PRODUCT_PACKAGE.SN_OUTTER} like '%{queryFilter}%' OR " +
-                     $"{DbTable.F_PRODUCT_PACKAGE.OUT_CASE_CODE} like '%{queryFilter}%' OR " +
-                     $"{DbTable.F_PRODUCT_PACKAGE.TYPE_NO}  like '%{queryFilter}%' AND " +
+                     $"{DbTable.F_PRODUCT_PACKAGE.OUT_CASE_CODE} like '{queryFilter}' OR " +
+                     $"{DbTable.F_PRODUCT_PACKAGE.TYPE_NO}  like '{queryFilter}' AND " +
                      $"{DbTable.F_PRODUCT_PACKAGE.BINDING_STATE} = '{state}'";
             }
             LogHelper.Log.Info(selectSQL);
@@ -1267,11 +1298,12 @@ namespace MesAPI
                     $"{DbTable.F_TEST_LOG_DATA.TYPE_NO} 产品型号," +
                     $"{DbTable.F_TEST_LOG_DATA.PRODUCT_SN} 产品SN," +
                     $"{DbTable.F_TEST_LOG_DATA.STATION_NAME} 工站名称," +
-                    $"{DbTable.F_TEST_LOG_DATA.TEST_RESULT} 测试结果 " +
+                    $"{DbTable.F_TEST_LOG_DATA.TEST_RESULT} 测试结果, " +
                     $"FROM {DbTable.F_TEST_LOG_DATA_NAME} " +
                     $"WHERE " +
                     $"{DbTable.F_TEST_LOG_DATA.UPDATE_DATE} >= '{startTime}' AND " +
-                    $"{DbTable.F_TEST_LOG_DATA.UPDATE_DATE} <= '{endTime}' ";
+                    $"{DbTable.F_TEST_LOG_DATA.UPDATE_DATE} <= '{endTime}' " +
+                    $"ORDER BY {DbTable.F_TEST_LOG_DATA.UPDATE_DATE} DESC";
             }
             else
             {
@@ -1285,7 +1317,8 @@ namespace MesAPI
                     $"{DbTable.F_TEST_LOG_DATA.TYPE_NO} = '%{queryFilter}%' OR " +
                     $"{DbTable.F_TEST_LOG_DATA.STATION_NAME} = '%{queryFilter}%' AND " +
                     $"{DbTable.F_TEST_LOG_DATA.UPDATE_DATE} >= '{startTime}' AND " +
-                    $"{DbTable.F_TEST_LOG_DATA.UPDATE_DATE} <= '{endTime}' ";
+                    $"{DbTable.F_TEST_LOG_DATA.UPDATE_DATE} <= '{endTime}' " +
+                    $"ORDER BY {DbTable.F_TEST_LOG_DATA.UPDATE_DATE} DESC";
             }
             LogHelper.Log.Info(selectSQL);
             return SQLServer.ExecuteDataSet(selectSQL);
@@ -1313,7 +1346,8 @@ namespace MesAPI
                     $"WHERE " +
                     $"{DbTable.F_TEST_LOG_DATA.PRODUCT_SN} = '{queryFilter}' AND " +
                     $"{DbTable.F_TEST_LOG_DATA.UPDATE_DATE} >= '{startDate}' AND " +
-                    $"{DbTable.F_TEST_LOG_DATA.UPDATE_DATE} <= '{endDate}' ";
+                    $"{DbTable.F_TEST_LOG_DATA.UPDATE_DATE} <= '{endDate}' " +
+                    $"ORDER BY {DbTable.F_TEST_LOG_DATA.UPDATE_DATE} DESC";
             }
             else
             {
@@ -1330,7 +1364,8 @@ namespace MesAPI
                     $"{DbTable.F_TEST_LOG_DATA.UPDATE_DATE} 更新日期 " +
                     $"FROM {DbTable.F_TEST_LOG_DATA_NAME} " +
                     $"WHERE " +
-                    $"{DbTable.F_TEST_LOG_DATA.PRODUCT_SN} = '{queryFilter}' ";
+                    $"{DbTable.F_TEST_LOG_DATA.PRODUCT_SN} = '{queryFilter}' " +
+                    $"ORDER BY {DbTable.F_TEST_LOG_DATA.UPDATE_DATE} DESC";
             }
             LogHelper.Log.Info(selectSQL);
             return SQLServer.ExecuteDataSet(selectSQL);
@@ -1408,6 +1443,16 @@ namespace MesAPI
             materialCode = materialCode.Substring(materialCode.IndexOf('&') + 1);
             materialCode = materialCode.Substring(0, materialCode.IndexOf('&'));
             return materialCode;
+        }
+
+        public string GetMaterialCode(string materialRID)
+        {
+            var selectSQL = $"SELECT {DbTable.F_Material.MATERIAL_CODE} FROM {DbTable.F_MATERIAL_NAME} WHERE " +
+                $"{DbTable.F_Material.MATERIAL_CODE} like '%{materialRID}%'";
+            var dt = SQLServer.ExecuteDataSet(selectSQL).Tables[0];
+            if (dt.Rows.Count > 0)
+                return dt.Rows[0][0].ToString();
+            return "";
         }
     }
 }

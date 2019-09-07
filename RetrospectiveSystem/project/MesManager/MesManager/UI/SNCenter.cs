@@ -27,6 +27,7 @@ namespace MesManager.UI
         private DataTable dataSourceProductCheck;
         private DataTable dataSourceQuanlity;
         private const string DATA_ORDER = "序号";
+
         #region 物料统计字段
         private const string MATERIAL_PN = "物料号";
         private const string MATERIAL_LOT = "批次号";
@@ -35,6 +36,8 @@ namespace MesManager.UI
         private const string MATERIAL_QTY = "库存";
         private const string MATERIAL_NAME = "物料名称";
         private const string PRODUCT_TYPENO = "产品型号";
+        private const string SN_PCBA = "PCBA";
+        private const string SN_OUTTER = "外壳";
         private const string STATION_NAME = "工站名称";
         private const string USE_AMOUNTED = "使用数量";
         private const string RESIDUE_STOCK = "剩余库存";
@@ -56,6 +59,7 @@ namespace MesManager.UI
         private const string CHECK_SN = "产品SN";
         private const string CHECK_CASE_CODE = "箱子编码";
         private const string CHECK_TYPE_NO = "产品型号";
+        private const string CHECK_NUMBER = "数量";
         private const string CHECK_BINDING_DATE = "修改日期";
         private const string CHECK_BINDING_STATE = "产品状态";
         private const string CHECK_REMARK = "描述";
@@ -240,8 +244,9 @@ namespace MesManager.UI
 
         private void RadGridViewMaterial_CellDoubleClick(object sender, GridViewCellEventArgs e)
         {
-            var ridCode = this.radGridViewMaterial.CurrentRow.Cells[2].Value.ToString();
-            MaterialDetailMsg materialDetailMsg = new MaterialDetailMsg(ridCode);
+            var ridCode = this.radGridViewMaterial.CurrentRow.Cells[3].Value.ToString();
+            var materialCode = serviceClient.GetMaterialCode(ridCode);
+            MaterialDetailMsg materialDetailMsg = new MaterialDetailMsg(materialCode);
             materialDetailMsg.ShowDialog();
         }
 
@@ -452,10 +457,10 @@ namespace MesManager.UI
                 var caseCode = dt.Rows[i][0].ToString();
                 var sn = dt.Rows[i][1].ToString();
                 var typeNo = dt.Rows[i][2].ToString();
-                var bindingDate = dt.Rows[i][3].ToString();
-                var teamLeader = dt.Rows[i][4].ToString();
-                var admin = dt.Rows[i][5].ToString();
-                var remark = dt.Rows[i][6].ToString();
+                var teamLeader = dt.Rows[i][3].ToString();
+                var admin = dt.Rows[i][4].ToString();
+                var remark = dt.Rows[i][5].ToString();
+                var bindingDate = dt.Rows[i][6].ToString();
                 var productState = "已解包";
                 DataRow dr = dataSourceProductCheck.NewRow();
                 dr[CHECK_ORDER] = orderID;
@@ -467,6 +472,7 @@ namespace MesManager.UI
                 dr[CHECK_ADMIN] = admin;
                 dr[CHECK_REMARK] = remark;
                 dr[CHECK_BINDING_STATE] = productState;
+                dr[CHECK_NUMBER] = 1;
                 dataSourceProductCheck.Rows.Add(dr);
             }
             this.radGridViewCheck.DataSource = dataSourceProductCheck;
@@ -484,6 +490,8 @@ namespace MesManager.UI
                 dataSourceMaterialBasic.Columns.Add(MATERIAL_DC);
                 dataSourceMaterialBasic.Columns.Add(MATERIAL_NAME);
                 dataSourceMaterialBasic.Columns.Add(PRODUCT_TYPENO);
+                dataSourceMaterialBasic.Columns.Add(SN_PCBA);
+                dataSourceMaterialBasic.Columns.Add(SN_OUTTER);
                 dataSourceMaterialBasic.Columns.Add(MATERIAL_QTY);
                 dataSourceMaterialBasic.Columns.Add(USE_AMOUNTED);
                 dataSourceMaterialBasic.Columns.Add(RESIDUE_STOCK);
@@ -496,6 +504,7 @@ namespace MesManager.UI
                 dataSourceProductCheck.Columns.Add(CHECK_SN);
                 dataSourceProductCheck.Columns.Add(CHECK_TYPE_NO);
                 dataSourceProductCheck.Columns.Add(CHECK_BINDING_STATE);
+                dataSourceProductCheck.Columns.Add(CHECK_NUMBER);
                 dataSourceProductCheck.Columns.Add(CHECK_REMARK);
                 dataSourceProductCheck.Columns.Add(CHECK_LEADER);
                 dataSourceProductCheck.Columns.Add(CHECK_ADMIN);
@@ -578,6 +587,8 @@ namespace MesManager.UI
                 //var materialName = dt.Rows[i][1].ToString();
                 var productTypeNo = dt.Rows[i][2].ToString();
                 var useAmounted = dt.Rows[i][3].ToString();
+                var snPCBA = dt.Rows[i][4].ToString();
+                var snOutter = dt.Rows[i][5].ToString();
                 if (!materialCode.Contains("&"))
                     continue;
                 AnalysisMaterialCode analysisMaterial = AnalysisMaterialCode.GetMaterialDetail(materialCode);
@@ -597,6 +608,8 @@ namespace MesManager.UI
                 dr[PRODUCT_TYPENO] = productTypeNo;
                 dr[USE_AMOUNTED] = useAmounted;
                 dr[RESIDUE_STOCK] = int.Parse(qtyCode) - int.Parse(useAmounted);
+                dr[SN_PCBA] = snPCBA;
+                dr[SN_OUTTER] = snOutter;
                 dataSourceMaterialBasic.Rows.Add(dr);
             }
             this.radGridViewMaterial.DataSource = dataSourceMaterialBasic;

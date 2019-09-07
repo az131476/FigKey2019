@@ -175,6 +175,9 @@ namespace MesManager.MesService {
         private string MaterialCodeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MaterialNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int ResultField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -221,6 +224,19 @@ namespace MesManager.MesService {
                 if ((object.ReferenceEquals(this.MaterialCodeField, value) != true)) {
                     this.MaterialCodeField = value;
                     this.RaisePropertyChanged("MaterialCode");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string MaterialName {
+            get {
+                return this.MaterialNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MaterialNameField, value) != true)) {
+                    this.MaterialNameField = value;
+                    this.RaisePropertyChanged("MaterialName");
                 }
             }
         }
@@ -461,10 +477,10 @@ namespace MesManager.MesService {
         System.Threading.Tasks.Task<int> DeleteProductMaterialAsync(MesManager.MesService.ProductMaterial material);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/UpdateMaterialPN", ReplyAction="http://tempuri.org/IMesService/UpdateMaterialPNResponse")]
-        int UpdateMaterialPN(string materialPN, string materialName, string username, string describle);
+        int UpdateMaterialPN(string materialPN, string materialName, string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/UpdateMaterialPN", ReplyAction="http://tempuri.org/IMesService/UpdateMaterialPNResponse")]
-        System.Threading.Tasks.Task<int> UpdateMaterialPNAsync(string materialPN, string materialName, string username, string describle);
+        System.Threading.Tasks.Task<int> UpdateMaterialPNAsync(string materialPN, string materialName, string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/InsertMaterialStatistics", ReplyAction="http://tempuri.org/IMesService/InsertMaterialStatisticsResponse")]
         string InsertMaterialStatistics(string snInner, string snOutter, string typeNo, string stationName, string materialCode, string amount);
@@ -573,6 +589,12 @@ namespace MesManager.MesService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectMaterialName", ReplyAction="http://tempuri.org/IMesService/SelectMaterialNameResponse")]
         System.Threading.Tasks.Task<string> SelectMaterialNameAsync(string materialPN);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/GetMaterialCode", ReplyAction="http://tempuri.org/IMesService/GetMaterialCodeResponse")]
+        string GetMaterialCode(string materialRID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/GetMaterialCode", ReplyAction="http://tempuri.org/IMesService/GetMaterialCodeResponse")]
+        System.Threading.Tasks.Task<string> GetMaterialCodeAsync(string materialRID);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -810,12 +832,12 @@ namespace MesManager.MesService {
             return base.Channel.DeleteProductMaterialAsync(material);
         }
         
-        public int UpdateMaterialPN(string materialPN, string materialName, string username, string describle) {
-            return base.Channel.UpdateMaterialPN(materialPN, materialName, username, describle);
+        public int UpdateMaterialPN(string materialPN, string materialName, string username) {
+            return base.Channel.UpdateMaterialPN(materialPN, materialName, username);
         }
         
-        public System.Threading.Tasks.Task<int> UpdateMaterialPNAsync(string materialPN, string materialName, string username, string describle) {
-            return base.Channel.UpdateMaterialPNAsync(materialPN, materialName, username, describle);
+        public System.Threading.Tasks.Task<int> UpdateMaterialPNAsync(string materialPN, string materialName, string username) {
+            return base.Channel.UpdateMaterialPNAsync(materialPN, materialName, username);
         }
         
         public string InsertMaterialStatistics(string snInner, string snOutter, string typeNo, string stationName, string materialCode, string amount) {
@@ -960,6 +982,14 @@ namespace MesManager.MesService {
         
         public System.Threading.Tasks.Task<string> SelectMaterialNameAsync(string materialPN) {
             return base.Channel.SelectMaterialNameAsync(materialPN);
+        }
+        
+        public string GetMaterialCode(string materialRID) {
+            return base.Channel.GetMaterialCode(materialRID);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetMaterialCodeAsync(string materialRID) {
+            return base.Channel.GetMaterialCodeAsync(materialRID);
         }
     }
 }

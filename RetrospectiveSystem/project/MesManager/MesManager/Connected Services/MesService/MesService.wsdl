@@ -279,6 +279,12 @@
   <wsdl:message name="IMesService_SelectMaterialName_OutputMessage">
     <wsdl:part name="parameters" element="tns:SelectMaterialNameResponse" />
   </wsdl:message>
+  <wsdl:message name="IMesService_GetMaterialCode_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMaterialCode" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_GetMaterialCode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMaterialCodeResponse" />
+  </wsdl:message>
   <wsdl:portType name="IMesService">
     <wsdl:operation name="TestCommunication">
       <wsdl:input wsaw:Action="http://tempuri.org/IMesService/TestCommunication" message="tns:IMesService_TestCommunication_InputMessage" />
@@ -459,6 +465,10 @@
     <wsdl:operation name="SelectMaterialName">
       <wsdl:input wsaw:Action="http://tempuri.org/IMesService/SelectMaterialName" message="tns:IMesService_SelectMaterialName_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMesService/SelectMaterialNameResponse" message="tns:IMesService_SelectMaterialName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMaterialCode">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/GetMaterialCode" message="tns:IMesService_GetMaterialCode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/GetMaterialCodeResponse" message="tns:IMesService_GetMaterialCode_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IMesService" type="tns:IMesService">
@@ -861,6 +871,15 @@
     </wsdl:operation>
     <wsdl:operation name="SelectMaterialName">
       <soap:operation soapAction="http://tempuri.org/IMesService/SelectMaterialName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMaterialCode">
+      <soap:operation soapAction="http://tempuri.org/IMesService/GetMaterialCode" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

@@ -362,17 +362,28 @@ namespace MesWcfService
         }
         #endregion
 
-        #region PCBA与外壳的绑定
+        #region PCBA与外壳与其他物料的绑定
         [SwaggerWcfTag("MesServcie 服务")]
-        [SwaggerWcfResponse("OK", "外壳与PCBA绑定成功")]
-        [SwaggerWcfResponse("FAIL", "外壳与PCBA绑定失败")]
-        public string BindingPCBA(string snPCBA,string snOutter)
+        [SwaggerWcfResponse("OK", "外壳与PCBA等绑定成功")]
+        [SwaggerWcfResponse("FAIL", "外壳与PCBA等绑定失败")]
+        public string BindingPCBA(string snPCBA,string snOutter,string materialCode)
         {
             if (snPCBA == "")
+            {
+                LogHelper.Log.Info("【PCBA绑定-PCBA编码传入为空】");
                 return "snPCBA is not null";
+            }
             if (snOutter == "")
+            {
+                LogHelper.Log.Info("【PCBA绑定-外壳编码传入为空】");
                 return "snOutter is not null";
-            bindingSnPcbaQueue.Enqueue(new string[] { snPCBA,snOutter});
+            }
+            if (materialCode == "")
+            {
+                LogHelper.Log.Info("【PCBA绑定-物料编码传入为空】");
+                return "materialCode is not null";
+            }
+            bindingSnPcbaQueue.Enqueue(new string[] { snPCBA,snOutter,materialCode});
             return AddBindingPCBA.BindingPCBA(bindingSnPcbaQueue);
         }
         #endregion
