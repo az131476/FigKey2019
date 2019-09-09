@@ -285,6 +285,12 @@
   <wsdl:message name="IMesService_GetMaterialCode_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetMaterialCodeResponse" />
   </wsdl:message>
+  <wsdl:message name="IMesService_SelectLastLogTestResult_InputMessage">
+    <wsdl:part name="parameters" element="tns:SelectLastLogTestResult" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_SelectLastLogTestResult_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SelectLastLogTestResultResponse" />
+  </wsdl:message>
   <wsdl:portType name="IMesService">
     <wsdl:operation name="TestCommunication">
       <wsdl:input wsaw:Action="http://tempuri.org/IMesService/TestCommunication" message="tns:IMesService_TestCommunication_InputMessage" />
@@ -469,6 +475,10 @@
     <wsdl:operation name="GetMaterialCode">
       <wsdl:input wsaw:Action="http://tempuri.org/IMesService/GetMaterialCode" message="tns:IMesService_GetMaterialCode_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMesService/GetMaterialCodeResponse" message="tns:IMesService_GetMaterialCode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectLastLogTestResult">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/SelectLastLogTestResult" message="tns:IMesService_SelectLastLogTestResult_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/SelectLastLogTestResultResponse" message="tns:IMesService_SelectLastLogTestResult_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IMesService" type="tns:IMesService">
@@ -880,6 +890,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetMaterialCode">
       <soap:operation soapAction="http://tempuri.org/IMesService/GetMaterialCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectLastLogTestResult">
+      <soap:operation soapAction="http://tempuri.org/IMesService/SelectLastLogTestResult" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

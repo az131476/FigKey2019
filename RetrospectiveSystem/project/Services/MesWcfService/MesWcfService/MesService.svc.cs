@@ -42,6 +42,7 @@ namespace MesWcfService
         private Queue<string[]> selectPVersionQueue = new Queue<string[]>();
         private Queue<string[]> selectSpecLimitQueue = new Queue<string[]>();
         private Queue<string> selectMaterialSurplusQueue = new Queue<string>();
+        private Queue<string> selectProductPackageStorageQueue = new Queue<string>();
         private int materialLength = 20;
 
         #region 测试通讯
@@ -61,11 +62,11 @@ namespace MesWcfService
         #endregion
 
         #region 更新测试结果
-        //返回值为：OK-成功，FAIL-失败，ERROR-异常错误
         [SwaggerWcfTag("MesServcie 服务")]
-        [SwaggerWcfResponse("OK","插入成功")]
-        [SwaggerWcfResponse("FAIL","插入失败")]
-        [SwaggerWcfResponse("ERROR","异常错误")]
+        [SwaggerWcfResponse("STATUS_SUCCESS", "更新成功")]
+        [SwaggerWcfResponse("ERROR_FAIL", "更新失败，异常错误")]
+        [SwaggerWcfResponse("ERROR_SN_IS_NULL", "传入SN为空")]
+        [SwaggerWcfResponse("ERROR_STATION_IS_NULL", "传入工站为空")]
         [SwaggerWcfResponse(HttpStatusCode.Unused)]
         public string UpdateTestResultData(string sn, string typeNo, string station,string result,string teamLeader, string admin)
         {
@@ -200,16 +201,19 @@ namespace MesWcfService
 
         #region 成品打包接口/成品抽检-更新绑定信息
         [SwaggerWcfTag("MesServcie 服务")]
-        [SwaggerWcfResponse("OK","更新数据成功")]
-        [SwaggerWcfResponse("FAIL", "更新数据失败")]
-        [SwaggerWcfResponse("FULL","箱子已装满")]
-        [SwaggerWcfResponse("ERROR", "异常错误")]
-        public string UpdatePackageProductBindingMsg(string outCaseCode,string snOutter,string typeNo,string stationName,
-            string bindingState,string remark,string temaLeader,string admin)
+        [SwaggerWcfResponse("数值","更新数据成功，返回更新更新数据")]
+        [SwaggerWcfResponse("PARAMS_NOT_LONG_ENOUGH", "数组长度不足")]
+        [SwaggerWcfResponse("BINDING_STATE_VALUE_ERROR", "绑定状态值有误，只能是0或1；1-绑定，0-解绑")]
+        [SwaggerWcfResponse("STATUS_FAIL", "更新失败，发生异常错误")]
+        public string UpdatePackageProductBindingMsg(string outCaseCode,string[] snOutter,string typeNo,string stationName,
+            string bindingState,string remark,string teamLeader,string admin)
         {
-            string[] array = new string[] { outCaseCode,snOutter,typeNo,stationName,bindingState,remark,temaLeader,admin};
-            updatePackageProductQueue.Enqueue(array);
-            return UPackageProduct.UpdatePackageProduct(updatePackageProductQueue);
+            foreach (var sn in snOutter)
+            {
+                string[] array = new string[] { outCaseCode,sn,typeNo,stationName,bindingState,remark,teamLeader,admin};
+                updatePackageProductQueue.Enqueue(array);
+            }
+            return UPackageProduct.PackageProductMsg(updatePackageProductQueue);
         }
         #endregion
 
@@ -366,24 +370,9 @@ namespace MesWcfService
         [SwaggerWcfTag("MesServcie 服务")]
         [SwaggerWcfResponse("OK", "外壳与PCBA等绑定成功")]
         [SwaggerWcfResponse("FAIL", "外壳与PCBA等绑定失败")]
-        public string BindingPCBA(string snPCBA,string snOutter,string materialCode)
+        public string BindingPCBA(string snPCBA,string snOutter,string materialCode,string productTypeNo)
         {
-            if (snPCBA == "")
-            {
-                LogHelper.Log.Info("【PCBA绑定-PCBA编码传入为空】");
-                return "snPCBA is not null";
-            }
-            if (snOutter == "")
-            {
-                LogHelper.Log.Info("【PCBA绑定-外壳编码传入为空】");
-                return "snOutter is not null";
-            }
-            if (materialCode == "")
-            {
-                LogHelper.Log.Info("【PCBA绑定-物料编码传入为空】");
-                return "materialCode is not null";
-            }
-            bindingSnPcbaQueue.Enqueue(new string[] { snPCBA,snOutter,materialCode});
+            bindingSnPcbaQueue.Enqueue(new string[] { snPCBA,snOutter,materialCode,productTypeNo});
             return AddBindingPCBA.BindingPCBA(bindingSnPcbaQueue);
         }
         #endregion
@@ -403,6 +392,15 @@ namespace MesWcfService
         {
             selectPVersionQueue.Enqueue(new string[] { productTypeNo, stationName});
             return SelectLastTestConfig.SelectPVersion(selectPVersionQueue);
+        }
+        #endregion
+
+        #region 查询成品装箱配置的容量
+        [SwaggerWcfTag("MesServcie 服务")]
+        public int SelectPackageStorage(string productTypeNo)
+        {
+            selectProductPackageStorageQueue.Enqueue(productTypeNo);
+            return UPackageProduct.SelectPackageStorage(selectProductPackageStorageQueue);
         }
         #endregion
     }

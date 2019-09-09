@@ -79,6 +79,7 @@
   <ItemGroup>
     <Compile Include="Common\CheckMaterialCode.cs" />
     <Compile Include="Common\MaterialCodeMsg.cs" />
+    <Compile Include="Common\ProductProcess.cs" />
     <Compile Include="DB\DbTable.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -102,6 +103,7 @@
     <Compile Include="Model\MaterialMsg.cs" />
     <Compile Include="Model\MaterialStatisticsEnum.cs" />
     <Compile Include="Model\PackageProduct.cs" />
+    <Compile Include="Model\PackageProductEnum.cs" />
     <Compile Include="Model\ProductMaterial.cs" />
     <Compile Include="Model\Station.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

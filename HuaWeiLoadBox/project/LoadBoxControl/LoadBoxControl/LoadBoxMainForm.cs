@@ -78,6 +78,13 @@ namespace LoadBoxControl
             this.tool_close_serial.Click += Tool_close_serial_Click;
             this.tool_setParams.Click += Tool_setParams_Click;
             this.serialPort.DataReceived += SerialPort_DataReceived;
+            this.FormClosed += LoadBoxMainForm_FormClosed;
+        }
+
+        private void LoadBoxMainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (serialPort.IsOpen)
+                serialPort.Close();
         }
 
         private void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
@@ -88,13 +95,13 @@ namespace LoadBoxControl
                 int readCount = serialPort.Read(receiveData, 0, receiveData.Length);
                 if (readCount < 1)
                     return;
-                //MessageDelegate myDelegate = new MessageDelegate(ShowData);
+                MessageDelegate myDelegate = new MessageDelegate(ShowData);
 
-                //this.BeginInvoke(myDelegate, new object[] { receiveData });
-                this.Invoke((EventHandler)delegate
-                {
-                    ShowData(receiveData);
-                });
+                this.BeginInvoke(myDelegate, new object[] { receiveData });
+                //this.Invoke((EventHandler)delegate
+                //{
+                //    ShowData(receiveData);
+                //});
             }
             else
             {
@@ -284,6 +291,7 @@ namespace LoadBoxControl
             {
                 LogHelper.Log.Info("【数据不完整】");
             }
+            AnalysisVoltageData(data);
         }
 
         private void AnalysisVoltageData(byte[] buffer)
@@ -306,6 +314,16 @@ namespace LoadBoxControl
                     {
                         LogHelper.Log.Info("校验失败！数据包不正确！");
                         break;
+                    }
+                    if (buffer[2] == 0X2B)
+                    {
+                        //电压数据
+                        LogHelper.Log.Info("【电压完整数据】"+BitConverter.ToString(buffer));
+                    }
+                    else if (buffer[2] == 0X7B)
+                    {
+                        //频率和占空比
+                        LogHelper.Log.Info("【频率和占空比完整数据】" + BitConverter.ToString(buffer));
                     }
                     //执行其他代码，对数据进行处理。
                 }

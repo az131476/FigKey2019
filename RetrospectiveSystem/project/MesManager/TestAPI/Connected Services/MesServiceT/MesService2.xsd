@@ -84,6 +84,20 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="SelectMaterialSurplusAmount">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="materialCode" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SelectMaterialSurplusAmountResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SelectMaterialSurplusAmountResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="CheckMaterialUseState">
     <xs:complexType>
       <xs:sequence>
@@ -119,14 +133,7 @@
   <xs:element name="UpdatePackageProductBindingMsg">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="outCaseCode" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="snOutter" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="typeNo" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="stationName" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="bindingState" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="remark" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="teamLeader" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="admin" nillable="true" type="xs:string" />
+        <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="bindingMsg" nillable="true" type="q2:ArrayOfstring" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -217,7 +224,7 @@
   <xs:element name="SelectAllTProcessResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="SelectAllTProcessResult" nillable="true" type="q2:ArrayOfstring" />
+        <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="SelectAllTProcessResult" nillable="true" type="q3:ArrayOfstring" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -231,7 +238,7 @@
   <xs:element name="SelectStationListResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="SelectStationListResult" nillable="true" type="q3:ArrayOfstring" />
+        <xs:element xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="SelectStationListResult" nillable="true" type="q4:ArrayOfstring" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -243,7 +250,7 @@
   <xs:element name="SelectTypeNoListResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="SelectTypeNoListResult" nillable="true" type="q4:ArrayOfstring" />
+        <xs:element xmlns:q5="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="SelectTypeNoListResult" nillable="true" type="q5:ArrayOfstring" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -257,7 +264,7 @@
   <xs:element name="SelectMaterialListResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="SelectMaterialListResult" nillable="true" type="q5:ArrayOfstring" />
+        <xs:element xmlns:q6="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="SelectMaterialListResult" nillable="true" type="q6:ArrayOfstring" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -266,6 +273,7 @@
       <xs:sequence>
         <xs:element minOccurs="0" name="snPCBA" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="snOutter" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="materialCode" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -288,7 +296,7 @@
   <xs:element name="SelectLimitConfigResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="SelectLimitConfigResult" nillable="true" type="q6:ArrayOfstring" />
+        <xs:element xmlns:q7="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="SelectLimitConfigResult" nillable="true" type="q7:ArrayOfstring" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -303,7 +311,21 @@
   <xs:element name="SelectProgrameVersionResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="SelectProgrameVersionResult" nillable="true" type="q7:ArrayOfstring" />
+        <xs:element xmlns:q8="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="SelectProgrameVersionResult" nillable="true" type="q8:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SelectPackageStorage">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="productTypeNo" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SelectPackageStorageResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SelectPackageStorageResult" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

@@ -45,6 +45,12 @@ namespace TestAPI.MesServiceT {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/CheckMaterialPutStorage", ReplyAction="http://tempuri.org/IMesService/CheckMaterialPutStorageResponse")]
         System.Threading.Tasks.Task<string> CheckMaterialPutStorageAsync(string materialCode, string teamLeader, string admin);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectMaterialSurplusAmount", ReplyAction="http://tempuri.org/IMesService/SelectMaterialSurplusAmountResponse")]
+        string SelectMaterialSurplusAmount(string materialCode);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectMaterialSurplusAmount", ReplyAction="http://tempuri.org/IMesService/SelectMaterialSurplusAmountResponse")]
+        System.Threading.Tasks.Task<string> SelectMaterialSurplusAmountAsync(string materialCode);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/CheckMaterialUseState", ReplyAction="http://tempuri.org/IMesService/CheckMaterialUseStateResponse")]
         string CheckMaterialUseState(string productTypeNo, string materialCode);
         
@@ -58,10 +64,10 @@ namespace TestAPI.MesServiceT {
         System.Threading.Tasks.Task<string> CheckMaterialMatchAsync(string productTypeNo, string materialPN, string actualMaterialPn, string materialCode);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/UpdatePackageProductBindingMsg", ReplyAction="http://tempuri.org/IMesService/UpdatePackageProductBindingMsgResponse")]
-        string UpdatePackageProductBindingMsg(string outCaseCode, string snOutter, string typeNo, string stationName, string bindingState, string remark, string teamLeader, string admin);
+        string UpdatePackageProductBindingMsg(string[] bindingMsg);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/UpdatePackageProductBindingMsg", ReplyAction="http://tempuri.org/IMesService/UpdatePackageProductBindingMsgResponse")]
-        System.Threading.Tasks.Task<string> UpdatePackageProductBindingMsgAsync(string outCaseCode, string snOutter, string typeNo, string stationName, string bindingState, string remark, string teamLeader, string admin);
+        System.Threading.Tasks.Task<string> UpdatePackageProductBindingMsgAsync(string[] bindingMsg);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/UpdateProgrameVersion", ReplyAction="http://tempuri.org/IMesService/UpdateProgrameVersionResponse")]
         string UpdateProgrameVersion(string typeNo, string stationName, string programeName, string programeVersion, string teamLeader, string admin);
@@ -112,10 +118,10 @@ namespace TestAPI.MesServiceT {
         System.Threading.Tasks.Task<string[]> SelectMaterialListAsync(string productTypeNo);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/BindingPCBA", ReplyAction="http://tempuri.org/IMesService/BindingPCBAResponse")]
-        string BindingPCBA(string snPCBA, string snOutter);
+        string BindingPCBA(string snPCBA, string snOutter, string materialCode);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/BindingPCBA", ReplyAction="http://tempuri.org/IMesService/BindingPCBAResponse")]
-        System.Threading.Tasks.Task<string> BindingPCBAAsync(string snPCBA, string snOutter);
+        System.Threading.Tasks.Task<string> BindingPCBAAsync(string snPCBA, string snOutter, string materialCode);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectLimitConfig", ReplyAction="http://tempuri.org/IMesService/SelectLimitConfigResponse")]
         string[] SelectLimitConfig(string productTypeNo, string stationName, string item);
@@ -128,6 +134,12 @@ namespace TestAPI.MesServiceT {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectProgrameVersion", ReplyAction="http://tempuri.org/IMesService/SelectProgrameVersionResponse")]
         System.Threading.Tasks.Task<string[]> SelectProgrameVersionAsync(string productTypeNo, string stationName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectPackageStorage", ReplyAction="http://tempuri.org/IMesService/SelectPackageStorageResponse")]
+        int SelectPackageStorage(string productTypeNo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectPackageStorage", ReplyAction="http://tempuri.org/IMesService/SelectPackageStorageResponse")]
+        System.Threading.Tasks.Task<int> SelectPackageStorageAsync(string productTypeNo);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -197,6 +209,14 @@ namespace TestAPI.MesServiceT {
             return base.Channel.CheckMaterialPutStorageAsync(materialCode, teamLeader, admin);
         }
         
+        public string SelectMaterialSurplusAmount(string materialCode) {
+            return base.Channel.SelectMaterialSurplusAmount(materialCode);
+        }
+        
+        public System.Threading.Tasks.Task<string> SelectMaterialSurplusAmountAsync(string materialCode) {
+            return base.Channel.SelectMaterialSurplusAmountAsync(materialCode);
+        }
+        
         public string CheckMaterialUseState(string productTypeNo, string materialCode) {
             return base.Channel.CheckMaterialUseState(productTypeNo, materialCode);
         }
@@ -213,12 +233,12 @@ namespace TestAPI.MesServiceT {
             return base.Channel.CheckMaterialMatchAsync(productTypeNo, materialPN, actualMaterialPn, materialCode);
         }
         
-        public string UpdatePackageProductBindingMsg(string outCaseCode, string snOutter, string typeNo, string stationName, string bindingState, string remark, string teamLeader, string admin) {
-            return base.Channel.UpdatePackageProductBindingMsg(outCaseCode, snOutter, typeNo, stationName, bindingState, remark, teamLeader, admin);
+        public string UpdatePackageProductBindingMsg(string[] bindingMsg) {
+            return base.Channel.UpdatePackageProductBindingMsg(bindingMsg);
         }
         
-        public System.Threading.Tasks.Task<string> UpdatePackageProductBindingMsgAsync(string outCaseCode, string snOutter, string typeNo, string stationName, string bindingState, string remark, string teamLeader, string admin) {
-            return base.Channel.UpdatePackageProductBindingMsgAsync(outCaseCode, snOutter, typeNo, stationName, bindingState, remark, teamLeader, admin);
+        public System.Threading.Tasks.Task<string> UpdatePackageProductBindingMsgAsync(string[] bindingMsg) {
+            return base.Channel.UpdatePackageProductBindingMsgAsync(bindingMsg);
         }
         
         public string UpdateProgrameVersion(string typeNo, string stationName, string programeName, string programeVersion, string teamLeader, string admin) {
@@ -285,12 +305,12 @@ namespace TestAPI.MesServiceT {
             return base.Channel.SelectMaterialListAsync(productTypeNo);
         }
         
-        public string BindingPCBA(string snPCBA, string snOutter) {
-            return base.Channel.BindingPCBA(snPCBA, snOutter);
+        public string BindingPCBA(string snPCBA, string snOutter, string materialCode) {
+            return base.Channel.BindingPCBA(snPCBA, snOutter, materialCode);
         }
         
-        public System.Threading.Tasks.Task<string> BindingPCBAAsync(string snPCBA, string snOutter) {
-            return base.Channel.BindingPCBAAsync(snPCBA, snOutter);
+        public System.Threading.Tasks.Task<string> BindingPCBAAsync(string snPCBA, string snOutter, string materialCode) {
+            return base.Channel.BindingPCBAAsync(snPCBA, snOutter, materialCode);
         }
         
         public string[] SelectLimitConfig(string productTypeNo, string stationName, string item) {
@@ -307,6 +327,14 @@ namespace TestAPI.MesServiceT {
         
         public System.Threading.Tasks.Task<string[]> SelectProgrameVersionAsync(string productTypeNo, string stationName) {
             return base.Channel.SelectProgrameVersionAsync(productTypeNo, stationName);
+        }
+        
+        public int SelectPackageStorage(string productTypeNo) {
+            return base.Channel.SelectPackageStorage(productTypeNo);
+        }
+        
+        public System.Threading.Tasks.Task<int> SelectPackageStorageAsync(string productTypeNo) {
+            return base.Channel.SelectPackageStorageAsync(productTypeNo);
         }
     }
 }

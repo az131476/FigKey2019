@@ -221,6 +221,7 @@ namespace MesAPI.DB
 
         public class F_BINDING_PCBA
         {
+            public const string PRODUCT_TYPE_NO = "[type_no]";
             public const string SN_PCBA = "[sn_pcba]";
             public const string SN_OUTTER = "[sn_outter]";
             public const string MATERIAL_CODE = "[material_code]";

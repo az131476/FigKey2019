@@ -113,11 +113,10 @@ namespace MesWcfService
         #region【接口】UpdatePackageProductBindingMsg 【打包/抽检】添加绑定信息/更新绑定信息                
         [OperationContract]
         [SwaggerWcfPath("UpdatePackageProductBindingMsg", "成品打包/成品抽检-更新数据/绑定/解绑")]
-        [WebInvoke(Method = "GET", UriTemplate = "UpdatePackageProductBindingMsg?outCaseCode={outCaseCode}&snOutter={snOutter}" +
-            "&typeNo={typeNo}&stationName={stationName}&bindingState={bindingState}&remark={remark}&teamLeader={teamLeader}&admin={admin}",
-            BodyStyle = WebMessageBodyStyle.Bare, RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
-        string UpdatePackageProductBindingMsg([SwaggerWcfParameter(Description = "箱子编码*")]string outCaseCode, 
-            [SwaggerWcfParameter(Description = "追溯码*")]string snOutter, 
+        [WebInvoke(Method = "POST", UriTemplate = "UpdatePackageProductBindingMsg",
+            BodyStyle = WebMessageBodyStyle.WrappedRequest, RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
+        string UpdatePackageProductBindingMsg([SwaggerWcfParameter(Description = "箱子编码*")]string outCaseCode,
+            [SwaggerWcfParameter(Description = "追溯码*")]string[] snOutter,
             [SwaggerWcfParameter(Description = "产品型号*")]string typeNo,
             [SwaggerWcfParameter(Description = "工序名称*")]string stationName,
             [SwaggerWcfParameter(Description = "绑定或解绑,0-解除绑定,1-添加绑定*")]string bindingState,
@@ -216,11 +215,12 @@ namespace MesWcfService
         #region 【接口】 绑定PCBA
         [OperationContract]
         [SwaggerWcfPath("BindingPCBA", "绑定产品PCBA")]
-        [WebInvoke(Method = "GET", UriTemplate = "BindingPCBA?snPCBA={snPCBA}&snOutter={snOutter}&materialCode={materialCode}", BodyStyle = WebMessageBodyStyle.Bare,
+        [WebInvoke(Method = "GET", UriTemplate = "BindingPCBA?snPCBA={snPCBA}&snOutter={snOutter}&materialCode={materialCode}&productTypeNo={productTypeNo}", BodyStyle = WebMessageBodyStyle.Bare,
             RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
         string BindingPCBA([SwaggerWcfParameter(Description = "PCBA")]string snPCBA,
             [SwaggerWcfParameter(Description = "外壳码")]string snOutter,
-            [SwaggerWcfParameter(Description = "物料编码")]string materialCode);
+            [SwaggerWcfParameter(Description = "物料编码")]string materialCode,
+            [SwaggerWcfParameter(Description = "产品型号")]string productTypeNo);
         #endregion
 
         #region 【接口】 SPEC-LIMIT配置
@@ -244,6 +244,15 @@ namespace MesWcfService
         string[] SelectProgrameVersion(
             [SwaggerWcfParameter(Description = "产品型号")]string productTypeNo,
             [SwaggerWcfParameter(Description = "站位名称")]string stationName);
+        #endregion
+
+        #region 【接口】 查询产品容量
+        [OperationContract]
+        [SwaggerWcfPath("SelectPackageStorage", "查询产品容量")]
+        [WebInvoke(Method = "GET", UriTemplate = "SelectPackageStorage?productTypeNo={productTypeNo}", BodyStyle = WebMessageBodyStyle.Bare,
+            RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
+        int SelectPackageStorage(
+            [SwaggerWcfParameter(Description = "产品型号")]string productTypeNo);
         #endregion
     }
 

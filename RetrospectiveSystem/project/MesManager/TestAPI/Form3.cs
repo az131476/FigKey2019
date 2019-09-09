@@ -26,6 +26,10 @@ namespace TestAPI
         {
             MesServiceTest.MesServiceClient mesServiceClient = new MesServiceTest.MesServiceClient();
             serviceClient = new MesServiceT.MesServiceClient();
+
+            string[] array = new string[] { "22", "33", "44" };
+            var res = mesServiceClient.BindingPCBA("", "17 B19823002612", "B19083000029&S2.118&1.2.11.116&50&20190830&1T20190830001");
+            MessageBox.Show(res);
         }
 
         public void LSOSQL()

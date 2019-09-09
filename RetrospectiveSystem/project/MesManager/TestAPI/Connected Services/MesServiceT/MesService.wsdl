@@ -37,6 +37,12 @@
   <wsdl:message name="IMesService_CheckMaterialPutStorage_OutputMessage">
     <wsdl:part name="parameters" element="tns:CheckMaterialPutStorageResponse" />
   </wsdl:message>
+  <wsdl:message name="IMesService_SelectMaterialSurplusAmount_InputMessage">
+    <wsdl:part name="parameters" element="tns:SelectMaterialSurplusAmount" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_SelectMaterialSurplusAmount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SelectMaterialSurplusAmountResponse" />
+  </wsdl:message>
   <wsdl:message name="IMesService_CheckMaterialUseState_InputMessage">
     <wsdl:part name="parameters" element="tns:CheckMaterialUseState" />
   </wsdl:message>
@@ -121,6 +127,12 @@
   <wsdl:message name="IMesService_SelectProgrameVersion_OutputMessage">
     <wsdl:part name="parameters" element="tns:SelectProgrameVersionResponse" />
   </wsdl:message>
+  <wsdl:message name="IMesService_SelectPackageStorage_InputMessage">
+    <wsdl:part name="parameters" element="tns:SelectPackageStorage" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_SelectPackageStorage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SelectPackageStorageResponse" />
+  </wsdl:message>
   <wsdl:portType name="IMesService">
     <wsdl:operation name="TestCommunication">
       <wsdl:input wsaw:Action="http://tempuri.org/IMesService/TestCommunication" message="tns:IMesService_TestCommunication_InputMessage" />
@@ -141,6 +153,10 @@
     <wsdl:operation name="CheckMaterialPutStorage">
       <wsdl:input wsaw:Action="http://tempuri.org/IMesService/CheckMaterialPutStorage" message="tns:IMesService_CheckMaterialPutStorage_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMesService/CheckMaterialPutStorageResponse" message="tns:IMesService_CheckMaterialPutStorage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectMaterialSurplusAmount">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/SelectMaterialSurplusAmount" message="tns:IMesService_SelectMaterialSurplusAmount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/SelectMaterialSurplusAmountResponse" message="tns:IMesService_SelectMaterialSurplusAmount_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="CheckMaterialUseState">
       <wsdl:input wsaw:Action="http://tempuri.org/IMesService/CheckMaterialUseState" message="tns:IMesService_CheckMaterialUseState_InputMessage" />
@@ -198,6 +214,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IMesService/SelectProgrameVersion" message="tns:IMesService_SelectProgrameVersion_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMesService/SelectProgrameVersionResponse" message="tns:IMesService_SelectProgrameVersion_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="SelectPackageStorage">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/SelectPackageStorage" message="tns:IMesService_SelectPackageStorage_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/SelectPackageStorageResponse" message="tns:IMesService_SelectPackageStorage_OutputMessage" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IMesService" type="tns:IMesService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -239,6 +259,15 @@
     </wsdl:operation>
     <wsdl:operation name="CheckMaterialPutStorage">
       <soap:operation soapAction="http://tempuri.org/IMesService/CheckMaterialPutStorage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectMaterialSurplusAmount">
+      <soap:operation soapAction="http://tempuri.org/IMesService/SelectMaterialSurplusAmount" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -365,6 +394,15 @@
     </wsdl:operation>
     <wsdl:operation name="SelectProgrameVersion">
       <soap:operation soapAction="http://tempuri.org/IMesService/SelectProgrameVersion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectPackageStorage">
+      <soap:operation soapAction="http://tempuri.org/IMesService/SelectPackageStorage" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

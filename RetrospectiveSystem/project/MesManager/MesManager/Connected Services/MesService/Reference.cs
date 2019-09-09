@@ -595,6 +595,12 @@ namespace MesManager.MesService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/GetMaterialCode", ReplyAction="http://tempuri.org/IMesService/GetMaterialCodeResponse")]
         System.Threading.Tasks.Task<string> GetMaterialCodeAsync(string materialRID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectLastLogTestResult", ReplyAction="http://tempuri.org/IMesService/SelectLastLogTestResultResponse")]
+        string SelectLastLogTestResult(string productSN);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectLastLogTestResult", ReplyAction="http://tempuri.org/IMesService/SelectLastLogTestResultResponse")]
+        System.Threading.Tasks.Task<string> SelectLastLogTestResultAsync(string productSN);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -990,6 +996,14 @@ namespace MesManager.MesService {
         
         public System.Threading.Tasks.Task<string> GetMaterialCodeAsync(string materialRID) {
             return base.Channel.GetMaterialCodeAsync(materialRID);
+        }
+        
+        public string SelectLastLogTestResult(string productSN) {
+            return base.Channel.SelectLastLogTestResult(productSN);
+        }
+        
+        public System.Threading.Tasks.Task<string> SelectLastLogTestResultAsync(string productSN) {
+            return base.Channel.SelectLastLogTestResultAsync(productSN);
         }
     }
 }

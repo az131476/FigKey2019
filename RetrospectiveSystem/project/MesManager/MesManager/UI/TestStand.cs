@@ -255,9 +255,10 @@ namespace MesManager.UI
                     DataRow dr = dataSource.NewRow();
                     dr[LOG_ORDER] = i + 1;
                     dr[LOG_TYPE_NO] = dt.Rows[i][0].ToString();
-                    dr[LOG_SN] = dt.Rows[i][1].ToString();
+                    var productSn = dt.Rows[i][1].ToString();
+                    dr[LOG_SN] = productSn;
                     dr[LOG_STATION_NAME] = dt.Rows[i][2].ToString();
-                    dr[LOG_TEST_RESULT] = dt.Rows[i][3].ToString();
+                    dr[LOG_TEST_RESULT] = serviceClient.SelectLastLogTestResult(productSn);
                     dataSource.Rows.Add(dr);
                 }
             }

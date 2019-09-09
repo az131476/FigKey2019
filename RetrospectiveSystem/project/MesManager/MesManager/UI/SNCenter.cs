@@ -425,22 +425,23 @@ namespace MesManager.UI
                 return;
             }
             DataTable dt = ds.Tables[0];
-            if (dt.Rows.Count < 1)
-                return;
+            this.radGridViewSn.DataSource = null; 
             radGridViewSn.DataSource = dt;
             this.radGridViewSn.Columns[0].BestFit();
+            this.radGridViewSn.Columns[2].BestFit();
+            this.radGridViewSn.Columns[9].BestFit();
         }
 
         async private void SelectOfPackage(string state)
         {
             var filter = tb_package.Text;
-            this.radGridViewPackage.DataSource = null;
             //箱子编码/追溯码/型号
             System.Data.DataTable dt = (await serviceClient.SelectPackageProductAsync(filter,state,true)).Tables[0];
-            if (dt.Rows.Count < 1)
-                return;
+            this.radGridViewPackage.DataSource = null;
             this.radGridViewPackage.DataSource = dt;
             this.radGridViewPackage.Columns[0].BestFit();
+            this.radGridViewPackage.Columns[2].BestFit();
+            this.radGridViewPackage.Columns[7].BestFit();
         }
 
         async private void SelectOfPackageCheck(string state)
@@ -448,8 +449,6 @@ namespace MesManager.UI
             var filter = tb_productCheck.Text;
             //箱子编码/追溯码/型号
             DataTable dt = (await serviceClient.SelectPackageProductAsync(filter, state,false)).Tables[0];
-            if (dt.Rows.Count < 1)
-                return;
             this.dataSourceProductCheck.Clear();
             for (int i = 0; i < dt.Rows.Count; i++)
             {
@@ -477,6 +476,8 @@ namespace MesManager.UI
             }
             this.radGridViewCheck.DataSource = dataSourceProductCheck;
             this.radGridViewCheck.Columns[0].BestFit();
+            this.radGridViewCheck.Columns[2].BestFit();
+            this.radGridViewCheck.Columns[9].BestFit();
         }
         private void InitDataTable()
         {
@@ -535,8 +536,6 @@ namespace MesManager.UI
             var materialCodeFilter = this.tb_quanlity_filter.Text;
             var dt = (await serviceClient.SelectQuanlityManagerAsync(materialCodeFilter)).Tables[0];
             this.dataSourceQuanlity.Clear();
-            if (dt.Rows.Count < 1)
-                return;
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 DataRow dr = dataSourceQuanlity.NewRow();
@@ -576,10 +575,8 @@ namespace MesManager.UI
         {
             //物料信息表
             //物料编码+物料名称+所属型号+在哪个工序/站位消耗+该位置消耗数量
-            this.dataSourceMaterialBasic.Clear();
             var dt = (await serviceClient.SelectMaterialBasicMsgAsync(this.tb_material.Text)).Tables[0];
-            if (dt.Rows.Count < 1)
-                return;
+            this.dataSourceMaterialBasic.Clear();
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 DataRow dr = dataSourceMaterialBasic.NewRow();

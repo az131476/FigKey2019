@@ -180,5 +180,8 @@ namespace MesAPI
 
         [OperationContract]
         string GetMaterialCode(string materialRID);
+
+        [OperationContract]
+        string SelectLastLogTestResult(string productSN);
     }
 }

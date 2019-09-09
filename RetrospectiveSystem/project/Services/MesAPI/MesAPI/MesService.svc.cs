@@ -773,7 +773,7 @@ namespace MesAPI
                 $"a.{DbTable.F_Material_Statistics.MATERIAL_CODE} 物料编码," +
                 $"b.{DbTable.F_Material.MATERIAL_NAME} 物料名称," +
                 $"a.{DbTable.F_Material_Statistics.PRODUCT_TYPE_NO} 产品型号," +
-                $"b.{DbTable.F_Material.MATERIAL_AMOUNTED} 使用总数量 ," +
+                $"SUM(a.{DbTable.F_Material_Statistics.MATERIAL_AMOUNT}) 使用总数量 ," +
                 $"c.{DbTable.F_BINDING_PCBA.SN_PCBA}," +
                 $"c.{DbTable.F_BINDING_PCBA.SN_OUTTER} " +
                 $"FROM " +
@@ -784,9 +784,16 @@ namespace MesAPI
                 $"a.{DbTable.F_Material_Statistics.MATERIAL_CODE} = b.{DbTable.F_Material.MATERIAL_CODE} AND " +
                 $"a.{DbTable.F_BINDING_PCBA.MATERIAL_CODE} = b.{DbTable.F_Material_Statistics.MATERIAL_CODE} AND " +
                 $"a.{DbTable.F_Material_Statistics.MATERIAL_CODE} = c.{DbTable.F_BINDING_PCBA.MATERIAL_CODE} AND " +
+                $"a.{DbTable.F_Material_Statistics.PRODUCT_TYPE_NO} = c.{DbTable.F_BINDING_PCBA.PRODUCT_TYPE_NO} AND " +
                 $"a.{DbTable.F_Material_Statistics.MATERIAL_CODE} like '%{queryCondition}%' OR " +
-                $"c.{DbTable.F_BINDING_PCBA.SN_PCBA} like '%{queryCondition}%' OR " +
-                $"c.{DbTable.F_BINDING_PCBA.SN_OUTTER} like '%{queryCondition}%'";
+                $"c.{DbTable.F_BINDING_PCBA.SN_PCBA} = '{queryCondition}' OR " +
+                $"c.{DbTable.F_BINDING_PCBA.SN_OUTTER} = '{queryCondition}' " +
+                $"GROUP BY " +
+                $"a.{DbTable.F_Material_Statistics.MATERIAL_CODE}," +
+                $"b.{DbTable.F_Material.MATERIAL_NAME}," +
+                $"a.{DbTable.F_Material_Statistics.PRODUCT_TYPE_NO}," +
+                $"c.{DbTable.F_BINDING_PCBA.SN_PCBA}," +
+                $"c.{DbTable.F_BINDING_PCBA.SN_OUTTER}";
 
             LogHelper.Log.Info(selectSQL);
             return SQLServer.ExecuteDataSet(selectSQL);
@@ -812,6 +819,7 @@ namespace MesAPI
                            $"WHERE " +
                            $"a.{DbTable.F_Material_Statistics.MATERIAL_CODE} = b.{DbTable.F_Material.MATERIAL_CODE} AND " +
                            $"a.{DbTable.F_Material_Statistics.MATERIAL_CODE} = c.{DbTable.F_BINDING_PCBA.MATERIAL_CODE} AND " +
+                           $"a.{DbTable.F_Material_Statistics.PRODUCT_TYPE_NO} = c.{DbTable.F_BINDING_PCBA.PRODUCT_TYPE_NO} AND " +
                            $"a.{DbTable.F_Material_Statistics.MATERIAL_CODE} like '{materialCode}' ";
             LogHelper.Log.Info(selectSQL);
             return SQLServer.ExecuteDataSet(selectSQL);
@@ -1297,28 +1305,24 @@ namespace MesAPI
                 selectSQL = $"SELECT DISTINCT " +
                     $"{DbTable.F_TEST_LOG_DATA.TYPE_NO} 产品型号," +
                     $"{DbTable.F_TEST_LOG_DATA.PRODUCT_SN} 产品SN," +
-                    $"{DbTable.F_TEST_LOG_DATA.STATION_NAME} 工站名称," +
-                    $"{DbTable.F_TEST_LOG_DATA.TEST_RESULT} 测试结果, " +
+                    $"{DbTable.F_TEST_LOG_DATA.STATION_NAME} 工站名称 " +
                     $"FROM {DbTable.F_TEST_LOG_DATA_NAME} " +
                     $"WHERE " +
                     $"{DbTable.F_TEST_LOG_DATA.UPDATE_DATE} >= '{startTime}' AND " +
-                    $"{DbTable.F_TEST_LOG_DATA.UPDATE_DATE} <= '{endTime}' " +
-                    $"ORDER BY {DbTable.F_TEST_LOG_DATA.UPDATE_DATE} DESC";
+                    $"{DbTable.F_TEST_LOG_DATA.UPDATE_DATE} <= '{endTime}' ";
             }
             else
             {
                 selectSQL = $"SELECT DISTINCT " +
                     $"{DbTable.F_TEST_LOG_DATA.TYPE_NO} 产品型号," +
                     $"{DbTable.F_TEST_LOG_DATA.PRODUCT_SN} 产品SN," +
-                    $"{DbTable.F_TEST_LOG_DATA.STATION_NAME} 工站名称," +
-                    $"{DbTable.F_TEST_LOG_DATA.TEST_RESULT} 测试结果 " +
+                    $"{DbTable.F_TEST_LOG_DATA.STATION_NAME} 工站名称 " +
                     $"FROM {DbTable.F_TEST_LOG_DATA_NAME} " +
-                    $"WHERE {DbTable.F_TEST_LOG_DATA.PRODUCT_SN} = '%{queryFilter}%' OR " +
-                    $"{DbTable.F_TEST_LOG_DATA.TYPE_NO} = '%{queryFilter}%' OR " +
-                    $"{DbTable.F_TEST_LOG_DATA.STATION_NAME} = '%{queryFilter}%' AND " +
+                    $"WHERE {DbTable.F_TEST_LOG_DATA.PRODUCT_SN} like '%{queryFilter}%' OR " +
+                    $"{DbTable.F_TEST_LOG_DATA.TYPE_NO} like '%{queryFilter}%' OR " +
+                    $"{DbTable.F_TEST_LOG_DATA.STATION_NAME} like '%{queryFilter}%' AND " +
                     $"{DbTable.F_TEST_LOG_DATA.UPDATE_DATE} >= '{startTime}' AND " +
-                    $"{DbTable.F_TEST_LOG_DATA.UPDATE_DATE} <= '{endTime}' " +
-                    $"ORDER BY {DbTable.F_TEST_LOG_DATA.UPDATE_DATE} DESC";
+                    $"{DbTable.F_TEST_LOG_DATA.UPDATE_DATE} <= '{endTime}' ";
             }
             LogHelper.Log.Info(selectSQL);
             return SQLServer.ExecuteDataSet(selectSQL);
@@ -1347,7 +1351,7 @@ namespace MesAPI
                     $"{DbTable.F_TEST_LOG_DATA.PRODUCT_SN} = '{queryFilter}' AND " +
                     $"{DbTable.F_TEST_LOG_DATA.UPDATE_DATE} >= '{startDate}' AND " +
                     $"{DbTable.F_TEST_LOG_DATA.UPDATE_DATE} <= '{endDate}' " +
-                    $"ORDER BY {DbTable.F_TEST_LOG_DATA.UPDATE_DATE} DESC";
+                    $"ORDER BY {DbTable.F_TEST_LOG_DATA.UPDATE_DATE} ASC";
             }
             else
             {
@@ -1365,10 +1369,20 @@ namespace MesAPI
                     $"FROM {DbTable.F_TEST_LOG_DATA_NAME} " +
                     $"WHERE " +
                     $"{DbTable.F_TEST_LOG_DATA.PRODUCT_SN} = '{queryFilter}' " +
-                    $"ORDER BY {DbTable.F_TEST_LOG_DATA.UPDATE_DATE} DESC";
+                    $"ORDER BY {DbTable.F_TEST_LOG_DATA.UPDATE_DATE} ASC";
             }
             LogHelper.Log.Info(selectSQL);
             return SQLServer.ExecuteDataSet(selectSQL);
+        }
+
+        public string SelectLastLogTestResult(string productSN)
+        {
+            var selectSQL = $"SELECT {DbTable.F_TEST_LOG_DATA.TEST_RESULT} FROM {DbTable.F_TEST_LOG_DATA_NAME} WHERE " +
+                $"{DbTable.F_TEST_LOG_DATA.PRODUCT_SN} = '{productSN}'";
+            var dt = SQLServer.ExecuteDataSet(selectSQL).Tables[0];
+            if (dt.Rows.Count > 0)
+                return dt.Rows[0][0].ToString();
+            return "";
         }
         #endregion
 

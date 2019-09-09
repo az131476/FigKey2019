@@ -12,15 +12,32 @@ namespace MesWcfService.MessageQueue.RemoteClient
 {
     public class TestResult
     {
+        private enum UpdateTestResultEnum
+        {
+            STATUS_SUCCESS = 0,
+            ERROR_FAIL = 1,
+            ERROR_SN_IS_NULL = 3,
+            ERROR_STATION_IS_NULL = 4
+        }
+
+        private static string ConvertTestResultCode(UpdateTestResultEnum rCode)
+        {
+            return "0X" + Convert.ToString((int)rCode, 16).PadLeft(2, '0');
+        }
         public static string InsertTestResult(Queue<string[]> queue)
         {
             string[] array = queue.Dequeue();
-            var sn = array[0];
-            var typeNo = array[1];
-            var station = array[2];
-            var result = array[3];
-            var teamLeader = array[4];
-            var admin = array[5];
+            var sn = array[0].Trim();
+            var typeNo = array[1].Trim();
+            var station = array[2].Trim();
+            var result = array[3].Trim();
+            var teamLeader = array[4].Trim();
+            var admin = array[5].Trim();
+            if (sn == "")
+                return ConvertTestResultCode(UpdateTestResultEnum.ERROR_SN_IS_NULL);
+            if (station == "")
+                return ConvertTestResultCode(UpdateTestResultEnum.ERROR_STATION_IS_NULL);
+
             var processName = new MesService().SelectCurrentTProcess();
 
             string insertSQL = $"INSERT INTO {DbTable.F_TEST_RESULT_NAME}({DbTable.F_Test_Result.SN}," +
@@ -41,17 +58,17 @@ namespace MesWcfService.MessageQueue.RemoteClient
                 //}
                 if (row > 0)
                 {
-                    return "OK";
+                    return ConvertTestResultCode(UpdateTestResultEnum.STATUS_SUCCESS);
                 }
                 else
                 {
-                    return "FAIL";
+                    return ConvertTestResultCode(UpdateTestResultEnum.ERROR_FAIL);
                 }
             }
             catch (Exception ex)
             {
                 LogHelper.Log.Error(ex.Message);
-                return "ERROR";
+                return ConvertTestResultCode(UpdateTestResultEnum.ERROR_FAIL);
             }
         }
 
@@ -76,7 +93,7 @@ namespace MesWcfService.MessageQueue.RemoteClient
                 string[] array = queue.Dequeue();
                 string sn = array[0];
                 string station = array[1];
-                LogHelper.Log.Info("测试端查询测试结果,站位为" + station);
+                LogHelper.Log.Info("测试端查询测试结果,站位为" + station+" SN="+sn);
                 //根据当前工艺与站位，查询其上一站位
                 //查询当前工艺流程
                 MesService mesService = new MesService();
@@ -117,25 +134,41 @@ namespace MesWcfService.MessageQueue.RemoteClient
                  * 查询无结果-未绑定PCBA：直接由传入SN查询
                  */ 
                 var snPCBA = SelectSN(sn);
+                LogHelper.Log.Info("【查询是否绑定PCBA】snPCBA="+snPCBA);
                 //根据上一站位在查询该站位的最后一条记录
                 string selectSQL = $"SELECT {DbTable.F_Test_Result.TEST_RESULT} " +
                     $"FROM " +
                     $"{DbTable.F_TEST_RESULT_NAME} " +
                     $"WHERE " +
-                    $"{DbTable.F_Test_Result.SN} = '{sn}' OR " +
+                    $"{DbTable.F_Test_Result.SN} = '{sn}' AND " +
+                    $"{DbTable.F_Test_Result.STATION_NAME} = '{station}' " +
+                    $"ORDER BY " +
+                    $"{DbTable.F_Test_Result.UPDATE_DATE} " +
+                    $"DESC ";
+                LogHelper.Log.Info("【第一次SN查询】"+selectSQL);
+                dt = SQLServer.ExecuteDataSet(selectSQL).Tables[0];
+                if (dt.Rows.Count < 1)
+                {
+                    //查询失败
+                    //尝试用PCBA去查询
+                    LogHelper.Log.Info("【SN查询上一站数据结果为空，】");
+                    selectSQL = $"SELECT {DbTable.F_Test_Result.TEST_RESULT} " +
+                    $"FROM " +
+                    $"{DbTable.F_TEST_RESULT_NAME} " +
+                    $"WHERE " +
                     $"{DbTable.F_Test_Result.SN} = '{snPCBA}' AND " +
                     $"{DbTable.F_Test_Result.STATION_NAME} = '{station}' " +
                     $"ORDER BY " +
                     $"{DbTable.F_Test_Result.UPDATE_DATE} " +
                     $"DESC ";
-                LogHelper.Log.Info(selectSQL);
-                dt = SQLServer.ExecuteDataSet(selectSQL).Tables[0];
-                if (dt.Rows.Count < 1)
-                {
-                    //查询失败
-                    queryResult = new string[1];
-                    queryResult[0] = "QUERY_NONE";
-                    return queryResult;
+                    dt = SQLServer.ExecuteDataSet(selectSQL).Tables[0];
+                    LogHelper.Log.Info("【第二次SN查询】"+selectSQL);
+                    if (dt.Rows.Count < 1)
+                    {
+                        queryResult = new string[1];
+                        queryResult[0] = "QUERY_NONE";
+                        return queryResult;
+                    }
                 }
                 string testRes = dt.Rows[0][0].ToString();
                 //返回上一个站位的最后一条记录
