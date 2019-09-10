@@ -54,6 +54,7 @@ namespace MesManager.UI
             this.pickerStartTime.Text = DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00";
             this.pickerEndTime.Text = DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59";
             var ds = serviceClient.SelectTestLogDataDetail(productSn, "", "");
+            SetConditions();
             LoadDataSource(ds);
         }
 
@@ -80,7 +81,7 @@ namespace MesManager.UI
                 else
                 {
                     DataRow dr = dataSourceLog.NewRow();
-                    dr[LOG_ORDER] = order;
+                    dr[LOG_ORDER] = order; 
                     dr[LOG_TEST_GROUP_ID] = groupID;
                     dr[LOG_PRODUCT_TYPE_NO] = dt.Rows[i][1].ToString();
                     dr[LOG_PRODUCT_SN] = dt.Rows[i][2].ToString();
@@ -99,7 +100,7 @@ namespace MesManager.UI
             this.radGridView1.DataSource = null;
             this.radGridView1.DataSource = dataSourceLog;
             this.radGridView1.Columns[0].BestFit();
-            SetConditions();
+
         }
 
         private void InitLogDataSource()
@@ -124,7 +125,7 @@ namespace MesManager.UI
             this.radGridView1.ShowGroupPanel = false;
             this.radGridView1.MasterTemplate.EnableGrouping = true;
             this.radGridView1.MasterTemplate.AllowDragToGroup = false;
-            this.radGridView1.MasterTemplate.AutoExpandGroups = true;
+            this.radGridView1.MasterTemplate.AutoExpandGroups = false;
         }
 
         private void SetConditions()

@@ -228,8 +228,8 @@ namespace MesManager.UI
             this.radGridView1.EndEdit();
             //设置第一列不可编辑
             this.radGridView1.Columns[0].ReadOnly = true;
-            this.radGridView1.Columns[4].ReadOnly = true;
             this.radGridView1.Columns[5].ReadOnly = true;
+            this.radGridView1.Columns[6].ReadOnly = true;
             this.pmListTemp.Clear();
         }
 
@@ -346,7 +346,7 @@ namespace MesManager.UI
                 this.radGridView1.Rows[i].Cells[3].Value = materialName;//物料名称
                 this.radGridView1.Rows[i].Cells[4].Value = dt.Rows[i][3].ToString();//描述
                 this.radGridView1.Rows[i].Cells[5].Value = dt.Rows[i][4].ToString();//用户
-                this.radGridView1.Rows[i].Cells[6].Value = dt.Rows[i][4].ToString();//日期
+                this.radGridView1.Rows[i].Cells[6].Value = dt.Rows[i][5].ToString();//日期
                 //var materialName = serviceClient.SelectMaterialName(materialPN);
                 //if (materialName != "")
                 //{

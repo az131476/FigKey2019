@@ -38,7 +38,6 @@
             this.menu_clear_db = new Telerik.WinControls.UI.RadMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbx_process = new System.Windows.Forms.Label();
-            this.cb_processItem = new System.Windows.Forms.ComboBox();
             this.radStatusStrip1 = new Telerik.WinControls.UI.RadStatusStrip();
             this.panel2 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -49,6 +48,7 @@
             this.radGridView1 = new Telerik.WinControls.UI.RadGridView();
             this.breezeTheme1 = new Telerik.WinControls.Themes.BreezeTheme();
             this.radMenu1 = new Telerik.WinControls.UI.RadMenu();
+            this.cb_processItem = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radStatusStrip1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -110,8 +110,8 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.lbx_process);
             this.panel1.Controls.Add(this.cb_processItem);
+            this.panel1.Controls.Add(this.lbx_process);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 36);
             this.panel1.Name = "panel1";
@@ -126,16 +126,7 @@
             this.lbx_process.Name = "lbx_process";
             this.lbx_process.Size = new System.Drawing.Size(59, 13);
             this.lbx_process.TabIndex = 11;
-            this.lbx_process.Text = "工艺名称";
-            // 
-            // cb_processItem
-            // 
-            this.cb_processItem.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cb_processItem.FormattingEnabled = true;
-            this.cb_processItem.Location = new System.Drawing.Point(81, 23);
-            this.cb_processItem.Name = "cb_processItem";
-            this.cb_processItem.Size = new System.Drawing.Size(183, 28);
-            this.cb_processItem.TabIndex = 10;
+            this.lbx_process.Text = "工艺类别";
             // 
             // radStatusStrip1
             // 
@@ -222,6 +213,7 @@
             this.radGridView1.Name = "radGridView1";
             this.radGridView1.Size = new System.Drawing.Size(1272, 348);
             this.radGridView1.TabIndex = 38;
+            this.radGridView1.ThemeName = "Breeze";
             // 
             // radMenu1
             // 
@@ -238,6 +230,15 @@
             this.radMenu1.Name = "radMenu1";
             this.radMenu1.Size = new System.Drawing.Size(1272, 36);
             this.radMenu1.TabIndex = 18;
+            // 
+            // cb_processItem
+            // 
+            this.cb_processItem.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cb_processItem.FormattingEnabled = true;
+            this.cb_processItem.Location = new System.Drawing.Point(81, 23);
+            this.cb_processItem.Name = "cb_processItem";
+            this.cb_processItem.Size = new System.Drawing.Size(183, 28);
+            this.cb_processItem.TabIndex = 12;
             // 
             // TProcess
             // 
@@ -284,7 +285,6 @@
         private Telerik.WinControls.UI.RadMenuItem menu_clear_db;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lbx_process;
-        private System.Windows.Forms.ComboBox cb_processItem;
         private Telerik.WinControls.UI.RadStatusStrip radStatusStrip1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -295,5 +295,6 @@
         private Telerik.WinControls.UI.RadGridView radGridView1;
         private Telerik.WinControls.Themes.BreezeTheme breezeTheme1;
         private Telerik.WinControls.UI.RadMenu radMenu1;
+        private System.Windows.Forms.ComboBox cb_processItem;
     }
 }

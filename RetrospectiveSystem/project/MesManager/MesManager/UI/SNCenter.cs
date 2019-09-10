@@ -120,6 +120,7 @@ namespace MesManager.UI
             this.tool_quanlity_export.Click += Tool_quanlity_export_Click;
 
             this.radGridViewMaterial.CellDoubleClick += RadGridViewMaterial_CellDoubleClick;
+            this.radGridViewPackage.CellDoubleClick += RadGridViewPackage_CellDoubleClick;
         }
 
         #region UI style
@@ -248,6 +249,13 @@ namespace MesManager.UI
             var materialCode = serviceClient.GetMaterialCode(ridCode);
             MaterialDetailMsg materialDetailMsg = new MaterialDetailMsg(materialCode);
             materialDetailMsg.ShowDialog();
+        }
+
+        private void RadGridViewPackage_CellDoubleClick(object sender, GridViewCellEventArgs e)
+        {
+            var outCaseCode = this.radGridViewPackage.CurrentRow.Cells[1].Value.ToString();
+            ProductPackageDetail productPackageDetail = new ProductPackageDetail(outCaseCode);
+            productPackageDetail.ShowDialog();
         }
 
         private void Tool_package_export_Click(object sender, EventArgs e)
@@ -436,12 +444,10 @@ namespace MesManager.UI
         {
             var filter = tb_package.Text;
             //箱子编码/追溯码/型号
-            System.Data.DataTable dt = (await serviceClient.SelectPackageProductAsync(filter,state,true)).Tables[0];
+            DataTable dt = (await serviceClient.SelectPackageStorageAsync(filter)).Tables[0];
             this.radGridViewPackage.DataSource = null;
             this.radGridViewPackage.DataSource = dt;
             this.radGridViewPackage.Columns[0].BestFit();
-            this.radGridViewPackage.Columns[2].BestFit();
-            this.radGridViewPackage.Columns[7].BestFit();
         }
 
         async private void SelectOfPackageCheck(string state)

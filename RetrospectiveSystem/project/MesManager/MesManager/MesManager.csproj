@@ -372,6 +372,12 @@
     <Compile Include="RadView\ProductType.Designer.cs">
       <DependentUpon>ProductType.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\ProductPackageDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ProductPackageDetail.Designer.cs">
+      <DependentUpon>ProductPackageDetail.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Register.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -515,6 +521,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RadView\ProductType.resx">
       <DependentUpon>ProductType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ProductPackageDetail.resx">
+      <DependentUpon>ProductPackageDetail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Register.resx">
       <DependentUpon>Register.cs</DependentUpon>

@@ -33,6 +33,8 @@ namespace MesManager
         private bool isFormMoving = false;
         public static int CurrentUserType;
         public static string GetUserName;
+        public static LoginResult loginResult;
+        public static bool IsCloseFormState;
 
         [DllImport("user32.dll", EntryPoint = "HideCaret")]
         private static extern bool HideCaret(IntPtr hWnd);
@@ -41,7 +43,18 @@ namespace MesManager
             InitializeComponent();
             this.MaximizeBox = false;
             this.StartPosition = FormStartPosition.CenterScreen;
-        }    
+        }
+
+        public enum LoginResult
+        {
+            STATUS_OK,
+            ERROR_USER_NAME,
+            ERROR_PASSWORD,
+            STATUS_CANCEL_LOGIN,
+            STATUS_CLOSE_FORM,
+            ERROR_EXCEPT
+        }
+
         private void DelegateAction(Action action)
         {
             if (InvokeRequired)
@@ -93,6 +106,12 @@ namespace MesManager
             Init();
             InitServiceInstance();
             tbx_username.KeyDown += Tbx_username_KeyDown;
+            this.FormClosed += Login_FormClosed;
+        }
+
+        private void Login_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            IsCloseFormState = true;
         }
 
         private void Tbx_username_KeyDown(object sender, KeyEventArgs e)
@@ -178,19 +197,23 @@ namespace MesManager
                         LogHelper.Log.Info("连接服务成功！");
                         //启动主界面
                         this.DialogResult = DialogResult.OK;
+                        loginResult = LoginResult.STATUS_OK;
                         this.Close();
                         break;
                     case MesService.LoginResult.FAIL_EXCEP:
                         LogHelper.Log.Info("登录失败!");
+                        loginResult = LoginResult.ERROR_EXCEPT;
                         break;
                     case MesService.LoginResult.USER_NAME_ERR:
                         //该用户不存在
                         tbx_username.ForeColor = Color.Red;
                         tbx_username.Focus();
+                        loginResult = LoginResult.ERROR_USER_NAME;
                         break;
                     case MesService.LoginResult.USER_PWD_ERR:
                         tbx_pwd.ForeColor = Color.Red;
                         tbx_pwd.Focus();
+                        loginResult = LoginResult.ERROR_PASSWORD;
                         return;
                     default:
                         break;

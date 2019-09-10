@@ -238,6 +238,7 @@
             this.radGridView1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.radGridView1.Size = new System.Drawing.Size(930, 565);
             this.radGridView1.TabIndex = 0;
+            this.radGridView1.ThemeName = "Breeze";
             // 
             // radMenu1
             // 

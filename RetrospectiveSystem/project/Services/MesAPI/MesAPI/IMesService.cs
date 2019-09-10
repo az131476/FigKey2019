@@ -183,5 +183,11 @@ namespace MesAPI
 
         [OperationContract]
         string SelectLastLogTestResult(string productSN);
+
+        [OperationContract]
+        DataSet SelectTypeNoList();
+
+        [OperationContract]
+        DataSet SelectPackageStorage(string queryFilter);
     }
 }

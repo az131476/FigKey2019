@@ -15,7 +15,7 @@ namespace MesManager.UI
     {
         private RadTitleBarElement titleBar;
         private bool isFormMoving = false;
-        public static bool IsLogin;
+        private static bool IsLogin;
         public static string currentUser;
         public static int currentUsetType;
         private MesService.MesServiceClient serviceClient;
@@ -41,7 +41,7 @@ namespace MesManager.UI
         {
             PrepareTitleBar();
             EventHandlers();
-            System.Threading.Thread.Sleep(3000);
+            System.Threading.Thread.Sleep(1000);
         }
 
         private void TestCommunication()
@@ -165,18 +165,19 @@ namespace MesManager.UI
         {
             Login login = new Login();
             login.ShowDialog();
-            if (login.DialogResult != DialogResult.OK)
-            {
-                //登录失败
-                //this.Close();
-                IsLogin = false;
-            }
-            else if (login.DialogResult == DialogResult.OK)
+            if (Login.loginResult == Login.LoginResult.STATUS_OK)
             {
                 IsLogin = true;
                 currentUser = Login.GetUserName;
                 currentUsetType = Login.CurrentUserType;
-                MessageBox.Show("登录成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else if (Login.loginResult == Login.LoginResult.ERROR_PASSWORD)
+            {
+                IsLogin = false;
+            }
+            else if (Login.loginResult == Login.LoginResult.ERROR_USER_NAME)
+            {
+                IsLogin = false;
             }
         }
 
@@ -235,9 +236,6 @@ namespace MesManager.UI
 
         private void MainProcess_Click(object sender, EventArgs e)
         {
-            //成品装箱
-            //ProductPackage productPackage = new ProductPackage();
-            //productPackage.ShowDialog();
             //工艺流程
             if(!IsLoginAuthon())
                 return;

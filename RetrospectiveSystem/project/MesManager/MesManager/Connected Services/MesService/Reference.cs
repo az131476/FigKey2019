@@ -601,6 +601,18 @@ namespace MesManager.MesService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectLastLogTestResult", ReplyAction="http://tempuri.org/IMesService/SelectLastLogTestResultResponse")]
         System.Threading.Tasks.Task<string> SelectLastLogTestResultAsync(string productSN);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectTypeNoList", ReplyAction="http://tempuri.org/IMesService/SelectTypeNoListResponse")]
+        System.Data.DataSet SelectTypeNoList();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectTypeNoList", ReplyAction="http://tempuri.org/IMesService/SelectTypeNoListResponse")]
+        System.Threading.Tasks.Task<System.Data.DataSet> SelectTypeNoListAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectPackageStorage", ReplyAction="http://tempuri.org/IMesService/SelectPackageStorageResponse")]
+        System.Data.DataSet SelectPackageStorage(string queryFilter);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectPackageStorage", ReplyAction="http://tempuri.org/IMesService/SelectPackageStorageResponse")]
+        System.Threading.Tasks.Task<System.Data.DataSet> SelectPackageStorageAsync(string queryFilter);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1004,6 +1016,22 @@ namespace MesManager.MesService {
         
         public System.Threading.Tasks.Task<string> SelectLastLogTestResultAsync(string productSN) {
             return base.Channel.SelectLastLogTestResultAsync(productSN);
+        }
+        
+        public System.Data.DataSet SelectTypeNoList() {
+            return base.Channel.SelectTypeNoList();
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> SelectTypeNoListAsync() {
+            return base.Channel.SelectTypeNoListAsync();
+        }
+        
+        public System.Data.DataSet SelectPackageStorage(string queryFilter) {
+            return base.Channel.SelectPackageStorage(queryFilter);
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> SelectPackageStorageAsync(string queryFilter) {
+            return base.Channel.SelectPackageStorageAsync(queryFilter);
         }
     }
 }

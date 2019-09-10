@@ -41,6 +41,8 @@ namespace MesManager.UI
 
         private void Init()
         {
+            this.cb_curprocess.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.cb_processItem.DropDownStyle = ComboBoxStyle.DropDownList;
             serviceClient = new MesService.MesServiceClient();
             serviceClientTest = new MesServiceTest.MesServiceClient();
             stationListTemp = new List<string>();
@@ -48,12 +50,14 @@ namespace MesManager.UI
             this.radGridView1.AllowRowHeaderContextMenu = false;
             DataSource();
             RefreshCurrentProcess();
+            this.cb_processItem.Text = serviceClientTest.SelectCurrentTProcess();
         }
 
         private void RefreshCurrentProcess()
         {
-            this.cb_curprocess.Text = serviceClientTest.SelectCurrentTProcess();
-            this.cb_processItem.Text = this.cb_curprocess.Text;
+            var currentProcess = serviceClientTest.SelectCurrentTProcess();
+            this.cb_processItem.Text = currentProcess;
+            this.cb_curprocess.Text = currentProcess;
         }
 
         private void DataSource()
@@ -279,11 +283,11 @@ namespace MesManager.UI
             this.radGridView1.Columns[3].ReadOnly = true;
         }
 
-        async private void UpdateProcesList()
+        private void UpdateProcesList()
         {
             this.cb_processItem.Items.Clear();
             this.cb_curprocess.Items.Clear();
-            DataSet dataSet = await serviceClient.SelectProcessListAsync();
+            DataSet dataSet = serviceClient.SelectTypeNoList();
             DataTable dataTable = dataSet.Tables[0];
             stationData.Clear();
             if (dataTable.Rows.Count > 0)
@@ -298,7 +302,8 @@ namespace MesManager.UI
                 if (!cb_processItem.Items.Contains(this.cb_processItem.Text))
                     cb_processItem.Text = "";
             }
-            this.cb_curprocess.Text = await serviceClientTest.SelectCurrentTProcessAsync();
+            this.cb_curprocess.Text = serviceClientTest.SelectCurrentTProcess();
+            this.cb_processItem.Text = this.cb_curprocess.Text;
         }
 
         async private void CommitStationMesService()

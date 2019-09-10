@@ -56,18 +56,18 @@
             this.tool_specCfg = new System.Windows.Forms.ToolStripButton();
             this.tool_logData = new System.Windows.Forms.ToolStripButton();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.rbtn_threeMonth = new System.Windows.Forms.RadioButton();
+            this.rbtn_oneMonth = new System.Windows.Forms.RadioButton();
+            this.rbtn_today = new System.Windows.Forms.RadioButton();
+            this.rbtn_oneYear = new System.Windows.Forms.RadioButton();
+            this.rbtn_custom = new System.Windows.Forms.RadioButton();
             this.btn_search = new Telerik.WinControls.UI.RadButton();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.pickerEndTime = new Telerik.WinControls.UI.RadDateTimePicker();
             this.pickerStartTime = new Telerik.WinControls.UI.RadDateTimePicker();
             this.radGridView1 = new Telerik.WinControls.UI.RadGridView();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.rbtn_custom = new System.Windows.Forms.RadioButton();
-            this.rbtn_today = new System.Windows.Forms.RadioButton();
-            this.rbtn_oneMonth = new System.Windows.Forms.RadioButton();
-            this.rbtn_threeMonth = new System.Windows.Forms.RadioButton();
-            this.rbtn_oneYear = new System.Windows.Forms.RadioButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -76,12 +76,12 @@
             this.toolStrip2.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btn_search)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pickerEndTime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pickerStartTime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).BeginInit();
-            this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -311,6 +311,92 @@
             this.panel2.Size = new System.Drawing.Size(1272, 55);
             this.panel2.TabIndex = 14;
             // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 5;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 41.61074F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 58.38926F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 98F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 85F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 105F));
+            this.tableLayoutPanel1.Controls.Add(this.rbtn_threeMonth, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.rbtn_oneMonth, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.rbtn_today, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.rbtn_oneYear, 3, 0);
+            this.tableLayoutPanel1.Controls.Add(this.rbtn_custom, 4, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(457, 55);
+            this.tableLayoutPanel1.TabIndex = 16;
+            // 
+            // rbtn_threeMonth
+            // 
+            this.rbtn_threeMonth.AutoSize = true;
+            this.rbtn_threeMonth.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rbtn_threeMonth.ForeColor = System.Drawing.Color.White;
+            this.rbtn_threeMonth.Location = new System.Drawing.Point(171, 3);
+            this.rbtn_threeMonth.Name = "rbtn_threeMonth";
+            this.rbtn_threeMonth.Size = new System.Drawing.Size(92, 49);
+            this.rbtn_threeMonth.TabIndex = 16;
+            this.rbtn_threeMonth.TabStop = true;
+            this.rbtn_threeMonth.Text = "最近三个月";
+            this.rbtn_threeMonth.UseVisualStyleBackColor = true;
+            // 
+            // rbtn_oneMonth
+            // 
+            this.rbtn_oneMonth.AutoSize = true;
+            this.rbtn_oneMonth.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rbtn_oneMonth.ForeColor = System.Drawing.Color.White;
+            this.rbtn_oneMonth.Location = new System.Drawing.Point(73, 3);
+            this.rbtn_oneMonth.Name = "rbtn_oneMonth";
+            this.rbtn_oneMonth.Size = new System.Drawing.Size(92, 49);
+            this.rbtn_oneMonth.TabIndex = 15;
+            this.rbtn_oneMonth.TabStop = true;
+            this.rbtn_oneMonth.Text = "最近一个月";
+            this.rbtn_oneMonth.UseVisualStyleBackColor = true;
+            // 
+            // rbtn_today
+            // 
+            this.rbtn_today.AutoSize = true;
+            this.rbtn_today.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rbtn_today.ForeColor = System.Drawing.Color.White;
+            this.rbtn_today.Location = new System.Drawing.Point(3, 3);
+            this.rbtn_today.Name = "rbtn_today";
+            this.rbtn_today.Size = new System.Drawing.Size(64, 49);
+            this.rbtn_today.TabIndex = 14;
+            this.rbtn_today.TabStop = true;
+            this.rbtn_today.Text = "当天";
+            this.rbtn_today.UseVisualStyleBackColor = true;
+            // 
+            // rbtn_oneYear
+            // 
+            this.rbtn_oneYear.AutoSize = true;
+            this.rbtn_oneYear.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rbtn_oneYear.ForeColor = System.Drawing.Color.White;
+            this.rbtn_oneYear.Location = new System.Drawing.Point(269, 3);
+            this.rbtn_oneYear.Name = "rbtn_oneYear";
+            this.rbtn_oneYear.Size = new System.Drawing.Size(79, 49);
+            this.rbtn_oneYear.TabIndex = 18;
+            this.rbtn_oneYear.TabStop = true;
+            this.rbtn_oneYear.Text = "最近一年";
+            this.rbtn_oneYear.UseVisualStyleBackColor = true;
+            // 
+            // rbtn_custom
+            // 
+            this.rbtn_custom.AutoSize = true;
+            this.rbtn_custom.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rbtn_custom.ForeColor = System.Drawing.Color.White;
+            this.rbtn_custom.Location = new System.Drawing.Point(354, 3);
+            this.rbtn_custom.Name = "rbtn_custom";
+            this.rbtn_custom.Size = new System.Drawing.Size(100, 49);
+            this.rbtn_custom.TabIndex = 13;
+            this.rbtn_custom.TabStop = true;
+            this.rbtn_custom.Text = "自定义日期";
+            this.rbtn_custom.UseVisualStyleBackColor = true;
+            // 
             // btn_search
             // 
             this.btn_search.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -382,92 +468,7 @@
             this.radGridView1.Name = "radGridView1";
             this.radGridView1.Size = new System.Drawing.Size(1175, 168);
             this.radGridView1.TabIndex = 15;
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.ColumnCount = 5;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 41.61074F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 58.38926F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 98F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 85F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 104F));
-            this.tableLayoutPanel1.Controls.Add(this.rbtn_threeMonth, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.rbtn_oneMonth, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.rbtn_today, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.rbtn_oneYear, 3, 0);
-            this.tableLayoutPanel1.Controls.Add(this.rbtn_custom, 4, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(457, 55);
-            this.tableLayoutPanel1.TabIndex = 16;
-            // 
-            // rbtn_custom
-            // 
-            this.rbtn_custom.AutoSize = true;
-            this.rbtn_custom.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rbtn_custom.ForeColor = System.Drawing.Color.White;
-            this.rbtn_custom.Location = new System.Drawing.Point(355, 3);
-            this.rbtn_custom.Name = "rbtn_custom";
-            this.rbtn_custom.Size = new System.Drawing.Size(99, 49);
-            this.rbtn_custom.TabIndex = 13;
-            this.rbtn_custom.TabStop = true;
-            this.rbtn_custom.Text = "自定义日期";
-            this.rbtn_custom.UseVisualStyleBackColor = true;
-            // 
-            // rbtn_today
-            // 
-            this.rbtn_today.AutoSize = true;
-            this.rbtn_today.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rbtn_today.ForeColor = System.Drawing.Color.White;
-            this.rbtn_today.Location = new System.Drawing.Point(3, 3);
-            this.rbtn_today.Name = "rbtn_today";
-            this.rbtn_today.Size = new System.Drawing.Size(64, 49);
-            this.rbtn_today.TabIndex = 14;
-            this.rbtn_today.TabStop = true;
-            this.rbtn_today.Text = "当天";
-            this.rbtn_today.UseVisualStyleBackColor = true;
-            // 
-            // rbtn_oneMonth
-            // 
-            this.rbtn_oneMonth.AutoSize = true;
-            this.rbtn_oneMonth.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rbtn_oneMonth.ForeColor = System.Drawing.Color.White;
-            this.rbtn_oneMonth.Location = new System.Drawing.Point(73, 3);
-            this.rbtn_oneMonth.Name = "rbtn_oneMonth";
-            this.rbtn_oneMonth.Size = new System.Drawing.Size(93, 49);
-            this.rbtn_oneMonth.TabIndex = 15;
-            this.rbtn_oneMonth.TabStop = true;
-            this.rbtn_oneMonth.Text = "最近一个月";
-            this.rbtn_oneMonth.UseVisualStyleBackColor = true;
-            // 
-            // rbtn_threeMonth
-            // 
-            this.rbtn_threeMonth.AutoSize = true;
-            this.rbtn_threeMonth.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rbtn_threeMonth.ForeColor = System.Drawing.Color.White;
-            this.rbtn_threeMonth.Location = new System.Drawing.Point(172, 3);
-            this.rbtn_threeMonth.Name = "rbtn_threeMonth";
-            this.rbtn_threeMonth.Size = new System.Drawing.Size(92, 49);
-            this.rbtn_threeMonth.TabIndex = 16;
-            this.rbtn_threeMonth.TabStop = true;
-            this.rbtn_threeMonth.Text = "最近三个月";
-            this.rbtn_threeMonth.UseVisualStyleBackColor = true;
-            // 
-            // rbtn_oneYear
-            // 
-            this.rbtn_oneYear.AutoSize = true;
-            this.rbtn_oneYear.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rbtn_oneYear.ForeColor = System.Drawing.Color.White;
-            this.rbtn_oneYear.Location = new System.Drawing.Point(270, 3);
-            this.rbtn_oneYear.Name = "rbtn_oneYear";
-            this.rbtn_oneYear.Size = new System.Drawing.Size(79, 49);
-            this.rbtn_oneYear.TabIndex = 18;
-            this.rbtn_oneYear.TabStop = true;
-            this.rbtn_oneYear.Text = "最近一年";
-            this.rbtn_oneYear.UseVisualStyleBackColor = true;
+            this.radGridView1.ThemeName = "Breeze";
             // 
             // TestStand
             // 
@@ -500,13 +501,13 @@
             this.toolStrip1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btn_search)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pickerEndTime)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pickerStartTime)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).EndInit();
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

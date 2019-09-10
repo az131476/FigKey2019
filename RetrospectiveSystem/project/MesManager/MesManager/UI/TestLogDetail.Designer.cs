@@ -148,6 +148,7 @@
             this.radGridView1.Name = "radGridView1";
             this.radGridView1.Size = new System.Drawing.Size(1272, 522);
             this.radGridView1.TabIndex = 9;
+            this.radGridView1.ThemeName = "Breeze";
             // 
             // TestLogDetail
             // 

@@ -1099,6 +1099,50 @@ namespace MesAPI
             LogHelper.Log.Info(selectSQL);
             return SQLServer.ExecuteDataSet(selectSQL);
         }
+
+        public DataSet SelectPackageStorage(string queryFilter)
+        {
+            var selectSQL = "";
+            if (queryFilter == "")
+            {
+                selectSQL = $"SELECT ROW_NUMBER() OVER(ORDER BY {DbTable.F_PRODUCT_PACKAGE.BINDING_DATE} DESC) 序号," +
+                $"a.{DbTable.F_PRODUCT_PACKAGE.OUT_CASE_CODE} 箱子编码," +
+                $"a.{DbTable.F_PRODUCT_PACKAGE.TYPE_NO} 产品型号," +
+                $"b.{DbTable.F_PRODUCT_PACKAGE_STORAGE.STORAGE_CAPACITY} 箱子容量," +
+                $"COUNT(a.{DbTable.F_PRODUCT_PACKAGE.OUT_CASE_CODE}) 产品实际数量 FROM " +
+                $"{DbTable.F_PRODUCT_PACKAGE_NAME}  a," +
+                $"{DbTable.F_PRODUCT_PACKAGE_STORAGE_NAME} b WHERE " +
+                $"a.{DbTable.F_PRODUCT_PACKAGE.TYPE_NO} = b.{DbTable.F_PRODUCT_PACKAGE_STORAGE.PRODUCT_TYPE_NO} AND " +
+                $"a.{DbTable.F_PRODUCT_PACKAGE.BINDING_STATE} = '1' " +
+                $"GROUP BY " +
+                $"{DbTable.F_PRODUCT_PACKAGE.OUT_CASE_CODE}," +
+                $"{DbTable.F_PRODUCT_PACKAGE_STORAGE.STORAGE_CAPACITY}," +
+                $"a.{DbTable.F_PRODUCT_PACKAGE.TYPE_NO}," +
+                $"a.{DbTable.F_PRODUCT_PACKAGE.BINDING_DATE}";
+            }
+            else
+            {
+                selectSQL = $"SELECT ROW_NUMBER() OVER(ORDER BY {DbTable.F_PRODUCT_PACKAGE.BINDING_DATE} DESC) 序号," +
+                $"a.{DbTable.F_PRODUCT_PACKAGE.OUT_CASE_CODE} 箱子编码," +
+                $"a.{DbTable.F_PRODUCT_PACKAGE.TYPE_NO} 产品型号," +
+                $"b.{DbTable.F_PRODUCT_PACKAGE_STORAGE.STORAGE_CAPACITY} 箱子容量," +
+                $"COUNT(a.{DbTable.F_PRODUCT_PACKAGE.OUT_CASE_CODE}) 产品实际数量 FROM " +
+                $"{DbTable.F_PRODUCT_PACKAGE_NAME}  a," +
+                $"{DbTable.F_PRODUCT_PACKAGE_STORAGE_NAME} b WHERE " +
+                $"a.{DbTable.F_PRODUCT_PACKAGE.TYPE_NO} = b.{DbTable.F_PRODUCT_PACKAGE_STORAGE.PRODUCT_TYPE_NO} AND " +
+                $"a.{DbTable.F_PRODUCT_PACKAGE.BINDING_STATE} = '1' AND " +
+                $"a.{DbTable.F_PRODUCT_PACKAGE.OUT_CASE_CODE} = '{queryFilter}' OR " +
+                $"a.{DbTable.F_PRODUCT_PACKAGE.TYPE_NO} = '{queryFilter}' AND " +
+                $"b.{DbTable.F_PRODUCT_PACKAGE_STORAGE.PRODUCT_TYPE_NO} = '{queryFilter}' " +
+                $"GROUP BY " +
+                $"{DbTable.F_PRODUCT_PACKAGE.OUT_CASE_CODE}," +
+                $"{DbTable.F_PRODUCT_PACKAGE_STORAGE.STORAGE_CAPACITY}," +
+                $"a.{DbTable.F_PRODUCT_PACKAGE.TYPE_NO}," +
+                $"a.{DbTable.F_PRODUCT_PACKAGE.BINDING_DATE}";
+            }
+            LogHelper.Log.Info(selectSQL);
+            return SQLServer.ExecuteDataSet(selectSQL);
+        }
         #endregion
 
         #region 查询绑定状态
@@ -1449,6 +1493,14 @@ namespace MesAPI
         }
         #endregion
 
+
+        public DataSet SelectTypeNoList()
+        {
+            var selectSQL = $"SELECT {DbTable.F_PRODUCT_PACKAGE_STORAGE.PRODUCT_TYPE_NO} " +
+                $"FROM " +
+                $"{DbTable.F_PRODUCT_PACKAGE_STORAGE_NAME} ";
+            return SQLServer.ExecuteDataSet(selectSQL);
+        }
         public string GetMaterialPN(string materialCode)
         {
             //A19083100008&S2.118&1.2.11.111&20&20190831&1T20190831001

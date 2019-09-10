@@ -277,21 +277,21 @@ namespace LoadBoxControl
              * 数据格式：数据接收方+数据发送方+数据长度+标识+子标识+信息数据+数据有效性判断
              *  总长=126          C1 + C0 +len + sid + subid + data + crc(len+sid+subid+data)
              */
-            if (data[0] == 0XC1 && data[1] == 0XC0 && data[2] == 0X7B)
-            {
-                //频率和占空比数据
+            //if (data[0] == 0XC1 && data[1] == 0XC0 && data[2] == 0X7B)
+            //{
+            //    //频率和占空比数据
 
-            }
-            else if (data[0] == 0XC1 && data[1] == 0XC0 && data[2] == 0X2B)
-            {
-                //电压数据
+            //}
+            //else if (data[0] == 0XC1 && data[1] == 0XC0 && data[2] == 0X2B)
+            //{
+            //    //电压数据
 
-            }
-            else
-            {
-                LogHelper.Log.Info("【数据不完整】");
-            }
-            AnalysisVoltageData(data);
+            //}
+            //else
+            //{
+            //    LogHelper.Log.Info("【数据不完整】");
+            //}
+            //AnalysisVoltageData(data);
         }
 
         private void AnalysisVoltageData(byte[] buffer)

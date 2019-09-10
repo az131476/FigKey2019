@@ -275,8 +275,12 @@ namespace MesWcfService
             string selectSQL = $"SELECT DISTINCT {DbTable.F_TECHNOLOGICAL_PROCESS.PROCESS_NAME} " +
                 $"FROM {DbTable.F_TECHNOLOGICAL_PROCESS_NAME} WHERE {DbTable.F_TECHNOLOGICAL_PROCESS.PSTATE} = '1'";
             var dt = SQLServer.ExecuteDataSet(selectSQL).Tables[0];
+            LogHelper.Log.Info("【查询当前工艺流程】"+selectSQL);
             if (dt.Rows.Count > 0)
-                return dt.Rows[0][0].ToString();
+            {
+                var currentProcess = dt.Rows[0][0].ToString();
+                return currentProcess;
+            }
             else
                 return "NULL";
         }

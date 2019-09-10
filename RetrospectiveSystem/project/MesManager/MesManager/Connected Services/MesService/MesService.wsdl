@@ -291,6 +291,18 @@
   <wsdl:message name="IMesService_SelectLastLogTestResult_OutputMessage">
     <wsdl:part name="parameters" element="tns:SelectLastLogTestResultResponse" />
   </wsdl:message>
+  <wsdl:message name="IMesService_SelectTypeNoList_InputMessage">
+    <wsdl:part name="parameters" element="tns:SelectTypeNoList" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_SelectTypeNoList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SelectTypeNoListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_SelectPackageStorage_InputMessage">
+    <wsdl:part name="parameters" element="tns:SelectPackageStorage" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_SelectPackageStorage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SelectPackageStorageResponse" />
+  </wsdl:message>
   <wsdl:portType name="IMesService">
     <wsdl:operation name="TestCommunication">
       <wsdl:input wsaw:Action="http://tempuri.org/IMesService/TestCommunication" message="tns:IMesService_TestCommunication_InputMessage" />
@@ -479,6 +491,14 @@
     <wsdl:operation name="SelectLastLogTestResult">
       <wsdl:input wsaw:Action="http://tempuri.org/IMesService/SelectLastLogTestResult" message="tns:IMesService_SelectLastLogTestResult_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMesService/SelectLastLogTestResultResponse" message="tns:IMesService_SelectLastLogTestResult_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectTypeNoList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/SelectTypeNoList" message="tns:IMesService_SelectTypeNoList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/SelectTypeNoListResponse" message="tns:IMesService_SelectTypeNoList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectPackageStorage">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/SelectPackageStorage" message="tns:IMesService_SelectPackageStorage_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/SelectPackageStorageResponse" message="tns:IMesService_SelectPackageStorage_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IMesService" type="tns:IMesService">
@@ -899,6 +919,24 @@
     </wsdl:operation>
     <wsdl:operation name="SelectLastLogTestResult">
       <soap:operation soapAction="http://tempuri.org/IMesService/SelectLastLogTestResult" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectTypeNoList">
+      <soap:operation soapAction="http://tempuri.org/IMesService/SelectTypeNoList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectPackageStorage">
+      <soap:operation soapAction="http://tempuri.org/IMesService/SelectPackageStorage" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
