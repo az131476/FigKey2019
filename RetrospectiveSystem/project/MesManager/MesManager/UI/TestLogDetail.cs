@@ -64,7 +64,7 @@ namespace MesManager.UI
                 return;
             dataSourceLog.Clear();
             var dt = ds.Tables[0];
-            var groupID = 1;//测试次数默认为第一组开始
+            int groupID = 1;//测试次数默认为第一组开始
             var order = 1;
             for (int i = 0; i < dt.Rows.Count; i++)
             {
@@ -82,7 +82,7 @@ namespace MesManager.UI
                 {
                     DataRow dr = dataSourceLog.NewRow();
                     dr[LOG_ORDER] = order; 
-                    dr[LOG_TEST_GROUP_ID] = groupID;
+                    dr[LOG_TEST_GROUP_ID] = groupID.ToString().PadLeft(3,'0');
                     dr[LOG_PRODUCT_TYPE_NO] = dt.Rows[i][1].ToString();
                     dr[LOG_PRODUCT_SN] = dt.Rows[i][2].ToString();
                     dr[LOG_STATION_NAME] = dt.Rows[i][3].ToString();

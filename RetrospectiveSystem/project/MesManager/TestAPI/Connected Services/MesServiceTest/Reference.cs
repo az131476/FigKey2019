@@ -118,10 +118,10 @@ namespace TestAPI.MesServiceTest {
         System.Threading.Tasks.Task<string[]> SelectMaterialListAsync(string productTypeNo);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/BindingPCBA", ReplyAction="http://tempuri.org/IMesService/BindingPCBAResponse")]
-        string BindingPCBA(string snPCBA, string snOutter, string materialCode);
+        string BindingPCBA(string snPCBA, string snOutter, string materialCode, string productTypeNo);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/BindingPCBA", ReplyAction="http://tempuri.org/IMesService/BindingPCBAResponse")]
-        System.Threading.Tasks.Task<string> BindingPCBAAsync(string snPCBA, string snOutter, string materialCode);
+        System.Threading.Tasks.Task<string> BindingPCBAAsync(string snPCBA, string snOutter, string materialCode, string productTypeNo);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectLimitConfig", ReplyAction="http://tempuri.org/IMesService/SelectLimitConfigResponse")]
         string[] SelectLimitConfig(string productTypeNo, string stationName, string item);
@@ -305,12 +305,12 @@ namespace TestAPI.MesServiceTest {
             return base.Channel.SelectMaterialListAsync(productTypeNo);
         }
         
-        public string BindingPCBA(string snPCBA, string snOutter, string materialCode) {
-            return base.Channel.BindingPCBA(snPCBA, snOutter, materialCode);
+        public string BindingPCBA(string snPCBA, string snOutter, string materialCode, string productTypeNo) {
+            return base.Channel.BindingPCBA(snPCBA, snOutter, materialCode, productTypeNo);
         }
         
-        public System.Threading.Tasks.Task<string> BindingPCBAAsync(string snPCBA, string snOutter, string materialCode) {
-            return base.Channel.BindingPCBAAsync(snPCBA, snOutter, materialCode);
+        public System.Threading.Tasks.Task<string> BindingPCBAAsync(string snPCBA, string snOutter, string materialCode, string productTypeNo) {
+            return base.Channel.BindingPCBAAsync(snPCBA, snOutter, materialCode, productTypeNo);
         }
         
         public string[] SelectLimitConfig(string productTypeNo, string stationName, string item) {

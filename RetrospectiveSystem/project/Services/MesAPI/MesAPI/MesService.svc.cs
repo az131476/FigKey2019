@@ -447,6 +447,15 @@ namespace MesAPI
                  $"ORDER BY {DbTable.F_Test_Result.UPDATE_DATE}";
             return SQLServer.ExecuteDataSet(selectSQL);
         }
+
+
+        public DataSet SelectTestResultGroup()
+        {
+            var selectSQL = $"SELECT " +
+                $"{DbTable.F_Test_Result.SN}," +
+                $"{DbTable.F_Test_Result.TYPE_NO}," +
+                $"{DbTable.F_Test_Result.STATION_NAME}";
+        }
         #endregion
 
         #region 物料信息表

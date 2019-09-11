@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition3 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.panel1 = new System.Windows.Forms.Panel();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
@@ -127,7 +127,7 @@
             // 
             // 
             // 
-            this.radGridViewPackage.MasterTemplate.ViewDefinition = tableViewDefinition3;
+            this.radGridViewPackage.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.radGridViewPackage.Name = "radGridViewPackage";
             this.radGridViewPackage.Size = new System.Drawing.Size(1033, 454);
             this.radGridViewPackage.TabIndex = 39;
@@ -146,7 +146,7 @@
             // 
             // 
             this.RootElement.ApplyShapeToControl = true;
-            this.Text = "ProductPackageDetail";
+            this.Text = "包装箱产品";
             this.Load += new System.EventHandler(this.ProductPackageDetail_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

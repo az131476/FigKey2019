@@ -30,7 +30,8 @@ namespace MesWcfService
         #region 【接口】UpdateTestResultData 更新测试数据
         [OperationContract]
         [SwaggerWcfPath("UpdateTestResultData", "更新测试数据")]
-        [WebInvoke(Method = "GET", UriTemplate = "UpdateTestResultData?sn={sn}&typeNO={typeNo}&station={station}&result={result}&teamLeader={teamLeader}&admin={admin}",
+        [WebInvoke(Method = "GET", UriTemplate = "UpdateTestResultData?sn={sn}&typeNO={typeNo}&station={station}" +
+            "&result={result}&teamLeader={teamLeader}&admin={admin}",
             BodyStyle = WebMessageBodyStyle.Bare, RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
         string UpdateTestResultData([SwaggerWcfParameter(Description = "追溯码*")]string sn, 
             [SwaggerWcfParameter(Description = "产品型号*")]string typeNo, 

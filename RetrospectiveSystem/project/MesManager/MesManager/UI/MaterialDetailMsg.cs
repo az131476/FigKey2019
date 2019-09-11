@@ -21,7 +21,7 @@ namespace MesManager.UI
         private const string MATERIAL_PN = "物料号";
         private const string MATERIAL_LOT = "批次号";
         private const string MATERIAL_RID = "料盘号";
-        private const string MATERIAL_DC = "有效期";
+        private const string MATERIAL_DC = "收料日期";
         private const string MATERIAL_QTY = "库存";
         private const string MATERIAL_NAME = "物料名称";
         private const string PRODUCT_TYPENO = "产品型号";

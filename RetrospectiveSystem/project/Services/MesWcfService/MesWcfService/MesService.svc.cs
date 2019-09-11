@@ -62,17 +62,27 @@ namespace MesWcfService
         #endregion
 
         #region 更新测试结果
+        /*
+         * 测试结果要记录进站时间与出站时间
+         * 进站时间：开始测试的时间，查询上一工位测试结果为PASS的时间
+         * 出站时间：测试完成的时间
+         * 流程：
+         * 1）新增接口记录第一个工站开始的时间，更新进站日期
+         * 2）传入测试数据结果的接口用于更新出站时间
+         * 3）第1个工站之后的所有工站的进站时间为该工站查询上一工站返回结果为PASS的时间
+         */ 
         [SwaggerWcfTag("MesServcie 服务")]
-        [SwaggerWcfResponse("STATUS_SUCCESS", "更新成功")]
-        [SwaggerWcfResponse("ERROR_FAIL", "更新失败，异常错误")]
-        [SwaggerWcfResponse("ERROR_SN_IS_NULL", "传入SN为空")]
-        [SwaggerWcfResponse("ERROR_STATION_IS_NULL", "传入工站为空")]
+        [SwaggerWcfResponse("0X00", "STATUS_SUCCESS")]
+        [SwaggerWcfResponse("0X01", "ERROR_FAIL")]
+        [SwaggerWcfResponse("0X02", "ERROR_SN_IS_NULL")]
+        [SwaggerWcfResponse("0X03", "ERROR_STATION_IS_NULL")]
+        [SwaggerWcfResponse("0X04", "ERROR_FIRST_STATION")]
         [SwaggerWcfResponse(HttpStatusCode.Unused)]
         public string UpdateTestResultData(string sn, string typeNo, string station,string result,string teamLeader, string admin)
         {
-            string[] array = new string[] { sn, typeNo, station,result,teamLeader,admin };
+            string[] array = new string[] { sn, typeNo, station,result,teamLeader,admin};
             insertDataQueue.Enqueue(array);
-            return TestResult.InsertTestResult(insertDataQueue);
+            return TestResult.CommitTestResult(insertDataQueue);
         }
         #endregion
 
