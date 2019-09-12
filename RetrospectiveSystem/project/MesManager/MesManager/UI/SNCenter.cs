@@ -426,7 +426,8 @@ namespace MesManager.UI
         async private void SelectOfSn()
         {
             var filter = tb_sn.Text;
-            DataSet ds = (await serviceClient.SelectTestResultUpperAsync(filter, filter, filter, true));
+            //DataSet ds = (await serviceClient.SelectTestResultUpperAsync(filter, filter, filter, true));
+            DataSet ds = await serviceClient.SelectTestResultDetailAsync();
             if (ds == null)
             {
                 radGridViewSn.DataSource = null;
@@ -436,8 +437,8 @@ namespace MesManager.UI
             this.radGridViewSn.DataSource = null; 
             radGridViewSn.DataSource = dt;
             this.radGridViewSn.Columns[0].BestFit();
-            this.radGridViewSn.Columns[2].BestFit();
-            this.radGridViewSn.Columns[9].BestFit();
+            //this.radGridViewSn.Columns[2].BestFit();
+            //this.radGridViewSn.Columns[9].BestFit();
         }
 
         async private void SelectOfPackage(string state)

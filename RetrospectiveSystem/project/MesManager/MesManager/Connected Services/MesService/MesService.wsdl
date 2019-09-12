@@ -303,6 +303,12 @@
   <wsdl:message name="IMesService_SelectPackageStorage_OutputMessage">
     <wsdl:part name="parameters" element="tns:SelectPackageStorageResponse" />
   </wsdl:message>
+  <wsdl:message name="IMesService_SelectTestResultDetail_InputMessage">
+    <wsdl:part name="parameters" element="tns:SelectTestResultDetail" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_SelectTestResultDetail_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SelectTestResultDetailResponse" />
+  </wsdl:message>
   <wsdl:portType name="IMesService">
     <wsdl:operation name="TestCommunication">
       <wsdl:input wsaw:Action="http://tempuri.org/IMesService/TestCommunication" message="tns:IMesService_TestCommunication_InputMessage" />
@@ -499,6 +505,10 @@
     <wsdl:operation name="SelectPackageStorage">
       <wsdl:input wsaw:Action="http://tempuri.org/IMesService/SelectPackageStorage" message="tns:IMesService_SelectPackageStorage_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMesService/SelectPackageStorageResponse" message="tns:IMesService_SelectPackageStorage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectTestResultDetail">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/SelectTestResultDetail" message="tns:IMesService_SelectTestResultDetail_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/SelectTestResultDetailResponse" message="tns:IMesService_SelectTestResultDetail_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IMesService" type="tns:IMesService">
@@ -937,6 +947,15 @@
     </wsdl:operation>
     <wsdl:operation name="SelectPackageStorage">
       <soap:operation soapAction="http://tempuri.org/IMesService/SelectPackageStorage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectTestResultDetail">
+      <soap:operation soapAction="http://tempuri.org/IMesService/SelectTestResultDetail" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

@@ -613,6 +613,12 @@ namespace MesManager.MesService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectPackageStorage", ReplyAction="http://tempuri.org/IMesService/SelectPackageStorageResponse")]
         System.Threading.Tasks.Task<System.Data.DataSet> SelectPackageStorageAsync(string queryFilter);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectTestResultDetail", ReplyAction="http://tempuri.org/IMesService/SelectTestResultDetailResponse")]
+        System.Data.DataSet SelectTestResultDetail();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectTestResultDetail", ReplyAction="http://tempuri.org/IMesService/SelectTestResultDetailResponse")]
+        System.Threading.Tasks.Task<System.Data.DataSet> SelectTestResultDetailAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1032,6 +1038,14 @@ namespace MesManager.MesService {
         
         public System.Threading.Tasks.Task<System.Data.DataSet> SelectPackageStorageAsync(string queryFilter) {
             return base.Channel.SelectPackageStorageAsync(queryFilter);
+        }
+        
+        public System.Data.DataSet SelectTestResultDetail() {
+            return base.Channel.SelectTestResultDetail();
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> SelectTestResultDetailAsync() {
+            return base.Channel.SelectTestResultDetailAsync();
         }
     }
 }

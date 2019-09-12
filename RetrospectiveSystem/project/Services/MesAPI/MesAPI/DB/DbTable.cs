@@ -62,6 +62,8 @@ namespace MesAPI.DB
             public const string TYPE_NO = "[type_no]";
             public const string STATION_NAME = "[station_name]";
             public const string TEST_RESULT = "[test_result]";
+            public const string STATION_IN_DATE = "[station_in_date]";
+            public const string STATION_OUT_DATE = "[station_out_date]";
             public const string CREATE_DATE = "[create_date]";
             public const string UPDATE_DATE = "[update_date]";
             public const string REMARK = "[remark]";
