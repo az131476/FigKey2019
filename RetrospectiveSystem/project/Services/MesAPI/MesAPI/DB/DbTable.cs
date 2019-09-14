@@ -69,6 +69,7 @@ namespace MesAPI.DB
             public const string REMARK = "[remark]";
             public const string TEAM_LEADER = "team_leader";
             public const string ADMIN = "[admin]";
+            public const string JOIN_DATE_TIME = "[joinDateTime]";
         }
 
         public class F_TypeNo
@@ -205,6 +206,7 @@ namespace MesAPI.DB
             public const string TEAM_LEADER = "[teamLeader]";
             public const string ADMIN = "[admin]";
             public const string UPDATE_DATE = "[updateDate]";
+            public const string JOIN_DATE_TIME = "[joinDateTime]";
         }
 
         public class F_QUANLITY_MANAGER

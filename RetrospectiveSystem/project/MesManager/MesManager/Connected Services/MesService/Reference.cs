@@ -619,6 +619,12 @@ namespace MesManager.MesService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectTestResultDetail", ReplyAction="http://tempuri.org/IMesService/SelectTestResultDetailResponse")]
         System.Threading.Tasks.Task<System.Data.DataSet> SelectTestResultDetailAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectTestResultLogDetail", ReplyAction="http://tempuri.org/IMesService/SelectTestResultLogDetailResponse")]
+        System.Data.DataSet SelectTestResultLogDetail(string queryFilter, string startTime, string endTime);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectTestResultLogDetail", ReplyAction="http://tempuri.org/IMesService/SelectTestResultLogDetailResponse")]
+        System.Threading.Tasks.Task<System.Data.DataSet> SelectTestResultLogDetailAsync(string queryFilter, string startTime, string endTime);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1046,6 +1052,14 @@ namespace MesManager.MesService {
         
         public System.Threading.Tasks.Task<System.Data.DataSet> SelectTestResultDetailAsync() {
             return base.Channel.SelectTestResultDetailAsync();
+        }
+        
+        public System.Data.DataSet SelectTestResultLogDetail(string queryFilter, string startTime, string endTime) {
+            return base.Channel.SelectTestResultLogDetail(queryFilter, startTime, endTime);
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> SelectTestResultLogDetailAsync(string queryFilter, string startTime, string endTime) {
+            return base.Channel.SelectTestResultLogDetailAsync(queryFilter, startTime, endTime);
         }
     }
 }

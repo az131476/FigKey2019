@@ -448,7 +448,6 @@ namespace MesAPI
             return SQLServer.ExecuteDataSet(selectSQL);
         }
 
-
         private List<TestResultBasic> SelectTestResultBasic()
         {
             DataTable typeNoDt = SelectTypeNoList().Tables[0];
@@ -504,7 +503,7 @@ namespace MesAPI
         }
         public DataSet SelectTestResultDetail()
         {
-            DataTable dt = InitTestResultDataTable();
+            DataTable dt = InitTestResultDataTable(true);
             DataSet dataSet = new DataSet();
             //List<TestReulstDetail> testReulstDetailsList = new List<TestReulstDetail>();
             List<TestResultBasic> testResultBasicsList = SelectTestResultBasic();
@@ -570,14 +569,15 @@ namespace MesAPI
             }
             return dataSet;
         }
-        private static DataTable InitTestResultDataTable()
+        private static DataTable InitTestResultDataTable(bool IsShowFinalResult)
         {
             DataTable dt = new DataTable();
             dt.Columns.Add(TestResultItemContent.Order);
             dt.Columns.Add(TestResultItemContent.PcbaSN);
             dt.Columns.Add(TestResultItemContent.ProductSN);
             dt.Columns.Add(TestResultItemContent.ProductTypeNo);
-            dt.Columns.Add(TestResultItemContent.FinalResultValue);
+            if(IsShowFinalResult)
+                dt.Columns.Add(TestResultItemContent.FinalResultValue);
             dt.Columns.Add(TestResultItemContent.StationName);
             dt.Columns.Add(TestResultItemContent.StationInDate);
             dt.Columns.Add(TestResultItemContent.StationOutDate);
@@ -640,11 +640,53 @@ namespace MesAPI
                 var currentValue = testCurrentValue.Trim().ToLower();
                 if (currentValue == "true" || currentValue == "passed")
                 {
-                    showTestResult = testCurrentValue;
+                    showTestResult = "Passed";
                 }
                 else if (currentValue == "failed" || currentValue == "false")
                 {
-                    showTestResult = testCurrentValue;
+                    showTestResult = "Failed";
+                }
+                else
+                {
+                    showTestResult = testResult + "," + testCurrentValue;
+                }
+
+                return showTestResult;
+            }
+            return "";
+        }
+
+        private static string SelectTestItemValue(string productSN, string stationName, string testItem,string joinDateTime)
+        {
+            var selectSQL = $"SELECT TOP 1 " +
+                $"{DbTable.F_TEST_LOG_DATA.TEST_RESULT}," +
+                $"{DbTable.F_TEST_LOG_DATA.CURRENT_VALUE} " +
+                $"FROM " +
+                $"{DbTable.F_TEST_LOG_DATA_NAME} " +
+                $"WHERE " +
+                $"{DbTable.F_TEST_LOG_DATA.PRODUCT_SN} = '{productSN}' " +
+                $"AND " +
+                $"{DbTable.F_TEST_LOG_DATA.STATION_NAME} = '{stationName}'" +
+                $"AND " +
+                $"{DbTable.F_TEST_LOG_DATA.TEST_ITEM} like '%{testItem}%' " +
+                $"AND " +
+                $"{DbTable.F_TEST_LOG_DATA.JOIN_DATE_TIME} = '{joinDateTime}'" +
+                $"ORDER BY " +
+                $"{DbTable.F_TEST_LOG_DATA.UPDATE_DATE} DESC";
+            var dt = SQLServer.ExecuteDataSet(selectSQL).Tables[0];
+            if (dt.Rows.Count > 0)
+            {
+                var testResult = dt.Rows[0][0].ToString();
+                var testCurrentValue = dt.Rows[0][1].ToString();
+                var showTestResult = "";
+                var currentValue = testCurrentValue.Trim().ToLower();
+                if (currentValue == "true" || currentValue == "passed")
+                {
+                    showTestResult = "Passed";
+                }
+                else if (currentValue == "failed" || currentValue == "false")
+                {
+                    showTestResult = "Failed";
                 }
                 else
                 {
@@ -750,6 +792,125 @@ namespace MesAPI
                return "FAIL";
             }
         }
+
+        public DataSet SelectTestResultLogDetail(string queryFilter,string startTime,string endTime)
+        {
+            DataSet ds = new DataSet();
+            var dt = InitTestResultDataTable(false);
+            var selectTestResultSQL = "";
+            if (queryFilter == "")
+            {
+                selectTestResultSQL = $"SELECT " +
+                            $"{DbTable.F_Test_Result.SN}," +
+                            $"{DbTable.F_Test_Result.TYPE_NO}," +
+                            $"{DbTable.F_Test_Result.STATION_NAME}," +
+                            $"{DbTable.F_Test_Result.TEST_RESULT}," +
+                            $"{DbTable.F_Test_Result.STATION_IN_DATE}," +
+                            $"{DbTable.F_Test_Result.STATION_OUT_DATE}," +
+                            $"{DbTable.F_Test_Result.TEAM_LEADER}," +
+                            $"{DbTable.F_Test_Result.JOIN_DATE_TIME} " +
+                            $"FROM " +
+                            $"{DbTable.F_TEST_RESULT_NAME} " +
+                            $"WHERE " +
+                            $"{DbTable.F_Test_Result.UPDATE_DATE} >= '{startTime}' " +
+                            $"AND " +
+                            $"{DbTable.F_Test_Result.UPDATE_DATE} <= '{endTime}' " +
+                            $"ORDER BY " +
+                            $"{DbTable.F_Test_Result.UPDATE_DATE} " +
+                            $"ASC";
+            }
+            else
+            {
+                selectTestResultSQL = $"SELECT " +
+                            $"{DbTable.F_Test_Result.SN}," +
+                            $"{DbTable.F_Test_Result.TYPE_NO}," +
+                            $"{DbTable.F_Test_Result.STATION_NAME}," +
+                            $"{DbTable.F_Test_Result.TEST_RESULT}," +
+                            $"{DbTable.F_Test_Result.STATION_IN_DATE}," +
+                            $"{DbTable.F_Test_Result.STATION_OUT_DATE}," +
+                            $"{DbTable.F_Test_Result.TEAM_LEADER}," +
+                            $"{DbTable.F_Test_Result.JOIN_DATE_TIME} " +
+                            $"FROM " +
+                            $"{DbTable.F_TEST_RESULT_NAME} " +
+                            $"WHERE " +
+                            $"{DbTable.F_Test_Result.UPDATE_DATE} >= '{startTime}' " +
+                            $"AND " +
+                            $"{DbTable.F_Test_Result.UPDATE_DATE} <= '{endTime}' " +
+                            $"AND " +
+                            $"{DbTable.F_Test_Result.SN} = '{queryFilter}' " +
+                            $"OR " +
+                            $"{DbTable.F_Test_Result.SN} = '{queryFilter}' " +
+                            $"OR " +
+                            $"{DbTable.F_Test_Result.STATION_NAME} = '{queryFilter}'";
+            }
+            LogHelper.Log.Info(selectTestResultSQL);
+            var dtResult = SQLServer.ExecuteDataSet(selectTestResultSQL).Tables[0];
+            if (dtResult.Rows.Count > 0)
+            {
+                for (int i = 0; i < dtResult.Rows.Count; i++)
+                {
+                    DataRow dr = dt.NewRow();
+                    var pcbaSNTemp = dtResult.Rows[i][0].ToString();
+                    var productTypeNo = dtResult.Rows[i][1].ToString();
+                    var stationName = dtResult.Rows[i][2].ToString();
+                    var testResult = dtResult.Rows[i][3].ToString();
+                    var stationInDate = dtResult.Rows[i][4].ToString();
+                    var stationOutDate = dtResult.Rows[i][5].ToString();
+                    var teamLeader = dtResult.Rows[i][6].ToString();
+                    var joinDateTime = dtResult.Rows[i][7].ToString();
+                    var pcbaSN = GetPCBASn(pcbaSNTemp);
+                    var productSN = GetProductSn(pcbaSNTemp);
+
+                    dr[TestResultItemContent.Order] = i + 1;
+                    dr[TestResultItemContent.PcbaSN] = pcbaSN;
+                    dr[TestResultItemContent.ProductSN] = productSN;
+                    dr[TestResultItemContent.ProductTypeNo] = productTypeNo;
+                    dr[TestResultItemContent.StationName] = stationName;
+                    dr[TestResultItemContent.StationInDate] = stationInDate;
+                    dr[TestResultItemContent.StationOutDate] = stationOutDate;
+                    dr[TestResultItemContent.TestResultValue] = testResult;
+                    dr[TestResultItemContent.UserTeamLeader] = teamLeader;
+
+                    #region testItem
+                    dr[TestResultItemContent.TurnItem] = SelectTestItemValue(pcbaSNTemp, stationName, TestResultItemContent.TurnItem,joinDateTime);
+                    dr[TestResultItemContent.Voltage_12V_Item] = SelectTestItemValue(pcbaSNTemp, stationName, TestResultItemContent.Voltage_12V_Item, joinDateTime);
+                    dr[TestResultItemContent.Voltage_5V_Item] = SelectTestItemValue(pcbaSNTemp, stationName, TestResultItemContent.Voltage_5V_Item, joinDateTime);
+                    dr[TestResultItemContent.Voltage_33_1V_Item] = SelectTestItemValue(pcbaSNTemp, stationName, TestResultItemContent.Voltage_33_1V_Item, joinDateTime);
+                    dr[TestResultItemContent.Voltage_33_2V_Item] = SelectTestItemValue(pcbaSNTemp, stationName, TestResultItemContent.Voltage_33_2V_Item, joinDateTime);
+                    dr[TestResultItemContent.Main_Soft_Version_Item] = SelectTestItemValue(pcbaSNTemp, stationName, TestResultItemContent.Main_Soft_Version_Item, joinDateTime);
+                    dr[TestResultItemContent.Work_Electric_Test] = SelectTestItemValue(pcbaSNTemp, stationName, TestResultItemContent.Work_Electric_Test, joinDateTime);
+                    dr[TestResultItemContent.PartNumber] = SelectTestItemValue(pcbaSNTemp, stationName, TestResultItemContent.PartNumber, joinDateTime);
+                    dr[TestResultItemContent.HardWareVersion] = SelectTestItemValue(pcbaSNTemp, stationName, TestResultItemContent.HardWareVersion, joinDateTime);
+                    dr[TestResultItemContent.SoftVersion] = SelectTestItemValue(pcbaSNTemp, stationName, TestResultItemContent.SoftVersion, joinDateTime);
+                    dr[TestResultItemContent.ECUID] = SelectTestItemValue(pcbaSNTemp, stationName, TestResultItemContent.ECUID, joinDateTime);
+                    dr[TestResultItemContent.BootloaderVersion] = SelectTestItemValue(pcbaSNTemp, stationName, TestResultItemContent.BootloaderVersion, joinDateTime);
+                    dr[TestResultItemContent.RadioFreq] = SelectTestItemValue(pcbaSNTemp, stationName, TestResultItemContent.RadioFreq, joinDateTime);
+                    dr[TestResultItemContent.DormantElect] = SelectTestItemValue(pcbaSNTemp, stationName, TestResultItemContent.DormantElect, joinDateTime);
+                    dr[TestResultItemContent.FrontCover] = SelectTestItemValue(pcbaSNTemp, stationName, TestResultItemContent.FrontCover, joinDateTime);
+                    dr[TestResultItemContent.BackCover] = SelectTestItemValue(pcbaSNTemp, stationName, TestResultItemContent.BackCover, joinDateTime);
+                    dr[TestResultItemContent.PCBScrew1] = SelectTestItemValue(pcbaSNTemp, stationName, TestResultItemContent.PCBScrew1, joinDateTime);
+                    dr[TestResultItemContent.PCBScrew2] = SelectTestItemValue(pcbaSNTemp, stationName, TestResultItemContent.PCBScrew2, joinDateTime);
+                    dr[TestResultItemContent.PCBScrew3] = SelectTestItemValue(pcbaSNTemp, stationName, TestResultItemContent.PCBScrew3, joinDateTime);
+                    dr[TestResultItemContent.PCBScrew4] = SelectTestItemValue(pcbaSNTemp, stationName, TestResultItemContent.PCBScrew4, joinDateTime);
+                    dr[TestResultItemContent.ShellScrew1] = SelectTestItemValue(pcbaSNTemp, stationName, TestResultItemContent.ShellScrew1, joinDateTime);
+                    dr[TestResultItemContent.ShellScrew2] = SelectTestItemValue(pcbaSNTemp, stationName, TestResultItemContent.ShellScrew2, joinDateTime);
+                    dr[TestResultItemContent.ShellScrew3] = SelectTestItemValue(pcbaSNTemp, stationName, TestResultItemContent.ShellScrew3, joinDateTime);
+                    dr[TestResultItemContent.ShellScrew4] = SelectTestItemValue(pcbaSNTemp, stationName, TestResultItemContent.ShellScrew4, joinDateTime);
+                    dr[TestResultItemContent.AirtightTest] = SelectTestItemValue(pcbaSNTemp, stationName, TestResultItemContent.AirtightTest, joinDateTime);
+                    dr[TestResultItemContent.StentScrew1] = SelectTestItemValue(pcbaSNTemp, stationName, TestResultItemContent.StentScrew1, joinDateTime);
+                    dr[TestResultItemContent.StentScrew2] = SelectTestItemValue(pcbaSNTemp, stationName, TestResultItemContent.StentScrew1, joinDateTime);
+                    dr[TestResultItemContent.Stent] = SelectTestItemValue(pcbaSNTemp, stationName, TestResultItemContent.Stent, joinDateTime);
+                    dr[TestResultItemContent.LeftStent] = SelectTestItemValue(pcbaSNTemp, stationName, TestResultItemContent.LeftStent, joinDateTime);
+                    dr[TestResultItemContent.RightStent] = SelectTestItemValue(pcbaSNTemp, stationName, TestResultItemContent.RightStent, joinDateTime);
+                    #endregion
+
+                    dt.Rows.Add(dr);
+                }
+                ds.Tables.Add(dt);
+            }
+            return ds;
+        }
+
         #endregion
 
         #region 物料信息表
@@ -1408,11 +1569,12 @@ namespace MesAPI
             var selectSQL = "";
             if (queryFilter == "")
             {
-                selectSQL = $"SELECT ROW_NUMBER() OVER(ORDER BY {DbTable.F_PRODUCT_PACKAGE.BINDING_DATE} DESC) 序号," +
+                selectSQL = $"SELECT " +
                 $"a.{DbTable.F_PRODUCT_PACKAGE.OUT_CASE_CODE} 箱子编码," +
                 $"a.{DbTable.F_PRODUCT_PACKAGE.TYPE_NO} 产品型号," +
                 $"b.{DbTable.F_PRODUCT_PACKAGE_STORAGE.STORAGE_CAPACITY} 箱子容量," +
-                $"COUNT(a.{DbTable.F_PRODUCT_PACKAGE.OUT_CASE_CODE}) 产品实际数量 FROM " +
+                $"COUNT(a.{DbTable.F_PRODUCT_PACKAGE.OUT_CASE_CODE}) 产品实际数量 " +
+                $"FROM " +
                 $"{DbTable.F_PRODUCT_PACKAGE_NAME}  a," +
                 $"{DbTable.F_PRODUCT_PACKAGE_STORAGE_NAME} b WHERE " +
                 $"a.{DbTable.F_PRODUCT_PACKAGE.TYPE_NO} = b.{DbTable.F_PRODUCT_PACKAGE_STORAGE.PRODUCT_TYPE_NO} AND " +
@@ -1420,12 +1582,11 @@ namespace MesAPI
                 $"GROUP BY " +
                 $"{DbTable.F_PRODUCT_PACKAGE.OUT_CASE_CODE}," +
                 $"{DbTable.F_PRODUCT_PACKAGE_STORAGE.STORAGE_CAPACITY}," +
-                $"a.{DbTable.F_PRODUCT_PACKAGE.TYPE_NO}," +
-                $"a.{DbTable.F_PRODUCT_PACKAGE.BINDING_DATE}";
+                $"a.{DbTable.F_PRODUCT_PACKAGE.TYPE_NO} ";
             }
             else
             {
-                selectSQL = $"SELECT ROW_NUMBER() OVER(ORDER BY {DbTable.F_PRODUCT_PACKAGE.BINDING_DATE} DESC) 序号," +
+                selectSQL = $"SELECT " +
                 $"a.{DbTable.F_PRODUCT_PACKAGE.OUT_CASE_CODE} 箱子编码," +
                 $"a.{DbTable.F_PRODUCT_PACKAGE.TYPE_NO} 产品型号," +
                 $"b.{DbTable.F_PRODUCT_PACKAGE_STORAGE.STORAGE_CAPACITY} 箱子容量," +
@@ -1440,8 +1601,7 @@ namespace MesAPI
                 $"GROUP BY " +
                 $"{DbTable.F_PRODUCT_PACKAGE.OUT_CASE_CODE}," +
                 $"{DbTable.F_PRODUCT_PACKAGE_STORAGE.STORAGE_CAPACITY}," +
-                $"a.{DbTable.F_PRODUCT_PACKAGE.TYPE_NO}," +
-                $"a.{DbTable.F_PRODUCT_PACKAGE.BINDING_DATE}";
+                $"a.{DbTable.F_PRODUCT_PACKAGE.TYPE_NO} ";
             }
             LogHelper.Log.Info(selectSQL);
             return SQLServer.ExecuteDataSet(selectSQL);

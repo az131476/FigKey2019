@@ -24,6 +24,7 @@ namespace MesWcfService.MessageQueue.RemoteClient
                 var testResult = array[6];
                 var teamLeader = array[7];
                 var admin = array[8];
+                var joinDateTime = array[9];
 
                 var insertSQL = $"INSERT INTO {DbTable.F_TEST_LOG_DATA_NAME}(" +
                     $"{DbTable.F_TEST_LOG_DATA.TYPE_NO}," +
@@ -35,9 +36,11 @@ namespace MesWcfService.MessageQueue.RemoteClient
                     $"{DbTable.F_TEST_LOG_DATA.TEST_RESULT}," +
                     $"{DbTable.F_TEST_LOG_DATA.TEAM_LEADER}," +
                     $"{DbTable.F_TEST_LOG_DATA.ADMIN}," +
-                    $"{DbTable.F_TEST_LOG_DATA.UPDATE_DATE}) VALUES(" +
+                    $"{DbTable.F_TEST_LOG_DATA.UPDATE_DATE}," +
+                    $"{DbTable.F_TEST_LOG_DATA.JOIN_DATE_TIME}) VALUES(" +
                     $"'{typeNo}','{stationName}','{productSN}','{testItem}','{limit}'," +
-                    $"'{currentValue}','{testResult}','{teamLeader}','{admin}','{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}')";
+                    $"'{currentValue}','{testResult}','{teamLeader}','{admin}'," +
+                    $"'{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}','{joinDateTime}')";
                 //if (IsExistLogData(array))
                 //    return "OK";
                 var res = SQLServer.ExecuteNonQuery(insertSQL);

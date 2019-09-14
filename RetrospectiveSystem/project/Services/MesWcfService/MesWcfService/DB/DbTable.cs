@@ -59,6 +59,7 @@ namespace MesWcfService.DB
             public const string ADMIN           = "[admin]";
             public const string STATION_IN_DATE = "[station_in_date]";
             public const string STATION_OUT_DATE = "[station_out_date]";
+            public const string JOIN_DATE_TIME = "[joinDateTime]";
         }
 
         public class F_Material
@@ -195,6 +196,7 @@ namespace MesWcfService.DB
             public const string TEAM_LEADER = "[teamLeader]";
             public const string ADMIN = "[admin]";
             public const string UPDATE_DATE = "[updateDate]";
+            public const string JOIN_DATE_TIME = "[joinDateTime]";
         }
 
         public class F_BINDING_PCBA

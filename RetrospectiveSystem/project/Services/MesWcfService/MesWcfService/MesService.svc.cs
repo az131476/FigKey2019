@@ -78,9 +78,9 @@ namespace MesWcfService
         [SwaggerWcfResponse("0X03", "ERROR_STATION_IS_NULL")]
         [SwaggerWcfResponse("0X04", "ERROR_FIRST_STATION")]
         [SwaggerWcfResponse(HttpStatusCode.Unused)]
-        public string UpdateTestResultData(string sn, string typeNo, string station,string result,string teamLeader, string admin)
+        public string UpdateTestResultData(string sn, string typeNo, string station,string result,string teamLeader, string admin,string joinDateTime)
         {
-            string[] array = new string[] { sn, typeNo, station,result,teamLeader,admin};
+            string[] array = new string[] { sn, typeNo, station,result,teamLeader,admin, joinDateTime };
             insertDataQueue.Enqueue(array);
             return TestResult.CommitTestResult(insertDataQueue);
         }
@@ -260,7 +260,7 @@ namespace MesWcfService
         [SwaggerWcfResponse("FAIL", "更新LIMIT配置失败")]
         [SwaggerWcfResponse("ERROR", "异常错误")]
         public string UpdateTestLog(string typeNo, string stationName,string productSN, 
-            string testItem,string limit,string currentValue,string testResult, string teamLeader, string admin)
+            string testItem,string limit,string currentValue,string testResult, string teamLeader, string admin,string joinDateTime)
         {
             typeNo = typeNo.Trim();
             stationName = stationName.Trim();
@@ -271,7 +271,7 @@ namespace MesWcfService
                 return "stationName is null";
             if (productSN == "")
                 return "product sn is null";
-            string[] array = new string[] {typeNo,stationName,productSN,testItem,limit,currentValue,testResult,teamLeader,admin};
+            string[] array = new string[] {typeNo,stationName,productSN,testItem,limit,currentValue,testResult,teamLeader,admin, joinDateTime };
             updateLogDataQueue.Enqueue(array);
             return TestLogData.UpdateTestLogData(updateLogDataQueue);
         }

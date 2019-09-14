@@ -47,6 +47,7 @@ namespace MesWcfService.MessageQueue.RemoteClient
             var result = array[3].Trim();
             var teamLeader = array[4].Trim();
             var admin = array[5].Trim();
+            var joinDateTime = array[6].Trim();
             if (sn == "")
                 return ConvertTestResultCode(UpdateTestResultEnum.ERROR_SN_IS_NULL);
             if (station == "")
@@ -75,7 +76,7 @@ namespace MesWcfService.MessageQueue.RemoteClient
                     //已插入进站记录
                     //更新出站时间
                     LogHelper.Log.Info("【第一个工位-已插入进站记录-更新出站记录】");
-                    var row = UpdateTestResult(sn, typeNo, station, result, teamLeader, admin);
+                    var row = UpdateTestResult(sn, typeNo, station, result, teamLeader, admin, joinDateTime);
                     if (row > 0)
                     {
                         return ConvertTestResultCode(UpdateTestResultEnum.STATUS_SUCCESS);
@@ -90,7 +91,7 @@ namespace MesWcfService.MessageQueue.RemoteClient
             {
                 //传入工站为第一个工站之后的工站，更新测试结果与出站时间
                 LogHelper.Log.Info("【传入工位不为第一个工位-更新出站记录】");
-                var row = UpdateTestResult(sn,typeNo,station,result,teamLeader,admin);
+                var row = UpdateTestResult(sn,typeNo,station,result,teamLeader,admin, joinDateTime);
                 if (row > 0)
                 {
                     return ConvertTestResultCode(UpdateTestResultEnum.STATUS_SUCCESS);
@@ -124,13 +125,14 @@ namespace MesWcfService.MessageQueue.RemoteClient
         }
 
         private static int UpdateTestResult(string sn ,string typeNo,string station,
-            string result,string teamder,string admin)
+            string result,string teamder,string admin,string joinDateTime)
         {
             var stationInTime = SelectStationInDate(sn,station,typeNo);
             var updateSQL = $"UPDATE {DbTable.F_TEST_RESULT_NAME} SET {DbTable.F_Test_Result.TEST_RESULT} = '{result}'," +
                 $"{DbTable.F_Test_Result.TEAM_LEADER} = '{teamder}'," +
                 $"{DbTable.F_Test_Result.ADMIN} = '{admin}'," +
-                $"{DbTable.F_Test_Result.STATION_OUT_DATE} = '{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}' " +
+                $"{DbTable.F_Test_Result.STATION_OUT_DATE} = '{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}'," +
+                $"{DbTable.F_Test_Result.JOIN_DATE_TIME} = '{joinDateTime}' " +
                 $"WHERE " +
                 $"{DbTable.F_Test_Result.SN} = '{sn}' AND " +
                 $"{DbTable.F_Test_Result.TYPE_NO} = '{typeNo}' AND " +

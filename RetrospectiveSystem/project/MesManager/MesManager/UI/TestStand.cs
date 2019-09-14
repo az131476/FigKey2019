@@ -183,7 +183,8 @@ namespace MesManager.UI
                     startTime = this.pickerStartTime.Text;
                     endTime = this.pickerEndTime.Text;
                 }
-                SelectTestLogData(this.tool_queryCondition.Text,startTime,endTime);
+                //SelectTestLogData(this.tool_queryCondition.Text,startTime,endTime);
+                SelectTestResultDetail(this.tool_queryCondition.Text,startTime,endTime);
                 this.radGridView1.Dock = DockStyle.Fill;
                 this.radGridView1.Visible = true;
                 this.panel1.Visible = false;
@@ -263,6 +264,20 @@ namespace MesManager.UI
                 }
             }
             this.radGridView1.DataSource = dataSource;
+            this.radGridView1.Columns[0].BestFit();
+        }
+
+        async private void SelectTestResultDetail(string queryFilter, string startTime, string endTime)
+        {
+            var ds = await serviceClient.SelectTestResultLogDetailAsync(queryFilter, startTime, endTime);
+            if (ds.Tables.Count < 1)
+            {
+                this.radGridView1.DataSource = null;
+                return;
+            }
+            var dt = ds.Tables[0];
+            this.radGridView1.DataSource = null;
+            this.radGridView1.DataSource = dt;
             this.radGridView1.Columns[0].BestFit();
         }
 

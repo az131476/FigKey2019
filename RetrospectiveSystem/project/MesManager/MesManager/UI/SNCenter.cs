@@ -26,6 +26,7 @@ namespace MesManager.UI
         private DataTable dataSourceMaterialBasic;
         private DataTable dataSourceProductCheck;
         private DataTable dataSourceQuanlity;
+        private DataTable dataSourceProductPackage;
         private const string DATA_ORDER = "序号";
 
         #region 物料统计字段
@@ -65,6 +66,13 @@ namespace MesManager.UI
         private const string CHECK_REMARK = "描述";
         private const string CHECK_LEADER = "班组长";
         private const string CHECK_ADMIN = "管理员";
+        #endregion
+
+        #region 产品打包
+        public const string OUT_CASE_CODE = "箱子编码";
+        public const string CASE_PRODUCT_TYPE_NO = "产品型号";
+        public const string CASE_STORAGE_CAPACITY = "箱子容量";
+        public const string CASE_AMOUNTED = "产品实际数据";
         #endregion
 
         private enum ExportFormat
@@ -446,8 +454,21 @@ namespace MesManager.UI
             var filter = tb_package.Text;
             //箱子编码/追溯码/型号
             DataTable dt = (await serviceClient.SelectPackageStorageAsync(filter)).Tables[0];
-            this.radGridViewPackage.DataSource = null;
-            this.radGridViewPackage.DataSource = dt;
+            dataSourceProductPackage.Clear();
+            if (dt.Rows.Count > 0)
+            {
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    DataRow dr = dataSourceProductPackage.NewRow();
+                    dr[DATA_ORDER] = i + 1;
+                    dr[OUT_CASE_CODE] = dt.Rows[i][0].ToString();
+                    dr[CASE_PRODUCT_TYPE_NO] = dt.Rows[i][1].ToString();
+                    dr[CASE_STORAGE_CAPACITY] = dt.Rows[i][2].ToString();
+                    dr[CASE_AMOUNTED] = dt.Rows[i][3].ToString();
+                    dataSourceProductPackage.Rows.Add(dr);
+                }
+            }
+            this.radGridViewPackage.DataSource = dataSourceProductPackage;
             this.radGridViewPackage.Columns[0].BestFit();
         }
 
@@ -535,6 +556,15 @@ namespace MesManager.UI
                 dataSourceQuanlity.Columns.Add(SHUT_REASON);
                 dataSourceQuanlity.Columns.Add(USER_NAME);
                 dataSourceQuanlity.Columns.Add(STATEMENT_DATE);
+            }
+            if (dataSourceProductPackage == null)
+            {
+                dataSourceProductPackage = new DataTable();
+                dataSourceProductPackage.Columns.Add(DATA_ORDER);
+                dataSourceProductPackage.Columns.Add(OUT_CASE_CODE);
+                dataSourceProductPackage.Columns.Add(CASE_PRODUCT_TYPE_NO);
+                dataSourceProductPackage.Columns.Add(CASE_STORAGE_CAPACITY);
+                dataSourceProductPackage.Columns.Add(CASE_AMOUNTED);
             }
         }
 

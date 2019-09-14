@@ -192,5 +192,8 @@ namespace MesAPI
 
         [OperationContract]
         DataSet SelectTestResultDetail();
+
+        [OperationContract]
+        DataSet SelectTestResultLogDetail(string queryFilter,string startTime,string endTime);
     }
 }

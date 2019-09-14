@@ -31,14 +31,15 @@ namespace MesWcfService
         [OperationContract]
         [SwaggerWcfPath("UpdateTestResultData", "更新测试数据")]
         [WebInvoke(Method = "GET", UriTemplate = "UpdateTestResultData?sn={sn}&typeNO={typeNo}&station={station}" +
-            "&result={result}&teamLeader={teamLeader}&admin={admin}",
+            "&result={result}&teamLeader={teamLeader}&admin={admin}&joinDateTime={joinDateTime}",
             BodyStyle = WebMessageBodyStyle.Bare, RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
         string UpdateTestResultData([SwaggerWcfParameter(Description = "追溯码*")]string sn, 
             [SwaggerWcfParameter(Description = "产品型号*")]string typeNo, 
             [SwaggerWcfParameter(Description = "站位名称*")]string station,  
             [SwaggerWcfParameter(Description = "测试结果*，PASS/FAIL")]string result,
             [SwaggerWcfParameter(Description = "班组长")]string teamLeader,
-            [SwaggerWcfParameter(Description = "管理员")]string admin);
+            [SwaggerWcfParameter(Description = "管理员")]string admin,
+            [SwaggerWcfParameter(Description = "连接同步日期")]string joinDateTime);
         #endregion
 
         #region 【接口】SelectLastTestResult 查询上一站位最新记录
@@ -162,15 +163,16 @@ namespace MesWcfService
             "teamLeader={teamLeader}&admin={admin}",
             BodyStyle = WebMessageBodyStyle.Bare, RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
         string UpdateTestLog(
-            [SwaggerWcfParameter(Description = "产品型号")]string typeNo, 
-            [SwaggerWcfParameter(Description = "工站名称")]string stationName, 
+            [SwaggerWcfParameter(Description = "产品型号")]string typeNo,
+            [SwaggerWcfParameter(Description = "工站名称")]string stationName,
             [SwaggerWcfParameter(Description = "产品SN")]string productSN,
             [SwaggerWcfParameter(Description = "测试项")]string testItem,
             [SwaggerWcfParameter(Description = "limit")]string limit,
             [SwaggerWcfParameter(Description = "当前值")]string currentValue,
             [SwaggerWcfParameter(Description = "测试结果")]string testResult,
             [SwaggerWcfParameter(Description = "班组长")]string teamLeader,
-            [SwaggerWcfParameter(Description = "管理员")]string admin);
+            [SwaggerWcfParameter(Description = "管理员")]string admin,
+            [SwaggerWcfParameter(Description = "连接同步日期")]string joinDateTime);
         #endregion
 
         #region 【接口】 SelectCurrentTProcess 查询当前工艺流程
