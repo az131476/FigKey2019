@@ -534,7 +534,6 @@ namespace MesAPI
                     dr[TestResultItemContent.Voltage_5V_Item] = SelectTestItemValue(testResultBasic.ProductSN, testResultBasic.StationName, TestResultItemContent.Voltage_5V_Item);
                     dr[TestResultItemContent.Voltage_33_1V_Item] = SelectTestItemValue(testResultBasic.ProductSN, testResultBasic.StationName, TestResultItemContent.Voltage_33_1V_Item);
                     dr[TestResultItemContent.Voltage_33_2V_Item] = SelectTestItemValue(testResultBasic.ProductSN, testResultBasic.StationName, TestResultItemContent.Voltage_33_2V_Item);
-                    dr[TestResultItemContent.Main_Soft_Version_Item] = SelectTestItemValue(testResultBasic.ProductSN, testResultBasic.StationName, TestResultItemContent.Main_Soft_Version_Item);
                     dr[TestResultItemContent.Work_Electric_Test] = SelectTestItemValue(testResultBasic.ProductSN, testResultBasic.StationName, TestResultItemContent.Work_Electric_Test);
                     dr[TestResultItemContent.PartNumber] = SelectTestItemValue(testResultBasic.ProductSN, testResultBasic.StationName, TestResultItemContent.PartNumber);
                     dr[TestResultItemContent.HardWareVersion] = SelectTestItemValue(testResultBasic.ProductSN, testResultBasic.StationName, TestResultItemContent.HardWareVersion);
@@ -588,7 +587,6 @@ namespace MesAPI
             dt.Columns.Add(TestResultItemContent.Voltage_5V_Item);
             dt.Columns.Add(TestResultItemContent.Voltage_33_1V_Item);
             dt.Columns.Add(TestResultItemContent.Voltage_33_2V_Item);
-            dt.Columns.Add(TestResultItemContent.Main_Soft_Version_Item);
             dt.Columns.Add(TestResultItemContent.Work_Electric_Test);
             dt.Columns.Add(TestResultItemContent.PartNumber);
             dt.Columns.Add(TestResultItemContent.HardWareVersion);
@@ -877,7 +875,6 @@ namespace MesAPI
                     dr[TestResultItemContent.Voltage_5V_Item] = SelectTestItemValue(pcbaSNTemp, stationName, TestResultItemContent.Voltage_5V_Item, joinDateTime);
                     dr[TestResultItemContent.Voltage_33_1V_Item] = SelectTestItemValue(pcbaSNTemp, stationName, TestResultItemContent.Voltage_33_1V_Item, joinDateTime);
                     dr[TestResultItemContent.Voltage_33_2V_Item] = SelectTestItemValue(pcbaSNTemp, stationName, TestResultItemContent.Voltage_33_2V_Item, joinDateTime);
-                    dr[TestResultItemContent.Main_Soft_Version_Item] = SelectTestItemValue(pcbaSNTemp, stationName, TestResultItemContent.Main_Soft_Version_Item, joinDateTime);
                     dr[TestResultItemContent.Work_Electric_Test] = SelectTestItemValue(pcbaSNTemp, stationName, TestResultItemContent.Work_Electric_Test, joinDateTime);
                     dr[TestResultItemContent.PartNumber] = SelectTestItemValue(pcbaSNTemp, stationName, TestResultItemContent.PartNumber, joinDateTime);
                     dr[TestResultItemContent.HardWareVersion] = SelectTestItemValue(pcbaSNTemp, stationName, TestResultItemContent.HardWareVersion, joinDateTime);
