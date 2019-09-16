@@ -202,6 +202,7 @@ namespace MesManager.UI
         {
             serviceClient = new MesService.MesServiceClient();
             this.panel1.Visible = false;
+            rbtn_today.Checked = true;
             this.radGridView1.Dock = DockStyle.Fill;
             DataGridViewCommon.SetRadGridViewProperty(this.radGridView1,false);
             this.radGridView1.ReadOnly = true;
@@ -213,7 +214,6 @@ namespace MesManager.UI
                     this.tool_queryCondition.Items.Add(dt.Rows[i][0].ToString());
                 }
             }
-            rbtn_today.Checked = true;
             //init treeview
             string path = @"D:\work\project\FigKey\RetrospectiveSystem\project\IIS";
             ImageList imageList = new ImageList();

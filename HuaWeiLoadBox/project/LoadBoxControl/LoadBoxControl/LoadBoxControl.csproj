@@ -75,6 +75,12 @@
     <Compile Include="AutoTimer.Designer.cs">
       <DependentUpon>AutoTimer.cs</DependentUpon>
     </Compile>
+    <Compile Include="EditInput.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditInput.Designer.cs">
+      <DependentUpon>EditInput.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,6 +100,9 @@
     <Compile Include="ReceiveMessage.cs" />
     <EmbeddedResource Include="AutoTimer.resx">
       <DependentUpon>AutoTimer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditInput.resx">
+      <DependentUpon>EditInput.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

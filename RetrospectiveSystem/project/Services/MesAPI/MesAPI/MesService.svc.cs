@@ -715,7 +715,7 @@ namespace MesAPI
                     return dt.Rows[0][0].ToString();
                 }
             }
-            LogHelper.Log.Info("【查PCBA失败！】"+sn);
+            //LogHelper.Log.Info("【查PCBA失败！】"+sn);
             return sn;
         }
 
@@ -738,7 +738,7 @@ namespace MesAPI
                     return dt.Rows[0][0].ToString();
                 }
             }
-            LogHelper.Log.Info("【查外壳码失败！】" + sn);
+            //LogHelper.Log.Info("【查外壳码失败！】" + sn);
             return "";
         }
 
@@ -841,25 +841,26 @@ namespace MesAPI
                             $"OR " +
                             $"{DbTable.F_Test_Result.STATION_NAME} = '{queryFilter}'";
             }
-            LogHelper.Log.Info(selectTestResultSQL);
+            LogHelper.Log.Info("【开始查询过站历史】"+selectTestResultSQL);
             var dtResult = SQLServer.ExecuteDataSet(selectTestResultSQL).Tables[0];
             if (dtResult.Rows.Count > 0)
             {
-                for (int i = 0; i < dtResult.Rows.Count; i++)
+                var count = 0;
+                foreach (DataRow dataRow in dtResult.Rows)
                 {
                     DataRow dr = dt.NewRow();
-                    var pcbaSNTemp = dtResult.Rows[i][0].ToString();
-                    var productTypeNo = dtResult.Rows[i][1].ToString();
-                    var stationName = dtResult.Rows[i][2].ToString();
-                    var testResult = dtResult.Rows[i][3].ToString();
-                    var stationInDate = dtResult.Rows[i][4].ToString();
-                    var stationOutDate = dtResult.Rows[i][5].ToString();
-                    var teamLeader = dtResult.Rows[i][6].ToString();
-                    var joinDateTime = dtResult.Rows[i][7].ToString();
+                    var pcbaSNTemp = dataRow[0].ToString();
+                    var productTypeNo = dataRow[1].ToString();
+                    var stationName = dataRow[2].ToString();
+                    var testResult = dataRow[3].ToString();
+                    var stationInDate = dataRow[4].ToString();
+                    var stationOutDate = dataRow[5].ToString();
+                    var teamLeader = dataRow[6].ToString();
+                    var joinDateTime = dataRow[7].ToString();
                     var pcbaSN = GetPCBASn(pcbaSNTemp);
                     var productSN = GetProductSn(pcbaSNTemp);
 
-                    dr[TestResultItemContent.Order] = i + 1;
+                    dr[TestResultItemContent.Order] = count + 1;
                     dr[TestResultItemContent.PcbaSN] = pcbaSN;
                     dr[TestResultItemContent.ProductSN] = productSN;
                     dr[TestResultItemContent.ProductTypeNo] = productTypeNo;
@@ -902,7 +903,9 @@ namespace MesAPI
                     #endregion
 
                     dt.Rows.Add(dr);
+                    count++;
                 }
+                LogHelper.Log.Info("【查询过站历史完成】");
                 ds.Tables.Add(dt);
             }
             return ds;
