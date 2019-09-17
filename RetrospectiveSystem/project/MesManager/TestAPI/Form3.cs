@@ -22,12 +22,19 @@ namespace TestAPI
             InitializeComponent();
         }
 
-        async private void Form3_Load(object sender, EventArgs e)
+        private void Form3_Load(object sender, EventArgs e)
         {
             MesServiceTest.MesServiceClient mesServiceClient = new MesServiceTest.MesServiceClient();
             //serviceClient = new MesServiceT.MesServiceClient();
-            var res = mesServiceClient.UpdateTestResultData("1111111111","A01", "烧录工站", "fail","","");
+            //var res = mesServiceClient.UpdateTestResultData("1111111111","A01", "烧录工站", "fail","","");
             //var res = mesServiceClient.SelectLastTestResult("1111111111", "灵敏度测试工站");
+            var pcbaSN = "017 B19823003801";
+            var stationName = "外壳装配工站";
+            var materialcode = "A19083000080&S2.118&1.2.12.159&50&20190830&1T20190830001";
+            mesServiceClient.SelectLastTestResult(pcbaSN,stationName);
+            mesServiceClient.UpdateMaterialStatistics("A01",stationName,materialcode,"3","","");
+            System.Threading.Thread.Sleep(10000);
+            mesServiceClient.UpdateMaterialStatistics("A01", stationName, materialcode, "4", "", "");
         }
 
         public void LSOSQL()

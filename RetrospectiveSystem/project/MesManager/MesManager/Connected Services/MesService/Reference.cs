@@ -537,10 +537,10 @@ namespace MesManager.MesService {
         System.Threading.Tasks.Task<System.Data.DataSet> SelectProductBindingRecordAsync(string casecode, string bindingState);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectPackageProduct", ReplyAction="http://tempuri.org/IMesService/SelectPackageProductResponse")]
-        System.Data.DataSet SelectPackageProduct(string queryFilter, string state, bool IsShowNumber);
+        System.Data.DataSet SelectPackageProduct(string casecode, string queryFilter, string state, bool IsShowNumber);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectPackageProduct", ReplyAction="http://tempuri.org/IMesService/SelectPackageProductResponse")]
-        System.Threading.Tasks.Task<System.Data.DataSet> SelectPackageProductAsync(string queryFilter, string state, bool IsShowNumber);
+        System.Threading.Tasks.Task<System.Data.DataSet> SelectPackageProductAsync(string casecode, string queryFilter, string state, bool IsShowNumber);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectTestProgrameVersion", ReplyAction="http://tempuri.org/IMesService/SelectTestProgrameVersionResponse")]
         System.Data.DataSet SelectTestProgrameVersion(string productTypeNo);
@@ -625,6 +625,30 @@ namespace MesManager.MesService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectTestResultLogDetail", ReplyAction="http://tempuri.org/IMesService/SelectTestResultLogDetailResponse")]
         System.Threading.Tasks.Task<System.Data.DataSet> SelectTestResultLogDetailAsync(string queryFilter, string startTime, string endTime);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/GetPCBASn", ReplyAction="http://tempuri.org/IMesService/GetPCBASnResponse")]
+        string GetPCBASn(string sn);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/GetPCBASn", ReplyAction="http://tempuri.org/IMesService/GetPCBASnResponse")]
+        System.Threading.Tasks.Task<string> GetPCBASnAsync(string sn);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/GetProductSn", ReplyAction="http://tempuri.org/IMesService/GetProductSnResponse")]
+        string GetProductSn(string sn);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/GetProductSn", ReplyAction="http://tempuri.org/IMesService/GetProductSnResponse")]
+        System.Threading.Tasks.Task<string> GetProductSnAsync(string sn);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectPackageProductOfCaseCode", ReplyAction="http://tempuri.org/IMesService/SelectPackageProductOfCaseCodeResponse")]
+        System.Data.DataSet SelectPackageProductOfCaseCode(string queryFilter, string state, bool IsShowNumber);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectPackageProductOfCaseCode", ReplyAction="http://tempuri.org/IMesService/SelectPackageProductOfCaseCodeResponse")]
+        System.Threading.Tasks.Task<System.Data.DataSet> SelectPackageProductOfCaseCodeAsync(string queryFilter, string state, bool IsShowNumber);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectPackageProductCheck", ReplyAction="http://tempuri.org/IMesService/SelectPackageProductCheckResponse")]
+        System.Data.DataSet SelectPackageProductCheck(string queryFilter, string state, bool IsShowNumber);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectPackageProductCheck", ReplyAction="http://tempuri.org/IMesService/SelectPackageProductCheckResponse")]
+        System.Threading.Tasks.Task<System.Data.DataSet> SelectPackageProductCheckAsync(string queryFilter, string state, bool IsShowNumber);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -942,12 +966,12 @@ namespace MesManager.MesService {
             return base.Channel.SelectProductBindingRecordAsync(casecode, bindingState);
         }
         
-        public System.Data.DataSet SelectPackageProduct(string queryFilter, string state, bool IsShowNumber) {
-            return base.Channel.SelectPackageProduct(queryFilter, state, IsShowNumber);
+        public System.Data.DataSet SelectPackageProduct(string casecode, string queryFilter, string state, bool IsShowNumber) {
+            return base.Channel.SelectPackageProduct(casecode, queryFilter, state, IsShowNumber);
         }
         
-        public System.Threading.Tasks.Task<System.Data.DataSet> SelectPackageProductAsync(string queryFilter, string state, bool IsShowNumber) {
-            return base.Channel.SelectPackageProductAsync(queryFilter, state, IsShowNumber);
+        public System.Threading.Tasks.Task<System.Data.DataSet> SelectPackageProductAsync(string casecode, string queryFilter, string state, bool IsShowNumber) {
+            return base.Channel.SelectPackageProductAsync(casecode, queryFilter, state, IsShowNumber);
         }
         
         public System.Data.DataSet SelectTestProgrameVersion(string productTypeNo) {
@@ -1060,6 +1084,38 @@ namespace MesManager.MesService {
         
         public System.Threading.Tasks.Task<System.Data.DataSet> SelectTestResultLogDetailAsync(string queryFilter, string startTime, string endTime) {
             return base.Channel.SelectTestResultLogDetailAsync(queryFilter, startTime, endTime);
+        }
+        
+        public string GetPCBASn(string sn) {
+            return base.Channel.GetPCBASn(sn);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetPCBASnAsync(string sn) {
+            return base.Channel.GetPCBASnAsync(sn);
+        }
+        
+        public string GetProductSn(string sn) {
+            return base.Channel.GetProductSn(sn);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetProductSnAsync(string sn) {
+            return base.Channel.GetProductSnAsync(sn);
+        }
+        
+        public System.Data.DataSet SelectPackageProductOfCaseCode(string queryFilter, string state, bool IsShowNumber) {
+            return base.Channel.SelectPackageProductOfCaseCode(queryFilter, state, IsShowNumber);
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> SelectPackageProductOfCaseCodeAsync(string queryFilter, string state, bool IsShowNumber) {
+            return base.Channel.SelectPackageProductOfCaseCodeAsync(queryFilter, state, IsShowNumber);
+        }
+        
+        public System.Data.DataSet SelectPackageProductCheck(string queryFilter, string state, bool IsShowNumber) {
+            return base.Channel.SelectPackageProductCheck(queryFilter, state, IsShowNumber);
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> SelectPackageProductCheckAsync(string queryFilter, string state, bool IsShowNumber) {
+            return base.Channel.SelectPackageProductCheckAsync(queryFilter, state, IsShowNumber);
         }
     }
 }

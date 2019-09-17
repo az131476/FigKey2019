@@ -436,17 +436,16 @@ namespace MesManager.UI
             var filter = tb_sn.Text;
             //DataSet ds = (await serviceClient.SelectTestResultUpperAsync(filter, filter, filter, true));
             DataSet ds = await serviceClient.SelectTestResultDetailAsync();
-            if (ds == null)
+            if (ds.Tables.Count < 1)
             {
-                radGridViewSn.DataSource = null;
+                this.radGridViewSn.DataSource = null;
                 return;
             }
             DataTable dt = ds.Tables[0];
             this.radGridViewSn.DataSource = null; 
             radGridViewSn.DataSource = dt;
-            this.radGridViewSn.Columns[0].BestFit();
-            //this.radGridViewSn.Columns[2].BestFit();
-            //this.radGridViewSn.Columns[9].BestFit();
+            this.radGridViewSn.MasterTemplate.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.None;
+            this.radGridViewSn.BestFitColumns();
         }
 
         async private void SelectOfPackage(string state)
@@ -476,7 +475,7 @@ namespace MesManager.UI
         {
             var filter = tb_productCheck.Text;
             //箱子编码/追溯码/型号
-            DataTable dt = (await serviceClient.SelectPackageProductAsync(filter, state,false)).Tables[0];
+            DataTable dt = (await serviceClient.SelectPackageProductCheckAsync(filter, state,false)).Tables[0];
             this.dataSourceProductCheck.Clear();
             for (int i = 0; i < dt.Rows.Count; i++)
             {
@@ -612,7 +611,13 @@ namespace MesManager.UI
         {
             //物料信息表
             //物料编码+物料名称+所属型号+在哪个工序/站位消耗+该位置消耗数量
-            var dt = (await serviceClient.SelectMaterialBasicMsgAsync(this.tb_material.Text)).Tables[0];
+            var ds = await serviceClient.SelectMaterialBasicMsgAsync(this.tb_material.Text);
+            if (ds.Tables.Count < 1)
+            {
+                this.dataSourceMaterialBasic.Clear();
+                return;
+            }
+            var dt = ds.Tables[0];
             this.dataSourceMaterialBasic.Clear();
             for (int i = 0; i < dt.Rows.Count; i++)
             {
@@ -621,8 +626,10 @@ namespace MesManager.UI
                 //var materialName = dt.Rows[i][1].ToString();
                 var productTypeNo = dt.Rows[i][2].ToString();
                 var useAmounted = dt.Rows[i][3].ToString();
-                var snPCBA = dt.Rows[i][4].ToString();
-                var snOutter = dt.Rows[i][5].ToString();
+                var sn = dt.Rows[i][4].ToString();
+                var amountTotal = dt.Rows[i][5].ToString();
+                var snPCBA = serviceClient.GetPCBASn(sn);
+                var snOutter = serviceClient.GetProductSn(sn);
                 if (!materialCode.Contains("&"))
                     continue;
                 AnalysisMaterialCode analysisMaterial = AnalysisMaterialCode.GetMaterialDetail(materialCode);
@@ -641,7 +648,7 @@ namespace MesManager.UI
                 dr[MATERIAL_NAME] = materialName;
                 dr[PRODUCT_TYPENO] = productTypeNo;
                 dr[USE_AMOUNTED] = useAmounted;
-                dr[RESIDUE_STOCK] = int.Parse(qtyCode) - int.Parse(useAmounted);
+                dr[RESIDUE_STOCK] = int.Parse(qtyCode) - int.Parse(amountTotal);
                 dr[SN_PCBA] = snPCBA;
                 dr[SN_OUTTER] = snOutter;
                 dataSourceMaterialBasic.Rows.Add(dr);

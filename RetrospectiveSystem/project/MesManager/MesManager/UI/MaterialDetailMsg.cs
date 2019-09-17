@@ -105,8 +105,10 @@ namespace MesManager.UI
                 var teamLeader = dt.Rows[i][5].ToString();
                 var admin = dt.Rows[i][6].ToString();
                 var updateDate = dt.Rows[i][7].ToString();
-                var snPCBA = dt.Rows[i][8].ToString();
-                var snOutter = dt.Rows[i][9].ToString();
+                var sn = dt.Rows[i][8].ToString();
+                var amountedTotal = dt.Rows[i][9].ToString();
+                var snPCBA = serviceClient.GetPCBASn(sn);
+                var snOutter = serviceClient.GetProductSn(sn);
                 AnalysisMaterialCode analysisMaterialCode = AnalysisMaterialCode.GetMaterialDetail(materialCode);
                 var pnCode = analysisMaterialCode.MaterialPN;
                 var lotCode = analysisMaterialCode.MaterialLOT;
@@ -128,7 +130,7 @@ namespace MesManager.UI
                 dr[UPDATE_DATE] = updateDate;
                 dr[SN_PCBA] = snPCBA;
                 dr[SN_OUTTER] = snOutter;
-                dr[RESIDUE_STOCK] = int.Parse(qtyCode) - int.Parse(useAmounted);
+                dr[RESIDUE_STOCK] = int.Parse(qtyCode) - int.Parse(amountedTotal);
                 dataSourceMaterialDetail.Rows.Add(dr);
             }
             this.radGridView1.DataSource = dataSourceMaterialDetail;

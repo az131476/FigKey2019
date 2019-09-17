@@ -155,12 +155,12 @@ namespace MesWcfService
             [SwaggerWcfParameter(Description = "管理员")]string admin);
         #endregion
 
-        #region 【接口】 UpdateLimitConfig 更新测试台log记录
+        #region 【接口】 UpdateTestLog 更新测试台log记录
         [OperationContract]
         [SwaggerWcfPath("UpdateTestLog", "更新测试台log记录")]
         [WebInvoke(Method = "GET", UriTemplate = "UpdateTestLog?typeNo={typeNo}&stationName={stationName}&" +
             "productSN={productSN}&testItem={testItem}&limit={limit}&currentValue={currentValue}&testResult={testResult}&" +
-            "teamLeader={teamLeader}&admin={admin}",
+            "teamLeader={teamLeader}&admin={admin}&joinDateTime={joinDateTime}",
             BodyStyle = WebMessageBodyStyle.Bare, RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
         string UpdateTestLog(
             [SwaggerWcfParameter(Description = "产品型号")]string typeNo,

@@ -39,7 +39,7 @@ namespace LoadBoxControl
         private const string PAGE_DAC_VOLTAGE_BACK      = "pageDAC";
         private const string PAGE_DAC_PWM_BEFORE        = "page pagePWM";
         private const string PAGE_DAC_PWM_BACK          = "pagePWM";
-        private const string FF_END                     = "FFFFFF";
+        private const string FF_END                     = "FF FF FF";
         #endregion
 
         public LoadBoxMainForm()
@@ -84,18 +84,546 @@ namespace LoadBoxControl
             this.tool_setParams.Click += Tool_setParams_Click;
             this.serialPort.DataReceived += SerialPort_DataReceived;
             this.FormClosed += LoadBoxMainForm_FormClosed;
+
+            #region voltage click event hander
             this.tb_v1.Click += Tb_v1_Click;
+            this.tb_v2.Click += Tb_v2_Click;
+            this.tb_v3.Click += Tb_v3_Click;
+            this.tb_v4.Click += Tb_v4_Click;
+            this.tb_v5.Click += Tb_v5_Click;
+            this.tb_v6.Click += Tb_v6_Click;
+            this.tb_v7.Click += Tb_v7_Click;
+            this.tb_v8.Click += Tb_v8_Click;
+            this.tb_v9.Click += Tb_v9_Click;
+            this.tb_v10.Click += Tb_v10_Click;
+            this.tb_v11.Click += Tb_v11_Click;
+            this.tb_v12.Click += Tb_v12_Click;
+            this.tb_v13.Click += Tb_v13_Click;
+            this.tb_v14.Click += Tb_v14_Click;
+            this.tb_v15.Click += Tb_v15_Click;
+            this.tb_v16.Click += Tb_v16_Click;
+            this.tb_v17.Click += Tb_v17_Click;
+            this.tb_v18.Click += Tb_v18_Click;
+            this.tb_v19.Click += Tb_v19_Click;
+            this.tb_v20.Click += Tb_v20_Click;
+            #endregion
+
+            #region pwm frequency 
+            this.tb_pf1.Click += Tb_pf1_Click;
+            this.tb_pf2.Click += Tb_pf2_Click;
+            this.tb_pf3.Click += Tb_pf3_Click;
+            this.tb_pf4.Click += Tb_pf4_Click;
+            this.tb_pf5.Click += Tb_pf5_Click;
+            this.tb_pf6.Click += Tb_pf6_Click;
+            this.tb_pf7.Click += Tb_pf7_Click;
+            this.tb_pf8.Click += Tb_pf8_Click;
+            this.tb_pf9.Click += Tb_pf9_Click;
+            this.tb_pf10.Click += Tb_pf10_Click;
+            this.tb_pf11.Click += Tb_pf11_Click;
+            this.tb_pf12.Click += Tb_pf12_Click;
+            this.tb_pf13.Click += Tb_pf13_Click;
+            this.tb_pf14.Click += Tb_pf14_Click;
+            this.tb_pf15.Click += Tb_pf15_Click;
+            this.tb_pf16.Click += Tb_pf16_Click;
+            this.tb_pf17.Click += Tb_pf17_Click;
+            this.tb_pf18.Click += Tb_pf18_Click;
+            this.tb_pf19.Click += Tb_pf19_Click;
+            this.tb_pf20.Click += Tb_pf20_Click;
+            this.tb_pf21.Click += Tb_pf21_Click;
+            this.tb_pf22.Click += Tb_pf22_Click;
+            this.tb_pf23.Click += Tb_pf23_Click;
+            this.tb_pf24.Click += Tb_pf24_Click;
+            this.tb_pf25.Click += Tb_pf25_Click;
+            this.tb_pf26.Click += Tb_pf26_Click;
+            this.tb_pf27.Click += Tb_pf27_Click;
+            this.tb_pf28.Click += Tb_pf28_Click;
+            this.tb_pf29.Click += Tb_pf29_Click;
+            this.tb_pf30.Click += Tb_pf30_Click;
+            #endregion
+
+            #region pwm frequency persent
+            this.tb_pp1.Click += Tb_pp1_Click;
+            this.tb_pp2.Click += Tb_pp2_Click;
+            this.tb_pp3.Click += Tb_pp3_Click;
+            this.tb_pp4.Click += Tb_pp4_Click;
+            this.tb_pp5.Click += Tb_pp5_Click;
+            this.tb_pp6.Click += Tb_pp6_Click;
+            this.tb_pp7.Click += Tb_pp7_Click;
+            this.tb_pp8.Click += Tb_pp8_Click;
+            this.tb_pp9.Click += Tb_pp9_Click;
+            this.tb_pp10.Click += Tb_pp10_Click;
+            this.tb_pp11.Click += Tb_pp11_Click;
+            this.tb_pp12.Click += Tb_pp12_Click;
+            this.tb_pp13.Click += Tb_pp13_Click;
+            this.tb_pp14.Click += Tb_pp14_Click;
+            this.tb_pp15.Click += Tb_pp15_Click;
+            this.tb_pp16.Click += Tb_pp16_Click;
+            this.tb_pp17.Click += Tb_pp17_Click;
+            this.tb_pp18.Click += Tb_pp18_Click;
+            this.tb_pp19.Click += Tb_pp19_Click;
+            this.tb_pp20.Click += Tb_pp20_Click;
+            this.tb_pp21.Click += Tb_pp21_Click;
+            this.tb_pp22.Click += Tb_pp22_Click;
+            this.tb_pp23.Click += Tb_pp23_Click;
+            this.tb_pp24.Click += Tb_pp24_Click;
+            this.tb_pp25.Click += Tb_pp25_Click;
+            this.tb_pp26.Click += Tb_pp26_Click;
+            this.tb_pp27.Click += Tb_pp27_Click;
+            this.tb_pp28.Click += Tb_pp28_Click;
+            this.tb_pp29.Click += Tb_pp29_Click;
+            this.tb_pp30.Click += Tb_pp30_Click;
+
+            #endregion
+        }
+
+        #region pwm frequency persent
+        private void Tb_pp30_Click(object sender, EventArgs e)
+        {
+            EditPwdFreqPersentSendString(30, this.tb_pp30.Text);
+        }
+
+        private void Tb_pp29_Click(object sender, EventArgs e)
+        {
+            EditPwdFreqPersentSendString(29, this.tb_pp29.Text);
+        }
+
+        private void Tb_pp28_Click(object sender, EventArgs e)
+        {
+            EditPwdFreqPersentSendString(28, this.tb_pp28.Text);
+        }
+
+        private void Tb_pp27_Click(object sender, EventArgs e)
+        {
+            EditPwdFreqPersentSendString(27, this.tb_pp27.Text);
+        }
+
+        private void Tb_pp26_Click(object sender, EventArgs e)
+        {
+            EditPwdFreqPersentSendString(26, this.tb_pp26.Text);
+        }
+
+        private void Tb_pp25_Click(object sender, EventArgs e)
+        {
+            EditPwdFreqPersentSendString(25, this.tb_pp25.Text);
+        }
+
+        private void Tb_pp24_Click(object sender, EventArgs e)
+        {
+            EditPwdFreqPersentSendString(24, this.tb_pp24.Text);
+        }
+
+        private void Tb_pp23_Click(object sender, EventArgs e)
+        {
+            EditPwdFreqPersentSendString(23, this.tb_pp23.Text);
+        }
+
+        private void Tb_pp22_Click(object sender, EventArgs e)
+        {
+            EditPwdFreqPersentSendString(22, this.tb_pp22.Text);
+        }
+
+        private void Tb_pp21_Click(object sender, EventArgs e)
+        {
+            EditPwdFreqPersentSendString(21, this.tb_pp21.Text);
+        }
+
+        private void Tb_pp20_Click(object sender, EventArgs e)
+        {
+            EditPwdFreqPersentSendString(20, this.tb_pp20.Text);
+        }
+
+        private void Tb_pp19_Click(object sender, EventArgs e)
+        {
+            EditPwdFreqPersentSendString(19, this.tb_pp19.Text);
+        }
+
+        private void Tb_pp18_Click(object sender, EventArgs e)
+        {
+            EditPwdFreqPersentSendString(18, this.tb_pp18.Text);
+        }
+
+        private void Tb_pp17_Click(object sender, EventArgs e)
+        {
+            EditPwdFreqPersentSendString(17, this.tb_pp17.Text);
+        }
+
+        private void Tb_pp16_Click(object sender, EventArgs e)
+        {
+            EditPwdFreqPersentSendString(16, this.tb_pp16.Text);
+        }
+
+        private void Tb_pp15_Click(object sender, EventArgs e)
+        {
+            EditPwdFreqPersentSendString(15, this.tb_pp15.Text);
+        }
+
+        private void Tb_pp14_Click(object sender, EventArgs e)
+        {
+            EditPwdFreqPersentSendString(14, this.tb_pp14.Text);
+        }
+
+        private void Tb_pp13_Click(object sender, EventArgs e)
+        {
+            EditPwdFreqPersentSendString(13, this.tb_pp13.Text);
+        }
+
+        private void Tb_pp12_Click(object sender, EventArgs e)
+        {
+            EditPwdFreqPersentSendString(12, this.tb_pp12.Text);
+        }
+
+        private void Tb_pp11_Click(object sender, EventArgs e)
+        {
+            EditPwdFreqPersentSendString(11, this.tb_pp11.Text);
+        }
+
+        private void Tb_pp10_Click(object sender, EventArgs e)
+        {
+            EditPwdFreqPersentSendString(10, this.tb_pp10.Text);
+        }
+
+        private void Tb_pp9_Click(object sender, EventArgs e)
+        {
+            EditPwdFreqPersentSendString(9, this.tb_pp9.Text);
+        }
+
+        private void Tb_pp8_Click(object sender, EventArgs e)
+        {
+            EditPwdFreqPersentSendString(8, this.tb_pp8.Text);
+        }
+
+        private void Tb_pp7_Click(object sender, EventArgs e)
+        {
+            EditPwdFreqPersentSendString(7, this.tb_pp7.Text);
+        }
+
+        private void Tb_pp6_Click(object sender, EventArgs e)
+        {
+            EditPwdFreqPersentSendString(6, this.tb_pp6.Text);
+        }
+
+        private void Tb_pp5_Click(object sender, EventArgs e)
+        {
+            EditPwdFreqPersentSendString(5, this.tb_pp5.Text);
+        }
+
+        private void Tb_pp4_Click(object sender, EventArgs e)
+        {
+            EditPwdFreqPersentSendString(4, this.tb_pp4.Text);
+        }
+
+        private void Tb_pp3_Click(object sender, EventArgs e)
+        {
+            EditPwdFreqPersentSendString(3, this.tb_pp3.Text);
+        }
+
+        private void Tb_pp2_Click(object sender, EventArgs e)
+        {
+            EditPwdFreqPersentSendString(2, this.tb_pp2.Text);
+        }
+
+        private void Tb_pp1_Click(object sender, EventArgs e)
+        {
+            EditPwdFreqPersentSendString(1, this.tb_pp1.Text);
+        }
+        #endregion
+
+        #region pwm frequency
+        private void Tb_pf30_Click(object sender, EventArgs e)
+        {
+            EditPwdFreqSendString(30, this.tb_pf30.Text);
+        }
+
+        private void Tb_pf29_Click(object sender, EventArgs e)
+        {
+            EditPwdFreqSendString(29, this.tb_pf29.Text);
+        }
+
+        private void Tb_pf28_Click(object sender, EventArgs e)
+        {
+            EditPwdFreqSendString(28, this.tb_pf28.Text);
+        }
+
+        private void Tb_pf27_Click(object sender, EventArgs e)
+        {
+            EditPwdFreqSendString(27, this.tb_pf27.Text);
+        }
+
+        private void Tb_pf26_Click(object sender, EventArgs e)
+        {
+            EditPwdFreqSendString(26, this.tb_pf26.Text);
+        }
+
+        private void Tb_pf25_Click(object sender, EventArgs e)
+        {
+            EditPwdFreqSendString(25, this.tb_pf25.Text);
+        }
+
+        private void Tb_pf24_Click(object sender, EventArgs e)
+        {
+            EditPwdFreqSendString(24, this.tb_pf24.Text);
+        }
+
+        private void Tb_pf23_Click(object sender, EventArgs e)
+        {
+            EditPwdFreqSendString(23, this.tb_pf23.Text);
+        }
+
+        private void Tb_pf22_Click(object sender, EventArgs e)
+        {
+            EditPwdFreqSendString(22, this.tb_pf22.Text);
+        }
+
+        private void Tb_pf21_Click(object sender, EventArgs e)
+        {
+            EditPwdFreqSendString(21, this.tb_pf21.Text);
+        }
+
+        private void Tb_pf20_Click(object sender, EventArgs e)
+        {
+            EditPwdFreqSendString(20, this.tb_pf20.Text);
+        }
+
+        private void Tb_pf19_Click(object sender, EventArgs e)
+        {
+            EditPwdFreqSendString(19, this.tb_pf19.Text);
+        }
+
+        private void Tb_pf18_Click(object sender, EventArgs e)
+        {
+            EditPwdFreqSendString(18, this.tb_pf18.Text);
+        }
+
+        private void Tb_pf17_Click(object sender, EventArgs e)
+        {
+            EditPwdFreqSendString(17, this.tb_pf17.Text);
+        }
+
+        private void Tb_pf16_Click(object sender, EventArgs e)
+        {
+            EditPwdFreqSendString(16, this.tb_pf16.Text);
+        }
+
+        private void Tb_pf15_Click(object sender, EventArgs e)
+        {
+            EditPwdFreqSendString(15, this.tb_pf15.Text);
+        }
+
+        private void Tb_pf14_Click(object sender, EventArgs e)
+        {
+            EditPwdFreqSendString(14, this.tb_pf14.Text);
+        }
+
+        private void Tb_pf13_Click(object sender, EventArgs e)
+        {
+            EditPwdFreqSendString(13, this.tb_pf13.Text);
+        }
+
+        private void Tb_pf12_Click(object sender, EventArgs e)
+        {
+            EditPwdFreqSendString(12, this.tb_pf12.Text);
+        }
+
+        private void Tb_pf11_Click(object sender, EventArgs e)
+        {
+            EditPwdFreqSendString(11, this.tb_pf11.Text);
+        }
+
+        private void Tb_pf10_Click(object sender, EventArgs e)
+        {
+            EditPwdFreqSendString(10, this.tb_pf10.Text);
+        }
+
+        private void Tb_pf9_Click(object sender, EventArgs e)
+        {
+            EditPwdFreqSendString(9, this.tb_pf9.Text);
+        }
+
+        private void Tb_pf8_Click(object sender, EventArgs e)
+        {
+            EditPwdFreqSendString(8, this.tb_pf8.Text);
+        }
+
+        private void Tb_pf7_Click(object sender, EventArgs e)
+        {
+            EditPwdFreqSendString(7, this.tb_pf7.Text);
+        }
+
+        private void Tb_pf6_Click(object sender, EventArgs e)
+        {
+            EditPwdFreqSendString(6, this.tb_pf6.Text);
+        }
+
+        private void Tb_pf5_Click(object sender, EventArgs e)
+        {
+            EditPwdFreqSendString(5, this.tb_pf5.Text);
+        }
+
+        private void Tb_pf4_Click(object sender, EventArgs e)
+        {
+            EditPwdFreqSendString(4, this.tb_pf4.Text);
+        }
+
+        private void Tb_pf3_Click(object sender, EventArgs e)
+        {
+            EditPwdFreqSendString(3, this.tb_pf3.Text);
+        }
+
+        private void Tb_pf2_Click(object sender, EventArgs e)
+        {
+            EditPwdFreqSendString(2, this.tb_pf2.Text);
+        }
+
+        private void Tb_pf1_Click(object sender, EventArgs e)
+        {
+            EditPwdFreqSendString(1, this.tb_pf1.Text);
+        }
+        #endregion
+
+        #region voltage
+        private void Tb_v20_Click(object sender, EventArgs e)
+        {
+            EditVoltageSendString(20, this.tb_v20.Text);
+        }
+
+        private void Tb_v19_Click(object sender, EventArgs e)
+        {
+            EditVoltageSendString(19, this.tb_v19.Text);
+        }
+
+        private void Tb_v18_Click(object sender, EventArgs e)
+        {
+            EditVoltageSendString(18, this.tb_v18.Text);
+        }
+
+        private void Tb_v17_Click(object sender, EventArgs e)
+        {
+            EditVoltageSendString(17, this.tb_v17.Text);
+        }
+
+        private void Tb_v16_Click(object sender, EventArgs e)
+        {
+            EditVoltageSendString(16, this.tb_v16.Text);
+        }
+
+        private void Tb_v15_Click(object sender, EventArgs e)
+        {
+            EditVoltageSendString(15, this.tb_v15.Text);
+        }
+
+        private void Tb_v14_Click(object sender, EventArgs e)
+        {
+            EditVoltageSendString(14, this.tb_v14.Text);
+        }
+
+        private void Tb_v13_Click(object sender, EventArgs e)
+        {
+            EditVoltageSendString(13, this.tb_v13.Text);
+        }
+
+        private void Tb_v12_Click(object sender, EventArgs e)
+        {
+            EditVoltageSendString(12, this.tb_v12.Text);
+        }
+
+        private void Tb_v11_Click(object sender, EventArgs e)
+        {
+            EditVoltageSendString(11, this.tb_v11.Text);
+        }
+
+        private void Tb_v10_Click(object sender, EventArgs e)
+        {
+            EditVoltageSendString(10, this.tb_v10.Text);
+        }
+
+        private void Tb_v9_Click(object sender, EventArgs e)
+        {
+            EditVoltageSendString(9, this.tb_v9.Text);
+        }
+
+        private void Tb_v8_Click(object sender, EventArgs e)
+        {
+            EditVoltageSendString(8, this.tb_v8.Text);
+        }
+
+        private void Tb_v7_Click(object sender, EventArgs e)
+        {
+            EditVoltageSendString(7, this.tb_v7.Text);
+        }
+
+        private void Tb_v6_Click(object sender, EventArgs e)
+        {
+            EditVoltageSendString(6, this.tb_v6.Text);
+        }
+
+        private void Tb_v5_Click(object sender, EventArgs e)
+        {
+            EditVoltageSendString(5, this.tb_v5.Text);
+        }
+
+        private void Tb_v4_Click(object sender, EventArgs e)
+        {
+            EditVoltageSendString(4, this.tb_v4.Text);
+        }
+
+        private void Tb_v3_Click(object sender, EventArgs e)
+        {
+            EditVoltageSendString(3, this.tb_v3.Text);
+        }
+
+        private void Tb_v2_Click(object sender, EventArgs e)
+        {
+            EditVoltageSendString(2,this.tb_v2.Text);
         }
 
         private void Tb_v1_Click(object sender, EventArgs e)
         {
-            EditInput editInput = new EditInput();
-            editInput.ShowDialog();
-            var inputValue = int.Parse(EditInput.inputValue);
+            EditVoltageSendString(1,this.tb_v1.Text);
+        }
+        #endregion
 
-            var sendString = SendVoltageString(1,inputValue);
-            LogHelper.Log.Info("【发送字符串】"+sendString);
-            SendDevConfigMsg(sendString);
+        /// <summary>
+        /// 起始位置从1开始
+        /// </summary>
+        /// <param name="startIndex"></param>
+        private void EditVoltageSendString(int startIndex,string inputString)
+        {
+            EditInput editInput = new EditInput(inputString);
+            editInput.ShowDialog();
+            if (editInput.DialogResult != DialogResult.OK)
+            {
+                return;
+            }
+            this.tb_v1.Text = EditInput.inputValue.ToString();
+            var sendByte = SendVoltageString(startIndex, EditInput.inputValue);
+            LogHelper.Log.Info($"【发送字符串】index={startIndex} " + BitConverter.ToString(sendByte));
+            SendDevConfigMsg(sendByte);
+        }
+
+        private void EditPwdFreqSendString(int startIndex,string inputString)
+        {
+            EditInput editInput = new EditInput(inputString);
+            editInput.ShowDialog();
+            if (editInput.DialogResult != DialogResult.OK)
+            {
+                return;
+            }
+            var sendByte = SendPwmFreqString(startIndex, EditInput.inputValue);
+            LogHelper.Log.Info($"【pwd-freq】index={startIndex} " + BitConverter.ToString(sendByte));
+            SendDevConfigMsg(sendByte);
+        }
+
+        private void EditPwdFreqPersentSendString(int startIndex,string inputString)
+        {
+            EditInput editInput = new EditInput(inputString);
+            editInput.ShowDialog();
+            if (editInput.DialogResult != DialogResult.OK)
+            {
+                return;
+            }
+            var sendByte = SendPwmFreqPersentString(startIndex, EditInput.inputValue);
+            LogHelper.Log.Info($"【pwd-persent】index={startIndex} " + BitConverter.ToString(sendByte));
+            SendDevConfigMsg(sendByte);
         }
 
         private void LoadBoxMainForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -146,18 +674,70 @@ namespace LoadBoxControl
                 SendVoltageString(1,int.Parse(voltageV1));
         }
 
-        private string SendVoltageString(int index,int value)
+        private byte[] SendVoltageString(int index,double value)
         {
-            var sendString = "";
+            var part1 = "";
+            var part2 = "";
+            var part3 = "";
+            var part4 = "";
             if (index <= 10)
             {
-                sendString = PAGE_DAC_VOLTAGE_BEFORE + FF_END + PAGE_DAC_VOLTAGE_BACK + ".x" + (index - 1) + ".val=" + value * 10 + FF_END;
+                part1 = PAGE_DAC_VOLTAGE_BEFORE;
+                part2 = FF_END;
+                part3 = PAGE_DAC_VOLTAGE_BACK + ".x" + (index - 1) + ".val=" + value * 10;
+                part4 = FF_END;
             }
             else
             {
-                sendString = PAGE_DAC_VOLTAGE_BEFORE + "1" + FF_END + PAGE_DAC_VOLTAGE_BACK +"1"+ ".x" + (index - 1 - 10) + ".val=" + value * 10 + FF_END;
+                part1 = PAGE_DAC_VOLTAGE_BEFORE + "1";
+                part2 = FF_END;
+                part3 = PAGE_DAC_VOLTAGE_BACK + "1" + ".x" + (index - 1 - 10) + ".val=" + value * 10;
+                part4 = FF_END;
             }
-            return sendString;
+            return ConvertSendByte(part1,part2,part3,part4);
+        }
+
+        private byte[] CharToByte(string inputString)
+        {
+            char[] strArray = inputString.Replace(" ", "").ToCharArray();
+            byte[] btArray = new byte[strArray.Length];
+            for (int i = 0; i < strArray.Length; i++)
+            {
+                btArray[i] = Convert.ToByte(strArray[i]);
+            }
+            return btArray;
+        }
+
+        /// <summary>
+        /// byte连接16进制字符串，以空格隔开
+        /// </summary>
+        /// <param name="sourchByte"></param>
+        /// <param name="hexString"></param>
+        /// <returns></returns>
+        private byte[] JoinToByte(byte[] sourchByte,string hexString)
+        {
+            string[] stringArray = hexString.Split(' ');
+            byte[] unionByte = new byte[sourchByte.Length + stringArray.Length];
+            byte[] hexByte = new byte[stringArray.Length];
+            for (int i = 0; i < stringArray.Length; i++)
+            {
+                hexByte[i] = Convert.ToByte(stringArray[i],16);
+            }
+            sourchByte.CopyTo(unionByte, 0);
+            Array.Copy(hexByte,0,unionByte,sourchByte.Length,hexByte.Length);
+            return unionByte;
+        }
+
+        private byte[] ConvertSendByte(string part1String,string hexString1,string part2String,string hexString2)
+        {
+            var part1Byte = CharToByte(part1String);
+            var part2Byte = CharToByte(part2String);
+            var joinPart1Byte = JoinToByte(part1Byte,hexString1);
+            byte[] bothPart1AndPart2 = new byte[joinPart1Byte.Length + part2Byte.Length];
+            joinPart1Byte.CopyTo(bothPart1AndPart2, 0);
+            Array.Copy(part2Byte,0, bothPart1AndPart2, joinPart1Byte.Length,part2Byte.Length);
+            var joinPart2Byte = JoinToByte(bothPart1AndPart2, hexString2);
+            return joinPart2Byte;
         }
 
         /// <summary>
@@ -166,22 +746,34 @@ namespace LoadBoxControl
         /// <param name="index">当前传入的序号，起始位置为1</param>
         /// <param name="value"></param>
         /// <returns></returns>
-        private string SendPwmFreqString(int index, string value)
+        private byte[] SendPwmFreqString(int index, double value)
         {
-            var sendString = "";
+            var part1 = "";
+            var part2 = "";
+            var part3 = "";
+            var part4 = "";
             if (index <= 10 && index > 0)
             {
-                sendString = PAGE_DAC_PWM_BEFORE + FF_END + PAGE_DAC_PWM_BACK + ".n" + (index + 10 - 1) + ".val=" + value + FF_END;
+                part1 = PAGE_DAC_PWM_BEFORE;
+                part2 = FF_END;
+                part3 = PAGE_DAC_PWM_BACK + ".n" + (index + 10 - 1) + ".val=" + value;
+                part4 = FF_END;
             }
             else if (index <= 20 && index > 10)
             {
-                sendString = PAGE_DAC_PWM_BEFORE + "1" + FF_END + PAGE_DAC_PWM_BACK + "1" + ".n" + (index - 1) + ".val=" + value + FF_END;
+                part1 = PAGE_DAC_PWM_BEFORE + "1";
+                part2 = FF_END;
+                part3 = PAGE_DAC_PWM_BACK + "1" + ".n" + (index - 1) + ".val=" + value;
+                part4 = FF_END;
             }
             else if (index <= 30 && index > 20)
             {
-                sendString = PAGE_DAC_PWM_BEFORE + "2" + FF_END + PAGE_DAC_PWM_BACK + "2" + ".n" + (index - 10 - 1) + ".val=" + value + FF_END;
+                part1 = PAGE_DAC_PWM_BEFORE + "2";
+                part2 = FF_END;
+                part3 = PAGE_DAC_PWM_BACK + "2" + ".n" + (index - 10 - 1) + ".val=" + value;
+                part4 = FF_END;
             }
-            return sendString;
+            return ConvertSendByte(part1,part2,part3,part4);
         }
 
         /// <summary>
@@ -190,22 +782,34 @@ namespace LoadBoxControl
         /// <param name="index"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        private string SendPwmFreqPersentString(int index, string value)
+        private byte[] SendPwmFreqPersentString(int index, double value)
         {
-            var sendString = "";
+            var part1 = "";
+            var part2 = "";
+            var part3 = "";
+            var part4 = "";
             if (index <= 10 && index > 0)
             {
-                sendString = PAGE_DAC_PWM_BEFORE + FF_END + PAGE_DAC_PWM_BACK + ".n" + (index - 1) + ".val=" + value + FF_END;
+                part1 = PAGE_DAC_PWM_BEFORE;
+                part2 = FF_END;
+                part3 = PAGE_DAC_PWM_BACK + ".n" + (index - 1) + ".val=" + value;
+                part4 = FF_END;
             }
             else if (index <= 20 && index > 10)
             {
-                sendString = PAGE_DAC_PWM_BEFORE + "1" + FF_END + PAGE_DAC_PWM_BACK + "1" + ".n" + (index - 10 - 1) + ".val=" + value + FF_END;
+                part1 = PAGE_DAC_PWM_BEFORE + "1";
+                part2 = FF_END;
+                part3 = PAGE_DAC_PWM_BACK + "1" + ".n" + (index - 10 - 1) + ".val=" + value;
+                part4 = FF_END;
             }
             else if (index <= 30 && index > 20)
             {
-                sendString = PAGE_DAC_PWM_BEFORE + "2" + FF_END + PAGE_DAC_PWM_BACK + "2" + ".n" + (index - 20 - 1) + ".val=" + value + FF_END;
+                part1 = PAGE_DAC_PWM_BEFORE + "2";
+                part2 = FF_END;
+                part3 = PAGE_DAC_PWM_BACK + "2" + ".n" + (index - 20 - 1) + ".val=" + value;
+                part4 = FF_END;
             }
-            return sendString;
+            return ConvertSendByte(part1,part2,part3,part4);
         }
 
         private void Tool_close_serial_Click(object sender, EventArgs e)
@@ -270,14 +874,14 @@ namespace LoadBoxControl
         /// 发送数据
         /// </summary>
         /// <param name="sendContent"></param>
-        private void SendDevConfigMsg(string sendContent)
+        private void SendDevConfigMsg(byte[] sendContent)
         {
             ///发送hex格式 
             try
             {
                 if (serialPort.IsOpen)
                 {
-                    serialPort.Write(sendContent);
+                    serialPort.Write(sendContent,0,sendContent.Length);
                 }
             }
             catch (Exception ex)

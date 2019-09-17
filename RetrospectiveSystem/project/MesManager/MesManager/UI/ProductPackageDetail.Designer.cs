@@ -108,6 +108,7 @@
             this.tool_package_export.Size = new System.Drawing.Size(55, 39);
             this.tool_package_export.Text = "导出";
             this.tool_package_export.ToolTipText = "导出";
+            this.tool_package_export.Click += new System.EventHandler(this.Tool_package_export_Click);
             // 
             // btn_selectOfPackage
             // 

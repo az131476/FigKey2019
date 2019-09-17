@@ -122,6 +122,7 @@ namespace MesAPI.DB
             public const string TEAM_LEADER = "[team_leader]";
             public const string ADMIN = "[admin]";
             public const string UPDATE_DATE = "[update_date]";
+            public const string PCBA_SN = "[pcbaSN]";
         }
 
         public class F_PRODUCT_PACKAGE_STORAGE

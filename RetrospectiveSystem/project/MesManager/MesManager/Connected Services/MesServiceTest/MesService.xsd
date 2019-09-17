@@ -24,6 +24,7 @@
         <xs:element minOccurs="0" name="result" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="teamLeader" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="admin" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="joinDateTime" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -201,6 +202,7 @@
         <xs:element minOccurs="0" name="testResult" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="teamLeader" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="admin" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="joinDateTime" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

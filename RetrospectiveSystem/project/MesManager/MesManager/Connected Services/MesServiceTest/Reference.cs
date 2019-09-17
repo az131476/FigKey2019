@@ -22,10 +22,10 @@ namespace MesManager.MesServiceTest {
         System.Threading.Tasks.Task<string> TestCommunicationAsync(string value);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/UpdateTestResultData", ReplyAction="http://tempuri.org/IMesService/UpdateTestResultDataResponse")]
-        string UpdateTestResultData(string sn, string typeNo, string station, string result, string teamLeader, string admin);
+        string UpdateTestResultData(string sn, string typeNo, string station, string result, string teamLeader, string admin, string joinDateTime);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/UpdateTestResultData", ReplyAction="http://tempuri.org/IMesService/UpdateTestResultDataResponse")]
-        System.Threading.Tasks.Task<string> UpdateTestResultDataAsync(string sn, string typeNo, string station, string result, string teamLeader, string admin);
+        System.Threading.Tasks.Task<string> UpdateTestResultDataAsync(string sn, string typeNo, string station, string result, string teamLeader, string admin, string joinDateTime);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectLastTestResult", ReplyAction="http://tempuri.org/IMesService/SelectLastTestResultResponse")]
         string[] SelectLastTestResult(string sn, string station);
@@ -82,10 +82,10 @@ namespace MesManager.MesServiceTest {
         System.Threading.Tasks.Task<string> UpdateLimitConfigAsync(string stationName, string typeNo, string testItem, string limit, string teamLeader, string admin);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/UpdateTestLog", ReplyAction="http://tempuri.org/IMesService/UpdateTestLogResponse")]
-        string UpdateTestLog(string typeNo, string stationName, string productSN, string testItem, string limit, string currentValue, string testResult, string teamLeader, string admin);
+        string UpdateTestLog(string typeNo, string stationName, string productSN, string testItem, string limit, string currentValue, string testResult, string teamLeader, string admin, string joinDateTime);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/UpdateTestLog", ReplyAction="http://tempuri.org/IMesService/UpdateTestLogResponse")]
-        System.Threading.Tasks.Task<string> UpdateTestLogAsync(string typeNo, string stationName, string productSN, string testItem, string limit, string currentValue, string testResult, string teamLeader, string admin);
+        System.Threading.Tasks.Task<string> UpdateTestLogAsync(string typeNo, string stationName, string productSN, string testItem, string limit, string currentValue, string testResult, string teamLeader, string admin, string joinDateTime);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectCurrentTProcess", ReplyAction="http://tempuri.org/IMesService/SelectCurrentTProcessResponse")]
         string SelectCurrentTProcess();
@@ -177,12 +177,12 @@ namespace MesManager.MesServiceTest {
             return base.Channel.TestCommunicationAsync(value);
         }
         
-        public string UpdateTestResultData(string sn, string typeNo, string station, string result, string teamLeader, string admin) {
-            return base.Channel.UpdateTestResultData(sn, typeNo, station, result, teamLeader, admin);
+        public string UpdateTestResultData(string sn, string typeNo, string station, string result, string teamLeader, string admin, string joinDateTime) {
+            return base.Channel.UpdateTestResultData(sn, typeNo, station, result, teamLeader, admin, joinDateTime);
         }
         
-        public System.Threading.Tasks.Task<string> UpdateTestResultDataAsync(string sn, string typeNo, string station, string result, string teamLeader, string admin) {
-            return base.Channel.UpdateTestResultDataAsync(sn, typeNo, station, result, teamLeader, admin);
+        public System.Threading.Tasks.Task<string> UpdateTestResultDataAsync(string sn, string typeNo, string station, string result, string teamLeader, string admin, string joinDateTime) {
+            return base.Channel.UpdateTestResultDataAsync(sn, typeNo, station, result, teamLeader, admin, joinDateTime);
         }
         
         public string[] SelectLastTestResult(string sn, string station) {
@@ -257,12 +257,12 @@ namespace MesManager.MesServiceTest {
             return base.Channel.UpdateLimitConfigAsync(stationName, typeNo, testItem, limit, teamLeader, admin);
         }
         
-        public string UpdateTestLog(string typeNo, string stationName, string productSN, string testItem, string limit, string currentValue, string testResult, string teamLeader, string admin) {
-            return base.Channel.UpdateTestLog(typeNo, stationName, productSN, testItem, limit, currentValue, testResult, teamLeader, admin);
+        public string UpdateTestLog(string typeNo, string stationName, string productSN, string testItem, string limit, string currentValue, string testResult, string teamLeader, string admin, string joinDateTime) {
+            return base.Channel.UpdateTestLog(typeNo, stationName, productSN, testItem, limit, currentValue, testResult, teamLeader, admin, joinDateTime);
         }
         
-        public System.Threading.Tasks.Task<string> UpdateTestLogAsync(string typeNo, string stationName, string productSN, string testItem, string limit, string currentValue, string testResult, string teamLeader, string admin) {
-            return base.Channel.UpdateTestLogAsync(typeNo, stationName, productSN, testItem, limit, currentValue, testResult, teamLeader, admin);
+        public System.Threading.Tasks.Task<string> UpdateTestLogAsync(string typeNo, string stationName, string productSN, string testItem, string limit, string currentValue, string testResult, string teamLeader, string admin, string joinDateTime) {
+            return base.Channel.UpdateTestLogAsync(typeNo, stationName, productSN, testItem, limit, currentValue, testResult, teamLeader, admin, joinDateTime);
         }
         
         public string SelectCurrentTProcess() {

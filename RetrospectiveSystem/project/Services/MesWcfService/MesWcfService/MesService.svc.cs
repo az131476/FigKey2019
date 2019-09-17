@@ -44,6 +44,7 @@ namespace MesWcfService
         private Queue<string> selectMaterialSurplusQueue = new Queue<string>();
         private Queue<string> selectProductPackageStorageQueue = new Queue<string>();
         private int materialLength = 20;
+        private static string pcbaSN;//查询PCBA时记录SN
 
         #region 测试通讯
         [SwaggerWcfTag("MesServcie 服务")]
@@ -95,6 +96,7 @@ namespace MesWcfService
         public string[] SelectLastTestResult(string sn,string station)
         {
             string[] array = new string[] { sn,station};
+            pcbaSN = sn;
             selectDataQueue.Enqueue(array);
             return TestResult.SelectTestResult(selectDataQueue);
         }
@@ -121,7 +123,7 @@ namespace MesWcfService
                 return MaterialStatistics.ConvertMaterialStatisticsCode(MaterialStatisticsReturnCode.ERROR_IS_NULL_MATERIAL_CODE);
             if (!ExamineInputFormat.IsDecimal(amounted))
                 return MaterialStatistics.ConvertMaterialStatisticsCode(MaterialStatisticsReturnCode.ERROR_USE_AMOUNT_NOT_INT);
-            insertMaterialStatisticsQueue.Enqueue(new string[] { typeNo,stationName,materialCode,amounted,teamLeader,admin});
+            insertMaterialStatisticsQueue.Enqueue(new string[] { typeNo,stationName,materialCode,amounted,teamLeader,admin,pcbaSN});
             return MaterialStatistics.UpdateMaterialStatistics(insertMaterialStatisticsQueue);
         }
         #endregion

@@ -150,7 +150,7 @@ namespace MesAPI
         [SwaggerWcfPath("SelectPackageProduct", "查询打包产品记录")]
         [WebInvoke(Method = "POST", UriTemplate = "SelectPackageProduct",
             BodyStyle = WebMessageBodyStyle.WrappedRequest, RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
-        DataSet SelectPackageProduct(string queryFilter, string state,bool IsShowNumber);
+        DataSet SelectPackageProduct(string casecode,string queryFilter, string state,bool IsShowNumber);
         #endregion
 
         [OperationContract]
@@ -195,5 +195,17 @@ namespace MesAPI
 
         [OperationContract]
         DataSet SelectTestResultLogDetail(string queryFilter,string startTime,string endTime);
+
+        [OperationContract]
+        string GetPCBASn(string sn);
+
+        [OperationContract]
+        string GetProductSn(string sn);
+
+        [OperationContract]
+        DataSet SelectPackageProductOfCaseCode(string queryFilter, string state, bool IsShowNumber);
+
+        [OperationContract]
+        DataSet SelectPackageProductCheck(string queryFilter, string state, bool IsShowNumber);
     }
 }

@@ -401,6 +401,7 @@ namespace MesWcfService.MessageQueue.RemoteClient
                 var amounted = array[3];
                 var teamLeader = array[4];
                 var admin = array[5];
+                var pcbaSN = array[6];
                 #endregion
 
                 #region insert sql
@@ -411,8 +412,10 @@ namespace MesWcfService.MessageQueue.RemoteClient
                     $"{DbTable.F_Material_Statistics.MATERIAL_AMOUNT}," +
                     $"{DbTable.F_Material_Statistics.TEAM_LEADER}," +
                     $"{DbTable.F_Material_Statistics.ADMIN}," +
-                    $"{DbTable.F_Material_Statistics.UPDATE_DATE}) VALUES(" +
-                    $"'{productTypeNo}','{stationName}','{materialCode}','{amounted}','{teamLeader}','{admin}','{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}')";
+                    $"{DbTable.F_Material_Statistics.UPDATE_DATE}," +
+                    $"{DbTable.F_Material_Statistics.PCBA_SN}) VALUES(" +
+                    $"'{productTypeNo}','{stationName}','{materialCode}','{amounted}'," +
+                    $"'{teamLeader}','{admin}','{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}','{pcbaSN}')";
 
                 #endregion
 
@@ -424,7 +427,7 @@ namespace MesWcfService.MessageQueue.RemoteClient
                     if (row > 0)
                     {
                         //插入成功
-                        var iuRes = UpdateMaterialAmounted(materialCode, int.Parse(amounted));//更新计数
+                        var iuRes = UpdateMaterialAmounted(materialCode, int.Parse(amounted));//更新总的计数
                         var isRes = UpdateMaterialState(materialCode);//更新状态
                         if (iuRes > 0 && isRes > 0)
                         {
@@ -438,7 +441,7 @@ namespace MesWcfService.MessageQueue.RemoteClient
 
                 //更新物料统计
                 //int originNum = SelectLastInsertAmount(productTypeNo, stationName, materialCode);
-                var mRes = UpdateMaterialStatisticAmounted(productTypeNo,stationName,materialCode,int.Parse(amounted));
+                var mRes = UpdateMaterialStatisticAmounted(pcbaSN,productTypeNo,stationName,materialCode,int.Parse(amounted));
                 var uRes = UpdateMaterialAmounted(materialCode, int.Parse(amounted));//更新计数
                 var sRes = UpdateMaterialState(materialCode);//更新状态
                 if (uRes > 0 && sRes > 0 && mRes > 0)
@@ -462,10 +465,12 @@ namespace MesWcfService.MessageQueue.RemoteClient
             var stationName = array[1];
             var materialCode = array[2];
             var amounted = array[3];
+            var pcbaSn = array[6];
             var selectSQL = $"SELECT * FROM {DbTable.F_MATERIAL_STATISTICS_NAME} WHERE " +
                 $"{DbTable.F_Material_Statistics.PRODUCT_TYPE_NO} = '{productTypeNo}' AND " +
                 $"{DbTable.F_Material_Statistics.STATION_NAME} = '{stationName}' AND " +
-                $"{DbTable.F_Material_Statistics.MATERIAL_CODE} = '{materialCode}' ";
+                $"{DbTable.F_Material_Statistics.MATERIAL_CODE} = '{materialCode}' AND " +
+                $"{DbTable.F_Material_Statistics.PCBA_SN} = '{pcbaSn}'";
             var dt = SQLServer.ExecuteDataSet(selectSQL).Tables[0];
             if (dt.Rows.Count > 0)
                 return true;
@@ -498,14 +503,15 @@ namespace MesWcfService.MessageQueue.RemoteClient
             return SQLServer.ExecuteNonQuery(updateSQL);
         }
 
-        private static int UpdateMaterialStatisticAmounted(string productTypeNo,string stationName,string materialCode, int amounted)
+        private static int UpdateMaterialStatisticAmounted(string pcbaSN,string productTypeNo,string stationName,string materialCode, int amounted)
         {
             var updateSQL = $"UPDATE {DbTable.F_MATERIAL_STATISTICS_NAME} SET " +
                 $"{DbTable.F_Material_Statistics.MATERIAL_AMOUNT} += '{amounted}' " +
                 $"WHERE " +
                 $"{DbTable.F_Material_Statistics.MATERIAL_CODE} = '{materialCode}' AND " +
                 $"{DbTable.F_Material_Statistics.PRODUCT_TYPE_NO} = '{productTypeNo}' AND " +
-                $"{DbTable.F_Material_Statistics.STATION_NAME} = '{stationName}'";
+                $"{DbTable.F_Material_Statistics.STATION_NAME} = '{stationName}' AND " +
+                $"{DbTable.F_Material_Statistics.PCBA_SN} = '{pcbaSN}'";
             LogHelper.Log.Info("【更新物料统计使用总数量】" + updateSQL);
             return SQLServer.ExecuteNonQuery(updateSQL);
         }
