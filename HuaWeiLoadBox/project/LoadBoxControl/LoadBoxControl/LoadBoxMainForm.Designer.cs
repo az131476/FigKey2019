@@ -28,16 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoadBoxMainForm));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.tool_cb_serialItem = new System.Windows.Forms.ToolStripComboBox();
             this.tool_refresh = new System.Windows.Forms.ToolStripButton();
             this.tool_open_searial = new System.Windows.Forms.ToolStripButton();
             this.tool_close_serial = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
-            this.tool_refresh_internal = new System.Windows.Forms.ToolStripTextBox();
-            this.tool_setParams = new System.Windows.Forms.ToolStripButton();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tb_v20 = new Telerik.WinControls.UI.RadButton();
             this.tb_v19 = new Telerik.WinControls.UI.RadButton();
@@ -282,10 +278,7 @@
             this.tool_cb_serialItem,
             this.tool_refresh,
             this.tool_open_searial,
-            this.tool_close_serial,
-            this.toolStripButton4,
-            this.tool_refresh_internal,
-            this.tool_setParams});
+            this.tool_close_serial});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1043, 29);
@@ -330,30 +323,6 @@
             this.tool_close_serial.Name = "tool_close_serial";
             this.tool_close_serial.Size = new System.Drawing.Size(94, 26);
             this.tool_close_serial.Text = "关闭串口";
-            // 
-            // toolStripButton4
-            // 
-            this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton4.ForeColor = System.Drawing.Color.White;
-            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
-            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(158, 26);
-            this.toolStripButton4.Text = "自动刷新时间间隔：";
-            // 
-            // tool_refresh_internal
-            // 
-            this.tool_refresh_internal.Name = "tool_refresh_internal";
-            this.tool_refresh_internal.Size = new System.Drawing.Size(100, 29);
-            // 
-            // tool_setParams
-            // 
-            this.tool_setParams.ForeColor = System.Drawing.Color.White;
-            this.tool_setParams.Image = global::LoadBoxControl.Properties.Resources.SendUpdate;
-            this.tool_setParams.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tool_setParams.Name = "tool_setParams";
-            this.tool_setParams.Size = new System.Drawing.Size(62, 26);
-            this.tool_setParams.Text = "发送";
             // 
             // tableLayoutPanel1
             // 
@@ -2298,9 +2267,6 @@
         private System.Windows.Forms.Label label61;
         private System.Windows.Forms.Label label62;
         private System.Windows.Forms.Label label63;
-        private System.Windows.Forms.ToolStripButton toolStripButton4;
-        private System.Windows.Forms.ToolStripTextBox tool_refresh_internal;
-        private System.Windows.Forms.ToolStripButton tool_setParams;
         private Telerik.WinControls.UI.RadButton tb_pp30;
         private Telerik.WinControls.UI.RadButton tb_v2;
         private Telerik.WinControls.UI.RadButton tb_v1;

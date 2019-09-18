@@ -81,7 +81,6 @@ namespace LoadBoxControl
             this.tool_refresh.Click += Tool_refresh_Click;
             this.tool_open_searial.Click += Tool_open_searial_Click;
             this.tool_close_serial.Click += Tool_close_serial_Click;
-            this.tool_setParams.Click += Tool_setParams_Click;
             this.serialPort.DataReceived += SerialPort_DataReceived;
             this.FormClosed += LoadBoxMainForm_FormClosed;
 
@@ -179,406 +178,486 @@ namespace LoadBoxControl
         #region pwm frequency persent
         private void Tb_pp30_Click(object sender, EventArgs e)
         {
-            EditPwdFreqPersentSendString(30, this.tb_pp30.Text);
+            if (EditPwdFreqPersentSendString(30, this.tb_pp30.Text))
+                this.tb_pp30.Text = EditInput.inputValue.ToString(); 
         }
 
         private void Tb_pp29_Click(object sender, EventArgs e)
         {
-            EditPwdFreqPersentSendString(29, this.tb_pp29.Text);
+            if (EditPwdFreqPersentSendString(29, this.tb_pp29.Text))
+                this.tb_pp29.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_pp28_Click(object sender, EventArgs e)
         {
-            EditPwdFreqPersentSendString(28, this.tb_pp28.Text);
+            if (EditPwdFreqPersentSendString(28, this.tb_pp28.Text))
+                this.tb_pp28.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_pp27_Click(object sender, EventArgs e)
         {
-            EditPwdFreqPersentSendString(27, this.tb_pp27.Text);
+            if (EditPwdFreqPersentSendString(27, this.tb_pp27.Text))
+                this.tb_pp27.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_pp26_Click(object sender, EventArgs e)
         {
-            EditPwdFreqPersentSendString(26, this.tb_pp26.Text);
+            if (EditPwdFreqPersentSendString(26, this.tb_pp26.Text))
+                this.tb_pp26.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_pp25_Click(object sender, EventArgs e)
         {
-            EditPwdFreqPersentSendString(25, this.tb_pp25.Text);
+            if (EditPwdFreqPersentSendString(25, this.tb_pp25.Text))
+                this.tb_pp25.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_pp24_Click(object sender, EventArgs e)
         {
-            EditPwdFreqPersentSendString(24, this.tb_pp24.Text);
+            if (EditPwdFreqPersentSendString(24, this.tb_pp24.Text))
+                this.tb_pp24.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_pp23_Click(object sender, EventArgs e)
         {
-            EditPwdFreqPersentSendString(23, this.tb_pp23.Text);
+            if (EditPwdFreqPersentSendString(23, this.tb_pp23.Text))
+                this.tb_pp23.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_pp22_Click(object sender, EventArgs e)
         {
-            EditPwdFreqPersentSendString(22, this.tb_pp22.Text);
+            if (EditPwdFreqPersentSendString(22, this.tb_pp22.Text))
+                this.tb_pp22.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_pp21_Click(object sender, EventArgs e)
         {
-            EditPwdFreqPersentSendString(21, this.tb_pp21.Text);
+            if (EditPwdFreqPersentSendString(21, this.tb_pp21.Text))
+                this.tb_pp21.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_pp20_Click(object sender, EventArgs e)
         {
-            EditPwdFreqPersentSendString(20, this.tb_pp20.Text);
+            if (EditPwdFreqPersentSendString(20, this.tb_pp20.Text))
+                this.tb_pp20.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_pp19_Click(object sender, EventArgs e)
         {
-            EditPwdFreqPersentSendString(19, this.tb_pp19.Text);
+            if (EditPwdFreqPersentSendString(19, this.tb_pp19.Text))
+                this.tb_pp19.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_pp18_Click(object sender, EventArgs e)
         {
-            EditPwdFreqPersentSendString(18, this.tb_pp18.Text);
+            if (EditPwdFreqPersentSendString(18, this.tb_pp18.Text))
+                this.tb_pp18.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_pp17_Click(object sender, EventArgs e)
         {
-            EditPwdFreqPersentSendString(17, this.tb_pp17.Text);
+            if (EditPwdFreqPersentSendString(17, this.tb_pp17.Text))
+                this.tb_pp17.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_pp16_Click(object sender, EventArgs e)
         {
-            EditPwdFreqPersentSendString(16, this.tb_pp16.Text);
+            if (EditPwdFreqPersentSendString(16, this.tb_pp16.Text))
+                this.tb_pp16.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_pp15_Click(object sender, EventArgs e)
         {
-            EditPwdFreqPersentSendString(15, this.tb_pp15.Text);
+            if (EditPwdFreqPersentSendString(15, this.tb_pp15.Text))
+                this.tb_pp15.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_pp14_Click(object sender, EventArgs e)
         {
-            EditPwdFreqPersentSendString(14, this.tb_pp14.Text);
+            if (EditPwdFreqPersentSendString(14, this.tb_pp14.Text))
+                this.tb_pp14.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_pp13_Click(object sender, EventArgs e)
         {
-            EditPwdFreqPersentSendString(13, this.tb_pp13.Text);
+            if (EditPwdFreqPersentSendString(13, this.tb_pp13.Text))
+                this.tb_pp13.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_pp12_Click(object sender, EventArgs e)
         {
-            EditPwdFreqPersentSendString(12, this.tb_pp12.Text);
+            if (EditPwdFreqPersentSendString(12, this.tb_pp12.Text))
+                this.tb_pp12.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_pp11_Click(object sender, EventArgs e)
         {
-            EditPwdFreqPersentSendString(11, this.tb_pp11.Text);
+            if (EditPwdFreqPersentSendString(11, this.tb_pp11.Text))
+                this.tb_pp11.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_pp10_Click(object sender, EventArgs e)
         {
-            EditPwdFreqPersentSendString(10, this.tb_pp10.Text);
+            if (EditPwdFreqPersentSendString(10, this.tb_pp10.Text))
+                this.tb_pp10.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_pp9_Click(object sender, EventArgs e)
         {
-            EditPwdFreqPersentSendString(9, this.tb_pp9.Text);
+            if (EditPwdFreqPersentSendString(9, this.tb_pp9.Text))
+                this.tb_pp9.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_pp8_Click(object sender, EventArgs e)
         {
-            EditPwdFreqPersentSendString(8, this.tb_pp8.Text);
+            if (EditPwdFreqPersentSendString(8, this.tb_pp8.Text))
+                this.tb_pp8.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_pp7_Click(object sender, EventArgs e)
         {
-            EditPwdFreqPersentSendString(7, this.tb_pp7.Text);
+            if (EditPwdFreqPersentSendString(7, this.tb_pp7.Text))
+                this.tb_pp7.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_pp6_Click(object sender, EventArgs e)
         {
-            EditPwdFreqPersentSendString(6, this.tb_pp6.Text);
+            if (EditPwdFreqPersentSendString(6, this.tb_pp6.Text))
+                this.tb_pp6.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_pp5_Click(object sender, EventArgs e)
         {
-            EditPwdFreqPersentSendString(5, this.tb_pp5.Text);
+            if (EditPwdFreqPersentSendString(5, this.tb_pp5.Text))
+                this.tb_pp5.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_pp4_Click(object sender, EventArgs e)
         {
-            EditPwdFreqPersentSendString(4, this.tb_pp4.Text);
+            if (EditPwdFreqPersentSendString(4, this.tb_pp4.Text))
+                this.tb_pp4.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_pp3_Click(object sender, EventArgs e)
         {
-            EditPwdFreqPersentSendString(3, this.tb_pp3.Text);
+            if (EditPwdFreqPersentSendString(3, this.tb_pp3.Text))
+                this.tb_pp3.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_pp2_Click(object sender, EventArgs e)
         {
-            EditPwdFreqPersentSendString(2, this.tb_pp2.Text);
+            if (EditPwdFreqPersentSendString(2, this.tb_pp2.Text))
+                this.tb_pp2.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_pp1_Click(object sender, EventArgs e)
         {
-            EditPwdFreqPersentSendString(1, this.tb_pp1.Text);
+            if (EditPwdFreqPersentSendString(1, this.tb_pp1.Text))
+                this.tb_pp1.Text = EditInput.inputValue.ToString();
         }
         #endregion
 
         #region pwm frequency
         private void Tb_pf30_Click(object sender, EventArgs e)
         {
-            EditPwdFreqSendString(30, this.tb_pf30.Text);
+            if (EditPwdFreqSendString(30, this.tb_pf30.Text))
+                this.tb_pf30.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_pf29_Click(object sender, EventArgs e)
         {
-            EditPwdFreqSendString(29, this.tb_pf29.Text);
+            if (EditPwdFreqSendString(29, this.tb_pf29.Text))
+                this.tb_pf29.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_pf28_Click(object sender, EventArgs e)
         {
-            EditPwdFreqSendString(28, this.tb_pf28.Text);
+            if (EditPwdFreqSendString(28, this.tb_pf28.Text))
+                this.tb_pf28.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_pf27_Click(object sender, EventArgs e)
         {
-            EditPwdFreqSendString(27, this.tb_pf27.Text);
+            if (EditPwdFreqSendString(27, this.tb_pf27.Text))
+                this.tb_pf27.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_pf26_Click(object sender, EventArgs e)
         {
-            EditPwdFreqSendString(26, this.tb_pf26.Text);
+            if (EditPwdFreqSendString(26, this.tb_pf26.Text))
+                this.tb_pf26.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_pf25_Click(object sender, EventArgs e)
         {
-            EditPwdFreqSendString(25, this.tb_pf25.Text);
+            if (EditPwdFreqSendString(25, this.tb_pf25.Text))
+                this.tb_pf25.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_pf24_Click(object sender, EventArgs e)
         {
-            EditPwdFreqSendString(24, this.tb_pf24.Text);
+            if (EditPwdFreqSendString(24, this.tb_pf24.Text))
+                this.tb_pf24.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_pf23_Click(object sender, EventArgs e)
         {
-            EditPwdFreqSendString(23, this.tb_pf23.Text);
+            if (EditPwdFreqSendString(23, this.tb_pf23.Text))
+                this.tb_pf23.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_pf22_Click(object sender, EventArgs e)
         {
-            EditPwdFreqSendString(22, this.tb_pf22.Text);
+            if (EditPwdFreqSendString(22, this.tb_pf22.Text))
+                this.tb_pf22.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_pf21_Click(object sender, EventArgs e)
         {
-            EditPwdFreqSendString(21, this.tb_pf21.Text);
+            if (EditPwdFreqSendString(21, this.tb_pf21.Text))
+                this.tb_pf21.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_pf20_Click(object sender, EventArgs e)
         {
-            EditPwdFreqSendString(20, this.tb_pf20.Text);
+            if (EditPwdFreqSendString(20, this.tb_pf20.Text))
+                this.tb_pf20.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_pf19_Click(object sender, EventArgs e)
         {
-            EditPwdFreqSendString(19, this.tb_pf19.Text);
+            if (EditPwdFreqSendString(19, this.tb_pf19.Text))
+                this.tb_pf19.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_pf18_Click(object sender, EventArgs e)
         {
-            EditPwdFreqSendString(18, this.tb_pf18.Text);
+            if (EditPwdFreqSendString(18, this.tb_pf18.Text))
+                this.tb_pf18.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_pf17_Click(object sender, EventArgs e)
         {
-            EditPwdFreqSendString(17, this.tb_pf17.Text);
+            if (EditPwdFreqSendString(17, this.tb_pf17.Text))
+                this.tb_pf17.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_pf16_Click(object sender, EventArgs e)
         {
-            EditPwdFreqSendString(16, this.tb_pf16.Text);
+            if (EditPwdFreqSendString(16, this.tb_pf16.Text))
+                this.tb_pf16.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_pf15_Click(object sender, EventArgs e)
         {
-            EditPwdFreqSendString(15, this.tb_pf15.Text);
+            if (EditPwdFreqSendString(15, this.tb_pf15.Text))
+                this.tb_pf15.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_pf14_Click(object sender, EventArgs e)
         {
-            EditPwdFreqSendString(14, this.tb_pf14.Text);
+            if (EditPwdFreqSendString(14, this.tb_pf14.Text))
+                this.tb_pf14.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_pf13_Click(object sender, EventArgs e)
         {
-            EditPwdFreqSendString(13, this.tb_pf13.Text);
+            if (EditPwdFreqSendString(13, this.tb_pf13.Text))
+                this.tb_pf13.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_pf12_Click(object sender, EventArgs e)
         {
-            EditPwdFreqSendString(12, this.tb_pf12.Text);
+            if (EditPwdFreqSendString(12, this.tb_pf12.Text))
+                this.tb_pf12.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_pf11_Click(object sender, EventArgs e)
         {
-            EditPwdFreqSendString(11, this.tb_pf11.Text);
+            if (EditPwdFreqSendString(11, this.tb_pf11.Text))
+                this.tb_pf11.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_pf10_Click(object sender, EventArgs e)
         {
-            EditPwdFreqSendString(10, this.tb_pf10.Text);
+            if (EditPwdFreqSendString(10, this.tb_pf10.Text))
+                this.tb_pf10.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_pf9_Click(object sender, EventArgs e)
         {
-            EditPwdFreqSendString(9, this.tb_pf9.Text);
+            if (EditPwdFreqSendString(9, this.tb_pf9.Text))
+                this.tb_pf9.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_pf8_Click(object sender, EventArgs e)
         {
-            EditPwdFreqSendString(8, this.tb_pf8.Text);
+            if (EditPwdFreqSendString(8, this.tb_pf8.Text))
+                this.tb_pf8.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_pf7_Click(object sender, EventArgs e)
         {
-            EditPwdFreqSendString(7, this.tb_pf7.Text);
+            if (EditPwdFreqSendString(7, this.tb_pf7.Text))
+                this.tb_pf7.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_pf6_Click(object sender, EventArgs e)
         {
-            EditPwdFreqSendString(6, this.tb_pf6.Text);
+            if (EditPwdFreqSendString(6, this.tb_pf6.Text))
+                this.tb_pf6.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_pf5_Click(object sender, EventArgs e)
         {
-            EditPwdFreqSendString(5, this.tb_pf5.Text);
+            if (EditPwdFreqSendString(5, this.tb_pf5.Text))
+                this.tb_pf5.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_pf4_Click(object sender, EventArgs e)
         {
-            EditPwdFreqSendString(4, this.tb_pf4.Text);
+            if (EditPwdFreqSendString(4, this.tb_pf4.Text))
+                this.tb_pf4.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_pf3_Click(object sender, EventArgs e)
         {
-            EditPwdFreqSendString(3, this.tb_pf3.Text);
+            if (EditPwdFreqSendString(3, this.tb_pf3.Text))
+                this.tb_pf3.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_pf2_Click(object sender, EventArgs e)
         {
-            EditPwdFreqSendString(2, this.tb_pf2.Text);
+            if (EditPwdFreqSendString(2, this.tb_pf2.Text))
+                this.tb_pf2.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_pf1_Click(object sender, EventArgs e)
         {
-            EditPwdFreqSendString(1, this.tb_pf1.Text);
+            if (EditPwdFreqSendString(1, this.tb_pf1.Text))
+                this.tb_pf1.Text = EditInput.inputValue.ToString();
         }
         #endregion
 
         #region voltage
         private void Tb_v20_Click(object sender, EventArgs e)
         {
-            EditVoltageSendString(20, this.tb_v20.Text);
+            if (EditVoltageSendString(20, this.tb_v20.Text))
+                this.tb_v20.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_v19_Click(object sender, EventArgs e)
         {
-            EditVoltageSendString(19, this.tb_v19.Text);
+            if (EditVoltageSendString(19, this.tb_v19.Text))
+                this.tb_v19.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_v18_Click(object sender, EventArgs e)
         {
-            EditVoltageSendString(18, this.tb_v18.Text);
+            if (EditVoltageSendString(18, this.tb_v18.Text))
+                this.tb_v18.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_v17_Click(object sender, EventArgs e)
         {
-            EditVoltageSendString(17, this.tb_v17.Text);
+            if (EditVoltageSendString(17, this.tb_v17.Text))
+                this.tb_v17.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_v16_Click(object sender, EventArgs e)
         {
-            EditVoltageSendString(16, this.tb_v16.Text);
+            if (EditVoltageSendString(16, this.tb_v16.Text))
+                this.tb_v16.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_v15_Click(object sender, EventArgs e)
         {
-            EditVoltageSendString(15, this.tb_v15.Text);
+            if (EditVoltageSendString(15, this.tb_v15.Text))
+                this.tb_v15.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_v14_Click(object sender, EventArgs e)
         {
-            EditVoltageSendString(14, this.tb_v14.Text);
+            if (EditVoltageSendString(14, this.tb_v14.Text))
+                this.tb_v14.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_v13_Click(object sender, EventArgs e)
         {
-            EditVoltageSendString(13, this.tb_v13.Text);
+            if (EditVoltageSendString(13, this.tb_v13.Text))
+                this.tb_v13.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_v12_Click(object sender, EventArgs e)
         {
-            EditVoltageSendString(12, this.tb_v12.Text);
+            if (EditVoltageSendString(12, this.tb_v12.Text))
+                this.tb_v12.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_v11_Click(object sender, EventArgs e)
         {
-            EditVoltageSendString(11, this.tb_v11.Text);
+            if (EditVoltageSendString(11, this.tb_v11.Text))
+                this.tb_v11.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_v10_Click(object sender, EventArgs e)
         {
-            EditVoltageSendString(10, this.tb_v10.Text);
+            if (EditVoltageSendString(10, this.tb_v10.Text))
+                this.tb_v10.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_v9_Click(object sender, EventArgs e)
         {
-            EditVoltageSendString(9, this.tb_v9.Text);
+            if (EditVoltageSendString(9, this.tb_v9.Text))
+                this.tb_v9.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_v8_Click(object sender, EventArgs e)
         {
-            EditVoltageSendString(8, this.tb_v8.Text);
+            if (EditVoltageSendString(8, this.tb_v8.Text))
+                this.tb_v8.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_v7_Click(object sender, EventArgs e)
         {
-            EditVoltageSendString(7, this.tb_v7.Text);
+            if (EditVoltageSendString(7, this.tb_v7.Text))
+                this.tb_v7.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_v6_Click(object sender, EventArgs e)
         {
-            EditVoltageSendString(6, this.tb_v6.Text);
+            if (EditVoltageSendString(6, this.tb_v6.Text))
+                this.tb_v6.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_v5_Click(object sender, EventArgs e)
         {
-            EditVoltageSendString(5, this.tb_v5.Text);
+            if (EditVoltageSendString(5, this.tb_v5.Text))
+                this.tb_v5.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_v4_Click(object sender, EventArgs e)
         {
-            EditVoltageSendString(4, this.tb_v4.Text);
+            if (EditVoltageSendString(4, this.tb_v4.Text))
+                this.tb_v4.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_v3_Click(object sender, EventArgs e)
         {
-            EditVoltageSendString(3, this.tb_v3.Text);
+            if (EditVoltageSendString(3, this.tb_v3.Text))
+                this.tb_v3.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_v2_Click(object sender, EventArgs e)
         {
-            EditVoltageSendString(2,this.tb_v2.Text);
+            if (EditVoltageSendString(2, this.tb_v2.Text))
+                this.tb_v2.Text = EditInput.inputValue.ToString();
         }
 
         private void Tb_v1_Click(object sender, EventArgs e)
         {
-            EditVoltageSendString(1,this.tb_v1.Text);
+            if (EditVoltageSendString(1, this.tb_v1.Text))
+                this.tb_v1.Text = EditInput.inputValue.ToString();
         }
         #endregion
 
@@ -586,43 +665,49 @@ namespace LoadBoxControl
         /// 起始位置从1开始
         /// </summary>
         /// <param name="startIndex"></param>
-        private void EditVoltageSendString(int startIndex,string inputString)
+        private bool EditVoltageSendString(int startIndex,string inputString)
         {
             EditInput editInput = new EditInput(inputString,EditInput.DataType.Voltage);
             editInput.ShowDialog();
             if (editInput.DialogResult != DialogResult.OK)
             {
-                return;
+                return false;
             }
             var sendByte = SendVoltageString(startIndex, EditInput.inputValue);
             LogHelper.Log.Info($"【发送字符串】index={startIndex} " + BitConverter.ToString(sendByte));
-            SendDevConfigMsg(sendByte);
+            if (SendDevConfigMsg(sendByte))
+                return true;
+            return false;
         }
 
-        private void EditPwdFreqSendString(int startIndex,string inputString)
+        private bool EditPwdFreqSendString(int startIndex,string inputString)
         {
             EditInput editInput = new EditInput(inputString,EditInput.DataType.PwmFrequency);
             editInput.ShowDialog();
             if (editInput.DialogResult != DialogResult.OK)
             {
-                return;
+                return false;
             }
             var sendByte = SendPwmFreqString(startIndex, EditInput.inputValue);
             LogHelper.Log.Info($"【pwd-freq】index={startIndex} " + BitConverter.ToString(sendByte));
-            SendDevConfigMsg(sendByte);
+            if (SendDevConfigMsg(sendByte))
+                return true;
+            return false;
         }
 
-        private void EditPwdFreqPersentSendString(int startIndex,string inputString)
+        private bool EditPwdFreqPersentSendString(int startIndex,string inputString)
         {
             EditInput editInput = new EditInput(inputString,EditInput.DataType.PwmFrequencyPersent);
             editInput.ShowDialog();
             if (editInput.DialogResult != DialogResult.OK)
             {
-                return;
+                return false;
             }
             var sendByte = SendPwmFreqPersentString(startIndex, EditInput.inputValue);
             LogHelper.Log.Info($"【pwd-persent】index={startIndex} " + BitConverter.ToString(sendByte));
-            SendDevConfigMsg(sendByte);
+            if (SendDevConfigMsg(sendByte))
+                return true;
+            return false;
         }
 
         private void LoadBoxMainForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -651,26 +736,6 @@ namespace LoadBoxControl
             {
                 MessageBox.Show("请打开某个串口", "错误提示");
             }
-        }
-
-        private void Tool_setParams_Click(object sender, EventArgs e)
-        {
-            CheckChangedParamsToSend();
-        }
-
-        private void CheckChangedParamsToSend()
-        {
-            //是否排队延时发送？
-            //检查修改的参数，添加到队列，先取出第一个队列发送；当接收到消息，更新数据后发送下一组修改的数据？
-            var voltageV1 = this.tb_v1.Text;
-            if (voltageV1 == "")
-            {
-                this.tb_v1.ForeColor = Color.Red;
-                MessageBox.Show("值不能为空", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            this.tb_v1.ForeColor = Color.White;
-            if (this.tb_v1.Text != voltageParams.VoltageChannel1)
-                SendVoltageString(1,int.Parse(voltageV1));
         }
 
         private byte[] SendVoltageString(int index,double value)
@@ -873,7 +938,7 @@ namespace LoadBoxControl
         /// 发送数据
         /// </summary>
         /// <param name="sendContent"></param>
-        private void SendDevConfigMsg(byte[] sendContent)
+        private bool SendDevConfigMsg(byte[] sendContent)
         {
             ///发送hex格式 
             try
@@ -881,11 +946,14 @@ namespace LoadBoxControl
                 if (serialPort.IsOpen)
                 {
                     serialPort.Write(sendContent,0,sendContent.Length);
+                    return true;
                 }
+                return false;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "错误");
+                return false;
             }
         }
 
