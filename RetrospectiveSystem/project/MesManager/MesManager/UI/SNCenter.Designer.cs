@@ -281,8 +281,8 @@
             this.toolStripLabel1.ForeColor = System.Drawing.Color.White;
             this.toolStripLabel1.LinkColor = System.Drawing.Color.White;
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(151, 36);
-            this.toolStripLabel1.Text = "追溯码/零件号/站位名：";
+            this.toolStripLabel1.Size = new System.Drawing.Size(126, 36);
+            this.toolStripLabel1.Text = "PCBASN/成品SN：";
             // 
             // tb_sn
             // 

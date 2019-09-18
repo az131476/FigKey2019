@@ -77,6 +77,8 @@ namespace MesManager.UI
             {
                 this.cb_materialCode.Items.Add(dt.Rows[i][0].ToString());
             }
+            this.cb_materialCode.AutoCompleteSource = AutoCompleteSource.ListItems;
+            this.cb_materialCode.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
         }
 
         async private void CommitQuanlityData()

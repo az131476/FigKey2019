@@ -435,7 +435,7 @@ namespace MesManager.UI
         {
             var filter = tb_sn.Text;
             //DataSet ds = (await serviceClient.SelectTestResultUpperAsync(filter, filter, filter, true));
-            DataSet ds = await serviceClient.SelectTestResultDetailAsync();
+            DataSet ds = await serviceClient.SelectTestResultDetailAsync(filter);
             if (ds.Tables.Count < 1)
             {
                 this.radGridViewSn.DataSource = null;

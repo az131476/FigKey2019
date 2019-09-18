@@ -615,10 +615,10 @@ namespace MesManager.MesService {
         System.Threading.Tasks.Task<System.Data.DataSet> SelectPackageStorageAsync(string queryFilter);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectTestResultDetail", ReplyAction="http://tempuri.org/IMesService/SelectTestResultDetailResponse")]
-        System.Data.DataSet SelectTestResultDetail();
+        System.Data.DataSet SelectTestResultDetail(string querySN);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectTestResultDetail", ReplyAction="http://tempuri.org/IMesService/SelectTestResultDetailResponse")]
-        System.Threading.Tasks.Task<System.Data.DataSet> SelectTestResultDetailAsync();
+        System.Threading.Tasks.Task<System.Data.DataSet> SelectTestResultDetailAsync(string querySN);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectTestResultLogDetail", ReplyAction="http://tempuri.org/IMesService/SelectTestResultLogDetailResponse")]
         System.Data.DataSet SelectTestResultLogDetail(string queryFilter, string startTime, string endTime);
@@ -1070,12 +1070,12 @@ namespace MesManager.MesService {
             return base.Channel.SelectPackageStorageAsync(queryFilter);
         }
         
-        public System.Data.DataSet SelectTestResultDetail() {
-            return base.Channel.SelectTestResultDetail();
+        public System.Data.DataSet SelectTestResultDetail(string querySN) {
+            return base.Channel.SelectTestResultDetail(querySN);
         }
         
-        public System.Threading.Tasks.Task<System.Data.DataSet> SelectTestResultDetailAsync() {
-            return base.Channel.SelectTestResultDetailAsync();
+        public System.Threading.Tasks.Task<System.Data.DataSet> SelectTestResultDetailAsync(string querySN) {
+            return base.Channel.SelectTestResultDetailAsync(querySN);
         }
         
         public System.Data.DataSet SelectTestResultLogDetail(string queryFilter, string startTime, string endTime) {

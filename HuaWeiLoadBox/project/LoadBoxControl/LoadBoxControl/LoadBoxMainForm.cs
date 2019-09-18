@@ -588,13 +588,12 @@ namespace LoadBoxControl
         /// <param name="startIndex"></param>
         private void EditVoltageSendString(int startIndex,string inputString)
         {
-            EditInput editInput = new EditInput(inputString);
+            EditInput editInput = new EditInput(inputString,EditInput.DataType.Voltage);
             editInput.ShowDialog();
             if (editInput.DialogResult != DialogResult.OK)
             {
                 return;
             }
-            this.tb_v1.Text = EditInput.inputValue.ToString();
             var sendByte = SendVoltageString(startIndex, EditInput.inputValue);
             LogHelper.Log.Info($"【发送字符串】index={startIndex} " + BitConverter.ToString(sendByte));
             SendDevConfigMsg(sendByte);
@@ -602,7 +601,7 @@ namespace LoadBoxControl
 
         private void EditPwdFreqSendString(int startIndex,string inputString)
         {
-            EditInput editInput = new EditInput(inputString);
+            EditInput editInput = new EditInput(inputString,EditInput.DataType.PwmFrequency);
             editInput.ShowDialog();
             if (editInput.DialogResult != DialogResult.OK)
             {
@@ -615,7 +614,7 @@ namespace LoadBoxControl
 
         private void EditPwdFreqPersentSendString(int startIndex,string inputString)
         {
-            EditInput editInput = new EditInput(inputString);
+            EditInput editInput = new EditInput(inputString,EditInput.DataType.PwmFrequencyPersent);
             editInput.ShowDialog();
             if (editInput.DialogResult != DialogResult.OK)
             {

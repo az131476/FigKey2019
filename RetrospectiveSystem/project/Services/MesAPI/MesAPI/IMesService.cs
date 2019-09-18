@@ -191,7 +191,7 @@ namespace MesAPI
         DataSet SelectPackageStorage(string queryFilter);
 
         [OperationContract]
-        DataSet SelectTestResultDetail();
+        DataSet SelectTestResultDetail(string querySN);
 
         [OperationContract]
         DataSet SelectTestResultLogDetail(string queryFilter,string startTime,string endTime);

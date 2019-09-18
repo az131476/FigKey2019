@@ -13,16 +13,41 @@ namespace LoadBoxControl
     public partial class EditInput : RadForm
     {
         public static double inputValue;
-        public EditInput(string inputString)
+        private DataType currentDaTaType;
+        public enum DataType
+        {
+            Voltage,
+            PwmFrequency,
+            PwmFrequencyPersent
+        }
+        public EditInput(string inputString,DataType dataType)
         {
             InitializeComponent();
-            inputValue = double.Parse(inputString.Trim());
+            if (inputString.Trim() != "")
+            {
+                double.TryParse(inputString.Trim(),out inputValue);
+            }
+            this.currentDaTaType = dataType;
             this.StartPosition = FormStartPosition.CenterParent;
         }
 
         private void EditInput_Load(object sender, EventArgs e)
         {
-            this.tb_input.Enabled = false;
+            if (currentDaTaType == DataType.Voltage)
+            {
+                ltb_title.Text = "【电压设置】";
+                lbx_limit.Text = "请输入0-5V电压";
+            }
+            else if (currentDaTaType == DataType.PwmFrequency)
+            {
+                ltb_title.Text = "【频率设置】";
+                lbx_limit.Text = "请输入0-20000Hz频率";
+            }
+            else if (currentDaTaType == DataType.PwmFrequencyPersent)
+            {
+                ltb_title.Text = "【频率占空比】";
+                lbx_limit.Text = "请输入0-100的频率占空比";
+            }
             EventHandlers();
         }
 
@@ -67,6 +92,34 @@ namespace LoadBoxControl
                     return;
                 }
                 inputValue = double.Parse(inputString);
+                //判断范围
+                if (currentDaTaType == DataType.Voltage)
+                {
+                    //0-5
+                    if (inputValue < 0 || inputValue > 5)
+                    {
+                        MessageBox.Show("请输入0-5V电压","提示",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                        return;
+                    }
+                }
+                else if (currentDaTaType == DataType.PwmFrequency)
+                {
+                    //0-20000
+                    if (inputValue < 0 || inputValue > 20000)
+                    {
+                        MessageBox.Show("请输入0-20000Hz频率", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+                }
+                else if (currentDaTaType == DataType.PwmFrequencyPersent)
+                {
+                    //0-100
+                    if (inputValue < 0 || inputValue > 100)
+                    {
+                        MessageBox.Show("请输入0-100频率占空比", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+                }
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
