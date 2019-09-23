@@ -28,12 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoadBoxMainForm));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.tool_cb_serialItem = new System.Windows.Forms.ToolStripComboBox();
-            this.tool_refresh = new System.Windows.Forms.ToolStripButton();
-            this.tool_open_searial = new System.Windows.Forms.ToolStripButton();
-            this.tool_close_serial = new System.Windows.Forms.ToolStripButton();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tb_v20 = new Telerik.WinControls.UI.RadButton();
             this.tb_v19 = new Telerik.WinControls.UI.RadButton();
@@ -181,6 +179,11 @@
             this.label62 = new System.Windows.Forms.Label();
             this.label63 = new System.Windows.Forms.Label();
             this.tb_pp30 = new Telerik.WinControls.UI.RadButton();
+            this.tool_refresh = new System.Windows.Forms.ToolStripButton();
+            this.tool_open_searial = new System.Windows.Forms.ToolStripButton();
+            this.tool_close_serial = new System.Windows.Forms.ToolStripButton();
+            this.tool_abort = new System.Windows.Forms.ToolStripButton();
+            this.tool_help = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tb_v20)).BeginInit();
@@ -278,7 +281,9 @@
             this.tool_cb_serialItem,
             this.tool_refresh,
             this.tool_open_searial,
-            this.tool_close_serial});
+            this.tool_close_serial,
+            this.tool_abort,
+            this.tool_help});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1043, 29);
@@ -296,33 +301,6 @@
             // 
             this.tool_cb_serialItem.Name = "tool_cb_serialItem";
             this.tool_cb_serialItem.Size = new System.Drawing.Size(121, 29);
-            // 
-            // tool_refresh
-            // 
-            this.tool_refresh.ForeColor = System.Drawing.Color.White;
-            this.tool_refresh.Image = global::LoadBoxControl.Properties.Resources.Refresh2_16x16;
-            this.tool_refresh.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tool_refresh.Name = "tool_refresh";
-            this.tool_refresh.Size = new System.Drawing.Size(62, 26);
-            this.tool_refresh.Text = "刷新";
-            // 
-            // tool_open_searial
-            // 
-            this.tool_open_searial.ForeColor = System.Drawing.Color.White;
-            this.tool_open_searial.Image = global::LoadBoxControl.Properties.Resources.open_source;
-            this.tool_open_searial.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tool_open_searial.Name = "tool_open_searial";
-            this.tool_open_searial.Size = new System.Drawing.Size(94, 26);
-            this.tool_open_searial.Text = "打开串口";
-            // 
-            // tool_close_serial
-            // 
-            this.tool_close_serial.ForeColor = System.Drawing.Color.White;
-            this.tool_close_serial.Image = global::LoadBoxControl.Properties.Resources.Close_16x16;
-            this.tool_close_serial.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tool_close_serial.Name = "tool_close_serial";
-            this.tool_close_serial.Size = new System.Drawing.Size(94, 26);
-            this.tool_close_serial.Text = "关闭串口";
             // 
             // tableLayoutPanel1
             // 
@@ -2082,6 +2060,53 @@
             this.tb_pp30.Size = new System.Drawing.Size(82, 45);
             this.tb_pp30.TabIndex = 112;
             // 
+            // tool_refresh
+            // 
+            this.tool_refresh.ForeColor = System.Drawing.Color.White;
+            this.tool_refresh.Image = global::LoadBoxControl.Properties.Resources.Refresh2_16x16;
+            this.tool_refresh.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tool_refresh.Name = "tool_refresh";
+            this.tool_refresh.Size = new System.Drawing.Size(62, 26);
+            this.tool_refresh.Text = "刷新";
+            // 
+            // tool_open_searial
+            // 
+            this.tool_open_searial.ForeColor = System.Drawing.Color.White;
+            this.tool_open_searial.Image = global::LoadBoxControl.Properties.Resources.open_source;
+            this.tool_open_searial.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tool_open_searial.Name = "tool_open_searial";
+            this.tool_open_searial.Size = new System.Drawing.Size(94, 26);
+            this.tool_open_searial.Text = "打开串口";
+            // 
+            // tool_close_serial
+            // 
+            this.tool_close_serial.ForeColor = System.Drawing.Color.White;
+            this.tool_close_serial.Image = global::LoadBoxControl.Properties.Resources.Close_16x16;
+            this.tool_close_serial.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tool_close_serial.Name = "tool_close_serial";
+            this.tool_close_serial.Size = new System.Drawing.Size(94, 26);
+            this.tool_close_serial.Text = "关闭串口";
+            // 
+            // tool_abort
+            // 
+            this.tool_abort.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tool_abort.ForeColor = System.Drawing.Color.White;
+            this.tool_abort.Image = ((System.Drawing.Image)(resources.GetObject("tool_abort.Image")));
+            this.tool_abort.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tool_abort.Name = "tool_abort";
+            this.tool_abort.Size = new System.Drawing.Size(46, 26);
+            this.tool_abort.Text = "关于";
+            // 
+            // tool_help
+            // 
+            this.tool_help.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tool_help.ForeColor = System.Drawing.Color.White;
+            this.tool_help.Image = ((System.Drawing.Image)(resources.GetObject("tool_help.Image")));
+            this.tool_help.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tool_help.Name = "tool_help";
+            this.tool_help.Size = new System.Drawing.Size(46, 26);
+            this.tool_help.Text = "帮助";
+            // 
             // LoadBoxMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -2092,12 +2117,13 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.toolStrip1);
             this.ForeColor = System.Drawing.Color.Black;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "LoadBoxMainForm";
             // 
             // 
             // 
             this.RootElement.ApplyShapeToControl = true;
-            this.Text = "LoadBoxControl";
+            this.Text = "Load Box";
             this.Load += new System.EventHandler(this.LoadBoxMainForm_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
@@ -2347,5 +2373,7 @@
         private Telerik.WinControls.UI.RadButton tb_pp3;
         private Telerik.WinControls.UI.RadButton tb_pp2;
         private Telerik.WinControls.UI.RadButton tb_pp1;
+        private System.Windows.Forms.ToolStripButton tool_help;
+        private System.Windows.Forms.ToolStripButton tool_abort;
     }
 }

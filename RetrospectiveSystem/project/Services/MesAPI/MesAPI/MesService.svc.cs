@@ -1362,15 +1362,34 @@ namespace MesAPI
             string deleteSQL = $"DELETE FROM {DbTable.F_MATERIAL_NAME}";
             return SQLServer.ExecuteNonQuery(deleteSQL);
         }
-        public DataSet SelectMaterial()
+        public DataSet SelectMaterial(string codeRid)
         {
-            string updateSQL = $"SELECT {DbTable.F_Material.MATERIAL_CODE}," +
+            var selectSQL = "";
+            if (codeRid == "")
+            {
+                selectSQL = $"SELECT " +
+                $"{DbTable.F_Material.MATERIAL_CODE}," +
                 $"{DbTable.F_Material.MATERIAL_NAME}," +
                 $"{DbTable.F_Material.MATERIAL_USERNAME}," +
                 $"{DbTable.F_Material.MATERIAL_UPDATE_DATE}," +
-                $"{DbTable.F_Material.MATERIAL_DESCRIBLE}" +
-                $" FROM {DbTable.F_MATERIAL_NAME}";
-            return SQLServer.ExecuteDataSet(updateSQL);
+                $"{DbTable.F_Material.MATERIAL_DESCRIBLE}," +
+                $"{DbTable.F_Material.MATERIAL_STOCK} " +
+                $"FROM {DbTable.F_MATERIAL_NAME}";
+            }
+            else
+            {
+                selectSQL = $"SELECT " +
+                $"{DbTable.F_Material.MATERIAL_CODE}," +
+                $"{DbTable.F_Material.MATERIAL_NAME}," +
+                $"{DbTable.F_Material.MATERIAL_USERNAME}," +
+                $"{DbTable.F_Material.MATERIAL_UPDATE_DATE}," +
+                $"{DbTable.F_Material.MATERIAL_DESCRIBLE}," +
+                $"{DbTable.F_Material.MATERIAL_STOCK} " +
+                $"FROM {DbTable.F_MATERIAL_NAME} " +
+                $"WHERE " +
+                $"{DbTable.F_Material.MATERIAL_CODE} like '%{codeRid}%'";
+            }
+            return SQLServer.ExecuteDataSet(selectSQL);
         }
         private bool IsExistMaterial(string materialCode)
         {
@@ -2435,6 +2454,42 @@ namespace MesAPI
             }
 
             return SQLServer.ExecuteDataSet(selectSQL);
+        }
+        #endregion
+
+        #region 物料库存
+        public MaterialStockEnum ModifyMaterialStock(string materialCode,int stock)
+        {
+            var selectSQL = $"SELECT * FROM {DbTable.F_MATERIAL_NAME} " +
+                $"WHERE " +
+                $"{DbTable.F_Material.MATERIAL_CODE} = '{materialCode}' ";
+            var dt = SQLServer.ExecuteDataSet(selectSQL).Tables[0];
+            if (dt.Rows.Count > 0)
+            {
+                //物料存在
+                selectSQL = $"SELECT * FROM {DbTable.F_MATERIAL_NAME} " +
+                $"WHERE " +
+                $"{DbTable.F_Material.MATERIAL_CODE} = '{materialCode}' " +
+                $"AND " +
+                $"{DbTable.F_Material.MATERIAL_STOCK} = '{stock}'";
+                dt = SQLServer.ExecuteDataSet(selectSQL).Tables[0];
+                if (dt.Rows.Count < 1)
+                {
+                    //该库存为修改库存
+                    //更新
+                    var updateSQL = $"UPDATE {DbTable.F_MATERIAL_NAME} SET " +
+                        $"{DbTable.F_Material.MATERIAL_STOCK} = '{stock}' " +
+                        $"WHERE " +
+                        $"{DbTable.F_Material.MATERIAL_CODE} = '{materialCode}'";
+                    var res = SQLServer.ExecuteNonQuery(updateSQL);
+                    if (res == 1)
+                        return MaterialStockEnum.STATUS_SUCCESS;
+                    return MaterialStockEnum.STATUS_FAIL;
+                }
+                //库存未修改
+                return MaterialStockEnum.STATUS_NONE_MODIFY;
+            }
+            return MaterialStockEnum.ERROR_MATERIAL_IS_NOT_EXIST;
         }
         #endregion
 

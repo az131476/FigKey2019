@@ -587,6 +587,9 @@
     <None Include="Connected Services\MesService\MesManager.MesService.LoginResult.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\MesService\MesManager.MesService.MaterialStockEnum.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\MesService\MesManager.MesService.ProductMaterial.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

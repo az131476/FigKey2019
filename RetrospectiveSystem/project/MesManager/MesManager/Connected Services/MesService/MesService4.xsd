@@ -361,7 +361,9 @@
   </xs:element>
   <xs:element name="SelectMaterial">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element minOccurs="0" name="codeRID" nillable="true" type="xs:string" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="SelectMaterialResponse">
@@ -1121,6 +1123,21 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ModifyMaterialStock">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="materialCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="stock" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ModifyMaterialStockResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/MesAPI.Model" minOccurs="0" name="ModifyMaterialStockResult" type="q8:MaterialStockEnum" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

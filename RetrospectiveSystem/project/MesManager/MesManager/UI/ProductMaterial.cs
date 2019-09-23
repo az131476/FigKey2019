@@ -20,14 +20,37 @@ namespace MesManager.UI
         private string keyMaterialCode;
         private string keyTypeNo;
         private string keyDescrible;
+        private string keyOldMaterialStock;
 
-        List<ProductMaterial> pmListTemp;
+        #region 物料统计字段
+        private const string MATERIAL_STOCK_ORDER = "序号";
+        private const string MATERIAL_PN = "物料号";
+        private const string MATERIAL_LOT = "批次号";
+        private const string MATERIAL_RID = "料盘号";
+        private const string MATERIAL_DC = "收料日期";
+        private const string MATERIAL_NAME = "物料名称";
+        private const string MATERIAL_QTY = "库存";
+        private const string ADMIN = "管理员";
+        private const string UPDATE_DATE = "更新日期";
+        #endregion
+
+        private List<ProductMaterial> pmListTemp;
+        private List<ProductMaterial> pmStockList;
+        private DataTable materialStockData;
         private int editRowIndex;
+        private MaterialType materialType;
+
         public ProductMaterial()
         {
             InitializeComponent();
             //this.MaximizeBox = false;
             this.StartPosition = FormStartPosition.CenterParent;
+        }
+
+        private enum MaterialType
+        {
+            MATERIAL_BINDING,
+            MATERIAL_STOCK_MODIFY
         }
 
         private void ProductMaterial_Load(object sender, EventArgs e)
@@ -40,23 +63,78 @@ namespace MesManager.UI
         {
             serviceClient = new MesService.MesServiceClient();
             pmListTemp = new List<ProductMaterial>();
+            pmStockList = new List<ProductMaterial>();
             DataGridViewCommon.SetRadGridViewProperty(this.radGridView1, true);
-            this.radGridView1.DataSource = null;
+            DataGridViewCommon.SetRadGridViewProperty(this.radGridView2,false);
             BindingDataSource();
+            InitDataTable();
+        }
+
+        private void InitDataTable()
+        {
+            materialStockData = new DataTable();
+            materialStockData.Columns.Add(MATERIAL_STOCK_ORDER);
+            materialStockData.Columns.Add(MATERIAL_PN);
+            materialStockData.Columns.Add(MATERIAL_LOT);
+            materialStockData.Columns.Add(MATERIAL_RID);
+            materialStockData.Columns.Add(MATERIAL_DC);
+            materialStockData.Columns.Add(MATERIAL_NAME);
+            materialStockData.Columns.Add(MATERIAL_QTY);
+            materialStockData.Columns.Add(ADMIN);
+            materialStockData.Columns.Add(UPDATE_DATE);
         }
 
         private void EventHandlers()
         {
-            menu_add_row.Click += Menu_add_row_Click;
-            menu_delete.Click += Menu_delete_Click;
-            menu_update.Click += Menu_update_Click;
-            menu_refresh.Click += Menu_refresh_Click;
-            menu_clear_db.Click += Menu_clear_db_Click;
-            menu_grid.Click += Menu_grid_Click;
+            this.menu_add_row.Click += Menu_add_row_Click;
+            this.menu_delete.Click += Menu_delete_Click;
+            this.menu_update.Click += Menu_update_Click;
+            this.menu_refresh.Click += Menu_refresh_Click;
+            this.menu_clear_db.Click += Menu_clear_db_Click;
+            this.menu_grid.Click += Menu_grid_Click;
+            this.tool_material_binding.Click += Tool_material_binding_Click;
+            this.tool_material_stock.Click += Tool_material_stock_Click;
 
             this.radGridView1.ContextMenuOpening += RadGridView1_ContextMenuOpening;
             this.radGridView1.CellBeginEdit += RadGridView1_CellBeginEdit;
             this.radGridView1.CellEndEdit += RadGridView1_CellEndEdit;
+            this.radGridView2.CellBeginEdit += RadGridView2_CellBeginEdit;
+            this.radGridView2.CellEndEdit += RadGridView2_CellEndEdit;
+        }
+
+        private void RadGridView2_CellEndEdit(object sender, GridViewCellEventArgs e)
+        {
+            var materialStock = this.radGridView2.CurrentRow.Cells[6].Value;
+            var materialRid = this.radGridView2.CurrentRow.Cells[3].Value;
+            if (materialStock == null)
+                return;
+            if (materialStock.ToString() != keyOldMaterialStock)
+            {
+                ProductMaterial productMaterial = new ProductMaterial();
+                productMaterial.keyOldMaterialStock = materialStock.ToString();
+                productMaterial.keyMaterialCode = serviceClient.GetMaterialCode(materialRid.ToString());
+                this.pmStockList.Add(productMaterial);
+            }
+        }
+
+        private void RadGridView2_CellBeginEdit(object sender, GridViewCellCancelEventArgs e)
+        {
+            var materialStock = this.radGridView2.CurrentRow.Cells[6].Value;
+            if (materialStock == null)
+                return;
+            keyOldMaterialStock = materialStock.ToString();
+        }
+
+        private void Tool_material_stock_Click(object sender, EventArgs e)
+        {
+            materialType = MaterialType.MATERIAL_STOCK_MODIFY;
+            BindingMaterialStock(this.tool_queryFilter.Text);
+        }
+
+        private void Tool_material_binding_Click(object sender, EventArgs e)
+        {
+            materialType = MaterialType.MATERIAL_BINDING;
+            BindingDataSource();
         }
 
         private void RadGridView1_CellEndEdit(object sender, GridViewCellEventArgs e)
@@ -158,7 +236,10 @@ namespace MesManager.UI
 
         private void Menu_update_Click(object sender, EventArgs e)
         {
-            UpdateData();
+            if (materialType == MaterialType.MATERIAL_BINDING)
+                UpdateData();
+            else if (materialType == MaterialType.MATERIAL_STOCK_MODIFY)
+                UpdateMaterialStock();
         }
 
         private void Menu_delete_Click(object sender, EventArgs e)
@@ -183,6 +264,10 @@ namespace MesManager.UI
         }
         async private void BindingDataSource()
         {
+            this.radGridView1.Dock = DockStyle.Fill;
+            this.radGridView1.Visible = true;
+            this.radGridView2.Visible = false;
+            this.radGridView1.DataSource = null;
             GridViewTextBoxColumn order = this.radGridView1.Columns[DataGridViewColumnName.rdvc_order.ToString()] as GridViewTextBoxColumn;
             //GridViewComboBoxColumn materialCode = this.radGridView1.Columns[DataGridViewColumnName.rdvc_materialCode.ToString()] as GridViewComboBoxColumn;
             GridViewComboBoxColumn productTypeNo = this.radGridView1.Columns[DataGridViewColumnName.rdvc_typeNo.ToString()] as GridViewComboBoxColumn;
@@ -231,6 +316,45 @@ namespace MesManager.UI
             this.radGridView1.Columns[5].ReadOnly = true;
             this.radGridView1.Columns[6].ReadOnly = true;
             this.pmListTemp.Clear();
+        }
+
+        async private void BindingMaterialStock(string queryCondition)
+        {
+            this.radGridView2.Dock = DockStyle.Fill;
+            this.radGridView2.Visible = true;
+            this.radGridView1.Visible = false;
+
+            var dt = (await serviceClient.SelectMaterialAsync(queryCondition)).Tables[0];
+            materialStockData.Clear();
+            if (dt.Rows.Count > 0)
+            {
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    var materialCode = dt.Rows[i][0].ToString();
+                    var materialStock = dt.Rows[i][5].ToString();
+                    AnalysisMaterialCode analysisMaterialCode = AnalysisMaterialCode.GetMaterialDetail(materialCode);
+                    DataRow dr = materialStockData.NewRow();
+                    dr[MATERIAL_STOCK_ORDER] = i + 1;
+                    dr[MATERIAL_PN] = analysisMaterialCode.MaterialPN;
+                    dr[MATERIAL_LOT] = analysisMaterialCode.MaterialLOT;
+                    dr[MATERIAL_RID] = analysisMaterialCode.MaterialRID;
+                    dr[MATERIAL_DC] = analysisMaterialCode.MaterialDC;
+                    dr[MATERIAL_NAME] = serviceClient.SelectMaterialName(analysisMaterialCode.MaterialPN);
+                    dr[MATERIAL_QTY] = materialStock;
+                    dr[UPDATE_DATE] = dt.Rows[i][3].ToString();
+                    this.materialStockData.Rows.Add(dr);
+                }
+            }
+            this.radGridView2.DataSource = materialStockData;
+            this.radGridView2.Columns[0].ReadOnly = true;
+            this.radGridView2.Columns[1].ReadOnly = true;
+            this.radGridView2.Columns[2].ReadOnly = true;
+            this.radGridView2.Columns[3].ReadOnly = true;
+            this.radGridView2.Columns[4].ReadOnly = true;
+            this.radGridView2.Columns[5].ReadOnly = true;
+            this.radGridView2.Columns[7].ReadOnly = true;
+            this.radGridView2.Columns[8].ReadOnly = true;
+            this.radGridView2.Columns[0].BestFit();
         }
 
         async private void UpdateData()
@@ -286,6 +410,31 @@ namespace MesManager.UI
             }
             MessageBox.Show("更新成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
             SelectData();
+        }
+
+        private void UpdateMaterialStock()
+        {
+            if (pmStockList.Count < 1)
+                return;
+            bool updateRes = true;
+            foreach (var productMaterial in pmStockList)
+            {
+                int modifyStock;
+                int.TryParse(productMaterial.keyOldMaterialStock.Trim(),out modifyStock);
+                MesService.MaterialStockEnum materialStockEnum = serviceClient.ModifyMaterialStock(productMaterial.keyMaterialCode,modifyStock);
+                if (materialStockEnum == MesService.MaterialStockEnum.STATUS_FAIL)
+                {
+                    updateRes = false;
+                    MessageBox.Show("更新失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else if (materialStockEnum == MesService.MaterialStockEnum.ERROR_MATERIAL_IS_NOT_EXIST)
+                {
+                    updateRes = false;
+                    MessageBox.Show("物料编码错误！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            if(updateRes)
+                MessageBox.Show("修改成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         async private void DeleteRowData()

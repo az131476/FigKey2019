@@ -339,6 +339,12 @@
   <wsdl:message name="IMesService_SelectPackageProductCheck_OutputMessage">
     <wsdl:part name="parameters" element="tns:SelectPackageProductCheckResponse" />
   </wsdl:message>
+  <wsdl:message name="IMesService_ModifyMaterialStock_InputMessage">
+    <wsdl:part name="parameters" element="tns:ModifyMaterialStock" />
+  </wsdl:message>
+  <wsdl:message name="IMesService_ModifyMaterialStock_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ModifyMaterialStockResponse" />
+  </wsdl:message>
   <wsdl:portType name="IMesService">
     <wsdl:operation name="TestCommunication">
       <wsdl:input wsaw:Action="http://tempuri.org/IMesService/TestCommunication" message="tns:IMesService_TestCommunication_InputMessage" />
@@ -559,6 +565,10 @@
     <wsdl:operation name="SelectPackageProductCheck">
       <wsdl:input wsaw:Action="http://tempuri.org/IMesService/SelectPackageProductCheck" message="tns:IMesService_SelectPackageProductCheck_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMesService/SelectPackageProductCheckResponse" message="tns:IMesService_SelectPackageProductCheck_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ModifyMaterialStock">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMesService/ModifyMaterialStock" message="tns:IMesService_ModifyMaterialStock_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMesService/ModifyMaterialStockResponse" message="tns:IMesService_ModifyMaterialStock_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IMesService" type="tns:IMesService">
@@ -1051,6 +1061,15 @@
     </wsdl:operation>
     <wsdl:operation name="SelectPackageProductCheck">
       <soap:operation soapAction="http://tempuri.org/IMesService/SelectPackageProductCheck" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModifyMaterialStock">
+      <soap:operation soapAction="http://tempuri.org/IMesService/ModifyMaterialStock" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

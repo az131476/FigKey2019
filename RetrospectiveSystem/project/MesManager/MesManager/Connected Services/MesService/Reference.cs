@@ -316,6 +316,23 @@ namespace MesManager.MesService {
         }
     }
     
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="MaterialStockEnum", Namespace="http://schemas.datacontract.org/2004/07/MesAPI.Model")]
+    public enum MaterialStockEnum : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        STATUS_SUCCESS = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        STATUS_NONE_MODIFY = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        STATUS_FAIL = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        ERROR_MATERIAL_IS_NOT_EXIST = 3,
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="MesService.IMesService")]
     public interface IMesService {
@@ -435,10 +452,10 @@ namespace MesManager.MesService {
         System.Threading.Tasks.Task<System.Data.DataSet> SelectTestResultUpperAsync(string sn, string typeNo, string station, bool IsSnFuzzy);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectMaterial", ReplyAction="http://tempuri.org/IMesService/SelectMaterialResponse")]
-        System.Data.DataSet SelectMaterial();
+        System.Data.DataSet SelectMaterial(string codeRID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectMaterial", ReplyAction="http://tempuri.org/IMesService/SelectMaterialResponse")]
-        System.Threading.Tasks.Task<System.Data.DataSet> SelectMaterialAsync();
+        System.Threading.Tasks.Task<System.Data.DataSet> SelectMaterialAsync(string codeRID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectMaterialPN", ReplyAction="http://tempuri.org/IMesService/SelectMaterialPNResponse")]
         System.Data.DataSet SelectMaterialPN();
@@ -649,6 +666,12 @@ namespace MesManager.MesService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/SelectPackageProductCheck", ReplyAction="http://tempuri.org/IMesService/SelectPackageProductCheckResponse")]
         System.Threading.Tasks.Task<System.Data.DataSet> SelectPackageProductCheckAsync(string queryFilter, string state, bool IsShowNumber);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/ModifyMaterialStock", ReplyAction="http://tempuri.org/IMesService/ModifyMaterialStockResponse")]
+        MesManager.MesService.MaterialStockEnum ModifyMaterialStock(string materialCode, int stock);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/ModifyMaterialStock", ReplyAction="http://tempuri.org/IMesService/ModifyMaterialStockResponse")]
+        System.Threading.Tasks.Task<MesManager.MesService.MaterialStockEnum> ModifyMaterialStockAsync(string materialCode, int stock);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -830,12 +853,12 @@ namespace MesManager.MesService {
             return base.Channel.SelectTestResultUpperAsync(sn, typeNo, station, IsSnFuzzy);
         }
         
-        public System.Data.DataSet SelectMaterial() {
-            return base.Channel.SelectMaterial();
+        public System.Data.DataSet SelectMaterial(string codeRID) {
+            return base.Channel.SelectMaterial(codeRID);
         }
         
-        public System.Threading.Tasks.Task<System.Data.DataSet> SelectMaterialAsync() {
-            return base.Channel.SelectMaterialAsync();
+        public System.Threading.Tasks.Task<System.Data.DataSet> SelectMaterialAsync(string codeRID) {
+            return base.Channel.SelectMaterialAsync(codeRID);
         }
         
         public System.Data.DataSet SelectMaterialPN() {
@@ -1116,6 +1139,14 @@ namespace MesManager.MesService {
         
         public System.Threading.Tasks.Task<System.Data.DataSet> SelectPackageProductCheckAsync(string queryFilter, string state, bool IsShowNumber) {
             return base.Channel.SelectPackageProductCheckAsync(queryFilter, state, IsShowNumber);
+        }
+        
+        public MesManager.MesService.MaterialStockEnum ModifyMaterialStock(string materialCode, int stock) {
+            return base.Channel.ModifyMaterialStock(materialCode, stock);
+        }
+        
+        public System.Threading.Tasks.Task<MesManager.MesService.MaterialStockEnum> ModifyMaterialStockAsync(string materialCode, int stock) {
+            return base.Channel.ModifyMaterialStockAsync(materialCode, stock);
         }
     }
 }

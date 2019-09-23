@@ -84,7 +84,7 @@ namespace MesAPI
 
         //物料信息接口
         [OperationContract]
-        DataSet SelectMaterial();
+        DataSet SelectMaterial(string codeRID);
 
         [OperationContract]
         DataSet SelectMaterialPN();
@@ -207,5 +207,8 @@ namespace MesAPI
 
         [OperationContract]
         DataSet SelectPackageProductCheck(string queryFilter, string state, bool IsShowNumber);
+
+        [OperationContract]
+        MaterialStockEnum ModifyMaterialStock(string materialCode, int stock);
     }
 }

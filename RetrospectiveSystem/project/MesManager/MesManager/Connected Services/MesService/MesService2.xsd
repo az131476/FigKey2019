@@ -54,4 +54,13 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ProductMaterial" nillable="true" type="tns:ProductMaterial" />
+  <xs:simpleType name="MaterialStockEnum">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="STATUS_SUCCESS" />
+      <xs:enumeration value="STATUS_NONE_MODIFY" />
+      <xs:enumeration value="STATUS_FAIL" />
+      <xs:enumeration value="ERROR_MATERIAL_IS_NOT_EXIST" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="MaterialStockEnum" nillable="true" type="tns:MaterialStockEnum" />
 </xs:schema>

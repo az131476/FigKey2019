@@ -45,6 +45,7 @@ namespace LoadBoxControl
         public LoadBoxMainForm()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
             this.MaximizeBox = false;
         }
 
@@ -83,6 +84,8 @@ namespace LoadBoxControl
             this.tool_close_serial.Click += Tool_close_serial_Click;
             this.serialPort.DataReceived += SerialPort_DataReceived;
             this.FormClosed += LoadBoxMainForm_FormClosed;
+            this.tool_help.Click += Tool_help_Click;
+            this.tool_abort.Click += Tool_abort_Click;
 
             #region voltage click event hander
             this.tb_v1.Click += Tb_v1_Click;
@@ -173,6 +176,18 @@ namespace LoadBoxControl
             this.tb_pp30.Click += Tb_pp30_Click;
 
             #endregion
+        }
+
+        private void Tool_abort_Click(object sender, EventArgs e)
+        {
+            AboutBox1 aboutBox1 = new AboutBox1();
+            aboutBox1.ShowDialog();
+        }
+
+        private void Tool_help_Click(object sender, EventArgs e)
+        {
+            FHelp fHelp = new FHelp();
+            fHelp.ShowDialog();
         }
 
         #region pwm frequency persent
