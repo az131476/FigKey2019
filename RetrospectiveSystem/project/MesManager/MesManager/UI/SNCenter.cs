@@ -546,11 +546,11 @@ namespace MesManager.UI
                 dataSourceQuanlity.Columns.Add(MATERIAL_LOT);
                 dataSourceQuanlity.Columns.Add(MATERIAL_RID);
                 dataSourceQuanlity.Columns.Add(MATERIAL_DC);
-                dataSourceQuanlity.Columns.Add(MATERIAL_QTY);
                 dataSourceQuanlity.Columns.Add(MATERIAL_NAME);
                 dataSourceQuanlity.Columns.Add(EXCEPT_TYPE);
-                dataSourceQuanlity.Columns.Add(EXCEPT_STOCK);
+                dataSourceQuanlity.Columns.Add(MATERIAL_QTY);
                 dataSourceQuanlity.Columns.Add(ACTUAL_STOCK);
+                dataSourceQuanlity.Columns.Add(EXCEPT_STOCK);
                 dataSourceQuanlity.Columns.Add(MATERIAL_STATE);
                 dataSourceQuanlity.Columns.Add(SHUT_REASON);
                 dataSourceQuanlity.Columns.Add(USER_NAME);
@@ -591,10 +591,25 @@ namespace MesManager.UI
                 dr[MATERIAL_DC] = dcCode;
                 dr[MATERIAL_QTY] = qtyCode;
                 dr[MATERIAL_NAME] = serviceClient.SelectMaterialName(pnCode);
-                dr[EXCEPT_TYPE] = dt.Rows[i][1].ToString();
+                var exType = dt.Rows[i][1].ToString();
+                if (exType == "0")
+                {
+                    dr[EXCEPT_TYPE] = "库存物料异常";
+                }
+                else if (exType == "1")
+                {
+                    dr[EXCEPT_TYPE] = "生产物料异常";
+                }
+                else if (exType == "2")
+                {
+                    dr[EXCEPT_TYPE] = "生产过程异常";
+                }
                 dr[EXCEPT_STOCK] = dt.Rows[i][2].ToString();
                 dr[ACTUAL_STOCK] = dt.Rows[i][3].ToString();
-                dr[MATERIAL_STATE] = dt.Rows[i][4].ToString();
+                var materialState = dt.Rows[i][4].ToString();
+                if (materialState == "3")
+                    materialState = "已结单";
+                dr[MATERIAL_STATE] = materialState;
                 dr[SHUT_REASON] = dt.Rows[i][5].ToString();
                 dr[USER_NAME] = dt.Rows[i][6].ToString();
                 dr[STATEMENT_DATE] = dt.Rows[i][7].ToString();

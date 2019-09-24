@@ -23,8 +23,8 @@ namespace MesAPI.Model
         public const string Sen_RadioFreq = "射频测试";
         public const string Sen_DormantElect = "休眠电流";
 
-        public const string Shell_FrontCover = "A01前盖组装";
-        public const string Shell_BackCover = "A01后盖组装";
+        public const string Shell_FrontCover = "前盖组装";
+        public const string Shell_BackCover = "后盖组装";
         public const string Shell_PCBScrew1 = "PCB螺丝1";
         public const string Shell_PCBScrew2 = "PCB螺丝2";
         public const string Shell_PCBScrew3 = "PCB螺丝3";
@@ -36,11 +36,11 @@ namespace MesAPI.Model
 
         public const string Air_AirtightTest = "气密测试";
 
-        public const string Stent_Screw1 = "A02支架螺丝1";
-        public const string Stent_Screw2 = "A02支架螺丝2";
-        public const string Stent_Stent = "A01支架";
-        public const string Stent_LeftStent = "A01左支架";
-        public const string Stent_RightStent = "A01右支架";
+        public const string Stent_Screw1 = "支架螺丝1";
+        public const string Stent_Screw2 = "支架螺丝2";
+        public const string Stent_Stent = "支架";
+        public const string Stent_LeftStent = "左支架";
+        public const string Stent_RightStent = "右支架";
 
         public const string Product_Work_Electric_Test = "工作电流";
         public const string Product_DormantElect = "休眠电流";

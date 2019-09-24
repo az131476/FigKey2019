@@ -2458,7 +2458,7 @@ namespace MesAPI
         #endregion
 
         #region 物料库存
-        public MaterialStockEnum ModifyMaterialStock(string materialCode,int stock)
+        public MaterialStockEnum ModifyMaterialStock(string materialCode,int stock,string admin)
         {
             var selectSQL = $"SELECT * FROM {DbTable.F_MATERIAL_NAME} " +
                 $"WHERE " +
@@ -2478,7 +2478,9 @@ namespace MesAPI
                     //该库存为修改库存
                     //更新
                     var updateSQL = $"UPDATE {DbTable.F_MATERIAL_NAME} SET " +
-                        $"{DbTable.F_Material.MATERIAL_STOCK} = '{stock}' " +
+                        $"{DbTable.F_Material.MATERIAL_STOCK} = '{stock}'," +
+                        $"{DbTable.F_Material.MATERIAL_USERNAME} = '{admin}'," +
+                        $"{DbTable.F_Material.MATERIAL_UPDATE_DATE} = '{GetDateTimeNow()}'" +
                         $"WHERE " +
                         $"{DbTable.F_Material.MATERIAL_CODE} = '{materialCode}'";
                     var res = SQLServer.ExecuteNonQuery(updateSQL);

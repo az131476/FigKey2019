@@ -668,10 +668,10 @@ namespace MesManager.MesService {
         System.Threading.Tasks.Task<System.Data.DataSet> SelectPackageProductCheckAsync(string queryFilter, string state, bool IsShowNumber);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/ModifyMaterialStock", ReplyAction="http://tempuri.org/IMesService/ModifyMaterialStockResponse")]
-        MesManager.MesService.MaterialStockEnum ModifyMaterialStock(string materialCode, int stock);
+        MesManager.MesService.MaterialStockEnum ModifyMaterialStock(string materialCode, int stock, string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/ModifyMaterialStock", ReplyAction="http://tempuri.org/IMesService/ModifyMaterialStockResponse")]
-        System.Threading.Tasks.Task<MesManager.MesService.MaterialStockEnum> ModifyMaterialStockAsync(string materialCode, int stock);
+        System.Threading.Tasks.Task<MesManager.MesService.MaterialStockEnum> ModifyMaterialStockAsync(string materialCode, int stock, string username);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1141,12 +1141,12 @@ namespace MesManager.MesService {
             return base.Channel.SelectPackageProductCheckAsync(queryFilter, state, IsShowNumber);
         }
         
-        public MesManager.MesService.MaterialStockEnum ModifyMaterialStock(string materialCode, int stock) {
-            return base.Channel.ModifyMaterialStock(materialCode, stock);
+        public MesManager.MesService.MaterialStockEnum ModifyMaterialStock(string materialCode, int stock, string username) {
+            return base.Channel.ModifyMaterialStock(materialCode, stock, username);
         }
         
-        public System.Threading.Tasks.Task<MesManager.MesService.MaterialStockEnum> ModifyMaterialStockAsync(string materialCode, int stock) {
-            return base.Channel.ModifyMaterialStockAsync(materialCode, stock);
+        public System.Threading.Tasks.Task<MesManager.MesService.MaterialStockEnum> ModifyMaterialStockAsync(string materialCode, int stock, string username) {
+            return base.Channel.ModifyMaterialStockAsync(materialCode, stock, username);
         }
     }
 }

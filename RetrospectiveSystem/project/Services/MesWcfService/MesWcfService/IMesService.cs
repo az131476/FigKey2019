@@ -131,12 +131,12 @@ namespace MesWcfService
         [OperationContract]
         [SwaggerWcfPath("UpdateProgrameVersion", "更新测试程序版本号")]
         [WebInvoke(Method = "GET",UriTemplate = "UpdateProgrameVersion?typeNo={typeNo}&stationName={stationName}" +
-            "&programeName={programeName}&programeVersion={programeVersion}&teamLeader={teamLeader}&admin={admin}",
+            "&programePath={programePath}&programeName={programeName}&teamLeader={teamLeader}&admin={admin}",
             BodyStyle = WebMessageBodyStyle.Bare,ResponseFormat = WebMessageFormat.Json,RequestFormat = WebMessageFormat.Json)]
         string UpdateProgrameVersion([SwaggerWcfParameter(Description = "产品型号*")]string typeNo,
             [SwaggerWcfParameter(Description = "工站名称*")]string stationName,
+            [SwaggerWcfParameter(Description = "程序路径*")]string programePath,
             [SwaggerWcfParameter(Description = "程序名称*")]string programeName,
-            [SwaggerWcfParameter(Description = "程序版本*")]string programeVersion,
             [SwaggerWcfParameter(Description = "班组长")]string teamLeader,
             [SwaggerWcfParameter(Description = "管理员")]string admin);
         #endregion

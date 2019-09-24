@@ -18,10 +18,16 @@ namespace MesWcfService.MessageQueue.RemoteClient
                 string[] array = pvqueue.Dequeue();
                 var typeNo = array[0];
                 var stationName = array[1];
-                var programeName = array[2];
-                var programeVersion = array[3];
+                var programePath = array[2];
+                var programeName = array[3];
                 var teamLeader = array[4];
                 var admin = array[5];
+                LogHelper.Log.Info(programePath);
+                if (programePath.Contains("\\"))
+                {
+                    programePath = programePath.Replace("\\", "\\\\");
+                    LogHelper.Log.Info(programePath);
+                }
                 var insertSQL = $"INSERT INTO {DbTable.F_TEST_PROGRAME_VERSION_NAME}(" +
                     $"{DbTable.F_TEST_PROGRAME_VERSION.TYPE_NO}," +
                     $"{DbTable.F_TEST_PROGRAME_VERSION.STATION_NAME}," +
@@ -30,7 +36,7 @@ namespace MesWcfService.MessageQueue.RemoteClient
                     $"{DbTable.F_TEST_PROGRAME_VERSION.TEAM_LEADER}," +
                     $"{DbTable.F_TEST_PROGRAME_VERSION.ADMIN}," +
                     $"{DbTable.F_TEST_PROGRAME_VERSION.UPDATE_DATE}) VALUES(" +
-                    $"'{typeNo}','{stationName}','{programeName}','{programeVersion}'," +
+                    $"'{typeNo}','{stationName}','{programePath}','{programeName}'," +
                     $"'{teamLeader}','{admin}','{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}')";
                 //if (IsExistVersion(typeNo, stationName, programeName, programeVersion, teamLeader, admin))
                 //    return "OK";

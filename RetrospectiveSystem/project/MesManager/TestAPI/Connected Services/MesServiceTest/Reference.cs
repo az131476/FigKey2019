@@ -70,10 +70,10 @@ namespace TestAPI.MesServiceTest {
         System.Threading.Tasks.Task<string> UpdatePackageProductBindingMsgAsync(string outCaseCode, string[] snOutter, string typeNo, string stationName, string bindingState, string remark, string teamLeader, string admin);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/UpdateProgrameVersion", ReplyAction="http://tempuri.org/IMesService/UpdateProgrameVersionResponse")]
-        string UpdateProgrameVersion(string typeNo, string stationName, string programeName, string programeVersion, string teamLeader, string admin);
+        string UpdateProgrameVersion(string typeNo, string stationName, string programePath, string programeName, string teamLeader, string admin);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/UpdateProgrameVersion", ReplyAction="http://tempuri.org/IMesService/UpdateProgrameVersionResponse")]
-        System.Threading.Tasks.Task<string> UpdateProgrameVersionAsync(string typeNo, string stationName, string programeName, string programeVersion, string teamLeader, string admin);
+        System.Threading.Tasks.Task<string> UpdateProgrameVersionAsync(string typeNo, string stationName, string programePath, string programeName, string teamLeader, string admin);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMesService/UpdateLimitConfig", ReplyAction="http://tempuri.org/IMesService/UpdateLimitConfigResponse")]
         string UpdateLimitConfig(string stationName, string typeNo, string testItem, string limit, string teamLeader, string admin);
@@ -241,12 +241,12 @@ namespace TestAPI.MesServiceTest {
             return base.Channel.UpdatePackageProductBindingMsgAsync(outCaseCode, snOutter, typeNo, stationName, bindingState, remark, teamLeader, admin);
         }
         
-        public string UpdateProgrameVersion(string typeNo, string stationName, string programeName, string programeVersion, string teamLeader, string admin) {
-            return base.Channel.UpdateProgrameVersion(typeNo, stationName, programeName, programeVersion, teamLeader, admin);
+        public string UpdateProgrameVersion(string typeNo, string stationName, string programePath, string programeName, string teamLeader, string admin) {
+            return base.Channel.UpdateProgrameVersion(typeNo, stationName, programePath, programeName, teamLeader, admin);
         }
         
-        public System.Threading.Tasks.Task<string> UpdateProgrameVersionAsync(string typeNo, string stationName, string programeName, string programeVersion, string teamLeader, string admin) {
-            return base.Channel.UpdateProgrameVersionAsync(typeNo, stationName, programeName, programeVersion, teamLeader, admin);
+        public System.Threading.Tasks.Task<string> UpdateProgrameVersionAsync(string typeNo, string stationName, string programePath, string programeName, string teamLeader, string admin) {
+            return base.Channel.UpdateProgrameVersionAsync(typeNo, stationName, programePath, programeName, teamLeader, admin);
         }
         
         public string UpdateLimitConfig(string stationName, string typeNo, string testItem, string limit, string teamLeader, string admin) {

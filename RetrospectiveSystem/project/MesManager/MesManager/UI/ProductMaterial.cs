@@ -68,6 +68,24 @@ namespace MesManager.UI
             DataGridViewCommon.SetRadGridViewProperty(this.radGridView2,false);
             BindingDataSource();
             InitDataTable();
+            InitMaterialRID();
+        }
+
+        private void InitMaterialRID()
+        {
+            var dt = serviceClient.SelectMaterial("").Tables[0];
+            if (dt.Rows.Count > 0)
+            {
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    var materialCode = dt.Rows[i][0].ToString();
+                    AnalysisMaterialCode analysisMaterialCode = AnalysisMaterialCode.GetMaterialDetail(materialCode);
+                    var materialRID = analysisMaterialCode.MaterialRID;
+                    this.tool_queryFilter.Items.Add(materialRID);
+                }
+                this.tool_queryFilter.AutoCompleteSource = AutoCompleteSource.ListItems;
+                this.tool_queryFilter.AutoCompleteMode = AutoCompleteMode.Suggest;
+            }
         }
 
         private void InitDataTable()
@@ -231,7 +249,14 @@ namespace MesManager.UI
 
         private void Menu_refresh_Click(object sender, EventArgs e)
         {
-            SelectData();
+            if (materialType == MaterialType.MATERIAL_BINDING)
+            {
+                SelectData();
+            }
+            else if (materialType == MaterialType.MATERIAL_STOCK_MODIFY)
+            {
+                BindingMaterialStock("");
+            }
         }
 
         private void Menu_update_Click(object sender, EventArgs e)
@@ -239,7 +264,10 @@ namespace MesManager.UI
             if (materialType == MaterialType.MATERIAL_BINDING)
                 UpdateData();
             else if (materialType == MaterialType.MATERIAL_STOCK_MODIFY)
+            {
+                this.tool_queryFilter.Focus();
                 UpdateMaterialStock();
+            }
         }
 
         private void Menu_delete_Click(object sender, EventArgs e)
@@ -342,6 +370,7 @@ namespace MesManager.UI
                     dr[MATERIAL_NAME] = serviceClient.SelectMaterialName(analysisMaterialCode.MaterialPN);
                     dr[MATERIAL_QTY] = materialStock;
                     dr[UPDATE_DATE] = dt.Rows[i][3].ToString();
+                    dr[ADMIN] = dt.Rows[i][2].ToString();
                     this.materialStockData.Rows.Add(dr);
                 }
             }
@@ -421,7 +450,7 @@ namespace MesManager.UI
             {
                 int modifyStock;
                 int.TryParse(productMaterial.keyOldMaterialStock.Trim(),out modifyStock);
-                MesService.MaterialStockEnum materialStockEnum = serviceClient.ModifyMaterialStock(productMaterial.keyMaterialCode,modifyStock);
+                MesService.MaterialStockEnum materialStockEnum = serviceClient.ModifyMaterialStock(productMaterial.keyMaterialCode,modifyStock,MESMainForm.currentUser);
                 if (materialStockEnum == MesService.MaterialStockEnum.STATUS_FAIL)
                 {
                     updateRes = false;
@@ -435,6 +464,7 @@ namespace MesManager.UI
             }
             if(updateRes)
                 MessageBox.Show("修改成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            BindingMaterialStock("");
         }
 
         async private void DeleteRowData()

@@ -157,8 +157,8 @@
       <xs:sequence>
         <xs:element minOccurs="0" name="typeNo" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="stationName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="programePath" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="programeName" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="programeVersion" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="teamLeader" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="admin" nillable="true" type="xs:string" />
       </xs:sequence>

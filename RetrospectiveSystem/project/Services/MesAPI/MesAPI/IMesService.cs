@@ -209,6 +209,6 @@ namespace MesAPI
         DataSet SelectPackageProductCheck(string queryFilter, string state, bool IsShowNumber);
 
         [OperationContract]
-        MaterialStockEnum ModifyMaterialStock(string materialCode, int stock);
+        MaterialStockEnum ModifyMaterialStock(string materialCode, int stock,string username);
     }
 }

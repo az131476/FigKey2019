@@ -234,10 +234,10 @@ namespace MesWcfService
         [SwaggerWcfResponse("OK", "更新测试程序版本成功")]
         [SwaggerWcfResponse("FAIL", "更新测试程序版本失败")]
         [SwaggerWcfResponse("ERROR", "异常错误")]
-        public string UpdateProgrameVersion(string typeNo,string stationName,string programeName,
-            string programeVersion,string teamLeader,string admin)
+        public string UpdateProgrameVersion(string typeNo,string stationName,string programePath,
+            string programeName,string teamLeader,string admin)
         {
-            string[] array = new string[] { typeNo, stationName, programeName, programeVersion, teamLeader, admin };
+            string[] array = new string[] { typeNo, stationName, programePath, programeName, teamLeader, admin };
             updateProgrameVersionQueue.Enqueue(array);
             return ProgrameVersion.UpdateProgrameVersion(updateProgrameVersionQueue);
         }
