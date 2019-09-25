@@ -1,0 +1,39 @@
+/************************************************************************************
+ *      ${CopyRight}
+ *      File:
+ *				${EntityClassName}.cs
+ *      Description:
+ *		
+ *      Author:
+ *				${Author}
+ *				${AuthorEmail}
+ *				${Online}
+ *      Finish DateTime:
+ *				${Date}
+ *      History:
+ ***********************************************************************************/
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace ${EntityNameSpace}
+{
+    /// <summary>
+    /// 实体类${EntityClassName}
+    /// </summary>
+    [Serializable]
+    public class ${EntityClassName}
+    {
+        #region 私有字段
+
+${PrivateFields}
+
+        #endregion
+
+        #region 公有属性
+
+${PublicAttribute}
+
+        #endregion	
+    }
+}

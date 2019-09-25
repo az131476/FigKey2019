@@ -10,13 +10,24 @@ using System.Windows.Forms;
 using System.Configuration;
 using MySql.Data.MySqlClient;
 using CommonUtils.Logger;
+using WeifenLuo.WinFormsUI.Docking;
+using Mesnac.Data;
+using Mesnac.Business;
+using System.Reflection;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Reflection;
 using System.Data;
+using System.Data.SqlClient;
+using Mesnac.Business.Implements;
 
 namespace TestAPI
 {
-    public partial class Form3 : Form
+    public partial class Form3 : DockContent
     {
         private MesServiceT.MesServiceClient serviceClient;
+        private DockPanel dockPanel;
         public Form3()
         {
             InitializeComponent();
@@ -24,17 +35,14 @@ namespace TestAPI
 
         private void Form3_Load(object sender, EventArgs e)
         {
-            MesServiceTest.MesServiceClient mesServiceClient = new MesServiceTest.MesServiceClient();
-            //serviceClient = new MesServiceT.MesServiceClient();
-            //var res = mesServiceClient.UpdateTestResultData("1111111111","A01", "烧录工站", "fail","","");
-            //var res = mesServiceClient.SelectLastTestResult("1111111111", "灵敏度测试工站");
-            var pcbaSN = "017 B19823003801";
-            var stationName = "外壳装配工站";
-            var materialcode = "A19083000080&S2.118&1.2.12.159&50&20190830&1T20190830001";
-            mesServiceClient.SelectLastTestResult(pcbaSN,stationName);
-            mesServiceClient.UpdateMaterialStatistics("A01",stationName,materialcode,"3","","");
-            System.Threading.Thread.Sleep(10000);
-            mesServiceClient.UpdateMaterialStatistics("A01", stationName, materialcode, "4", "", "");
+            //dockPanel = new DockPanel();
+            //dockPanel.Dock = DockStyle.Fill;
+            //this.Controls.Add(dockPanel);
+            //Form2 form2 = new Form2();
+            //form2.Show(this.dockPanel,DockState.DockBottom);
+            //测试数据
+            F_userManager f_UserManager = new F_userManager();
+            int res = f_UserManager.Delete("test");
         }
 
         public void LSOSQL()
@@ -73,12 +81,5 @@ namespace TestAPI
             }
         }
 
-        private void Button1_Click(object sender, EventArgs e)
-        {
-            var materialCode = this.textBox1.Text;
-            //this.textBox2.Text = serviceClient.CheckMaterialMatch("A02","1.2.11.111","1.2.11.111",
-              //  "A19083100006&S2.118&1.2.11.111&20&20190831&1T20190831001");
-            this.textBox2.Text = serviceClient.CheckMaterialUseState("A02", "A19083100006&S2.118&1.2.11.111&20&20190831&1T20190831001");
-        }
     }
 }

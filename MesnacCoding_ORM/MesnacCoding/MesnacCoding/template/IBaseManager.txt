@@ -1,0 +1,26 @@
+/************************************************************************************
+ *      ${CopyRight}
+ *      File:
+ *				IBase${BIZClassPostFix}.cs
+ *      Description:
+ *				 业务逻辑基础接口
+ *      Author:
+ *				${Author}
+ *				${AuthorEmail}
+ *				${Online}
+ *      Finish DateTime:
+ *				${Date}
+ *      History:
+ ***********************************************************************************/
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace ${BIZNameSpace}
+{
+    using ${DAONameSpace};
+    public interface IBase${BIZClassPostFix}<T> : IBase${DAOClassPostFix}<T>
+    {
+
+    }
+}

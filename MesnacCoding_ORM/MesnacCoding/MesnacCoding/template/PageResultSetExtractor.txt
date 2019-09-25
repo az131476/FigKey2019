@@ -1,0 +1,86 @@
+/************************************************************************************
+ *      ${CopyRight}
+ *      File:
+ *				PageResultSetExtractor.cs
+ *      Description:
+ *				 分页结果集映射类，存储过程版
+ *      Author:
+ *				${Author}
+ *				${AuthorEmail}
+ *				${Online}
+ *      Finish DateTime:
+ *				${Date}
+ *      History:
+ *      
+ ***********************************************************************************/
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Reflection;
+using System.Data;
+using Spring.Data.Generic;
+
+namespace ${DAONameSpace}
+{
+    using ${ComponentNameSpace};
+    /// <summary>
+    /// 分页结果集映射类，通过调用分页存储过程，把相应的2个结果集数据封装到PageResult中
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    public class PageResultSetExtractor<T> : IResultSetExtractor<PageResult<T>>
+    {
+        #region 私有字段
+
+        private PageResult<T> pageResult;
+
+        #endregion
+
+        #region 构造方法
+
+        public PageResultSetExtractor(PageResult<T> pageResult)
+        {
+            this.pageResult = pageResult;
+        }
+
+        #endregion
+
+        #region IResultSetExtractor<PageResult<T>> 成员
+
+        public PageResult<T> ExtractData(IDataReader reader)
+        {
+            Type entityType = typeof(T);
+            T entity = default(T);
+            PropertyInfo[] properties = entityType.GetProperties();
+            XmlClassMap classMap = EntityMapperHandler.GetInstance().GetMapDictionary()[entityType.Name];
+            //提取当前页的数据
+            while (reader.Read())
+            {
+                entity = (T)entityType.Assembly.CreateInstance(entityType.FullName);
+                foreach (PropertyInfo property in properties)
+                {
+                    if (property.CanWrite && classMap.Properties.ContainsKey(property.Name))
+                    {
+                        object value = reader[classMap.Properties[property.Name].ColumnName];
+                        if (value != null && value != DBNull.Value)
+                        {
+                            property.SetValue(entity, value, null);
+                        }
+                    }
+                }
+                this.pageResult.Data.Add(entity);
+            }
+            //提取总记录数
+            if (reader.NextResult())
+            {
+                while (reader.Read())
+                {
+                    this.pageResult.RecordCount = Convert.ToInt32(reader["RecordCount"]);
+                    break;
+                }
+            }
+            return this.pageResult;
+        }
+
+        #endregion
+    }
+}

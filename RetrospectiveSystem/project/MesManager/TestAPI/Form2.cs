@@ -14,10 +14,11 @@ using Lassalle.GraphAlgo;
 using Lassalle.PrnFlow;
 using Lassalle.XMLFlow;
 using GDIDrawFlow;
+using WeifenLuo.WinFormsUI.Docking;
 
 namespace TestAPI
 {
-    public partial class Form2 : Form
+    public partial class Form2 : DockContent
     {
         private AddFlow addFlow1;
         public Form2()
@@ -43,7 +44,7 @@ namespace TestAPI
             drawFlowGroup1.Size = new System.Drawing.Size(704, 502);
             drawFlowGroup1.TabIndex = 0;
 
-            this.Controls.Add(drawFlowGroup1);
+            //this.Controls.Add(drawFlowGroup1);
         }
 
 

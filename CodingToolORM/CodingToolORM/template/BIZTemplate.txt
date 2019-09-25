@@ -1,0 +1,24 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace ${BIZNameSpace}.Implements
+{
+    using ${EntityNameSpace};
+    using ${DAONameSpace}.Interface;
+    using ${DAONameSpace}.Implements;
+    using ${BIZNameSpace}.Interface;
+    public class ${EntityClassName}${BIZClassPostFix} : Base${BIZClassPostFix}<${EntityClassName}>, I${EntityClassName}${BIZClassPostFix}
+    {
+		#region  Ù–‘◊¢»Î
+		
+        private I${EntityClassName}${DAOClassPostFix} ${CamelDAOClassPostFix} = new ${EntityClassName}${DAOClassPostFix}();
+
+        public ${EntityClassName}${BIZClassPostFix}()
+        {
+            base.Base${DAOClassPostFix} = this.${CamelDAOClassPostFix};
+        }
+        
+        #endregion
+    }
+}

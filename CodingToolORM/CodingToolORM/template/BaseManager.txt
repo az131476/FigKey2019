@@ -1,0 +1,203 @@
+/************************************************************************************
+ *      ${CopyRight}
+ *      File:
+ *				Base${BIZClassPostFix}.cs
+ *      Description:
+ *				 业务逻辑抽象基类
+ *      Author:
+ *				${Author}
+ *				${AuthorEmail}
+ *				${Online}
+ *      Finish DateTime:
+ *				${Date}
+ *      History:
+ *      
+ ***********************************************************************************/
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Data;
+
+namespace ${BIZNameSpace}
+{
+    using ${ComponentNameSpace};
+    using ${DAONameSpace};
+    public abstract class Base${BIZClassPostFix}<T> : IBase${BIZClassPostFix}<T>
+    {
+        private IBase${DAOClassPostFix}<T> base${DAOClassPostFix};
+
+        public IBase${DAOClassPostFix}<T> Base${DAOClassPostFix}
+        {
+            set { base${DAOClassPostFix} = value; }
+        }
+
+        #region 封装数据访问层的常规数据访问方法
+
+        public T GetById(object id)
+        {
+            return this.base${DAOClassPostFix}.GetById(id);
+        }
+
+        public List<T> GetListByParam(params KeyValuePair<string, object>[] values)
+        {
+            return this.base${DAOClassPostFix}.GetListByParam(values);
+        }
+
+        public List<T> GetListByParam(Dictionary<string, object> values)
+        {
+            return this.base${DAOClassPostFix}.GetListByParam(values);
+        }
+        
+        public List<T> GetListOrderByParam(string order, params KeyValuePair<string, object>[] values)
+        {
+            return this.base${DAOClassPostFix}.GetListOrderByParam(order, values);
+        }
+
+        public List<T> GetListOrderByParam(string order, Dictionary<string, object> values)
+        {
+            return this.base${DAOClassPostFix}.GetListOrderByParam(order, values);
+        }
+
+        public List<T> GetListByWhere(string where)
+        {
+            return this.base${DAOClassPostFix}.GetListByWhere(where);
+        }
+
+        public List<T> GetListByWhereAndOrder(string where, string order)
+        {
+            return this.base${DAOClassPostFix}.GetListByWhereAndOrder(where, order);
+        }
+
+        public DataSet GetDataSetByWhere(string where)
+        {
+            return this.base${DAOClassPostFix}.GetDataSetByWhere(where);
+        }
+
+        public DataSet GetDataSetByFieldsAndParams(string returnFields, params KeyValuePair<string, object>[] values)
+        {
+            return this.base${DAOClassPostFix}.GetDataSetByFieldsAndParams(returnFields, values);
+        }
+
+        public DataSet GetDataSetByFieldAndParams(string returnFields, Dictionary<string, object> values)
+        {
+            return this.base${DAOClassPostFix}.GetDataSetByFieldAndParams(returnFields, values);
+        }
+
+        public DataSet GetDataSetByFieldsAndWhere(string returnFields, string where)
+        {
+            return this.base${DAOClassPostFix}.GetDataSetByFieldsAndWhere(returnFields, where);
+        }
+
+        public List<T> GetAllList()
+        {
+            return this.base${DAOClassPostFix}.GetAllList();
+        }
+
+        public List<T> GetAllListOrder(string order)
+        {
+            return this.base${DAOClassPostFix}.GetAllListOrder(order);
+        }
+
+        public List<T> GetTopNListOrder(int n, string order)
+        {
+            return this.base${DAOClassPostFix}.GetTopNListOrder(n, order);
+        }
+
+        public List<T> GetTopNListWhereOrder(int n, string where, string order)
+        {
+            return this.base${DAOClassPostFix}.GetTopNListWhereOrder(n, where, order);
+        }
+
+        public DataSet GetAllDataSet()
+        {
+            return this.base${DAOClassPostFix}.GetAllDataSet();
+        }
+
+        public PageResult<T> GetPageData(PageResult<T> pageResult)
+        {
+            return this.base${DAOClassPostFix}.GetPageData(pageResult);
+        }
+
+        public DataSet GetPageDataSet(PageResult<T> pageResult)
+        {
+            return this.base${DAOClassPostFix}.GetPageDataSet(pageResult);
+        }
+        
+        public DataSet GetDataSetByStoreProcedure(string storeProcedureName, params KeyValuePair<string, object>[] values)
+        {
+            return this.base${DAOClassPostFix}.GetDataSetByStoreProcedure(storeProcedureName, values);
+        }
+
+        public DataSet GetDataSetByStoreProcedure(string storeProcedureName, Dictionary<string, object> values)
+        {
+            return this.base${DAOClassPostFix}.GetDataSetByStoreProcedure(storeProcedureName, values);
+        }
+
+        public int GetRowCount()
+        {
+            return this.base${DAOClassPostFix}.GetRowCount();
+        }
+
+        public int GetRowCountByParams(params KeyValuePair<string, object>[] values)
+        {
+            return this.base${DAOClassPostFix}.GetRowCountByParams(values);
+        }
+
+        public int GetRowCountByParams(Dictionary<string, object> values)
+        {
+            return this.base${DAOClassPostFix}.GetRowCountByParams(values);
+        }
+
+        public int GetRowCountByWhere(string where)
+        {
+            return this.base${DAOClassPostFix}.GetRowCountByWhere(where);
+        }
+
+        public int Insert(T entity)
+        {
+            return this.base${DAOClassPostFix}.Insert(entity);
+        }
+
+        public int Update(T entity)
+        {
+            return this.base${DAOClassPostFix}.Update(entity);
+        }
+
+        public int UpdateFields(string fields, string where)
+        {
+            return this.base${DAOClassPostFix}.UpdateFields(fields, where);
+        }
+
+        public int UpdateFields(Dictionary<string, object> fields, Dictionary<string, object> where)
+        {
+            return this.base${DAOClassPostFix}.UpdateFields(fields, where);
+        }
+
+        public int Delete(object id)
+        {
+            return this.base${DAOClassPostFix}.Delete(id);
+        }
+
+        public int DeleteByIds(string columnName, string ids)
+        {
+            return this.base${DAOClassPostFix}.DeleteByIds(columnName, ids);
+        }
+
+        public int DeleteByParam(params KeyValuePair<string, object>[] values)
+        {
+            return this.base${DAOClassPostFix}.DeleteByParam(values);
+        }
+
+        public int DeleteByWhere(string where)
+        {
+            return this.base${DAOClassPostFix}.DeleteByWhere(where);
+        }
+
+        public int ClearData()
+        {
+            return this.base${DAOClassPostFix}.ClearData();
+        }
+
+        #endregion
+    }
+}

@@ -1,0 +1,11 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace ${DAONameSpace}.Interface
+{
+    using ${EntityNameSpace};
+    public interface I${EntityClassName}${DAOClassPostFix} : IBase${DAOClassPostFix}<${EntityClassName}>
+    {
+    }
+}

@@ -34,14 +34,15 @@ namespace MesManager.UI
         private const string MATERIAL_LOT = "批次号";
         private const string MATERIAL_RID = "料盘号";
         private const string MATERIAL_DC = "收料日期";
-        private const string MATERIAL_QTY = "库存";
+        private const string MATERIAL_QTY = "入库库存";
         private const string MATERIAL_NAME = "物料名称";
         private const string PRODUCT_TYPENO = "产品型号";
         private const string SN_PCBA = "PCBA";
         private const string SN_OUTTER = "外壳";
         private const string STATION_NAME = "工站名称";
         private const string USE_AMOUNTED = "使用数量";
-        private const string RESIDUE_STOCK = "剩余库存";
+        private const string RESIDUE_STOCK = "入库剩余库存";
+        private const string CURRENT_RESIDUE_STOCK = "当前剩余库存";
         private const string TEAM_LEADER = "班组长";
         private const string ADMIN = "管理员";
         private const string UPDATE_DATE = "更新日期";
@@ -664,6 +665,7 @@ namespace MesManager.UI
                 dr[PRODUCT_TYPENO] = productTypeNo;
                 dr[USE_AMOUNTED] = useAmounted;
                 dr[RESIDUE_STOCK] = int.Parse(qtyCode) - int.Parse(amountTotal);
+
                 dr[SN_PCBA] = snPCBA;
                 dr[SN_OUTTER] = snOutter;
                 dataSourceMaterialBasic.Rows.Add(dr);
