@@ -40,7 +40,7 @@ namespace MesManager.UI
         private const string SN_PCBA = "PCBA";
         private const string SN_OUTTER = "外壳";
         private const string STATION_NAME = "工站名称";
-        private const string USE_AMOUNTED = "使用数量";
+        private const string USE_AMOUNTED = "当前使用数量";
         private const string RESIDUE_STOCK = "入库剩余库存";
         private const string CURRENT_RESIDUE_STOCK = "当前剩余库存";
         private const string TEAM_LEADER = "班组长";
@@ -523,6 +523,7 @@ namespace MesManager.UI
                 dataSourceMaterialBasic.Columns.Add(SN_OUTTER);
                 dataSourceMaterialBasic.Columns.Add(MATERIAL_QTY);
                 dataSourceMaterialBasic.Columns.Add(USE_AMOUNTED);
+                dataSourceMaterialBasic.Columns.Add(CURRENT_RESIDUE_STOCK);
                 dataSourceMaterialBasic.Columns.Add(RESIDUE_STOCK);
             }
             if (dataSourceProductCheck == null)
@@ -644,6 +645,8 @@ namespace MesManager.UI
                 var useAmounted = dt.Rows[i][3].ToString();
                 var sn = dt.Rows[i][4].ToString();
                 var amountTotal = dt.Rows[i][5].ToString();
+                var putInStorage = dt.Rows[i][6].ToString();
+                var currentRemain = dt.Rows[i][7].ToString();
                 var snPCBA = serviceClient.GetPCBASn(sn);
                 var snOutter = serviceClient.GetProductSn(sn);
                 if (!materialCode.Contains("&"))
@@ -653,18 +656,19 @@ namespace MesManager.UI
                 var lotCode = analysisMaterial.MaterialLOT;
                 var ridCode = analysisMaterial.MaterialRID;
                 var dcCode = analysisMaterial.MaterialDC;
-                var qtyCode = analysisMaterial.MaterialQTY;
+                //var qtyCode = analysisMaterial.MaterialQTY;
                 var materialName = serviceClient.SelectMaterialName(pnCode);
                 dr[DATA_ORDER] = i + 1;
                 dr[MATERIAL_PN] = pnCode;
                 dr[MATERIAL_LOT] = lotCode;
                 dr[MATERIAL_RID] = ridCode;
                 dr[MATERIAL_DC] = dcCode;
-                dr[MATERIAL_QTY] = qtyCode;
+                dr[MATERIAL_QTY] = putInStorage;
                 dr[MATERIAL_NAME] = materialName;
                 dr[PRODUCT_TYPENO] = productTypeNo;
                 dr[USE_AMOUNTED] = useAmounted;
-                dr[RESIDUE_STOCK] = int.Parse(qtyCode) - int.Parse(amountTotal);
+                dr[RESIDUE_STOCK] = int.Parse(putInStorage) - int.Parse(amountTotal);
+                dr[CURRENT_RESIDUE_STOCK] = currentRemain;
 
                 dr[SN_PCBA] = snPCBA;
                 dr[SN_OUTTER] = snOutter;

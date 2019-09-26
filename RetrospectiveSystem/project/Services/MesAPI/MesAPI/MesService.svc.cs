@@ -1666,7 +1666,6 @@ namespace MesAPI
         #endregion
 
         #region 物料综合查询
-
         public DataSet SelectMaterialBasicMsg(string queryCondition)
         {
             var selectSQL = "";
@@ -1678,7 +1677,9 @@ namespace MesAPI
                 $"a.{DbTable.F_Material_Statistics.PRODUCT_TYPE_NO} 产品型号," +
                 $"SUM(a.{DbTable.F_Material_Statistics.MATERIAL_AMOUNT}) 使用总数量," +
                 $"a.{DbTable.F_Material_Statistics.PCBA_SN}," +
-                $"b.{DbTable.F_Material.MATERIAL_AMOUNTED} " +
+                $"b.{DbTable.F_Material.MATERIAL_AMOUNTED}," +
+                $"b.{DbTable.F_Material.MATERIAL_STOCK}," +
+                $"a.{DbTable.F_Material_Statistics.MATERIAL_CURRENT_REMAIN} " +
                 $"FROM " +
                 $"{DbTable.F_MATERIAL_STATISTICS_NAME} a," +
                 $"{DbTable.F_MATERIAL_NAME} b " +
@@ -1692,7 +1693,9 @@ namespace MesAPI
                 $"b.{DbTable.F_Material.MATERIAL_NAME}," +
                 $"a.{DbTable.F_Material_Statistics.PRODUCT_TYPE_NO}," +
                 $"a.{DbTable.F_Material_Statistics.PCBA_SN}," +
-                $"b.{DbTable.F_Material.MATERIAL_AMOUNTED}";
+                $"b.{DbTable.F_Material.MATERIAL_AMOUNTED}," +
+                $"b.{DbTable.F_Material.MATERIAL_STOCK}," +
+                $"a.{DbTable.F_Material_Statistics.MATERIAL_CURRENT_REMAIN}";
 
             LogHelper.Log.Info(selectSQL);
             return SQLServer.ExecuteDataSet(selectSQL);
@@ -1710,7 +1713,9 @@ namespace MesAPI
                            $"a.{DbTable.F_Material_Statistics.ADMIN}," +
                            $"a.{DbTable.F_Material_Statistics.UPDATE_DATE}," +
                            $"a.{DbTable.F_Material_Statistics.PCBA_SN}," +
-                           $"b.{DbTable.F_Material.MATERIAL_AMOUNTED} " +
+                           $"b.{DbTable.F_Material.MATERIAL_AMOUNTED}," +
+                           $"b.{DbTable.F_Material.MATERIAL_STOCK}," +
+                           $"a.{DbTable.F_Material_Statistics.MATERIAL_CURRENT_REMAIN} " +
                            $"FROM " +
                            $"{DbTable.F_MATERIAL_STATISTICS_NAME} a," +
                            $"{DbTable.F_MATERIAL_NAME} b " +
@@ -2485,7 +2490,19 @@ namespace MesAPI
                         $"{DbTable.F_Material.MATERIAL_CODE} = '{materialCode}'";
                     var res = SQLServer.ExecuteNonQuery(updateSQL);
                     if (res == 1)
+                    {
+                        //更新库存后，更新物料状态
+                        var count = UpdateMaterialState(materialCode);
+                        if (count == 1)
+                        {
+                            LogHelper.Log.Info("【修改库存-更新物料状态-成功】");
+                        }
+                        else if (count == 0)
+                        {
+                            LogHelper.Log.Info("【修改库存-更新物料状态-失败】");
+                        }
                         return MaterialStockEnum.STATUS_SUCCESS;
+                    }
                     return MaterialStockEnum.STATUS_FAIL;
                 }
                 //库存未修改
@@ -2493,8 +2510,57 @@ namespace MesAPI
             }
             return MaterialStockEnum.ERROR_MATERIAL_IS_NOT_EXIST;
         }
-        #endregion
 
+        private int GetPutInStock(string materialCode)
+        {
+            var selectSQL = $"SELECT {DbTable.F_Material.MATERIAL_STOCK} FROM {DbTable.F_MATERIAL_NAME} " +
+                $"WHERE {DbTable.F_Material.MATERIAL_CODE} = '{materialCode}'";
+            var dt = SQLServer.ExecuteDataSet(selectSQL).Tables[0];
+            int stock = 0;
+            if (dt.Rows.Count > 0)
+            {
+                int.TryParse(dt.Rows[0][0].ToString(),out stock);
+            }
+            return stock;
+        }
+
+        private static int UpdateMaterialState(string materialCode)
+        {
+            var selectSQL = $"SELECT {DbTable.F_Material.MATERIAL_STOCK}," +
+                $"{DbTable.F_Material.MATERIAL_AMOUNTED} " +
+                $"FROM {DbTable.F_MATERIAL_NAME} " +
+                $"WHERE " +
+                $"{DbTable.F_Material.MATERIAL_CODE} = '{materialCode}'";
+            var dt = SQLServer.ExecuteDataSet(selectSQL).Tables[0];
+            if (dt.Rows.Count > 0)
+            {
+                var stock = int.Parse(dt.Rows[0][0].ToString());
+                var amounted = int.Parse(dt.Rows[0][1].ToString());
+                if (stock <= amounted)
+                {
+                    //入库库存大于实际库存
+                    //当发现盒子没有物料时，去修改入库库存为实际库存
+                    //同时更新物料状态为2
+                    //物料已使用完，更新状态为2
+                    var updateSQL = $"UPDATE {DbTable.F_MATERIAL_NAME} SET " +
+                        $"{DbTable.F_Material.MATERIAL_STATE} = '2' WHERE " +
+                        $"{DbTable.F_Material.MATERIAL_CODE} = '{materialCode}'";
+                    return SQLServer.ExecuteNonQuery(updateSQL);
+                }
+                else
+                {
+                    //入库库存小于实际库存
+                    //当系统提示物料用完（状态值已为2），扫描下一箱时，发现实际还有数量，去修改入库库存为实际库存
+                    //同时更新物料状态正常-1
+                    var updateSQL = $"UPDATE {DbTable.F_MATERIAL_NAME} SET " +
+                       $"{DbTable.F_Material.MATERIAL_STATE} = '1' WHERE " +
+                       $"{DbTable.F_Material.MATERIAL_CODE} = '{materialCode}'";
+                    return SQLServer.ExecuteNonQuery(updateSQL);
+                }
+            }
+            return 0;
+        }
+        #endregion
 
         public DataSet SelectTypeNoList()
         {

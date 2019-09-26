@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.202
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeGenerator", "CodeGenerator\CodeGenerator.csproj", "{1DD745B5-C0A2-4E88-880A-26CFB61A2BAB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeGeneratorTest", "CodeGeneratorTest\CodeGeneratorTest.csproj", "{F235234D-2962-45D9-AA88-688B4AF007EF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1DD745B5-C0A2-4E88-880A-26CFB61A2BAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DD745B5-C0A2-4E88-880A-26CFB61A2BAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DD745B5-C0A2-4E88-880A-26CFB61A2BAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DD745B5-C0A2-4E88-880A-26CFB61A2BAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F235234D-2962-45D9-AA88-688B4AF007EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F235234D-2962-45D9-AA88-688B4AF007EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F235234D-2962-45D9-AA88-688B4AF007EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F235234D-2962-45D9-AA88-688B4AF007EF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {007E38B8-907F-4B46-9207-1E6F68DD7B5B}
+	EndGlobalSection
+EndGlobal

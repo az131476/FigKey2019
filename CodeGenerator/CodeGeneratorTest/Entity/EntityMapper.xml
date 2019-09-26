@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<entityMapper>
+	<class name="F_pass_rate_statistic" table="f_pass_rate_statistics">
+		<property name="Out_case_code" column="out_case_code" isPK="true" />
+		<property name="Sn_outter" column="sn_outter" isPK="true" />
+		<property name="Type_no" column="type_no" />
+		<property name="Priority" column="priority" />
+		<property name="Amount" column="amount" />
+		<property name="Storage_capacity" column="storage_capacity" />
+		<property name="Update_date" column="update_date" />
+	</class>
+	<class name="F_user" table="f_user">
+		<property name="Username" column="username" isPK="true" />
+		<property name="Password" column="password" />
+		<property name="Role_name" column="role_name" />
+		<property name="Phone" column="phone" />
+		<property name="Email" column="email" />
+		<property name="Create_date" column="create_date" />
+		<property name="Update_date" column="update_date" />
+		<property name="Status" column="status" />
+	</class>
+	<class name="F_test_programe_version" table="f_test_programe_version">
+		<property name="Type_no" column="type_no" />
+		<property name="Station_name" column="station_name" />
+		<property name="Programe_name" column="programe_name" />
+		<property name="Programe_version" column="programe_version" />
+		<property name="Team_leader" column="team_leader" />
+		<property name="Admin" column="admin" />
+		<property name="Update_date" column="update_date" />
+	</class>
+	<class name="F_product_package" table="f_product_package">
+		<property name="Out_case_code" column="out_case_code" isPK="true" />
+		<property name="Sn_outter" column="sn_outter" isPK="true" />
+		<property name="Type_no" column="type_no" />
+		<property name="Station_name" column="station_name" />
+		<property name="Binding_state" column="binding_state" />
+		<property name="Binding_date" column="binding_date" />
+		<property name="Remark" column="remark" />
+		<property name="Team_leader" column="team_leader" />
+		<property name="Admin" column="admin" />
+		<property name="Update_date" column="update_date" />
+	</class>
+	<class name="F_product_package_storage" table="f_product_package_storage">
+		<property name="Type_no" column="type_no" isPK="true" />
+		<property name="Storage_capacity" column="storage_capacity" />
+		<property name="Amounted" column="amounted" />
+		<property name="Username" column="username" />
+		<property name="Update_date_u" column="update_date_u" />
+		<property name="Team_leader" column="team_leader" />
+		<property name="Admin" column="admin" />
+		<property name="Update_date_t" column="update_date_t" />
+		<property name="Describle" column="describle" />
+	</class>
+	<class name="F_technological_proces" table="f_technological_process">
+		<property name="Process_name" column="process_name" isPK="true" />
+		<property name="Station_order" column="station_order" isPK="true" />
+		<property name="Station_name" column="station_name" isPK="true" />
+		<property name="Update_date" column="update_date" />
+		<property name="Username" column="username" />
+		<property name="Pstate" column="pstate" />
+	</class>
+	<class name="F_product_check_record" table="f_product_check_record">
+		<property name="Out_case_code" column="out_case_code" />
+		<property name="Sn_outter" column="sn_outter" />
+		<property name="Type_no" column="type_no" />
+		<property name="Station_name" column="station_name" />
+		<property name="Binding_state" column="binding_state" />
+		<property name="Binding_date" column="binding_date" />
+		<property name="Remark" column="remark" />
+		<property name="Team_leader" column="team_leader" />
+		<property name="Admin" column="admin" />
+		<property name="Update_date" column="update_date" />
+	</class>
+	<class name="F_test_limit_config" table="f_test_limit_config">
+		<property name="Type_no" column="type_no" />
+		<property name="Station_name" column="station_name" />
+		<property name="Test_item" column="test_item" />
+		<property name="Limit" column="limit" />
+		<property name="Team_leader" column="team_leader" />
+		<property name="Admin" column="admin" />
+		<property name="Update_date" column="update_date" />
+	</class>
+	<class name="F_material_pn" table="f_material_pn">
+		<property name="Material_pn" column="material_pn" />
+		<property name="Material_name" column="material_name" />
+		<property name="User_name" column="user_name" />
+		<property name="Update_date" column="update_date" />
+		<property name="Describle" column="describle" />
+	</class>
+	<class name="F_product_material" table="f_product_material">
+		<property name="Type_no" column="type_no" isPK="true" />
+		<property name="Material_code" column="material_code" isPK="true" />
+		<property name="Amounted" column="amounted" />
+		<property name="Describle" column="describle" />
+		<property name="Update_date" column="update_date" />
+		<property name="Username" column="username" />
+	</class>
+	<class name="F_test_log_data" table="f_test_log_data">
+		<property name="ProductTypeNo" column="productTypeNo" />
+		<property name="ProductSn" column="productSn" />
+		<property name="StationName" column="stationName" />
+		<property name="TestItem" column="testItem" />
+		<property name="Limit" column="limit" />
+		<property name="CurrentValue" column="currentValue" />
+		<property name="TestResult" column="testResult" />
+		<property name="TeamLeader" column="teamLeader" />
+		<property name="Admin" column="admin" />
+		<property name="UpdateDate" column="updateDate" />
+		<property name="JoinDateTime" column="joinDateTime" />
+	</class>
+	<class name="F_material" table="f_material">
+		<property name="Material_code" column="material_code" isPK="true" />
+		<property name="Material_name" column="material_name" />
+		<property name="Material_stock" column="material_stock" />
+		<property name="Material_amounted" column="material_amounted" />
+		<property name="Material_actualAmount" column="material_actualAmount" />
+		<property name="Material_breakAmount" column="material_breakAmount" />
+		<property name="Material_state" column="material_state" />
+		<property name="Material_describle" column="material_describle" />
+		<property name="Material_username" column="material_username" />
+		<property name="Material_update_date" column="material_update_date" />
+		<property name="Team_leader" column="team_leader" />
+		<property name="Admin" column="admin" />
+	</class>
+	<class name="F_binding_pcba" table="f_binding_pcba">
+		<property name="Sn_pcba" column="sn_pcba" isPK="true" />
+		<property name="Sn_outter" column="sn_outter" isPK="true" />
+		<property name="Material_code" column="material_code" isPK="true" />
+		<property name="Update_date" column="update_date" />
+		<property name="Type_no" column="type_no" isPK="true" />
+	</class>
+	<class name="F_test_result_data" table="f_test_result_data">
+		<property name="Process_name" column="process_name" />
+		<property name="Sn" column="sn" />
+		<property name="Type_no" column="type_no" />
+		<property name="Station_name" column="station_name" />
+		<property name="Test_result" column="test_result" />
+		<property name="Station_in_date" column="station_in_date" />
+		<property name="Station_out_date" column="station_out_date" />
+		<property name="Create_date" column="create_date" />
+		<property name="Update_date" column="update_date" />
+		<property name="Remark" column="remark" />
+		<property name="Team_leader" column="team_leader" />
+		<property name="Admin" column="admin" />
+		<property name="JoinDateTime" column="joinDateTime" />
+	</class>
+	<class name="F_material_statistic" table="f_material_statistics">
+		<property name="Type_no" column="type_no" isPK="true" />
+		<property name="Station_name" column="station_name" isPK="true" />
+		<property name="Material_code" column="material_code" isPK="true" />
+		<property name="PcbaSN" column="pcbaSN" isPK="true" />
+		<property name="Material_amounted" column="material_amounted" />
+		<property name="Team_leader" column="team_leader" />
+		<property name="Admin" column="admin" />
+		<property name="Update_date" column="update_date" />
+	</class>
+	<class name="F_quanlity_manager" table="f_quanlity_manager">
+		<property name="Except_type" column="except_type" />
+		<property name="Material_code" column="material_code" />
+		<property name="Statement_date" column="statement_date" />
+		<property name="Except_stock" column="except_stock" />
+		<property name="Actual_stock" column="actual_stock" />
+		<property name="Station_name" column="station_name" />
+		<property name="Material_state" column="material_state" />
+		<property name="Statement_reason" column="statement_reason" />
+		<property name="Statement_user" column="statement_user" />
+		<property name="Update_date" column="update_date" />
+	</class>
+</entityMapper>

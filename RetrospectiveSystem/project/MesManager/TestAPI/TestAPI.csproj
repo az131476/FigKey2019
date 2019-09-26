@@ -173,95 +173,6 @@
     <Compile Include="GridViewGroup.Designer.cs">
       <DependentUpon>GridViewGroup.cs</DependentUpon>
     </Compile>
-    <Compile Include="Mesnac\Business\BaseManager.cs" />
-    <Compile Include="Mesnac\Business\IBaseManager.cs" />
-    <Compile Include="Mesnac\Business\Implements\F_binding_pcbaManager.cs" />
-    <Compile Include="Mesnac\Business\Implements\F_materialManager.cs" />
-    <Compile Include="Mesnac\Business\Implements\F_material_pnManager.cs" />
-    <Compile Include="Mesnac\Business\Implements\F_material_statisticManager.cs" />
-    <Compile Include="Mesnac\Business\Implements\F_pass_rate_statisticManager.cs" />
-    <Compile Include="Mesnac\Business\Implements\F_product_check_recordManager.cs" />
-    <Compile Include="Mesnac\Business\Implements\F_product_materialManager.cs" />
-    <Compile Include="Mesnac\Business\Implements\F_product_packageManager.cs" />
-    <Compile Include="Mesnac\Business\Implements\F_product_package_storageManager.cs" />
-    <Compile Include="Mesnac\Business\Implements\F_quanlity_managerManager.cs" />
-    <Compile Include="Mesnac\Business\Implements\F_technological_procesManager.cs" />
-    <Compile Include="Mesnac\Business\Implements\F_test_limit_configManager.cs" />
-    <Compile Include="Mesnac\Business\Implements\F_test_log_dataManager.cs" />
-    <Compile Include="Mesnac\Business\Implements\F_test_programe_versionManager.cs" />
-    <Compile Include="Mesnac\Business\Implements\F_test_result_dataManager.cs" />
-    <Compile Include="Mesnac\Business\Implements\F_userManager.cs" />
-    <Compile Include="Mesnac\Business\Interface\IF_binding_pcbaManager.cs" />
-    <Compile Include="Mesnac\Business\Interface\IF_materialManager.cs" />
-    <Compile Include="Mesnac\Business\Interface\IF_material_pnManager.cs" />
-    <Compile Include="Mesnac\Business\Interface\IF_material_statisticManager.cs" />
-    <Compile Include="Mesnac\Business\Interface\IF_pass_rate_statisticManager.cs" />
-    <Compile Include="Mesnac\Business\Interface\IF_product_check_recordManager.cs" />
-    <Compile Include="Mesnac\Business\Interface\IF_product_materialManager.cs" />
-    <Compile Include="Mesnac\Business\Interface\IF_product_packageManager.cs" />
-    <Compile Include="Mesnac\Business\Interface\IF_product_package_storageManager.cs" />
-    <Compile Include="Mesnac\Business\Interface\IF_quanlity_managerManager.cs" />
-    <Compile Include="Mesnac\Business\Interface\IF_technological_procesManager.cs" />
-    <Compile Include="Mesnac\Business\Interface\IF_test_limit_configManager.cs" />
-    <Compile Include="Mesnac\Business\Interface\IF_test_log_dataManager.cs" />
-    <Compile Include="Mesnac\Business\Interface\IF_test_programe_versionManager.cs" />
-    <Compile Include="Mesnac\Business\Interface\IF_test_result_dataManager.cs" />
-    <Compile Include="Mesnac\Business\Interface\IF_userManager.cs" />
-    <Compile Include="Mesnac\Components\PageResult.cs" />
-    <Compile Include="Mesnac\Components\XmlClassMap.cs" />
-    <Compile Include="Mesnac\Components\XmlPropertyMap.cs" />
-    <Compile Include="Mesnac\Data\BaseService.cs" />
-    <Compile Include="Mesnac\Data\DBHelper.cs" />
-    <Compile Include="Mesnac\Data\IBaseService.cs" />
-    <Compile Include="Mesnac\Data\Implements\F_binding_pcbaService.cs" />
-    <Compile Include="Mesnac\Data\Implements\F_materialService.cs" />
-    <Compile Include="Mesnac\Data\Implements\F_material_pnService.cs" />
-    <Compile Include="Mesnac\Data\Implements\F_material_statisticService.cs" />
-    <Compile Include="Mesnac\Data\Implements\F_pass_rate_statisticService.cs" />
-    <Compile Include="Mesnac\Data\Implements\F_product_check_recordService.cs" />
-    <Compile Include="Mesnac\Data\Implements\F_product_materialService.cs" />
-    <Compile Include="Mesnac\Data\Implements\F_product_packageService.cs" />
-    <Compile Include="Mesnac\Data\Implements\F_product_package_storageService.cs" />
-    <Compile Include="Mesnac\Data\Implements\F_quanlity_managerService.cs" />
-    <Compile Include="Mesnac\Data\Implements\F_technological_procesService.cs" />
-    <Compile Include="Mesnac\Data\Implements\F_test_limit_configService.cs" />
-    <Compile Include="Mesnac\Data\Implements\F_test_log_dataService.cs" />
-    <Compile Include="Mesnac\Data\Implements\F_test_programe_versionService.cs" />
-    <Compile Include="Mesnac\Data\Implements\F_test_result_dataService.cs" />
-    <Compile Include="Mesnac\Data\Implements\F_userService.cs" />
-    <Compile Include="Mesnac\Data\Interface\IF_binding_pcbaService.cs" />
-    <Compile Include="Mesnac\Data\Interface\IF_materialService.cs" />
-    <Compile Include="Mesnac\Data\Interface\IF_material_pnService.cs" />
-    <Compile Include="Mesnac\Data\Interface\IF_material_statisticService.cs" />
-    <Compile Include="Mesnac\Data\Interface\IF_pass_rate_statisticService.cs" />
-    <Compile Include="Mesnac\Data\Interface\IF_product_check_recordService.cs" />
-    <Compile Include="Mesnac\Data\Interface\IF_product_materialService.cs" />
-    <Compile Include="Mesnac\Data\Interface\IF_product_packageService.cs" />
-    <Compile Include="Mesnac\Data\Interface\IF_product_package_storageService.cs" />
-    <Compile Include="Mesnac\Data\Interface\IF_quanlity_managerService.cs" />
-    <Compile Include="Mesnac\Data\Interface\IF_technological_procesService.cs" />
-    <Compile Include="Mesnac\Data\Interface\IF_test_limit_configService.cs" />
-    <Compile Include="Mesnac\Data\Interface\IF_test_log_dataService.cs" />
-    <Compile Include="Mesnac\Data\Interface\IF_test_programe_versionService.cs" />
-    <Compile Include="Mesnac\Data\Interface\IF_test_result_dataService.cs" />
-    <Compile Include="Mesnac\Data\Interface\IF_userService.cs" />
-    <Compile Include="Mesnac\EntityMapperHandler.cs" />
-    <Compile Include="Mesnac\Entity\F_binding_pcba.cs" />
-    <Compile Include="Mesnac\Entity\F_material.cs" />
-    <Compile Include="Mesnac\Entity\F_material_pn.cs" />
-    <Compile Include="Mesnac\Entity\F_material_statistic.cs" />
-    <Compile Include="Mesnac\Entity\F_pass_rate_statistic.cs" />
-    <Compile Include="Mesnac\Entity\F_product_check_record.cs" />
-    <Compile Include="Mesnac\Entity\F_product_material.cs" />
-    <Compile Include="Mesnac\Entity\F_product_package.cs" />
-    <Compile Include="Mesnac\Entity\F_product_package_storage.cs" />
-    <Compile Include="Mesnac\Entity\F_quanlity_manager.cs" />
-    <Compile Include="Mesnac\Entity\F_technological_proces.cs" />
-    <Compile Include="Mesnac\Entity\F_test_limit_config.cs" />
-    <Compile Include="Mesnac\Entity\F_test_log_data.cs" />
-    <Compile Include="Mesnac\Entity\F_test_programe_version.cs" />
-    <Compile Include="Mesnac\Entity\F_test_result_data.cs" />
-    <Compile Include="Mesnac\Entity\F_user.cs" />
     <Compile Include="MySqlHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -424,9 +335,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="gridview\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Mesnac\Entity\EntityMapper.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

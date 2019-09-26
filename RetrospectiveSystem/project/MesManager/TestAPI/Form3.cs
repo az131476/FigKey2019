@@ -11,16 +11,6 @@ using System.Configuration;
 using MySql.Data.MySqlClient;
 using CommonUtils.Logger;
 using WeifenLuo.WinFormsUI.Docking;
-using Mesnac.Data;
-using Mesnac.Business;
-using System.Reflection;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Reflection;
-using System.Data;
-using System.Data.SqlClient;
-using Mesnac.Business.Implements;
 
 namespace TestAPI
 {
@@ -41,8 +31,12 @@ namespace TestAPI
             //Form2 form2 = new Form2();
             //form2.Show(this.dockPanel,DockState.DockBottom);
             //测试数据
-            F_userManager f_UserManager = new F_userManager();
-            int res = f_UserManager.Delete("test");
+            MesServiceTest.MesServiceClient mesServiceTest = new MesServiceTest.MesServiceClient();
+            var sn = "017 B198230033020";
+            var station = "外壳装配工站";
+            var code = "A19083000029&S2.118&1.2.11.116&50&20190830&1T20190830001";
+            var result = mesServiceTest.SelectLastTestResult(sn,station);
+            var up = mesServiceTest.UpdateMaterialStatistics("A01",station,code,"2","8","0");
         }
 
         public void LSOSQL()

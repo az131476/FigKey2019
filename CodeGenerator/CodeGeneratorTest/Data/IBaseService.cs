@@ -1,0 +1,233 @@
+/************************************************************************************
+ *      Copyright (C) 2019 FigKey,All Rights Reserved
+ *      File:
+ *				IBaseService.cs
+ *      Description:
+ *				 数据访问基础接口
+ *      Author:
+ *				唐小东
+ *				1297953037@qq.com
+ *				http://www.figkey.com
+ *      Finish DateTime:
+ *				2019年09月26日
+ *      History:
+ ***********************************************************************************/
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Data;
+
+namespace CodeGeneratorTest.Data
+{
+    using CodeGeneratorTest.Components;
+    public interface IBaseService<T>
+    {
+        /// <summary>
+        /// 按照主键查找
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        T GetById(object id);
+        /// <summary>
+        /// 指定参数的查询
+        /// </summary>
+        /// <param name="values">查询参数列表，KeyValuePair的Key是字段名,KeyValuePair的Value是字段值</param>
+        /// <returns>返回实体类的集合</returns>
+        List<T> GetListByParam(params KeyValuePair<string, object>[] values);
+        /// <summary>
+        /// 指定参数的查询
+        /// </summary>
+        /// <param name="values">查询参数列表</param>
+        /// <returns>返回实体类的集合</returns>
+        List<T> GetListByParam(Dictionary<string, object> values);
+        /// <summary>
+        /// 指定参数查询并排序
+        /// </summary>
+        /// <param name="order">排序条件</param>
+        /// <param name="values">查询参数列表</param>
+        /// <returns>返回实体类的集合</returns>
+        List<T> GetListOrderByParam(string order, params KeyValuePair<string, object>[] values);
+        /// <summary>
+        /// 指定参数查询并排序
+        /// </summary>
+        /// <param name="order">排序条件</param>
+        /// <param name="values">查询参数列表</param>
+        /// <returns>返回实体类的集合</returns>
+        List<T> GetListOrderByParam(string order, Dictionary<string, object> values);
+        /// <summary>
+        /// 指定条件的查询
+        /// </summary>
+        /// <param name="where">查询条件</param>
+        /// <returns>返回实体类的集合</returns>
+        List<T> GetListByWhere(string where);
+        /// <summary>
+        /// 指定条件和排序的查询
+        /// </summary>
+        /// <param name="where">查询条件</param>
+        /// <param name="order">排序字段</param>
+        /// <returns>返回实体类的集合</returns>
+        List<T> GetListByWhereAndOrder(string where, string order);
+        /// <summary>
+        /// 指定条件的查询
+        /// </summary>
+        /// <param name="where">查询条件</param>
+        /// <returns>返回数据集</returns>
+        DataSet GetDataSetByWhere(string where);
+        /// <summary>
+        /// 指定返回字段和阐述的查询
+        /// </summary>
+        /// <param name="returnFields">查询结果中应包含的字段,*代表所有字段</param>
+        /// <param name="values"></param>
+        /// <returns></returns>
+        DataSet GetDataSetByFieldsAndParams(string returnFields, params KeyValuePair<string, object>[] values);
+        /// <summary>
+        /// 指定返回字段和参数的查询
+        /// </summary>
+        /// <param name="returnFields">查询结果中应包含的字段,*代表所有字段</param>
+        /// <param name="values">查询参数列表</param>
+        /// <returns>返回数据集</returns>
+        DataSet GetDataSetByFieldAndParams(string returnFields, Dictionary<string, object> values);
+        /// <summary>
+        /// 指定返回字段和条件的查询
+        /// </summary>
+        /// <param name="returnFields">查询结果中应包含的字段,*代表所有字段</param>
+        /// <param name="where">查询条件</param>
+        /// <returns>返回数据集</returns>
+        DataSet GetDataSetByFieldsAndWhere(string returnFields, string where);
+        /// <summary>
+        /// 查询所有记录并以List形式返回
+        /// </summary>
+        /// <returns></returns>
+        List<T> GetAllList();
+        /// <summary>
+        /// 查找表中的记录并排序
+        /// </summary>
+        /// <param name="order">排序字段</param>
+        /// <returns>返回对应表的实体类的集合</returns>
+        List<T> GetAllListOrder(string order);
+        /// <summary>
+        /// 返回指定排序的前N条记录
+        /// </summary>
+        /// <param name="n">返回结果中的记录数</param>
+        /// <param name="order">排序字段</param>
+        /// <returns>返回实体类的集合</returns>
+        List<T> GetTopNListOrder(int n, string order);
+        /// <summary>
+        /// 返回指定条件和排序的前N条记录
+        /// </summary>
+        /// <param name="n">返回结果中的最大记录数</param>
+        /// <param name="where">筛选条件</param>
+        /// <param name="order">排序字段</param>
+        /// <returns>返回实体类的集合</returns>
+        List<T> GetTopNListWhereOrder(int n, string where, string order);
+        /// <summary>
+        /// 查询所有记录并以DataSet方式返回数据
+        /// </summary>
+        /// <returns></returns>
+        DataSet GetAllDataSet();
+        /// <summary>
+        /// 分页查询方法
+        /// </summary>
+        /// <param name="pageResult">用于传递查询条件的分页类的对象</param>
+        /// <returns>返回封装了页面数据和总记录数据的分页类对象</returns>
+        PageResult<T> GetPageData(PageResult<T> pageResult);
+        /// <summary>
+        /// 分页查询方法，基于分页存储过程
+        /// </summary>
+        /// <param name="pageResult">用于传递查询条件的分页类的对象</param>
+        /// <returns>返回封装了页面数据和总页数、总记录数的结果集的数据集</returns>
+        DataSet GetPageDataSet(PageResult<T> pageResult);
+        /// <summary>
+        /// 执行存储过程的方法
+        /// </summary>
+        /// <param name="storeProcedureName">存储过程的名称</param>
+        /// <param name="values">存储过程的参数</param>
+        /// <returns>返回存储过程执行后对应的数据集</returns>
+        DataSet GetDataSetByStoreProcedure(string storeProcedureName, params KeyValuePair<string, object>[] values);
+        /// <summary>
+        /// 执行存储过程的方法
+        /// </summary>
+        /// <param name="storeProcedureName">存储过程的名称</param>
+        /// <param name="values">存储过程的参数</param>
+        /// <returns>返回存储过程执行后对应的数据集</returns>
+        DataSet GetDataSetByStoreProcedure(string storeProcedureName, Dictionary<string, object> values);
+        /// <summary>
+        /// 获取表中的总记录数
+        /// </summary>
+        /// <returns>返回总记录数</returns>
+        int GetRowCount();
+        /// <summary>
+        /// 获取指定参数条件的记录数
+        /// </summary>
+        /// <param name="values">参数列表</param>
+        /// <returns>返回记录数</returns>
+        int GetRowCountByParams(params KeyValuePair<string, object>[] values);
+        /// <summary>
+        /// 获取指定参数条件的记录数
+        /// </summary>
+        /// <param name="values">参数列表</param>
+        /// <returns>返回记录数</returns>
+        int GetRowCountByParams(Dictionary<string, object> values);
+        /// <summary>
+        /// 获取执行条件的记录数
+        /// </summary>
+        /// <param name="where">指定条件</param>
+        /// <returns>返回记录数</returns>
+        int GetRowCountByWhere(string where);
+        /// <summary>
+        /// 添加新记录
+        /// </summary>
+        /// <param name="entity">对应新记录的实体数据</param>
+        /// <returns>返回追加记录的主键值</returns>
+        int Insert(T entity);
+        /// <summary>
+        /// 更新记录
+        /// </summary>
+        /// <param name="entity">需要更新记录对应的实体数据</param>
+        /// <returns>返回更新的记录数</returns>
+        int Update(T entity);
+        /// <summary>
+        /// 按照条件更新字段值
+        /// </summary>
+        /// <param name="fields">要更新的字段和对应的值</param>
+        /// <param name="where">条件字段和值</param>
+        /// <returns>返回受影响的行数</returns>
+        int UpdateFields(string fields, string where);
+        /// <summary>
+        /// 按照条件更新字段值
+        /// </summary>
+        /// <param name="fields">要更新的字段和值的集合</param>
+        /// <param name="where">条件参数集合</param>
+        /// <returns>返回受影响的行数</returns>
+        int UpdateFields(Dictionary<string, object> fields, Dictionary<string, object> where);
+        /// <summary>
+        /// 删除主键是id值得记录
+        /// </summary>
+        /// <param name="id">要删除记录的主键值</param>
+        /// <returns>返回删除的记录条数</returns>
+        int Delete(object id);
+        /// <summary>
+        /// 删除指定的主键列表的数据
+        /// </summary>
+        /// <param name="ids">主键列表1,2,4</param>
+        /// <returns>返回删除的记录条数</returns>
+        int DeleteByIds(string columnName, string ids);
+        /// <summary>
+        /// 按指定的参数删除数据
+        /// </summary>
+        /// <param name="values">参数</param>
+        /// <returns>返回删除的记录数</returns>
+        int DeleteByParam(params KeyValuePair<string, object>[] values);
+        /// <summary>
+        /// 按指定的条件删除数据
+        /// </summary>
+        /// <param name="where">条件</param>
+        /// <returns>返回删除的记录数</returns>
+        int DeleteByWhere(string where);
+        /// <summary>
+        /// 清空表中的数据
+        /// </summary>
+        /// <returns>返回清除的记录条数</returns>
+        int ClearData();
+    }
+}

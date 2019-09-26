@@ -22,12 +22,13 @@ namespace MesManager.UI
         private const string MATERIAL_LOT = "批次号";
         private const string MATERIAL_RID = "料盘号";
         private const string MATERIAL_DC = "收料日期";
-        private const string MATERIAL_QTY = "库存";
+        private const string MATERIAL_QTY = "入库库存";
         private const string MATERIAL_NAME = "物料名称";
         private const string PRODUCT_TYPENO = "产品型号";
         private const string STATION_NAME = "工站名称";
-        private const string USE_AMOUNTED = "使用数量";
-        private const string RESIDUE_STOCK = "剩余库存";
+        private const string USE_AMOUNTED = "当前使用数量";
+        private const string RESIDUE_STOCK = "入库剩余库存";
+        private const string CURRENT_REMAIN_STOCK = "当前剩余库存";
         private const string TEAM_LEADER = "班组长";
         private const string ADMIN = "管理员";
         private const string UPDATE_DATE = "更新日期";
@@ -66,6 +67,7 @@ namespace MesManager.UI
                 dataSourceMaterialDetail.Columns.Add(STATION_NAME);
                 dataSourceMaterialDetail.Columns.Add(MATERIAL_QTY);
                 dataSourceMaterialDetail.Columns.Add(USE_AMOUNTED);
+                dataSourceMaterialDetail.Columns.Add(CURRENT_REMAIN_STOCK);
                 dataSourceMaterialDetail.Columns.Add(RESIDUE_STOCK);
                 dataSourceMaterialDetail.Columns.Add(TEAM_LEADER);
                 dataSourceMaterialDetail.Columns.Add(ADMIN);
@@ -107,6 +109,8 @@ namespace MesManager.UI
                 var updateDate = dt.Rows[i][7].ToString();
                 var sn = dt.Rows[i][8].ToString();
                 var amountedTotal = dt.Rows[i][9].ToString();
+                var putInStorage = dt.Rows[i][10].ToString();
+                var currentRemain = dt.Rows[i][11].ToString();
                 var snPCBA = serviceClient.GetPCBASn(sn);
                 var snOutter = serviceClient.GetProductSn(sn);
                 AnalysisMaterialCode analysisMaterialCode = AnalysisMaterialCode.GetMaterialDetail(materialCode);
@@ -114,13 +118,13 @@ namespace MesManager.UI
                 var lotCode = analysisMaterialCode.MaterialLOT;
                 var ridCode = analysisMaterialCode.MaterialRID;
                 var dcCode = analysisMaterialCode.MaterialDC;
-                var qtyCode = analysisMaterialCode.MaterialQTY;
+                //var qtyCode = analysisMaterialCode.MaterialQTY;
                 materialName = serviceClient.SelectMaterialName(pnCode);
                 dr[MATERIAL_PN] = pnCode;
                 dr[MATERIAL_LOT] = lotCode;
                 dr[MATERIAL_RID] = ridCode;
                 dr[MATERIAL_DC] = dcCode;
-                dr[MATERIAL_QTY] = qtyCode;
+                dr[MATERIAL_QTY] = putInStorage;
                 dr[MATERIAL_NAME] = materialName;
                 dr[PRODUCT_TYPENO] = productTypeNo;
                 dr[STATION_NAME] = stationName;
@@ -130,7 +134,8 @@ namespace MesManager.UI
                 dr[UPDATE_DATE] = updateDate;
                 dr[SN_PCBA] = snPCBA;
                 dr[SN_OUTTER] = snOutter;
-                dr[RESIDUE_STOCK] = int.Parse(qtyCode) - int.Parse(amountedTotal);
+                dr[RESIDUE_STOCK] = int.Parse(putInStorage) - int.Parse(amountedTotal);
+                dr[CURRENT_REMAIN_STOCK] = currentRemain;
                 dataSourceMaterialDetail.Rows.Add(dr);
             }
             this.radGridView1.DataSource = dataSourceMaterialDetail;

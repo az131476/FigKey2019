@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F235234D-2962-45D9-AA88-688B4AF007EF}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>CodeGeneratorTest</RootNamespace>
+    <AssemblyName>CodeGeneratorTest</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Business\BaseManager.cs" />
+    <Compile Include="Business\IBaseManager.cs" />
+    <Compile Include="Business\Implements\F_binding_pcbaManager.cs" />
+    <Compile Include="Business\Implements\F_materialManager.cs" />
+    <Compile Include="Business\Implements\F_material_pnManager.cs" />
+    <Compile Include="Business\Implements\F_material_statisticManager.cs" />
+    <Compile Include="Business\Implements\F_pass_rate_statisticManager.cs" />
+    <Compile Include="Business\Implements\F_product_check_recordManager.cs" />
+    <Compile Include="Business\Implements\F_product_materialManager.cs" />
+    <Compile Include="Business\Implements\F_product_packageManager.cs" />
+    <Compile Include="Business\Implements\F_product_package_storageManager.cs" />
+    <Compile Include="Business\Implements\F_quanlity_managerManager.cs" />
+    <Compile Include="Business\Implements\F_technological_procesManager.cs" />
+    <Compile Include="Business\Implements\F_test_limit_configManager.cs" />
+    <Compile Include="Business\Implements\F_test_log_dataManager.cs" />
+    <Compile Include="Business\Implements\F_test_programe_versionManager.cs" />
+    <Compile Include="Business\Implements\F_test_result_dataManager.cs" />
+    <Compile Include="Business\Implements\F_userManager.cs" />
+    <Compile Include="Business\Interface\IF_binding_pcbaManager.cs" />
+    <Compile Include="Business\Interface\IF_materialManager.cs" />
+    <Compile Include="Business\Interface\IF_material_pnManager.cs" />
+    <Compile Include="Business\Interface\IF_material_statisticManager.cs" />
+    <Compile Include="Business\Interface\IF_pass_rate_statisticManager.cs" />
+    <Compile Include="Business\Interface\IF_product_check_recordManager.cs" />
+    <Compile Include="Business\Interface\IF_product_materialManager.cs" />
+    <Compile Include="Business\Interface\IF_product_packageManager.cs" />
+    <Compile Include="Business\Interface\IF_product_package_storageManager.cs" />
+    <Compile Include="Business\Interface\IF_quanlity_managerManager.cs" />
+    <Compile Include="Business\Interface\IF_technological_procesManager.cs" />
+    <Compile Include="Business\Interface\IF_test_limit_configManager.cs" />
+    <Compile Include="Business\Interface\IF_test_log_dataManager.cs" />
+    <Compile Include="Business\Interface\IF_test_programe_versionManager.cs" />
+    <Compile Include="Business\Interface\IF_test_result_dataManager.cs" />
+    <Compile Include="Business\Interface\IF_userManager.cs" />
+    <Compile Include="Components\PageResult.cs" />
+    <Compile Include="Components\XmlClassMap.cs" />
+    <Compile Include="Components\XmlPropertyMap.cs" />
+    <Compile Include="Data\BaseService.cs" />
+    <Compile Include="Data\DBHelper.cs" />
+    <Compile Include="Data\IBaseService.cs" />
+    <Compile Include="Data\Implements\F_binding_pcbaService.cs" />
+    <Compile Include="Data\Implements\F_materialService.cs" />
+    <Compile Include="Data\Implements\F_material_pnService.cs" />
+    <Compile Include="Data\Implements\F_material_statisticService.cs" />
+    <Compile Include="Data\Implements\F_pass_rate_statisticService.cs" />
+    <Compile Include="Data\Implements\F_product_check_recordService.cs" />
+    <Compile Include="Data\Implements\F_product_materialService.cs" />
+    <Compile Include="Data\Implements\F_product_packageService.cs" />
+    <Compile Include="Data\Implements\F_product_package_storageService.cs" />
+    <Compile Include="Data\Implements\F_quanlity_managerService.cs" />
+    <Compile Include="Data\Implements\F_technological_procesService.cs" />
+    <Compile Include="Data\Implements\F_test_limit_configService.cs" />
+    <Compile Include="Data\Implements\F_test_log_dataService.cs" />
+    <Compile Include="Data\Implements\F_test_programe_versionService.cs" />
+    <Compile Include="Data\Implements\F_test_result_dataService.cs" />
+    <Compile Include="Data\Implements\F_userService.cs" />
+    <Compile Include="Data\Interface\IF_binding_pcbaService.cs" />
+    <Compile Include="Data\Interface\IF_materialService.cs" />
+    <Compile Include="Data\Interface\IF_material_pnService.cs" />
+    <Compile Include="Data\Interface\IF_material_statisticService.cs" />
+    <Compile Include="Data\Interface\IF_pass_rate_statisticService.cs" />
+    <Compile Include="Data\Interface\IF_product_check_recordService.cs" />
+    <Compile Include="Data\Interface\IF_product_materialService.cs" />
+    <Compile Include="Data\Interface\IF_product_packageService.cs" />
+    <Compile Include="Data\Interface\IF_product_package_storageService.cs" />
+    <Compile Include="Data\Interface\IF_quanlity_managerService.cs" />
+    <Compile Include="Data\Interface\IF_technological_procesService.cs" />
+    <Compile Include="Data\Interface\IF_test_limit_configService.cs" />
+    <Compile Include="Data\Interface\IF_test_log_dataService.cs" />
+    <Compile Include="Data\Interface\IF_test_programe_versionService.cs" />
+    <Compile Include="Data\Interface\IF_test_result_dataService.cs" />
+    <Compile Include="Data\Interface\IF_userService.cs" />
+    <Compile Include="EntityMapperHandler.cs" />
+    <Compile Include="Entity\F_binding_pcba.cs" />
+    <Compile Include="Entity\F_material.cs" />
+    <Compile Include="Entity\F_material_pn.cs" />
+    <Compile Include="Entity\F_material_statistic.cs" />
+    <Compile Include="Entity\F_pass_rate_statistic.cs" />
+    <Compile Include="Entity\F_product_check_record.cs" />
+    <Compile Include="Entity\F_product_material.cs" />
+    <Compile Include="Entity\F_product_package.cs" />
+    <Compile Include="Entity\F_product_package_storage.cs" />
+    <Compile Include="Entity\F_quanlity_manager.cs" />
+    <Compile Include="Entity\F_technological_proces.cs" />
+    <Compile Include="Entity\F_test_limit_config.cs" />
+    <Compile Include="Entity\F_test_log_data.cs" />
+    <Compile Include="Entity\F_test_programe_version.cs" />
+    <Compile Include="Entity\F_test_result_data.cs" />
+    <Compile Include="Entity\F_user.cs" />
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Entity\EntityMapper.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

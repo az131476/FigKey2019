@@ -429,6 +429,7 @@ namespace MesWcfService.MessageQueue.RemoteClient
                         //插入成功
                         var iuRes = UpdateMaterialAmounted(materialCode, int.Parse(amounted));//更新总的计数
                         var isRes = UpdateMaterialState(materialCode);//更新状态
+                        UpdateCurrentMaterialRemain(materialCode, productTypeNo, stationName, pcbaSN);
                         if (iuRes > 0 && isRes > 0)
                         {
                             //更新物料使用数量成功
@@ -444,6 +445,7 @@ namespace MesWcfService.MessageQueue.RemoteClient
                 var mRes = UpdateMaterialStatisticAmounted(pcbaSN,productTypeNo,stationName,materialCode,int.Parse(amounted));
                 var uRes = UpdateMaterialAmounted(materialCode, int.Parse(amounted));//更新计数
                 var sRes = UpdateMaterialState(materialCode);//更新状态
+                UpdateCurrentMaterialRemain(materialCode, productTypeNo, stationName, pcbaSN);
                 if (uRes > 0 && sRes > 0 && mRes > 0)
                 {
                     //更新物料使用数量成功
@@ -544,6 +546,61 @@ namespace MesWcfService.MessageQueue.RemoteClient
                 return 1;
             }
             return 0;
+        }
+
+        private static void UpdateCurrentMaterialRemain(string materialCode,string typeNo,string stationName,string pcbaSN)
+        {
+            try
+            {
+                var selectSQL = $"SELECT {DbTable.F_Material.MATERIAL_STOCK},{DbTable.F_Material.MATERIAL_AMOUNTED} " +
+                    $"FROM {DbTable.F_MATERIAL_NAME} WHERE {DbTable.F_Material.MATERIAL_CODE} = '{materialCode}'";
+                var selectCurrentSQL = $"SELECT {DbTable.F_Material_Statistics.MATERIAL_AMOUNT} FROM " +
+                    $"{DbTable.F_MATERIAL_STATISTICS_NAME} WHERE {DbTable.F_Material_Statistics.MATERIAL_CODE} = '{materialCode}'";
+                var dtOrigin = SQLServer.ExecuteDataSet(selectSQL).Tables[0];
+                if (dtOrigin.Rows.Count > 0)
+                {
+                    var stock = dtOrigin.Rows[0][0].ToString();
+                    var amount = dtOrigin.Rows[0][1].ToString();
+                    var remainTotal = int.Parse(stock) - int.Parse(amount);
+                    var dtCurrent = SQLServer.ExecuteDataSet(selectCurrentSQL).Tables[0];
+                    if (dtCurrent.Rows.Count > 0)
+                    {
+                        var currentAmount = dtCurrent.Rows[0][0].ToString();
+                        var currentRemain = remainTotal - int.Parse(currentAmount);
+                        //更新当前物料剩余库存
+                        var updateRemain = $"UPDATE {DbTable.F_MATERIAL_STATISTICS_NAME} SET " +
+                            $"{DbTable.F_Material_Statistics.MATERIAL_CURRENT_REMAIN} = '{currentRemain}' " +
+                            $"WHERE {DbTable.F_Material_Statistics.MATERIAL_CODE} = '{materialCode}' " +
+                            $"AND " +
+                            $"{DbTable.F_Material_Statistics.PRODUCT_TYPE_NO} = '{typeNo}' " +
+                            $"AND " +
+                            $"{DbTable.F_Material_Statistics.STATION_NAME} = '{stationName}' " +
+                            $"AND " +
+                            $"{DbTable.F_Material_Statistics.PCBA_SN} = '{pcbaSN}'";
+                        var dtRemain = SQLServer.ExecuteNonQuery(updateRemain);
+                        if (dtRemain > 0)
+                        {
+                            LogHelper.Log.Info("【当前物料剩余数量更新成功！】");
+                        }
+                        else
+                        {
+                            LogHelper.Log.Info("【当前物料剩余数量更新失败！】");
+                        }
+                    }
+                    else
+                    {
+                        LogHelper.Log.Info("【更新物料剩余数量-查询当前剩余失败！】");
+                    }
+                }
+                else
+                {
+                    LogHelper.Log.Info("【更新物料剩余数量-查询库存与使用总数失败】");
+                }
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Log.Error("更新物料剩余数量异常-"+ex.Message);
+            }
         }
         #endregion
 

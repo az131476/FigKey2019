@@ -107,6 +107,7 @@ namespace MesWcfService.DB
             public const string ADMIN                       = "[admin]";
             public const string UPDATE_DATE                 = "[update_date]";
             public const string PCBA_SN                     = "[pcbaSN]";
+            public const string MATERIAL_CURRENT_REMAIN     = "[material_current_remain]";
         }
 
         public class F_Out_Case_Storage
