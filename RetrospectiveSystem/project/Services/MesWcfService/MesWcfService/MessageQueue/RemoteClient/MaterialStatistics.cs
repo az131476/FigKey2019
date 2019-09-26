@@ -554,42 +554,30 @@ namespace MesWcfService.MessageQueue.RemoteClient
             {
                 var selectSQL = $"SELECT {DbTable.F_Material.MATERIAL_STOCK},{DbTable.F_Material.MATERIAL_AMOUNTED} " +
                     $"FROM {DbTable.F_MATERIAL_NAME} WHERE {DbTable.F_Material.MATERIAL_CODE} = '{materialCode}'";
-                var selectCurrentSQL = $"SELECT {DbTable.F_Material_Statistics.MATERIAL_AMOUNT} FROM " +
-                    $"{DbTable.F_MATERIAL_STATISTICS_NAME} WHERE {DbTable.F_Material_Statistics.MATERIAL_CODE} = '{materialCode}'";
                 var dtOrigin = SQLServer.ExecuteDataSet(selectSQL).Tables[0];
                 if (dtOrigin.Rows.Count > 0)
                 {
                     var stock = dtOrigin.Rows[0][0].ToString();
                     var amount = dtOrigin.Rows[0][1].ToString();
                     var remainTotal = int.Parse(stock) - int.Parse(amount);
-                    var dtCurrent = SQLServer.ExecuteDataSet(selectCurrentSQL).Tables[0];
-                    if (dtCurrent.Rows.Count > 0)
+                    //更新当前物料剩余库存
+                    var updateRemain = $"UPDATE {DbTable.F_MATERIAL_STATISTICS_NAME} SET " +
+                        $"{DbTable.F_Material_Statistics.MATERIAL_CURRENT_REMAIN} = '{remainTotal}' " +
+                        $"WHERE {DbTable.F_Material_Statistics.MATERIAL_CODE} = '{materialCode}' " +
+                        $"AND " +
+                        $"{DbTable.F_Material_Statistics.PRODUCT_TYPE_NO} = '{typeNo}' " +
+                        $"AND " +
+                        $"{DbTable.F_Material_Statistics.STATION_NAME} = '{stationName}' " +
+                        $"AND " +
+                        $"{DbTable.F_Material_Statistics.PCBA_SN} = '{pcbaSN}'";
+                    var dtRemain = SQLServer.ExecuteNonQuery(updateRemain);
+                    if (dtRemain > 0)
                     {
-                        var currentAmount = dtCurrent.Rows[0][0].ToString();
-                        var currentRemain = remainTotal - int.Parse(currentAmount);
-                        //更新当前物料剩余库存
-                        var updateRemain = $"UPDATE {DbTable.F_MATERIAL_STATISTICS_NAME} SET " +
-                            $"{DbTable.F_Material_Statistics.MATERIAL_CURRENT_REMAIN} = '{currentRemain}' " +
-                            $"WHERE {DbTable.F_Material_Statistics.MATERIAL_CODE} = '{materialCode}' " +
-                            $"AND " +
-                            $"{DbTable.F_Material_Statistics.PRODUCT_TYPE_NO} = '{typeNo}' " +
-                            $"AND " +
-                            $"{DbTable.F_Material_Statistics.STATION_NAME} = '{stationName}' " +
-                            $"AND " +
-                            $"{DbTable.F_Material_Statistics.PCBA_SN} = '{pcbaSN}'";
-                        var dtRemain = SQLServer.ExecuteNonQuery(updateRemain);
-                        if (dtRemain > 0)
-                        {
-                            LogHelper.Log.Info("【当前物料剩余数量更新成功！】");
-                        }
-                        else
-                        {
-                            LogHelper.Log.Info("【当前物料剩余数量更新失败！】");
-                        }
+                        LogHelper.Log.Info("【当前物料剩余数量更新成功！】");
                     }
                     else
                     {
-                        LogHelper.Log.Info("【更新物料剩余数量-查询当前剩余失败！】");
+                        LogHelper.Log.Info("【当前物料剩余数量更新失败！】");
                     }
                 }
                 else

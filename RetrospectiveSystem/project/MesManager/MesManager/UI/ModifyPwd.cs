@@ -51,17 +51,25 @@ namespace MesManager.UI
                 MessageBox.Show("确认密码不能为空！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if (newPwd != confirmPwd)
-            {
-                MessageBox.Show("新密码与确认密码不一致！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
             var dt = (await serviceClient.GetUserInfoAsync(username)).Tables[0];
             if (dt.Rows.Count < 1)
             {
                 MessageBox.Show("用户名不存在！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            //验证旧密码
+            MesService.LoginResult loginResult = await serviceClient.LoginAsync(username,oldPwd);
+            if (loginResult != MesService.LoginResult.SUCCESS)
+            {
+                MessageBox.Show("旧密码错误！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (newPwd != confirmPwd)
+            {
+                MessageBox.Show("新密码与确认密码不一致！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             var res = await serviceClient.ModifyUserPasswordAsync(username, confirmPwd);
             if (res == 1)
             {
