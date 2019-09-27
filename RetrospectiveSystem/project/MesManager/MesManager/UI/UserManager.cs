@@ -86,7 +86,7 @@ namespace MesManager.UI
 
         private void Menu_add_Click(object sender, EventArgs e)
         {
-            Register register = new Register("添加用户");
+            Register register = new Register("添加新用户");
             register.ShowDialog();
         }
 

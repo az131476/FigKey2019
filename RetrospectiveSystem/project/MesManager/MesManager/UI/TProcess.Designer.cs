@@ -37,8 +37,12 @@
             this.menu_grid = new Telerik.WinControls.UI.RadMenuItem();
             this.menu_clear_db = new Telerik.WinControls.UI.RadMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
+            this.cb_processItem = new System.Windows.Forms.ComboBox();
             this.lbx_process = new System.Windows.Forms.Label();
             this.radStatusStrip1 = new Telerik.WinControls.UI.RadStatusStrip();
+            this.radLabelElement1 = new Telerik.WinControls.UI.RadLabelElement();
+            this.status_username = new Telerik.WinControls.UI.RadLabelElement();
             this.panel2 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btn_setprocess = new Telerik.WinControls.UI.RadButton();
@@ -48,8 +52,8 @@
             this.radGridView1 = new Telerik.WinControls.UI.RadGridView();
             this.breezeTheme1 = new Telerik.WinControls.Themes.BreezeTheme();
             this.radMenu1 = new Telerik.WinControls.UI.RadMenu();
-            this.cb_processItem = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radStatusStrip1)).BeginInit();
             this.panel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -110,6 +114,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.radLabel1);
             this.panel1.Controls.Add(this.cb_processItem);
             this.panel1.Controls.Add(this.lbx_process);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -117,6 +122,24 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1272, 65);
             this.panel1.TabIndex = 19;
+            // 
+            // radLabel1
+            // 
+            this.radLabel1.ForeColor = System.Drawing.Color.White;
+            this.radLabel1.Location = new System.Drawing.Point(284, 30);
+            this.radLabel1.Name = "radLabel1";
+            this.radLabel1.Size = new System.Drawing.Size(172, 18);
+            this.radLabel1.TabIndex = 13;
+            this.radLabel1.Text = "说明：工艺类别与产品型号对应";
+            // 
+            // cb_processItem
+            // 
+            this.cb_processItem.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cb_processItem.FormattingEnabled = true;
+            this.cb_processItem.Location = new System.Drawing.Point(81, 23);
+            this.cb_processItem.Name = "cb_processItem";
+            this.cb_processItem.Size = new System.Drawing.Size(183, 28);
+            this.cb_processItem.TabIndex = 12;
             // 
             // lbx_process
             // 
@@ -131,10 +154,29 @@
             // radStatusStrip1
             // 
             this.radStatusStrip1.BackColor = System.Drawing.Color.SteelBlue;
+            this.radStatusStrip1.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.radLabelElement1,
+            this.status_username});
             this.radStatusStrip1.Location = new System.Drawing.Point(0, 664);
             this.radStatusStrip1.Name = "radStatusStrip1";
             this.radStatusStrip1.Size = new System.Drawing.Size(1272, 24);
             this.radStatusStrip1.TabIndex = 33;
+            // 
+            // radLabelElement1
+            // 
+            this.radLabelElement1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.radLabelElement1.Name = "radLabelElement1";
+            this.radStatusStrip1.SetSpring(this.radLabelElement1, false);
+            this.radLabelElement1.Text = "当前用户：";
+            this.radLabelElement1.TextWrap = true;
+            // 
+            // status_username
+            // 
+            this.status_username.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.status_username.Name = "status_username";
+            this.radStatusStrip1.SetSpring(this.status_username, false);
+            this.status_username.Text = "   ";
+            this.status_username.TextWrap = true;
             // 
             // panel2
             // 
@@ -231,15 +273,6 @@
             this.radMenu1.Size = new System.Drawing.Size(1272, 36);
             this.radMenu1.TabIndex = 18;
             // 
-            // cb_processItem
-            // 
-            this.cb_processItem.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cb_processItem.FormattingEnabled = true;
-            this.cb_processItem.Location = new System.Drawing.Point(81, 23);
-            this.cb_processItem.Name = "cb_processItem";
-            this.cb_processItem.Size = new System.Drawing.Size(183, 28);
-            this.cb_processItem.TabIndex = 12;
-            // 
             // TProcess
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -262,6 +295,7 @@
             this.Load += new System.EventHandler(this.TProcess_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radStatusStrip1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
@@ -296,5 +330,8 @@
         private Telerik.WinControls.Themes.BreezeTheme breezeTheme1;
         private Telerik.WinControls.UI.RadMenu radMenu1;
         private System.Windows.Forms.ComboBox cb_processItem;
+        private Telerik.WinControls.UI.RadLabel radLabel1;
+        private Telerik.WinControls.UI.RadLabelElement radLabelElement1;
+        private Telerik.WinControls.UI.RadLabelElement status_username;
     }
 }

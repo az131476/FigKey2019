@@ -74,7 +74,7 @@
             this.btn_register.Name = "btn_register";
             this.btn_register.Size = new System.Drawing.Size(71, 24);
             this.btn_register.TabIndex = 2;
-            this.btn_register.Text = "注册";
+            this.btn_register.Text = "确认";
             this.btn_register.ThemeName = "Breeze";
             this.btn_register.Click += new System.EventHandler(this.Btn_register_Click);
             // 
@@ -108,9 +108,7 @@
             // 
             this.cb_userType.FormattingEnabled = true;
             this.cb_userType.Items.AddRange(new object[] {
-            "班组长",
-            "操作员",
-            "工人"});
+            "操作员"});
             this.cb_userType.Location = new System.Drawing.Point(119, 25);
             this.cb_userType.Name = "cb_userType";
             this.cb_userType.Size = new System.Drawing.Size(163, 20);
@@ -164,7 +162,7 @@
             // 
             // 
             this.RootElement.ApplyShapeToControl = true;
-            this.Text = "注册";
+            this.Text = "注册新用户";
             this.Load += new System.EventHandler(this.Register_Load);
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();

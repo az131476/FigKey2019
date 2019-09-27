@@ -116,7 +116,7 @@ namespace MesManager.UI
             var productSN = this.radGridView1.CurrentRow.Cells[2].Value.ToString();
             var stationName = this.radGridView1.CurrentRow.Cells[3].Value.ToString();
             TestLogDetail testLogDetail = new TestLogDetail(productSN);
-            testLogDetail.ShowDialog();
+            //testLogDetail.ShowDialog();
         }
 
         private void Tool_productTypeNo_SelectedIndexChanged(object sender, EventArgs e)
@@ -234,6 +234,7 @@ namespace MesManager.UI
             var dt = (await serviceClient.SelectTestLimitConfigAsync(productTypeNo)).Tables[0];
             this.radGridView1.DataSource = null;
             this.radGridView1.DataSource = dt;
+            this.radGridView1.MasterTemplate.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
             this.radGridView1.Columns[0].BestFit();
         }
 
@@ -242,6 +243,7 @@ namespace MesManager.UI
             var dt = (await serviceClient.SelectTestProgrameVersionAsync(productTypeNo)).Tables[0];
             this.radGridView1.DataSource = null;
             this.radGridView1.DataSource = dt;
+            this.radGridView1.MasterTemplate.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
             this.radGridView1.Columns[0].BestFit();
         }
 

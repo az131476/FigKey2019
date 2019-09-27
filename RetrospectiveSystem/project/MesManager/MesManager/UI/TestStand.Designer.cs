@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TestStand));
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.panel1 = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.treeView1 = new System.Windows.Forms.TreeView();
@@ -84,14 +83,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 632);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1272, 22);
-            this.statusStrip1.TabIndex = 7;
-            this.statusStrip1.Text = "statusStrip1";
             // 
             // panel1
             // 
@@ -318,7 +309,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 58.38926F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 98F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 85F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 105F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 106F));
             this.tableLayoutPanel1.Controls.Add(this.rbtn_threeMonth, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.rbtn_oneMonth, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.rbtn_today, 0, 0);
@@ -337,7 +328,7 @@
             this.rbtn_threeMonth.AutoSize = true;
             this.rbtn_threeMonth.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rbtn_threeMonth.ForeColor = System.Drawing.Color.White;
-            this.rbtn_threeMonth.Location = new System.Drawing.Point(171, 3);
+            this.rbtn_threeMonth.Location = new System.Drawing.Point(170, 3);
             this.rbtn_threeMonth.Name = "rbtn_threeMonth";
             this.rbtn_threeMonth.Size = new System.Drawing.Size(92, 49);
             this.rbtn_threeMonth.TabIndex = 16;
@@ -350,7 +341,7 @@
             this.rbtn_oneMonth.AutoSize = true;
             this.rbtn_oneMonth.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rbtn_oneMonth.ForeColor = System.Drawing.Color.White;
-            this.rbtn_oneMonth.Location = new System.Drawing.Point(73, 3);
+            this.rbtn_oneMonth.Location = new System.Drawing.Point(72, 3);
             this.rbtn_oneMonth.Name = "rbtn_oneMonth";
             this.rbtn_oneMonth.Size = new System.Drawing.Size(92, 49);
             this.rbtn_oneMonth.TabIndex = 15;
@@ -365,7 +356,7 @@
             this.rbtn_today.ForeColor = System.Drawing.Color.White;
             this.rbtn_today.Location = new System.Drawing.Point(3, 3);
             this.rbtn_today.Name = "rbtn_today";
-            this.rbtn_today.Size = new System.Drawing.Size(64, 49);
+            this.rbtn_today.Size = new System.Drawing.Size(63, 49);
             this.rbtn_today.TabIndex = 14;
             this.rbtn_today.TabStop = true;
             this.rbtn_today.Text = "当天";
@@ -376,7 +367,7 @@
             this.rbtn_oneYear.AutoSize = true;
             this.rbtn_oneYear.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rbtn_oneYear.ForeColor = System.Drawing.Color.White;
-            this.rbtn_oneYear.Location = new System.Drawing.Point(269, 3);
+            this.rbtn_oneYear.Location = new System.Drawing.Point(268, 3);
             this.rbtn_oneYear.Name = "rbtn_oneYear";
             this.rbtn_oneYear.Size = new System.Drawing.Size(79, 49);
             this.rbtn_oneYear.TabIndex = 18;
@@ -389,9 +380,9 @@
             this.rbtn_custom.AutoSize = true;
             this.rbtn_custom.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rbtn_custom.ForeColor = System.Drawing.Color.White;
-            this.rbtn_custom.Location = new System.Drawing.Point(354, 3);
+            this.rbtn_custom.Location = new System.Drawing.Point(353, 3);
             this.rbtn_custom.Name = "rbtn_custom";
-            this.rbtn_custom.Size = new System.Drawing.Size(100, 49);
+            this.rbtn_custom.Size = new System.Drawing.Size(101, 49);
             this.rbtn_custom.TabIndex = 13;
             this.rbtn_custom.TabStop = true;
             this.rbtn_custom.Text = "自定义日期";
@@ -480,7 +471,6 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.statusStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "TestStand";
             // 
@@ -515,7 +505,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ToolStrip toolStrip2;
         private System.Windows.Forms.ToolStripLabel toolStripLabel2;

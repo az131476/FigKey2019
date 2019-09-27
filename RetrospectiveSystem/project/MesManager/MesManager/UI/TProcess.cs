@@ -41,6 +41,7 @@ namespace MesManager.UI
 
         private void Init()
         {
+            this.status_username.Text = MESMainForm.currentUser;
             this.cb_curprocess.DropDownStyle = ComboBoxStyle.DropDownList;
             this.cb_processItem.DropDownStyle = ComboBoxStyle.DropDownList;
             serviceClient = new MesService.MesServiceClient();
@@ -115,6 +116,7 @@ namespace MesManager.UI
             if (string.IsNullOrEmpty(this.cb_processItem.Text))
             {
                 ClearGridView();
+                this.groupbox_graph.Controls.Clear();
                 this.radGridView1.Rows.AddNew();
                 return;
             }
@@ -253,6 +255,7 @@ namespace MesManager.UI
             DataSet dataSet = await serviceClient.SelectStationListAsync(processName);
             DataTable dataTable = dataSet.Tables[0];
             stationData.Clear();
+            this.groupbox_graph.Controls.Clear();
             if (dataTable.Rows.Count > 0)
             {
                 this.radGridView1.BeginEdit();
@@ -275,6 +278,7 @@ namespace MesManager.UI
             {
                 stationData.Clear();
                 radGridView1.DataSource = stationData;
+                this.radGridView1.Rows.AddNew();
             }
             DataGridViewCommon.SetRadGridViewProperty(this.radGridView1, true);
             this.radGridView1.AllowRowHeaderContextMenu = false;
@@ -298,7 +302,6 @@ namespace MesManager.UI
                     this.cb_processItem.Items.Add(dataTable.Rows[i][0]);
                     this.cb_curprocess.Items.Add(dataTable.Rows[i][0]);
                 }
-                this.cb_processItem.Items.Add("");
                 if (!cb_processItem.Items.Contains(this.cb_processItem.Text))
                     cb_processItem.Text = "";
             }

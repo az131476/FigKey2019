@@ -29,12 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BasicConfig));
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tool_status = new System.Windows.Forms.ToolStripStatusLabel();
             this.circleShape1 = new Telerik.WinControls.CircleShape();
             this.chamferedRectShape1 = new Telerik.WinControls.ChamferedRectShape();
             this.donutShape1 = new Telerik.WinControls.Tests.DonutShape();
@@ -60,9 +58,7 @@
             this.statusStrip1.BackColor = System.Drawing.Color.Transparent;
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1,
-            this.toolStripStatusLabel2,
-            this.toolStripStatusLabel3,
-            this.tool_status});
+            this.toolStripStatusLabel2});
             this.statusStrip1.Location = new System.Drawing.Point(0, 715);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1272, 22);
@@ -71,27 +67,17 @@
             // 
             // toolStripStatusLabel1
             // 
+            this.toolStripStatusLabel1.ForeColor = System.Drawing.Color.White;
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(68, 17);
             this.toolStripStatusLabel1.Text = "当前用户：";
             // 
             // toolStripStatusLabel2
             // 
+            this.toolStripStatusLabel2.ForeColor = System.Drawing.Color.White;
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
             this.toolStripStatusLabel2.Size = new System.Drawing.Size(44, 17);
             this.toolStripStatusLabel2.Text = "admin";
-            // 
-            // toolStripStatusLabel3
-            // 
-            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
-            this.toolStripStatusLabel3.Size = new System.Drawing.Size(44, 17);
-            this.toolStripStatusLabel3.Text = "状态：";
-            // 
-            // tool_status
-            // 
-            this.tool_status.Name = "tool_status";
-            this.tool_status.Size = new System.Drawing.Size(68, 17);
-            this.tool_status.Text = "更新数据成";
             // 
             // circleShape1
             // 
@@ -186,7 +172,7 @@
             // 
             // 
             // 
-            this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition2;
             this.radGridView1.Name = "radGridView1";
             this.radGridView1.Size = new System.Drawing.Size(1272, 679);
             this.radGridView1.TabIndex = 14;
@@ -209,7 +195,7 @@
             // 
             // 
             this.RootElement.ApplyShapeToControl = true;
-            this.Text = "基础配置";
+            this.Text = "产品管理";
             this.Load += new System.EventHandler(this.BasicConfig_Load);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
@@ -231,8 +217,6 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
-        private System.Windows.Forms.ToolStripStatusLabel tool_status;
         private Telerik.WinControls.CircleShape circleShape1;
         private Telerik.WinControls.ChamferedRectShape chamferedRectShape1;
         private Telerik.WinControls.Tests.DonutShape donutShape1;

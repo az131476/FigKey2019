@@ -196,7 +196,9 @@ namespace MesAPI
         public int ModifyUserPassword(string username, string pwd)
         {
             var updateSQL = $"UPDATE {DbTable.F_USER_NAME} SET " +
-                $"{DbTable.F_User.PASS_WORD} = '{pwd}' WHERE {DbTable.F_User.USER_NAME} = '{username}'";
+                $"{DbTable.F_User.PASS_WORD} = '{pwd}'," +
+                $"{DbTable.F_User.UPDATE_DATE} = '{GetDateTimeNow()}' " +
+                $"WHERE {DbTable.F_User.USER_NAME} = '{username}'";
             return SQLServer.ExecuteNonQuery(updateSQL);
         }
         #endregion
@@ -2285,8 +2287,8 @@ namespace MesAPI
                 selectSQL = $"SELECT ROW_NUMBER() OVER(ORDER BY {DbTable.F_TEST_PROGRAME_VERSION.UPDATE_DATE } DESC) 序号," +
                     $"{DbTable.F_TEST_PROGRAME_VERSION.TYPE_NO} 产品型号," +
                     $"{DbTable.F_TEST_PROGRAME_VERSION.STATION_NAME} 工站名称," +
-                    $"{DbTable.F_TEST_PROGRAME_VERSION.PROGRAME_NAME} 程序名称," +
-                    $"{DbTable.F_TEST_PROGRAME_VERSION.PROGRAME_VERSION} 程序版本," +
+                    $"{DbTable.F_TEST_PROGRAME_VERSION.PROGRAME_NAME} 程序路径," +
+                    $"{DbTable.F_TEST_PROGRAME_VERSION.PROGRAME_VERSION} 程序名称," +
                     $"{DbTable.F_TEST_PROGRAME_VERSION.TEAM_LEADER} 班组长," +
                     $"{DbTable.F_TEST_PROGRAME_VERSION.ADMIN} 管理员," +
                     $"{DbTable.F_TEST_PROGRAME_VERSION.UPDATE_DATE} 更新日期 FROM " +
@@ -2297,8 +2299,8 @@ namespace MesAPI
                 selectSQL = $"SELECT ROW_NUMBER() OVER(ORDER BY {DbTable.F_TEST_PROGRAME_VERSION.UPDATE_DATE} DESC) 序号," +
                     $"{DbTable.F_TEST_PROGRAME_VERSION.TYPE_NO} 产品型号," +
                     $"{DbTable.F_TEST_PROGRAME_VERSION.STATION_NAME} 工站名称," +
-                    $"{DbTable.F_TEST_PROGRAME_VERSION.PROGRAME_NAME} 程序名称," +
-                    $"{DbTable.F_TEST_PROGRAME_VERSION.PROGRAME_VERSION} 程序版本," +
+                    $"{DbTable.F_TEST_PROGRAME_VERSION.PROGRAME_NAME} 程序路径," +
+                    $"{DbTable.F_TEST_PROGRAME_VERSION.PROGRAME_VERSION} 程序名称," +
                     $"{DbTable.F_TEST_PROGRAME_VERSION.TEAM_LEADER} 班组长," +
                     $"{DbTable.F_TEST_PROGRAME_VERSION.ADMIN} 管理员," +
                     $"{DbTable.F_TEST_PROGRAME_VERSION.UPDATE_DATE} 更新日期 FROM " +

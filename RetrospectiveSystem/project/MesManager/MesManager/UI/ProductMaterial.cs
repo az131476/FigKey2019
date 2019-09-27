@@ -29,7 +29,7 @@ namespace MesManager.UI
         private const string MATERIAL_RID = "料盘号";
         private const string MATERIAL_DC = "收料日期";
         private const string MATERIAL_NAME = "物料名称";
-        private const string MATERIAL_QTY = "库存";
+        private const string MATERIAL_QTY = "入库库存";
         private const string ADMIN = "管理员";
         private const string UPDATE_DATE = "更新日期";
         #endregion

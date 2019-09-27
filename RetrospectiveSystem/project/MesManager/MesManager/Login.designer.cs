@@ -40,11 +40,13 @@ namespace MesManager
             this.btn_login = new Telerik.WinControls.UI.RadButton();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lbx_register = new System.Windows.Forms.Label();
+            this.btn_cancel = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.lbx_username)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lbx_pwd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cb_memberpwd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_login)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_cancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,7 +67,7 @@ namespace MesManager
             this.tbx_username.FormattingEnabled = true;
             this.tbx_username.Location = new System.Drawing.Point(110, 153);
             this.tbx_username.Name = "tbx_username";
-            this.tbx_username.Size = new System.Drawing.Size(225, 29);
+            this.tbx_username.Size = new System.Drawing.Size(259, 29);
             this.tbx_username.TabIndex = 21;
             // 
             // lbx_pwd
@@ -85,7 +87,7 @@ namespace MesManager
             this.tbx_pwd.Location = new System.Drawing.Point(110, 206);
             this.tbx_pwd.Name = "tbx_pwd";
             this.tbx_pwd.PasswordChar = '*';
-            this.tbx_pwd.Size = new System.Drawing.Size(227, 29);
+            this.tbx_pwd.Size = new System.Drawing.Size(259, 29);
             this.tbx_pwd.TabIndex = 20;
             // 
             // cb_memberpwd
@@ -105,7 +107,7 @@ namespace MesManager
             this.lbx_ToFindPwd.BackColor = System.Drawing.Color.Transparent;
             this.lbx_ToFindPwd.ForeColor = System.Drawing.Color.GhostWhite;
             this.lbx_ToFindPwd.LinkColor = System.Drawing.Color.Cyan;
-            this.lbx_ToFindPwd.Location = new System.Drawing.Point(250, 246);
+            this.lbx_ToFindPwd.Location = new System.Drawing.Point(284, 246);
             this.lbx_ToFindPwd.Name = "lbx_ToFindPwd";
             this.lbx_ToFindPwd.Size = new System.Drawing.Size(85, 21);
             this.lbx_ToFindPwd.TabIndex = 17;
@@ -127,9 +129,9 @@ namespace MesManager
             this.btn_login.RootElement.AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.WrapAroundChildren;
             this.btn_login.RootElement.CanFocus = true;
             this.btn_login.RootElement.CustomFont = "TelerikWebUI";
-            this.btn_login.Size = new System.Drawing.Size(227, 38);
+            this.btn_login.Size = new System.Drawing.Size(103, 38);
             this.btn_login.TabIndex = 18;
-            this.btn_login.Text = "立  即  登  录";
+            this.btn_login.Text = "登  录";
             this.btn_login.Click += new System.EventHandler(this.Btn_login_Click);
             // 
             // pictureBox1
@@ -154,13 +156,32 @@ namespace MesManager
             this.lbx_register.Text = "注册";
             this.lbx_register.Click += new System.EventHandler(this.Lbx_register_Click);
             // 
+            // btn_cancel
+            // 
+            this.btn_cancel.BackColor = System.Drawing.Color.MediumSlateBlue;
+            this.btn_cancel.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_cancel.ForeColor = System.Drawing.Color.White;
+            this.btn_cancel.Location = new System.Drawing.Point(266, 313);
+            this.btn_cancel.Name = "btn_cancel";
+            // 
+            // 
+            // 
+            this.btn_cancel.RootElement.ApplyShapeToControl = true;
+            this.btn_cancel.RootElement.AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.WrapAroundChildren;
+            this.btn_cancel.RootElement.CanFocus = true;
+            this.btn_cancel.RootElement.CustomFont = "TelerikWebUI";
+            this.btn_cancel.Size = new System.Drawing.Size(103, 38);
+            this.btn_cancel.TabIndex = 25;
+            this.btn_cancel.Text = "取  消";
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(427, 393);
+            this.ClientSize = new System.Drawing.Size(427, 407);
+            this.Controls.Add(this.btn_cancel);
             this.Controls.Add(this.lbx_register);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lbx_username);
@@ -172,6 +193,7 @@ namespace MesManager
             this.Controls.Add(this.btn_login);
             this.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Login";
             // 
@@ -185,6 +207,7 @@ namespace MesManager
             ((System.ComponentModel.ISupportInitialize)(this.cb_memberpwd)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_login)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_cancel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -202,5 +225,6 @@ namespace MesManager
         private Telerik.WinControls.UI.RadButton btn_login;
         private PictureBox pictureBox1;
         private Label lbx_register;
+        private Telerik.WinControls.UI.RadButton btn_cancel;
     }
 }

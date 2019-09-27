@@ -161,7 +161,7 @@ namespace MesManager.UI
             OpenLogin();
         }
 
-        private void OpenLogin()
+        private bool OpenLogin()
         {
             Login login = new Login();
             login.ShowDialog();
@@ -170,15 +170,20 @@ namespace MesManager.UI
                 IsLogin = true;
                 currentUser = Login.GetUserName;
                 currentUsetType = Login.CurrentUserType;
+                return true;
             }
             else if (Login.loginResult == Login.LoginResult.ERROR_PASSWORD)
             {
                 IsLogin = false;
+                return false;
             }
             else if (Login.loginResult == Login.LoginResult.ERROR_USER_NAME)
             {
                 IsLogin = false;
+                return false;
             }
+            IsLogin = false;
+            return false;
         }
 
         private void Btn_user_manger_Click(object sender, EventArgs e)
@@ -209,6 +214,8 @@ namespace MesManager.UI
         private void MainReportData_Click(object sender, EventArgs e)
         {
             //报表中心/追溯中心
+            if (!IsLoginAuthon())
+                return;
             SNCenter sNCenter = new SNCenter();
             sNCenter.ShowDialog();
         }
@@ -297,8 +304,7 @@ namespace MesManager.UI
                 return;
             if (currentUsetType != 0)
             {
-                MessageBox.Show("您没有此操作权限！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                //MessageBox.Show("您没有此操作权限！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             BasicConfig basicConfig = new BasicConfig();
             basicConfig.ShowDialog();
@@ -311,9 +317,10 @@ namespace MesManager.UI
                 if (MessageBox.Show("请先登录！立即打开登录界面？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
                 {
                     //打开登录
-                    OpenLogin();
+                    if(OpenLogin())
+                        return true;
+                    return false;
                 }
-                return false;
             }
             return true;
         }

@@ -58,6 +58,22 @@ namespace MesManager.UI
         {
             Init();
             EventHandlers();
+            RefreshControl();
+        }
+
+        private void RefreshControl()
+        {
+            var userType = MESMainForm.currentUsetType;
+            if (userType != 0)
+            {
+                //没有权限，设置不可修改
+                this.menu_add.Enabled = false;
+                this.menu_del.Enabled = false;
+                this.menu_clear_db.Enabled = false;
+                this.menu_commit.Enabled = false;
+                this.menu_clear_db.Enabled = false;
+                this.radGridView1.Enabled = false;
+            }
         }
 
         private void Init()
@@ -216,7 +232,6 @@ namespace MesManager.UI
                 {
                     var typeNo = this.radGridView1.CurrentRow.Cells[1].Value.ToString();
                     int row = await serviceClient.DeleteProductContinairCapacityAsync(typeNo);
-                    tool_status.Text = "【型号】删除1行记录 【删除】完成";
                     if (row > 0)
                     {
                         RefreshData();
@@ -225,13 +240,12 @@ namespace MesManager.UI
             }
         }
 
-        async private void Menu_clear_db_Click(object sender, EventArgs e)
+        private void Menu_clear_db_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("确定要清空服务所有数据？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.Cancel)
                 return;
             //型号
             int row = 0;// await serviceClient.DeleteAllProductTypeNoAsync();
-            tool_status.Text = $"【型号】删除服务数据【{row}】条  【清空数据】完成";
             RefreshData();
         }
 
@@ -287,10 +301,6 @@ namespace MesManager.UI
 
         private void RefreshData()
         {
-            //型号
-            this.menu_del.Enabled = true;
-            this.menu_clear_db.Enabled = true;
-            this.menu_add.Enabled = true;
             SelectProductTypeData();
             //物料
             //this.menu_del.Enabled = false;

@@ -89,6 +89,8 @@ namespace MesManager.UI
         private void ModifyPwd_Load(object sender, EventArgs e)
         {
             serviceClient = new MesService.MesServiceClient();
+            this.tb_newPwd.PasswordChar = '*';
+            this.tb_confirmPwd.PasswordChar = '*';
         }
     }
 }

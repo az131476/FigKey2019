@@ -541,9 +541,13 @@
             // 
             // menu_sn_result
             // 
+            this.menu_sn_result.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.menu_sn_result.ClickMode = Telerik.WinControls.ClickMode.Release;
             this.menu_sn_result.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.menu_sn_result.HighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.menu_sn_result.Image = global::MesManager.Properties.Resources.terminal_seats_red;
             this.menu_sn_result.Name = "menu_sn_result";
+            this.menu_sn_result.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(170)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.menu_sn_result.Text = "SN过站记录";
             this.menu_sn_result.UseCompatibleTextRendering = false;
             // 

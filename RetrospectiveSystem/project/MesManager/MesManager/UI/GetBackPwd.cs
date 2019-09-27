@@ -13,16 +13,19 @@ namespace MesManager.UI
     public partial class GetBackPwd : Telerik.WinControls.UI.RadForm
     {
         private MesService.MesServiceClient serviceClient;
-        public GetBackPwd()
+        public GetBackPwd(string username)
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterParent;
             this.MaximizeBox = false;
+            this.tb_username.Text = username;
         }
 
         private void GetBackPwd_Load(object sender, EventArgs e)
         {
             serviceClient = new MesService.MesServiceClient();
+            this.tb_pwd.PasswordChar = '*';
+            this.tb_repwd.PasswordChar = '*';
         }
 
         private void Btn_register_Click(object sender, EventArgs e)

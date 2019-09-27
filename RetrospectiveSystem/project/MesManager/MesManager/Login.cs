@@ -106,12 +106,13 @@ namespace MesManager
             Init();
             InitServiceInstance();
             tbx_username.KeyDown += Tbx_username_KeyDown;
-            this.FormClosed += Login_FormClosed;
+            this.btn_cancel.Click += Btn_cancel_Click;
         }
 
-        private void Login_FormClosed(object sender, FormClosedEventArgs e)
+        private void Btn_cancel_Click(object sender, EventArgs e)
         {
-            IsCloseFormState = true;
+            loginResult = LoginResult.STATUS_CLOSE_FORM;
+            this.Close();
         }
 
         private void Tbx_username_KeyDown(object sender, KeyEventArgs e)
@@ -363,7 +364,7 @@ namespace MesManager
 
         private void Lbx_ToFindPwd_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            GetBackPwd getBackPwd = new GetBackPwd();
+            GetBackPwd getBackPwd = new GetBackPwd(this.tbx_username.Text);
             getBackPwd.ShowDialog();
         }
 

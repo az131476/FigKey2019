@@ -51,12 +51,15 @@ namespace MesManager.UI
                 MessageBox.Show("用户类型不能为空！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if (this.cb_userType.SelectedIndex == 0)//班组长
-                userType = "1";
-            else if (this.cb_userType.SelectedIndex == 1)//操作员
+            //if (this.cb_userType.SelectedIndex == 0)//班组长
+            //    userType = "1";
+            //else if (this.cb_userType.SelectedIndex == 1)//操作员
+            //    userType = "2";
+            //else if (this.cb_userType.SelectedIndex == 2)
+            //    userType = "3";
+            if (this.cb_userType.SelectedIndex == 0)//操作员
                 userType = "2";
-            else if (this.cb_userType.SelectedIndex == 2)
-                userType = "3";
+
             if (string.IsNullOrEmpty(username))
             {
                 MessageBox.Show("用户名不能为空！","提示",MessageBoxButtons.OK,MessageBoxIcon.Warning);
