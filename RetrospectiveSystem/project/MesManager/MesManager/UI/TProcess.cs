@@ -36,6 +36,7 @@ namespace MesManager.UI
             Init();
             EventHandlers();
             RefreshProcessData();
+            RefreshControl();
         }
 
 
@@ -52,6 +53,21 @@ namespace MesManager.UI
             DataSource();
             RefreshCurrentProcess();
             this.cb_processItem.Text = serviceClientTest.SelectCurrentTProcess();
+        }
+
+        private void RefreshControl()
+        {
+            var userType = MESMainForm.currentUsetType;
+            if (userType != 0)
+            {
+                //没有权限，设置不可修改
+                this.menu_add.Enabled = false;
+                this.menu_del.Enabled = false;
+                this.menu_clear_db.Enabled = false;
+                this.menu_commit.Enabled = false;
+                this.radGridView1.Enabled = false;
+                this.btn_setprocess.Enabled = false;
+            }
         }
 
         private void RefreshCurrentProcess()

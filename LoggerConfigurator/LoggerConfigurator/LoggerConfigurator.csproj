@@ -212,7 +212,7 @@
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\GridViewData.cs" />
-    <Compile Include="Model\ProtocolTypeEnum.cs" />
+    <Compile Include="Model\CanProtocolDataEntity.cs" />
     <Compile Include="Model\TreeViewData.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

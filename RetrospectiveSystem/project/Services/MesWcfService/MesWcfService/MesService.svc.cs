@@ -418,6 +418,18 @@ namespace MesWcfService
             selectProductPackageStorageQueue.Enqueue(productTypeNo);
             return UPackageProduct.SelectPackageStorage(selectProductPackageStorageQueue);
         }
+        [SwaggerWcfTag("MesServcie 服务")]
+        public string UpdatePackageStorage(string productTypeNo,int capacity)
+        {
+            var updateSQL = $"UPDATE {DbTable.F_OUT_CASE_STORAGE_NAME} SET " +
+                $"{DbTable.F_Out_Case_Storage.STORAGE_CAPACITY} = '{capacity}' " +
+                $"WHERE " +
+                $"{DbTable.F_Out_Case_Storage.TYPE_NO} = '{productTypeNo}'";
+            var count = SQLServer.ExecuteNonQuery(updateSQL);
+            if (count == 1)
+                return "OK";
+            return "FAIL";
+        }
         #endregion
     }
 }

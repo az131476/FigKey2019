@@ -257,6 +257,14 @@ namespace MesWcfService
         int SelectPackageStorage(
             [SwaggerWcfParameter(Description = "产品型号")]string productTypeNo);
         #endregion
+
+        #region 【接口】 更新产品容量
+        [OperationContract]
+        [SwaggerWcfPath("UpdatePackageStorage", "更新产品容量")]
+        [WebInvoke(Method = "GET", UriTemplate = "UpdatePackageStorage?productTypeNo={productTypeNo}&capacity={capacity}", BodyStyle = WebMessageBodyStyle.Bare,
+    RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
+        string UpdatePackageStorage(string productTypeNo, int capacity);
+        #endregion
     }
 
     // 使用下面示例中说明的数据约定将复合类型添加到服务操作。

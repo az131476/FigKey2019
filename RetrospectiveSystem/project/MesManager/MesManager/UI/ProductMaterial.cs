@@ -56,6 +56,7 @@ namespace MesManager.UI
         private void ProductMaterial_Load(object sender, EventArgs e)
         {
             Init();
+            RefreshControl();
             EventHandlers();
         }
 
@@ -69,6 +70,21 @@ namespace MesManager.UI
             BindingDataSource();
             InitDataTable();
             InitMaterialRID();
+        }
+
+        private void RefreshControl()
+        {
+            var userType = MESMainForm.currentUsetType;
+            if (userType != 0)
+            {
+                //没有权限，设置不可修改
+                this.menu_add_row.Enabled = false;
+                this.menu_delete.Enabled = false;
+                this.menu_clear_db.Enabled = false;
+                this.menu_update.Enabled = false;
+                this.menu_clear_db.Enabled = false;
+                this.radGridView1.Enabled = false;
+            }
         }
 
         private void InitMaterialRID()

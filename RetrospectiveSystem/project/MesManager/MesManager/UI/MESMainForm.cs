@@ -202,12 +202,16 @@ namespace MesManager.UI
 
         private void MainStatisticalAnalysis_Click(object sender, EventArgs e)
         {
+            if (!IsLoginAuthon())
+                return;
             StatisticalAnalysis statisticalAnalysis = new StatisticalAnalysis();
             statisticalAnalysis.ShowDialog();
         }
 
         private void MainTestStandData_Click(object sender, EventArgs e)
         {
+            if (!IsLoginAuthon())
+                return;
             TestStand testStand = new TestStand();
             testStand.ShowDialog();
         }
@@ -223,6 +227,8 @@ namespace MesManager.UI
         private void MainRepairCenter_Click(object sender, EventArgs e)
         {
             //维修中心
+            if (!IsLoginAuthon())
+                return;
             RepairCenter repairCenter = new RepairCenter();
             repairCenter.ShowDialog();
         }
@@ -232,11 +238,6 @@ namespace MesManager.UI
             //品质异常管理
             if (!IsLoginAuthon())
                 return;
-            if (currentUsetType != 0 && currentUsetType != 1)
-            {
-                MessageBox.Show("您没有此操作权限！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
             QuanlityAnomaly quanlityAnomaly = new QuanlityAnomaly();
             quanlityAnomaly.ShowDialog();
         }
@@ -246,11 +247,6 @@ namespace MesManager.UI
             //工艺流程
             if(!IsLoginAuthon())
                 return;
-            if (currentUsetType != 0)
-            {
-                MessageBox.Show("您没有此操作权限！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
             TProcess process = new TProcess();
             process.ShowDialog();
         }
@@ -272,11 +268,6 @@ namespace MesManager.UI
             //物料绑定
             if (!IsLoginAuthon())
                 return;
-            if (currentUsetType != 0)
-            {
-                MessageBox.Show("您没有此操作权限！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
             ProductMaterial productMaterial = new ProductMaterial();
             productMaterial.ShowDialog();
         }
@@ -285,6 +276,8 @@ namespace MesManager.UI
         {
             //看板中心
             //图形显示
+            if (!IsLoginAuthon())
+                return;
             GraphView graphView = new GraphView();
             graphView.ShowDialog();
         }
@@ -302,10 +295,6 @@ namespace MesManager.UI
             //如配置型号/配置产线/配置物料信息等
             if(!IsLoginAuthon())
                 return;
-            if (currentUsetType != 0)
-            {
-                //MessageBox.Show("您没有此操作权限！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
             BasicConfig basicConfig = new BasicConfig();
             basicConfig.ShowDialog();
         }

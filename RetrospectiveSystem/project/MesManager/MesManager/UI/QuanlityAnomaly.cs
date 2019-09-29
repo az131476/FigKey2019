@@ -48,6 +48,17 @@ namespace MesManager.UI
         private void QuanlityAnomaly_Load(object sender, EventArgs e)
         {
             InitConfig();
+            RefreshControl();
+        }
+
+        private void RefreshControl()
+        {
+            var userType = MESMainForm.currentUsetType;
+            if (userType != 0)
+            {
+                //没有权限，设置不可修改
+                this.btn_apply.Enabled = false;
+            }
         }
 
         async private void InitConfig()

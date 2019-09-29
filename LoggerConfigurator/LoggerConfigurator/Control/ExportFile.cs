@@ -89,21 +89,24 @@ namespace FigKeyLoggerConfigurator.Control
             File.Delete(targetPath);
             stringBuilderHead.AppendLine($"#include\"datatype.h\"");
             WriteData.WriteString(stringBuilderHead, targetPath);
-
+            //CAN1/CAN2 都有可能是三种协议中的一种
             if (sectCan == 1)
             {
+                //只选择CAN1
                 A2lDetailData(targetPath, gridView1, gridData);
                 AddA2lDetailGroup(gridData, targetPath, analysisData, dataCan1);
                 AddCanChInfo(targetPath, dataCan1, analysisData,1);
             }
             else if (sectCan == 2)
             {
+                //只选择CAN2
                 DbcDetailData(targetPath, gridView2, gridData);
                 AddDBCDetailGroup(targetPath);
                 AddCanChInfo(targetPath, dataCan1, analysisData,2);
             }
             else if (sectCan == 3)
             {
+                //同时选择CAN1与CAN2
                 A2lDetailData(targetPath, gridView1, gridData);
                 DbcDetailData(targetPath, gridView2, gridData);
                 AddA2lDetailGroup(gridData, targetPath, analysisData, dataCan1);
