@@ -11,6 +11,11 @@ namespace AnalysisAgreeMent.Model.DBC
     public class DBCData
     {
         /// <summary>
+        /// 数据状态，true-数据存在
+        /// </summary>
+        public bool DataStatus { get; set; }
+
+        /// <summary>
         /// 要解析的文件类型
         /// </summary>
         public FileType AnalysisFileType { get; set; }

@@ -22,5 +22,7 @@ namespace LoggerConfigurator.Model
         public DbcHelper CanDbcHelper { get; set; }
 
         public AnalysisData CanAnalysisData { get; set; }
+
+        public AgreementType AgreementType { get; set; }
     }
 }

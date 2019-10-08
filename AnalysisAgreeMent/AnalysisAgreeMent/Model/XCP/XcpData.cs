@@ -11,6 +11,10 @@ namespace AnalysisAgreeMent.Model.XCP
     /// </summary>
     public class XcpData
     {
+        /// <summary>
+        /// 数据状态，true-数据存在
+        /// </summary>
+        public bool DataStatus { get; set; }
         public AgreementType AgreeMentType { get; set; }
 
         public List<MeasureMent> MeasureData { get; set; }

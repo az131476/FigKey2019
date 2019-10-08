@@ -84,7 +84,7 @@ namespace AnalysisAgreeMent
                 }
                 A2lFile = new FileStream(A2lPath, FileMode.Open);
                 A2lReader = new StreamReader(A2lFile);
-
+                xcpData.DataStatus = false;
                 #region read file
                 while (!A2lReader.EndOfStream)
                 {
@@ -148,6 +148,7 @@ namespace AnalysisAgreeMent
                 xcpData.MetholdData = MetholdList;
                 xcpData.XcpOnCanData = xcpOnCan;
                 xcpData.IF_DATA_ASAP1B_CCP_DATA = if_data_asap1b_ccp;
+                xcpData.DataStatus = true;
                 LogHelper.Log.Info("解析完成："+propertyList.Count+"  "+measureList.Count+"  "+MetholdList.Count);
                 #endregion
 

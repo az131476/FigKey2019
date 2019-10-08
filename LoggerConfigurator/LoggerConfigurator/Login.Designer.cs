@@ -128,6 +128,7 @@
             this.btn_login.Size = new System.Drawing.Size(68, 32);
             this.btn_login.TabIndex = 9;
             this.btn_login.Text = "登录";
+            this.btn_login.ThemeName = "Breeze";
             this.btn_login.Click += new System.EventHandler(this.Btn_login_Click);
             // 
             // radLabel1
@@ -155,13 +156,15 @@
             this.btn_cancel.Size = new System.Drawing.Size(68, 32);
             this.btn_cancel.TabIndex = 13;
             this.btn_cancel.Text = "取消";
+            this.btn_cancel.ThemeName = "Breeze";
             this.btn_cancel.Click += new System.EventHandler(this.Btn_cancel_Click);
             // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(336, 332);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.ClientSize = new System.Drawing.Size(344, 341);
             this.Controls.Add(this.btn_cancel);
             this.Controls.Add(this.cob_userType);
             this.Controls.Add(this.radLabel1);
@@ -174,6 +177,7 @@
             this.Controls.Add(this.lbx_username);
             this.Controls.Add(this.tbx_pwd);
             this.Controls.Add(this.tbx_username);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Login";
             // 
             // 

@@ -40,10 +40,13 @@ namespace LoggerConfigurator
         private DBCData dbcDataCan;
         private DbcHelper dbcHelperCan;
         private GridViewControl gridViewControl;
-        private GridViewData gridViewData;
+        private GridViewData a2lGridViewSelectRow;
+        private GridViewData dbcGrieViewSelectRow;
         private LimitTimeCfg limitCfg;
         private AnalysisData analysisData;
+        private ExportCANDocument exportCanDocument;
         //private FileType analysisFileType;
+        private AgreementType agreementTypeCan1, agreementTypeCan2;
         private DataTable dataSourceCan1;
         private DataTable dataSourceCan2;
         private Dictionary<string, string> can1DicCheckState_12;
@@ -123,13 +126,21 @@ namespace LoggerConfigurator
             CAN_2
         }
 
+        public enum ExportCANDocument
+        {
+            CAN_1 = 1,
+            CAN_2 = 2,
+            CAN_1_2 = 3
+        }
+
         private void Initial()
         {
-            gridViewData = new GridViewData();
-            gridViewData.LimitTimeListSegMent = new List<int>();
-            gridViewData.LimitTimeList10ms = new List<int>();
-            gridViewData.LimitTimeList100ms = new List<int>();
-            gridViewData.DbcCheckIndex = new List<int>();
+            a2lGridViewSelectRow = new GridViewData();
+            dbcGrieViewSelectRow = new GridViewData();
+            a2lGridViewSelectRow.LimitTimeListSegMent = new List<int>();
+            a2lGridViewSelectRow.LimitTimeList10ms = new List<int>();
+            a2lGridViewSelectRow.LimitTimeList100ms = new List<int>();
+            dbcGrieViewSelectRow.DbcCheckIndex = new List<int>();
 
             can1DicCheckState_12 = new Dictionary<string, string>();//12cell row-state
             can1DicCheckState_13 = new Dictionary<string, string>();//13cell row-state
@@ -145,8 +156,8 @@ namespace LoggerConfigurator
             cb_protocol_can1.Items.Clear();
             cb_protocol_can1.Items.Add(AgreementType.CCP);
             cb_protocol_can1.Items.Add(AgreementType.XCP);
-            cb_protocol_can1.Items.Add("");
             cb_protocol_can1.Items.Add(AgreementType.DBC);
+            cb_protocol_can1.Items.Add("");
             cb_protocol_can1.SelectedIndex = 0;
 
             //can2
@@ -325,28 +336,9 @@ namespace LoggerConfigurator
         /// <summary>
         /// 导出选中行数据
         /// </summary>
-        private void ExportData()
+        private void ExportData(ExportCANDocument exportCANDocument)
         {
             SelectedRowCal();
-            string can1 = cb_protocol_can1.Text;
-            string can2 = cb_protocol_can2.Text;
-            int sectCan = 0;
-            if (!string.IsNullOrEmpty(cb_protocol_can1.Text))
-            {
-                if (gridViewData.LimitTimeList10ms.Count < 1 && gridViewData.LimitTimeList100ms.Count < 1)
-                {
-                    //MessageBox.Show("未选择行数据", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    //return;
-                }
-            }
-            if (!string.IsNullOrEmpty(cb_protocol_can2.Text))
-            {
-                if (gridViewData.DbcCheckIndex.Count < 1)
-                {
-                    //MessageBox.Show("未选择行数据", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    //return;
-                }
-            }
             string sourcePath = AppDomain.CurrentDomain.BaseDirectory + @"编译器\";
             if (!Directory.Exists(sourcePath))
                 sourcePath = AppDomain.CurrentDomain.BaseDirectory;
@@ -356,15 +348,46 @@ namespace LoggerConfigurator
             {
                 return;
             }
-            if (!string.IsNullOrEmpty(can1) && string.IsNullOrEmpty(can2))
-                sectCan = 1;
-            else if (!string.IsNullOrEmpty(can2) && string.IsNullOrEmpty(can1))
-                sectCan = 2;
-            else if (!string.IsNullOrEmpty(can1) && !string.IsNullOrEmpty(can2))
+            XcpData xcpDataCan1 = null,xcpDataCan2 = null;
+            DBCData dBCDataCan1 = null,dBCDataCan2 = null;
+            AnalysisData analysisDataCan1 = null, analysisDataCan2 = null;
+            AgreementType agreementType1 = AgreementType.other, agreementType2 = AgreementType.other;
+            foreach (var dicList in canProtocolDataSourchList)
             {
-                sectCan = 3;
+                foreach (var keyValuePair in dicList)
+                {
+                    if (keyValuePair.Key == SelectedCan.CAN_1)
+                    {
+                        agreementType1 = keyValuePair.Value.AgreementType;
+                        if (keyValuePair.Value.AgreementType == AgreementType.XCP || keyValuePair.Value.AgreementType == AgreementType.CCP)
+                        {
+                            xcpDataCan1 = keyValuePair.Value.CanXcpData;
+                        }
+                        else if (keyValuePair.Value.AgreementType == AgreementType.DBC)
+                        {
+                            dBCDataCan1 = keyValuePair.Value.CanDbcData;
+                        }
+                        analysisDataCan1 = keyValuePair.Value.CanAnalysisData;
+                    }
+                    else if (keyValuePair.Key == SelectedCan.CAN_2)
+                    {
+                        agreementType2 = keyValuePair.Value.AgreementType;
+                        if (keyValuePair.Value.AgreementType == AgreementType.XCP || keyValuePair.Value.AgreementType == AgreementType.CCP)
+                        {
+                            xcpDataCan2 = keyValuePair.Value.CanXcpData;
+                        }
+                        else if (keyValuePair.Value.AgreementType == AgreementType.DBC)
+                        {
+                            dBCDataCan2 = keyValuePair.Value.CanDbcData;
+                        }
+                        analysisDataCan2 = keyValuePair.Value.CanAnalysisData;
+                    }
+                }
             }
-            var executeResult = ExportFile.ExportFileToLocal(path, sourcePath, radGridView_can1, radGridView_can2, gridViewData, analysisData,xcpdataCan,sectCan);
+            var executeResult = ExportFile.ExportFileToLocal(path, sourcePath, radGridView_can1,
+                radGridView_can2, a2lGridViewSelectRow, dbcGrieViewSelectRow, analysisDataCan1, 
+                analysisDataCan2, xcpDataCan1,xcpDataCan2, (int)exportCANDocument,agreementType1,agreementType2);
+
             if (executeResult)
             {
                 MessageBox.Show("已成功生成DLL！","提示",MessageBoxButtons.OK,MessageBoxIcon.Information);
@@ -381,33 +404,68 @@ namespace LoggerConfigurator
         /// </summary>
         private void SelectedRowCal()
         {
-            int rdex = 0;
-            int can2Index = 0;
-            gridViewData.LimitTimeListSegMent.Clear();
-            gridViewData.LimitTimeList10ms.Clear();
-            gridViewData.LimitTimeList100ms.Clear();
-            gridViewData.DbcCheckIndex.Clear();
+            int a2lIndex = 0;
+            int dbcIndex = 0;
+            a2lGridViewSelectRow.LimitTimeListSegMent.Clear();
+            a2lGridViewSelectRow.LimitTimeList10ms.Clear();
+            a2lGridViewSelectRow.LimitTimeList100ms.Clear();
+            dbcGrieViewSelectRow.DbcCheckIndex.Clear();
 
-            foreach (GridViewDataRowInfo row in this.radGridView_can1.Rows)
+            //can1
+            if (agreementTypeCan1 == AgreementType.DBC)
             {
-                //将选中得行添加到集合
-                if (this.radGridView_can1.Rows[rdex].Cells[12].Value.ToString() is "1")
+                foreach (GridViewRowInfo row in this.radGridView_can1.Rows)
                 {
-                    gridViewData.LimitTimeList10ms.Add(rdex);
+                    if (this.radGridView_can1.Rows[dbcIndex].Cells[12].Value.ToString() is "1")
+                    {
+                        dbcGrieViewSelectRow.DbcCheckIndex.Add(dbcIndex);
+                    }
+                    dbcIndex++;
                 }
-                if (this.radGridView_can1.Rows[rdex].Cells[13].Value.ToString() is "1")
-                {
-                    gridViewData.LimitTimeList100ms.Add(rdex);
-                }
-                rdex++;
             }
-            foreach (GridViewRowInfo row in this.radGridView_can2.Rows)
+            else if (agreementTypeCan1 == AgreementType.CCP || agreementTypeCan1 == AgreementType.XCP)
             {
-                if (this.radGridView_can2.Rows[can2Index].Cells[12].Value.ToString() is "1")
+                foreach (GridViewDataRowInfo row in this.radGridView_can1.Rows)
                 {
-                    gridViewData.DbcCheckIndex.Add(can2Index);
+                    //将选中得行添加到集合
+                    if (this.radGridView_can1.Rows[a2lIndex].Cells[12].Value.ToString() is "1")
+                    {
+                        a2lGridViewSelectRow.LimitTimeList10ms.Add(a2lIndex);
+                    }
+                    if (this.radGridView_can1.Rows[a2lIndex].Cells[13].Value.ToString() is "1")
+                    {
+                        a2lGridViewSelectRow.LimitTimeList100ms.Add(a2lIndex);
+                    }
+                    a2lIndex++;
                 }
-                can2Index++;
+            }
+            //can2
+            if (agreementTypeCan2 == AgreementType.CCP || agreementTypeCan2 == AgreementType.XCP)
+            {
+                foreach (GridViewDataRowInfo row in this.radGridView_can2.Rows)
+                {
+                    //将选中得行添加到集合
+                    if (this.radGridView_can2.Rows[a2lIndex].Cells[12].Value.ToString() is "1")
+                    {
+                        a2lGridViewSelectRow.LimitTimeList10ms.Add(a2lIndex);
+                    }
+                    if (this.radGridView_can2.Rows[a2lIndex].Cells[13].Value.ToString() is "1")
+                    {
+                        a2lGridViewSelectRow.LimitTimeList100ms.Add(a2lIndex);
+                    }
+                    a2lIndex++;
+                }
+            }
+            else if (agreementTypeCan2 == AgreementType.DBC)
+            {
+                foreach (GridViewRowInfo row in this.radGridView_can2.Rows)
+                {
+                    if (this.radGridView_can2.Rows[dbcIndex].Cells[12].Value.ToString() is "1")
+                    {
+                        dbcGrieViewSelectRow.DbcCheckIndex.Add(dbcIndex);
+                    }
+                    dbcIndex++;
+                }
             }
         }
 
@@ -419,7 +477,22 @@ namespace LoggerConfigurator
         /// <param name="e"></param>
         private void Tool_exportfile_Click(object sender, EventArgs e)
         {
-            ExportData();
+            ExportSet exportSet = new ExportSet();
+            if (exportSet.ShowDialog() == DialogResult.OK)
+            {
+                if (ExportSet.can1Check && !ExportSet.can2Check)
+                {
+                    ExportData(ExportCANDocument.CAN_1);
+                }
+                else if (ExportSet.can2Check && !ExportSet.can1Check)
+                {
+                    ExportData(ExportCANDocument.CAN_2);
+                }
+                else if (ExportSet.can1Check && ExportSet.can2Check)
+                {
+                    ExportData(ExportCANDocument.CAN_1_2);
+                }
+            }
         }
         #endregion
 
@@ -657,7 +730,6 @@ namespace LoggerConfigurator
                 MessageBox.Show($"不支持协议【{inputProtocol}】，请重新选择协议", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
             var openFilter = "(*.*)|*.*";
             if (currentProtocol == AgreementType.CCP || currentProtocol == AgreementType.XCP)
             {
@@ -682,7 +754,8 @@ namespace LoggerConfigurator
                 LogHelper.Log.Info("开始解析XCP/CCP...");
                 xcpdataCan = new XcpData();
                 xcpHelperCan = new XcpHelper(xcpdataCan);
-                A2lAnalysis(protocolType);
+                if(!A2lAnalysis(protocolType))
+                    return;
             }
             else if (protocolType == AgreementType.DBC)
             {
@@ -694,17 +767,21 @@ namespace LoggerConfigurator
             //全部解析完成，添加到集合
             CanProtocolDataEntity canProtocolDataEntity = new CanProtocolDataEntity();
             Dictionary<SelectedCan, CanProtocolDataEntity> keyValuePairs = new Dictionary<SelectedCan, CanProtocolDataEntity>();
-            canProtocolDataEntity.CanXcpData = xcpdataCan;
-            canProtocolDataEntity.CanDbcData = dbcDataCan;
-            canProtocolDataEntity.CanXcpHelper = xcpHelperCan;
-            canProtocolDataEntity.CanDbcHelper = dbcHelperCan;
+            if(xcpdataCan != null)
+                canProtocolDataEntity.CanXcpData = xcpdataCan;
+            if(dbcDataCan != null)
+                canProtocolDataEntity.CanDbcData = dbcDataCan;
+            if(xcpHelperCan != null)
+                canProtocolDataEntity.CanXcpHelper = xcpHelperCan;
+            if(dbcHelperCan != null)
+                canProtocolDataEntity.CanDbcHelper = dbcHelperCan;
             canProtocolDataEntity.CanAnalysisData = analysisData;
+            canProtocolDataEntity.AgreementType = protocolType;
             keyValuePairs.Add(selectedCan, canProtocolDataEntity);
             canProtocolDataSourchList.Add(keyValuePairs);
-            LoadAnalysisDataSourch(canProtocolDataSourchList, protocolType);
+            LoadAnalysisDataSourch(canProtocolDataSourchList);
         }
-
-        private void LoadAnalysisDataSourch(List<Dictionary<SelectedCan,CanProtocolDataEntity>> list, AgreementType agreementType)
+        private void LoadAnalysisDataSourch(List<Dictionary<SelectedCan,CanProtocolDataEntity>> list)
         {
             foreach (var dicList in list)
             {
@@ -712,12 +789,12 @@ namespace LoggerConfigurator
                 {
                     if (keyValuePair.Key == SelectedCan.CAN_1)
                     {
-                        dataSourceCan1.Clear();
-                        if (agreementType == AgreementType.XCP || agreementType == AgreementType.CCP)
+                        agreementTypeCan1 = keyValuePair.Value.AgreementType;
+                        if (keyValuePair.Value.AgreementType == AgreementType.XCP || keyValuePair.Value.AgreementType == AgreementType.CCP)
                         {
                             dataSourceCan1 = gridViewControl.BindRadGridView(keyValuePair.Value.CanAnalysisData.AnalysisiXcpDataList);
                         }
-                        else if (agreementType == AgreementType.DBC)
+                        else if (keyValuePair.Value.AgreementType == AgreementType.DBC)
                         {
                             dataSourceCan1 = gridViewControl.BindRadGridView(keyValuePair.Value.CanAnalysisData.AnalysisDbcDataList);
                         }
@@ -725,12 +802,12 @@ namespace LoggerConfigurator
                     }
                     else if (keyValuePair.Key == SelectedCan.CAN_2)
                     {
-                        dataSourceCan2.Clear();
-                        if (agreementType == AgreementType.CCP || agreementType == AgreementType.XCP)
+                        agreementTypeCan2 = keyValuePair.Value.AgreementType;
+                        if (keyValuePair.Value.AgreementType == AgreementType.CCP || keyValuePair.Value.AgreementType == AgreementType.XCP)
                         {
                             dataSourceCan2 = gridViewControl.BindRadGridView(keyValuePair.Value.CanAnalysisData.AnalysisiXcpDataList);
                         }
-                        else if (agreementType == AgreementType.DBC)
+                        else if (keyValuePair.Value.AgreementType == AgreementType.DBC)
                         {
                             dataSourceCan2 = gridViewControl.BindRadGridView(keyValuePair.Value.CanAnalysisData.AnalysisDbcDataList);
                         }
@@ -764,7 +841,7 @@ namespace LoggerConfigurator
                 MessageBox.Show($"解析失败，异常代码{dbcResult}", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-        private void A2lAnalysis(AgreementType protocol)
+        private bool A2lAnalysis(AgreementType protocol)
         {
             //case = 2 解析a2l文件
             CodeCommand res = CodeCommand.DEAFUALT_FAIL;
@@ -778,7 +855,7 @@ namespace LoggerConfigurator
                 if (protocol != readFileProtocol)
                 {
                     MessageBox.Show("选择协议与打开文件协议类型不匹配，请重新配置协议或文件！","提示",MessageBoxButtons.OK,MessageBoxIcon.Warning);
-                    return;
+                    return false;
                 }
                 //判断协议类型是否为XCP,提示选择xcp on can
                 if (xcpdataCan.AgreeMentType == AgreementType.XCP)
@@ -803,6 +880,7 @@ namespace LoggerConfigurator
             {
                 MessageBox.Show($"解析失败，异常代码{res}","提示",MessageBoxButtons.OK,MessageBoxIcon.Warning);
             }
+            return true;
         }
         private void GridViewLoadDataSourceCan(SelectedCan selectedCan)
         {
@@ -863,14 +941,14 @@ namespace LoggerConfigurator
                 return;
             }
             /// 从记录集中读取数据
-            if (selectedCan == SelectedCan.CAN_1)
-            {
-                e.Value = dataSourceCan1.Rows[e.RowIndex][e.ColumnIndex].ToString();
-            }
-            else if (selectedCan == SelectedCan.CAN_2)
-            {
-                e.Value = dataSourceCan2.Rows[e.RowIndex][e.ColumnIndex].ToString();
-            }
+            //if (selectedCan == SelectedCan.CAN_1)
+            //{
+            //    e.Value = dataSourceCan1.Rows[e.RowIndex][e.ColumnIndex].ToString();
+            //}
+            //else if (selectedCan == SelectedCan.CAN_2)
+            //{
+            //    e.Value = dataSourceCan2.Rows[e.RowIndex][e.ColumnIndex].ToString();
+            //}
         }
         #endregion
 

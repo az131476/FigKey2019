@@ -39,6 +39,7 @@ namespace AnalysisAgreeMent
 
             dbcData.AgreeMentType = AgreementType.DBC;
             dbcData.AnalysisFileType = FileType.DBC;
+            dbcData.DataStatus = false;
             string cacheResult;
             string signString;
             while(!rd.EndOfStream)
@@ -92,6 +93,7 @@ namespace AnalysisAgreeMent
             }
             dbcData.DBCMessageList = dbcMessageList;
             dbcData.DBCSignalList = dbcSignalList;
+            dbcData.DataStatus = true;
             return DbcResultEnum.SUCCESS;
         }
 

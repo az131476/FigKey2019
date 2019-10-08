@@ -165,6 +165,8 @@
     <Reference Include="Telerik.WinControls.RadDiagram, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
     <Reference Include="Telerik.WinControls.RadDock, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
     <Reference Include="Telerik.WinControls.RichTextEditor, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.Themes.Breeze, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.Themes.Crystal, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
     <Reference Include="Telerik.WinControls.UI, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\CommonLibrary2019\CommonUtils\CommonUtils\Lib\telerik\Telerik.WinControls.UI.dll</HintPath>
@@ -205,6 +207,12 @@
     <Compile Include="Control\ExportFile.cs" />
     <Compile Include="Control\GridViewControl.cs" />
     <Compile Include="Control\TreeViewControl.cs" />
+    <Compile Include="ExportSet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExportSet.Designer.cs">
+      <DependentUpon>ExportSet.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -279,6 +287,9 @@
     <Compile Include="WelcomForm.Designer.cs">
       <DependentUpon>WelcomForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ExportSet.resx">
+      <DependentUpon>ExportSet.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>

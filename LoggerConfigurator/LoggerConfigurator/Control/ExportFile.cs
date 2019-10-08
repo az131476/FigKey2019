@@ -14,6 +14,7 @@ using CommonUtils.tool;
 using AnalysisAgreeMent.Model;
 using AnalysisAgreeMent.Model.DBC;
 using AnalysisAgreeMent.Analysis;
+using System.Windows.Forms;
 
 namespace FigKeyLoggerConfigurator.Control
 {
@@ -83,41 +84,123 @@ namespace FigKeyLoggerConfigurator.Control
         /// 导出a2l与dbc文件到本地
         /// </summary>
         public static bool ExportFileToLocal(string targetPath,string excutepath, RadGridView gridView1,RadGridView gridView2, 
-            GridViewData gridData, AnalysisData analysisData,XcpData dataCan1,int sectCan)
+            GridViewData gridDataA2lSelectRow,GridViewData gridDataDbcSelectRow, AnalysisData analysisDataCan1,AnalysisData analysisDataCan2,
+            XcpData xcpDataCan1,XcpData xcpDataCan2,int canDocument,AgreementType agreementType1,AgreementType agreementType2)
         {
             stringBuilderHead = new StringBuilder();
             File.Delete(targetPath);
             stringBuilderHead.AppendLine($"#include\"datatype.h\"");
             WriteData.WriteString(stringBuilderHead, targetPath);
             //CAN1/CAN2 都有可能是三种协议中的一种
-            if (sectCan == 1)
+            //选择导出内容后，判定数据是否为空，数据为空时，不导出
+            if (canDocument == 1)
             {
-                //只选择CAN1
-                A2lDetailData(targetPath, gridView1, gridData);
-                AddA2lDetailGroup(gridData, targetPath, analysisData, dataCan1);
-                AddCanChInfo(targetPath, dataCan1, analysisData,1);
+                //只选择导出CAN1
+                //判断CAN1是否有数据
+                if (gridDataA2lSelectRow.LimitTimeList10ms.Count < 1 && gridDataA2lSelectRow.LimitTimeList100ms.Count < 1)
+                {
+                    MessageBox.Show("CAN1通道未选择导出数据", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+                //导出CAN1通道数据
+                if (agreementType1 == AgreementType.CCP || agreementType1 == AgreementType.XCP)
+                {
+                    ExportXCP(targetPath, gridView1, gridDataA2lSelectRow, xcpDataCan1, analysisDataCan1);
+                }
+                else if (agreementType1 == AgreementType.DBC)
+                {
+                    ExportDBC(targetPath,gridView1,gridDataDbcSelectRow,xcpDataCan1,analysisDataCan1);
+                }
             }
-            else if (sectCan == 2)
+            else if (canDocument == 2)
             {
-                //只选择CAN2
-                DbcDetailData(targetPath, gridView2, gridData);
-                AddDBCDetailGroup(targetPath);
-                AddCanChInfo(targetPath, dataCan1, analysisData,2);
+                //只选择导出CAN2
+                //判断CAN2是否有数据
+                if (gridDataDbcSelectRow.DbcCheckIndex.Count < 1)
+                {
+                    MessageBox.Show("CAN2通道未选择导出数据", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+                //导出CAN1通道数据
+                if (agreementType2 == AgreementType.CCP || agreementType1 == AgreementType.XCP)
+                {
+                    ExportXCP(targetPath, gridView2, gridDataA2lSelectRow, xcpDataCan2, analysisDataCan2);
+                }
+                else if (agreementType2 == AgreementType.DBC)
+                {
+                    ExportDBC(targetPath, gridView2, gridDataDbcSelectRow, xcpDataCan2, analysisDataCan2);
+                }
             }
-            else if (sectCan == 3)
+            else if (canDocument == 3)
             {
-                //同时选择CAN1与CAN2
-                A2lDetailData(targetPath, gridView1, gridData);
-                DbcDetailData(targetPath, gridView2, gridData);
-                AddA2lDetailGroup(gridData, targetPath, analysisData, dataCan1);
-                AddDBCDetailGroup(targetPath);
-                AddCanChInfo(targetPath, dataCan1, analysisData,3);
+                //CAN1与CAN2同时导出
+                if (gridDataA2lSelectRow.LimitTimeList10ms.Count < 1 && gridDataA2lSelectRow.LimitTimeList100ms.Count < 1)
+                {
+                    MessageBox.Show("CAN1通道未选择导出数据", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+                if (gridDataDbcSelectRow.DbcCheckIndex.Count < 1)
+                {
+                    MessageBox.Show("CAN2通道未选择导出数据", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+                //导出CAN1通道数据
+                if (agreementType1 == AgreementType.CCP || agreementType1 == AgreementType.XCP)
+                {
+                    if (agreementType2 == AgreementType.CCP || agreementType2 == AgreementType.XCP)
+                    {
+                        ExportXCP(targetPath, gridView1, gridDataA2lSelectRow, xcpDataCan1, analysisDataCan1);
+                        ExportXCP(targetPath, gridView2, gridDataDbcSelectRow, xcpDataCan2, analysisDataCan2);
+                    }
+                    else if (agreementType2 == AgreementType.DBC)
+                    {
+                        ExportDBCXCP(targetPath,gridView1,gridView2,gridDataA2lSelectRow,gridDataDbcSelectRow,xcpDataCan1,analysisDataCan1);
+                    }
+                }
+                else if (agreementType1 == AgreementType.DBC)
+                {
+                    if (agreementType2 == AgreementType.CCP || agreementType2 == AgreementType.XCP)
+                    {
+                        ExportDBCXCP(targetPath, gridView1, gridView2, gridDataA2lSelectRow, gridDataDbcSelectRow, xcpDataCan2, analysisDataCan2);
+                    }
+                    else if (agreementType2 == AgreementType.DBC)
+                    {
+                        ExportDBC(targetPath, gridView1, gridDataDbcSelectRow, xcpDataCan1, analysisDataCan1);
+                        ExportDBC(targetPath, gridView2, gridDataDbcSelectRow, xcpDataCan2, analysisDataCan2);
+                    }
+                }
             }
             //导出完成后执行.bat
             var batName = "xcpmake.bat";
             if (!File.Exists(excutepath + batName))
                 return false;
             return Execute.ExecuteApply(excutepath, batName);
+        }
+
+        private static void ExportDBC(string targetPath,RadGridView gridView, GridViewData gridData,
+            XcpData xcpData,AnalysisData analysisData)
+        {
+            DbcDetailData(targetPath, gridView, gridData);
+            AddDBCDetailGroup(targetPath);
+            AddCanChInfo(targetPath, xcpData, analysisData, 2);
+        }
+
+        private static void ExportXCP(string targetPath,RadGridView gridView,GridViewData gridData,
+            XcpData xcpData,AnalysisData analysisData)
+        {
+            A2lDetailData(targetPath, gridView, gridData);
+            AddA2lDetailGroup(gridData, targetPath, xcpData);
+            AddCanChInfo(targetPath, xcpData, analysisData, 1);
+        }
+
+        private static void ExportDBCXCP(string targetPath,RadGridView gridView1,RadGridView gridView2,
+            GridViewData gridDataA2lSelectRow,GridViewData gridDataDbcSelectRow,XcpData xcpData,AnalysisData analysisData)
+        {
+            A2lDetailData(targetPath, gridView1, gridDataA2lSelectRow);
+            DbcDetailData(targetPath, gridView2, gridDataDbcSelectRow);
+            AddA2lDetailGroup(gridDataA2lSelectRow, targetPath, xcpData);
+            AddDBCDetailGroup(targetPath);
+            AddCanChInfo(targetPath, xcpData, analysisData, 3);
         }
 
         private static void A2lDetailData(string targetPath, RadGridView gridView, GridViewData listData)
@@ -173,7 +256,7 @@ namespace FigKeyLoggerConfigurator.Control
             }
         }
 
-        private static void AddA2lDetailGroup(GridViewData listData, string path, AnalysisData analysisData,XcpData dataCan1)
+        private static void AddA2lDetailGroup(GridViewData listData, string path, XcpData dataCan1)
         {
             StringBuilder sbExInfo = new StringBuilder();
             sbExInfo.Append(EXINFO_TYPE_HEAD);
