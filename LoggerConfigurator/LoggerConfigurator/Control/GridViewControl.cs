@@ -25,8 +25,10 @@ namespace FigKeyLoggerConfigurator.Control
         //GridViewCheckBoxColumn segMentCan1;
         GridViewCheckBoxColumn _10msCan1;
         GridViewCheckBoxColumn _100msCan1;
-
-        GridViewCheckBoxColumn checkCan2;
+        GridViewCheckBoxColumn _dbcSelectCan1;
+        GridViewCheckBoxColumn _10msCan2;
+        GridViewCheckBoxColumn _100msCan2;
+        GridViewCheckBoxColumn _dbcSelectCan2;
 
         public GridViewControl(RadGridView view1,RadGridView view2)
         {
@@ -74,6 +76,11 @@ namespace FigKeyLoggerConfigurator.Control
             //gridView.AutoScrollMinSize = new System.Drawing.Size(8,20);
             gridViewCan2.ReadOnly = false;
             //gridView.ColumnChooserSortOrder = RadSortOrder.Ascending;
+            //设置虚模式
+            //radGridView1.VirtualMode = true;
+            //radGridView1.ColumnCount = dataSource.Columns.Count;
+            //radGridView1.RowCount = dataSource.Rows.Count;
+
 
         }
         #endregion
@@ -103,18 +110,97 @@ namespace FigKeyLoggerConfigurator.Control
         #endregion
 
         #region 设置列
-        public void RefreshRadViewColumnCan1()
+        public void SetRadViewColumnCheckCAN1(AgreementType agreementType)
         {
-            AddCheckBoxCan1();
-            //SetColumnsPeoperties();
-            SetCheckValueCan1();
+            if (agreementType == AgreementType.CCP || agreementType == AgreementType.XCP)
+            {
+                if (_10msCan1 == null)
+                {
+                    _10msCan1 = new GridViewCheckBoxColumn();
+                    _10msCan1.DataType = typeof(int);
+                    _10msCan1.Name = "_10ms";
+                    _10msCan1.FieldName = "_10ms";
+                    _10msCan1.HeaderText = "10ms";
+                    gridViewCan1.MasterTemplate.Columns.Add(_10msCan1);
+                    //gridView.Columns[13].BestFit();
+                }
+                if (_100msCan1 == null)
+                {
+                    _100msCan1 = new GridViewCheckBoxColumn();
+                    _100msCan1.DataType = typeof(int);
+                    _100msCan1.Name = "_100ms";
+                    _100msCan1.FieldName = "_100ms";
+                    _100msCan1.HeaderText = "100ms";
+                    gridViewCan1.MasterTemplate.Columns.Add(_100msCan1);
+                    //gridView.Columns[14].BestFit();
+                }
+                foreach (GridViewDataRowInfo row in this.gridViewCan1.Rows)
+                {
+                    row.Cells[12].Value = 0;
+                    row.Cells[13].Value = 0;
+                }
+            }
+            else if (agreementType == AgreementType.DBC)
+            {
+                _dbcSelectCan1 = new GridViewCheckBoxColumn();
+                _dbcSelectCan1.DataType = typeof(int);
+                _dbcSelectCan1.Name = "_dbcSelectCan1";
+                _dbcSelectCan1.FieldName = "_dbcSelectCan1";
+                _dbcSelectCan1.HeaderText = "选择";
+                gridViewCan1.MasterTemplate.Columns.Add(_dbcSelectCan1);
+
+                foreach (GridViewDataRowInfo row in this.gridViewCan2.Rows)
+                {
+                    row.Cells[12].Value = 0;
+                }
+            }
+            
         }
 
-        public void RefreshRadViewColumnCan2()
+        public void SetRadViewColumnCheckCAN2(AgreementType agreementType)
         {
-            AddCheckBoxCan2();
-            //SetColumnsPeoperties();
-            SetCheckValueCan2();
+            if (agreementType == AgreementType.CCP || agreementType == AgreementType.XCP)
+            {
+                if (_10msCan2 == null)
+                {
+                    _10msCan2 = new GridViewCheckBoxColumn();
+                    _10msCan2.DataType = typeof(int);
+                    _10msCan2.Name = "_10ms";
+                    _10msCan2.FieldName = "_10ms";
+                    _10msCan2.HeaderText = "10ms";
+                    gridViewCan2.MasterTemplate.Columns.Add(_10msCan2);
+                    //gridView.Columns[13].BestFit();
+                }
+                if (_100msCan2 == null)
+                {
+                    _100msCan2 = new GridViewCheckBoxColumn();
+                    _100msCan2.DataType = typeof(int);
+                    _100msCan2.Name = "_100ms";
+                    _100msCan2.FieldName = "_100ms";
+                    _100msCan2.HeaderText = "100ms";
+                    gridViewCan2.MasterTemplate.Columns.Add(_100msCan2);
+                    //gridView.Columns[14].BestFit();
+                }
+                foreach (GridViewDataRowInfo row in this.gridViewCan2.Rows)
+                {
+                    row.Cells[12].Value = 0;
+                    row.Cells[13].Value = 0;
+                }
+            }
+            else if (agreementType == AgreementType.DBC)
+            {
+                _dbcSelectCan2 = new GridViewCheckBoxColumn();
+                _dbcSelectCan2.DataType = typeof(int);
+                _dbcSelectCan2.Name = "_dbcSelectCan2";
+                _dbcSelectCan2.FieldName = "_dbcSelectCan2";
+                _dbcSelectCan2.HeaderText = "选择";
+                gridViewCan2.MasterTemplate.Columns.Add(_dbcSelectCan2);
+
+                foreach (GridViewDataRowInfo row in this.gridViewCan2.Rows)
+                {
+                    row.Cells[12].Value = 0;
+                }
+            }
         }
         /// <summary>
         /// 设置列宽
@@ -144,92 +230,7 @@ namespace FigKeyLoggerConfigurator.Control
                 gridViewCan2.Columns[i].BestFit();
             }
         }
-
-        /// <summary>
-        /// 添加复选框 设置限制时间
-        /// </summary>
-        private void AddCheckBoxCan1()
-        {
-            #region can1
-            //if (segMentCan1 == null)
-            //{
-            //    segMentCan1 = new GridViewCheckBoxColumn();
-            //    segMentCan1.DataType = typeof(int);
-            //    segMentCan1.Name = "segMent";
-            //    segMentCan1.FieldName = "segMent";
-            //    segMentCan1.HeaderText = "segMent";
-            //    gridViewCan1.MasterTemplate.Columns.Add(segMentCan1);
-            //    //gridView.Columns[12].BestFit();
-            //}
-            if (_10msCan1 == null)
-            {
-                _10msCan1 = new GridViewCheckBoxColumn();
-                _10msCan1.DataType = typeof(int);
-                _10msCan1.Name = "_10ms";
-                _10msCan1.FieldName = "_10ms";
-                _10msCan1.HeaderText = "10ms";
-                gridViewCan1.MasterTemplate.Columns.Add(_10msCan1);
-                //gridView.Columns[13].BestFit();
-            }
-            if (_100msCan1 == null)
-            {
-                _100msCan1 = new GridViewCheckBoxColumn();
-                _100msCan1.DataType = typeof(int);
-                _100msCan1.Name = "_100ms";
-                _100msCan1.FieldName = "_100ms";
-                _100msCan1.HeaderText = "100ms";
-                gridViewCan1.MasterTemplate.Columns.Add(_100msCan1);
-                //gridView.Columns[14].BestFit();
-            }
-            #endregion
-        }
-
-        private void AddCheckBoxCan2()
-        {
-            if (checkCan2 == null)
-            {
-                checkCan2 = new GridViewCheckBoxColumn();
-                checkCan2.DataType = typeof(int);
-                checkCan2.Name = "checkCan";
-                checkCan2.FieldName = "checkCan";
-                checkCan2.HeaderText = "选择";
-                gridViewCan2.MasterTemplate.Columns.Add(checkCan2);
-                
-                //gridView.Columns[12].BestFit();
-            }
-        }
         #endregion
-
-        private void SetCheckValueCan1()
-        {
-            try
-            {
-                foreach (GridViewDataRowInfo row in this.gridViewCan1.Rows)
-                {
-                    row.Cells[12].Value = 0;
-                    row.Cells[13].Value = 0;
-                }
-            }
-            catch (Exception ex)
-            {
-                LogHelper.Log.Error($"{ex.Message}\r\n{ex.StackTrace}");
-            }
-        }
-
-        private void SetCheckValueCan2()
-        {
-            try
-            {
-                foreach (GridViewDataRowInfo row in this.gridViewCan2.Rows)
-                {
-                    row.Cells[12].Value = 0;
-                }
-            }
-            catch (Exception ex)
-            {
-                LogHelper.Log.Error($"{ex.Message}\r\n{ex.StackTrace}");
-            }
-        }
 
         #region 绑定数据
         /// <summary>
