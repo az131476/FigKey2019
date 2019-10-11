@@ -210,7 +210,7 @@ namespace FigKeyLoggerConfigurator.Control
                             File.Delete(targetPath);
                             return;
                         }
-                        ExportDBCXCP(targetPath, gridExportContent.GridViewCan1, gridExportContent.GridViewCan2, gridExportContent.GridDataA2lSelectRow, gridExportContent.GridDataDbcSelectRow, gridExportContent.XcpDataCan1, gridExportContent.AnalysisDataCan2);
+                        ExportDBCXCP(targetPath, gridExportContent);
                     }
                 }
                 else if (gridExportContent.AgreementTypeCan1 == AgreementType.DBC)
@@ -230,7 +230,7 @@ namespace FigKeyLoggerConfigurator.Control
                             File.Delete(targetPath);
                             return;
                         }
-                        ExportDBCXCP(targetPath, gridExportContent.GridViewCan1, gridExportContent.GridViewCan2, gridExportContent.GridDataA2lSelectRow, gridExportContent.GridDataDbcSelectRow, gridExportContent.XcpDataCan2, gridExportContent.AnalysisDataCan2);
+                        ExportDBCXCP(targetPath, gridExportContent);
                     }
                     else if (gridExportContent.AgreementTypeCan2 == AgreementType.DBC)
                     {
@@ -275,33 +275,6 @@ namespace FigKeyLoggerConfigurator.Control
             }
         }
 
-        public static void ExportFileToLocal(string targetPath,string excutepath, RadGridView gridView1,RadGridView gridView2, 
-            GridViewData gridDataA2lSelectRow,GridViewData gridDataDbcSelectRow, AnalysisData analysisDataCan1,AnalysisData analysisDataCan2,
-            XcpData xcpDataCan1,XcpData xcpDataCan2,int canDocument,AgreementType agreementType1,AgreementType agreementType2,
-            Dictionary<int,AgreementType> keyValuePairs)
-        {
-            
-            //CAN1/CAN2 都有可能是三种协议中的一种
-            //选择导出内容后，判定数据是否为空，数据为空时，不导出
-            if (canDocument == 1)
-            {
-                
-            }//can1
-            else if (canDocument == 2)
-            {
-                //只选择导出CAN2
-                //导出CAN1通道数据
-                
-            }//can2
-            else if (canDocument == 3)//can1+can2
-            {
-                //CAN1与CAN2同时导出
-                //导出CAN1通道数据
-                
-            }
-          
-        }
-
         private static void ExportDBC(string targetPath,RadGridView gridView, GridViewData gridData,
             XcpData xcpData,AnalysisData analysisData)
         {
@@ -318,14 +291,24 @@ namespace FigKeyLoggerConfigurator.Control
             AddCanChInfo(targetPath, xcpData, null, ProtocolType.XCP_CCP);
         }
 
-        private static void ExportDBCXCP(string targetPath,RadGridView gridView1,RadGridView gridView2,
-            GridViewData gridDataA2lSelectRow,GridViewData gridDataDbcSelectRow,XcpData xcpData,AnalysisData analysisData)
+        private static void ExportDBCXCP(string targetPath,GridExportContent gridExportContent)
         {
-            A2lDetailData(targetPath, gridView1, gridDataA2lSelectRow);
-            DbcDetailData(targetPath, gridView2, gridDataDbcSelectRow);
-            AddA2lDetailGroup(gridDataA2lSelectRow, targetPath, xcpData);
-            AddDBCDetailGroup(targetPath);
-            AddCanChInfo(targetPath, xcpData, analysisData, ProtocolType.ALL);
+            if (gridExportContent.AgreementTypeCan1 == AgreementType.CCP || gridExportContent.AgreementTypeCan1 == AgreementType.XCP)
+            {
+                A2lDetailData(targetPath, gridExportContent.GridViewCan1, gridExportContent.GridDataA2lSelectRow);
+                DbcDetailData(targetPath, gridExportContent.GridViewCan2, gridExportContent.GridDataDbcSelectRow);
+                AddA2lDetailGroup(gridExportContent.GridDataA2lSelectRow, targetPath, gridExportContent.XcpDataCan1);
+                AddDBCDetailGroup(targetPath);
+                AddCanChInfo(targetPath, gridExportContent.XcpDataCan1, gridExportContent.AnalysisDataCan2, ProtocolType.ALL);
+            }
+            else if (gridExportContent.AgreementTypeCan1 == AgreementType.DBC)
+            {
+                A2lDetailData(targetPath, gridExportContent.GridViewCan2, gridExportContent.GridDataA2lSelectRow);
+                DbcDetailData(targetPath, gridExportContent.GridViewCan1, gridExportContent.GridDataDbcSelectRow);
+                AddA2lDetailGroup(gridExportContent.GridDataA2lSelectRow, targetPath, gridExportContent.XcpDataCan2);
+                AddDBCDetailGroup(targetPath);
+                AddCanChInfo(targetPath, gridExportContent.XcpDataCan2, gridExportContent.AnalysisDataCan1, ProtocolType.ALL);
+            }
         }
 
         private static void A2lDetailData(string targetPath, RadGridView gridView, GridViewData listData)
