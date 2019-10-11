@@ -142,13 +142,15 @@ namespace FigKeyLoggerConfigurator.Control
             }
             else if (agreementType == AgreementType.DBC)
             {
-                _dbcSelectCan1 = new GridViewCheckBoxColumn();
-                _dbcSelectCan1.DataType = typeof(int);
-                _dbcSelectCan1.Name = "_dbcSelectCan1";
-                _dbcSelectCan1.FieldName = "_dbcSelectCan1";
-                _dbcSelectCan1.HeaderText = "选择";
-                gridViewCan1.MasterTemplate.Columns.Add(_dbcSelectCan1);
-
+                if (_dbcSelectCan1 == null)
+                {
+                    _dbcSelectCan1 = new GridViewCheckBoxColumn();
+                    _dbcSelectCan1.DataType = typeof(int);
+                    _dbcSelectCan1.Name = "_dbcSelectCan1";
+                    _dbcSelectCan1.FieldName = "_dbcSelectCan1";
+                    _dbcSelectCan1.HeaderText = "选择";
+                    gridViewCan1.MasterTemplate.Columns.Add(_dbcSelectCan1);
+                }
                 foreach (GridViewDataRowInfo row in this.gridViewCan2.Rows)
                 {
                     row.Cells[12].Value = 0;
@@ -189,13 +191,15 @@ namespace FigKeyLoggerConfigurator.Control
             }
             else if (agreementType == AgreementType.DBC)
             {
-                _dbcSelectCan2 = new GridViewCheckBoxColumn();
-                _dbcSelectCan2.DataType = typeof(int);
-                _dbcSelectCan2.Name = "_dbcSelectCan2";
-                _dbcSelectCan2.FieldName = "_dbcSelectCan2";
-                _dbcSelectCan2.HeaderText = "选择";
-                gridViewCan2.MasterTemplate.Columns.Add(_dbcSelectCan2);
-
+                if (_dbcSelectCan2 == null)
+                {
+                    _dbcSelectCan2 = new GridViewCheckBoxColumn();
+                    _dbcSelectCan2.DataType = typeof(int);
+                    _dbcSelectCan2.Name = "_dbcSelectCan2";
+                    _dbcSelectCan2.FieldName = "_dbcSelectCan2";
+                    _dbcSelectCan2.HeaderText = "选择";
+                    gridViewCan2.MasterTemplate.Columns.Add(_dbcSelectCan2);
+                }
                 foreach (GridViewDataRowInfo row in this.gridViewCan2.Rows)
                 {
                     row.Cells[12].Value = 0;

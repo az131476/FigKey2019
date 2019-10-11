@@ -52,8 +52,9 @@ namespace LoggerConfigurator
         private Dictionary<string, string> can1DicCheckState_12;
         private Dictionary<string, string> can1DicCheckState_13;
         private Dictionary<string, string> can2DicCheckState_12;
-        private List<Dictionary<SelectedCan, CanProtocolDataEntity>> canProtocolDataSourchList;
-        private SelectedCan selectedCan;
+        private List<Dictionary<CurrentCanType, CanProtocolDataEntity>> canProtocolDataSourchList;
+        
+        private CurrentCanType selectedCan = CurrentCanType.NONE;//当前选择的CAN，CAN1或CAN2两种情况
         #endregion
         public MainForm()
         {
@@ -73,28 +74,41 @@ namespace LoggerConfigurator
             Login login = new Login();
             login.ShowDialog();
 
-            radGridView_can1.ValueChanged += RadGridView1_ValueChanged;
-            radGridView_can2.ValueChanged += RadGridView_can2_ValueChanged;
+            this.radGridView_can1.ValueChanged += RadGridView1_ValueChanged;
+            this.radGridView_can2.ValueChanged += RadGridView_can2_ValueChanged;
 
-            tool_exportfile.Click += Tool_exportfile_Click;
-            tool_openFile.Click += Tool_openFile_Click;
-            tool_search.Click += Tool_search_Click;
-            menu_logger_manager.Click += Menu_logger_manager_Click;
-            tool_searchText.KeyDown += Tool_searchText_KeyDown;
+            this.tool_exportfile.Click += Tool_exportfile_Click;
+            this.tool_openFile.Click += Tool_openFile_Click;
+            this.tool_search.Click += Tool_search_Click;
+            this.menu_logger_manager.Click += Menu_logger_manager_Click;
+            this.tool_searchText.KeyDown += Tool_searchText_KeyDown;
 
-            cb_protocol_can1.SelectedIndexChanged += Cb_protocol_can1_SelectedIndexChanged;
-            cb_protocol_can2.SelectedIndexChanged += Cb_protocol_can2_SelectedIndexChanged;
+            this.cb_protocol_can1.SelectedIndexChanged += Cb_protocol_can1_SelectedIndexChanged;
+            this.cb_protocol_can2.SelectedIndexChanged += Cb_protocol_can2_SelectedIndexChanged;
+            this.radDock1.DockStateChanged += RadDock1_DockStateChanged;
+        }
+
+        private void RadDock1_DockStateChanged(object sender, DockWindowEventArgs e)
+        {
+            if (this.documentWindow_can1.DockState != DockState.TabbedDocument && this.documentWindow_can2.DockState != DockState.TabbedDocument)
+            {
+                this.selectedCan = CurrentCanType.NONE;
+            }
+            else if (this.documentWindow_can1.DockState != DockState.TabbedDocument && this.documentWindow_can2.DockState == DockState.TabbedDocument)
+                this.selectedCan = CurrentCanType.CAN2;
+            else if (this.documentWindow_can1.DockState == DockState.TabbedDocument && this.documentWindow_can2.DockState != DockState.TabbedDocument)
+                this.selectedCan = CurrentCanType.CAN1;
         }
 
         private void Tool_searchText_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                if (selectedCan == SelectedCan.CAN_1)
+                if (selectedCan == CurrentCanType.CAN1)
                 {
                     SearchCan1();
                 }
-                else if (selectedCan == SelectedCan.CAN_2)
+                else if (selectedCan == CurrentCanType.CAN2)
                 {
                     SearchCan2();
                 }
@@ -103,11 +117,11 @@ namespace LoggerConfigurator
 
         private void Tool_search_Click(object sender, EventArgs e)
         {
-            if (selectedCan == SelectedCan.CAN_1)
+            if (selectedCan == CurrentCanType.CAN1)
             {
                 SearchCan1();
             }
-            else if (selectedCan == SelectedCan.CAN_2)
+            else if (selectedCan == CurrentCanType.CAN2)
             {
                 SearchCan2();
             }
@@ -115,13 +129,13 @@ namespace LoggerConfigurator
 
         private void Tool_openFile_Click(object sender, EventArgs e)
         {
-            if (selectedCan == SelectedCan.CAN_1)
+            if (selectedCan == CurrentCanType.CAN1)
             {
-                OpenAnalysisFile(SelectedCan.CAN_1, this.cb_protocol_can1.Text);
+                OpenAnalysisFile(selectedCan, this.cb_protocol_can1.Text);
             }
-            else if (selectedCan == SelectedCan.CAN_2)
+            else if (selectedCan == CurrentCanType.CAN2)
             {
-                OpenAnalysisFile(SelectedCan.CAN_2, this.cb_protocol_can1.Text);
+                OpenAnalysisFile(selectedCan, this.cb_protocol_can2.Text);
             }
         }
 
@@ -154,12 +168,6 @@ namespace LoggerConfigurator
         private void Menu_logger_manager_Click(object sender, EventArgs e)
         {
             this.toolWindow_left.Show();
-        }
-
-        enum SelectedCan
-        {
-            CAN_1,
-            CAN_2
         }
 
         public enum ExportCANDocument
@@ -213,12 +221,12 @@ namespace LoggerConfigurator
             this.radDock1.RemoveAllDocumentWindows();
 
             lbx_protocol_remark.Text += "DBC时配置波特率有效，XCP直接从文件读取，配置无效";
-            canProtocolDataSourchList = new List<Dictionary<SelectedCan, CanProtocolDataEntity>>();
+            canProtocolDataSourchList = new List<Dictionary<CurrentCanType, CanProtocolDataEntity>>();
         }
 
         #region 复选框行值处理
-        bool IsCheck10msCan1;
-        bool IsCheck100msCan1;
+        private static bool IsCheckCan1_12;
+        private static bool IsCheckCan1_13;
 
         /// <summary>
         /// 复选框状态添加行数据
@@ -233,32 +241,38 @@ namespace LoggerConfigurator
                 switch (this.radGridView_can1.CurrentCell.ColumnIndex)
                 {
                     case 12:
-                        if (!IsCheck10msCan1)
+                        if (!IsCheckCan1_12)
                         {
                             this.radGridView_can1.CurrentRow.Cells[12].Value = 1;
-                            IsCheck10msCan1 = !IsCheck10msCan1;
+                            IsCheckCan1_12 = !IsCheckCan1_12;
                         }
                         else
                         {
                             this.radGridView_can1.CurrentRow.Cells[12].Value = 0;
-                            IsCheck10msCan1 = !IsCheck10msCan1;
+                            IsCheckCan1_12 = !IsCheckCan1_12;
                         }
-                        if (this.radGridView_can1.CurrentRow.Cells[13].Value.ToString() is "1")
-                            this.radGridView_can1.CurrentRow.Cells[13].Value = 0;
+                        if (agreementTypeCan1 == AgreementType.CCP || agreementTypeCan1 == AgreementType.XCP)
+                        {
+                            if (this.radGridView_can1.CurrentRow.Cells[13].Value.ToString() is "1")
+                                this.radGridView_can1.CurrentRow.Cells[13].Value = 0;
+                        }
                         break;
                     case 13:
-                        if (!IsCheck100msCan1)
+                        if (!IsCheckCan1_13)
                         {
                             this.radGridView_can1.CurrentRow.Cells[13].Value = 1;
-                            IsCheck100msCan1 = !IsCheck100msCan1;
+                            IsCheckCan1_13 = !IsCheckCan1_13;
                         }
                         else
                         {
                             this.radGridView_can1.CurrentRow.Cells[13].Value = 0;
-                            IsCheck100msCan1 = !IsCheck100msCan1;
+                            IsCheckCan1_13 = !IsCheckCan1_13;
                         }
-                        if (this.radGridView_can1.CurrentRow.Cells[12].Value.ToString() is "1")
-                            this.radGridView_can1.CurrentRow.Cells[12].Value = 0;
+                        if (agreementTypeCan1 == AgreementType.CCP || agreementTypeCan1 == AgreementType.XCP)
+                        {
+                            if (this.radGridView_can1.CurrentRow.Cells[12].Value.ToString() is "1")
+                                this.radGridView_can1.CurrentRow.Cells[12].Value = 0;
+                        }
                         break;
                 }
                 #region
@@ -329,7 +343,7 @@ namespace LoggerConfigurator
                 LogHelper.Log.Error(ex.Message + "\r\n" + ex.StackTrace);
             }
         }
-        bool IsCheckCan2;
+        private static bool IsCheckCan2_12,IsCheckCan2_13;
         private void RadGridView_can2_ValueChanged(object sender, EventArgs e)
         {
             try
@@ -337,16 +351,37 @@ namespace LoggerConfigurator
                 switch (this.radGridView_can2.CurrentCell.ColumnIndex)
                 {
                     case 12:
-                        if (!IsCheckCan2)
+                        if (!IsCheckCan2_12)
                         {
                             this.radGridView_can2.CurrentRow.Cells[12].Value = 1;
-                            IsCheckCan2 = !IsCheckCan2;
-                            
+                            IsCheckCan2_12 = !IsCheckCan2_12;
                         }
                         else
                         {
                             this.radGridView_can2.CurrentRow.Cells[12].Value = 0;
-                            IsCheckCan2 = !IsCheckCan2;
+                            IsCheckCan2_12 = !IsCheckCan2_12;
+                        }
+                        if (agreementTypeCan2 == AgreementType.CCP || agreementTypeCan2 == AgreementType.XCP)
+                        {
+                            if (this.radGridView_can2.CurrentRow.Cells[13].Value.ToString() is "1")
+                                this.radGridView_can2.CurrentRow.Cells[13].Value = 0;
+                        }
+                        break;
+                    case 13:
+                        if (!IsCheckCan2_13)
+                        {
+                            this.radGridView_can2.CurrentRow.Cells[13].Value = 1;
+                            IsCheckCan2_13 = !IsCheckCan2_13;
+                        }
+                        else
+                        {
+                            this.radGridView_can2.CurrentRow.Cells[13].Value = 0;
+                            IsCheckCan2_13 = !IsCheckCan2_13;
+                        }
+                        if (agreementTypeCan2 == AgreementType.CCP || agreementTypeCan2 == AgreementType.XCP)
+                        {
+                            if (this.radGridView_can2.CurrentRow.Cells[12].Value.ToString() is "1")
+                                this.radGridView_can2.CurrentRow.Cells[12].Value = 0;
                         }
                         break;
                 }
@@ -372,7 +407,7 @@ namespace LoggerConfigurator
         /// <summary>
         /// 导出选中行数据
         /// </summary>
-        private void ExportData(ExportCANDocument exportCANDocument)
+        private void ExportData(CurrentCanType currentCanType)
         {
             SelectedRowCal();
             string sourcePath = AppDomain.CurrentDomain.BaseDirectory + @"编译器\";
@@ -392,7 +427,7 @@ namespace LoggerConfigurator
             {
                 foreach (var keyValuePair in dicList)
                 {
-                    if (keyValuePair.Key == SelectedCan.CAN_1)
+                    if (keyValuePair.Key == CurrentCanType.CAN1)
                     {
                         agreementType1 = keyValuePair.Value.AgreementType;
                         if (keyValuePair.Value.AgreementType == AgreementType.XCP || keyValuePair.Value.AgreementType == AgreementType.CCP)
@@ -405,7 +440,7 @@ namespace LoggerConfigurator
                         }
                         analysisDataCan1 = keyValuePair.Value.CanAnalysisData;
                     }
-                    else if (keyValuePair.Key == SelectedCan.CAN_2)
+                    else if (keyValuePair.Key == CurrentCanType.CAN2)
                     {
                         agreementType2 = keyValuePair.Value.AgreementType;
                         if (keyValuePair.Value.AgreementType == AgreementType.XCP || keyValuePair.Value.AgreementType == AgreementType.CCP)
@@ -420,9 +455,19 @@ namespace LoggerConfigurator
                     }
                 }
             }
-            ExportFile.ExportFileToLocal(path, sourcePath, radGridView_can1,
-                radGridView_can2, a2lGridViewSelectRow, dbcGrieViewSelectRow, analysisDataCan1, 
-                analysisDataCan2, xcpDataCan1,xcpDataCan2, (int)exportCANDocument,agreementType1,agreementType2);
+            GridExportContent gridExportContent = new GridExportContent();
+            gridExportContent.GridViewCan1 = this.radGridView_can1;
+            gridExportContent.GridViewCan2 = this.radGridView_can2;
+            gridExportContent.GridDataA2lSelectRow = a2lGridViewSelectRow;
+            gridExportContent.GridDataDbcSelectRow = dbcGrieViewSelectRow;
+            gridExportContent.AnalysisDataCan1 = analysisDataCan1;
+            gridExportContent.AnalysisDataCan2 = analysisDataCan2;
+            gridExportContent.XcpDataCan1 = xcpDataCan1;
+            gridExportContent.XcpDataCan2 = xcpDataCan2;
+            gridExportContent.AgreementTypeCan1 = agreementType1;
+            gridExportContent.AgreementTypeCan2 = agreementType2;
+            gridExportContent.CurrentSelectCanType = currentCanType;
+            ExportFile.ExportCanFile(path,sourcePath,gridExportContent);
         }
         #endregion
 
@@ -523,15 +568,39 @@ namespace LoggerConfigurator
             {
                 if (ExportSet.can1Check && !ExportSet.can2Check)
                 {
-                    ExportData(ExportCANDocument.CAN_1);
+                    if (this.documentWindow_can1.DockState != DockState.TabbedDocument)
+                    {
+                        MessageBox.Show("CAN1通道没有数据","提示",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                        return;
+                    }
+                    ExportData(CurrentCanType.CAN1);
                 }
                 else if (ExportSet.can2Check && !ExportSet.can1Check)
                 {
-                    ExportData(ExportCANDocument.CAN_2);
+                    if (this.documentWindow_can2.DockState != DockState.TabbedDocument)
+                    {
+                        MessageBox.Show("CAN2通道没有数据", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+                    ExportData(CurrentCanType.CAN2);
                 }
                 else if (ExportSet.can1Check && ExportSet.can2Check)
                 {
-                    ExportData(ExportCANDocument.CAN_1_2);
+                    if (this.documentWindow_can1.DockState != DockState.TabbedDocument)
+                    {
+                        MessageBox.Show("CAN1通道没有数据", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+                    if (this.documentWindow_can2.DockState != DockState.TabbedDocument)
+                    {
+                        MessageBox.Show("CAN2通道没有数据", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+                    ExportData(CurrentCanType.CAN1_CAN2);
+                }
+                else if(!ExportSet.can1Check && !ExportSet.can2Check)
+                {
+                    MessageBox.Show("未选择CAN通道", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
         }
@@ -718,14 +787,14 @@ namespace LoggerConfigurator
         #endregion
 
         #region 打开文件
-
-
         /// <summary>
         /// 根据选择的协议类型打开文件
         /// </summary>
         /// <param name="selectedCan"></param>
-        private void OpenAnalysisFile(SelectedCan selectedCan, string inputProtocol)
+        private void OpenAnalysisFile(CurrentCanType selectedCan, string inputProtocol)
         {
+            if (selectedCan == CurrentCanType.NONE)
+                return;//未选择CAN，打开文件无效
             AgreementType currentProtocol;
             if (inputProtocol == "")
             {
@@ -754,7 +823,7 @@ namespace LoggerConfigurator
             //开始解析
             StartAnalysis(selectedCan,currentProtocol);
         }
-        private void StartAnalysis(SelectedCan selectedCan, AgreementType protocolType)
+        private void StartAnalysis(CurrentCanType selectedCan, AgreementType protocolType)
         {
             if (protocolType == AgreementType.XCP || protocolType == AgreementType.CCP)
             {
@@ -773,7 +842,7 @@ namespace LoggerConfigurator
             }
             //全部解析完成，添加到集合
             CanProtocolDataEntity canProtocolDataEntity = new CanProtocolDataEntity();
-            Dictionary<SelectedCan, CanProtocolDataEntity> keyValuePairs = new Dictionary<SelectedCan, CanProtocolDataEntity>();
+            Dictionary<CurrentCanType, CanProtocolDataEntity> keyValuePairs = new Dictionary<CurrentCanType, CanProtocolDataEntity>();
             if(xcpdataCan != null)
                 canProtocolDataEntity.CanXcpData = xcpdataCan;
             if(dbcDataCan != null)
@@ -786,15 +855,15 @@ namespace LoggerConfigurator
             canProtocolDataEntity.AgreementType = protocolType;
             keyValuePairs.Add(selectedCan, canProtocolDataEntity);
             canProtocolDataSourchList.Add(keyValuePairs);
-            LoadAnalysisDataSourch(canProtocolDataSourchList,selectedCan,protocolType);
+            LoadAnalysisDataSourch(canProtocolDataSourchList,protocolType);
         }
-        private void LoadAnalysisDataSourch(List<Dictionary<SelectedCan,CanProtocolDataEntity>> list,SelectedCan currentCAN,AgreementType agreementType)
+        private void LoadAnalysisDataSourch(List<Dictionary<CurrentCanType, CanProtocolDataEntity>> list,AgreementType agreementType)
         {
             foreach (var dicList in list)
             {
                 foreach (var keyValuePair in dicList)
                 {
-                    if (keyValuePair.Key == SelectedCan.CAN_1)
+                    if (keyValuePair.Key == CurrentCanType.CAN1)
                     {
                         agreementTypeCan1 = keyValuePair.Value.AgreementType;
                         if (keyValuePair.Value.AgreementType == AgreementType.XCP || keyValuePair.Value.AgreementType == AgreementType.CCP)
@@ -806,7 +875,7 @@ namespace LoggerConfigurator
                             dataSourceCan1 = gridViewControl.BindRadGridView(keyValuePair.Value.CanAnalysisData.AnalysisDbcDataList);
                         }
                     }
-                    else if (keyValuePair.Key == SelectedCan.CAN_2)
+                    else if (keyValuePair.Key == CurrentCanType.CAN2)
                     {
                         agreementTypeCan2 = keyValuePair.Value.AgreementType;
                         if (keyValuePair.Value.AgreementType == AgreementType.CCP || keyValuePair.Value.AgreementType == AgreementType.XCP)
@@ -820,7 +889,7 @@ namespace LoggerConfigurator
                     }
                 }
             }
-            GridViewLoadDataSourceCan(currentCAN,agreementType);
+            GridViewLoadDataSourceCan(agreementType);
         }
         private void DbcAnalysis()
         {
@@ -889,21 +958,23 @@ namespace LoggerConfigurator
             }
             return true;
         }
-        private void GridViewLoadDataSourceCan(SelectedCan selectedCan,AgreementType agreementType)
+        private void GridViewLoadDataSourceCan(AgreementType agreementType)
         {
-            if (selectedCan == SelectedCan.CAN_1)
+            if (selectedCan == CurrentCanType.CAN1)
             {
                 radGridView_can1.BeginEdit();
                 radGridView_can1.DataSource = dataSourceCan1;
                 gridViewControl.SetRadViewColumnCheckCAN1(agreementType);
                 radGridView_can1.EndUpdate();
+                this.radDock1.ActiveWindow = this.documentWindow_can1;
             }
-            else if (selectedCan == SelectedCan.CAN_2)
+            else if (selectedCan == CurrentCanType.CAN2)
             {
                 radGridView_can2.BeginEdit();
                 radGridView_can2.DataSource = dataSourceCan2;
                 gridViewControl.SetRadViewColumnCheckCAN2(agreementType);
                 radGridView_can2.EndUpdate();
+                this.radDock1.ActiveWindow = this.documentWindow_can2;
             }
         }
         #endregion
@@ -968,12 +1039,14 @@ namespace LoggerConfigurator
             {
                 case TreeViewData.HardWare.CAN_1_DATA:
                     this.radDock1.AddDocument(documentWindow_can1);
+                    this.selectedCan = CurrentCanType.CAN1;
                     break;
                 case TreeViewData.HardWare.CAN_HARDWARE_CONFIG:
                     this.radDock1.AddDocument(documentWindow_hardWare);
                     break;
                 case TreeViewData.HardWare.CAN_2_DATA:
                     this.radDock1.AddDocument(documentWindow_can2);
+                    this.selectedCan = CurrentCanType.CAN2;
                     break;
 
                 case TreeViewData.CcpOrXcp.DESCRIPTIONS:
@@ -982,5 +1055,49 @@ namespace LoggerConfigurator
             }
         }
         #endregion
+
+        private void ExportGridViewData(int selectIndex, RadGridView radGridView)
+        {
+            var filter = "Excel (*.xls)|*.xls";
+            if (selectIndex == (int)ExportFormat.EXCEL)
+            {
+                filter = "Excel (*.xls)|*.xls";
+                var path = FileSelect.SaveAs(filter);//, "C:\\");
+                if (path == "")
+                    return;
+                RadGridViewExport.RunExportToExcelML(path, radGridView);
+            }
+            else if (selectIndex == (int)ExportFormat.HTML)
+            {
+                filter = "Html File (*.htm)|*.htm";
+                var path = FileSelect.SaveAs(filter);//, "C:\\");
+                if (path == "")
+                    return;
+                RadGridViewExport.RunExportToHTML(path, radGridView);
+            }
+            else if (selectIndex == (int)ExportFormat.PDF)
+            {
+                filter = "PDF file (*.pdf)|*.pdf";
+                var path = FileSelect.SaveAs(filter);//, "C:\\");
+                if (path == "")
+                    return;
+                RadGridViewExport.RunExportToPDF(path, radGridView);
+            }
+            else if (selectIndex == (int)ExportFormat.CSV)
+            {
+                filter = "PDF file (*.pdf)|*.csv";
+                var path = FileSelect.SaveAs(filter);//, "C:\\");
+                if (path == "")
+                    return;
+                RadGridViewExport.RunExportToCSV(path, radGridView);
+            }
+        }
+        private enum ExportFormat
+        {
+            EXCEL,
+            HTML,
+            PDF,
+            CSV
+        }
     }
 }

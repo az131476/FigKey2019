@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Telerik.WinControls.UI;
+using AnalysisAgreeMent.Model;
+using AnalysisAgreeMent.Model.XCP;
+using AnalysisAgreeMent.Model.DBC;
 
 namespace FigKeyLoggerConfigurator.Model
 {
@@ -31,7 +35,7 @@ namespace FigKeyLoggerConfigurator.Model
             public const string BYTES_LEN = "长度";
             public const string MEASUREMENT_MODE = "模型尺寸";
             public const string CYLE = "圈数";
-            
+
         }
         public List<int> LimitTimeListSegMent { get; set; }
 
@@ -55,5 +59,30 @@ namespace FigKeyLoggerConfigurator.Model
         public int RowIndex { get; set; }
 
         public TimeLimitType LimitType { get; set; }
+    }
+
+    public class GridExportContent
+    {
+        public AgreementType AgreementTypeCan1 { get; set; }
+
+        public AgreementType AgreementTypeCan2 { get; set; }
+
+        public CurrentCanType CurrentSelectCanType { get; set; }
+
+        public RadGridView GridViewCan1 { get; set; }
+
+        public RadGridView GridViewCan2 { get; set; }
+
+        public GridViewData GridDataA2lSelectRow { get; set; }
+
+        public GridViewData GridDataDbcSelectRow { get; set; }
+
+        public AnalysisData AnalysisDataCan1 { get; set; }
+
+        public AnalysisData AnalysisDataCan2 { get; set; }
+
+        public XcpData XcpDataCan1 { get; set; }
+
+        public XcpData XcpDataCan2 { get; set; }
     }
 }

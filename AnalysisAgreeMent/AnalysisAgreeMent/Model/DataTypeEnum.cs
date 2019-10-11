@@ -17,6 +17,29 @@ namespace AnalysisAgreeMent.Model
         other
     }
 
+    /// <summary>
+    /// 决定要导出的CAN类型
+    /// </summary>
+    public enum CurrentCanType
+    {
+        /// <summary>
+        /// 仅选择CAN1
+        /// </summary>
+        CAN1,
+        /// <summary>
+        /// 仅选择CAN2
+        /// </summary>
+        CAN2,
+        /// <summary>
+        /// CAN1与CAN2都选择
+        /// </summary>
+        CAN1_CAN2,
+        /// <summary>
+        /// 未选择CAN
+        /// </summary>
+        NONE
+    }
+
     public enum FileType
     {
         DBC =1,
