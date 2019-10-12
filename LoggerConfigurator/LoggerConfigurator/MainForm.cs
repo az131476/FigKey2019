@@ -46,15 +46,17 @@ namespace LoggerConfigurator
         private AnalysisData analysisData;
         private ExportCANDocument exportCanDocument;
         //private FileType analysisFileType;
-        private AgreementType agreementTypeCan1, agreementTypeCan2;
+        private AgreementType agreementTypeCan1 = AgreementType.other, agreementTypeCan2 = AgreementType.other;
+        private AgreementType lastAgreementCan1 = AgreementType.other, lastAgreementCan2 = AgreementType.other;
         private DataTable dataSourceCan1;
         private DataTable dataSourceCan2;
-        private Dictionary<string, string> can1DicCheckState_12;
-        private Dictionary<string, string> can1DicCheckState_13;
-        private Dictionary<string, string> can2DicCheckState_12;
+        private Dictionary<string, string> canDicCheckState_12;
+        private Dictionary<string, string> canDicCheckState_13;
+        //private Dictionary<string, string> can2DicCheckState_12;
         private List<Dictionary<CurrentCanType, CanProtocolDataEntity>> canProtocolDataSourchList;
         
         private CurrentCanType selectedCan = CurrentCanType.NONE;//当前选择的CAN，CAN1或CAN2两种情况
+        private bool IsFirstOppendCan1 = true, IsFirstOppendCan2 = true;
         #endregion
         public MainForm()
         {
@@ -106,11 +108,11 @@ namespace LoggerConfigurator
             {
                 if (selectedCan == CurrentCanType.CAN1)
                 {
-                    SearchCan1();
+                    SearchGridViewCAN(this.radGridView_can1, agreementTypeCan1, dataSourceCan1);
                 }
                 else if (selectedCan == CurrentCanType.CAN2)
                 {
-                    SearchCan2();
+                    SearchGridViewCAN(this.radGridView_can2, agreementTypeCan2, dataSourceCan2);
                 }
             }
         }
@@ -119,11 +121,11 @@ namespace LoggerConfigurator
         {
             if (selectedCan == CurrentCanType.CAN1)
             {
-                SearchCan1();
+                SearchGridViewCAN(this.radGridView_can1,agreementTypeCan1,dataSourceCan1);
             }
             else if (selectedCan == CurrentCanType.CAN2)
             {
-                SearchCan2();
+                SearchGridViewCAN(this.radGridView_can2, agreementTypeCan2, dataSourceCan2);
             }
         }
 
@@ -186,9 +188,8 @@ namespace LoggerConfigurator
             a2lGridViewSelectRow.LimitTimeList100ms = new List<int>();
             dbcGrieViewSelectRow.DbcCheckIndex = new List<int>();
 
-            can1DicCheckState_12 = new Dictionary<string, string>();//12cell row-state
-            can1DicCheckState_13 = new Dictionary<string, string>();//13cell row-state
-            can2DicCheckState_12 = new Dictionary<string, string>();//can2 13cell row-state
+            canDicCheckState_12 = new Dictionary<string, string>();//12cell row-state
+            canDicCheckState_13 = new Dictionary<string, string>();//13cell row-state
             //配置
             //can1
             cb_baud_can1.Items.Clear();
@@ -613,43 +614,52 @@ namespace LoggerConfigurator
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void SearchCan1()
+        private void SearchGridViewCAN(RadGridView radGridView,AgreementType agreementType,DataTable dataTable)
         {
             int dex = 0;
-            //将选中add
-            foreach (GridViewRowInfo row in this.radGridView_can1.Rows)
+            //查询选中行，加入缓存
+            foreach (GridViewRowInfo row in radGridView.Rows)
             {
-                var key = this.radGridView_can1.Rows[dex].Cells[1].Value.ToString();
-                var value12 = this.radGridView_can1.Rows[dex].Cells[12].Value.ToString();
-                var value13 = this.radGridView_can1.Rows[dex].Cells[13].Value.ToString();
-                if (!can1DicCheckState_12.ContainsKey(key))
+                //判断
+                var key = radGridView.Rows[dex].Cells[1].Value.ToString();
+                object value12 = radGridView.Rows[dex].Cells[12].Value;
+                object value13 = null;
+                if (agreementType == AgreementType.CCP || agreementType == AgreementType.XCP)
                 {
-                    if (value12 == "1")
+                    value13 = radGridView.Rows[dex].Cells[13].Value;
+                }
+                if (!canDicCheckState_12.ContainsKey(key))
+                {
+                    if (value12 != null)
                     {
-                        can1DicCheckState_12.Add(key, value12);
+                        if (value12.ToString() == "1")
+                        {
+                            canDicCheckState_12.Add(key, value12.ToString());
+                        }
                     }
                 }
                 else
                 {
-                    can1DicCheckState_12.Remove(key);
-                    can1DicCheckState_12.Add(key,value12);
+                    canDicCheckState_12.Remove(key);
+                    canDicCheckState_12.Add(key,value12.ToString());
                 }
-                if (!can1DicCheckState_13.ContainsKey(key))
+                if (!canDicCheckState_13.ContainsKey(key))
                 {
-                    if (value13 == "1")
+                    if (value13 != null)
                     {
-                        can1DicCheckState_13.Add(key, value13);
+                        if (value13.ToString() == "1")
+                        {
+                            canDicCheckState_13.Add(key, value13.ToString());
+                        }
                     }
                 }
                 else
                 {
-                    can1DicCheckState_13.Remove(key);
-                    can1DicCheckState_13.Add(key,value13);
+                    canDicCheckState_13.Remove(key);
+                    canDicCheckState_13.Add(key,value13.ToString());
                 }
                 dex++;
             }
-
-            //DataTable dt = dataSourceCan1;//radGridView_can1.DataSource as DataTable;
             DataTable updateDt = dataSourceCan1.Clone();
             if (dataSourceCan1.Rows.Count < 1)
                 return;
@@ -664,43 +674,38 @@ namespace LoggerConfigurator
             {
                 condition = $"名称 like '%{filter}%' or 名称 like '%{filter.ToLower()}%' or 名称 like '%{filter.ToUpper()}%' or 数据地址 like '%{filter}%'";
             }
-            DataRow[] dataRows = dataSourceCan1.Select(condition);
-            int dx = 0;
+            DataRow[] dataRows = dataTable.Select(condition);
             foreach (var row in dataRows)
             {
                 updateDt.Rows.Add(row.ItemArray);
             }
-            //update end
-            radGridView_can1.BeginEdit();
-            radGridView_can1.DataSource = updateDt;
+            radGridView.BeginEdit();
+            radGridView.DataSource = updateDt;
             //gridViewControl.RefreshRadViewColumnCan1();
-            radGridView_can1.EndUpdate();
-            //radGridView_can1.Update();
-
+            radGridView.EndUpdate();
             tool_searchText.Text = "";
             tool_searchText.Focus();
-            //设置选中状态
-            try
+            //恢复选中状态
+            int rIndex12 = 0;
+            foreach (GridViewDataRowInfo row in radGridView.Rows)
             {
-                int rIndex12 = 0;
-                foreach (GridViewDataRowInfo row in this.radGridView_can1.Rows)
+                foreach (KeyValuePair<string, string> kv in canDicCheckState_12)
                 {
-                    foreach (KeyValuePair<string, string> kv in can1DicCheckState_12)
+                    var k = kv.Key;
+                    var v = kv.Value;
+                    if (row.Cells[1].Value.ToString().Equals(k))
                     {
-                        var k = kv.Key;
-                        var v = kv.Value;
-                        if (row.Cells[1].Value.ToString().Equals(k))
-                        {
-                            row.Cells[12].Value = v;
-                        }
+                        row.Cells[12].Value = v;
                     }
-                    rIndex12++;
                 }
-
+                rIndex12++;
+            }
+            if (agreementType == AgreementType.XCP || agreementType == AgreementType.CCP)
+            {
                 int rIndex13 = 0;
-                foreach (GridViewDataRowInfo row in this.radGridView_can1.Rows)
+                foreach (GridViewDataRowInfo row in radGridView.Rows)
                 {
-                    foreach (KeyValuePair<string, string> kv in can1DicCheckState_13)
+                    foreach (KeyValuePair<string, string> kv in canDicCheckState_13)
                     {
                         var k = kv.Key;
                         var v = kv.Value;
@@ -712,77 +717,6 @@ namespace LoggerConfigurator
                     rIndex13++;
                 }
             }
-            catch (Exception ex)
-            {
-                LogHelper.Log.Error(ex.Message + "\r\n" + ex.StackTrace);
-            }
-        }
-        private void SearchCan2()
-        {
-            int dex =0;
-            foreach (GridViewRowInfo row in this.radGridView_can2.Rows)
-            {
-                var key = this.radGridView_can2.Rows[dex].Cells[1].Value.ToString();
-                var value = this.radGridView_can2.Rows[dex].Cells[12].Value.ToString();
-                if (!can2DicCheckState_12.ContainsKey(key))
-                    can2DicCheckState_12.Add(key, value);
-                else
-                {
-                    can2DicCheckState_12.Remove(key);
-                    can2DicCheckState_12.Add(key,value);
-                }
-                dex++;
-            }
-
-            //DataTable dt = radGridView_can2.DataSource as DataTable;
-            DataTable updateDt = dataSourceCan2.Clone();
-            string filter = tool_searchText.Text.Trim();
-            if (dataSourceCan2.Rows.Count < 1)
-                return;
-            //can2
-            string condition = "";
-            if (string.IsNullOrEmpty(filter))
-            {
-                condition = "";
-            }
-            else
-            {
-                condition = $"名称 like '%{filter}%' or 名称 like '%{filter.ToLower()}%' or 名称 like '%{filter.ToUpper()}%' or 数据地址 like '%{filter}%'";
-            }
-            DataRow[] dataRows = dataSourceCan2.Select(condition);
-            foreach (var row in dataRows)
-            {
-                updateDt.Rows.Add(row.ItemArray);
-            }
-            //update end
-            radGridView_can2.BeginEdit();
-            radGridView_can2.DataSource = updateDt;
-            //gridViewControl.RefreshRadViewColumnCan2();
-            radGridView_can2.EndEdit();
-            try
-            {
-                int rIndex = 0;
-                foreach (KeyValuePair<string, string> kv in can2DicCheckState_12)
-                {
-                    var k = kv.Key;
-                    var v = kv.Value;
-                    foreach (GridViewDataRowInfo row in this.radGridView_can2.Rows)
-                    {
-                        if (row.Cells[1].Value.ToString().Equals(k))
-                        {
-                            row.Cells[12].Value = v;
-                        }
-                        rIndex++;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                LogHelper.Log.Error(ex.Message + "\r\n" + ex.StackTrace);
-            }
-
-            tool_searchText.Text = "";
-            tool_searchText.Focus();
         }
         #endregion
 
@@ -966,6 +900,35 @@ namespace LoggerConfigurator
                 radGridView_can1.DataSource = dataSourceCan1;
                 gridViewControl.SetRadViewColumnCheckCAN1(agreementType);
                 radGridView_can1.EndUpdate();
+                if (IsFirstOppendCan1)
+                {
+                    IsFirstOppendCan1 = false;
+                    lastAgreementCan1 = agreementType;
+                }
+                else
+                {
+                    if (agreementType != lastAgreementCan1)
+                    {
+                        if (agreementType == AgreementType.CCP || agreementType == AgreementType.XCP)
+                        {
+                            if (lastAgreementCan1 == AgreementType.DBC)
+                            {
+                                //DBC在前，隐藏
+                                this.radGridView_can1.Columns[12].IsVisible = false;
+                            }
+                        }
+                        else if (agreementType == AgreementType.DBC)
+                        {
+                            if (lastAgreementCan1 == AgreementType.CCP || lastAgreementCan1 == AgreementType.XCP)
+                            {
+                                //a2l before hide
+                                this.radGridView_can1.Columns[12].IsVisible = false;
+                                this.radGridView_can1.Columns[13].IsVisible = false;
+                            }
+                        }
+                    }
+                    lastAgreementCan1 = agreementType;
+                }
                 this.radDock1.ActiveWindow = this.documentWindow_can1;
             }
             else if (selectedCan == CurrentCanType.CAN2)
@@ -974,6 +937,35 @@ namespace LoggerConfigurator
                 radGridView_can2.DataSource = dataSourceCan2;
                 gridViewControl.SetRadViewColumnCheckCAN2(agreementType);
                 radGridView_can2.EndUpdate();
+                if (IsFirstOppendCan2)
+                {
+                    IsFirstOppendCan2 = false;
+                    lastAgreementCan2 = agreementType;
+                }
+                else
+                {
+                    if (agreementType != lastAgreementCan2)
+                    {
+                        if (agreementType == AgreementType.CCP || agreementType == AgreementType.XCP)
+                        {
+                            if (lastAgreementCan2 == AgreementType.DBC)
+                            {
+                                //DBC在前，隐藏
+                                this.radGridView_can2.Columns[12].IsVisible = false;
+                            }
+                        }
+                        else if (agreementType == AgreementType.DBC)
+                        {
+                            if (lastAgreementCan2 == AgreementType.CCP || lastAgreementCan2 == AgreementType.XCP)
+                            {
+                                //a2l before hide
+                                this.radGridView_can2.Columns[12].IsVisible = false;
+                                this.radGridView_can2.Columns[13].IsVisible = false;
+                            }
+                        }
+                    }
+                    lastAgreementCan2 = agreementType;
+                }
                 this.radDock1.ActiveWindow = this.documentWindow_can2;
             }
         }

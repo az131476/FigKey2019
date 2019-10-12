@@ -156,7 +156,6 @@ namespace FigKeyLoggerConfigurator.Control
                     row.Cells[12].Value = 0;
                 }
             }
-            
         }
 
         public void SetRadViewColumnCheckCAN2(AgreementType agreementType)
